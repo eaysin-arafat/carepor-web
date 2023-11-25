@@ -24,10 +24,8 @@ function HomePage({}: Props) {
           <AppLogo type={"rounded"} marginTop="mt-[-110px]" />
           <AppName />
           {/* Title */}
-          <div>
-            <Title type={"subtitle"} text="Select Facility" />
-            <Title text="Select Facility" />
-            <Title text="Select Facility" />
+          <div className="">
+            <Title titleText="Select Facility" />
           </div>
         </div>
       </div>

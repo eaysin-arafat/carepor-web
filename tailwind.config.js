@@ -8,7 +8,7 @@ export default {
         xs: "360px",
       },
       colors: {
-        primaryColor: "var(--body)",
+        bodyColor: "var(--body)",
         primaryColor: "var(--primary)",
         secondaryColor: "var(--secondary)",
         grayColor: "var(--grayColor)",

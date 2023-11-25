@@ -1,25 +1,29 @@
 type Props = {
-  text: string;
+  titleText: string;
   type?: "subtitle" | "title" | "titleNote";
   className?: string;
 };
 
-function Title({ text, className, type }: Props) {
+function Title({ titleText, className, type }: Props) {
   switch (type) {
     case "subtitle":
       return (
-        <div className={className + defaultClass + " " + "text-xl"}>{text}</div>
+        <div className={className + defaultClass + " " + "text-xl font-bold"}>
+          {titleText}
+        </div>
       );
 
     case "titleNote":
       return (
-        <div className={className + defaultClass + " " + "text-xl"}>{text}</div>
+        <div className={className + defaultClass + " " + "text-sm "}>
+          {titleText}
+        </div>
       );
 
     default:
       return (
-        <div className={className + defaultClass + " " + "text-2xl"}>
-          {text}
+        <div className={className + defaultClass + " " + "text-2xl font-bold"}>
+          {titleText}
         </div>
       );
   }
@@ -27,4 +31,4 @@ function Title({ text, className, type }: Props) {
 
 export default Title;
 
-const defaultClass: string = " font-bold text-center";
+const defaultClass: string = "  text-center";

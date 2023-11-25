@@ -11,9 +11,7 @@ function AppName({ className, alien = "center" }: Props) {
       className={
         className +
         " " +
-        `text-[var(--primaryColor)] text-${
-          alien || "center"
-        } font-bold mt-1 py-2 mb-2 `
+        `text-primaryColor text-${alien || "center"} font-bold mt-1 py-2 mb-2 `
       }
     >
       {applicationName}
