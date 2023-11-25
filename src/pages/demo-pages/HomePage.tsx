@@ -1,7 +1,7 @@
 type Props = {};
 
 function HomePage({}: Props) {
-  return <div>Home Page xsdgsfdsfd</div>;
+  return <div>Home Page</div>;
 }
 
 export default HomePage;
