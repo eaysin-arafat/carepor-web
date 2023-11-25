@@ -1,3 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.light {
+    --body: #ffffff ;
+    --primary: #1890FF ;
+    --secondary: #F6F9FF ;
+    --grayColor: #A1A1B0 ;
+    --black: #000000 ;
+    --white: #ffffff ;
+    --danger: red ;
+    --border: #EBEAED
+}
+
+.dark {
+    --body: #000000 ;
+    --primary: #1890FF ;
+    --secondary: #F6F9FF ;
+    --grayColor: #A1A1B0 ;
+    --black: #ffffff ;
+    --white: #000000 ;
+    --danger: red ;
+    --border: #EBEAED
+}
+
+html {
+    background: var(--body) !important;
+}
+body {
+    position: relative;
+    background: var(--body) !important;
+}
+
+.custom-input{
+    @apply w-full rounded-full text-blackColor bg-whiteColor box-border flex flex-row items-center justify-start py-[10px] px-4 border-[2px] border-solid border-borderColor outline-none
+}
+
+.btn{
+    @apply w-full rounded-full flex flex-row items-center justify-center py-[10px] px-4 cursor-pointer
+}
