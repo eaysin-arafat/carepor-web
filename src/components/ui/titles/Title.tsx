@@ -8,7 +8,9 @@ function Title({ titleText, className, type }: Props) {
   switch (type) {
     case "subtitle":
       return (
-        <div className={className + defaultClass + " " + "text-xl font-bold"}>
+        <div
+          className={className + defaultClass + " " + "text-xl font-semibold"}
+        >
           {titleText}
         </div>
       );
@@ -22,7 +24,9 @@ function Title({ titleText, className, type }: Props) {
 
     default:
       return (
-        <div className={className + defaultClass + " " + "text-2xl font-bold"}>
+        <div
+          className={className + defaultClass + " " + "text-2xl font-semibold"}
+        >
           {titleText}
         </div>
       );
@@ -31,4 +35,4 @@ function Title({ titleText, className, type }: Props) {
 
 export default Title;
 
-const defaultClass: string = "  text-center";
+const defaultClass: string = " text-center";

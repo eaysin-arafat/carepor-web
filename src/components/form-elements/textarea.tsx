@@ -28,7 +28,10 @@ Props) {
   return (
     <div className="flex flex-col w-full items-start justify-start gap-[6px]">
       <div className="flex">
-        <div className="text-blackColor leading-[125%]"> {label}</div>
+        <div className="text-blackColor leading-[125%] capitalize">
+          {" "}
+          {label}
+        </div>
         {required && <span className="-mt-[6px] mx-1 text-dangerColor">*</span>}
       </div>
       <textarea
