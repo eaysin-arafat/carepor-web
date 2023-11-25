@@ -1,3 +1,7 @@
+import AppName from "@/components/ui/app-name/AppName";
+import AppLogo from "@/components/ui/logo/logo";
+import Title from "@/components/ui/titles/Title";
+
 type Props = {};
 
 function HomePage({}: Props) {
@@ -17,14 +21,14 @@ function HomePage({}: Props) {
       <div className="w-full h-[100vh] flex justify-center items-center">
         <div className="m-auto  w-[600px] px-16 py-6  bg-white  bottom-[5.24%]  rounded-[10px] bg-colors-white shadow-[0px_0px_25px_rgba(0,_0,_0,_0.05)]">
           {/* logo */}
-          <div className="mx-auto w-full text-center">
-            <div className="relative w-0 ">
-              <div className=" bottom-[0px] w-[150px] left-[50%] h-[150px]">
-                <img className="" alt="" src="/assets/img/backgroundImg.png" />
-              </div>
-            </div>
+          <AppLogo type={"rounded"} marginTop="mt-[-110px]" />
+          <AppName />
+          {/* Title */}
+          <div>
+            <Title type={"subtitle"} text="Select Facility" />
+            <Title text="Select Facility" />
+            <Title text="Select Facility" />
           </div>
-          <div>demo</div>
         </div>
       </div>
     </div>

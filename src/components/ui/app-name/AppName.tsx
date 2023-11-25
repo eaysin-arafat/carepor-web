@@ -1,0 +1,24 @@
+import { applicationName } from "@/data/app-defaults";
+
+type Props = {
+  className?: string;
+  alien?: "center" | "left";
+};
+
+function AppName({ className, alien = "center" }: Props) {
+  return (
+    <div
+      className={
+        className +
+        " " +
+        `text-[var(--primaryColor)] text-${
+          alien || "center"
+        } font-bold mt-1 py-2 mb-2 `
+      }
+    >
+      {applicationName}
+    </div>
+  );
+}
+
+export default AppName;
