@@ -9,14 +9,14 @@ function PersonalInfo({}: Props) {
     <>
       <FormSection titleText="Personal Information">
         <div className="grid md:grid-cols-2 grid-cols-1 gap-5">
-          <Input label="First Name" />
-          <Input label="Surname" />
-          <Input label="Date of birth" />
-          <Input label="Sex" />
+          <Input required label="First Name" />
+          <Input required label="Surname" />
+          <Input required label="Date of birth" />
+          <Input required label="Sex" />
           <div className="col-span-1 md:col-span-2">
             <Input label="Designation" />
           </div>
-          <Input label="NRC" />
+          <Input required label="NRC" />
           <div className="col-span-1 flex items-center">
             <Checkbox label="I do not have NRC" />
           </div>
