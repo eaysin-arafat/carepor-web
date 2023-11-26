@@ -4,14 +4,14 @@ import Button from "@/components/form-elements/Button";
 
 type Props = {};
 
-const Demo = ({}: Props) => {
+const SelectFacility = ({}: Props) => {
   return (
     <>
       <FormLayout
         mainTitle="Select Facility"
         note="Please select a facility to enter."
       >
-        <form action="" className="my-5">
+        <form action="" className="mt-5">
           <div className="flex flex-col gap-5">
             <Select label="Province" required>
               <option value="">Select</option>
@@ -46,4 +46,4 @@ const Demo = ({}: Props) => {
   );
 };
 
-export default Demo;
+export default SelectFacility;

@@ -17,7 +17,7 @@ function Title({ titleText, className, type }: Props) {
 
     case "titleNote":
       return (
-        <div className={className + defaultClass + " " + "text-sm "}>
+        <div className={className + defaultClass + " " + "text-sm text-grayColor mt-1"}>
           {titleText}
         </div>
       );

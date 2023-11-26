@@ -30,9 +30,9 @@ function FormLayout({
     <BodyBackground>
       <div>
         <div className="w-full flex justify-center items-center mt-[88px]">
-          <div className={`m-auto  w-[${width}px] ${className}`}>
+          <div className={`m-auto  `}>
             <div
-              className={`bg-white bg-colors-white md:shadow-lg rounded-[10px] px-16 py-6 ${className}`}
+              className={`bg-white bg-colors-white md:shadow-lg rounded-[10px] w-[360px] sm:w-[600px] px-5 sm:px-10 py-6 transition-all ease-out ${className}`}
             >
               {/* logo */}
               <AppLogo type={"rounded"} marginTop="mt-[-88px]" />
