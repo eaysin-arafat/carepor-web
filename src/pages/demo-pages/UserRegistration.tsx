@@ -1,7 +1,6 @@
 import Input from "@/components/form-elements/Input";
 import FormLayout from "./FormLayout";
-import Password from "@/components/form-elements/Password";
-import Button from "@/components/form-elements/Button";
+import FormSection from "./FormSection";
 
 type Props = {};
 
@@ -9,16 +8,21 @@ function UserRegistration({}: Props) {
   return (
     <FormLayout
       emergencyAccess
-      width={850}
-      className=""
-      subTitle="User Profile Registration"
+      className="!min-w-[950px] "
+      subTitle="Patient Profile Registration"
     >
       <form action="" className="my-5">
-        <div className="grid md:grid-cols-2 grid-cols-1 gap-5">
-          <Input label="username" />
-          <Password label="password" />
-          <Button type="submit" title="Select" />
-        </div>
+        {/* Parents or Guardian Details" */}
+        <FormSection
+          titleText="Parents or Guardian Details"
+          titleBorder
+          noteText="If the Client’s age is below 18 yaers, please provide the information of wither parents or guardian."
+        >
+          <div className="grid md:grid-cols-2 grid-cols-1 gap-5">
+            <Input label="name" />
+            <Input label="name" />
+          </div>
+        </FormSection>
       </form>
     </FormLayout>
   );
