@@ -33,7 +33,7 @@ function Select({
         {required && <span className="-mt-[6px] mx-1 text-dangerColor">*</span>}
       </div>
       <select
-        className={`custom-input ${className}`}
+        className={`custom-input pr-5 ${className}`}
         value={value}
         name={name}
         onChange={onChange}
