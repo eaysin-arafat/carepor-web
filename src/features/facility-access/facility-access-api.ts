@@ -2,6 +2,11 @@ import { API } from "../API/API";
 
 const facilityAccessApi = API.injectEndpoints({
   endpoints: (builder) => ({
+    /**
+     * @description This endpoint is used to create facility access
+     * @param body
+     * @returns FacilityAccess
+     */
     createFacilityAccess: builder.mutation({
       query: (body) => ({
         url: "/facility-access",
@@ -9,18 +14,36 @@ const facilityAccessApi = API.injectEndpoints({
         body,
       }),
     }),
+
+    /**
+     * @description This endpoint is used to read facility access by user account id
+     * @param userAccountId
+     * @returns FacilityAccess
+     */
     readFacilityAccess: builder.query({
       query: () => ({
         url: "/facility-accesses",
         method: "GET",
       }),
     }),
+
+    /**
+     * @description This endpoint is used to read facility access by user account id
+     * @param userAccountId
+     * @returns FacilityAccess
+     */
     readFacilityAccessForAdmin: builder.query({
       query: () => ({
         url: "/facility-accesses-admin",
         method: "GET",
       }),
     }),
+
+    /**
+     * @description This endpoint is used to read facility access by key
+     * @param key
+     * @returns FacilityAccess
+     */
     readFacilityAccessByKey: builder.query({
       query: (key) => ({
         url: `/facility-access/key/${key}`,
@@ -29,18 +52,23 @@ const facilityAccessApi = API.injectEndpoints({
     }),
 
     /**
-     * @deprecated use readFacilityAccessWithModulePermissionsByKey instead
-     * @see readFacilityAccessWithModulePermissionsByKey
-     * @returns {Promise<import("./facility-access-api").FacilityAccessWithModulePermissions>}
+     * @description This endpoint is used to read facility access with module access permissions by key
+     * @param key
+     * @returns FacilityAccessWithModuleAccessPermissions
      */
-
-    // * This is the old way of doing it
     readFacilityAccessWithModulePermissionsByKey: builder.query({
       query: (key: string) => ({
         url: `/facility-access-with-module-access/key/${key}`,
         method: "GET",
       }),
     }),
+
+    /**
+     * @description This endpoint is used to update facility access by user account id
+     * @param userAccountId
+     * @param body
+     * @returns FacilityAccess
+     */
     updateFacilityAccessByUserAccountID: builder.mutation({
       query: ({ userAccountId, ...body }) => ({
         url: `/facility-access/${userAccountId}`,
@@ -48,35 +76,71 @@ const facilityAccessApi = API.injectEndpoints({
         body,
       }),
     }),
+
+    /**
+     * @description This endpoint is used to revoke login by user account id
+     * @param userAccountId
+     * @returns FacilityAccess
+     */
     revokeLoginByUserAccountID: builder.mutation({
       query: ({ userAccountId }) => ({
         url: `/facility-access-revoke-login/${userAccountId}`,
         method: "PUT",
       }),
     }),
+
+    /**
+     * @description This endpoint is used to approve facility access
+     * @param key
+     * @returns FacilityAccess
+     */
     approveFacilityAccess: builder.mutation({
       query: ({ key }) => ({
         url: `/approve-facility-access/${key}`,
         method: "PUT",
       }),
     }),
+
+    /**
+     * @description This endpoint is used to login recovery facility access
+     * @param key
+     * @returns FacilityAccess
+     */
     loginRecoveryFacilityAccess: builder.mutation({
       query: ({ key }) => ({
         url: `/login-recovery-facility-access/${key}`,
         method: "PUT",
       }),
     }),
+
+    /**
+     * @description This endpoint is used to reject facility access
+     * @param key
+     * @returns FacilityAccess
+     */
     rejectFacilityAccess: builder.mutation({
       query: ({ key }) => ({
         url: `/reject-facility-access/${key}`,
         method: "PUT",
       }),
     }),
+
+    /**
+     * @description This endpoint is used to read facility access by facility id
+     * @param facilityId
+     * @returns FacilityAccess
+     */
     readFacilityAccessByFacilityID: builder.query({
       query: (facilityId) => ({
         url: `/facility-access/facility-access-by-facility/${facilityId}`,
       }),
     }),
+
+    /**
+     * @description This endpoint is used to make facility access admin
+     * @param userAccountId
+     * @returns FacilityAccess
+     */
     makeAdmin: builder.mutation({
       query: ({ userAccountId }) => ({
         url: `/facility-access/make-admin/${userAccountId}`,
