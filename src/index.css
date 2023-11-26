@@ -5,6 +5,7 @@
 .light {
     --body: #ffffff ;
     --primary: #1890FF ;
+    --primaryHover: #007aec;
     --secondary: #F6F9FF ;
     --grayColor: #A1A1B0 ;
     --black: #000000 ;
@@ -16,6 +17,7 @@
 .dark {
     --body: #000000 ;
     --primary: #1890FF ;
+    --primaryHover: #007aec;
     --secondary: #F6F9FF ;
     --grayColor: #A1A1B0 ;
     --black: #ffffff ;
@@ -37,5 +39,5 @@ body {
 }
 
 .btn{
-    @apply w-full rounded-full flex flex-row items-center justify-center py-[10px] px-4 cursor-pointer
+    @apply w-full rounded-full flex flex-row items-center justify-center py-[10px] px-4 cursor-pointer transition-all ease-out
 }
