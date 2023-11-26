@@ -53,7 +53,7 @@ function Password({
           disabled={disabled}
           pattern={pattern}
           max={max || "250"}
-          placeholder={`${placeholder ? placeholder : "Enter" + " " + label}`}
+          placeholder={`${placeholder ? placeholder : "Must be 8 characters"}`}
         />
         <button
           type="button"

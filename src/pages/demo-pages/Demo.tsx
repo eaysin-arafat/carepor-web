@@ -1,30 +1,47 @@
-import Input from "@/components/form-elements/Input";
-import Password from "@/components/form-elements/password";
-import Radio from "@/components/form-elements/Radio";
-import Button from "@/components/form-elements/button";
-
-import Textarea from "@/components/form-elements/textarea";
-import Select from "@/components/form-elements/select";
-import Checkbox from "@/components/form-elements/Checkbox";
+import Select from "@/components/form-elements/Select";
+import FormLayout from "./FormLayout";
+import Button from "@/components/form-elements/Button";
 
 type Props = {};
 
-const Demo = (props: Props) => {
+const Demo = ({}: Props) => {
   return (
     <>
-      <Input name="Name" label="Your Name" numberOnly={true} />
-      <Textarea label="Textarea" />
-      <Password label="Password" value="adas" />
-      <Select label="Label Select">
-        <option value="">Select</option>
-        <option value="">Select</option>
-        <option value="">Select</option>
-      </Select>
-      <br />
-      <Button type="link" title="Button" />
-      <Checkbox label="Checkbox" />
-      <Radio label="Radio" name="1" value="radio1" />
-      <Radio label="Radio" name="1" value="radio2" />
+      <FormLayout
+        mainTitle="Select Facility"
+        note="Please select a facility to enter."
+      >
+        <form action="" className="my-5">
+          <div className="flex flex-col gap-5">
+            <Select label="Province" required>
+              <option value="">Select</option>
+              <option value="">Select 1</option>
+              <option value="">Select 2</option>
+            </Select>
+            <Select label="District" required>
+              <option value="">Select</option>
+              <option value="">Select 1</option>
+              <option value="">Select 2</option>
+            </Select>
+            <Select label="Facility" required>
+              <option value="">Select</option>
+              <option value="">Select 1</option>
+              <option value="">Select 2</option>
+            </Select>
+          </div>
+          <div className="text-right mt-3">
+            <p className="text-grayColor text-xs">
+              Send Facility Access Request
+            </p>
+          </div>
+          <div className="mt-5">
+            <Button type="submit" title="Enter" />
+          </div>
+          <div className=" text-center mt-2">
+            <button className="text-primaryColor px-3 py-2">Logout</button>
+          </div>
+        </form>
+      </FormLayout>
     </>
   );
 };

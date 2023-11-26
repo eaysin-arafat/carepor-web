@@ -12,7 +12,7 @@ function BodyBackground({ children }: Props) {
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
       }}
-      className=" bg-whitesmoke-100 w-full h-[100vh]   text-left text-sm text-black font-poppins"
+      className=" bg-whitesmoke-100 w-full h-[100vh] overflow-auto text-left text-sm text-black font-poppins"
     >
       {children}
     </div>

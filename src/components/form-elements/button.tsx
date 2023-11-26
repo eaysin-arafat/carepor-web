@@ -26,7 +26,7 @@ const Button = ({
     case "submit":
       return (
         <button
-          className={`btn text-whiteColor bg-primaryColor ${className}`}
+          className={`btn text-whiteColor bg-primaryColor hover:bg-primaryHoverColor ${className}`}
           type="submit"
           disabled={loading}
         >
@@ -53,7 +53,7 @@ const Button = ({
     case "button":
       return (
         <button
-          className={`btn text-whiteColor bg-primaryColor ${className}`}
+          className={`btn text-whiteColor bg-primaryColor hover:bg-primaryHoverColor ${className}`}
           type="button"
           style={style}
           onClick={onClick}

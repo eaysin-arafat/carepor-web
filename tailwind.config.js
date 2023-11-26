@@ -14,6 +14,7 @@ export default {
       colors: {
         bodyColor: "var(--body)",
         primaryColor: "var(--primary)",
+        primaryHoverColor: "var(--primaryHover)",
         secondaryColor: "var(--secondary)",
         grayColor: "var(--grayColor)",
         blackColor: "var(--black)",
