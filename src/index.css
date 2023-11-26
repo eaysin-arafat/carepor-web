@@ -35,9 +35,9 @@ body {
 }
 
 .custom-input {
-  @apply w-full rounded-full text-blackColor bg-whiteColor box-border flex flex-row items-center justify-start py-[10px] px-4 border-[2px] border-solid border-borderColor outline-none;
+  @apply w-full rounded-full text-blackColor bg-whiteColor box-border flex flex-row items-center justify-start py-[12px] px-4 border-[2px] border-solid border-borderColor outline-none;
 }
 
 .btn{
-    @apply w-full rounded-full flex flex-row items-center justify-center py-[10px] px-4 cursor-pointer transition-all ease-out capitalize
+    @apply w-full rounded-full flex flex-row items-center justify-center py-[14px] px-4 text-[18px] cursor-pointer transition-all ease-out capitalize
 }

@@ -12,6 +12,10 @@ const demoRoutes: any[] = [
     element: <SelectFacility />,
   },
   {
+    path: "/request-facility",
+    element: <SelectFacility />,
+  },
+  {
     path: "/sign-up",
     element: <UserRegistration />,
   },
