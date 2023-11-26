@@ -1,12 +1,10 @@
-// import { useLoginMutation } from "@/features/authentication/authentication-api";
-// import { CookieManager } from "@/utils/cookie-manager";
-// import { loginValidator } from "@/validation-model/user-accounts/login";
-// import Cookies from "js-cookie";
+import { useLoginMutation } from "@/features/authentication/authentication-api";
+import { CookieManager } from "@/utils/cookie-manager";
+import { loginValidator } from "@/validation-model/user-accounts/login";
+import Cookies from "js-cookie";
 import React from "react";
-// import toast from "react-hot-toast";
-// import useWindowWidth from "../../../hooks/useWindowWidth";
-
-import { useUserLoginMutation } from "@/features/user-accounts/user-accounts-api";
+import toast from "react-hot-toast";
+import useWindowWidth from "../../../hooks/useWindowWidth";
 
 // initial state
 const initialState = {
@@ -22,10 +20,10 @@ function useLogin() {
   const [
     login,
     { data: userData, isSuccess, isLoading, isError, error, status },
-  ] = useUserLoginMutation();
+  ] = useLoginMutation();
 
   // custom hooks
-  //   const w600 = useWindowWidth(600);
+  const w600 = useWindowWidth(600);
 
   // handler for input change
   const handleInputChange = (e) => {
@@ -84,25 +82,3 @@ function useLogin() {
 }
 
 export default useLogin;
-
-/**
- * @description Validate login data
- * @param {object} loginData
- * @returns {object} {isValid: boolean, errors: object
- */
-export const loginValidator = (loginData: any): Object => {
-  const errors: any = {};
-
-  // validate username
-  if (!loginData.username) errors.username = "Required";
-  else if (loginData.username.length < 3) errors.username = "Invalid";
-
-  // validate password
-  if (!loginData.password) errors.password = "Required";
-
-  // return error state
-  return {
-    isValid: Object.keys(errors).length === 0,
-    errors,
-  };
-};

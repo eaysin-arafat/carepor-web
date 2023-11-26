@@ -5,7 +5,10 @@ import Button from "@/components/form-elements/Button";
 
 type Props = {};
 
-function UserLogin({}: Props) {
+function UserSignin({}: Props) {
+  // const { handleFormSubmit, errors, handleInputChange, isLoading, loginForm } =
+  // useLogin();
+
   return (
     <FormLayout emergencyAccess loginForm mainTitle="Welcome to SmartCare Pro">
       <form action="" className="my-5">
@@ -19,4 +22,4 @@ function UserLogin({}: Props) {
   );
 }
 
-export default UserLogin;
+export default UserSignin;
