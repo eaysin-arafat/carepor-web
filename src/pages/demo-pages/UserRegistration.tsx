@@ -7,7 +7,12 @@ type Props = {};
 
 function UserRegistration({}: Props) {
   return (
-    <FormLayout emergencyAccess mainTitle="User Profile Registration">
+    <FormLayout
+      emergencyAccess
+      width={850}
+      className=""
+      subTitle="User Profile Registration"
+    >
       <form action="" className="my-5">
         <div className="flex flex-col gap-5">
           <Input label="username" />

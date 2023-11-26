@@ -4,7 +4,7 @@ import Title from "@/components/ui/titles/Title";
 import BodyBackground from "./BodyBackground";
 
 type Props = {
-  mainTitle: string;
+  mainTitle?: string;
   subTitle?: string;
   note?: string;
   children: JSX.Element;
@@ -12,6 +12,7 @@ type Props = {
   signUpForm?: boolean;
   emergencyAccess?: boolean;
   className?: string; //
+  width?: number;
 };
 
 function FormLayout({
@@ -22,25 +23,26 @@ function FormLayout({
   signUpForm,
   loginForm,
   emergencyAccess,
-  className = "",
+  className = " ",
+  width = 600,
 }: Props) {
   return (
     <BodyBackground>
       <div>
-        <div className="w-full flex justify-center mt-[110px]">
-          <div className={`m-auto  w-[600]px] ${className}`}>
-            <div className="bg-white bg-colors-white md:shadow-lg shadow-[0px_0px_25px_rgba(0,_0,_0,_0.05)]f rounded-[10px] px-16 py-6 ">
+        <div className="w-full flex justify-center mt-[88px]">
+          <div className={`m-auto  w-[${width}px] ${className}`}>
+            <div
+              className={`bg-white bg-colors-white md:shadow-lg rounded-[10px] px-16 py-6 ${className}`}
+            >
               {/* logo */}
-              <AppLogo type={"rounded"} marginTop="mt-[-110px]" />
+              <AppLogo type={"rounded"} marginTop="mt-[-88px]" />
 
               {/* App name component */}
               <AppName />
 
               {/* Title */}
               <div className="">
-                <div>
-                  <Title titleText={mainTitle || "mainTitle"} />
-                </div>
+                <div>{mainTitle && <Title titleText={mainTitle} />}</div>
                 <div>
                   {subTitle && (
                     <Title type="subtitle" titleText={subTitle || "subTitle"} />
