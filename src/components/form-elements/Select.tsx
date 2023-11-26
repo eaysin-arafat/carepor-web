@@ -1,6 +1,6 @@
 type Props = {
   value?: string | number;
-  onChange?: any;
+  onChange?: (e: any) => void;
   name?: string;
   label: string;
   required?: boolean;
