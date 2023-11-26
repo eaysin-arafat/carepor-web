@@ -2,9 +2,10 @@ import Input from "@/components/form-elements/Input";
 import Password from "@/components/form-elements/password";
 import Radio from "@/components/form-elements/Radio";
 import Button from "@/components/form-elements/button";
-import Checkbox from "@/components/form-elements/checkbox";
+
 import Textarea from "@/components/form-elements/textarea";
 import Select from "@/components/form-elements/select";
+import Checkbox from "@/components/form-elements/Checkbox";
 
 type Props = {};
 
@@ -21,9 +22,9 @@ const Demo = (props: Props) => {
       </Select>
       <br />
       <Button type="link" title="Button" />
-      <Checkbox label="Checkbox"/>
-      <Radio label="Radio" name="1" value="radio1"/>
-      <Radio label="Radio" name="1" value="radio2"/>
+      <Checkbox label="Checkbox" />
+      <Radio label="Radio" name="1" value="radio1" />
+      <Radio label="Radio" name="1" value="radio2" />
     </>
   );
 };

@@ -11,6 +11,7 @@ type Props = {
   loginForm?: boolean;
   signUpForm?: boolean;
   emergencyAccess?: boolean;
+  className?: string; //
 };
 
 function FormLayout({
@@ -21,6 +22,7 @@ function FormLayout({
   signUpForm,
   loginForm,
   emergencyAccess,
+  className,
 }: Props) {
   return (
     <BodyBackground>
@@ -28,7 +30,7 @@ function FormLayout({
       {/* form wrapper */}
       <div>
         <div className="w-full h-[100vh] flex justify-center items-center">
-          <div className="m-auto  w-[600px]    ">
+          <div className={`m-auto  w-[600]px]  `}>
             <div className="bg-white bg-colors-white md:shadow-lg shadow-[0px_0px_25px_rgba(0,_0,_0,_0.05)]f rounded-[10px] px-16 py-6 ">
               {/* logo */}
               <AppLogo type={"rounded"} marginTop="mt-[-110px]" />
@@ -56,8 +58,9 @@ function FormLayout({
               <div>{children}</div>
 
               {/* Layout Footer */}
-              <div className="border-t border-gray-200 mb[-10px]">
-                {loginForm && (
+
+              {loginForm && (
+                <div className="border-t border-gray-200 mb[-10px]">
                   <div className=" text-base">
                     <div className="pt-5 flex justify-center gap-2">
                       <div className="text-grayColor">
@@ -70,8 +73,10 @@ function FormLayout({
                       </div>
                     </div>
                   </div>
-                )}
-                {signUpForm && (
+                </div>
+              )}
+              {signUpForm && (
+                <div className="border-t border-gray-200 mb[-10px]">
                   <div className=" text-base">
                     <div className="pt-5 flex justify-center gap-2">
                       <div className="text-grayColor">
@@ -84,19 +89,19 @@ function FormLayout({
                       </div>
                     </div>
                   </div>
-                )}
-              </div>
+                </div>
+              )}
             </div>
             {emergencyAccess && (
               <div className=" h-6 text-base flex justify-center">
                 <div className=" mt-5">
                   <div className="  text-dodgerblue">
-                    Emergency Access Call:{" "}
+                    Emergency Access &nbsp;
                     <a
                       href="tel:(844) 569-8628"
                       className=" text-primaryColor cursor-pointer"
                     >
-                      (844) 569-8628
+                      Call: (844) 569-8628
                     </a>
                   </div>
                 </div>
