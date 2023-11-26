@@ -1,7 +1,7 @@
 import AppName from "@/components/ui/app-name/AppName";
 import AppLogo from "@/components/ui/logo/logo";
 import Title from "@/components/ui/titles/Title";
-import BodyBackground from "./BodyBackground";
+import BodyBackground from "../../../pages/demo-pages/BodyBackground";
 
 type Props = {
   mainTitle?: string;
@@ -12,6 +12,7 @@ type Props = {
   signUpForm?: boolean;
   emergencyAccess?: boolean;
   className?: string; //
+  changePasswordForm?: boolean;
 };
 
 function FormLayout({
@@ -21,6 +22,7 @@ function FormLayout({
   children,
   signUpForm,
   loginForm,
+  changePasswordForm,
   emergencyAccess,
   className = " ",
 }: Props) {
@@ -80,6 +82,20 @@ function FormLayout({
                       <div className="text-grayColor">
                         Already have an account?
                       </div>
+                      <div className="leading-[26px] text-dodgerblue">
+                        <a className="text-primaryColor" href="#">
+                          Log in
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {changePasswordForm && (
+                <div className="border-t border-gray-200 mb[-10px]">
+                  <div className=" text-base">
+                    <div className="pt-5 flex justify-center gap-2">
+                      <div className="text-grayColor">Remember password?</div>
                       <div className="leading-[26px] text-dodgerblue">
                         <a className="text-primaryColor" href="#">
                           Log in
