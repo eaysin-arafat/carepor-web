@@ -1,3 +1,5 @@
+import Error from "@/pages/error/error";
+import Test from "@/pages/test/Test";
 import clientRouter from "./client";
 import facilityRouter from "./facility";
 import userAccountsRouter from "./user-accounts";
@@ -8,7 +10,11 @@ const routes = [
   ...clientRouter,
   {
     path: "*",
-    element: "<Error />",
+    element: <Error />,
+  },
+  {
+    path: "/test",
+    element: <Test />,
   },
 ];
 
