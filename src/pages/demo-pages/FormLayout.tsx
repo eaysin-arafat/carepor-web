@@ -22,7 +22,7 @@ function FormLayout({
   signUpForm,
   loginForm,
   emergencyAccess,
-  className,
+  className = "",
 }: Props) {
   return (
     <BodyBackground>
@@ -30,7 +30,7 @@ function FormLayout({
       {/* form wrapper */}
       <div>
         <div className="w-full h-[100vh] flex justify-center items-center">
-          <div className={`m-auto  w-[600]px]  `}>
+          <div className={`m-auto  w-[600]px] ${className}`}>
             <div className="bg-white bg-colors-white md:shadow-lg shadow-[0px_0px_25px_rgba(0,_0,_0,_0.05)]f rounded-[10px] px-16 py-6 ">
               {/* logo */}
               <AppLogo type={"rounded"} marginTop="mt-[-110px]" />
