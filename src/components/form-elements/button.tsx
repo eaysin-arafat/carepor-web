@@ -1,8 +1,8 @@
-import React, { ReactNode, ReactElement } from 'react';
+import React, { ReactNode, ReactElement } from "react";
 // import { Link } from 'react-router-dom'; // Assuming you are using react-router
 
 type ButtonProps = {
-  type: 'submit' | 'link' | 'button';
+  type: "submit" | "link" | "button";
   title: string;
   link?: string;
   style?: React.CSSProperties;
@@ -23,7 +23,7 @@ const Button = ({
   loading,
 }: ButtonProps): ReactElement => {
   switch (type) {
-    case 'submit':
+    case "submit":
       return (
         <button
           className={`btn text-whiteColor bg-primaryColor hover:bg-primaryHoverColor ${className}`}
@@ -31,9 +31,7 @@ const Button = ({
           disabled={loading}
         >
           {loading ? (
-            <span
-              className="loading loading-spinner"
-            />
+            <span className="loading loading-spinner" />
           ) : (
             icon && <>{icon}</>
           )}
@@ -41,14 +39,18 @@ const Button = ({
         </button>
       );
 
-    case 'link':
+    case "link":
       return (
-        <a href={link!} style={style} className={`${className} btn text-whiteColor bg-primaryColor hover:bg-primaryHoverColor `}>
+        <a
+          href={link!}
+          style={style}
+          className={`${className} btn text-whiteColor bg-primaryColor `}
+        >
           {icon} {title}
         </a>
       );
 
-    case 'button':
+    case "button":
       return (
         <button
           className={`btn text-whiteColor bg-primaryColor hover:bg-primaryHoverColor ${className}`}
@@ -61,7 +63,7 @@ const Button = ({
       );
 
     default:
-      throw new Error('Invalid button type');
+      throw new Error("Invalid button type");
   }
 };
 

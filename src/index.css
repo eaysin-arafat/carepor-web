@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -27,17 +28,17 @@
 }
 
 html {
-    background: var(--body) !important;
+  background: var(--body) !important;
 }
 body {
-    position: relative;
-    background: var(--body) !important;
+  position: relative;
+  background: var(--body) !important;
 }
 
-.custom-input{
-    @apply w-full rounded-full text-blackColor bg-whiteColor box-border flex flex-row items-center justify-start py-[10px] px-4 border-[2px] border-solid border-borderColor outline-none
+.custom-input {
+  @apply w-full rounded-full text-blackColor bg-whiteColor box-border flex flex-row items-center justify-start py-[10px] px-4 border-[2px] border-solid border-borderColor outline-none;
 }
 
 .btn{
-    @apply w-full rounded-full flex flex-row items-center justify-center py-[10px] px-4 cursor-pointer transition-all ease-out
+    @apply w-full rounded-full flex flex-row items-center justify-center py-[10px] px-4 cursor-pointer transition-all ease-out capitalize
 }
