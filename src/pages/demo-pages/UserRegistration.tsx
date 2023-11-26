@@ -1,6 +1,6 @@
 import Input from "@/components/form-elements/Input";
-import FormLayout from "./FormLayout";
-import FormSection from "./FormSection";
+import FormLayout from "../../components/form-elements/form-layouts/FormLayout";
+import FormSection from "../../components/form-elements/form-layouts/FormSection";
 
 type Props = {};
 

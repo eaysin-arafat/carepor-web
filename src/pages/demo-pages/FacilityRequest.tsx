@@ -1,15 +1,15 @@
 import Select from "@/components/form-elements/Select";
-import FormLayout from "../../components/form-elements/form-layouts/FormLayout";
+import FormLayout from "./FormLayout";
 import Button from "@/components/form-elements/Button";
 
 type Props = {};
 
-const SelectFacility = ({}: Props) => {
+const FacilityRequest = ({}: Props) => {
   return (
-    <>
+    <div>
       <FormLayout
-        mainTitle="Select Facility"
-        note="Please select a facility to enter."
+        mainTitle="Request Facility Login"
+        note="Please select a Facility to send login request."
       >
         <form action="" className="mt-5">
           <div className="flex flex-col gap-5">
@@ -29,21 +29,16 @@ const SelectFacility = ({}: Props) => {
               <option value="">Select 2</option>
             </Select>
           </div>
-          <div className="text-right mt-3">
-            <p className="text-grayColor text-xs">
-              Send Facility Access Request
-            </p>
+          <div className="mt-5">
+            <Button type="submit" title="Submit Request" />
           </div>
           <div className="mt-5">
-            <Button type="submit" title="Enter" />
-          </div>
-          <div className=" text-center mt-2">
-            <button className="text-primaryColor px-3 py-2">Logout</button>
+            <Button type="outline" title="Cancel" />
           </div>
         </form>
       </FormLayout>
-    </>
+    </div>
   );
 };
 
-export default SelectFacility;
+export default FacilityRequest;

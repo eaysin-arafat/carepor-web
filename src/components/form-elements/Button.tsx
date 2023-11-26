@@ -2,7 +2,7 @@ import React, { ReactNode, ReactElement } from "react";
 // import { Link } from 'react-router-dom'; // Assuming you are using react-router
 
 type ButtonProps = {
-  type: "submit" | "link" | "button";
+  type: "submit" | "link" | "button" | "outline";
   title: string;
   link?: string;
   style?: React.CSSProperties;
@@ -27,6 +27,22 @@ const Button = ({
       return (
         <button
           className={`btn text-whiteColor bg-primaryColor hover:bg-primaryHoverColor ${className}`}
+          type="submit"
+          disabled={loading}
+        >
+          {loading ? (
+            <span className="loading loading-spinner" />
+          ) : (
+            icon && <>{icon}</>
+          )}
+          {title}
+        </button>
+      );
+      
+    case "outline":
+      return (
+        <button
+          className={`btn text-blackColor bg-whiteColor hover:bg-slate-50 border-2 border-borderColor ${className}`}
           type="submit"
           disabled={loading}
         >

@@ -32,9 +32,9 @@ function Checkbox({
           checked={checked}
           id={name}
           onChange={onChange}
-          className={`border-gray-300 rounded h-4 w-4 ${className}`}
+          className={`border-gray-300 rounded-lg h-5 w-5 ${className}`}
         />
-        {label}
+        <p className="text-sm">{label}</p>
         {required && <span className="-mt-[6px] text-dangerColor">*</span>}
       </label>
       {errMsg && (
