@@ -9,7 +9,7 @@ type Props = {};
 function HomePage({}: Props) {
   return (
     //   {/* form wrapper */}
-    <FormLayout emergencyAccess loginForm subTitle="Welcome to SmartCare Pro">
+    <FormLayout emergencyAccess loginForm mainTitle="Welcome to SmartCare Pro">
       <form action="" className="my-5">
         <div className="flex flex-col gap-5">
           <Input label="username" />

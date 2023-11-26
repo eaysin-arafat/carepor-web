@@ -12,7 +12,6 @@ type Props = {
   signUpForm?: boolean;
   emergencyAccess?: boolean;
   className?: string; //
-  width?: number;
 };
 
 function FormLayout({
@@ -24,7 +23,6 @@ function FormLayout({
   loginForm,
   emergencyAccess,
   className = " ",
-  width = 600,
 }: Props) {
   return (
     <BodyBackground>
