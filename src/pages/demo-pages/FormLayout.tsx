@@ -25,7 +25,7 @@ function FormLayout({
   return (
     <BodyBackground>
       <div>
-        <div className="w-full flex justify-center mt-[110px]">
+        <div className="w-full flex justify-center items-center mt-[110px]">
           <div className="m-auto  w-[600px]    ">
             <div className="bg-white bg-colors-white md:shadow-lg shadow-[0px_0px_25px_rgba(0,_0,_0,_0.05)]f rounded-[10px] px-16 py-6 ">
               {/* logo */}
