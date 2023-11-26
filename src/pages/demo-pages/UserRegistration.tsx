@@ -14,7 +14,7 @@ function UserRegistration({}: Props) {
       subTitle="User Profile Registration"
     >
       <form action="" className="my-5">
-        <div className="flex flex-col gap-5">
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-5">
           <Input label="username" />
           <Password label="password" />
           <Button type="submit" title="Select" />
