@@ -18,8 +18,7 @@ function ClientPersonalInfo({}: Props) {
   console.log(setSelectedDate);
 
   const handler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target);
-    console.log(new Date(e.target.value).toString());
+    console.log(e.target.value);
   };
 
   return (
@@ -47,7 +46,7 @@ function ClientPersonalInfo({}: Props) {
               required
             />
           </div>
-          <input type="date" onChange={handler} />
+          {/* <input type="date" onChange={handler} /> */}
           <div className="col-span-6 md:col-span-3">
             <Select label="Sex" required>
               <option value="">Select</option>

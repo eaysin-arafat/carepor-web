@@ -75,7 +75,7 @@ function DatePicker({
     return calendar;
   };
 
-  const handleDateSelect = (day: number | null) => {
+  const handleDateSelect = (day: number | null) => {    
     if (day !== null) {
       // Get the current time
       const currentTime = new Date();
@@ -89,8 +89,8 @@ function DatePicker({
         currentTime.getMinutes(),
         currentTime.getSeconds()
       );
-      console.log({ selectedDate });
-
+      // console.log({ selectedDate });
+      
       const isoString = selectedDate.toISOString();
       setSelectedDate(isoString);
       setShowDatepicker(false);
@@ -188,31 +188,6 @@ function DatePicker({
                 </select>
                 {/* </div> */}
               </div>
-              {/* <div className="flex flex-col gap-2 mb-2 px-5 ">
-                <div className="flex justify-between items-center">
-                <button onClick={() => setShowDatepicker(false)} className="border border-grayColor rounded px-2 py-0.5">
-                  Cancel
-                </button>
-                <button onClick={clearState} className="border border-grayColor rounded px-2 py-0.5 shadow">Clear</button>
-                </div>
-                <div className="flex justify-between items-center">
-                  <select
-                    className="bg-borderColor rounded"
-                    value={currentMonth}
-                    onChange={(e) => setCurrentMonth(Number(e.target.value))}
-                  >
-                    {renderMonthOptions()}
-                  </select>
-                  {" "}
-                  <select
-                    className="bg-borderColor rounded "
-                    value={currentYear}
-                    onChange={(e) => setCurrentYear(Number(e.target.value))}
-                  >
-                    {renderYearOptions()}
-                  </select>
-                </div>
-              </div> */}
               <div className="grid grid-cols-7 gap-1 px-2 mt-4 pb-2 border-b border-grayColor">
                 {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(
                   (day: string) => (
