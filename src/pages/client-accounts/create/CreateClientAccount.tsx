@@ -10,12 +10,9 @@ type Props = {};
 
 function CreateClientAccount({}: Props) {
   return (
-    <FormLayout
-      mainTitle="Client Profile Registration"
-      className="max-w-[1022px]"
-    >
+    <FormLayout className="" subTitle="Client Profile Registration">
       <>
-        <p className="text-center text-sm mt-2">
+        <p className="text-center mt-2">
           Fields marked by <span className="text-dangerColor">*</span> are
           mandatory
         </p>
