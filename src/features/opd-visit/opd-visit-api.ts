@@ -81,12 +81,12 @@ const opdVisitApi = API.injectEndpoints({
      * @param visitDate
      * @returns OPDVisit
      */
-    readOPDVisitByclientIdAndVisitDate: builder.query({
-      query: (clientId, visitDate) => ({
-        url: `/opd-visit/clientId-visitdate`,
-        method: "GET",
-      }),
-    }),
+    // readOPDVisitByclientIdAndVisitDate: builder.query({
+    //   query: (clientId: string, visitDate: string) => ({
+    //     url: `/opd-visit/clientId-visitdate`,
+    //     method: "GET",
+    //   }),
+    // }),
 
     /**
      * @description This endpoint is used to update opd visit
@@ -124,7 +124,7 @@ export const {
   useReadOPDVisitsByDateQuery,
   useReadOPDVisitByKeyQuery,
   useReadMedicalHistoryQuery,
-  useReadOPDVisitByclientIdAndVisitDateQuery,
+  // useReadOPDVisitByclientIdAndVisitDateQuery,
   useUpdateOPDVisitMutation,
   useDeleteOPDVisitMutation,
 } = opdVisitApi;

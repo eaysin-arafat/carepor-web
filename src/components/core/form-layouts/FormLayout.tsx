@@ -1,7 +1,7 @@
-import AppName from "@/components/ui/app-name/AppName";
-import AppLogo from "@/components/ui/logo/logo";
-import Title from "@/components/ui/titles/Title";
-import BodyBackground from "../../../pages/demo-pages/BodyBackground";
+import AppLogo from "../logo/logo";
+import AppName from "../app-name/AppName";
+import Title from "../titles/Title";
+import BodyBackground from "../body-background/BodyBackground";
 
 type Props = {
   mainTitle?: string;
@@ -30,9 +30,9 @@ function FormLayout({
     <BodyBackground>
       <div>
         <div className="w-full flex justify-center items-center mt-[88px]">
-          <div className={`m-auto  `}>
+          <div className={` w-[100%] mb-5`}>
             <div
-              className={`bg-white bg-colors-white md:shadow-lg rounded-[10px] w-[360px] sm:w-[600px] px-5 sm:px-10 py-6 transition-all ease-out ${className}`}
+              className={`bg-white bg-colors-white md:shadow-lg rounded-[10px] w-full max-w-[900px] mx-auto px-5 sm:px-10 py-5 transition-all ease-out ${className}`}
             >
               {/* logo */}
               <AppLogo type={"rounded"} marginTop="mt-[-88px]" />
