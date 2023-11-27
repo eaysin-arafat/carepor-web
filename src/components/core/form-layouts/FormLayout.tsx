@@ -7,6 +7,7 @@ type Props = {
   mainTitle?: string;
   subTitle?: string;
   note?: string;
+  // maxWidth?: string;
   children: JSX.Element;
   loginForm?: boolean;
   signUpForm?: boolean;
@@ -19,6 +20,7 @@ function FormLayout({
   mainTitle,
   subTitle,
   note,
+  // maxWidth = "570px",
   children,
   signUpForm,
   loginForm,
@@ -29,10 +31,10 @@ function FormLayout({
   return (
     <BodyBackground>
       <div>
-        <div className="w-full flex justify-center items-center mt-[88px]">
+        <div className="w-full flex justify-center items-center mt-[200px] md:mt-[100px]">
           <div className={` w-[100%] mb-5`}>
             <div
-              className={`bg-white bg-colors-white md:shadow-lg rounded-[10px] w-full max-w-[900px] mx-auto px-5 sm:px-10 py-5 transition-all ease-out ${className}`}
+              className={`bg-white bg-colors-white md:shadow-lg rounded-[10px] w-full mx-auto px-5 sm:px-10 py-5 transition-all ease-out ${className}`}
             >
               {/* logo */}
               <AppLogo type={"rounded"} marginTop="mt-[-88px]" />

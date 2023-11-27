@@ -3,17 +3,8 @@ type Props = {
 };
 
 function BodyBackground({ children }: Props) {
-  //   return children;
   return (
-    <div
-      style={{
-        backgroundImage: "url(/assets/img/backgroundImg.png)",
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-      }}
-      className=" bg-whitesmoke-100 w-full h-[100vh] overflow-auto text-left text-sm text-black font-poppins"
-    >
+    <div className="md:bg-[url('/assets/img/backgroundImg.png')] w-full h-screen overflow-auto text-left text-sm text-black font-poppins">
       {children}
     </div>
   );
