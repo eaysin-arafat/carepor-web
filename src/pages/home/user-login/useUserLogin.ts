@@ -1,10 +1,10 @@
-import React from "react";
-import toast from "react-hot-toast";
 import { useUserLoginMutation } from "@/features/user-accounts/user-accounts-api";
 import { LoginDataType } from "@/types";
-import { loginValidator } from "@/utilities/validation-model/user-accounts/login";
 import { formEvent, onchangeEvent } from "@/types/htmlEvents";
 import { cookieManager } from "@/utilities/cookie-manager";
+import { loginValidator } from "@/validation-models/user-accounts/login";
+import React from "react";
+import toast from "react-hot-toast";
 
 // initial state
 const initialState: LoginDataType = {
@@ -72,8 +72,7 @@ function useUserLogin() {
     if (isError && status === "rejected") {
       // show alert
       toast.dismiss();
-      // @ts-ignore
-      toast.error(error?.message || "Login failed");
+      toast.error("Login failed");
     }
   }, [isSuccess, isError, status, error, userData?.userAccount?.oid]);
 
