@@ -1,6 +1,6 @@
-import Select from "@/components/form-elements/Select";
-import FormLayout from "./FormLayout";
 import Button from "@/components/form-elements/Button";
+import Select from "@/components/form-elements/Select";
+import FormLayout from "@/components/form-elements/form-layouts/FormLayout";
 
 type Props = {};
 
