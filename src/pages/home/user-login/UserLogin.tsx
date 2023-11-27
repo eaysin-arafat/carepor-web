@@ -11,9 +11,10 @@ function UserLogin() {
 
   return (
     <FormLayout
-      className="max-w-[650px]"
+      className="w-[570px] "
       emergencyAccess
       loginForm
+      layoutCenter
       mainTitle="Welcome to SmartCare Pro"
     >
       <form onSubmit={handleFormSubmit} className="my-5">

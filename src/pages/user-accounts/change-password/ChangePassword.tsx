@@ -11,7 +11,12 @@ function ChangePassword() {
 
   return (
     <div>
-      <FormLayout mainTitle="Change Password" emergencyAccess>
+      <FormLayout
+        layoutCenter
+        mainTitle="Change Password"
+        className="max-w-[570px]"
+        emergencyAccess
+      >
         <form onSubmit={handleSubmit} className="mt-5">
           <div className="grid gap-5">
             <Password

@@ -1,7 +1,7 @@
-import AppLogo from "../logo/logo";
 import AppName from "../app-name/AppName";
-import Title from "../titles/Title";
 import BodyBackground from "../body-background/BodyBackground";
+import AppLogo from "../logo/logo";
+import Title from "../titles/Title";
 
 type Props = {
   mainTitle?: string;
@@ -14,6 +14,7 @@ type Props = {
   emergencyAccess?: boolean;
   className?: string; //
   changePasswordForm?: boolean;
+  layoutCenter?: boolean;
 };
 
 function FormLayout({
@@ -27,102 +28,112 @@ function FormLayout({
   changePasswordForm,
   emergencyAccess,
   className = " ",
+  layoutCenter,
 }: Props) {
   return (
     <BodyBackground>
-      <div>
-        <div className="w-full flex justify-center items-center mt-[200px] md:mt-[100px]">
-          <div className={` w-[100%] mb-5`}>
-            <div
-              className={`bg-white bg-colors-white md:shadow-lg rounded-[10px] w-full mx-auto px-5 sm:px-10 py-5 transition-all ease-out ${className}`}
-            >
-              {/* logo */}
-              <AppLogo type={"rounded"} marginTop="mt-[-88px]" />
+      <div className="w-full">
+        <div
+          className={`w-full ${
+            layoutCenter && "flex justify-center  items-center h-[100vh]"
+          }`}
+        >
+          <div className=" flex justify-center items-center mt-[200px] md:mt-[100px]">
+            <div className={` w-[100%] mb-5`}>
+              <div
+                className={`bg-white  bg-colors-white md:shadow-lg rounded-[10px] w-full mx-auto px-5 sm:px-10 py-5 transition-all ease-out ${className}`}
+              >
+                {/* logo */}
+                <AppLogo type={"rounded"} marginTop="mt-[-88px]" />
 
-              {/* App name component */}
-              <AppName />
+                {/* App name component */}
+                <AppName />
 
-              {/* Title */}
-              <div className="">
-                <div>{mainTitle && <Title titleText={mainTitle} />}</div>
-                <div>
-                  {subTitle && (
-                    <Title type="subtitle" titleText={subTitle || "subTitle"} />
-                  )}
+                {/* Title */}
+                <div className="">
+                  <div>{mainTitle && <Title titleText={mainTitle} />}</div>
+                  <div>
+                    {subTitle && (
+                      <Title
+                        type="subtitle"
+                        titleText={subTitle || "subTitle"}
+                      />
+                    )}
+                  </div>
+                  <div>
+                    {note && (
+                      <Title type="titleNote" titleText={note || "Note"} />
+                    )}
+                  </div>
                 </div>
-                <div>
-                  {note && (
-                    <Title type="titleNote" titleText={note || "Note"} />
-                  )}
-                </div>
+                {/* Children */}
+                <div>{children}</div>
+
+                {/* Layout Footer */}
+
+                {loginForm && (
+                  <div className="border-t border-gray-200 mb[-10px]">
+                    <div className=" text-base">
+                      <div className="pt-5 flex justify-center gap-2">
+                        <div className="text-grayColor">
+                          Don’t have an account?
+                        </div>
+                        <div className="leading-[26px] text-dodgerblue">
+                          <a className="text-primaryColor" href="#">
+                            Sign up
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {signUpForm && (
+                  <div className="border-t border-gray-200 mb[-10px]">
+                    <div className=" text-base">
+                      <div className="pt-5 flex justify-center gap-2">
+                        <div className="text-grayColor">
+                          Already have an account?
+                        </div>
+                        <div className="leading-[26px] text-dodgerblue">
+                          <a className="text-primaryColor" href="#">
+                            Log in
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {changePasswordForm && (
+                  <div className="border-t border-gray-200 mb[-10px]">
+                    <div className=" text-base">
+                      <div className="pt-5 flex justify-center gap-2">
+                        <div className="text-grayColor">Remember password?</div>
+                        <div className="leading-[26px] text-dodgerblue">
+                          <a className="text-primaryColor" href="#">
+                            Log in
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
-              {/* Children */}
-              <div>{children}</div>
-
-              {/* Layout Footer */}
-
-              {loginForm && (
-                <div className="border-t border-gray-200 mb[-10px]">
-                  <div className=" text-base">
-                    <div className="pt-5 flex justify-center gap-2">
-                      <div className="text-grayColor">
-                        Don’t have an account?
-                      </div>
-                      <div className="leading-[26px] text-dodgerblue">
-                        <a className="text-primaryColor" href="#">
-                          Sign up
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-              {signUpForm && (
-                <div className="border-t border-gray-200 mb[-10px]">
-                  <div className=" text-base">
-                    <div className="pt-5 flex justify-center gap-2">
-                      <div className="text-grayColor">
-                        Already have an account?
-                      </div>
-                      <div className="leading-[26px] text-dodgerblue">
-                        <a className="text-primaryColor" href="#">
-                          Log in
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-              {changePasswordForm && (
-                <div className="border-t border-gray-200 mb[-10px]">
-                  <div className=" text-base">
-                    <div className="pt-5 flex justify-center gap-2">
-                      <div className="text-grayColor">Remember password?</div>
-                      <div className="leading-[26px] text-dodgerblue">
-                        <a className="text-primaryColor" href="#">
-                          Log in
-                        </a>
-                      </div>
+              {emergencyAccess && (
+                <div className=" h-6 text-base flex justify-center">
+                  <div className=" mt-5">
+                    <div className="  text-dodgerblue">
+                      Emergency Access &nbsp;
+                      <a
+                        href="tel:(844) 569-8628"
+                        className=" text-primaryColor cursor-pointer"
+                      >
+                        Call: (844) 569-8628
+                      </a>
                     </div>
                   </div>
                 </div>
               )}
             </div>
-            {emergencyAccess && (
-              <div className=" h-6 text-base flex justify-center">
-                <div className=" mt-5">
-                  <div className="  text-dodgerblue">
-                    Emergency Access &nbsp;
-                    <a
-                      href="tel:(844) 569-8628"
-                      className=" text-primaryColor cursor-pointer"
-                    >
-                      Call: (844) 569-8628
-                    </a>
-                  </div>
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </div>

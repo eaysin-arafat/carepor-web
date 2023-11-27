@@ -3,11 +3,37 @@ import Input from "@/components/core/form-elements/Input";
 import Button from "@/components/core/buttons/Button";
 import Select from "@/components/core/form-elements/Select";
 import FormLayout from "@/components/core/form-layouts/FormLayout";
+import usePasswordRecovery from "./useRecoveryRequest";
 
 function RecoveryRequest() {
+  const {
+    // countries,
+    // errors,
+    // handleCloseCommonErrorModal,
+    // handleRecoveryInfoChange,
+    // handleSubmit,
+    // isSuccess,
+    // recoverInfo,
+    // status,
+  } = usePasswordRecovery();
+  // render country codes
+  // const renderCountryCodes = () => {
+  //   return countries?.map((countryCode) => {
+  //     return (
+  //       <option key={countryCode.oid} value={countryCode.countryCode}>
+  //         {countryCode.isoCodeAlpha2}
+  //       </option>
+  //     );
+  //   });
+  // };
   return (
     <>
-      <FormLayout mainTitle="Login Recovery Request">
+      <FormLayout
+        emergencyAccess
+        className="w-[570px]"
+        layoutCenter
+        mainTitle="Login Recovery Request"
+      >
         <form action="">
           <div className="grid gap-5">
             <Input label="Username" />

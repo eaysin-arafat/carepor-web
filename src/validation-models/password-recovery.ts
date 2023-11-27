@@ -1,5 +1,12 @@
-export const passwordRecoveryRequestValidator = (recoveryInfo) => {
-  const errors = {};
+import {
+  PasswordRecoveryFormErrorType,
+  PasswordRecoveryFormType,
+} from "@/types/user-accounts";
+
+export const passwordRecoveryRequestValidator = (
+  recoveryInfo: PasswordRecoveryFormType
+) => {
+  const errors: PasswordRecoveryFormErrorType = {};
 
   if (
     !recoveryInfo.username &&
