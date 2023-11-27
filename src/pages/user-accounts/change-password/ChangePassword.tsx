@@ -1,6 +1,6 @@
 import Button from "@/components/form-elements/Button";
-import Password from "@/components/form-elements/Password";
 import FormLayout from "@/components/form-elements/form-layouts/FormLayout";
+import Password from "@/components/form-elements/password";
 
 type Props = {};
 

@@ -1,10 +1,10 @@
 import Input from "../form-elements/Input";
-import Password from "../form-elements/Password";
 import FormSection from "../form-elements/form-layouts/FormSection";
+import Password from "../form-elements/password";
 
-type Props = {};
+// type Props = {};
 
-function LoginInfo({}: Props) {
+function LoginInfo() {
   return (
     <>
       <FormSection titleText="Login Information">

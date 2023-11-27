@@ -1,17 +1,30 @@
 import MultiStepComponent from "@/components/shared/multi-step/multiStep";
 
 function Test() {
+  const stepTitle = [
+    "Personal <br /> Information",
+    "Parents or <br /> Guardian Details",
+    "Parents or <br /> Guardian Details",
+    "Parents or <br /> Guardian Details",
+    "Parents or <br /> Guardian Details",
+    "Parents or <br /> Guardian Details",
+    "Parents or <br /> Guardian Details",
+    "Parents or <br /> Guardian Details",
+    "Parents or <br /> Guardian Details",
+    "Parents or <br /> Guardian Details",
+  ];
   return (
     <div
       style={{
         height: "100vh",
-        width: "100%",
+        width: "1500px",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        margin: "auto",
       }}
     >
-      <MultiStepComponent />
+      <MultiStepComponent active={2} title={stepTitle} />
     </div>
   );
 }
