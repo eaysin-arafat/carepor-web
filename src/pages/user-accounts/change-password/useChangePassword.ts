@@ -44,9 +44,13 @@ function useChangePassword() {
     const { errors: validationError, isValid } =
       changePasswordValidator(fromData);
 
+    console.log({ validationError });
+
     if (!isValid) return setErrors(validationError);
 
-    alert(" form validation successful");
+    alert("validation");
+    console.log(updatePassword);
+
     //   updatePassword({ ...fromData, username: user?.username });
   };
 

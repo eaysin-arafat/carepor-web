@@ -1,6 +1,6 @@
 import { useUserLoginMutation } from "@/features/user-accounts/user-accounts-api";
 import { LoginDataType } from "@/types";
-import { formEvent, onchangeEvent } from "@/types/htmlEvents";
+import { FormSubmitEvent, onchangeEvent } from "@/types/htmlEvents";
 import { cookieManager } from "@/utilities/cookie-manager";
 import { loginValidator } from "@/validation-models/user-accounts/login";
 import React from "react";
@@ -41,7 +41,7 @@ function useUserLogin() {
   };
 
   // handle form submit
-  const handleFormSubmit = async (e: formEvent) => {
+  const handleFormSubmit = async (e: FormSubmitEvent) => {
     e.preventDefault();
 
     // validate form

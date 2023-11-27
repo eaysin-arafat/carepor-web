@@ -18,9 +18,18 @@ export const changePasswordValidator = (
 
   if (!passwordInfo.confirmPassword) {
     errors.confirmPassword = "Required";
-  } else if (passwordInfo.confirmPassword !== passwordInfo.newPassword) {
+    console.log(passwordInfo.confirmPassword);
+  }
+
+  if (
+    passwordInfo.confirmPassword &&
+    passwordInfo.newPassword &&
+    passwordInfo.confirmPassword !== passwordInfo.newPassword
+  ) {
     errors.confirmPassword = "Passwords must match";
   }
+
+  console.log({ passwordInfo });
 
   return {
     errors,
