@@ -1,13 +1,12 @@
-import Checkbox from "../form-elements/Checkbox";
-import CustomNrc from "../form-elements/CustomNrc";
-import DateInput from "../form-elements/DatePicker";
-import Input from "../form-elements/Input";
-import FormSection from "../form-elements/form-layouts/FormSection";
+import Checkbox from "../core/form-elements/Checkbox";
+import CustomNrc from "../core/form-elements/CustomNrc";
+import DateInput from "../core/form-elements/DatePicker";
+import Input from "../core/form-elements/Input";
+import FormSection from "../core/form-layouts/FormSection";
 
 type Props = {};
 
 function PersonalInfo({}: Props) {
-
   return (
     <>
       <FormSection titleText="Personal Information">

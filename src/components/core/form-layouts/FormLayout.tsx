@@ -1,7 +1,7 @@
-import AppName from "@/components/ui/app-name/AppName";
-import AppLogo from "@/components/ui/logo/logo";
-import Title from "@/components/ui/titles/Title";
-import BodyBackground from "../../../pages/demo-pages/BodyBackground";
+import AppLogo from "../logo/logo";
+import AppName from "../app-name/AppName";
+import Title from "../titles/Title";
+import BodyBackground from "../body-background/BodyBackground";
 
 type Props = {
   mainTitle?: string;

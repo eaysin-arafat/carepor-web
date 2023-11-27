@@ -1,6 +1,6 @@
 import GuardianDetails from "@/components/client-accounts/GuardianDetails";
 import ClientPersonalInfo from "@/components/client-accounts/PersonalInfo";
-import FormLayout from "@/components/form-elements/form-layouts/FormLayout";
+import FormLayout from "@/components/core/form-layouts/FormLayout";
 
 type Props = {};
 
@@ -14,7 +14,7 @@ function CreateClientAccount({}: Props) {
         </p>
         <form action="" className="my-5">
           <ClientPersonalInfo />
-          <GuardianDetails/>
+          <GuardianDetails />
         </form>
       </>
     </FormLayout>
