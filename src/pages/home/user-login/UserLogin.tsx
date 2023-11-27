@@ -1,7 +1,7 @@
-import FormLayout from "../../../components/core/form-layouts/FormLayout";
-import Input from "@/components/core/form-elements/Input";
 import Button from "@/components/core/buttons/Button";
+import Input from "@/components/core/form-elements/Input";
 import Password from "@/components/core/form-elements/password";
+import FormLayout from "../../../components/core/form-layouts/FormLayout";
 import useUserLogin from "./useUserLogin";
 
 type Props = {};
@@ -12,7 +12,12 @@ function UserLogin({}: Props) {
     userLogin;
 
   return (
-    <FormLayout emergencyAccess loginForm mainTitle="Welcome to SmartCare Pro">
+    <FormLayout
+      className="max-w-[650px]"
+      emergencyAccess
+      loginForm
+      mainTitle="Welcome to SmartCare Pro"
+    >
       <form onSubmit={handleFormSubmit} className="my-5">
         <div className="flex flex-col gap-5">
           <Input

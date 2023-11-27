@@ -11,6 +11,8 @@ function useManageFacility(oldFacility?: string) {
   const { data: districts } = useReadDistrictsQuery(undefined);
   const { data: facilities } = useReadFacilitiesQuery(undefined);
 
+  console.log({ provinces, districts, facilities });
+
   const initialState = { facility: "", district: "", province: "" };
   const [facilityState, setFacilityState] = React.useState(initialState);
   const [facilityError, setFacilityError] = React.useState(initialState);
