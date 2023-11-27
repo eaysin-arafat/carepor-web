@@ -1,6 +1,6 @@
 import Button from "@/components/core/buttons/Button";
 import Input from "@/components/core/form-elements/Input";
-import Password from "@/components/core/form-elements/Password";
+import Password from "@/components/core/form-elements/PasswordInput";
 import FormLayout from "@/components/core/form-layouts/FormLayout";
 import useUserLogin from "./useUserLogin";
 
@@ -11,9 +11,10 @@ function UserLogin() {
 
   return (
     <FormLayout
-      className="max-w-[650px]"
+      className="w-[570px] "
       emergencyAccess
       loginForm
+      layoutCenter
       mainTitle="Welcome to SmartCare Pro"
     >
       <form onSubmit={handleFormSubmit} className="my-5">

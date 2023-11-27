@@ -1,67 +1,73 @@
-import { useReadDistrictsQuery } from "@/features/district/district-api";
-import { useReadFacilitiesQuery } from "@/features/facility/facility-api";
-import { useReadProvincesQuery } from "@/features/province/province-api";
-import { onchangeEvent } from "@/types/htmlEvents";
-import React from "react";
+// import { useReadDistrictsQuery } from "@/features/district/district-api";
+// import { useReadProvincesQuery } from "@/features/province/province-api";
+// import { useReadFacilitiesQuery } from "@/features/facility/facility-api";
+// import { onchangeEvent } from "@/types/htmlEvents";
+// import React from "react";
+
+// fake file
+import { districts } from "../fakeApi/district";
+import { facilities } from "../fakeApi/facility";
+import { provinces } from "../fakeApi/provinces";
 
 function useManageFacility(oldFacility?: string) {
   // data from rtk
-  //
-  const { data: provinces } = useReadProvincesQuery(undefined);
-  const { data: districts } = useReadDistrictsQuery(undefined);
-  const { data: facilities } = useReadFacilitiesQuery(undefined);
+  //facility =
+
+  // const { data: provinces } = useReadProvincesQuery(undefined);
+  // const { data: districts } = useReadDistrictsQuery(undefined);
+  // const { data: facilities } = useReadFacilitiesQuery(undefined);
 
   console.log({ provinces, districts, facilities });
 
-  const initialState = { facility: "", district: "", province: "" };
-  const [facilityState, setFacilityState] = React.useState(initialState);
-  const [facilityError, setFacilityError] = React.useState(initialState);
+  // const initialState = { facility: "", district: "", province: "" };
+  // const [facilityState, setFacilityState] = React.useState(initialState);
+  // const [facilityError, setFacilityError] = React.useState(initialState);
 
-  const facilityChange = (e: onchangeEvent) => {
-    const { name, value } = e.target;
-    if (name == "province") {
-      setFacilityState({ ...initialState, province: value });
-      return setFacilityError(initialState);
-    }
-    if (name == "district") {
-      setFacilityState((prev) => ({ ...prev, district: value, facility: "" }));
-      return setFacilityError((prev) => ({
-        ...prev,
-        district: "",
-        facility: "",
-      }));
-    }
-    if (name == "facility") {
-      setFacilityState((prev) => ({ ...prev, facility: value }));
-      return setFacilityError((prev) => ({ ...prev, facility: "" }));
-    }
-    if (name == "district") {
-      setFacilityState((prev) => ({ ...prev, district: value, facility: "" }));
-      return setFacilityError((prev) => ({
-        ...prev,
-        district: "",
-        facility: "",
-      }));
-    }
-    if (name == "facility") {
-      setFacilityState((prev) => ({ ...prev, facility: value }));
-      return setFacilityError((prev) => ({ ...prev, facility: "" }));
-    }
+  // const facilityChange = (e: onchangeEvent) => {
+  //   const { name, value } = e.target;
+  //   if (name == "province") {
+  //     setFacilityState({ ...initialState, province: value });
+  //     return setFacilityError(initialState);
+  //   }
+  //   if (name == "district") {
+  //     setFacilityState((prev) => ({ ...prev, district: value, facility: "" }));
+  //     return setFacilityError((prev) => ({
+  //       ...prev,
+  //       district: "",
+  //       facility: "",
+  //     }));
+  //   }
+  //   if (name == "facility") {
+  //     setFacilityState((prev) => ({ ...prev, facility: value }));
+  //     return setFacilityError((prev) => ({ ...prev, facility: "" }));
+  //   }
+  //   if (name == "district") {
+  //     setFacilityState((prev) => ({ ...prev, district: value, facility: "" }));
+  //     return setFacilityError((prev) => ({
+  //       ...prev,
+  //       district: "",
+  //       facility: "",
+  //     }));
+  //   }
+  //   if (name == "facility") {
+  //     setFacilityState((prev) => ({ ...prev, facility: value }));
+  //     return setFacilityError((prev) => ({ ...prev, facility: "" }));
+  //   }
 
-    if (!["faculty", "district", "province"].includes(name)) {
-      return console.log("Please add name of input component");
-    }
-  };
+  //   if (!["faculty", "district", "province"].includes(name)) {
+  //     return console.log("Please add name of input component");
+  //   }
+  // };
 
-  const provinceOptions = (Array.isArray(provinces) && provinces) || [];
-  const filteredDist =
-    (Array.isArray(districts) &&
-      districts.filter((dis) => dis.provinceId == facilityState?.province)) ||
-    [];
-  const filteredFacility =
-    (Array.isArray(facilities) &&
-      facilities.filter((dis) => dis.districtId == facilityState?.district)) ||
-    [];
+  // const provinceOptions = (Array.isArray(provinces) && provinces) || [];
+  // const filteredDist =
+  //   (Array.isArray(districts) &&
+  //     districts.filter((dis) => dis.provinceId == facilityState?.province)) ||
+  //   [];
+  // const filteredFacility =
+  //   (Array.isArray(facilities) &&
+  //     facilities.filter((dis) => dis.districtId == facilityState?.district)) ||
+  //   [];
 
   console.log(oldFacility);
 
@@ -106,18 +112,18 @@ function useManageFacility(oldFacility?: string) {
 
   return {
     // options array
-    options: {
-      provinceOptions,
-      districtOptions: filteredDist,
-      facilitiesOptions: filteredFacility,
-    },
+    // options: {
+    //   provinceOptions,
+    //   districtOptions: filteredDist,
+    //   facilitiesOptions: filteredFacility,
+    // },
     // onChange: function
-    facilityChange,
-    // states
-    setFacilityState,
-    facilityState,
-    setFacilityError,
-    facilityError,
+    // facilityChange,
+    // // states
+    // setFacilityState,
+    // facilityState,
+    // setFacilityError,
+    // facilityError,
     // validation function
     // facilityValid,
   };
