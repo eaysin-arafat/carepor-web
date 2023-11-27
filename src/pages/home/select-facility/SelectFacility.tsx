@@ -1,15 +1,18 @@
-import Select from "@/components/form-elements/Select";
-import Button from "@/components/form-elements/Button";
-import FormLayout from "@/components/form-elements/form-layouts/FormLayout";
+import Button from "@/components/core/buttons/Button";
+import Select from "@/components/core/form-elements/Select";
+import FormLayout from "@/components/core/form-layouts/FormLayout";
+import useManageFacility from "@/hooks/useManageFacility";
 
 type Props = {};
 
 const SelectFacility = ({}: Props) => {
+  const { facilityChange } = useManageFacility();
   return (
     <>
       <FormLayout
         mainTitle="Select Facility"
         note="Please select a facility to enter."
+        className="max-w-[650px]"
       >
         <form action="" className="mt-5">
           <div className="flex flex-col gap-5">

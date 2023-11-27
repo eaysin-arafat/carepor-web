@@ -7,3 +7,8 @@ export type FormSectionType = {
   titleBorder?: boolean;
   noteClass?: string;
 };
+
+export interface LoginDataType {
+  username: string;
+  password: string;
+}
