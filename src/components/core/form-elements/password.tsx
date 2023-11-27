@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { FiEye, FiEyeOff } from "react-icons/fi";
+import { FiEye } from "react-icons/fi";
+import { FiEyeOff } from "react-icons/fi";
 
 type Props = {
   value?: string | number;
@@ -65,7 +66,7 @@ function Password({
 
       {errMsg && (
         <span className="text-dangerColor leading-[125%] font-normal ">
-          {errMsg}
+          Required
         </span>
       )}
     </div>
