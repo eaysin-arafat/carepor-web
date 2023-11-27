@@ -1,5 +1,5 @@
 import Button from "@/components/core/buttons/Button";
-import Password from "@/components/core/form-elements/Password";
+import Password from "@/components/core/form-elements/PasswordInput";
 import FormLayout from "@/components/core/form-layouts/FormLayout";
 import useChangePassword from "./useChangePassword";
 
