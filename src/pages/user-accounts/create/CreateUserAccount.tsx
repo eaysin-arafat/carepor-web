@@ -1,4 +1,6 @@
 import FormLayout from "@/components/form-elements/form-layouts/FormLayout";
+import ContactInfo from "@/components/user-form/ContactInfo";
+import LoginInfo from "@/components/user-form/LoginInfo";
 
 import PersonalInfo from "@/components/user-form/PersonalInfo";
 
@@ -13,6 +15,8 @@ function CreateUserAccount({}: Props) {
     >
       <form action="" className="my-5">
         <PersonalInfo />
+        <ContactInfo />
+        <LoginInfo />
       </form>
     </FormLayout>
   );
