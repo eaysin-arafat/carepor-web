@@ -65,11 +65,17 @@ function useManageFacility(oldFacility?: string) {
 
   console.log(oldFacility);
 
-  // useEffect(() => {
+  // type facilityType = {
+  //   oid: string;
+  // };
+
+  // React.useEffect(() => {
   //   if (oldFacility) {
   //     const lastAttachedFacilityId = oldFacility || undefined;
   //     const facilityObj = Array.isArray(facility)
-  //       ? facility.find((data) => data.oid == lastAttachedFacilityId)
+  //       ? facility.find(
+  //           (data: facilityType) => data.oid == lastAttachedFacilityId
+  //         )
   //       : null;
   //     const findDistrictObj = Array.isArray(districts)
   //       ? districts?.find((data) => data.oid === facilityObj?.districtId)

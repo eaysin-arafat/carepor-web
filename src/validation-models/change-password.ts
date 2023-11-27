@@ -1,5 +1,12 @@
-export const changePasswordValidator = (passwordInfo) => {
-  const errors = {};
+import {
+  ChangePasswordFormErrorType,
+  ChangePasswordFormType,
+} from "@/types/user-accounts";
+
+export const changePasswordValidator = (
+  passwordInfo: ChangePasswordFormType
+) => {
+  const errors: ChangePasswordFormErrorType = {};
 
   if (!passwordInfo.password) {
     errors.password = "Required";

@@ -1,8 +1,8 @@
 import Button from "@/components/core/buttons/Button";
 import Input from "@/components/core/form-elements/Input";
-import Password from "@/components/core/form-elements/Password";
 import FormLayout from "../../../components/core/form-layouts/FormLayout";
 import useUserLogin from "./useUserLogin";
+import Password from "@/components/core/form-elements/Password";
 
 function UserLogin() {
   const userLogin = useUserLogin();
