@@ -91,7 +91,7 @@ function GuardianDetails({}: Props) {
             <div className="col-span-6 md:col-span-3">
               <Input label="Nationality" />
             </div>
-            <div className="col-span-6  md:col-span-3 flex items-center -mt-5">
+            <div className="col-span-6  md:col-span-3 flex items-center">
               <Select label="Relationship">
                 <option value="">Select</option>
               </Select>

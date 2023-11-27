@@ -38,18 +38,18 @@ function Input({
 
   // // Function to handle input change
   // const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   // if (numberOnly && !numberPattern.test(event.target.value)) {
-  //   //   setOnlyIsNumber("Please enter a valid numeric number");
-  //   // } else {
-  //   //   setOnlyIsNumber("");
-  //   //   onChange(event);
-  //   // }
+  //   if (numberOnly && !numberPattern.test(event.target.value)) {
+  //     setOnlyIsNumber("Please enter a valid numeric number");
+  //   } else {
+  //     setOnlyIsNumber("");
+  //     onChange(event);
+  //   }
   // };
 
   return (
     <div className="flex flex-col w-full items-start justify-start gap-[6px]">
       <div className="flex">
-        <div className="text-blackColor leading-[125%] capitalize ">
+        <div className="text-blackColor leading-[125%] capitalize">
           {" "}
           {label}
         </div>
@@ -68,7 +68,7 @@ function Input({
       />
       {errMsg && (
         <span className="text-dangerColor leading-[125%] font-normal ">
-          Required
+          {errMsg}
         </span>
       )}
       {/* {isOnlyNumber && (

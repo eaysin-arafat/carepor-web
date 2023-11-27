@@ -11,6 +11,7 @@ const RequestFacility = ({}: Props) => {
       <FormLayout
         mainTitle="Request Facility Login"
         note="Please select a Facility to send login request."
+        className="max-w-[570px]"
       >
         <form action="" className="mt-5">
           <div className="flex flex-col gap-5">
@@ -33,9 +34,8 @@ const RequestFacility = ({}: Props) => {
           <div className="mt-5">
             <Button type="submit" title="Submit Request" />
           </div>
-          <div className="mt-5">
-            {/* <Button type="outline" title="Cancel" /> */}
-            <Button type="button" title="Cancel" />
+          <div className="mt-5 mb-3">
+            <Button type="outline" title="Cancel" />
           </div>
         </form>
       </FormLayout>

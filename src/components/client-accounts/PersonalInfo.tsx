@@ -1,7 +1,6 @@
 import React from "react";
 import Checkbox from "../core/form-elements/Checkbox";
 import CustomNrc from "../core/form-elements/CustomNrc";
-// import DateInput from "../form-elements/DatePicker";
 import Skeleton from "../core/skeleton/Skeleton";
 import DatePicker from "../core/form-elements/CustomDatePicker";
 import Input from "../core/form-elements/Input";
@@ -18,8 +17,7 @@ function ClientPersonalInfo({}: Props) {
   console.log(setSelectedDate);
 
   const handler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target);
-    console.log(new Date(e.target.value).toString());
+    console.log(e.target.value);
   };
 
   return (
@@ -32,12 +30,6 @@ function ClientPersonalInfo({}: Props) {
           <div className="col-span-6 md:col-span-3">
             <Input label="Surname" required />
           </div>
-          {/* <DateInput
-            name="date"
-            value={selectedDate}
-            label="Date of birth"
-            onChange={handler}
-          /> */}
           <div className="col-span-6 md:col-span-3">
             <DatePicker
               name="date"
@@ -47,13 +39,12 @@ function ClientPersonalInfo({}: Props) {
               required
             />
           </div>
-          <input type="date" onChange={handler} />
           <div className="col-span-6 md:col-span-3">
             <Select label="Sex" required>
               <option value="">Select</option>
             </Select>
           </div>
-          <div className="col-span-6 flex items-center -mt-5">
+          <div className="col-span-6 flex items-center">
             <Checkbox label="Date of birth is estimated" />
           </div>
           <div className="col-span-6 md:col-span-3">
@@ -64,7 +55,7 @@ function ClientPersonalInfo({}: Props) {
               <option value="">Select</option>
             </Select>
           </div>
-          <div className="col-span-6 flex items-center -mt-5">
+          <div className="col-span-6 flex items-center">
             <Checkbox label="Client does not have NRC" />
           </div>
           <div className="col-span-6 md:col-span-2">

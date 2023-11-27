@@ -13,7 +13,7 @@ function FormSection({
     <div className={"p-5 mt-5 border rounded-md" + " " + boxClass}>
       {/* Title Section */}
       <div className="mb-2">
-        <h2 className={"text-lg font-semibold mb-1" + " " + titleClass}>
+        <h2 className={"text-xl font-semibold mb-1" + " " + titleClass}>
           {titleText}
         </h2>
         {noteText && (
