@@ -1,6 +1,8 @@
-import FormLayout from "@/components/form-elements/form-layouts/FormLayout";
+import FormLayout from "@/components/core/form-layouts/FormLayout";
+import ContactInfo from "@/components/user-accounts/ContactInfo";
+import LoginInfo from "@/components/user-accounts/LoginInfo";
 
-import PersonalInfo from "@/components/user-form/PersonalInfo";
+import PersonalInfo from "@/components/user-accounts/PersonalInfo";
 
 type Props = {};
 
@@ -13,6 +15,8 @@ function CreateUserAccount({}: Props) {
     >
       <form action="" className="my-5">
         <PersonalInfo />
+        <ContactInfo />
+        <LoginInfo />
       </form>
     </FormLayout>
   );

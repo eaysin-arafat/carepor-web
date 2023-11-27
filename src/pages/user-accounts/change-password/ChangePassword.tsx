@@ -1,6 +1,6 @@
-import Button from "@/components/form-elements/Button";
-import Password from "@/components/form-elements/Password";
-import FormLayout from "@/components/form-elements/form-layouts/FormLayout";
+import Button from "@/components/core/buttons/Button";
+import Password from "@/components/core/form-elements/password";
+import FormLayout from "@/components/core/form-layouts/FormLayout";
 
 function ChangePassword() {
   return (

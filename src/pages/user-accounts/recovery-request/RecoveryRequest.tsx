@@ -1,8 +1,8 @@
-import Input from "@/components/form-elements/Input";
+import Input from "@/components/core/form-elements/Input";
 
-import Button from "@/components/form-elements/Button";
-import Select from "@/components/form-elements/Select";
-import FormLayout from "@/components/form-elements/form-layouts/FormLayout";
+import Button from "@/components/core/buttons/Button";
+import Select from "@/components/core/form-elements/Select";
+import FormLayout from "@/components/core/form-layouts/FormLayout";
 
 function RecoveryRequest() {
   return (

@@ -1,3 +1,6 @@
+import CreateAdmission from "@/pages/admissions/create/CreateAdmission";
+import CreateClientAccount from "@/pages/client-accounts/create/CreateClientAccount";
+
 // route paths for client pages
 export const clientSearch = (): string => "/client-search";
 export const clientDetails = ({ id = ":id" }: { id: string }): string =>
@@ -5,6 +8,11 @@ export const clientDetails = ({ id = ":id" }: { id: string }): string =>
 export const clientCreate = (): string => "/client-create";
 export const clientEdit = ({ id = ":id" }: { id: string }): string =>
   `/client-edit/${id}`;
+export const createAdmission = ({
+  clientId = ":clientId",
+}: {
+  clientId: string;
+}): string => `/admission-create/${clientId}`;
 
 // routers for client pages
 const clientRouter = [
@@ -18,11 +26,15 @@ const clientRouter = [
   },
   {
     path: clientCreate(),
-    element: "<ClientCreate />",
+    element: <CreateClientAccount />,
   },
   {
     path: clientEdit({ id: ":id" }),
     element: "<ClientEdit />",
+  },
+  {
+    path: createAdmission({ clientId: ":clientId" }),
+    element: <CreateAdmission />,
   },
 ];
 

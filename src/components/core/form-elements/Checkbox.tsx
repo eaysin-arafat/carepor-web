@@ -2,9 +2,9 @@ type Props = {
   value?: string | number;
   onChange?: any;
   name?: string;
+  marginTop?: string;
   label: string;
   required?: boolean;
-  errMsg?: string;
   disabled?: boolean;
   className?: string;
   placeholder?: string;
@@ -16,16 +16,16 @@ function Checkbox({
   onChange,
   name,
   label,
-  required=true,
-  errMsg,
+  required=false,
   className,
   checked,
+  marginTop
 }: Props) {
   return (
     <div className="flex flex-col w-full items-start justify-start gap-[6px]">
       <div className="flex">
       </div>
-      <label className="flex justify-center items-center gap-2">
+      <label className={`flex justify-center items-center gap-2 ${marginTop && marginTop} `}>
         <input
           type="checkbox"
           name={name}
@@ -37,11 +37,6 @@ function Checkbox({
         <p className="text-sm">{label}</p>
         {required && <span className="-mt-[6px] text-dangerColor">*</span>}
       </label>
-      {errMsg && (
-        <span className="text-dangerColor leading-[125%] font-normal ">
-          Required
-        </span>
-      )}
     </div>
   );
 }
