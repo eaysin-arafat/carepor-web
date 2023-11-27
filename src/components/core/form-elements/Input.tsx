@@ -24,7 +24,7 @@ function Input({
   required,
   errMsg,
   disabled,
-  pattern,
+  // pattern,
   type = "text",
   className,
   placeholder,
@@ -62,7 +62,7 @@ function Input({
         name={name}
         onChange={onChange}
         disabled={disabled}
-        pattern={pattern}
+        // pattern={pattern}
         max={max || "250"}
         placeholder={`${placeholder ? placeholder : "Enter" + " " + label}`}
       />

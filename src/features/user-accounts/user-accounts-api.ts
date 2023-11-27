@@ -129,10 +129,11 @@ const userAccountsApi = API.injectEndpoints({
      * @param userName
      * @returns UserAccess
      */
-    getUserAccessByUserName: builder.query({
+    getUserAccessByUserName: builder.mutation({
       query: (userName) => ({
         url: `/user-account/User-access-by-username/${userName}`,
-        method: "GET",
+        // method: "GET",
+        method: "POST",
       }),
     }),
 
@@ -265,7 +266,8 @@ export const {
   useUpdateUserAccountMutation,
   useDeleteUserAccountMutation,
   useUserLoginMutation,
-  useGetUserAccessByUserNameQuery,
+  // useGetUserAccessByUserNameQuery,
+  useGetUserAccessByUserNameMutation,
   useVerifyPasswordMutation,
   useUpdatePasswordMutation,
   useCheckUserNameQuery,
