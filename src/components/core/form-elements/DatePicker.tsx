@@ -64,7 +64,7 @@ const DateInput: React.FC<DateInputProps> = ({
       />
       {errMsg && (
         <span className="text-dangerColor leading-[125%] font-normal ">
-          Required
+          {errMsg}
         </span>
       )}
     </div>

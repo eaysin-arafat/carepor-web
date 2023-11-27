@@ -6,9 +6,9 @@ import useManageFacility from "@/hooks/useManageFacility";
 type Props = {};
 
 const SelectFacility = ({}: Props) => {
-  const { facilityChange } = useManageFacility();
+  const data = useManageFacility();
 
-  console.log(facilityChange);
+  console.log(data);
 
   return (
     <>
