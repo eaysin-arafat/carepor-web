@@ -1,3 +1,5 @@
+import CreateClientAccount from "@/pages/client-accounts/create/CreateClientAccount";
+
 // route paths for client pages
 export const clientSearch = (): string => "/client-search";
 export const clientDetails = ({ id = ":id" }: { id: string }): string =>
@@ -18,7 +20,7 @@ const clientRouter = [
   },
   {
     path: clientCreate(),
-    element: "<ClientCreate />",
+    element: <CreateClientAccount/>,
   },
   {
     path: clientEdit({ id: ":id" }),
