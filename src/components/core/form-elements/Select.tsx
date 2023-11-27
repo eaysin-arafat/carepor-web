@@ -44,7 +44,7 @@ function Select({
       </select>
       {errMsg && (
         <span className="text-dangerColor leading-[125%] font-normal ">
-          Required
+          {errMsg}
         </span>
       )}
     </div>
