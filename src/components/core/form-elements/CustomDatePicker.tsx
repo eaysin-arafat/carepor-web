@@ -74,7 +74,10 @@ function DatePicker({
 
     return calendar;
   };
-
+/**
+ * @
+ * @param day
+ */
   const handleDateSelect = (day: number | null) => {
     if (day !== null) {
       // Get the current time
@@ -89,7 +92,7 @@ function DatePicker({
         currentTime.getMinutes(),
         currentTime.getSeconds()
       );
-      console.log({ selectedDate });
+      // console.log({ selectedDate });
 
       const isoString = selectedDate.toISOString();
       setSelectedDate(isoString);
@@ -111,12 +114,37 @@ function DatePicker({
     // setShowDatepicker(false);
   };
 
+  /**
+   * Datepicker show top or bottom Start
+   * @returns
+   */
+  const shouldShowAbove = () => {
+    if (datePickerRef.current) {
+      const inputRect = datePickerRef.current.getBoundingClientRect();
+      const windowHeight =
+        window.innerHeight || document.documentElement.clientHeight;
+      const threshold = 300;
+      return inputRect.bottom + threshold > windowHeight;
+    }
+    return false;
+  };
+
+  const datePickerStyle: React.CSSProperties = {
+    position: "absolute",
+    top: shouldShowAbove() ? "auto" : "100%",
+    bottom: shouldShowAbove() ? "100%" : "auto",
+    left: 0,
+    zIndex: 20,
+  };
+  /**
+   * Datepicker show top or bottom - End
+   * @returns
+   */
+
   useEffect(() => {
     // Add a click event listener to the document
     const handleDocumentClick = (e: any) => {
-      // Check if the click target is inside the DatePicker component or not
       if (datePickerRef.current && !datePickerRef.current.contains(e.target)) {
-        // Click is outside the DatePicker, close the calendar
         setShowDatepicker(false);
       }
     };
@@ -155,7 +183,11 @@ function DatePicker({
           className={`custom-input w-[100%] ${className}`}
         />
         {showDatepicker && (
-          <div className="absolute mt-[70px] bg-whiteColor border border-grayColor w-72 rounded-md z-20 mb-9 pb-2">
+          <div
+            className="absolute bg-whiteColor border border-grayColor w-64 rounded-md z-20 pb-2"
+            style={datePickerStyle}
+          >
+            {/* <div className="absolute mt-[70px] bg-whiteColor border border-grayColor w-72 rounded-md z-20 mb-9 pb-2"> */}
             <div className="bg-borderColor pt-3">
               <div className="flex justify-between mb-2 px-2 ">
                 <button
@@ -188,31 +220,6 @@ function DatePicker({
                 </select>
                 {/* </div> */}
               </div>
-              {/* <div className="flex flex-col gap-2 mb-2 px-5 ">
-                <div className="flex justify-between items-center">
-                <button onClick={() => setShowDatepicker(false)} className="border border-grayColor rounded px-2 py-0.5">
-                  Cancel
-                </button>
-                <button onClick={clearState} className="border border-grayColor rounded px-2 py-0.5 shadow">Clear</button>
-                </div>
-                <div className="flex justify-between items-center">
-                  <select
-                    className="bg-borderColor rounded"
-                    value={currentMonth}
-                    onChange={(e) => setCurrentMonth(Number(e.target.value))}
-                  >
-                    {renderMonthOptions()}
-                  </select>
-                  {" "}
-                  <select
-                    className="bg-borderColor rounded "
-                    value={currentYear}
-                    onChange={(e) => setCurrentYear(Number(e.target.value))}
-                  >
-                    {renderYearOptions()}
-                  </select>
-                </div>
-              </div> */}
               <div className="grid grid-cols-7 gap-1 px-2 mt-4 pb-2 border-b border-grayColor">
                 {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(
                   (day: string) => (
@@ -231,12 +238,12 @@ function DatePicker({
                   className={` flex cursor-pointer items-center justify-center rounded-md text-center h-7 w-7 ${
                     day
                       ? isCurrentDate(day)
-                        ? "bg-borderColor"
+                        ? "bg-borderColor hover:bg-blue-700"
                         : "hover:bg-borderColor"
                       : ""
                   } ${
                     isCurrentDateSelected(day)
-                      ? "bg-primaryColor hover:bg-blue-600 text-whiteColor rounded-md"
+                      ? "bg-primaryColor hover:bg-blue-700 text-whiteColor rounded-md"
                       : ""
                   }`}
                 >

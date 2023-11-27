@@ -15,7 +15,7 @@ const SelectFacility = ({}: Props) => {
       <FormLayout
         mainTitle="Select Facility"
         note="Please select a facility to enter."
-        className="max-w-[650px]"
+        className="max-w-[570px]"
       >
         <form action="" className="mt-5">
           <div className="flex flex-col gap-5">
