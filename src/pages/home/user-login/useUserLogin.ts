@@ -1,22 +1,31 @@
-// import { useLoginMutation } from "@/features/authentication/authentication-api";
-// import { CookieManager } from "@/utils/cookie-manager";
-// import { loginValidator } from "@/validation-model/user-accounts/login";
-// import Cookies from "js-cookie";
 import React from "react";
-// import toast from "react-hot-toast";
-// import useWindowWidth from "../../../hooks/useWindowWidth";
-
+import toast from "react-hot-toast";
 import { useUserLoginMutation } from "@/features/user-accounts/user-accounts-api";
+import { LoginDataType } from "@/types";
+import { loginValidator } from "@/utilities/validation-model/user-accounts/login";
+import { formEvent, onchangeEvent } from "@/types/htmlEvents";
+import { saveCookie } from "@/utilities/cookie-manager";
 
 // initial state
-const initialState = {
+const initialState: LoginDataType = {
   username: "",
   password: "",
 };
 
-function useLogin() {
-  const [errors, setErrors] = React.useState(initialState);
+// user login return type
+/**
+ * user login m
+ * @returns
+ */
+
+type errprstype = {
+  username?: string;
+  password?: string;
+};
+
+function useUserLogin() {
   const [loginForm, setLoginForm] = React.useState(initialState);
+  const [errors, setErrors] = React.useState<errprstype>({});
 
   // api hooks
   const [
@@ -24,24 +33,20 @@ function useLogin() {
     { data: userData, isSuccess, isLoading, isError, error, status },
   ] = useUserLoginMutation();
 
-  // custom hooks
-  //   const w600 = useWindowWidth(600);
-
   // handler for input change
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: onchangeEvent) => {
     const { name, value } = e.target;
     setLoginForm((prev) => ({ ...prev, [name]: value }));
     setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   // handle form submit
-  const handleFormSubmit = async (e) => {
+  const handleFormSubmit = async (e: formEvent) => {
     e.preventDefault();
 
     // validate form
     const { isValid, errors: validationError } = loginValidator(loginForm);
     if (!isValid) return setErrors(validationError);
-
     // login user
     login(loginForm);
   };
@@ -51,8 +56,7 @@ function useLogin() {
     // handle success
     if (isSuccess && status === "fulfilled") {
       // set cookie
-      const cookieManager = new CookieManager(Cookies);
-      cookieManager.saveCookie("carepro_token", userData?.userAccount?.oid, {
+      saveCookie("carepro_token", userData?.userAccount?.oid, {
         expires: 1,
       });
 
@@ -69,7 +73,8 @@ function useLogin() {
     if (isError && status === "rejected") {
       // show alert
       toast.dismiss();
-      toast.error(error.message);
+      // @ts-ignore
+      toast.error(error?.message || "Login failed");
     }
   }, [isSuccess, isError, status, error, userData?.userAccount?.oid]);
 
@@ -79,30 +84,10 @@ function useLogin() {
     isLoading,
     handleInputChange,
     handleFormSubmit,
-    w600,
+    // w600,
   };
 }
 
-export default useLogin;
+export default useUserLogin;
 
-/**
- * @description Validate login data
- * @param {object} loginData
- * @returns {object} {isValid: boolean, errors: object
- */
-export const loginValidator = (loginData: any): Object => {
-  const errors: any = {};
-
-  // validate username
-  if (!loginData.username) errors.username = "Required";
-  else if (loginData.username.length < 3) errors.username = "Invalid";
-
-  // validate password
-  if (!loginData.password) errors.password = "Required";
-
-  // return error state
-  return {
-    isValid: Object.keys(errors).length === 0,
-    errors,
-  };
-};
+// uninitialized , pending , fulfilled , rejected,
