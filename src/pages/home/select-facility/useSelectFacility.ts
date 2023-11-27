@@ -1,19 +1,30 @@
+// import { useGetUserAccessByUserNameMutation } from "@/features/user-accounts/user-accounts-api";
+// import useManageFacility from "@/hooks/useManageFacility";
+// import { cookieManager } from "@/utilities/cookie-manager";
+// import { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+
 const useSelectFacility = (): object => {
-  //   const navigate = useNavigate();
+  // const {
+  //   facilityChange,
+  //   facilityError,
+  //   facilityState,
+  //   options,
+  //   setFacilityError,
+  //   setFacilityState,
+  // } = useManageFacility();
+
+  // const navigate = useNavigate();
   //   const dispatch = useDispatch();
   //   //   const { user } = useSelector((state) => state.auth);
-  //   //   const cookieManager = new CookieManager(Cookies);
+  // const gf = cookieManager;
 
-  //   const [username, setUsername] = useState();
-  //   const [facilityId, setFacilityId] = useState("");
-  //   // const [getFacilityAccesses, { data }] =
-  //   //   useGetFacilityAccessByUsernameMutation();
-  //   const { data: facilityByKey } = useGetUserAccessByUserNameMutation(
-  //     facilityId,
-  //     {
-  //       skip: !facilityId,
-  //     }
-  //   );
+  // const [username, setUsername] = useState<string>("");
+  // const [facilityId, setFacilityId] = useState<string>("");
+  // // const [getFacilityAccesses, { data }] =
+  // //   useGetFacilityAccessByUsernameMutation();
+  // const isFacilityId: boolean = !facilityId;
+  // const [rrrrr, { data: facilityByKey }] = useGetUserAccessByUserNameMutation();
 
   //   const {
   //     facilityState,
