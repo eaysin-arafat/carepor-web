@@ -1,8 +1,8 @@
-import FormLayout from "@/components/form-elements/form-layouts/FormLayout";
-import ContactInfo from "@/components/user-form/ContactInfo";
-import LoginInfo from "@/components/user-form/LoginInfo";
+import FormLayout from "@/components/core/form-layouts/FormLayout";
+import ContactInfo from "@/components/user-accounts/ContactInfo";
+import LoginInfo from "@/components/user-accounts/LoginInfo";
 
-import PersonalInfo from "@/components/user-form/PersonalInfo";
+import PersonalInfo from "@/components/user-accounts/PersonalInfo";
 
 type Props = {};
 

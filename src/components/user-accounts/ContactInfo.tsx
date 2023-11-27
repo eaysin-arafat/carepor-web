@@ -1,6 +1,6 @@
-import Input from "../form-elements/Input";
-import Textarea from "../form-elements/Textarea";
-import FormSection from "../form-elements/form-layouts/FormSection";
+import Input from "../core/form-elements/Input";
+import FormSection from "../core/form-layouts/FormSection";
+import Textarea from "../core/form-elements/textarea";
 
 type Props = {};
 
