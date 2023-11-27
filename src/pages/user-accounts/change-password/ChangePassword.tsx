@@ -2,9 +2,7 @@ import Button from "@/components/core/buttons/Button";
 import Password from "@/components/core/form-elements/password";
 import FormLayout from "@/components/core/form-layouts/FormLayout";
 
-type Props = {};
-
-function ChangePassword({}: Props) {
+function ChangePassword() {
   return (
     <div>
       <FormLayout mainTitle="Change Password" emergencyAccess>

@@ -1,10 +1,12 @@
-import Select from "@/components/core/form-elements/Select";
 import Button from "@/components/core/buttons/Button";
+import Select from "@/components/core/form-elements/Select";
 import FormLayout from "@/components/core/form-layouts/FormLayout";
+import useManageFacility from "@/hooks/useManageFacility";
 
 type Props = {};
 
 const SelectFacility = ({}: Props) => {
+  const { facilityChange } = useManageFacility();
   return (
     <>
       <FormLayout
