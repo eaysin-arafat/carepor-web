@@ -3,8 +3,8 @@ import useManageFacility from "@/hooks/useManageFacility";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { useEffect, useState } from "react";
 import { formEvent } from "@/types/htmlEvents";
+import { useEffect, useState } from "react";
 
 const useSelectFacility = (): object => {
   const navigate = useNavigate();

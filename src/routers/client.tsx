@@ -1,6 +1,6 @@
-import CreateAdmission from "@/pages/admissions/create/CreateAdmission";
+import CreateAdmission from "@/pages/admissions/create/Create";
 import CreateClientAccount from "@/pages/client-accounts/create/CreateClientAccount";
-import EditAdmission from "./../pages/admissions/edit/EditAdmission";
+import EditAdmission from "../pages/admissions/edit/Edit";
 
 // route paths for client pages
 export const clientSearch = (): string => "/client-search";

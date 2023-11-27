@@ -7,6 +7,9 @@ type Props = {};
 
 const SelectFacility = ({}: Props) => {
   const { facilityChange } = useManageFacility();
+
+  console.log(facilityChange);
+
   return (
     <>
       <FormLayout
