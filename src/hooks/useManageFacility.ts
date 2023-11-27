@@ -2,7 +2,7 @@ import { useReadDistrictsQuery } from "@/features/district/district-api";
 import { useReadFacilitiesQuery } from "@/features/facility/facility-api";
 import { useReadProvincesQuery } from "@/features/province/province-api";
 import { onchangeEvent } from "@/types/htmlEvents";
-import React, { useEffect } from "react";
+import React from "react";
 
 function useManageFacility(oldFacility?: string) {
   // data from rtk
@@ -60,6 +60,8 @@ function useManageFacility(oldFacility?: string) {
     (Array.isArray(facilities) &&
       facilities.filter((dis) => dis.districtId == facilityState?.district)) ||
     [];
+
+  console.log(oldFacility);
 
   // useEffect(() => {
   //   if (oldFacility) {

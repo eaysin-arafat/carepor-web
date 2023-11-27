@@ -4,7 +4,7 @@ import { useUserLoginMutation } from "@/features/user-accounts/user-accounts-api
 import { LoginDataType } from "@/types";
 import { loginValidator } from "@/utilities/validation-model/user-accounts/login";
 import { formEvent, onchangeEvent } from "@/types/htmlEvents";
-import { saveCookie } from "@/utilities/cookie-manager";
+import { cookieManager } from "@/utilities/cookie-manager";
 
 // initial state
 const initialState: LoginDataType = {
@@ -55,8 +55,7 @@ function useUserLogin() {
   React.useEffect(() => {
     // handle success
     if (isSuccess && status === "fulfilled") {
-      // set cookie
-      saveCookie("carepro_token", userData?.userAccount?.oid, {
+      cookieManager.saveCookie("carepro_token", userData?.userAccount?.oid, {
         expires: 1,
       });
 

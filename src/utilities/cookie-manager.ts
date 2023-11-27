@@ -1,36 +1,30 @@
 import Cookies from "js-cookie";
 
-export const saveCookie = (name: string, value: any, options: object): void => {
-  const parsed = JSON.parse(value);
-  Cookies.set(name, parsed, options);
-};
+export class CookieManager {
+  private cookie: Cookies.CookiesStatic;
+  constructor(cookie: Cookies.CookiesStatic) {
+    this.cookie = cookie;
+  } //
 
-// import Cookies from "js-cookie";
+  saveCookie(name: string, value: string, options: Cookies.CookieAttributes) {
+    this.cookie.set(name, value, options);
+  }
 
-// export class CookieManager {
-//   constructor(cookie) {
-//     this.cookie = cookie;
-//   } //
+  getCookie(name: string) {
+    return this.cookie.get(name);
+  }
 
-//   saveCookie(name, value, options) {
-//     this.cookie.set(name, value, options);
-//   }
+  removeCookie(name: string) {
+    this.cookie.remove(name);
+  }
 
-//   getCookie(name) {
-//     return this.cookie.get(name);
-//   }
+  parseCookie<T>(name: string): T | null {
+    const cookie = this.getCookie(name);
 
-//   removeCookie(name) {
-//     this.cookie.remove(name);
-//   }
+    if (!cookie) return null;
 
-//   parseCookie(name) {
-//     const cookie = this.getCookie(name);
+    return JSON.parse(cookie);
+  }
+}
 
-//     if (!cookie) return null;
-
-//     return JSON.parse(cookie);
-//   }
-// }
-
-// export const cookieManager = new CookieManager(Cookies);
+export const cookieManager = new CookieManager(Cookies);
