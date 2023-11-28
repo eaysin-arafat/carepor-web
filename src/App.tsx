@@ -1,4 +1,6 @@
+import { Provider } from "react-redux";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { store } from "./app/store";
 import useSetPublicKey from "./hooks/useSetPublicKey";
 import routes from "./routers/application-router";
 
@@ -11,7 +13,9 @@ function App() {
   const isSetPublicKey = useSetPublicKey();
 
   return isSetPublicKey ? (
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   ) : (
     <div>loading...</div>
   );
