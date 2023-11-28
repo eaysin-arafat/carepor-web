@@ -4,12 +4,12 @@ import { useReadFacilityByKeyQuery } from "@/features/facility/facility-api";
 import { useGetUserAccessByUserNameMutation } from "@/features/user-accounts/user-accounts-api";
 import useManageFacility from "@/hooks/useManageFacility";
 import { FormSubmitEventType } from "@/types/htmlEvents";
+import Alert from "@/utilities/alert";
 import { cookieManager } from "@/utilities/cookie-manager";
 
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 
 const useSelectFacility = () => {
   const navigate = useNavigate();
@@ -101,21 +101,6 @@ const useSelectFacility = () => {
       facilityName: facilityByKey?.description,
     });
 
-    // Alert.confirm("Your Request is accepted.");
-    // Alert.success({
-    //   message: "Your Request is accepted.",
-    //   title: "Your Request is accepted.",
-    // });
-
-    Swal.fire({
-      title: "Not Permission!",
-      text: "You are not authorized to login with this facility. Please contact the administrator.",
-      icon: "error",
-      confirmButtonColor: "#3085d6",
-      confirmButtonText: "Close",
-    });
-    return;
-
     if (data?.userAccount.userType == 1) {
       cookieManager.saveCookie("facility_token", cookieData, null);
       navigate("/clients");
@@ -123,13 +108,9 @@ const useSelectFacility = () => {
       cookieManager.saveCookie("facility_token", cookieData, null);
       navigate("/clients");
     } else if (!isPermitted && isFacilityValid) {
-      Swal.fire({
-        title: "Not Permission!",
-        text: "You are not authorized to login with this facility. Please contact the administrator.",
-        icon: "error",
-        confirmButtonColor: "#3085d6",
-        confirmButtonText: "Close",
-      });
+      Alert.error(
+        "You are not authorized to login with this facility. Please contact the administrator."
+      );
     }
   };
 
