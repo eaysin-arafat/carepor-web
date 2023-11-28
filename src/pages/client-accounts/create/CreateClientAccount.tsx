@@ -36,7 +36,7 @@ function CreateClientAccount() {
       <div className="max-w-[1022px] mx-auto ">
         <MultiStepComponent active={stateCount} title={stepTitle} />
       </div>
-      <div className="my-16">
+      <div className="my-8">
         <FormWrapper
           title="Client Profile Registration"
           titleClass="text-center"
