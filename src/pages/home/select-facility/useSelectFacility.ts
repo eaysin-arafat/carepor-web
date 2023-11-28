@@ -4,7 +4,11 @@
 // import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 
+import { useGetUserAccessByUserNameMutation } from "@/features/user-accounts/user-accounts-api";
 import useManageFacility from "@/hooks/useManageFacility";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 // import { useGetUserAccessByUserNameMutation } from "@/features/user-accounts/user-accounts-api";
 // import useManageFacility from "@/hooks/useManageFacility";
@@ -13,17 +17,17 @@ import useManageFacility from "@/hooks/useManageFacility";
 // import { useNavigate } from "react-router-dom";
 
 const useSelectFacility = () => {
-  // const navigate = useNavigate();
-  // const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   // //   //   const { user } = useSelector((state) => state.auth);
   // // const gf = cookieManager;
 
-  // const [username, setUsername] = useState<string>("");
-  // const [facilityId, setFacilityId] = useState<string>("");
-  // // const [getFacilityAccesses, { data }] =
-  // //   useGetFacilityAccessByUsernameMutation();
-  // const isFacilityId: boolean = !facilityId;
-  // const [rrrrr, { data: facilityByKey }] = useGetUserAccessByUserNameMutation();
+  // const [username, setUsername] = useState<string>("Annie"); // MARY / Idah
+  const [facilityId, setFacilityId] = useState<string | number>("");
+  // const [getFacilityAccesses, { data }] =
+  //   useGetFacilityAccessByUsernameMutation();
+  const isFacilityId: boolean = !facilityId;
+  const [getFacilityAccesses, { data }] = useGetUserAccessByUserNameMutation();
 
   const {
     districtOptions,
@@ -34,15 +38,16 @@ const useSelectFacility = () => {
     facilityState,
     // facilityValid,
   } = useManageFacility(undefined);
+
   // // initial state
-  // const [isPermitted, setIsPermitted] = useState(false);
-  // const [approvedFacility, setApprovedFacility] = useState(null);
+  const [isPermitted, setIsPermitted] = useState(false);
+  const [approvedFacility, setApprovedFacility] = useState(null);
 
-  // // Error Message State
-  // const [error, setError] = useState({});
+  // Error Message State
+  const [error, setError] = useState({});
 
-  // // Loading
-  // const [loading, setLoading] = useState(false);
+  // Loading
+  const [loading, setLoading] = useState(false);
   // const [pageLoading, setPageLoading] = useState(false);
 
   // const pageLoader = setTimeout(() => {
@@ -50,32 +55,32 @@ const useSelectFacility = () => {
   //   clearTimeout(pageLoader);
   // }, 1000);
 
-  // useEffect(() => {
-  //   if (facilityState?.facility) {
-  //     if (data?.user?.userType === 1) {
-  //       setIsPermitted(true);
-  //     } else {
-  //       let findApproved =
-  //         Array.isArray(data?.userAccount?.facilityAccesses) &&
-  //         data?.userAccount?.facilityAccesses?.find((item) => {
-  //           return (
-  //             item.facilityId == facilityState?.facility &&
-  //             item?.isApproved === true
-  //           );
-  //         });
-  //       if (findApproved) {
-  //         setIsPermitted(true);
-  //         setApprovedFacility(findApproved);
-  //       } else {
-  //         setIsPermitted(false);
-  //         setApprovedFacility(null);
-  //       }
-  //     }
-  //   } else {
-  //     setIsPermitted(false);
-  //     setApprovedFacility(null);
-  //   }
-  // }, [facilityState?.facility]);
+  useEffect(() => {
+    if (facilityState?.facility) {
+      if (data?.user?.userType === 1) {
+        setIsPermitted(true);
+      } else {
+        let findApproved =
+          Array.isArray(data?.userAccount?.facilityAccesses) &&
+          data?.userAccount?.facilityAccesses?.find((item) => {
+            return (
+              item.facilityId == facilityState?.facility &&
+              item?.isApproved === true
+            );
+          });
+        if (findApproved) {
+          setIsPermitted(true);
+          setApprovedFacility(findApproved);
+        } else {
+          setIsPermitted(false);
+          setApprovedFacility(null);
+        }
+      }
+    } else {
+      setIsPermitted(false);
+      setApprovedFacility(null);
+    }
+  }, [facilityState?.facility]);
 
   // const handleSubmit = (e: FormSubmitEventType) => {
   //   e.preventDefault();
@@ -114,6 +119,14 @@ const useSelectFacility = () => {
   //     });
   //   }
   // };
+
+  useEffect(() => {
+    getFacilityAccesses("Annie"); //(user?.username);
+  }, []); //user?.username
+
+  useEffect(() => {
+    setFacilityId(facilityState?.facility);
+  }, [facilityState?.facility]);
 
   return {
     districtOptions,
