@@ -1,11 +1,8 @@
 import { Provider } from "react-redux";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { store } from "./app/store";
+import LoadRouter from "./components/core/load-router/LoadRouter";
+import Loader from "./components/core/loader/Loader";
 import useSetPublicKey from "./hooks/useSetPublicKey";
-import routes from "./routers/application-router";
-
-// create browser router
-const router = createBrowserRouter(routes);
 
 function App() {
   // const isAuthChecked = useAuthCheck();
@@ -14,10 +11,10 @@ function App() {
 
   return isSetPublicKey ? (
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <LoadRouter />
     </Provider>
   ) : (
-    <div>loading...</div>
+    <Loader />
   );
 }
 

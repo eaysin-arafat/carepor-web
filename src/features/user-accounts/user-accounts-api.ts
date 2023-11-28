@@ -1,4 +1,6 @@
+import { LoginDataType } from "@/types";
 import { API } from "../API/API";
+import { login, logout } from "../authentication/authentication-slice";
 
 const userAccountsApi = API.injectEndpoints({
   endpoints: (builder) => ({
@@ -117,11 +119,26 @@ const userAccountsApi = API.injectEndpoints({
      * @returns UserAccount
      */
     userLogin: builder.mutation({
-      query: (body) => ({
+      query: (body: LoginDataType) => ({
         url: "/user-account/login",
         method: "POST",
         body,
       }),
+
+      async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
+        try {
+          const result = await queryFulfilled;
+          dispatch(
+            login({
+              user: { ...result?.data?.userAccount, facilityAccesses: [] },
+              token: result?.data?.userAccount?.oid,
+            })
+          );
+        } catch (error) {
+          console.log(error);
+          dispatch(logout());
+        }
+      },
     }),
 
     /**
@@ -233,10 +250,25 @@ const userAccountsApi = API.injectEndpoints({
      * @returns UserAccount
      */
     userAccountReadByKey: builder.query({
-      query: (key) => ({
+      query: (key: string) => ({
         url: `/user-account/key/${key}`,
         method: "GET",
       }),
+
+      async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
+        try {
+          const result = await queryFulfilled;
+          dispatch(
+            login({
+              user: { ...result?.data, facilityAccesses: [] },
+              token: result?.data?.oid,
+            })
+          );
+        } catch (error) {
+          console.log(error);
+          dispatch(logout());
+        }
+      },
     }),
 
     /**

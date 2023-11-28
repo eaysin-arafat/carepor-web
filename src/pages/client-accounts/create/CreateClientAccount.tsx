@@ -10,9 +10,7 @@ import FormWrapper from "@/components/core/form-layouts/FormWrapper";
 import MultiStepComponent from "@/components/shared/multi-step/multiStep";
 import { useState } from "react";
 
-type Props = {};
-
-function CreateClientAccount({}: Props) {
+function CreateClientAccount() {
   const [stateCount, setStateCount] = useState(1);
   const stepTitle = [
     "Personal <br /> Information",
@@ -22,15 +20,15 @@ function CreateClientAccount({}: Props) {
     "Place of Birth & <br /> Religious Denomination",
     "Education &  <br /> Employment",
   ];
-console.log({stateCount});
-console.log({stepTitle:stepTitle.length});
-const disabledBackButton = stateCount === 1
+  console.log({ stateCount });
+  console.log({ stepTitle: stepTitle.length });
+  const disabledBackButton = stateCount === 1;
 
   const handleBack = () => {
     setStateCount((prev: number) => Math.max(prev - 1, 1));
   };
   const handleNext = () => {
-    setStateCount((next: number) => Math.min(next + 1, stepTitle.length ));
+    setStateCount((next: number) => Math.min(next + 1, stepTitle.length));
   };
 
   return (
@@ -38,10 +36,12 @@ const disabledBackButton = stateCount === 1
       <div className="max-w-[1022px] mx-auto ">
         <MultiStepComponent active={stateCount} title={stepTitle} />
       </div>
-      <div className="max-w-[1022px] mx-auto mt-36">
+      <div className="my-8">
         <FormWrapper
           title="Client Profile Registration"
           titleClass="text-center"
+          maxWidth="max-w-[1022px]"
+          noBackground
         >
           <>
             <p className="text-center mt-2">
@@ -74,11 +74,11 @@ const disabledBackButton = stateCount === 1
               )}
               {stateCount !== 6 && (
                 <NextButton
-                title="Next"
-                type="button"
-                onClick={handleNext}
-                className="w-40"
-              />
+                  title="Next"
+                  type="button"
+                  onClick={handleNext}
+                  className="w-40"
+                />
               )}
             </div>
           </>

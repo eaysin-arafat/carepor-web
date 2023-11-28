@@ -2,8 +2,8 @@ import Select from "@/components/core/form-elements/Select";
 
 import Button from "@/components/core/buttons/Button";
 import RenderSelectOptions from "@/components/core/form-elements/RenderSelectOptions";
-import FormLayout from "@/components/core/form-layouts/FormLayout";
 import useRequestFacility from "./useRequestFacility";
+import FormWrapper from "@/components/core/form-layouts/FormWrapper";
 
 type Props = {};
 
@@ -22,10 +22,12 @@ const RequestFacility = ({}: Props) => {
 
   return (
     <div>
-      <FormLayout
-        mainTitle="Request Facility Login"
-        note="Please select a Facility to send login request."
+      <FormWrapper
+        title="Request Facility Login"
+        titleNote="Please select a Facility to send login request."
         className="max-w-[570px]"
+        titleClass="text-center"
+        contentCenter
       >
         <form action="" className="mt-5">
           <div className="flex flex-col gap-5">
@@ -76,7 +78,7 @@ const RequestFacility = ({}: Props) => {
             />
           </div>
         </form>
-      </FormLayout>
+      </FormWrapper>
     </div>
   );
 };

@@ -36,7 +36,7 @@
 
 @layer components {
   .disabled_bg {
-    @apply bg-borderColor
+    @apply bg-borderColor text-grayColor
   }
 }
 
@@ -86,6 +86,10 @@ body {
   background-color: var(--primary);
   border: 1px solid transparent;
   background-clip: content-box;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 .custom-input {
