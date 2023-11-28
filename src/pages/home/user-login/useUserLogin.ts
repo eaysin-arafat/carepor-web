@@ -78,7 +78,6 @@ function useUserLogin() {
     isLoading,
     handleInputChange,
     handleFormSubmit,
-    // w600,
   };
 }
 

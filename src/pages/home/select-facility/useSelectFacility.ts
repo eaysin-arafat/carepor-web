@@ -1,11 +1,14 @@
+import { logout } from "@/features/authentication/authentication-slice";
 import { useGetUserAccessByUserNameMutation } from "@/features/user-accounts/user-accounts-api";
 import useManageFacility from "@/hooks/useManageFacility";
 import { FormSubmitEventType } from "@/types/htmlEvents";
+import { cookieManager } from "@/utilities/cookie-manager";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
 const useSelectFacility = () => {
   // const navigate = useNavigate();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // //   //   const { user } = useSelector((state) => state.auth);
   // // const gf = cookieManager;
 
@@ -117,6 +120,11 @@ const useSelectFacility = () => {
     }
   };
 
+  const handleLogout = () => {
+    cookieManager.removeCookie("carepro_token");
+    dispatch(logout());
+  };
+
   useEffect(() => {
     getFacilityAccesses("Annie"); //(user?.username);
   }, []); //user?.username
@@ -132,7 +140,7 @@ const useSelectFacility = () => {
     facilityChangeHandler,
     facilityError,
     facilityState,
-
+    handleLogout,
     handleRequestSubmit,
   };
 };

@@ -6,9 +6,7 @@ import { requestFacility } from "@/routers/facility";
 import { Link } from "react-router-dom";
 import useSelectFacility from "./useSelectFacility";
 
-type Props = {};
-
-const SelectFacility = ({}: Props) => {
+const SelectFacility = () => {
   // const { data } = useReadProvincesQuery(undefined);
   // console.log(data);
 
@@ -19,8 +17,8 @@ const SelectFacility = ({}: Props) => {
     facilityChangeHandler,
     facilityError,
     facilityState,
-
     handleRequestSubmit,
+    handleLogout,
   } = useSelectFacility();
 
   return (
@@ -72,8 +70,8 @@ const SelectFacility = ({}: Props) => {
           <div className="mt-5">
             <Button type="submit" title="Enter" />
           </div>
-          <div className=" text-center mt-2">
-            <button className="text-primaryColor px-3 py-2">Logout</button>
+          <div className="text-center mt-2">
+            <Button type="outline" title="Enter" onClick={handleLogout} />
           </div>
         </form>
       </FormLayout>
