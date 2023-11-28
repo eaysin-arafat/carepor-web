@@ -19,6 +19,8 @@ const SelectFacility = ({}: Props) => {
     facilityChangeHandler,
     facilityError,
     facilityState,
+
+    handleRequestSubmit,
   } = useSelectFacility();
 
   return (
@@ -29,7 +31,7 @@ const SelectFacility = ({}: Props) => {
         note="Please select a facility to enter."
         className="md:w-[570px] "
       >
-        <form action="" className="mt-5">
+        <form onSubmit={handleRequestSubmit} className="mt-5">
           <div className="flex flex-col gap-5">
             <Select
               onChange={facilityChangeHandler}
