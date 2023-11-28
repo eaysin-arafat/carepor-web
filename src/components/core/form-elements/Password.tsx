@@ -3,7 +3,7 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 
 type Props = {
   value?: string | number;
-  onChange?: any;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   name?: string;
   label: string;
   required?: boolean;
