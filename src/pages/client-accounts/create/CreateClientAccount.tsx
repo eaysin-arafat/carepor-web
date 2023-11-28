@@ -10,9 +10,7 @@ import FormWrapper from "@/components/core/form-layouts/FormWrapper";
 import MultiStepComponent from "@/components/shared/multi-step/multiStep";
 import { useState } from "react";
 
-type Props = {};
-
-function CreateClientAccount({}: Props) {
+function CreateClientAccount() {
   const [stateCount, setStateCount] = useState(1);
   const stepTitle = [
     "Personal <br /> Information",
