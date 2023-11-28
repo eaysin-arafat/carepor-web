@@ -1,4 +1,4 @@
-import React, { ReactNode, ReactElement } from "react";
+import React, { ReactElement, ReactNode } from "react";
 // import { Link } from 'react-router-dom'; // Assuming you are using react-router
 
 type ButtonProps = {
@@ -11,6 +11,19 @@ type ButtonProps = {
   icon?: ReactNode;
   loading?: boolean;
 };
+
+/**
+ *
+ * @param type submit | link | outline | button
+ * @param title Button Title
+ * @param link Button Link
+ * @param style CSS
+ * @param className Class
+ * @param onClick Function
+ * @param icon Icon Component
+ * @param loading Loading State
+ * @returns
+ */
 
 const Button = ({
   type,
@@ -39,7 +52,7 @@ const Button = ({
           {title}
         </button>
       );
-      
+
     case "outline":
       return (
         <button

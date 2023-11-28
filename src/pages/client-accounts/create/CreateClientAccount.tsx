@@ -24,6 +24,7 @@ function CreateClientAccount({}: Props) {
   ];
 console.log({stateCount});
 console.log({stepTitle:stepTitle.length});
+const disabledBackButton = stateCount === 1
 
   const handleBack = () => {
     setStateCount((prev: number) => Math.max(prev - 1, 1));
@@ -57,6 +58,7 @@ console.log({stepTitle:stepTitle.length});
             </form>
             <div className="flex gap-5 mt-5 justify-end">
               <BackButton
+                disabled={disabledBackButton}
                 title="Back"
                 type="button"
                 onClick={handleBack}
