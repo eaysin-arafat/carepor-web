@@ -13,19 +13,15 @@ const initialState: LoginDataType = {
 };
 
 // user login return type
-/**
- * user login m
- * @returns
- */
 
-type errprstype = {
+type LoginErrorTypes = {
   username?: string;
   password?: string;
 };
 
 function useUserLogin() {
   const [loginForm, setLoginForm] = React.useState(initialState);
-  const [errors, setErrors] = React.useState<errprstype>({});
+  const [errors, setErrors] = React.useState<LoginErrorTypes>({});
 
   // api hooks
   const [

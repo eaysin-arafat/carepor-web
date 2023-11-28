@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { API } from "../features/API/API";
+import authenticationReducer from "../features/authentication/authentication-slice";
 import facilityAccessReducer from "../features/facility-access/facility-access-slice";
 import publicKeyReducer from "../features/public-key/public-key-slice";
 import userAccountsReducer from "../features/user-accounts/user-accounts-slice";
@@ -10,6 +11,7 @@ export const store = configureStore({
     userAccounts: userAccountsReducer,
     facilityAccess: facilityAccessReducer,
     publicKey: publicKeyReducer,
+    authentication: authenticationReducer,
   },
 
   devTools: import.meta.env.MODE !== "production",
@@ -17,3 +19,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(API.middleware),
 });
+
+export type RootState = ReturnType<typeof store.getState>;
+
+export type AppDispatch = typeof store.dispatch;
