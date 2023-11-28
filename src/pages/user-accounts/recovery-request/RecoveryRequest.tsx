@@ -2,8 +2,8 @@ import Input from "@/components/core/form-elements/Input";
 
 import Button from "@/components/core/buttons/Button";
 import Select from "@/components/core/form-elements/Select";
-import FormLayout from "@/components/core/form-layouts/FormLayout";
 import usePasswordRecovery from "./useRecoveryRequest";
+import FormWrapper from "@/components/core/form-layouts/FormWrapper";
 
 function RecoveryRequest() {
   const {
@@ -28,11 +28,11 @@ function RecoveryRequest() {
   // };
   return (
     <>
-      <FormLayout
+      <FormWrapper
         emergencyAccess
-        className="w-[570px]"
-        layoutCenter
-        mainTitle="Login Recovery Request"
+        contentCenter
+        titleClass="text-center"
+        title="Login Recovery Request"
       >
         <form action="">
           <div className="grid gap-5">
@@ -54,7 +54,7 @@ function RecoveryRequest() {
             </div>
           </div>
         </form>
-      </FormLayout>
+      </FormWrapper>
     </>
   );
 }

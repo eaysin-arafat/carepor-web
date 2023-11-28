@@ -1,8 +1,10 @@
+import { cn } from "@/utilities/cn";
 import AppName from "../app-name/AppName";
 import EmergencyAccess from "../emergency-access/EmergencyAccess";
 import AppLogo from "../logo/logo";
 // import Title from "../titles/Title";
 import Title from "../titles/Titles";
+import BodyBackground from "../body-background/BodyBackground";
 
 type Props = {
   title?: string;
@@ -16,7 +18,9 @@ type Props = {
   emergencyAccess?: boolean;
   className?: string; //
   changePasswordForm?: boolean;
-  layoutCenter?: boolean;
+  maxWidth?: string;
+  contentCenter?: boolean;
+  noBackground?: boolean;
 };
 
 function FormWrapper({
@@ -24,33 +28,55 @@ function FormWrapper({
   subTitle,
   titleNote,
   paragraph,
-  titleClass = "570px",
+  titleClass = "",
   children,
   emergencyAccess,
   className = " ",
+  maxWidth = "max-w-[570px]",
+  contentCenter,
+  noBackground
 }: Props) {
   return (
-    <div className="">
-      <div
-        className={`p-2 md:p-5 bg-whiteColor rounded-md md:shadow-lg mx-auto ${className}`}
-      >
-        {/* logo */}
-        <AppLogo type="rounded" marginTop="mt-[-88px]" />
+    <BodyBackground noBackground={noBackground}>
+    <div
+      className={cn("mx-auto ", maxWidth, {
+        "flex items-center justify-center h-screen": contentCenter,
+      })}
+    >
+      {/* <div className="flex items-center justify-center h-screen"> */}
+      <div className={cn(" w-full ", maxWidth)}>
+        <div className="bg-transparent pt-[88px]">
+          <div
+            className={`p-2 md:p-5 bg-whiteColor rounded-md md:shadow-lg mx-auto ${className}`}
+          >
+            {/* logo */}
+            <AppLogo type="rounded" marginTop="mt-[-88px]" />
 
-        {/* App name component */}
-        <AppName />
-        <div className="">
-          {title && <Title type="h2" title={title} className={titleClass} />}
-          {subTitle && <Title type="h3" title={subTitle} />}
-          {titleNote && <Title type="span" title={titleNote} />}
-          {paragraph && <Title type="p" title={paragraph} />}
+            {/* App name component */}
+            <AppName />
+            <div className="">
+              {title && (
+                <Title type="h2" title={title} className={cn(titleClass)} />
+              )}
+              {subTitle && <Title type="h3" title={subTitle} />}
+              {titleNote && (
+                <Title
+                  type="span"
+                  title={titleNote}
+                  className={cn(titleClass)}
+                />
+              )}
+              {paragraph && <Title type="p" title={paragraph} />}
+            </div>
+            <div>{children}</div>
+
+            <LoginSignUpChangePasswordForm />
+          </div>
         </div>
-        <div>{children}</div>
-
-        <LoginSignUpChangePasswordForm />
+        {emergencyAccess && <EmergencyAccess />}
       </div>
-      {emergencyAccess && <EmergencyAccess />}
     </div>
+    </BodyBackground>
   );
 }
 
@@ -94,72 +120,3 @@ const LoginSignUpChangePasswordForm = ({
     </>
   );
 };
-
-
-
-// import AppName from "../app-name/AppName";
-// import EmergencyAccess from "../emergency-access/EmergencyAccess";
-// import AppLogo from "../logo/logo";
-// // import Title from "../titles/Title";
-// import Title from "../titles/Titles";
-
-// type Props = {
-//   title?: string;
-//   subTitle?: string;
-//   titleNote?: string;
-//   paragraph?: string;
-//   titleClass?: string;
-//   children: JSX.Element;
-//   loginForm?: boolean;
-//   signUpForm?: boolean;
-//   emergencyAccess?: boolean;
-//   className?: string; //
-//   changePasswordForm?: boolean;
-//   layoutCenter?: boolean;
-// };
-
-// function FormWrapper({
-//   title,
-//   subTitle,
-//   titleNote,
-//   paragraph,
-//   titleClass = "570px",
-//   children,
-//   emergencyAccess,
-//   className = " ",
-//   layoutCenter = true,
-// }: Props) {
-//   return (
-//     <div
-//       className={
-//         layoutCenter
-//           ? "flex justify-center w-full items-center max-h-[100vh]"
-//           : "w-full"
-//       }
-//     >
-//       <div className={"w-full"}>
-//         <div
-//           className={`p-2 md:p-5 bg-whiteColor rounded-md md:shadow-lg mx-auto ${className}`}
-//         >
-//           {/* logo */}
-//           <AppLogo type="rounded" marginTop="mt-[-88px]" />
-
-//           {/* App name component */}
-//           <AppName />
-//           <div className="">
-//             {title && <Title type="h2" title={title} className={titleClass} />}
-//             {subTitle && <Title type="h3" title={subTitle} />}
-//             {titleNote && <Title type="span" title={titleNote} />}
-//             {paragraph && <Title type="p" title={paragraph} />}
-//           </div>
-//           <div>{children}</div>
-
-//           <LoginSignUpChangePasswordForm />
-//         </div>
-//         {emergencyAccess && <EmergencyAccess />}
-//       </div>{" "}
-//     </div>
-//   );
-// }
-
-// export default FormWrapper;
