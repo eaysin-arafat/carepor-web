@@ -2,6 +2,8 @@ import Button from "@/components/core/buttons/Button";
 import RenderSelectOptions from "@/components/core/form-elements/RenderSelectOptions";
 import Select from "@/components/core/form-elements/Select";
 import FormLayout from "@/components/core/form-layouts/FormLayout";
+import { requestFacility } from "@/routers/facility";
+import { Link } from "react-router-dom";
 import useSelectFacility from "./useSelectFacility";
 
 type Props = {};
@@ -61,9 +63,9 @@ const SelectFacility = ({}: Props) => {
             </Select>
           </div>
           <div className="text-right mt-3">
-            <p className="text-grayColor text-xs">
+            <Link to={requestFacility()} className="text-grayColor text-xs">
               Send Facility Access Request
-            </p>
+            </Link>
           </div>
           <div className="mt-5">
             <Button type="submit" title="Enter" />
