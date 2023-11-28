@@ -1,3 +1,4 @@
+import UserDashboardLayout from "@/layout/UserDashboardLayout";
 import Error from "@/pages/error/error";
 import Test from "@/pages/test/Test";
 import clientRouter from "./client";
@@ -12,9 +13,15 @@ const routes = [
     path: "*",
     element: <Error />,
   },
+
   {
-    path: "/test",
-    element: <Test />,
+    element: <UserDashboardLayout />,
+    children: [
+      {
+        path: "/test",
+        element: <Test />,
+      },
+    ],
   },
 ];
 

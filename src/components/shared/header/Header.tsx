@@ -19,11 +19,11 @@ function Header() {
   const [queue, setQueue] = useState(false);
   const [adminBar, setAdminBar] = useState(false);
   return (
-    <div className="flex justify-between py-2 px-5 border-b items-center">
+    <div className="flex justify-between py-2 px-5 border-b items-center h-[100%]">
       <div className="flex items-center gap-2">
         <AppLogo
           type="rounded"
-          marginTop="h-[70px] w-[70px]"
+          marginTop="h-[60px] w-[60px]"
           className="h-[40px] w-[40px]"
         />
         <Title type="h3" title="SmartCare PRO" />
