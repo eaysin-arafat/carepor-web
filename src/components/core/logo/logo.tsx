@@ -1,3 +1,5 @@
+import { cn } from "@/utilities/cn";
+
 type Props = {
   marginTop?: string;
   type?: "rounded" | "";
@@ -20,12 +22,13 @@ function AppLogo({ marginTop, type, className }: Props) {
           <div className="text-center mx-auto">
             <div className="flex justify-center ">
               <div
-                className={`${
-                  marginTop ? marginTop : ""
-                } w-[126px] h-[126px] border-4 border-borderColor bg-whiteColor rounded-full flex justify-center items-center`}
+                className={cn(
+                  "w-[126px] h-[126px] border-4 border-borderColor bg-whiteColor rounded-full flex justify-center items-center",
+                  marginTop
+                )}
               >
                 <img
-                  className={`${className} w-[65px] h-[75px]`}
+                  className={cn("w-[65px] h-[75px]", className)}
                   alt=""
                   src="/assets/img/logo.png"
                 />
