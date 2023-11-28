@@ -16,7 +16,7 @@ const useRequestFacility = () => {
   } = useManageFacility(undefined);
 
   const handleSendFacilityRequest = (): void => {
-    const { facilityError, isFacilityValid } = facilityValid();
+    const { isFacilityValid } = facilityValid();
 
     if (!isFacilityValid) {
       return;
