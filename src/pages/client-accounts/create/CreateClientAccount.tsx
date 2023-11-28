@@ -43,6 +43,7 @@ const disabledBackButton = stateCount === 1
           title="Client Profile Registration"
           titleClass="text-center"
           maxWidth="max-w-[1022px]"
+          noBackground
         >
           <>
             <p className="text-center mt-2">
