@@ -1,11 +1,13 @@
 export type FormSectionType = {
   children: JSX.Element;
-  titleText: string;
+  titleText?: string;
+  title?: string;
   titleClass?: string;
   boxClass?: string;
   noteText?: string;
   titleBorder?: boolean;
   noteClass?: string;
+  border?: boolean;
 };
 
 export interface LoginDataType {

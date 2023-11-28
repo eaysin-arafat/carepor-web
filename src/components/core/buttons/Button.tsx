@@ -26,9 +26,10 @@ const Button = ({
     case "submit":
       return (
         <button
-          className={`btn text-whiteColor bg-primaryColor hover:bg-primaryHoverColor ${className}`}
+          className={`btn w-full text-whiteColor bg-primaryColor hover:bg-primaryHoverColor ${className}`}
           type="submit"
           disabled={loading}
+          onClick={onClick}
         >
           {loading ? (
             <span className="loading loading-spinner" />
@@ -42,9 +43,10 @@ const Button = ({
     case "outline":
       return (
         <button
-          className={`btn text-blackColor bg-whiteColor hover:bg-slate-50 border-2 border-borderColor ${className}`}
-          type="submit"
+          className={`btn w-full text-blackColor bg-whiteColor hover:bg-slate-50 border-2 border-borderColor ${className}`}
+          type="button"
           disabled={loading}
+          onClick={onClick}
         >
           {loading ? (
             <span className="loading loading-spinner" />
@@ -60,7 +62,7 @@ const Button = ({
         <a
           href={link!}
           style={style}
-          className={`${className} btn text-whiteColor bg-primaryColor `}
+          className={`${className} btn w-full text-whiteColor bg-primaryColor `}
         >
           {icon} {title}
         </a>
@@ -69,7 +71,7 @@ const Button = ({
     case "button":
       return (
         <button
-          className={`btn text-whiteColor bg-primaryColor hover:bg-primaryHoverColor ${className}`}
+          className={`btn w-full text-whiteColor bg-primaryColor hover:bg-primaryHoverColor ${className}`}
           type="button"
           style={style}
           onClick={onClick}
