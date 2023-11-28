@@ -2,9 +2,9 @@ type Props = {};
 
 function EmergencyAccess({}: Props) {
   return (
-    <>
+    <div className="pb-5">
       <div className=" h-6 text-base flex justify-center">
-        <div className=" mt-5">
+        <div className=" my-5">
           <div className="  text-dodgerblue">
             Emergency Access &nbsp;
             <a
@@ -16,7 +16,7 @@ function EmergencyAccess({}: Props) {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

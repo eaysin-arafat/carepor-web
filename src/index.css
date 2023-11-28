@@ -36,7 +36,7 @@
 
 @layer components {
   .disabled_bg {
-    @apply bg-borderColor
+    @apply bg-borderColor text-grayColor
   }
 }
 
