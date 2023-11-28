@@ -1,16 +1,7 @@
-// import { useGetUserAccessByUserNameMutation } from "@/features/user-accounts/user-accounts-api";
-// import useManageFacility from "@/hooks/useManageFacility";
-// import { cookieManager } from "@/utilities/cookie-manager";
-// import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-
+import { useGetUserAccessByUserNameMutation } from "@/features/user-accounts/user-accounts-api";
 import useManageFacility from "@/hooks/useManageFacility";
-
-// import { useGetUserAccessByUserNameMutation } from "@/features/user-accounts/user-accounts-api";
-// import useManageFacility from "@/hooks/useManageFacility";
-// import { useState } from "react";
-// import { useDispatch } from "react-redux";
-// import { useNavigate } from "react-router-dom";
+import { FormSubmitEventType } from "@/types/htmlEvents";
+import { useEffect, useState } from "react";
 
 const useSelectFacility = () => {
   // const navigate = useNavigate();
@@ -18,12 +9,14 @@ const useSelectFacility = () => {
   // //   //   const { user } = useSelector((state) => state.auth);
   // // const gf = cookieManager;
 
-  // const [username, setUsername] = useState<string>("");
-  // const [facilityId, setFacilityId] = useState<string>("");
-  // // const [getFacilityAccesses, { data }] =
-  // //   useGetFacilityAccessByUsernameMutation();
-  // const isFacilityId: boolean = !facilityId;
-  // const [rrrrr, { data: facilityByKey }] = useGetUserAccessByUserNameMutation();
+  // const [username, setUsername] = useState<string>("Annie"); // MARY / Idah
+  const [facilityId, setFacilityId] = useState<string | number>("");
+  // const [getFacilityAccesses, { data }] =
+  //   useGetFacilityAccessByUsernameMutation();
+  const isFacilityId: boolean = !facilityId;
+  const [getFacilityAccesses, { data }] = useGetUserAccessByUserNameMutation();
+
+  console.log(isFacilityId);
 
   const {
     districtOptions,
@@ -32,16 +25,19 @@ const useSelectFacility = () => {
     facilityChangeHandler,
     facilityError,
     facilityState,
-    // facilityValid,
+    facilityValid,
   } = useManageFacility(undefined);
+
   // // initial state
-  // const [isPermitted, setIsPermitted] = useState(false);
-  // const [approvedFacility, setApprovedFacility] = useState(null);
+  const [isPermitted, setIsPermitted] = useState(false);
+  const [approvedFacility, setApprovedFacility] = useState(null);
 
-  // // Error Message State
-  // const [error, setError] = useState({});
+  // Error Message State
+  const [error, setError] = useState({});
 
-  // // Loading
+  console.log(error);
+
+  // Loading
   // const [loading, setLoading] = useState(false);
   // const [pageLoading, setPageLoading] = useState(false);
 
@@ -50,70 +46,84 @@ const useSelectFacility = () => {
   //   clearTimeout(pageLoader);
   // }, 1000);
 
-  // useEffect(() => {
-  //   if (facilityState?.facility) {
-  //     if (data?.user?.userType === 1) {
-  //       setIsPermitted(true);
-  //     } else {
-  //       let findApproved =
-  //         Array.isArray(data?.userAccount?.facilityAccesses) &&
-  //         data?.userAccount?.facilityAccesses?.find((item) => {
-  //           return (
-  //             item.facilityId == facilityState?.facility &&
-  //             item?.isApproved === true
-  //           );
-  //         });
-  //       if (findApproved) {
-  //         setIsPermitted(true);
-  //         setApprovedFacility(findApproved);
-  //       } else {
-  //         setIsPermitted(false);
-  //         setApprovedFacility(null);
-  //       }
-  //     }
-  //   } else {
-  //     setIsPermitted(false);
-  //     setApprovedFacility(null);
-  //   }
-  // }, [facilityState?.facility]);
+  useEffect(() => {
+    if (facilityState?.facility) {
+      if (data?.user?.userType === 1) {
+        setIsPermitted(true);
+      } else {
+        let findApproved =
+          Array.isArray(data?.userAccount?.facilityAccesses) &&
+          data?.userAccount?.facilityAccesses?.find((item) => {
+            return (
+              item.facilityId == facilityState?.facility &&
+              item?.isApproved === true
+            );
+          });
+        console.log(data?.userAccount?.facilityAccesses);
 
-  // const handleSubmit = (e: FormSubmitEventType) => {
-  //   e.preventDefault();
+        if (findApproved) {
+          setIsPermitted(true);
+          setApprovedFacility(findApproved);
+        } else {
+          setIsPermitted(false);
+          setApprovedFacility(null);
+        }
+      }
+    } else {
+      setIsPermitted(false);
+      setApprovedFacility(null);
+    }
+  }, [facilityState?.facility]);
 
-  //   const { isFacilityValid, facilityError } = facilityValid();
-  //   // const facilityValid = () => {
-  //   //   const { errors, isFacilityValid } = validation(facilityState);
-  //   //   setFacilityError((prev) => ({ ...prev, ...errors }));
-  //   //   return { isFacilityValid, facilityError: errors };
-  //   // };
+  console.log({ approvedFacility, isPermitted });
 
-  //   if (!isFacilityValid) {
-  //     setError(facilityError);
-  //     return false;
-  //   }
+  const handleRequestSubmit = (e: FormSubmitEventType) => {
+    e.preventDefault();
 
-  //   const cookieData = JSON.stringify({
-  //     facilityId: facilityByKey?.oid,
-  //     facilityName: facilityByKey?.description,
-  //   });
+    const { isFacilityValid, facilityError } = facilityValid();
+    // const facilityValid = () => {
+    //   const { errors, isFacilityValid } = validation(facilityState);
+    //   setFacilityError((prev) => ({ ...prev, ...errors }));
+    //   return { isFacilityValid, facilityError: errors };
+    // };
 
-  //   if (data?.userAccount.userType == 1) {
-  //     //   cookieManager.saveCookie("facility_token", cookieData);
-  //     //   navigate("/clients");
-  //   } else if (isPermitted) {
-  //     //   cookieManager.saveCookie("facility_token", cookieData);
-  //     //   navigate("/clients");
-  //   } else if (!isPermitted && isFacilityValid) {
-  //     // setShowMessage(true);
-  //     Swal.fire({
-  //       title: "Not Permission!",
-  //       text: "You are not authorized to login with this facility. Please contact the administrator.",
-  //       icon: "error",
-  //       confirmButtonColor: "#3085d6",
-  //       confirmButtonText: "Close",
-  //     });
-  //   }
-  // };
+    if (!isFacilityValid) {
+      setError(facilityError);
+      return false;
+    }
+
+    // const cookieData = JSON.stringify({
+    //   facilityId: facilityByKey?.oid,
+    //   facilityName: facilityByKey?.description,
+    // });
+
+    alert("");
+
+    if (data?.userAccount.userType == 1) {
+      //   cookieManager.saveCookie("facility_token", cookieData);
+      //   navigate("/clients");
+    } else if (isPermitted) {
+      //   cookieManager.saveCookie("facility_token", cookieData);
+      //   navigate("/clients");
+    } else if (!isPermitted && isFacilityValid) {
+      // setShowMessage(true);
+      // Swal.fire({
+      //   title: "Not Permission!",
+      //   text: "You are not authorized to login with this facility. Please contact the administrator.",
+      //   icon: "error",
+      //   confirmButtonColor: "#3085d6",
+      //   confirmButtonText: "Close",
+      // });
+    }
+  };
+
+  useEffect(() => {
+    getFacilityAccesses("Annie"); //(user?.username);
+  }, []); //user?.username
+
+  useEffect(() => {
+    setFacilityId(facilityState?.facility);
+  }, [facilityState?.facility]);
 
   return {
     districtOptions,
@@ -122,6 +132,8 @@ const useSelectFacility = () => {
     facilityChangeHandler,
     facilityError,
     facilityState,
+
+    handleRequestSubmit,
   };
 };
 

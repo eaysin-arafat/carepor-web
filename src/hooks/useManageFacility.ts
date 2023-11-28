@@ -1,10 +1,6 @@
-// import { useReadDistrictsQuery } from "@/features/district/district-api";
-// import { useReadProvincesQuery } from "@/features/province/province-api";
-// import { useReadFacilitiesQuery } from "@/features/facility/facility-api";
-// import { OnchangeEventType } from "@/types/htmlEvents";
-// import React from "react";
-
 // fake file
+import { useReadDistrictsQuery } from "@/features/district/district-api";
+import { useReadFacilitiesQuery } from "@/features/facility/facility-api";
 import { useReadProvincesQuery } from "@/features/province/province-api";
 import {
   DistrictType,
@@ -13,20 +9,13 @@ import {
 } from "@/types/coreTypes";
 import { OnchangeEventType } from "@/types/htmlEvents";
 import React from "react";
-import { districts } from "../fakeApi/district";
-import { facilities } from "../fakeApi/facility";
-import { provinces } from "../fakeApi/provinces";
 
 function useManageFacility(oldFacility?: string | number) {
-  // data from rtk
   //facility =
 
-  const { data: provincesData } = useReadProvincesQuery(undefined);
-  // const { data: districts } = useReadDistrictsQuery(undefined);
-  // const { data: facilities } = useReadFacilitiesQuery(undefined);
-  console.log(provincesData);
-
-  console.log({ provinces, districts, facilities });
+  const { data: provinces } = useReadProvincesQuery(undefined);
+  const { data: districts } = useReadDistrictsQuery(undefined);
+  const { data: facilities } = useReadFacilitiesQuery(undefined);
 
   const initialState: facilityStateType = {
     facility: "",
@@ -88,12 +77,6 @@ function useManageFacility(oldFacility?: string | number) {
       )) ||
     [];
 
-  console.log(oldFacility);
-
-  // type facilityType = {
-  //   oid: string;
-  // };
-
   React.useEffect(() => {
     if (oldFacility) {
       const lastAttachedFacilityId: number | string | undefined = oldFacility;
@@ -122,19 +105,18 @@ function useManageFacility(oldFacility?: string | number) {
   }, [oldFacility, facilities, districts, provinces]);
 
   // if require combine validations
+  /**
+   * @useMessage if only facility input fields in form than use
+   * @useMessage this facilityValid function and get error state
+   * @returns {
+   *  facilityState
+   * }
+   */
   const facilityValid = () => {
     const { errors, isFacilityValid } = validation(facilityState);
     setFacilityError((prev) => ({ ...prev, ...errors }));
     return { isFacilityValid, facilityError: errors };
   };
-
-  console.log({
-    districtOptions: filteredDist,
-    facilitiesOptions: filteredFacility,
-    provinceOptions,
-  });
-
-  console.log({ province: facilityState?.province });
 
   return {
     // options array

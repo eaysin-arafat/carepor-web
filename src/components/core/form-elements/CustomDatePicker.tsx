@@ -185,7 +185,7 @@ function DatePicker({
         />
         {showDatepicker && (
           <div
-            className="absolute bg-whiteColor border border-grayColor w-64 rounded-md z-20 pb-2"
+            className="absolute bg-whiteColor border border-grayColor rounded-md z-20 pb-2"
             style={datePickerStyle}
           >
             {/* <div className="absolute mt-[70px] bg-whiteColor border border-grayColor w-72 rounded-md z-20 mb-9 pb-2"> */}
@@ -195,7 +195,7 @@ function DatePicker({
                   onClick={() => setShowDatepicker(false)}
                   className="border border-grayColor rounded-full"
                 >
-                  <RxCross2 className="bg-borderColor shadow-md text-xl p-1 rounded-full" />
+                  <RxCross2 className="bg-borderColor shadow-md text-xl p-1 rounded-full h-6 w-6" />
                 </button>
                 <button
                   onClick={clearState}

@@ -1,44 +1,84 @@
 import Select from "@/components/core/form-elements/Select";
 
 import Button from "@/components/core/buttons/Button";
-import FormLayout from "@/components/core/form-layouts/FormLayout";
+import RenderSelectOptions from "@/components/core/form-elements/RenderSelectOptions";
+import useRequestFacility from "./useRequestFacility";
+import FormWrapper from "@/components/core/form-layouts/FormWrapper";
 
 type Props = {};
 
 const RequestFacility = ({}: Props) => {
+  const {
+    facilityChangeHandler,
+    districtOptions,
+    facilitiesOptions,
+    facilityError,
+    facilityState,
+    provinceOptions,
+    //
+    handleSendFacilityRequest,
+    handleCancelRequest,
+  } = useRequestFacility();
+
   return (
     <div>
-      <FormLayout
-        mainTitle="Request Facility Login"
-        note="Please select a Facility to send login request."
+      <FormWrapper
+        title="Request Facility Login"
+        titleNote="Please select a Facility to send login request."
         className="max-w-[570px]"
+        titleClass="text-center"
+        contentCenter
       >
         <form action="" className="mt-5">
           <div className="flex flex-col gap-5">
-            <Select label="Province" required>
-              <option value="">Select</option>
-              <option value="">Select 1</option>
-              <option value="">Select 2</option>
+            <Select
+              onChange={facilityChangeHandler}
+              value={facilityState.province}
+              errMsg={facilityError.province}
+              label="Province"
+              name="province"
+              required
+            >
+              <RenderSelectOptions options={provinceOptions} />
             </Select>
-            <Select label="District" required>
-              <option value="">Select</option>
-              <option value="">Select 1</option>
-              <option value="">Select 2</option>
+            <Select
+              name="district"
+              value={facilityState.district}
+              onChange={facilityChangeHandler}
+              errMsg={facilityError.district}
+              label="District"
+              required
+            >
+              <RenderSelectOptions options={districtOptions} />
             </Select>
-            <Select label="Facility" required>
-              <option value="">Select</option>
-              <option value="">Select 1</option>
-              <option value="">Select 2</option>
+            <Select
+              name="facility"
+              value={facilityState.facility}
+              onChange={facilityChangeHandler}
+              errMsg={facilityError.facility}
+              label="Facility"
+              required
+            >
+              <RenderSelectOptions options={facilitiesOptions} />
             </Select>
           </div>
           <div className="mt-5">
-            <Button type="submit" title="Submit Request" />
+            <Button
+              onClick={handleSendFacilityRequest}
+              type="submit"
+              title="Submit Request"
+            />
           </div>
+
           <div className="mt-5 mb-3">
-            <Button type="outline" title="Cancel" />
+            <Button
+              onClick={handleCancelRequest}
+              type="outline"
+              title="Cancel"
+            />
           </div>
         </form>
-      </FormLayout>
+      </FormWrapper>
     </div>
   );
 };

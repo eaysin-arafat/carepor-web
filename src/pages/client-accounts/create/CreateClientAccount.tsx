@@ -38,10 +38,12 @@ const disabledBackButton = stateCount === 1
       <div className="max-w-[1022px] mx-auto ">
         <MultiStepComponent active={stateCount} title={stepTitle} />
       </div>
-      <div className="max-w-[1022px] mx-auto mt-36">
+      <div className="my-16">
         <FormWrapper
           title="Client Profile Registration"
           titleClass="text-center"
+          maxWidth="max-w-[1022px]"
+          noBackground
         >
           <>
             <p className="text-center mt-2">
