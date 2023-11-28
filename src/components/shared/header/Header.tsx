@@ -28,7 +28,12 @@ function Header() {
             </Link>
           </li>
           <li>
-            <Button title="Search Client" type="link" link="/" />
+            <Button
+              title="Select Client"
+              className="block px-10 bg-slate-500 h-[45px] font-[10px] w-[170px]"
+              type="link"
+              link="/"
+            />
           </li>
         </ul>
       </div>

@@ -75,7 +75,7 @@ const Button = ({
         <a
           href={link!}
           style={style}
-          className={`${className} btn w-full text-whiteColor bg-primaryColor `}
+          className={`btn w-full text-whiteColor bg-primaryColor ${className}`}
         >
           {icon} {title}
         </a>
