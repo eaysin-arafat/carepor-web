@@ -1,11 +1,18 @@
-
-
 type Props = {
   marginTop?: string;
   type?: "rounded" | "";
+  className?: string;
 };
 
-function AppLogo({ marginTop, type }: Props) {
+/**
+ *
+ * @param Type rounded
+ * @param marginTop you can pass any class here
+ * @param className this className only apply in image tag
+ * @returns
+ */
+
+function AppLogo({ marginTop, type, className }: Props) {
   switch (type) {
     case "rounded":
       return (
@@ -15,10 +22,10 @@ function AppLogo({ marginTop, type }: Props) {
               <div
                 className={`${
                   marginTop ? marginTop : ""
-                } w-[126px] h-[126px] border-4 border-borderColor bg-white rounded-full flex justify-center items-center`}
+                } w-[126px] h-[126px] border-4 border-borderColor bg-whiteColor rounded-full flex justify-center items-center`}
               >
                 <img
-                  className="w-[65px] h-[75px]"
+                  className={`w-[65px] h-[75px] ${className}`}
                   alt=""
                   src="/assets/img/logo.png"
                 />

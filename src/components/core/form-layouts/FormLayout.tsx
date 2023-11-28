@@ -16,7 +16,7 @@ type Props = {
   changePasswordForm?: boolean;
   layoutCenter?: boolean;
 };
-
+ 
 function FormLayout({
   mainTitle,
   subTitle,

@@ -13,7 +13,7 @@ function EducationAndEmployment({}: Props) {
 
   return (
     <>
-      <FormSection titleText="Marital Status & Spouse Details">
+      <FormSection titleText="Education & Employment">
         <>
           {/* Marital Status & Spouse Details */}
           <div className="grid md:grid-cols-2 gap-5">
