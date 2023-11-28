@@ -1,5 +1,6 @@
-import { FaChartPie, FaHeartPulse } from "react-icons/fa6";
+import { FaChartPie } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import SidebarList from "./SidebarData";
 
 function Sidebar() {
   return (
@@ -12,22 +13,16 @@ function Sidebar() {
         />
       </div>
       <ul>
-        <li>
-          <Link
-            to="/"
-            className="flex items-center gap-2 p-3 hover:bg-primaryColor hover:text-white"
-          >
-            <FaChartPie size={20} /> Dashboard
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/"
-            className="flex items-center gap-2 p-3 hover:bg-primaryColor hover:text-white"
-          >
-            <FaHeartPulse size={20} /> Vitals
-          </Link>
-        </li>
+        {SidebarList.map((item, index) => (
+          <li key={index}>
+            <Link
+              to={item.link}
+              className="flex items-center gap-2 p-3 hover:bg-primaryColor hover:text-white"
+            >
+              <FaChartPie size={20} /> {item.title}
+            </Link>
+          </li>
+        ))}
       </ul>
     </div>
   );
