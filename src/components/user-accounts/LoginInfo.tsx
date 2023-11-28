@@ -1,5 +1,5 @@
 import Input from "../core/form-elements/Input";
-import Password from "../core/form-elements/password";
+import Password from "../core/form-elements/Password";
 
 import FormSection from "../core/form-layouts/FormSection";
 
