@@ -1,7 +1,9 @@
+import { userAccountCreate, userLogin } from "@/routers/user-accounts";
 import AppName from "../app-name/AppName";
 import BodyBackground from "../body-background/BodyBackground";
 import AppLogo from "../logo/logo";
 import Title from "../titles/Title";
+import { FormFooterLink } from "./FormFooterLink";
 
 type Props = {
   mainTitle?: string;
@@ -16,7 +18,7 @@ type Props = {
   changePasswordForm?: boolean;
   layoutCenter?: boolean;
 };
- 
+
 function FormLayout({
   mainTitle,
   subTitle,
@@ -70,52 +72,26 @@ function FormLayout({
                 <div>{children}</div>
 
                 {/* Layout Footer */}
-
                 {loginForm && (
-                  <div className="border-t border-gray-200 mb[-10px]">
-                    <div className=" text-base">
-                      <div className="pt-5 flex justify-center gap-2">
-                        <div className="text-grayColor">
-                          Don’t have an account?
-                        </div>
-                        <div className="leading-[26px] text-dodgerblue">
-                          <a className="text-primaryColor" href="#">
-                            Sign up
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <FormFooterLink
+                    btnText="Sign up"
+                    link={userAccountCreate()}
+                    question="Don’t have an account?"
+                  />
                 )}
                 {signUpForm && (
-                  <div className="border-t border-gray-200 mb[-10px]">
-                    <div className=" text-base">
-                      <div className="pt-5 flex justify-center gap-2">
-                        <div className="text-grayColor">
-                          Already have an account?
-                        </div>
-                        <div className="leading-[26px] text-dodgerblue">
-                          <a className="text-primaryColor" href="#">
-                            Log in
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <FormFooterLink
+                    btnText="Log in"
+                    link={userLogin()}
+                    question="Already have an account?"
+                  />
                 )}
                 {changePasswordForm && (
-                  <div className="border-t border-gray-200 mb[-10px]">
-                    <div className=" text-base">
-                      <div className="pt-5 flex justify-center gap-2">
-                        <div className="text-grayColor">Remember password?</div>
-                        <div className="leading-[26px] text-dodgerblue">
-                          <a className="text-primaryColor" href="#">
-                            Log in
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <FormFooterLink
+                    btnText="Log in"
+                    link={userLogin()}
+                    question="Remember password?"
+                  />
                 )}
               </div>
               {emergencyAccess && (
