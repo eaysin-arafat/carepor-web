@@ -1,3 +1,4 @@
+import PrivateGuard from "@/components/shared/guard/PrivateGuard";
 import CreateAdmission from "@/pages/admissions/create/Create";
 import CreateClientAccount from "@/pages/client-accounts/create/CreateClientAccount";
 import EditAdmission from "../pages/admissions/edit/Edit";
@@ -23,28 +24,33 @@ export const editAdmission = ({
 // routers for client pages
 const clientRouter = [
   {
-    path: clientSearch(),
-    element: "<ClientSearch />",
-  },
-  {
-    path: clientDetails({ id: ":id" }),
-    element: "<ClientDetails />",
-  },
-  {
-    path: clientCreate(),
-    element: <CreateClientAccount />,
-  },
-  {
-    path: clientEdit({ id: ":id" }),
-    element: "<ClientEdit />",
-  },
-  {
-    path: createAdmission({ clientId: ":clientId" }),
-    element: <CreateAdmission />,
-  },
-  {
-    path: editAdmission({ clientId: ":clientId" }),
-    element: <EditAdmission />,
+    element: <PrivateGuard />,
+    children: [
+      {
+        path: clientSearch(),
+        element: "<ClientSearch />",
+      },
+      {
+        path: clientDetails({ id: ":id" }),
+        element: "<ClientDetails />",
+      },
+      {
+        path: clientCreate(),
+        element: <CreateClientAccount />,
+      },
+      {
+        path: clientEdit({ id: ":id" }),
+        element: "<ClientEdit />",
+      },
+      {
+        path: createAdmission({ clientId: ":clientId" }),
+        element: <CreateAdmission />,
+      },
+      {
+        path: editAdmission({ clientId: ":clientId" }),
+        element: <EditAdmission />,
+      },
+    ],
   },
 ];
 
