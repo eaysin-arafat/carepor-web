@@ -11,6 +11,7 @@ type ButtonProps = {
   onClick?: () => void;
   icon?: ReactNode;
   loading?: boolean;
+  // disabled?: boolean
 };
 
 const NextButton = ({
@@ -22,6 +23,7 @@ const NextButton = ({
   onClick,
   icon,
   loading=false,
+  // disabled= false
 }: ButtonProps): ReactElement => {
   switch (type) {
     case "link":

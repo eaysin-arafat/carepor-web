@@ -26,9 +26,6 @@ function FormWrapper({
   paragraph,
   titleClass = "570px",
   children,
-  signUpForm,
-  loginForm,
-  changePasswordForm,
   emergencyAccess,
   className = " ",
 }: Props) {
@@ -50,9 +47,7 @@ function FormWrapper({
         </div>
         <div>{children}</div>
 
-        {loginForm && <LoginForm />}
-        {signUpForm && <SignUpForm />}
-        {changePasswordForm && <ChangePasswordForm />}    
+        <LoginSignUpChangePasswordForm />
       </div>
       {emergencyAccess && <EmergencyAccess />}
     </div>
@@ -61,53 +56,41 @@ function FormWrapper({
 
 export default FormWrapper;
 
-const LoginForm = () => {
-  return (
-    <div className="border-t border-gray-200 mb[-10px]">
-      <div className=" text-base">
-        <div className="pt-5 flex justify-center gap-2">
-          <div className="text-grayColor">Don’t have an account?</div>
-          <div className="leading-[26px] text-dodgerblue">
-            <a className="text-primaryColor" href="#">
-              Sign up
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+type LoginSignUpChangePasswordFormProps = {
+  signUpForm?: boolean;
+  loginForm?: boolean;
+  changePasswordForm?: boolean;
 };
-
-const SignUpForm = () => {
+const LoginSignUpChangePasswordForm = ({
+  signUpForm,
+  loginForm,
+  changePasswordForm,
+}: LoginSignUpChangePasswordFormProps) => {
   return (
-    <div className="border-t border-gray-200 mb[-10px]">
-      <div className=" text-base">
-        <div className="pt-5 flex justify-center gap-2">
-          <div className="text-grayColor">Already have an account?</div>
-          <div className="leading-[26px] text-dodgerblue">
-            <a className="text-primaryColor" href="#">
-              Log in
-            </a>
+    <>
+      {changePasswordForm ||
+        signUpForm ||
+        (loginForm && (
+          <div className="border-t border-gray-200 mb[-10px]">
+            <div className=" text-base">
+              <div className="pt-5 flex justify-center gap-2">
+                <div className="text-grayColor">
+                  {" "}
+                  {loginForm && "Don’t have an account?"}
+                  {signUpForm && "Already have an account?"}
+                  {changePasswordForm && "Remember password?"}
+                </div>
+                <div className="leading-[26px] text-dodgerblue">
+                  <a className="text-primaryColor" href="#">
+                    {loginForm && "Sign up"}
+                    {signUpForm && "Log in"}
+                    {changePasswordForm && "Sign up"}
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const ChangePasswordForm = () => {
-  return (
-    <div className="border-t border-gray-200 mb[-10px]">
-      <div className=" text-base">
-        <div className="pt-5 flex justify-center gap-2">
-          <div className="text-grayColor">Remember password?</div>
-          <div className="leading-[26px] text-dodgerblue">
-            <a className="text-primaryColor" href="#">
-              Log in
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+        ))}
+    </>
   );
 };

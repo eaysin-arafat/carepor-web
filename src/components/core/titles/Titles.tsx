@@ -10,40 +10,16 @@ function Title({ title, className, type }: Props) {
       return <h1 className={`heading_1 ${className}`}>{title}</h1>;
 
     case "h2":
-      return (
-        <h2
-          className={`text-brand-heading text-3xl font-medium leading-normal tracking-tighter ${className}`}
-        >
-          {title}
-        </h2>
-      );
+      return <h2 className={`heading_2 ${className}`}>{title}</h2>;
 
     case "h3":
-      return (
-        <h3
-          className={`text-secondaryColor text-lg font-bold leading-6 tracking-tighter ${className}`}
-        >
-          {title}
-        </h3>
-      );
+      return <h3 className={`heading_3 ${className}`}>{title}</h3>;
 
     case "span":
-      return (
-        <span
-          className={`text-center text-grayColor text-sm font-normal leading-6 ${className}`}
-        >
-          {title}
-        </span>
-      );
+      return <span className={`heading_4 ${className}`}>{title}</span>;
 
     case "p":
-      return (
-        <p
-          className={`text-textColor font-inter font-normal text-sm leading-5 ${className}`}
-        >
-          {title}
-        </p>
-      );
+      return <p className={`heading_5 ${className}`}>{title}</p>;
 
     default:
       return (
