@@ -94,3 +94,72 @@ const LoginSignUpChangePasswordForm = ({
     </>
   );
 };
+
+
+
+// import AppName from "../app-name/AppName";
+// import EmergencyAccess from "../emergency-access/EmergencyAccess";
+// import AppLogo from "../logo/logo";
+// // import Title from "../titles/Title";
+// import Title from "../titles/Titles";
+
+// type Props = {
+//   title?: string;
+//   subTitle?: string;
+//   titleNote?: string;
+//   paragraph?: string;
+//   titleClass?: string;
+//   children: JSX.Element;
+//   loginForm?: boolean;
+//   signUpForm?: boolean;
+//   emergencyAccess?: boolean;
+//   className?: string; //
+//   changePasswordForm?: boolean;
+//   layoutCenter?: boolean;
+// };
+
+// function FormWrapper({
+//   title,
+//   subTitle,
+//   titleNote,
+//   paragraph,
+//   titleClass = "570px",
+//   children,
+//   emergencyAccess,
+//   className = " ",
+//   layoutCenter = true,
+// }: Props) {
+//   return (
+//     <div
+//       className={
+//         layoutCenter
+//           ? "flex justify-center w-full items-center max-h-[100vh]"
+//           : "w-full"
+//       }
+//     >
+//       <div className={"w-full"}>
+//         <div
+//           className={`p-2 md:p-5 bg-whiteColor rounded-md md:shadow-lg mx-auto ${className}`}
+//         >
+//           {/* logo */}
+//           <AppLogo type="rounded" marginTop="mt-[-88px]" />
+
+//           {/* App name component */}
+//           <AppName />
+//           <div className="">
+//             {title && <Title type="h2" title={title} className={titleClass} />}
+//             {subTitle && <Title type="h3" title={subTitle} />}
+//             {titleNote && <Title type="span" title={titleNote} />}
+//             {paragraph && <Title type="p" title={paragraph} />}
+//           </div>
+//           <div>{children}</div>
+
+//           <LoginSignUpChangePasswordForm />
+//         </div>
+//         {emergencyAccess && <EmergencyAccess />}
+//       </div>{" "}
+//     </div>
+//   );
+// }
+
+// export default FormWrapper;

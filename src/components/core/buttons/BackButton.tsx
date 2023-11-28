@@ -1,17 +1,17 @@
 import { cn } from "@/utilities/cn";
-import React, { ReactNode, ReactElement } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import { Link } from "react-router-dom";
 // import { Link } from 'react-router-dom'; // Assuming you are using react-router
 
 type ButtonProps = {
-  type: "link" | "button" ;
+  type: "link" | "button";
   title: string;
   link?: string;
   style?: React.CSSProperties;
   className?: string;
   onClick?: () => void;
   icon?: ReactNode;
-  disabled?: boolean
+  disabled?: boolean;
 };
 
 const BackButton = ({
@@ -22,7 +22,7 @@ const BackButton = ({
   className,
   onClick,
   icon,
-  disabled=false
+  disabled = false,
 }: ButtonProps): ReactElement => {
   switch (type) {
     case "link":
@@ -30,7 +30,10 @@ const BackButton = ({
         <Link
           to={link!}
           style={style}
-          className={` btn w-40 border-2 border-borderColor text-blackColor ${disabled ? "disabled_bg" : " bg-whiteColor "} ${className}`}
+          className={cn("btn w-40 border-2 border-borderColor  ", className , {
+            "disabled_bg cursor-not-allowed": disabled,
+            " bg-whiteColor hover:bg-borderColor text-blackColor": !disabled,
+          })}
         >
           {icon} {title}
         </Link>
@@ -39,13 +42,10 @@ const BackButton = ({
     case "button":
       return (
         <button
-          className={cn(
-            "btn w-40 border-2 border-borderColor  ",
-            {
-              "disabled_bg cursor-not-allowed": disabled,
-              " bg-whiteColor hover:bg-borderColor text-blackColor": !disabled
-            }
-          )}
+          className={cn("btn w-40 border-2 border-borderColor  ", className , {
+            "disabled_bg cursor-not-allowed": disabled,
+            " bg-whiteColor hover:bg-borderColor text-blackColor": !disabled,
+          })}
           type="button"
           style={style}
           onClick={onClick}
