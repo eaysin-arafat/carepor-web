@@ -1,25 +1,31 @@
+import { RootState } from "@/app/store";
 import { logout } from "@/features/authentication/authentication-slice";
+import { useReadFacilityByKeyQuery } from "@/features/facility/facility-api";
 import { useGetUserAccessByUserNameMutation } from "@/features/user-accounts/user-accounts-api";
 import useManageFacility from "@/hooks/useManageFacility";
 import { FormSubmitEventType } from "@/types/htmlEvents";
 import { cookieManager } from "@/utilities/cookie-manager";
+
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const useSelectFacility = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  // //   //   const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state: RootState) => state.authentication);
+
   // // const gf = cookieManager;
 
-  // const [username, setUsername] = useState<string>("Annie"); // MARY / Idah
+  // const [username, setUsername] = useState<string>(""); // MARY / Idah
   const [facilityId, setFacilityId] = useState<string | number>("");
-  // const [getFacilityAccesses, { data }] =
-  //   useGetFacilityAccessByUsernameMutation();
-  const isFacilityId: boolean = !facilityId;
-  const [getFacilityAccesses, { data }] = useGetUserAccessByUserNameMutation();
 
-  console.log(isFacilityId);
+  const isFacilityId: boolean = !facilityId;
+  const { data: facilityByKey } = useReadFacilityByKeyQuery(facilityId, {
+    skip: !isFacilityId,
+  });
+  const [getFacilityAccesses, { data }] = useGetUserAccessByUserNameMutation();
 
   const {
     districtOptions,
@@ -36,9 +42,7 @@ const useSelectFacility = () => {
   const [approvedFacility, setApprovedFacility] = useState(null);
 
   // Error Message State
-  const [error, setError] = useState({});
-
-  console.log(error);
+  // const [error, setError] = useState({});
 
   // Loading
   // const [loading, setLoading] = useState(false);
@@ -80,45 +84,52 @@ const useSelectFacility = () => {
 
   console.log({ approvedFacility, isPermitted });
 
+  console.log(data);
   const handleRequestSubmit = (e: FormSubmitEventType) => {
     e.preventDefault();
 
-    const { isFacilityValid, facilityError } = facilityValid();
-    // const facilityValid = () => {
-    //   const { errors, isFacilityValid } = validation(facilityState);
-    //   setFacilityError((prev) => ({ ...prev, ...errors }));
-    //   return { isFacilityValid, facilityError: errors };
-    // };
-
-    // console.log(facilityError);
+    // hare use useManageFacility hook validation
+    const { isFacilityValid } = facilityValid();
 
     if (!isFacilityValid) {
-      setError(facilityError);
+      // setError(facilityError);
       return false;
     }
 
-    // const cookieData = JSON.stringify({
-    //   facilityId: facilityByKey?.oid,
-    //   facilityName: facilityByKey?.description,
+    const cookieData = JSON.stringify({
+      facilityId: facilityByKey?.oid,
+      facilityName: facilityByKey?.description,
+    });
+
+    // Alert.confirm("Your Request is accepted.");
+    // Alert.success({
+    //   message: "Your Request is accepted.",
+    //   title: "Your Request is accepted.",
     // });
 
-    alert("");
+    Swal.fire({
+      title: "Not Permission!",
+      text: "You are not authorized to login with this facility. Please contact the administrator.",
+      icon: "error",
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Close",
+    });
+    return;
 
     if (data?.userAccount.userType == 1) {
-      //   cookieManager.saveCookie("facility_token", cookieData);
-      //   navigate("/clients");
+      cookieManager.saveCookie("facility_token", cookieData, null);
+      navigate("/clients");
     } else if (isPermitted) {
-      //   cookieManager.saveCookie("facility_token", cookieData);
-      //   navigate("/clients");
+      cookieManager.saveCookie("facility_token", cookieData, null);
+      navigate("/clients");
     } else if (!isPermitted && isFacilityValid) {
-      // setShowMessage(true);
-      // Swal.fire({
-      //   title: "Not Permission!",
-      //   text: "You are not authorized to login with this facility. Please contact the administrator.",
-      //   icon: "error",
-      //   confirmButtonColor: "#3085d6",
-      //   confirmButtonText: "Close",
-      // });
+      Swal.fire({
+        title: "Not Permission!",
+        text: "You are not authorized to login with this facility. Please contact the administrator.",
+        icon: "error",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Close",
+      });
     }
   };
 
@@ -128,8 +139,8 @@ const useSelectFacility = () => {
   };
 
   useEffect(() => {
-    getFacilityAccesses("Annie"); //(user?.username);
-  }, []); //user?.username
+    getFacilityAccesses(user?.username);
+  }, [user?.username]);
 
   useEffect(() => {
     setFacilityId(facilityState?.facility);

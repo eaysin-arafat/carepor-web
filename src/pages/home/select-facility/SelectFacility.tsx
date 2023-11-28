@@ -71,7 +71,7 @@ const SelectFacility = () => {
             <Button type="submit" title="Enter" />
           </div>
           <div className="text-center mt-2">
-            <Button type="outline" title="Enter" onClick={handleLogout} />
+            <Button type="outline" title="Logout" onClick={handleLogout} />
           </div>
         </form>
       </FormLayout>

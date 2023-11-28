@@ -47,6 +47,8 @@ function useUserLogin() {
     login(loginForm);
   };
 
+  console.log(error);
+
   // handle login success and error
   React.useEffect(() => {
     // handle success
