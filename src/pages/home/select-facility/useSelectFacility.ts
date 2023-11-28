@@ -1,25 +1,11 @@
-// import { useGetUserAccessByUserNameMutation } from "@/features/user-accounts/user-accounts-api";
-// import useManageFacility from "@/hooks/useManageFacility";
-// import { cookieManager } from "@/utilities/cookie-manager";
-// import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-
 import { useGetUserAccessByUserNameMutation } from "@/features/user-accounts/user-accounts-api";
 import useManageFacility from "@/hooks/useManageFacility";
 import { FormSubmitEventType } from "@/types/htmlEvents";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-
-// import { useGetUserAccessByUserNameMutation } from "@/features/user-accounts/user-accounts-api";
-// import useManageFacility from "@/hooks/useManageFacility";
-// import { useState } from "react";
-// import { useDispatch } from "react-redux";
-// import { useNavigate } from "react-router-dom";
 
 const useSelectFacility = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  // const navigate = useNavigate();
+  // const dispatch = useDispatch();
   // //   //   const { user } = useSelector((state) => state.auth);
   // // const gf = cookieManager;
 
@@ -29,6 +15,8 @@ const useSelectFacility = () => {
   //   useGetFacilityAccessByUsernameMutation();
   const isFacilityId: boolean = !facilityId;
   const [getFacilityAccesses, { data }] = useGetUserAccessByUserNameMutation();
+
+  console.log(isFacilityId);
 
   const {
     districtOptions,
@@ -47,8 +35,10 @@ const useSelectFacility = () => {
   // Error Message State
   const [error, setError] = useState({});
 
+  console.log(error);
+
   // Loading
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   // const [pageLoading, setPageLoading] = useState(false);
 
   // const pageLoader = setTimeout(() => {
