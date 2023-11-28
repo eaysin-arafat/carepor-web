@@ -7,7 +7,7 @@
 
 import { useReadCountriesQuery } from "@/features/country/country-api";
 import { useCreateRecoveryRequestMutation } from "@/features/recovery-request/recovery-request-api";
-import { FormSubmitEvent, onchangeEvent } from "@/types/htmlEvents";
+import { FormSubmitEventType, OnchangeEventType } from "@/types/htmlEvents";
 import { TypeValidation } from "@/utilities/type-valdation";
 import { passwordRecoveryRequestValidator } from "@/validation-models/password-recovery";
 import React from "react";
@@ -43,7 +43,7 @@ function usePasswordRecovery() {
   ] = useCreateRecoveryRequestMutation();
 
   // handler functions
-  const handleRecoveryInfoChange = (e: onchangeEvent) => {
+  const handleRecoveryInfoChange = (e: OnchangeEventType) => {
     const { name, value } = e.target;
 
     if (
@@ -61,7 +61,7 @@ function usePasswordRecovery() {
   };
 
   // handler functions
-  const handleSubmit = async (e: FormSubmitEvent) => {
+  const handleSubmit = async (e: FormSubmitEventType) => {
     e.preventDefault();
 
     const { errors, isValid } = passwordRecoveryRequestValidator(recoverInfo);

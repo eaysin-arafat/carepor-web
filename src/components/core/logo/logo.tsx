@@ -1,7 +1,7 @@
 type Props = {
   marginTop?: string;
   type?: "rounded" | "";
-  className: string;
+  className?: string;
 };
 
 /**

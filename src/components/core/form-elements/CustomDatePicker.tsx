@@ -1,3 +1,4 @@
+import { MouseEventType } from "@/types/htmlEvents";
 import React, { useEffect, useRef, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 
@@ -74,10 +75,10 @@ function DatePicker({
 
     return calendar;
   };
-/**
- * @
- * @param day
- */
+  /**
+   * @
+   * @param day
+   */
   const handleDateSelect = (day: number | null) => {
     if (day !== null) {
       // Get the current time
@@ -107,7 +108,7 @@ function DatePicker({
 
   const datePickerRef: React.RefObject<HTMLDivElement> = useRef(null);
 
-  const clearState = (event: React.MouseEvent<HTMLElement>) => {
+  const clearState = (event: MouseEventType) => {
     event.preventDefault();
 
     setSelectedDate(null);

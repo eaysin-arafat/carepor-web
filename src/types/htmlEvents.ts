@@ -1,4 +1,4 @@
 // HTML events types
-export type onchangeEvent = React.ChangeEvent<HTMLInputElement>;
-export type FormSubmitEvent = React.FormEvent<HTMLFormElement>;
-export type MouseEvent = React.MouseEvent<HTMLElement>;
+export type OnchangeEventType = React.ChangeEvent<HTMLInputElement>;
+export type FormSubmitEventType = React.FormEvent<HTMLFormElement>;
+export type MouseEventType = React.MouseEvent<HTMLElement>;

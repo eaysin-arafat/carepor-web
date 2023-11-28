@@ -40,6 +40,7 @@ function Select({
         disabled={disabled}
         placeholder={`${placeholder ? placeholder : "Enter" + " " + label}`}
       >
+        <option value="">--Select--</option>
         {children}
       </select>
       {errMsg && (

@@ -2,7 +2,7 @@
 // import { changePasswordValidator } from "@/validation-model/change-password";
 import { useChangedPasswordMutation } from "@/features/user-accounts/user-accounts-api";
 
-import { FormSubmitEvent, onchangeEvent } from "@/types/htmlEvents";
+import { FormSubmitEventType, OnchangeEventType } from "@/types/htmlEvents";
 import {
   ChangePasswordFormErrorType,
   ChangePasswordFormType,
@@ -33,13 +33,13 @@ function useChangePassword() {
   //   const user = useSelector((state) => state.auth.user);
 
   // handler functions
-  const handleInputChange = (e: onchangeEvent): void => {
+  const handleInputChange = (e: OnchangeEventType): void => {
     const { name, value } = e.target;
     setFromData((prev) => ({ ...prev, [name]: value }));
     setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
-  const handleSubmit = (e: FormSubmitEvent): void => {
+  const handleSubmit = (e: FormSubmitEventType): void => {
     e.preventDefault();
     const { errors: validationError, isValid } =
       changePasswordValidator(fromData);

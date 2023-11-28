@@ -9,8 +9,9 @@ interface PublicKey {
 export const API = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: cookieManager.parseCookie<PublicKey>("carepro_public_key")
-      ?.API_URL as string,
+    // baseUrl: cookieManager.parseCookie<PublicKey>("carepro_public_key")
+    //   ?.API_URL as string,
+    baseUrl: "https://staging-sc.api.arcapps.org/carepro-api",
     prepareHeaders: (headers) => {
       const token = cookieManager.parseCookie<PublicKey>("carepro_public_key");
       if (token) {
