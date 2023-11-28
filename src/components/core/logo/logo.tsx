@@ -25,7 +25,7 @@ function AppLogo({ marginTop, type, className }: Props) {
                 } w-[126px] h-[126px] border-4 border-borderColor bg-whiteColor rounded-full flex justify-center items-center`}
               >
                 <img
-                  className={`w-[65px] h-[75px] ${className}`}
+                  className={`${className} w-[65px] h-[75px]`}
                   alt=""
                   src="/assets/img/logo.png"
                 />
