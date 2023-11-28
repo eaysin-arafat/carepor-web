@@ -1,3 +1,4 @@
+import { cn } from "@/utilities/cn";
 import React, { ReactNode, ReactElement } from "react";
 import { Link } from "react-router-dom";
 // import { Link } from 'react-router-dom'; // Assuming you are using react-router
@@ -38,7 +39,13 @@ const BackButton = ({
     case "button":
       return (
         <button
-          className={`btn w-40 border-2 border-borderColor text-blackColor ${disabled ? "disabled_bg cursor-not-allowed" : "bg-whiteColor hover:bg-borderColor"} ${className}`}
+          className={cn(
+            "btn w-40 border-2 border-borderColor  ",
+            {
+              "disabled_bg cursor-not-allowed": disabled,
+              " bg-whiteColor hover:bg-borderColor text-blackColor": !disabled
+            }
+          )}
           type="button"
           style={style}
           onClick={onClick}

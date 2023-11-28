@@ -28,7 +28,7 @@ const MultiStepComponent: React.FC<Props> = ({
             <div className="relative flex justify-center ">
               <FaRegCircleCheck
                 size={30}
-                color={active >= 1 ? "green" : "gray"}
+                color={active >= 1 ? "var(--primary)" : "var(--grayColor)"}
               />
               <p
                 className={`text-center absolute top-full left-auto right-auto ${
@@ -37,7 +37,7 @@ const MultiStepComponent: React.FC<Props> = ({
                 style={{
                   lineHeight: "15px",
                   fontSize: "11px",
-                  color: active >= 1 ? "green" : "gray",
+                  color: active >= 1 ? "var(--primary)" : "var(--grayColor)",
                 }}
                 dangerouslySetInnerHTML={{ __html: firstTitle }}
               />
@@ -46,7 +46,7 @@ const MultiStepComponent: React.FC<Props> = ({
             <div className="relative flex justify-center ">
               <FaRegCircleDot
                 size={30}
-                color={active >= 1 ? "green" : "gray"}
+                color={active >= 1 ? "var(--primary)" : "var(--grayColor)"}
               />
               <p
                 className={`text-center absolute top-full left-auto right-auto ${
@@ -55,7 +55,7 @@ const MultiStepComponent: React.FC<Props> = ({
                 style={{
                   lineHeight: "15px",
                   fontSize: "11px",
-                  color: active >= 1 ? "green" : "gray",
+                  color: active >= 1 ? "var(--primary)" : "var(--grayColor)",
                 }}
                 dangerouslySetInnerHTML={{ __html: firstTitle }}
               />
@@ -63,7 +63,7 @@ const MultiStepComponent: React.FC<Props> = ({
           )}
           <div
             className={`h-[2px] w-[100%] ${
-              active >= 2 ? "bg-green-600" : "bg-gray-400"
+              active >= 2 ? "bg-primaryColor" : "bg-grayColor"
             }`}
           />
         </div>
@@ -75,7 +75,7 @@ const MultiStepComponent: React.FC<Props> = ({
                 <div className="relative flex justify-center ">
                   <FaRegCircleCheck
                     size={30}
-                    color={active >= e + 1 ? "green" : "gray"}
+                    color={active >= e + 1 ? "var(--primary)" : "var(--grayColor)"}
                   />
                   <p
                     className={`text-center absolute top-full left-auto right-auto ${
@@ -84,7 +84,7 @@ const MultiStepComponent: React.FC<Props> = ({
                     style={{
                       lineHeight: "15px",
                       fontSize: "11px",
-                      color: active >= e + 2 ? "green" : "gray",
+                      color: active >= e + 2 ? "var(--primary)" : "var(--grayColor)",
                     }}
                     dangerouslySetInnerHTML={{ __html: item }}
                   />
@@ -93,7 +93,7 @@ const MultiStepComponent: React.FC<Props> = ({
                 <div className="relative flex justify-center ">
                   <FaRegCircleDot
                     size={30}
-                    color={active >= e + 2 ? "green" : "gray"}
+                    color={active >= e + 2 ? "var(--primary)" : "var(--grayColor)"}
                   />
                   <p
                     className={`text-center absolute top-full left-auto right-auto ${
@@ -102,7 +102,7 @@ const MultiStepComponent: React.FC<Props> = ({
                     style={{
                       lineHeight: "15px",
                       fontSize: "11px",
-                      color: active >= e + 2 ? "green" : "gray",
+                      color: active >= e + 2 ? "var(--primary)" : "var(--grayColor)",
                     }}
                     dangerouslySetInnerHTML={{ __html: item }}
                   />
@@ -110,7 +110,7 @@ const MultiStepComponent: React.FC<Props> = ({
               )}
               <div
                 className={`h-[2px] w-[100%] ${
-                  active >= e + 3 ? "bg-green-600" : "bg-gray-400"
+                  active >= e + 3 ? "bg-primaryColor" : "bg-grayColor"
                 }`}
               />
             </div>
@@ -121,7 +121,7 @@ const MultiStepComponent: React.FC<Props> = ({
           <div className="relative flex justify-center">
             <PiFlagCheckeredFill
               size={30}
-              color={active >= title?.length ? "green" : "gray"}
+              color={active >= title?.length ? "var(--primary)" : "var(--grayColor)"}
             />
             <p
               className={`text-center absolute top-full left-auto right-auto ${
@@ -130,7 +130,7 @@ const MultiStepComponent: React.FC<Props> = ({
               style={{
                 lineHeight: "15px",
                 fontSize: "11px",
-                color: active >= title?.length ? "green" : "gray",
+                color: active >= title?.length ? "var(--primary)" : "var(--grayColor)",
               }}
               dangerouslySetInnerHTML={{ __html: lastTitle }}
             />
