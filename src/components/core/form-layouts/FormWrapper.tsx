@@ -47,7 +47,7 @@ function FormWrapper({
       <div className={cn(" w-full ", maxWidth)}>
         <div className="bg-transparent pt-[88px]">
           <div
-            className={`p-2 md:p-5 bg-whiteColor rounded-md md:shadow-lg mx-auto ${className}`}
+            className={`p-2 md:p-10 bg-whiteColor rounded-md md:shadow-lg mx-auto ${className}`}
           >
             {/* logo */}
             <AppLogo type="rounded" marginTop="mt-[-88px]" />
