@@ -3,7 +3,7 @@ import { PiFlagCheckeredFill } from "react-icons/pi";
 
 type Props = {
   active: number;
-  title: [];
+  title: any[];
 };
 const MultiStepComponent: React.FC<Props> = ({
   active = 1,

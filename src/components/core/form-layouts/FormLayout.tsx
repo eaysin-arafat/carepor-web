@@ -38,7 +38,7 @@ function FormLayout({
             layoutCenter && "flex justify-center  items-center h-[100vh]"
           }`}
         >
-          <div className=" flex justify-center items-center mt-[200px] md:mt-[100px]">
+          <div className=" flex w-full justify-center items-center mt-[200px] md:mt-[100px]">
             <div className={` w-[100%] mb-5`}>
               <div
                 className={`bg-white  bg-colors-white md:shadow-lg rounded-[10px] w-full mx-auto px-5 sm:px-10 py-5 transition-all ease-out ${className}`}

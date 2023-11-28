@@ -1,9 +1,3 @@
-export type ProvinceType = {
-  oid: string;
-  description: string;
-  provinceCode: string;
-};
-
 export const provinces = [
   {
     oid: 1,

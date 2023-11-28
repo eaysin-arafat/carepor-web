@@ -1,6 +1,6 @@
 import { useUserLoginMutation } from "@/features/user-accounts/user-accounts-api";
 import { LoginDataType } from "@/types";
-import { FormSubmitEvent, onchangeEvent } from "@/types/htmlEvents";
+import { FormSubmitEventType, OnchangeEventType } from "@/types/htmlEvents";
 import { cookieManager } from "@/utilities/cookie-manager";
 import { loginValidator } from "@/validation-models/user-accounts/login";
 import React from "react";
@@ -34,14 +34,14 @@ function useUserLogin() {
   ] = useUserLoginMutation();
 
   // handler for input change
-  const handleInputChange = (e: onchangeEvent) => {
+  const handleInputChange = (e: OnchangeEventType) => {
     const { name, value } = e.target;
     setLoginForm((prev) => ({ ...prev, [name]: value }));
     setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   // handle form submit
-  const handleFormSubmit = async (e: FormSubmitEvent) => {
+  const handleFormSubmit = async (e: FormSubmitEventType) => {
     e.preventDefault();
 
     // validate form
