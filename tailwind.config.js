@@ -21,6 +21,7 @@ export default {
         whiteColor: "var(--white)",
         dangerColor: "var(--danger)",
         borderColor: "var(--border)",
+        textColor: "var(--text)",
       },
     },
   },

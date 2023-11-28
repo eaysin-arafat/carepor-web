@@ -1,21 +1,18 @@
 import Button from "@/components/core/buttons/Button";
 import Select from "@/components/core/form-elements/Select";
 import FormLayout from "@/components/core/form-layouts/FormLayout";
-import useManageFacility from "@/hooks/useManageFacility";
+// import useManageFacility from "@/hooks/useManageFacility";
 
 type Props = {};
 
 const SelectFacility = ({}: Props) => {
-  const data = useManageFacility();
-
-  console.log(data);
-
   return (
     <>
       <FormLayout
+        layoutCenter
         mainTitle="Select Facility"
         note="Please select a facility to enter."
-        className="max-w-[650px]"
+        className="md:w-[570px] "
       >
         <form action="" className="mt-5">
           <div className="flex flex-col gap-5">

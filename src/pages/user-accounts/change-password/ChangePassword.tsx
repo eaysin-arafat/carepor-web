@@ -1,5 +1,5 @@
 import Button from "@/components/core/buttons/Button";
-import Password from "@/components/core/form-elements/Password";
+import Password from "@/components/core/form-elements/PasswordInput";
 import FormLayout from "@/components/core/form-layouts/FormLayout";
 import useChangePassword from "./useChangePassword";
 
@@ -11,7 +11,12 @@ function ChangePassword() {
 
   return (
     <div>
-      <FormLayout mainTitle="Change Password" emergencyAccess>
+      <FormLayout
+        layoutCenter
+        mainTitle="Change Password"
+        className="max-w-[570px]"
+        emergencyAccess
+      >
         <form onSubmit={handleSubmit} className="mt-5">
           <div className="grid gap-5">
             <Password

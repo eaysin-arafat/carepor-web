@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { FiEye, FiEyeOff } from "react-icons/fi";
+import { FiEye } from "react-icons/fi";
+import { FiEyeOff } from "react-icons/fi";
 
 type Props = {
   value?: string | number;

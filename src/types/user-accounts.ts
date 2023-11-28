@@ -10,3 +10,16 @@ export type ChangePasswordFormErrorType = {
   newPassword?: string;
   confirmPassword?: string;
 };
+
+// Password recovery page types
+export type PasswordRecoveryFormType = {
+  countryCode: string;
+  cellphone: string;
+  username: string;
+};
+export type PasswordRecoveryFormErrorType = {
+  countryCode?: string;
+  cellphone?: string;
+  username?: string;
+  common?: string;
+};

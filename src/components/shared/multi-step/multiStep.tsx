@@ -1,81 +1,144 @@
-import { useState } from "react";
 import { FaRegCircleCheck, FaRegCircleDot } from "react-icons/fa6";
-import style from "../../../assets/styles/MultiStep.module.css";
+import { PiFlagCheckeredFill } from "react-icons/pi";
 
-function MultiStepComponent() {
-  const [active, setActive] = useState(1);
-
-  const n = 6;
-  const lope = Array.from({ length: n - 2 }, (_, i) => i + 2);
-
-  const handleBack = () => {
-    if (active > 1) {
-      setActive(active - 1);
-    }
-  };
-
-  const handleNext = () => {
-    if (active < n) {
-      setActive(active + 1);
-    }
-  };
+type Props = {
+  active: number;
+  title: string[];
+};
+const MultiStepComponent: React.FC<Props> = ({
+  active = 1,
+  title = [],
+}: Props) => {
+  const removeFirst = title?.filter((_, i) => i !== 0);
+  const middleData = removeFirst?.filter(
+    (_, i) => i !== removeFirst?.length - 1
+  );
+  const firstTitle = removeFirst[0];
+  const lastTitle = removeFirst[removeFirst.length - 1];
 
   return (
-    <div className={style.test}>
+    <div className="w-full">
       {/* //* Main HML */}
-      <div className="flex justify-between items-center mt-20">
+      <div
+        className={`grid justify-between items-center mt-20 w-full`}
+        style={{ gridTemplateColumns: `repeat(${title.length - 1}, 1fr) .3fr` }}
+      >
         <div className="flex items-center gap-[2px] mr-[2px]">
           {active > 1 ? (
-            <FaRegCircleCheck
-              size={50}
-              color={active >= 1 ? "green" : "gray"}
-            />
+            <div className="relative flex justify-center ">
+              <FaRegCircleCheck
+                size={30}
+                color={active >= 1 ? "green" : "gray"}
+              />
+              <p
+                className={`text-center absolute top-full left-auto right-auto ${
+                  active >= 1 ? "font-medium" : ""
+                } w-[200px] mt-2`}
+                style={{
+                  lineHeight: "15px",
+                  fontSize: "11px",
+                  color: active >= 1 ? "green" : "gray",
+                }}
+                dangerouslySetInnerHTML={{ __html: firstTitle }}
+              />
+            </div>
           ) : (
-            <FaRegCircleDot size={50} color={active >= 1 ? "green" : "gray"} />
+            <div className="relative flex justify-center ">
+              <FaRegCircleDot
+                size={30}
+                color={active >= 1 ? "green" : "gray"}
+              />
+              <p
+                className={`text-center absolute top-full left-auto right-auto ${
+                  active >= 1 ? "font-medium" : ""
+                } w-[200px] mt-2`}
+                style={{
+                  lineHeight: "15px",
+                  fontSize: "11px",
+                  color: active >= 1 ? "green" : "gray",
+                }}
+                dangerouslySetInnerHTML={{ __html: firstTitle }}
+              />
+            </div>
           )}
           <div
-            className={`h-[10px] w-[200px] ${
+            className={`h-[2px] w-[100%] ${
               active >= 2 ? "bg-green-600" : "bg-gray-400"
             }`}
           />
         </div>
 
-        {lope.map((e) => (
-          <div className="flex items-center gap-[2px] mr-[2px]" key={e}>
-            {active > e ? (
-              <FaRegCircleCheck
-                size={50}
-                color={active >= e ? "green" : "gray"}
+        {middleData.map((item, e) => (
+          <div key={e}>
+            <div className="flex items-center gap-[2px] mr-[2px]">
+              {active > e + 2 ? (
+                <div className="relative flex justify-center ">
+                  <FaRegCircleCheck
+                    size={30}
+                    color={active >= e + 1 ? "green" : "gray"}
+                  />
+                  <p
+                    className={`text-center absolute top-full left-auto right-auto ${
+                      active >= e + 1 && "font-medium"
+                    } w-[200px] mt-2`}
+                    style={{
+                      lineHeight: "15px",
+                      fontSize: "11px",
+                      color: active >= e + 2 ? "green" : "gray",
+                    }}
+                    dangerouslySetInnerHTML={{ __html: item }}
+                  />
+                </div>
+              ) : (
+                <div className="relative flex justify-center ">
+                  <FaRegCircleDot
+                    size={30}
+                    color={active >= e + 2 ? "green" : "gray"}
+                  />
+                  <p
+                    className={`text-center absolute top-full left-auto right-auto ${
+                      active >= e + 2 && "font-medium"
+                    } w-[200px] mt-2`}
+                    style={{
+                      lineHeight: "15px",
+                      fontSize: "11px",
+                      color: active >= e + 2 ? "green" : "gray",
+                    }}
+                    dangerouslySetInnerHTML={{ __html: item }}
+                  />
+                </div>
+              )}
+              <div
+                className={`h-[2px] w-[100%] ${
+                  active >= e + 3 ? "bg-green-600" : "bg-gray-400"
+                }`}
               />
-            ) : (
-              <FaRegCircleDot
-                size={50}
-                color={active >= e ? "green" : "gray"}
-              />
-            )}
-            <div
-              className={`h-[10px] w-[200px] ${
-                active >= e + 1 ? "bg-green-600" : "bg-gray-400"
-              }`}
-            />
+            </div>
           </div>
         ))}
 
-        <div className="flex items-center gap-[2px]">
-          <FaRegCircleDot size={50} color={active >= n ? "green" : "gray"} />
+        <div className="flex justify-start">
+          <div className="relative flex justify-center">
+            <PiFlagCheckeredFill
+              size={30}
+              color={active >= title?.length ? "green" : "gray"}
+            />
+            <p
+              className={`text-center absolute top-full left-auto right-auto ${
+                active >= title?.length ? "font-medium" : ""
+              } w-[200px] mt-2`}
+              style={{
+                lineHeight: "15px",
+                fontSize: "11px",
+                color: active >= title?.length ? "green" : "gray",
+              }}
+              dangerouslySetInnerHTML={{ __html: lastTitle }}
+            />
+          </div>
         </div>
-      </div>
-
-      <div className="flex mt-5">
-        <button className="btn bg-green-500" onClick={handleBack}>
-          Back
-        </button>
-        <button className="btn bg-red-500" onClick={handleNext}>
-          next
-        </button>
       </div>
     </div>
   );
-}
+};
 
 export default MultiStepComponent;
