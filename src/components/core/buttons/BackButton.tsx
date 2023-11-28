@@ -10,6 +10,7 @@ type ButtonProps = {
   className?: string;
   onClick?: () => void;
   icon?: ReactNode;
+  disabled?: boolean
 };
 
 const BackButton = ({
@@ -20,6 +21,7 @@ const BackButton = ({
   className,
   onClick,
   icon,
+  disabled=false
 }: ButtonProps): ReactElement => {
   switch (type) {
     case "link":
@@ -27,7 +29,7 @@ const BackButton = ({
         <Link
           to={link!}
           style={style}
-          className={` btn w-40 border-2 border-borderColor text-blackColor bg-whiteColor ${className}`}
+          className={` btn w-40 border-2 border-borderColor text-blackColor ${disabled ? "disabled_bg" : " bg-whiteColor "} ${className}`}
         >
           {icon} {title}
         </Link>
@@ -36,7 +38,7 @@ const BackButton = ({
     case "button":
       return (
         <button
-          className={`btn w-40 border-2 border-borderColor text-blackColor bg-whiteColor hover:bg-borderColor ${className}`}
+          className={`btn w-40 border-2 border-borderColor text-blackColor ${disabled ? "disabled_bg cursor-not-allowed" : "bg-whiteColor hover:bg-borderColor"} ${className}`}
           type="button"
           style={style}
           onClick={onClick}

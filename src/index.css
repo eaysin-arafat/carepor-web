@@ -10,6 +10,36 @@
   }
 }
 
+@layer components {
+  .heading_2 {
+    @apply text-3xl font-medium leading-normal tracking-tighter;
+  }
+}
+
+@layer components {
+  .heading_3 {
+    @apply text-secondaryColor text-lg font-bold leading-6 tracking-tighter;
+  }
+}
+
+@layer components {
+  .heading_4 {
+    @apply text-center text-grayColor text-sm font-normal leading-6;
+  }
+}
+
+@layer components {
+  .heading_5 {
+    @apply text-textColor font-normal text-sm leading-5;
+  }
+}
+
+@layer components {
+  .disabled_bg {
+    @apply bg-borderColor
+  }
+}
+
 .light {
   --body: #fafafb;
   --primary: #1890ff;
