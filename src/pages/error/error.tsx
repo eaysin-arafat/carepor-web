@@ -11,7 +11,7 @@ function Error() {
           exist.
         </p>
         <Link
-          to="/"
+          to="/test"
           className="mt-8 inline-block px-6 py-3 font-semibold text-white rounded-md "
           style={{ backgroundColor: "var(--primary)" }}
         >
