@@ -1,6 +1,5 @@
 import Input from "../core/form-elements/Input";
 import Password from "../core/form-elements/PasswordInput";
-
 import FormSection from "../core/form-layouts/FormSection";
 
 function LoginInfo() {

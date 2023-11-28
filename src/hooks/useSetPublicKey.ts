@@ -13,12 +13,13 @@ const useSetPublicKey = () => {
   React.useEffect(() => {
     const fetchApiKey = async () => {
       try {
-        const response = await fetch("/public_key.txt"); // Adjust the path accordingly
-        const key = await response.text();
-        cookieManager.saveCookie("carepro_public_key", key as string, {
+        const response = await fetch("/public_key.json"); // Adjust the path accordingly
+        const key = await response.json();
+        console.log("key", key);
+        cookieManager.saveCookie("carepro_public_key", JSON.stringify(key), {
           path: "/",
         });
-        dispatch(setPublicKey(key as string));
+        dispatch(setPublicKey(key));
         setIsSetPublicKey(true);
       } catch (error) {
         console.error("Error fetching API key:", error);

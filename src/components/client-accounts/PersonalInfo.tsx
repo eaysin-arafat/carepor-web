@@ -5,7 +5,7 @@ import Skeleton from "../core/skeleton/Skeleton";
 import DatePicker from "../core/form-elements/CustomDatePicker";
 import Input from "../core/form-elements/Input";
 import Select from "../core/form-elements/Select";
-import FormSection from "../core/form-layouts/FormSection";
+import SectionWrapper from "../core/form-layouts/SectionWrapper";
 
 type Props = {};
 
@@ -22,7 +22,7 @@ function ClientPersonalInfo({}: Props) {
 
   return (
     <>
-      <FormSection titleText="Personal Information">
+      <SectionWrapper title="Personal Information">
         <div className="grid md:grid-cols-6 gap-5">
           <div className="col-span-6 md:col-span-3">
             <Input label="First Name" required />
@@ -71,7 +71,7 @@ function ClientPersonalInfo({}: Props) {
             <Skeleton />
           </div>
         </div>
-      </FormSection>
+      </SectionWrapper>
     </>
   );
 }

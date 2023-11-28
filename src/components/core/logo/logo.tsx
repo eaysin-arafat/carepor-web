@@ -22,7 +22,7 @@ function AppLogo({ marginTop, type, className }: Props) {
               <div
                 className={`${
                   marginTop ? marginTop : ""
-                } w-[126px] h-[126px] border-4 max-w-full border-borderColor bg-white rounded-full flex justify-center items-center`}
+                } w-[126px] h-[126px] border-4 border-borderColor bg-whiteColor rounded-full flex justify-center items-center`}
               >
                 <img
                   className={`w-[65px] h-[75px] ${className}`}
