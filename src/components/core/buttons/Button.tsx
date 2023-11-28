@@ -1,3 +1,4 @@
+import { cn } from "@/utilities/cn";
 import React, { ReactElement, ReactNode } from "react";
 // import { Link } from 'react-router-dom'; // Assuming you are using react-router
 
@@ -39,7 +40,10 @@ const Button = ({
     case "submit":
       return (
         <button
-          className={`btn w-full text-whiteColor bg-primaryColor hover:bg-primaryHoverColor ${className}`}
+          className={cn(
+            `btn w-full text-whiteColor bg-primaryColor hover:bg-primaryHoverColor`,
+            className
+          )}
           type="submit"
           disabled={loading}
           onClick={onClick}
@@ -56,7 +60,10 @@ const Button = ({
     case "outline":
       return (
         <button
-          className={`btn w-full text-blackColor bg-whiteColor hover:bg-slate-50 border-2 border-borderColor ${className}`}
+          className={cn(
+            `btn w-full text-blackColor bg-whiteColor hover:bg-slate-50 border-2 border-borderColor`,
+            className
+          )}
           type="button"
           disabled={loading}
           onClick={onClick}
@@ -75,7 +82,10 @@ const Button = ({
         <a
           href={link!}
           style={style}
-          className={`${className} btn w-full text-whiteColor bg-primaryColor `}
+          className={cn(
+            `btn w-full text-whiteColor bg-primaryColor`,
+            className
+          )}
         >
           {icon} {title}
         </a>
@@ -84,7 +94,10 @@ const Button = ({
     case "button":
       return (
         <button
-          className={`btn w-full text-whiteColor bg-primaryColor hover:bg-primaryHoverColor ${className}`}
+          className={cn(
+            `btn w-full text-whiteColor bg-primaryColor hover:bg-primaryHoverColor`,
+            className
+          )}
           type="button"
           style={style}
           onClick={onClick}
