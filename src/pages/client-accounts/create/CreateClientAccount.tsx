@@ -22,15 +22,15 @@ function CreateClientAccount({}: Props) {
     "Place of Birth & <br /> Religious Denomination",
     "Education &  <br /> Employment",
   ];
-console.log({stateCount});
-console.log({stepTitle:stepTitle.length});
-const disabledBackButton = stateCount === 1
+  console.log({ stateCount });
+  console.log({ stepTitle: stepTitle.length });
+  const disabledBackButton = stateCount === 1;
 
   const handleBack = () => {
     setStateCount((prev: number) => Math.max(prev - 1, 1));
   };
   const handleNext = () => {
-    setStateCount((next: number) => Math.min(next + 1, stepTitle.length ));
+    setStateCount((next: number) => Math.min(next + 1, stepTitle.length));
   };
 
   return (
@@ -38,7 +38,7 @@ const disabledBackButton = stateCount === 1
       <div className="max-w-[1022px] mx-auto ">
         <MultiStepComponent active={stateCount} title={stepTitle} />
       </div>
-      <div className="my-16">
+      <div className="my-8">
         <FormWrapper
           title="Client Profile Registration"
           titleClass="text-center"
@@ -76,11 +76,11 @@ const disabledBackButton = stateCount === 1
               )}
               {stateCount !== 6 && (
                 <NextButton
-                title="Next"
-                type="button"
-                onClick={handleNext}
-                className="w-40"
-              />
+                  title="Next"
+                  type="button"
+                  onClick={handleNext}
+                  className="w-40"
+                />
               )}
             </div>
           </>

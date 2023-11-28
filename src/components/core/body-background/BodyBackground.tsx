@@ -1,11 +1,17 @@
 type Props = {
   children: JSX.Element;
-  noBackground?: boolean
+  noBackground?: boolean;
 };
 
-function BodyBackground({ children , noBackground }: Props) {
+function BodyBackground({ children, noBackground }: Props) {
   return (
-    <div className={`${noBackground ? "" : "md:bg-[url('/assets/img/backgroundImg.png')]" } w-full h-screen overflow-auto text-left text-sm text-black font-poppins`}>
+    <div
+      className={`${
+        noBackground
+          ? ""
+          : "md:bg-[url('/assets/img/carepro-bg.png')] bg-cover bg-center h-screen "
+      } w-full overflow-auto text-left text-sm text-black font-poppins`}
+    >
       {children}
     </div>
   );

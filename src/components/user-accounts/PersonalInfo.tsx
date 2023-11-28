@@ -19,7 +19,7 @@ function PersonalInfo({}: Props) {
             <Input label="Designation" />
           </div>
           <CustomNrc label="NRC" state="s" onChange={() => {}} />
-          <div className="col-span-1 flex items-center">
+          <div className="col-span-1 flex items-center mt-5">
             <Checkbox label="I do not have NRC" />
           </div>
         </div>

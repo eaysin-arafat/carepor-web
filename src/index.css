@@ -87,6 +87,10 @@ body {
   border: 1px solid transparent;
   background-clip: content-box;
 }
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
 
 .custom-input {
   @apply w-full rounded-full text-blackColor bg-whiteColor box-border flex flex-row items-center justify-start py-[12px] px-4 border-[2px] border-solid border-borderColor outline-none;
