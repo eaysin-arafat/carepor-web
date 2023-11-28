@@ -122,19 +122,18 @@ function useManageFacility(oldFacility?: string | number) {
   }, [oldFacility, facilities, districts, provinces]);
 
   // if require combine validations
+  /**
+   * @useMessage if only facility input fields in form than use
+   * @useMessage this facilityValid function and get error state
+   * @returns {
+   *  facilityState
+   * }
+   */
   const facilityValid = () => {
     const { errors, isFacilityValid } = validation(facilityState);
     setFacilityError((prev) => ({ ...prev, ...errors }));
     return { isFacilityValid, facilityError: errors };
   };
-
-  console.log({
-    districtOptions: filteredDist,
-    facilitiesOptions: filteredFacility,
-    provinceOptions,
-  });
-
-  console.log({ province: facilityState?.province });
 
   return {
     // options array

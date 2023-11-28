@@ -11,7 +11,7 @@ function UserLogin() {
 
   return (
     <FormLayout
-      className="w-[570px] "
+      className=" !w-[570px] "
       emergencyAccess
       loginForm
       layoutCenter
