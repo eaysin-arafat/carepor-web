@@ -87,6 +87,8 @@ const useSelectFacility = () => {
     //   return { isFacilityValid, facilityError: errors };
     // };
 
+    // console.log(facilityError);
+
     if (!isFacilityValid) {
       setError(facilityError);
       return false;
@@ -139,15 +141,15 @@ const useSelectFacility = () => {
 
 export default useSelectFacility;
 
-// // const validation = (data) => {
-// //   const errors = {};
+// const validation = (data) => {
+//   const errors = {};
 
-// //   if (!data.facility) errors.facility = "Required";
-// //   if (!data.district) errors.district = "Required";
-// //   if (!data.province) errors.province = "Required";
+//   if (!data.facility) errors.facility = "Required";
+//   if (!data.district) errors.district = "Required";
+//   if (!data.province) errors.province = "Required";
 
-// //   return {
-// //     isFacilityValid: Object.keys(errors).length == 0,
-// //     errors,
-// //   };
-// // };
+//   return {
+//     isFacilityValid: Object.keys(errors).length == 0,
+//     errors,
+//   };
+// };
