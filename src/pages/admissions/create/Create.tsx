@@ -13,7 +13,6 @@ function CreateAdmission({}: Props) {
         titleClass="text-center"
         maxWidth="max-w-[570px]"
         contentCenter
-        noBackground
       >
         <form action="" className="my-5">
           <AdmissionForm />
