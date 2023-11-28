@@ -1,6 +1,5 @@
 import Input from "@/components/core/form-elements/Input";
 import FormLayout from "@/components/core/form-layouts/FormLayout";
-import Header from "@/components/shared/header/Header";
 import MultiStepComponent from "@/components/shared/multi-step/multiStep";
 import { useState } from "react";
 
@@ -25,10 +24,8 @@ function Test() {
 
   return (
     <div>
-      <Header />
       <div
         style={{
-          height: "100vh",
           width: "1500px",
           margin: "auto",
         }}
