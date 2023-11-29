@@ -1,9 +1,10 @@
+import { cn } from "@/utilities/cn";
 import PropTypes from "prop-types";
 import { ChangeEvent, FC } from "react";
 import { PatternFormat } from "react-number-format";
 
 interface CustomNrcProps {
-  state: any;
+  state?: any;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   required?: boolean;
   disabled?: boolean;
@@ -12,6 +13,7 @@ interface CustomNrcProps {
   label: string;
   className?: string;
   keyUpHandler?: any;
+  placeholder?: string;
 }
 
 const CustomNrc: FC<CustomNrcProps> = ({
@@ -24,6 +26,7 @@ const CustomNrc: FC<CustomNrcProps> = ({
   label,
   className,
   keyUpHandler = null,
+  placeholder= "______/__/_",
 }) => {
   const handleNrcChange = (e: ChangeEvent<HTMLInputElement>) => {
     const nrcWithoutSlash = e.target.value.replace(/\//g, "")?.length;
@@ -43,14 +46,15 @@ const CustomNrc: FC<CustomNrcProps> = ({
       </div>
       <PatternFormat
         format="######/##/#"
-        placeholder="______/__/_"
+        placeholder={placeholder}
         mask="_"
         value={state}
         onChange={handleNrcChange}
         disabled={disabled}
         onKeyUp={keyUpHandler}
         name={name}
-        className={`custom-input ${className}`}
+        // className={`custom-input ${className}`}
+        className={cn( `custom-input` , className )}
       />
       {errMsg && (
         <span className="text-dangerColor leading-[125%] font-normal ">

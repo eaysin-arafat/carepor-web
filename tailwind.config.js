@@ -23,6 +23,7 @@ export default {
         lightBlueColor: "var(--lightBlue)",
         secondaryColor: "var(--secondary)",
         grayColor: "var(--grayColor)",
+        lightGrayColor: "var(--lightGray)",
         blackColor: "var(--black)",
         whiteColor: "var(--white)",
         dangerColor: "var(--danger)",
