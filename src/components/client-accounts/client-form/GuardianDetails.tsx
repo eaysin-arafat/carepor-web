@@ -1,9 +1,9 @@
 import React from "react";
-import Checkbox from "../core/form-elements/Checkbox";
+import Checkbox from "../../core/form-elements/Checkbox";
 // import CustomNrc from "../form-elements/CustomNrc";
-import Input from "../core/form-elements/Input";
-import Select from "../core/form-elements/Select";
-import FormSection from "../core/form-layouts/FormSection";
+import Input from "../../core/form-elements/Input";
+import Select from "../../core/form-elements/Select";
+import FormSection from "../../core/form-layouts/FormSection";
 
 type Props = {};
 
