@@ -13,4 +13,5 @@ export type FormSectionType = {
 export interface LoginDataType {
   username: string;
   password: string;
+  rememberMe: boolean;
 }

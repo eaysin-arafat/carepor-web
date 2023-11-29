@@ -1,5 +1,5 @@
 import useAuthentication from "@/hooks/useAuthentication";
-import { selectFacility } from "@/routers/facility";
+import { URLSelectFacility } from "@/routers/facility";
 import { Navigate, Outlet } from "react-router-dom";
 
 /**
@@ -12,7 +12,7 @@ function PublicGuard() {
   const isLoggedIn = useAuthentication();
 
   // public route
-  return !isLoggedIn ? <Outlet /> : <Navigate to={selectFacility()} />;
+  return !isLoggedIn ? <Outlet /> : <Navigate to={URLSelectFacility()} />;
 }
 
 // export public route

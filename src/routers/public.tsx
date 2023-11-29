@@ -4,24 +4,24 @@ import CreateUserAccount from "@/pages/user-accounts/create/CreateUserAccount";
 import RecoveryRequest from "@/pages/user-accounts/recovery-request/RecoveryRequest";
 
 // routes for public
-export const userAccountCreate = (): string => "/user-accounts/create";
-export const userLogin = (): string => "/";
-export const userRecoveryRequest = (): string => "/recovery-request";
+export const URLUserAccountCreate = (): string => "/user-accounts/create";
+export const URLUserLogin = (): string => "/";
+export const URLUserRecoveryRequest = (): string => "/recovery-request";
 
 const publicRoutes = [
   {
     element: <PublicGuard />,
     children: [
       {
-        path: userLogin(),
+        path: URLUserLogin(),
         element: <UserLogin />,
       },
       {
-        path: userAccountCreate(),
+        path: URLUserAccountCreate(),
         element: <CreateUserAccount />,
       },
       {
-        path: userRecoveryRequest(),
+        path: URLUserRecoveryRequest(),
         element: <RecoveryRequest />,
       },
     ],

@@ -1,13 +1,10 @@
-// import { useGetCountriesQuery } from "@/features/country/country-api";
-// import { usePasswordRecoveryRequestMutation } from "@/features/users/users-api";
-// import { TypeValidation } from "@/utils/type-valdation";
-// import { passwordRecoveryRequestValidator } from "@/validation-model/password-recovery";
-// import React from "react";
-// import toast from "react-hot-toast";
-
 import { useReadCountriesQuery } from "@/features/country/country-api";
 import { useCreateRecoveryRequestMutation } from "@/features/recovery-request/recovery-request-api";
 import { FormSubmitEventType, OnchangeEventType } from "@/types/htmlEvents";
+import {
+  PasswordRecoveryFormErrorType,
+  PasswordRecoveryFormType,
+} from "@/types/user-accounts";
 import { TypeValidation } from "@/utilities/type-valdation";
 import { passwordRecoveryRequestValidator } from "@/validation-models/password-recovery";
 import React from "react";
@@ -15,15 +12,16 @@ import toast from "react-hot-toast";
 
 // initial state
 const initialRecoveryInfo = {
-  countryCode: "",
+  countryCode: "+260",
   cellphone: "",
   username: "",
 };
 
 function usePasswordRecovery() {
   // local state
-  const [recoverInfo, setRecoverInfo] = React.useState(initialRecoveryInfo);
-  const [errors, setErrors] = React.useState({});
+  const [recoverInfo, setRecoverInfo] =
+    React.useState<PasswordRecoveryFormType>(initialRecoveryInfo);
+  const [errors, setErrors] = React.useState<PasswordRecoveryFormErrorType>({});
 
   // api hooks
   const {
@@ -45,7 +43,6 @@ function usePasswordRecovery() {
   // handler functions
   const handleRecoveryInfoChange = (e: OnchangeEventType) => {
     const { name, value } = e.target;
-
     if (
       name === "cellphone" &&
       (TypeValidation.isOnlyNumber(value) || value === "")
@@ -66,13 +63,11 @@ function usePasswordRecovery() {
 
     const { errors, isValid } = passwordRecoveryRequestValidator(recoverInfo);
 
+    console.log(errors);
+
     if (!isValid) return setErrors(errors);
 
     recoveryRequest(recoverInfo);
-  };
-
-  const handleCloseCommonErrorModal = () => {
-    setErrors((prev) => ({ ...prev, common: null }));
   };
 
   React.useEffect(() => {
@@ -83,9 +78,20 @@ function usePasswordRecovery() {
       setErrors({});
     } else if (isRecoveryError && recoveryStatus === "rejected") {
       toast.dismiss();
-      toast.error("Something went wrong."); //recoveryError?.data?.message ||
+      //@ts-ignore
+      const errorMessage = recoveryError?.data?.message;
+      if (typeof errorMessage === "string" && errorMessage) {
+        toast.error(errorMessage);
+      } else {
+        toast.error("Something went wrong.");
+      }
     }
   }, [isRecoverySuccess, isRecoveryError, recoveryError, recoveryStatus]);
+
+  // if phone pattern is not matched then reset value
+  const resetCellPhone = () => {
+    setRecoverInfo((prev) => ({ ...prev, cellphone: "" }));
+  };
 
   return {
     recoverInfo,
@@ -95,7 +101,7 @@ function usePasswordRecovery() {
     isSuccess,
     handleRecoveryInfoChange,
     handleSubmit,
-    handleCloseCommonErrorModal,
+    resetCellPhone,
   };
 }
 

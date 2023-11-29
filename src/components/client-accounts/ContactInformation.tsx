@@ -34,8 +34,9 @@ function ContactInformation({}: Props) {
                   <div className="col-span-2">
                     <PhoneNumberInput
                       name="cellphone"
-                      // value={"value"}
+                      value={"000000000"}
                       onChange={handler}
+                      countryCode={""}
                       label="Cellphone Number"
                     />
                   </div>
@@ -61,9 +62,10 @@ function ContactInformation({}: Props) {
                   <div className="col-span-2">
                     <PhoneNumberInput
                       name="cellphone"
-                      // value={"value"}
+                      value={"00000000"}
                       onChange={handler}
                       label="Cellphone Number"
+                      countryCode={""}
                     />
                   </div>
                 </div>
@@ -89,9 +91,10 @@ function ContactInformation({}: Props) {
                 <div className="col-span-2">
                   <PhoneNumberInput
                     name="cellphone"
-                    // value={"value"}
+                    value={"00000000"}
                     onChange={handler}
                     label="Landline Number"
+                    countryCode={""}
                   />
                 </div>
               </div>
