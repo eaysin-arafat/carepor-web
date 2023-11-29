@@ -1,5 +1,15 @@
 import { API } from "../API/API";
 
+interface Country {
+  oid: number;
+  description: string;
+  isoCodeAlpha2: string;
+  countryCode: string;
+  dateModified: string;
+  isDeleted: boolean;
+  isSynced: boolean;
+}
+
 const countryApi = API.injectEndpoints({
   endpoints: (builder) => ({
     /**
@@ -19,7 +29,7 @@ const countryApi = API.injectEndpoints({
      * @description This endpoint is used to read countries
      * @returns Country[]
      */
-    readCountries: builder.query({
+    readCountries: builder.query<Country[], undefined>({
       query: () => ({
         url: "/countries",
         method: "GET",

@@ -27,9 +27,3 @@ export default {
   },
   plugins: [],
 };
-
-/**
- * 'Poppins', sans-serif;
- * fontFamily:{
-      "roboto":['Roboto', 'sans-serif'],
-    }, */

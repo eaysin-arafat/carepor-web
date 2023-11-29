@@ -198,10 +198,9 @@ const userAccountsApi = API.injectEndpoints({
      * @returns UserAccount
      */
     checkUserNRC: builder.query({
-      query: (body) => ({
-        url: "/user-account/user-check-by-nrc",
-        method: "POST",
-        body,
+      query: ({ nrc }) => ({
+        url: `/user-account/user-check-by-nrc?nrc=${nrc}`,
+        method: "GET",
       }),
     }),
 
@@ -211,10 +210,9 @@ const userAccountsApi = API.injectEndpoints({
      * @returns UserAccount
      */
     checkUserMobile: builder.query({
-      query: (body) => ({
-        url: "/user-account/user-check-by-cell",
-        method: "POST",
-        body,
+      query: ({ userMobile, countryCode }) => ({
+        url: `/user-account/user-check-by-cell?userMobile=${userMobile}&CountryCode=${countryCode}`,
+        method: "GET",
       }),
     }),
 
