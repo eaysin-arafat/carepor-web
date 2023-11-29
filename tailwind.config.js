@@ -34,9 +34,3 @@ export default {
   },
   plugins: [fleabite],
 };
-
-/**
- * 'Poppins', sans-serif;
- * fontFamily:{
-      "roboto":['Roboto', 'sans-serif'],
-    }, */

@@ -1,6 +1,6 @@
 import React from "react";
-import Select from "../core/form-elements/Select";
-import FormSection from "../core/form-layouts/FormSection";
+import Select from "../../core/form-elements/Select";
+import FormSection from "../../core/form-layouts/FormSection";
 
 type Props = {};
 

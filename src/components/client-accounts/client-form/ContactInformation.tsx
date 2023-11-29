@@ -1,9 +1,9 @@
 import React from "react";
-import Checkbox from "../core/form-elements/Checkbox";
-import Input from "../core/form-elements/Input";
-import PhoneNumberInput from "../core/form-elements/PhoneNumber";
-import Select from "../core/form-elements/Select";
-import FormSection from "../core/form-layouts/FormSection";
+import Checkbox from "../../core/form-elements/Checkbox";
+import Input from "../../core/form-elements/Input";
+import PhoneNumberInput from "../../core/form-elements/PhoneNumber";
+import Select from "../../core/form-elements/Select";
+import FormSection from "../../core/form-layouts/FormSection";
 
 type Props = {};
 
