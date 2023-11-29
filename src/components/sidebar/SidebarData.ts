@@ -14,9 +14,23 @@ const SidebarList = [
   {
     title: "Encounter (OPD)",
     link: "/",
+    children: [
+      {
+        title: "HTS",
+        link: "/",
+      },
+      {
+        title: "HTS",
+        link: "/",
+      },
+      {
+        title: "HTS",
+        link: "/",
+      },
+    ],
   },
   {
-    title: "EPE",
+    title: "PEP",
     link: "/",
   },
   {

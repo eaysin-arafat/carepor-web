@@ -1,10 +1,10 @@
 import React, { ChangeEvent } from "react";
 
 interface PhoneNumberInputProps {
-  value?: number;
+  value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   name: string;
-  label?: string;
+  label: string;
   required?: boolean;
   errMsg?: string;
   disabled?: boolean;
@@ -12,10 +12,10 @@ interface PhoneNumberInputProps {
   type?: string;
   className?: string;
   placeholder?: string;
-  countryCode?: string;
+  countryCode: string;
 }
 
-const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
+const PhoneNumber: React.FC<PhoneNumberInputProps> = ({
   value,
   onChange,
   name,
@@ -55,17 +55,17 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
         {required && <span className="-mt-[6px] mx-1 text-dangerColor">*</span>}
       </div>
       <input
-          style={{ backgroundColor: disabled ? "#eef2f3" : undefined }}
-          type={type || "text"}
-          className={`custom-input ${className}`}
-          value={value}
-          name={name}
-          onChange={handleFilter}
-          placeholder={label ? label : placeholder}
-          disabled={disabled}
-          pattern={pattern}
-          max="250"
-        />
+        style={{ backgroundColor: disabled ? "#eef2f3" : undefined }}
+        type={type || "text"}
+        className={`custom-input ${className}`}
+        value={value}
+        name={name}
+        onChange={handleFilter}
+        placeholder={label ? label : placeholder}
+        disabled={disabled}
+        pattern={pattern}
+        max="250"
+      />
       {errMsg && (
         <span className="text-dangerColor leading-[125%] font-normal ">
           Required
@@ -79,4 +79,4 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
     </div>
   );
 };
-export default PhoneNumberInput;
+export default PhoneNumber;

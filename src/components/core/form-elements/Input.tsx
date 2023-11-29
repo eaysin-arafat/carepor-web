@@ -8,7 +8,7 @@ type Props = {
   required?: boolean;
   errMsg?: string;
   disabled?: boolean;
-  pattern?: string;
+  pattern?: "textOnly" | "numberOnly" | "float" | "username";
   type?: string;
   className?: string;
   placeholder?: string;
@@ -24,27 +24,19 @@ function Input({
   required,
   errMsg,
   disabled,
-  // pattern,
+  pattern,
   type = "text",
   className,
   placeholder,
   max,
   numberOnly,
 }: Props) {
-  // const [isOnlyNumber, setOnlyIsNumber] = useState("");
-
-  // // Regular expression for validating numbers
-  // const numberPattern = /^\d*\.?\d*$/;
-
-  // // Function to handle input change
-  // const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (numberOnly && !numberPattern.test(event.target.value)) {
-  //     setOnlyIsNumber("Please enter a valid numeric number");
-  //   } else {
-  //     setOnlyIsNumber("");
-  //     onChange(event);
-  //   }
-  // };
+  // Function to handle input change
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (!pattern) {
+      return onChange(event);
+    }
+  };
 
   return (
     <div className="flex flex-col w-full items-start justify-start gap-[6px]">
@@ -60,7 +52,7 @@ function Input({
         className={`custom-input ${className}`}
         value={value}
         name={name}
-        onChange={onChange}
+        onChange={handleInputChange}
         disabled={disabled}
         // pattern={pattern}
         max={max || "250"}

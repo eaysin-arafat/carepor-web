@@ -1,31 +1,25 @@
 import Input from "@/components/core/form-elements/Input";
 
 import Button from "@/components/core/buttons/Button";
-import Select from "@/components/core/form-elements/Select";
-import usePasswordRecovery from "./useRecoveryRequest";
+import CountryCode from "@/components/core/form-elements/CountryCode";
+import PhoneNumberInput from "@/components/core/form-elements/PhoneNumber";
+import { FormFooterLink } from "@/components/core/form-layouts/FormFooterLink";
 import FormWrapper from "@/components/core/form-layouts/FormWrapper";
+import usePasswordRecovery from "./useRecoveryRequest";
+import { URLUserLogin } from "@/routers/public";
 
 function RecoveryRequest() {
   const {
     // countries,
-    // errors,
-    // handleCloseCommonErrorModal,
-    // handleRecoveryInfoChange,
-    // handleSubmit,
-    // isSuccess,
-    // recoverInfo,
-    // status,
+    errors,
+    handleRecoveryInfoChange,
+    handleSubmit,
+    recoverInfo,
+    resetCellPhone,
   } = usePasswordRecovery();
-  // render country codes
-  // const renderCountryCodes = () => {
-  //   return countries?.map((countryCode) => {
-  //     return (
-  //       <option key={countryCode.oid} value={countryCode.countryCode}>
-  //         {countryCode.isoCodeAlpha2}
-  //       </option>
-  //     );
-  //   });
-  // };
+
+  console.log(errors);
+
   return (
     <>
       <FormWrapper
@@ -34,23 +28,44 @@ function RecoveryRequest() {
         titleClass="text-center"
         title="Login Recovery Request"
       >
-        <form action="">
+        <form onSubmit={handleSubmit}>
           <div className="grid gap-5">
-            <Input label="Username" />
+            <Input
+              onChange={handleRecoveryInfoChange}
+              name="username"
+              value={recoverInfo.username}
+              label="Username"
+              errMsg={errors?.username}
+            />
             <div className="grid grid-cols-4 gap-3">
               <div className="col-span-1">
-                <Select label="Code">
-                  <option value="">Select</option>
-                  <option value="">+880</option>
-                  <option value="">+981</option>
-                </Select>
+                <CountryCode
+                  label="Code"
+                  value={recoverInfo.countryCode}
+                  onChange={handleRecoveryInfoChange}
+                  name="countryCode"
+                  resetCellPhone={resetCellPhone}
+                  errMsg={errors?.countryCode}
+                />
               </div>
               <div className="col-span-3">
-                <Input label="Cellphone" />
+                <PhoneNumberInput
+                  value={recoverInfo.cellphone}
+                  onChange={handleRecoveryInfoChange}
+                  name="cellphone"
+                  label="Cellphone"
+                  countryCode={recoverInfo.countryCode}
+                  errMsg={errors.cellphone}
+                />
               </div>
             </div>
+            <FormFooterLink
+              btnText="Log in"
+              link={URLUserLogin()}
+              question="Remember password?"
+            />
             <div className="mt-5">
-              <Button type="button" title="Submit" />
+              <Button type="submit" title="Submit" />
             </div>
           </div>
         </form>
