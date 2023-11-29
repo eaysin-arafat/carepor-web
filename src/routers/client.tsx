@@ -4,18 +4,18 @@ import CreateClientAccount from "@/pages/client-accounts/create/CreateClientAcco
 import EditAdmission from "../pages/admissions/edit/Edit";
 
 // route paths for client pages
-export const clientSearch = (): string => "/client-search";
-export const clientDetails = ({ id = ":id" }: { id: string }): string =>
+export const URLClientSearch = (): string => "/client-search";
+export const URLClientDetails = ({ id = ":id" }: { id: string }): string =>
   `/client-details/${id}`;
-export const clientCreate = (): string => "/client-create";
-export const clientEdit = ({ id = ":id" }: { id: string }): string =>
+export const URLClientCreate = (): string => "/client-create";
+export const URLClientEdit = ({ id = ":id" }: { id: string }): string =>
   `/client-edit/${id}`;
-export const createAdmission = ({
+export const URLCreateAdmission = ({
   clientId = ":clientId",
 }: {
   clientId: string;
 }): string => `/admission-create/${clientId}`;
-export const editAdmission = ({
+export const URLEditAdmission = ({
   clientId = ":clientId",
 }: {
   clientId: string;
@@ -27,27 +27,27 @@ const clientRouter = [
     element: <PrivateGuard />,
     children: [
       {
-        path: clientSearch(),
+        path: URLClientSearch(),
         element: "<ClientSearch />",
       },
       {
-        path: clientDetails({ id: ":id" }),
+        path: URLClientDetails({ id: ":id" }),
         element: "<ClientDetails />",
       },
       {
-        path: clientCreate(),
+        path: URLClientCreate(),
         element: <CreateClientAccount />,
       },
       {
-        path: clientEdit({ id: ":id" }),
+        path: URLClientEdit({ id: ":id" }),
         element: "<ClientEdit />",
       },
       {
-        path: createAdmission({ clientId: ":clientId" }),
+        path: URLCreateAdmission({ clientId: ":clientId" }),
         element: <CreateAdmission />,
       },
       {
-        path: editAdmission({ clientId: ":clientId" }),
+        path: URLEditAdmission({ clientId: ":clientId" }),
         element: <EditAdmission />,
       },
     ],

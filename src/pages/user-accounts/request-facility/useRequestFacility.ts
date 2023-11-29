@@ -1,7 +1,7 @@
 import { RootState } from "@/app/store";
 import { useCreateFacilityAccessMutation } from "@/features/facility-access/facility-access-api";
 import useManageFacility from "@/hooks/useManageFacility";
-import { selectFacility } from "@/routers/facility";
+import { URLSelectFacility } from "@/routers/facility";
 import { FormSubmitEventType } from "@/types/htmlEvents";
 import Alert from "@/utilities/alert";
 import { useEffect } from "react";
@@ -68,7 +68,6 @@ const useRequestFacility = () => {
   //@ts-ignore
   console.log(error?.data);
 
-  // uninitialized , pending , fulfilled , rejected,
   useEffect(() => {
     if (isSuccess && status === "fulfilled") {
       Alert.success(facilityAccess && "Facility Request send successful");
@@ -85,7 +84,7 @@ const useRequestFacility = () => {
   }, [isError, isSuccess]);
 
   const handleCancelRequest = (): void => {
-    navigate(selectFacility());
+    navigate(URLSelectFacility());
   };
 
   return {

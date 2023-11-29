@@ -1,4 +1,4 @@
-import { userAccountCreate, userLogin } from "@/routers/public";
+import { URLUserAccountCreate, URLUserLogin } from "@/routers/public";
 import AppName from "../app-name/AppName";
 import BodyBackground from "../body-background/BodyBackground";
 import AppLogo from "../logo/logo";
@@ -75,21 +75,21 @@ function FormLayout({
                 {loginForm && (
                   <FormFooterLink
                     btnText="Sign up"
-                    link={userAccountCreate()}
+                    link={URLUserAccountCreate()}
                     question="Don’t have an account?"
                   />
                 )}
                 {signUpForm && (
                   <FormFooterLink
                     btnText="Log in"
-                    link={userLogin()}
+                    link={URLUserLogin()}
                     question="Already have an account?"
                   />
                 )}
                 {changePasswordForm && (
                   <FormFooterLink
                     btnText="Log in"
-                    link={userLogin()}
+                    link={URLUserLogin()}
                     question="Remember password?"
                   />
                 )}

@@ -1,8 +1,11 @@
 import Button from "@/components/core/buttons/Button";
+import Checkbox from "@/components/core/form-elements/Checkbox";
 import Input from "@/components/core/form-elements/Input";
 import Password from "@/components/core/form-elements/PasswordInput";
 import FormLayout from "@/components/core/form-layouts/FormLayout";
+import { Link } from "react-router-dom";
 import useUserLogin from "./useUserLogin";
+import { URLUserRecoveryRequest } from "@/routers/public";
 
 function UserLogin() {
   const userLogin = useUserLogin();
@@ -33,6 +36,23 @@ function UserLogin() {
             onChange={handleInputChange}
             label="password"
           />
+          <div className="grid grid-cols-2">
+            <div>
+              <Checkbox
+                onChange={handleInputChange}
+                name="rememberMe"
+                checked={loginForm.rememberMe}
+                label="Remember me"
+              />{" "}
+              &nbsp;
+            </div>
+
+            <div className="flex justify-end items-center">
+              <Link to={URLUserRecoveryRequest()} className="heading_5">
+                Forgot Password
+              </Link>
+            </div>
+          </div>
 
           <Button loading={isLoading} type="submit" title="User Login" />
         </div>

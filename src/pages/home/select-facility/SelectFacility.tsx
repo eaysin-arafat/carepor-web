@@ -2,7 +2,7 @@ import Button from "@/components/core/buttons/Button";
 import RenderSelectOptions from "@/components/core/form-elements/RenderSelectOptions";
 import Select from "@/components/core/form-elements/Select";
 import FormLayout from "@/components/core/form-layouts/FormLayout";
-import { requestFacility } from "@/routers/facility";
+import { URLRequestFacility } from "@/routers/facility";
 import { Link } from "react-router-dom";
 import useSelectFacility from "./useSelectFacility";
 
@@ -63,7 +63,7 @@ const SelectFacility = () => {
             </Select>
           </div>
           <div className="text-right mt-3">
-            <Link to={requestFacility()} className="text-grayColor text-xs">
+            <Link to={URLRequestFacility()} className="text-grayColor text-xs">
               Send Facility Access Request
             </Link>
           </div>
