@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 const initialState: LoginDataType = {
   username: "",
   password: "",
+  rememberMe: false,
 };
 
 // user login return type
@@ -17,6 +18,7 @@ const initialState: LoginDataType = {
 type LoginErrorTypes = {
   username?: string;
   password?: string;
+  rememberMe?: boolean;
 };
 
 function useUserLogin() {
@@ -32,8 +34,12 @@ function useUserLogin() {
   // handler for input change
   const handleInputChange = (e: OnchangeEventType) => {
     const { name, value } = e.target;
-    setLoginForm((prev) => ({ ...prev, [name]: value }));
-    setErrors((prev) => ({ ...prev, [name]: "" }));
+    if (name === "rememberMe") {
+      setLoginForm((prev) => ({ ...prev, [name]: e.target.checked }));
+    } else {
+      setLoginForm((prev) => ({ ...prev, [name]: value }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
+    }
   };
 
   // handle form submit
@@ -46,6 +52,8 @@ function useUserLogin() {
     // login user
     login(loginForm);
   };
+
+  console.log(error);
 
   // handle login success and error
   React.useEffect(() => {

@@ -11,7 +11,7 @@ function EditAdmission({}: Props) {
     <>
       <FormLayout
         layoutCenter
-        mainTitle="New Patient Admission"
+        mainTitle="Edit Admission"
         className="md:w-[570px] "
       >
         <form action="" className="mt-5">

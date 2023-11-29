@@ -1,4 +1,4 @@
-import { userAccountCreate, userLogin } from "@/routers/public";
+import { URLUserAccountCreate, URLUserLogin } from "@/routers/public";
 import AppName from "../app-name/AppName";
 import BodyBackground from "../body-background/BodyBackground";
 import AppLogo from "../logo/logo";
@@ -41,9 +41,9 @@ function FormLayout({
           }`}
         >
           <div className=" flex w-full justify-center items-center mt-[200px] md:mt-[100px]">
-            <div className={` w-[100%] mb-5`}>
+            <div className={` w-[100%] mb-5 px-4 md:px-0`}>
               <div
-                className={`bg-white  bg-colors-white md:shadow-lg rounded-[10px] w-full mx-auto px-5 sm:px-10 py-5 transition-all ease-out ${className}`}
+                className={`bg-white  bg-colors-white md:shadow-lg rounded-[10px] w-full mx-auto px-5 sm:px-10 py-5 sm:py-10 transition-all ease-out ${className}`}
               >
                 {/* logo */}
                 <AppLogo type={"rounded"} marginTop="mt-[-88px]" />
@@ -75,21 +75,21 @@ function FormLayout({
                 {loginForm && (
                   <FormFooterLink
                     btnText="Sign up"
-                    link={userAccountCreate()}
+                    link={URLUserAccountCreate()}
                     question="Don’t have an account?"
                   />
                 )}
                 {signUpForm && (
                   <FormFooterLink
                     btnText="Log in"
-                    link={userLogin()}
+                    link={URLUserLogin()}
                     question="Already have an account?"
                   />
                 )}
                 {changePasswordForm && (
                   <FormFooterLink
                     btnText="Log in"
-                    link={userLogin()}
+                    link={URLUserLogin()}
                     question="Remember password?"
                   />
                 )}

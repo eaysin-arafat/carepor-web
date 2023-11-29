@@ -29,8 +29,6 @@ export const changePasswordValidator = (
     errors.confirmPassword = "Passwords must match";
   }
 
-  console.log({ passwordInfo });
-
   return {
     errors,
     isValid: Object.keys(errors).length === 0,

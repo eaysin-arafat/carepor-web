@@ -1,13 +1,18 @@
 import PrivateGuard from "@/components/shared/guard/PrivateGuard";
 import ChangePassword from "@/pages/user-accounts/change-password/ChangePassword";
+import EditUserAccount from "@/pages/user-accounts/edit/UserAccountEdit";
 
 // route paths for user accounts pages
-export const userAccountEdit = (id: string): string =>
-  `/user-accounts/edit/${id}`;
-export const userAccountDetails = (id: string): string =>
+export const URLUserAccountEdit = ({
+  userId = ":userId",
+}: {
+  userId: string;
+}): string => `/user-accounts/edit/${userId}`;
+
+export const URLUserAccountDetails = (id: string): string =>
   `/user-accounts/details/${id}`;
-export const forgotPassword = (): string => "/forgot-password";
-export const changePassword = (): string => "/change-password";
+export const URLForgotPassword = (): string => "/forgot-password";
+export const URLChangePassword = (): string => "/change-password";
 
 // routers for user accounts pages
 const userAccountsRouter = [
@@ -15,19 +20,19 @@ const userAccountsRouter = [
     element: <PrivateGuard />,
     children: [
       {
-        path: userAccountEdit(":id"),
-        element: "<EditUserAccount />",
+        path: URLUserAccountEdit({ userId: ":userId" }),
+        element: <EditUserAccount />,
       },
       {
-        path: userAccountDetails(":id"),
+        path: URLUserAccountDetails(":id"),
         element: "<UserAccountDetails />",
       },
       {
-        path: forgotPassword(),
+        path: URLForgotPassword(),
         element: "<ForgotPassword />",
       },
       {
-        path: changePassword(),
+        path: URLChangePassword(),
         element: <ChangePassword />,
       },
     ],
@@ -35,3 +40,5 @@ const userAccountsRouter = [
 ];
 
 export default userAccountsRouter;
+
+// userAccountEdit

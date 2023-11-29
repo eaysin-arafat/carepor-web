@@ -223,8 +223,10 @@ const userAccountsApi = API.injectEndpoints({
      */
     changedPassword: builder.mutation({
       query: (body) => ({
-        url: "/user-account/change-password",
+        // url: "/user-account/change-password",
+        url: "/user-account/update-password",
         method: "PUT",
+        // method: "POST",
         body,
       }),
     }),

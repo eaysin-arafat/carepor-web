@@ -8,7 +8,7 @@ type Props = {
   required?: boolean;
   errMsg?: string;
   disabled?: boolean;
-  pattern?: string;
+  pattern?: "textOnly" | "numberOnly" | "float" | "username";
   type?: string;
   className?: string;
   placeholder?: string;

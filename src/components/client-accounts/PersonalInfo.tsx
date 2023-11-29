@@ -1,7 +1,6 @@
 import React from "react";
 import Checkbox from "../core/form-elements/Checkbox";
 import CustomNrc from "../core/form-elements/CustomNrc";
-import Skeleton from "../core/skeleton/Skeleton";
 import DatePicker from "../core/form-elements/CustomDatePicker";
 import Input from "../core/form-elements/Input";
 import Select from "../core/form-elements/Select";
@@ -68,7 +67,6 @@ function ClientPersonalInfo({}: Props) {
             <Input label="UnderFive Card Number" required />
           </div>
           <div className="">
-            <Skeleton />
           </div>
         </div>
       </SectionWrapper>

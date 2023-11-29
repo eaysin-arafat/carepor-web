@@ -8,7 +8,7 @@ type ButtonProps = {
   link?: string;
   style?: React.CSSProperties;
   className?: string;
-  onClick?: () => void;
+  onClick?: (e: any) => any;
   icon?: ReactNode;
   loading?: boolean;
 };
