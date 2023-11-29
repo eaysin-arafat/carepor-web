@@ -5,6 +5,7 @@ import { MdOutlinePhone } from "react-icons/md";
 import { LuMapPin } from "react-icons/lu";
 import { FaRegAddressCard } from "react-icons/fa";
 import Button from "@/components/core/buttons/Button";
+
 type Props = {};
 
 function AdmissionSearch({}: Props) {
@@ -19,10 +20,9 @@ function AdmissionSearch({}: Props) {
                 Adaman <br /> Smamntha
               </p>
             </div>
-
             <div>
               <div className="flex flex-row gap-5">
-                <div className="border-r-2 pe-2">
+                <div>
                   <span>Date of Birth</span>
                   <div className="flex flex-row items-center gap-2">
                     <span>
@@ -31,7 +31,7 @@ function AdmissionSearch({}: Props) {
                     <span className="text-grayColor">3-Jan-1991</span>
                   </div>
                 </div>
-                <div className="border-r">
+                <div className="border-r pr-5">
                   <span>Sex</span>
                   <div className="flex flex-row gap-2">
                     <span>
@@ -40,31 +40,33 @@ function AdmissionSearch({}: Props) {
                     <span className="text-grayColor">Male</span>
                   </div>
                 </div>
-                <div className="border-r">
-                  <span className="text-grayColor">Cellphone</span>
+                <div className="border-r pr-5">
+                  <span>Cellphone</span>
                   <div className="flex flex-row gap-2">
                     <span>
-                      <MdOutlinePhone />
+                      <MdOutlinePhone className="text-grayColor" />
                     </span>
-                    <span>+260 22222222</span>
+                    <span className="text-grayColor">+260 22222222</span>
                   </div>
                 </div>
-                <div className="border-r">
-                  <span className="text-grayColor">NUPN</span>
+                <div className="border-r pr-5">
+                  <span>NUPN</span>
                   <div className="flex flex-row gap-2">
                     <span>
-                      <FaRegAddressCard />
+                      <FaRegAddressCard className="text-grayColor" />
                     </span>
-                    <span>22222-22-2</span>
+                    <span className="text-grayColor">22222-22-2</span>
                   </div>
                 </div>
-                <div className="border-r">
-                  <span className="text-grayColor">Address</span>
+                <div>
+                  <span>Address</span>
                   <div className="flex flex-row gap-2">
                     <span>
-                      <LuMapPin />
+                      <LuMapPin className="text-grayColor" />
                     </span>
-                    <span>H# Flat 23A, R#456 8th Street, Khaka,Greenbush</span>
+                    <span className="text-grayColor">
+                      H# Flat 23A, R#456 8th Street, Khaka,Greenbush
+                    </span>
                   </div>
                 </div>
               </div>
@@ -76,6 +78,15 @@ function AdmissionSearch({}: Props) {
               </div>
             </div>
           </div>
+        </div>
+        {/* Do you find the patient section */}
+      </Container>
+      <Container>
+        <div className="border-2 rounded-lg border-blue-300 px-10 py-8 mt-10">
+          <p className="text-center pb-5 heading_2 text-gray-600">
+            Did you find the patient?
+          </p>
+          <Button title="Add New Patient" type="submit" icon="+" />
         </div>
       </Container>
     </>
