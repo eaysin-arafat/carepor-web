@@ -34,7 +34,7 @@ const ClientSearch = () => {
               <h2 className="">Welcome Amir Hamza</h2>
               <h2 className="">Wednesday, November 29, 2023</h2>
             </div>
-            <div className="relative bg-lightBlueColor w-full p-5 rounded-md shadow  transition-all ease-out">
+            <div className="relative bg-lightBlueColor w-full p-5 rounded-lg shadow  transition-all ease-out">
               <h2 className="heading_2 text-center font-semibold text-secondaryColor text-4xl pb-2">
                 Search or Add New Patient
               </h2>
@@ -73,7 +73,7 @@ const ClientSearch = () => {
                 </button>
               </div>
               <form action="" className="w-full flex justify-center gap-5 mt-5">
-                <div className="w-full max-w-[600px] pb-7">
+                <div className="w-full max-w-[800px] pb-7">
                   {search === "nrc" && (
                     <CustomNrc
                       label=""
@@ -85,12 +85,19 @@ const ClientSearch = () => {
                   {search === "nupn" && (
                     <CustomNrc
                       label=""
-                      placeholder="Search By NRC"
+                      placeholder="Search By NUPN"
                       onChange={() => {}}
                       className="border-gray-300 focus:border-gray-300"
                     />
                   )}
                   {search === "cellPhone" && <CellPhoneSearch />}
+                  {search === "name" && (
+                    <div className="custom-input flex">
+                      <div className="border-r">
+                        <input type="text" className={defaultInputCss} />
+                      </div>
+                    </div>
+                  )}
                 </div>
                 <div className="flex justify-center absolute -bottom-6">
                   <button type="submit" className="main_btn w-40">
@@ -103,8 +110,12 @@ const ClientSearch = () => {
             {/* Dashboard  */}
             <div className="mt-20">
               <div className="grid grid-cols-2 gap-5">
-                <Card title="Pharmacy Queue" image="assets/icons/home.svg" >
-                  Content
+                <Card
+                  title="Pharmacy Queue"
+                  image="assets/icons/home.svg"
+                  titleClass="heading_3 text-secondaryColor"
+                >
+                  <div className="bg-whiteColor rounded-md p-4 ">Content</div>
                 </Card>
               </div>
             </div>
@@ -119,3 +130,4 @@ export default ClientSearch;
 
 const defaultButtonCss =
   " w-[138px] text-primaryColor bg-whiteColor border-2 border-primaryColor py-1 rounded-full";
+const defaultInputCss = "border-none focus:border-none focus:ring-0";
