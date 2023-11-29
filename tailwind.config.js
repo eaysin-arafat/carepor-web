@@ -1,7 +1,12 @@
 /** @type {import('tailwindcss').Config} */
+import fleabite from "flowbite/plugin";
 
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "node_modules/flowbite-react/lib/esm/**/*.js",
+  ],
   darkMode: "class",
   theme: {
     fontFamily: {
@@ -26,7 +31,7 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [fleabite],
 };
 
 /**

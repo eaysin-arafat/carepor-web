@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { FaChartPie } from "react-icons/fa6";
-import { Link } from "react-router-dom";
 import SidebarList from "./SidebarData";
+import SidebarListItem from "./SidebarList";
 
 function Sidebar() {
   const [search, setSearch] = useState("");
@@ -32,14 +31,11 @@ function Sidebar() {
         )}
         {filteredData.length > 0 &&
           filteredData.map((item, index) => (
-            <li key={index}>
-              <Link
-                to={item.link}
-                className="flex items-center gap-2 p-3 hover:bg-primaryColor hover:text-white"
-              >
-                <FaChartPie size={20} /> {item.title}
-              </Link>
-            </li>
+            <SidebarListItem
+              key={index}
+              dropdown={item?.children ? true : false}
+              item={item}
+            />
           ))}
       </ul>
     </div>
