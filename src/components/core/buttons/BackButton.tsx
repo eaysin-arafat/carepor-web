@@ -30,7 +30,7 @@ const BackButton = ({
         <Link
           to={link!}
           style={style}
-          className={cn("btn w-40 border-2 border-borderColor  ", className , {
+          className={cn("btn w-40 border-2 border-borderColor  ", className, {
             "disabled_bg cursor-not-allowed": disabled,
             " bg-whiteColor hover:bg-borderColor text-blackColor": !disabled,
           })}
@@ -42,7 +42,7 @@ const BackButton = ({
     case "button":
       return (
         <button
-          className={cn("btn w-40 border-2 border-borderColor  ", className , {
+          className={cn("btn w-40 border-2 border-borderColor  ", className, {
             "disabled_bg cursor-not-allowed": disabled,
             " bg-whiteColor hover:bg-borderColor text-blackColor": !disabled,
           })}
