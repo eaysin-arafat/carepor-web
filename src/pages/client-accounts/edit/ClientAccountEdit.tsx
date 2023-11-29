@@ -1,22 +1,27 @@
+import ContactInformation from "@/components/client-accounts/ContactInformation";
+import EducationAndEmployment from "@/components/client-accounts/EducationAndEmployment";
+import GuardianDetails from "@/components/client-accounts/GuardianDetails";
+import MaritalStatusAndSpouse from "@/components/client-accounts/MaritalStatusAndSpouse";
+import ClientPersonalInfo from "@/components/client-accounts/PersonalInfo";
+import PlaceOfBirthAndReligious from "@/components/client-accounts/PlaceOfBirthAndReligious";
 import BackButton from "@/components/core/buttons/BackButton";
 import NextButton from "@/components/core/buttons/NextButton";
 import FormWrapper from "@/components/core/form-layouts/FormWrapper";
 import MultiStepComponent from "@/components/shared/multi-step/multiStep";
-import ContactInfo from "@/components/user-accounts/ContactInfo";
-import LoginInfo from "@/components/user-accounts/LoginInfo";
-import PersonalInfo from "@/components/user-accounts/PersonalInfo";
 import { useState } from "react";
 
-type Props = {};
-
-function EditUserAccount({}: Props) {
+function ClientAccountEdit() {
   const [stateCount, setStateCount] = useState(1);
   const stepTitle = [
     "Personal <br /> Information",
-    "Contect <br /> Information",
-    "Login <br /> Information",
+    "Parents or  <br /> Guardian Details",
+    "Marital Status &  <br /> Spouse Details",
+    "Contact <br /> Information",
+    "Place of Birth & <br /> Religious Denomination",
+    "Education &  <br /> Employment",
   ];
-
+  console.log({ stateCount });
+  console.log({ stepTitle: stepTitle.length });
   const disabledBackButton = stateCount === 1;
 
   const handleBack = () => {
@@ -28,23 +33,29 @@ function EditUserAccount({}: Props) {
 
   return (
     <>
-      <div className="max-w-[700px] mx-auto ">
+      <div className="max-w-[1022px] mx-auto ">
         <MultiStepComponent active={stateCount} title={stepTitle} />
       </div>
       <div className="my-8">
         <FormWrapper
-          title="User Profile Edit"
+          title="Client Profile Edit"
           titleClass="text-center"
           maxWidth="max-w-[1022px]"
           noBackground
         >
           <>
+            <p className="text-center mt-2">
+              Fields marked by <span className="text-dangerColor">*</span> are
+              mandatory
+            </p>
             <form action="" className="my-5">
-              {stateCount === 1 && <PersonalInfo />}
-              {stateCount === 2 && <ContactInfo />}
-              {stateCount === 3 && <LoginInfo />}
+              {stateCount === 1 && <ClientPersonalInfo />}
+              {stateCount === 2 && <GuardianDetails />}
+              {stateCount === 3 && <MaritalStatusAndSpouse />}
+              {stateCount === 4 && <ContactInformation />}
+              {stateCount === 5 && <PlaceOfBirthAndReligious />}
+              {stateCount === 6 && <EducationAndEmployment />}
             </form>
-
             <div className="flex gap-5 mt-5 justify-end">
               <BackButton
                 disabled={disabledBackButton}
@@ -77,4 +88,4 @@ function EditUserAccount({}: Props) {
   );
 }
 
-export default EditUserAccount;
+export default ClientAccountEdit;

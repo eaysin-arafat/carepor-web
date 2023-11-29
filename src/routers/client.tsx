@@ -2,6 +2,7 @@ import PrivateGuard from "@/components/shared/guard/PrivateGuard";
 import CreateAdmission from "@/pages/admissions/create/Create";
 import CreateClientAccount from "@/pages/client-accounts/create/CreateClientAccount";
 import EditAdmission from "../pages/admissions/edit/Edit";
+import ClientAccountEdit from "@/pages/client-accounts/edit/ClientAccountEdit";
 
 // route paths for client pages
 export const clientSearch = (): string => "/client-search";
@@ -40,7 +41,7 @@ const clientRouter = [
       },
       {
         path: clientEdit({ id: ":id" }),
-        element: "<ClientEdit />",
+        element: <ClientAccountEdit />,
       },
       {
         path: createAdmission({ clientId: ":clientId" }),
