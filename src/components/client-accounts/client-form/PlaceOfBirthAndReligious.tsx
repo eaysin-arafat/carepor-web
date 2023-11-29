@@ -1,7 +1,7 @@
 import React from "react";
-import Input from "../core/form-elements/Input";
-import Select from "../core/form-elements/Select";
-import FormSection from "../core/form-layouts/FormSection";
+import Input from "../../core/form-elements/Input";
+import Select from "../../core/form-elements/Select";
+import FormSection from "../../core/form-layouts/FormSection";
 
 type Props = {};
 

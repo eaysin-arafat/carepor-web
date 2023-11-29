@@ -2,7 +2,7 @@
 
 type Props = {
   value?: string | number;
-  onChange?: any;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   name?: string;
   label: string;
   required?: boolean;
@@ -24,37 +24,24 @@ function Input({
   required,
   errMsg,
   disabled,
-  pattern,
   type = "text",
   className,
   placeholder,
   max,
-  numberOnly,
 }: Props) {
-  // Function to handle input change
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (!pattern) {
-      return onChange(event);
-    }
-  };
-
   return (
     <div className="flex flex-col w-full items-start justify-start gap-[6px]">
       <div className="flex">
-        <div className="text-blackColor leading-[125%] capitalize">
-          {" "}
-          {label}
-        </div>
+        <div className="text-blackColor leading-[125%] capitalize">{label}</div>
         {required && <span className="-mt-[6px] mx-1 text-dangerColor">*</span>}
       </div>
       <input
-        type={numberOnly ? "text" : type}
+        type={type}
         className={`custom-input ${className}`}
         value={value}
         name={name}
-        onChange={handleInputChange}
+        onChange={onChange}
         disabled={disabled}
-        // pattern={pattern}
         max={max || "250"}
         placeholder={`${placeholder ? placeholder : "Enter" + " " + label}`}
       />
@@ -63,11 +50,6 @@ function Input({
           {errMsg}
         </span>
       )}
-      {/* {isOnlyNumber && (
-        <p className="text-sm mt-1" style={{ color: "red" }}>
-          {isOnlyNumber}
-        </p>
-      )} */}
     </div>
   );
 }

@@ -7,15 +7,14 @@ import LoginInfo from "@/components/user-accounts/LoginInfo";
 import PersonalInfo from "@/components/user-accounts/PersonalInfo";
 import { useState } from "react";
 
-type Props = {};
+const stepTitle = [
+  "Personal <br /> Information",
+  "Contect <br /> Information",
+  "Login <br /> Information",
+];
 
-function CreateUserAccount({}: Props) {
+function CreateUserAccount() {
   const [stateCount, setStateCount] = useState(1);
-  const stepTitle = [
-    "Personal <br /> Information",
-    "Contect <br /> Information",
-    "Login <br /> Information",
-  ];
 
   const disabledBackButton = stateCount === 1;
 
@@ -53,7 +52,7 @@ function CreateUserAccount({}: Props) {
                 onClick={handleBack}
                 className="w-40"
               />
-              {stateCount === 6 && (
+              {stateCount === 3 && (
                 <NextButton
                   title="Submit"
                   type="submit"
@@ -61,7 +60,7 @@ function CreateUserAccount({}: Props) {
                   className=""
                 />
               )}
-              {stateCount !== 6 && (
+              {stateCount !== 3 && (
                 <NextButton
                   title="Next"
                   type="button"

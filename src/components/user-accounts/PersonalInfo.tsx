@@ -4,8 +4,6 @@ import DateInput from "../core/form-elements/DatePicker";
 import Input from "../core/form-elements/Input";
 import FormSection from "../core/form-layouts/FormSection";
 
-type Props = {};
-
 function PersonalInfo({}: Props) {
   return (
     <>
