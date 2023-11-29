@@ -36,7 +36,7 @@
 
 @layer components {
   .disabled_bg {
-    @apply bg-borderColor text-grayColor
+    @apply bg-borderColor text-grayColor;
   }
 }
 
@@ -74,7 +74,7 @@ body {
 }
 
 *::-webkit-scrollbar {
-  width: 7px;
+  width: 2px;
   height: 8px;
 }
 
@@ -84,8 +84,12 @@ body {
 
 *::-webkit-scrollbar-thumb {
   background-color: var(--primary);
-  border: 1px solid transparent;
+  /* border: 1px solid transparent; */
   background-clip: content-box;
+}
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .custom-input {

@@ -10,7 +10,7 @@ import FormWrapper from "@/components/core/form-layouts/FormWrapper";
 import MultiStepComponent from "@/components/shared/multi-step/multiStep";
 import { useState } from "react";
 
-function CreateClientAccount() {
+function ClientAccountEdit() {
   const [stateCount, setStateCount] = useState(1);
   const stepTitle = [
     "Personal <br /> Information",
@@ -38,7 +38,7 @@ function CreateClientAccount() {
       </div>
       <div className="my-8">
         <FormWrapper
-          title="Client Profile Registration"
+          title="Client Profile Edit"
           titleClass="text-center"
           maxWidth="max-w-[1022px]"
           noBackground
@@ -88,4 +88,4 @@ function CreateClientAccount() {
   );
 }
 
-export default CreateClientAccount;
+export default ClientAccountEdit;
