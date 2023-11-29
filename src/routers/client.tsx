@@ -3,6 +3,7 @@ import CreateAdmission from "@/pages/admissions/create/Create";
 import CreateClientAccount from "@/pages/client-accounts/create/CreateClientAccount";
 import EditAdmission from "../pages/admissions/edit/Edit";
 import ClientAccountEdit from "@/pages/client-accounts/edit/ClientAccountEdit";
+import ClientSearch from "@/pages/client-accounts/index/ClientSearch";
 
 // route paths for client pages
 export const clientSearch = (): string => "/client-search";
@@ -29,7 +30,7 @@ const clientRouter = [
     children: [
       {
         path: clientSearch(),
-        element: "<ClientSearch />",
+        element: <ClientSearch />,
       },
       {
         path: clientDetails({ id: ":id" }),
