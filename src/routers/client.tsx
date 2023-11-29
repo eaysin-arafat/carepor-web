@@ -4,9 +4,11 @@ import CreateClientAccount from "@/pages/client-accounts/create/CreateClientAcco
 import ClientAccountEdit from "@/pages/client-accounts/edit/ClientAccountEdit";
 import ClientSearch from "@/pages/client-accounts/index/ClientSearch";
 import EditAdmission from "../pages/admissions/edit/Edit";
+import AdmissionSearch from "./../pages/admissions/index/AdmissionSearch";
 
 // route paths for client pages
 export const URLClientSearch = (): string => "/client-search";
+export const URLAdmissionSearch = (): string => "/admission-search";
 export const URLClientDetails = ({ id = ":id" }: { id: string }): string =>
   `/client-details/${id}`;
 export const URLClientCreate = (): string => "/client-create";
@@ -31,6 +33,10 @@ const clientRouter = [
       {
         path: URLClientSearch(),
         element: <ClientSearch />,
+      },
+      {
+        path: URLAdmissionSearch(),
+        element: <AdmissionSearch />,
       },
       {
         path: URLClientDetails({ id: ":id" }),
