@@ -1,0 +1,130 @@
+import RenderSelectOptions, {
+  RenderLanguageOptions,
+} from "@/components/core/form-elements/RenderSelectOptions";
+import { religionsEnums } from "@/enum/clients";
+import { ManageFacilityType } from "@/hooks/useManageFacility";
+import {
+  ClientPlaceOfBirthAndReligionErrorType,
+  ClientPlaceOfBirthAndReligionType,
+} from "@/types/clientFormTypes";
+import React from "react";
+import Input from "../../../core/form-elements/Input";
+import Select from "../../../core/form-elements/Select";
+import FormSection from "../../../core/form-layouts/FormSection";
+
+type Props = {
+  placeOfBirthAndReligion: ClientPlaceOfBirthAndReligionType;
+  placeOfBirthAndReligionError: ClientPlaceOfBirthAndReligionErrorType;
+  handlePlaceOfBirthAndReligionChange: (e: React.ChangeEvent) => void;
+  districtAndProvince: ManageFacilityType;
+};
+
+function PlaceOfBirthAndReligious({
+  placeOfBirthAndReligion,
+  placeOfBirthAndReligionError,
+  handlePlaceOfBirthAndReligionChange,
+  districtAndProvince,
+}: Props) {
+  console.log(placeOfBirthAndReligionError);
+
+  //
+  const {
+    districtOptions,
+    provinceOptions,
+    facilityState,
+    facilityChangeHandler,
+  } = districtAndProvince;
+
+  console.log({ ...facilityState, ...placeOfBirthAndReligion });
+
+  return (
+    <>
+      <FormSection titleText="Place of Birth & Religious Denomination">
+        <>
+          {/* Marital Status & Spouse Details */}
+          <div className="grid md:grid-cols-2 gap-5 mt-2">
+            <div className="flex items-center">
+              <Select
+                label="Home Language"
+                name="homeLanguageId"
+                value={placeOfBirthAndReligion.homeLanguageId}
+                onChange={handlePlaceOfBirthAndReligionChange}
+                errMsg={placeOfBirthAndReligionError?.homeLanguageId}
+                required
+              >
+                <RenderLanguageOptions />
+              </Select>
+            </div>
+            <div className="flex items-center">
+              <Select
+                label="Is Client Born In Zambia"
+                name="isZambianBorn"
+                onChange={handlePlaceOfBirthAndReligionChange}
+                value={placeOfBirthAndReligion.isZambianBorn}
+                errMsg={placeOfBirthAndReligionError?.isZambianBorn}
+                required
+              >
+                <option value="1">Yes</option>
+                <option value="2">No</option>
+              </Select>
+            </div>
+            <div className="flex items-center">
+              <Select
+                label="Province of Birth"
+                name="province"
+                onChange={facilityChangeHandler}
+                value={facilityState.province}
+                errMsg={placeOfBirthAndReligionError?.province}
+                // server key name ==  provinceId
+                required
+              >
+                <RenderSelectOptions options={provinceOptions} />
+              </Select>
+            </div>
+            <div className="flex items-center">
+              <Select
+                label="District of Birth"
+                name="district"
+                // server key name == districtId
+                value={facilityState.district}
+                onChange={facilityChangeHandler}
+                errMsg={placeOfBirthAndReligionError?.district}
+                required
+              >
+                <RenderSelectOptions options={districtOptions} />
+              </Select>
+            </div>
+            <div className="flex items-center">
+              <Input
+                required
+                label="Place of Birth"
+                name="birthPlace"
+                onChange={handlePlaceOfBirthAndReligionChange}
+                value={placeOfBirthAndReligion.birthPlace}
+                errMsg={placeOfBirthAndReligionError?.birthPlace}
+              />
+            </div>
+            <div className="flex items-center">
+              <Select
+                label="Religious Denomination"
+                name="religion"
+                value={placeOfBirthAndReligion.religion}
+                onChange={handlePlaceOfBirthAndReligionChange}
+                errMsg={placeOfBirthAndReligionError?.religion}
+              >
+                <RenderSelectOptions
+                  options={Object.keys(religionsEnums).map((key) => ({
+                    oid: key,
+                    description: religionsEnums[key],
+                  }))}
+                />
+              </Select>
+            </div>
+          </div>
+        </>
+      </FormSection>
+    </>
+  );
+}
+
+export default PlaceOfBirthAndReligious;

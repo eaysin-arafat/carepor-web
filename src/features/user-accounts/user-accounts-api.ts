@@ -15,6 +15,22 @@ const userAccountsApi = API.injectEndpoints({
         method: "POST",
         body,
       }),
+
+      async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
+        try {
+          const result = await queryFulfilled;
+          dispatch(
+            login({
+              user: { ...result?.data, facilityAccesses: [] },
+              token: result?.data?.oid,
+              isRegistered: true,
+            })
+          );
+        } catch (error) {
+          console.log(error);
+          dispatch(logout());
+        }
+      },
     }),
 
     /**

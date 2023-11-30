@@ -1,7 +1,7 @@
 // import { useChangePasswordMutation } from "@/features/users/users-api";
 // import { changePasswordValidator } from "@/validation-model/change-password";
 import { RootState } from "@/app/store";
-import { RtkStatusEnum } from "@/enum";
+import { RtkStatusEnum } from "@/enum/rtk";
 import { useChangedPasswordMutation } from "@/features/user-accounts/user-accounts-api";
 
 import { FormSubmitEventType, OnchangeEventType } from "@/types/htmlEvents";

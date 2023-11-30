@@ -4,11 +4,10 @@ import OutlineButton from "@/components/core/buttons/OutlineButton";
 import SubmitButton from "@/components/core/buttons/SubmitButton";
 import RenderSelectOptions from "@/components/core/form-elements/RenderSelectOptions";
 import FormWrapper from "@/components/core/form-layouts/FormWrapper";
+import { Navigate } from "react-router-dom";
 import useRequestFacility from "./useRequestFacility";
 
-type Props = {};
-
-const RequestFacility = ({}: Props) => {
+const RequestFacility = () => {
   const {
     facilityChangeHandler,
     districtOptions,
@@ -16,12 +15,15 @@ const RequestFacility = ({}: Props) => {
     facilityError,
     facilityState,
     provinceOptions,
-    //
     handleSendFacilityRequest,
     handleCancelRequest,
+    isLoggedIn,
+    token,
   } = useRequestFacility();
 
-  return (
+  return !isLoggedIn && !token ? (
+    <Navigate to="/" />
+  ) : (
     <div>
       <FormWrapper
         title="Request Facility Login"

@@ -1,14 +1,5 @@
+import { Country } from "@/interface/country";
 import { API } from "../API/API";
-
-interface Country {
-  oid: number;
-  description: string;
-  isoCodeAlpha2: string;
-  countryCode: string;
-  dateModified: string;
-  isDeleted: boolean;
-  isSynced: boolean;
-}
 
 const countryApi = API.injectEndpoints({
   endpoints: (builder) => ({

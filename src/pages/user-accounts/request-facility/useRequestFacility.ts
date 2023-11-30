@@ -1,10 +1,12 @@
 import { RootState } from "@/app/store";
+import { setIsRegisteredFalse } from "@/features/authentication/authentication-slice";
 import { useCreateFacilityAccessMutation } from "@/features/facility-access/facility-access-api";
 import useManageFacility from "@/hooks/useManageFacility";
 import { URLSelectFacility } from "@/routers/facility";
 import { FormSubmitEventType } from "@/types/htmlEvents";
 import Alert from "@/utilities/alert";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +24,10 @@ type FacilityRequestType = {
 
 const useRequestFacility = () => {
   const navigate = useNavigate();
-  const { user } = useSelector((state: RootState) => state.authentication);
+  const dispatch = useDispatch();
+  const { user, isLoggedIn, token } = useSelector(
+    (state: RootState) => state.authentication
+  );
 
   const [
     sendFacilityRequest,
@@ -71,6 +76,7 @@ const useRequestFacility = () => {
   useEffect(() => {
     if (isSuccess && status === "fulfilled") {
       Alert.success(facilityAccess && "Facility Request send successful");
+      dispatch(setIsRegisteredFalse());
     }
     if (isError && status === "rejected") {
       Alert.error(
@@ -94,9 +100,10 @@ const useRequestFacility = () => {
     facilityChangeHandler,
     facilityError,
     facilityState,
-    //
     handleCancelRequest,
     handleSendFacilityRequest,
+    isLoggedIn,
+    token,
   };
 };
 

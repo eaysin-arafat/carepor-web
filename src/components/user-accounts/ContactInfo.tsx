@@ -1,10 +1,34 @@
+import { Country } from "@/interface/country";
+import { ContactInfoType, ErrorsType } from "@/types/user-accounts";
 import Input from "../core/form-elements/Input";
-import FormSection from "../core/form-layouts/FormSection";
+import Select from "../core/form-elements/Select";
 import Textarea from "../core/form-elements/textarea";
+import FormSection from "../core/form-layouts/FormSection";
 
-type Props = {};
+type Props = {
+  contactInfo: ContactInfoType;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  errors?: ErrorsType;
+  countries: Country[];
+  handleCellphoneChange: (e: string) => void;
+  isCellphoneValid?: boolean;
+};
 
-function ContactInfo({}: Props) {
+function ContactInfo({
+  contactInfo,
+  handleChange,
+  errors,
+  countries,
+  handleCellphoneChange,
+  isCellphoneValid,
+}: Props) {
+  const renderCountryOptions = () => {
+    return countries.map((country: Country) => (
+      <option key={country.oid} value={country.countryCode}>
+        {country.isoCodeAlpha2}
+      </option>
+    ));
+  };
   return (
     <>
       <FormSection titleText="Contact Information">
@@ -16,12 +40,33 @@ function ContactInfo({}: Props) {
               label="Contact Address"
               placeholder="Add Address"
               max={500}
+              errMsg={errors?.contactAddress}
+              value={contactInfo.contactAddress}
+              onChange={handleChange}
+              name="contactAddress"
             />
           </div>
           <div className="grid md:grid-cols-2 grid-cols-1 gap-5 mt-4">
-            <Input required label="Code" placeholder="Add Code" />
+            <Select
+              required
+              label="Code"
+              placeholder="Add Code"
+              value={contactInfo.countryCode}
+              name="countryCode"
+              onChange={handleChange}
+              errMsg={errors?.countryCode || errors?.cellphone}
+            >
+              {countries?.length > 0 && renderCountryOptions()}
+            </Select>
             <div>
-              <Input required label="Cellphone" placeholder="Phone" />
+              <Input
+                required
+                label="Cellphone"
+                placeholder="Phone"
+                // value={contactInfo.cellphone}
+                name="cellphone"
+                onChange={(e) => handleCellphoneChange(e.target.value)}
+              />
               <p className="">Note: Cellphone must be unique.</p>
             </div>
           </div>
