@@ -23,3 +23,37 @@ export type PasswordRecoveryFormErrorType = {
   username?: string;
   common?: string;
 };
+
+export interface PersonalInfoType {
+  firstName: string;
+  surname: string;
+  dob: string | null;
+  sex: string;
+  designation: string;
+}
+
+export interface ContactInfoType {
+  contactAddress: string;
+  countryCode: string;
+  cellphone: string;
+}
+
+export interface LoginInfoType {
+  password: string;
+  confirmPassword: string;
+}
+
+export interface ErrorsType {
+  firstName?: string;
+  surname?: string;
+  dob?: string;
+  sex?: string;
+  designation?: string;
+  contactAddress?: string;
+  countryCode?: string;
+  password?: string;
+  confirmPassword?: string;
+  nrc?: string;
+  cellphone?: string;
+  username?: string;
+}

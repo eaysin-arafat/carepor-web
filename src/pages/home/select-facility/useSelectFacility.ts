@@ -3,6 +3,7 @@ import { logout } from "@/features/authentication/authentication-slice";
 import { useReadFacilityByKeyQuery } from "@/features/facility/facility-api";
 import { useGetUserAccessByUserNameMutation } from "@/features/user-accounts/user-accounts-api";
 import useManageFacility from "@/hooks/useManageFacility";
+import { URLClientSearch } from "@/routers/client";
 import { FormSubmitEventType } from "@/types/htmlEvents";
 import Alert from "@/utilities/alert";
 import { cookieManager } from "@/utilities/cookie-manager";
@@ -103,10 +104,10 @@ const useSelectFacility = () => {
 
     if (data?.userAccount.userType == 1) {
       cookieManager.saveCookie("facility_token", cookieData, null);
-      navigate("/clients");
+      navigate(URLClientSearch());
     } else if (isPermitted) {
       cookieManager.saveCookie("facility_token", cookieData, null);
-      navigate("/clients");
+      navigate(URLClientSearch());
     } else if (!isPermitted && isFacilityValid) {
       Alert.error(
         "You are not authorized to login with this facility. Please contact the administrator."

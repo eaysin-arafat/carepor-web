@@ -2,9 +2,9 @@ import Button from "@/components/core/buttons/Button";
 import RenderSelectOptions from "@/components/core/form-elements/RenderSelectOptions";
 import Select from "@/components/core/form-elements/Select";
 import FormLayout from "@/components/core/form-layouts/FormLayout";
-import { URLRequestFacility } from "@/routers/facility";
 import { Link } from "react-router-dom";
 import useSelectFacility from "./useSelectFacility";
+import { URLRequestFacility } from "@/routers/application-router";
 
 const SelectFacility = () => {
   // const { data } = useReadProvincesQuery(undefined);

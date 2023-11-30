@@ -2,6 +2,13 @@ export class TypeValidation {
   static isOnlyNumber(value: string): boolean {
     return /^\d+$/.test(value);
   }
+  static isZambiaCellphone = (cellphone: string): boolean => {
+    return /^0?\d{0,10}$/.test(cellphone);
+  };
+
+  static isPhoneNumber(value: string): boolean {
+    return /^[0-9]{11}$/.test(value);
+  }
 
   static isOnlyInteger(value: string): boolean {
     return /^\d+$/.test(value);
@@ -33,10 +40,6 @@ export class TypeValidation {
 
   static isMobileNumber(value: string): boolean {
     return /^[0-9]{10}$/.test(value);
-  }
-
-  static isPhoneNumber(value: string): boolean {
-    return /^[0-9]{11}$/.test(value);
   }
 
   static isZipCode(value: string): boolean {

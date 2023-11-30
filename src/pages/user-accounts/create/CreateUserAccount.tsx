@@ -5,25 +5,35 @@ import MultiStepComponent from "@/components/shared/multi-step/multiStep";
 import ContactInfo from "@/components/user-accounts/ContactInfo";
 import LoginInfo from "@/components/user-accounts/LoginInfo";
 import PersonalInfo from "@/components/user-accounts/PersonalInfo";
-import { useState } from "react";
-
-const stepTitle = [
-  "Personal <br /> Information",
-  "Contect <br /> Information",
-  "Login <br /> Information",
-];
+import useUserRegistration from "./useCreate";
 
 function CreateUserAccount() {
-  const [stateCount, setStateCount] = useState(1);
-
-  const disabledBackButton = stateCount === 1;
-
-  const handleBack = () => {
-    setStateCount((prev: number) => Math.max(prev - 1, 1));
-  };
-  const handleNext = () => {
-    setStateCount((next: number) => Math.min(next + 1, stepTitle.length));
-  };
+  const {
+    contactInfo,
+    countries,
+    errors,
+    handleCellphoneChange,
+    handleContactInfoChange,
+    handleLoginInfoChange,
+    handleNrcChange,
+    handlePersonalInfoChange,
+    handleSubmit,
+    handleUsernameChange,
+    isCellphoneValid,
+    isNRCValid,
+    isUsernameValid,
+    loginInfo,
+    noNRC,
+    nrc,
+    personalInfo,
+    username,
+    handleSetNoNRC,
+    disabledBackButton,
+    handleBack,
+    handleNext,
+    stateCount,
+    stepTitle,
+  } = useUserRegistration();
 
   return (
     <>
@@ -38,37 +48,62 @@ function CreateUserAccount() {
           noBackground
         >
           <>
-            <form action="" className="my-5">
-              {stateCount === 1 && <PersonalInfo />}
-              {stateCount === 2 && <ContactInfo />}
-              {stateCount === 3 && <LoginInfo />}
-            </form>
-
-            <div className="flex gap-5 mt-5 justify-end">
-              <BackButton
-                disabled={disabledBackButton}
-                title="Back"
-                type="button"
-                onClick={handleBack}
-                className="w-40"
-              />
-              {stateCount === 3 && (
-                <NextButton
-                  title="Submit"
-                  type="submit"
-                  onClick={handleNext}
-                  className=""
+            <form action="" className="my-5" onSubmit={handleSubmit}>
+              {stateCount === 1 && (
+                <PersonalInfo
+                  personalInfo={personalInfo}
+                  handleChange={handlePersonalInfoChange}
+                  noNrc={noNRC}
+                  handleNoNRC={handleSetNoNRC}
+                  handleNrcChange={handleNrcChange}
+                  nrc={nrc}
+                  errors={errors}
+                  isNrcValid={isNRCValid}
                 />
               )}
-              {stateCount !== 3 && (
-                <NextButton
-                  title="Next"
+              {stateCount === 2 && (
+                <ContactInfo
+                  contactInfo={contactInfo}
+                  handleChange={handleContactInfoChange}
+                  errors={errors}
+                  countries={countries}
+                  handleCellphoneChange={handleCellphoneChange}
+                  isCellphoneValid={isCellphoneValid}
+                />
+              )}
+              {stateCount === 3 && (
+                <LoginInfo
+                  loginInfo={loginInfo}
+                  handleChange={handleLoginInfoChange}
+                  errors={errors}
+                  username={username}
+                  handleUsernameChange={handleUsernameChange}
+                  isUsernameValid={isUsernameValid}
+                />
+              )}
+
+              <div className="flex gap-5 mt-5 justify-end">
+                <BackButton
+                  disabled={disabledBackButton}
+                  title="Back"
                   type="button"
-                  onClick={handleNext}
+                  onClick={handleBack}
                   className="w-40"
                 />
-              )}
-            </div>
+                {stateCount === 3 && (
+                  <NextButton title="Submit" type="submit" className="" />
+                )}
+
+                {stateCount !== 3 && (
+                  <NextButton
+                    title="Next"
+                    type="button"
+                    onClick={handleNext}
+                    className="w-40"
+                  />
+                )}
+              </div>
+            </form>
           </>
         </FormWrapper>
       </div>

@@ -85,7 +85,7 @@ const ClientSearch = () => {
                   {search === "nrc" && (
                     <CustomNrc
                       label=""
-                      placeholder="Search By NRC"
+                      // placeholder="Search By NRC"
                       onChange={() => {}}
                       className="border-gray-300 focus:border-gray-300"
                     />
@@ -122,7 +122,7 @@ const ClientSearch = () => {
                   titleClass="heading_3 text-secondaryColor"
                 >
                   <Table>
-                    <TableHead 
+                    <TableHead
                       tableHead={["PATIENT NAME", "DOB", "PRESCRIPTION DATE"]}
                     />
                     {data.map((item: any) => {
@@ -150,21 +150,21 @@ export default ClientSearch;
 
 const defaultButtonCss =
   " w-[138px] text-primaryColor hover:bg-primaryHoverColor  hover:text-whiteColor bg-whiteColor border-2 border-primaryColor py-1.5 rounded-full transition-all ease-in-out duration-500 ";
-  
-  const data = [
-    {
-      id: 1,
-      name: "Amir Hamza",
-      date: "25 Nov, 2023",
-    },
-    {
-      id: 1,
-      name: "John Doe",
-      date: "25 Nov, 2023",
-    },
-    {
-      id: 1,
-      name: "Amir Hamza",
-      date: "25 Nov, 2023",
-    },
-  ];
+
+const data = [
+  {
+    id: 1,
+    name: "Amir Hamza",
+    date: "25 Nov, 2023",
+  },
+  {
+    id: 1,
+    name: "John Doe",
+    date: "25 Nov, 2023",
+  },
+  {
+    id: 1,
+    name: "Amir Hamza",
+    date: "25 Nov, 2023",
+  },
+];
