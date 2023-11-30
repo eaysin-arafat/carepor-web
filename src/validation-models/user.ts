@@ -1,10 +1,25 @@
 // Check if user is over 18 years old
-
-import { isDateInFuture, isOver18Years } from "@/lib/helpers/date-helpers";
-
 // USER REGISTRATION VALIDATOR
-export const userRegistrationValidator = (user) => {
-  const error = {};
+
+import { DateFunc } from "@/utilities/data";
+
+interface UserType {
+  firstName?: string;
+  surname?: string;
+  dob?: string;
+  sex?: string;
+  designation?: string;
+  nrc?: string;
+  contactAddress?: string;
+  countryCode?: string;
+  cellphone?: string;
+  username?: string;
+  password?: string;
+  confirmPassword?: string;
+}
+
+export const userRegistrationValidator = (user: UserType) => {
+  const error: UserType = {};
 
   // validate first name
   if (!user.firstName) error.firstName = "Required";
@@ -22,8 +37,9 @@ export const userRegistrationValidator = (user) => {
 
   // validate dob
   if (!user.dob) error.dob = "Required";
-  else if (isDateInFuture(user.dob)) error.dob = "Date cannot be in the future";
-  else if (!isOver18Years(user.dob))
+  else if (DateFunc.isDateInFuture(user.dob))
+    error.dob = "Date cannot be in the future";
+  else if (!DateFunc.isOverYears(user.dob, 18))
     error.dob = "User must be equal or above 18 years old.";
 
   // validate sex
@@ -81,8 +97,8 @@ export const userRegistrationValidator = (user) => {
 };
 
 // EDIT USER VALIDATOR
-export const editUserValidator = (user) => {
-  const error = {};
+export const editUserValidator = (user: UserType) => {
+  const error: UserType = {};
 
   if (!user.firstName) error.firstName = "Required";
   else if (user.firstName?.length > 60)
@@ -97,8 +113,9 @@ export const editUserValidator = (user) => {
     error.surname = "Surname must be more than 2 characters";
 
   if (!user.dob) error.dob = "Required";
-  else if (isDateInFuture(user.dob)) error.dob = "Date cannot be in the future";
-  else if (!isOver18Years(user.dob))
+  else if (DateFunc.isDateInFuture(user.dob))
+    error.dob = "Date cannot be in the future";
+  else if (!DateFunc.isOverYears(user.dob, 18))
     error.dob = "You must be over 18 years old";
 
   if (!user.sex) error.sex = "Required";
@@ -114,9 +131,12 @@ export const editUserValidator = (user) => {
 
   if (!user.cellphone) error.cellphone = "Required";
   else if (user?.countryCode == "+260") {
-    if (user?.cellphone.startsWith(0) && user?.cellphone?.length > 10) {
+    if (user?.cellphone.startsWith("0") && user?.cellphone?.length > 10) {
       error.cellphone = "Cellphone must be 10 digits";
-    } else if (!user?.cellphone.startsWith(0) && user?.cellphone?.length > 9) {
+    } else if (
+      !user?.cellphone.startsWith("0") &&
+      user?.cellphone?.length > 9
+    ) {
       error.cellphone = "Cellphone must be 9 digits";
     }
   } else if (user?.cellphone?.length > 11)

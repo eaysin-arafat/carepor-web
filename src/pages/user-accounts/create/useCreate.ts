@@ -5,29 +5,23 @@ import {
   useCheckUserNameQuery,
   useCreateUserAccountMutation,
 } from "@/features/user-accounts/user-accounts-api";
+import { URLRequestFacility } from "@/routers/application-router";
+import { FormSubmitEventType } from "@/types/htmlEvents";
+import {
+  ContactInfoType,
+  ErrorsType,
+  LoginInfoType,
+  PersonalInfoType,
+} from "@/types/user-accounts";
 import { cookieManager } from "@/utilities/cookie-manager";
+import { TypeValidation } from "@/utilities/type-valdation";
+import { contactInfoValidator } from "@/validation-models/user-accounts/contact-info-validator";
+import { loginInfoValidator } from "@/validation-models/user-accounts/login-info-validator";
+import { userAccountPersonalInfoValidator } from "@/validation-models/user-accounts/personal-info-validator";
 import { debounce } from "lodash";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-
-interface PersonalInfoType {
-  firstName: string;
-  surname: string;
-  dob: string | null;
-  sex: string;
-  designation: string;
-}
-
-interface ContactInfoType {
-  contactAddress: string;
-  countryCode: string;
-}
-
-interface LoginInfoType {
-  password: string;
-  confirmPassword: string;
-}
 
 const initialPersonalInfo = {
   firstName: "",
@@ -40,6 +34,7 @@ const initialPersonalInfo = {
 const initialContactInfo = {
   contactAddress: "",
   countryCode: "",
+  cellphone: "",
 };
 
 const initialLoginInfo = {
@@ -47,22 +42,16 @@ const initialLoginInfo = {
   confirmPassword: "",
 };
 
-interface ErrorsType {
-  firstName?: string;
-  surname?: string;
-  dob?: string;
-  sex?: string;
-  designation?: string;
-  contactAddress?: string;
-  countryCode?: string;
-  password?: string;
-  confirmPassword?: string;
-}
-
 function useUserRegistration() {
   //  nrc state
   const [nrc, setNrc] = useState("");
   const [noNRC, setNoNRC] = useState(false);
+  const [username, setUsername] = useState("");
+  const [errors, setErrors] = useState<ErrorsType>({});
+  const [isCellphoneValid, setIsCellphoneValid] = useState(true);
+  const [isUsernameValid, setIsUsernameValid] = useState(true);
+  const [isNRCValid, setIsNRCValid] = useState(true);
+  const [stateCount, setStateCount] = useState(1);
 
   // personal info states
   const [personalInfo, setPersonalInfo] =
@@ -75,41 +64,26 @@ function useUserRegistration() {
   // login info states
   const [loginInfo, setLoginInfo] = useState<LoginInfoType>(initialLoginInfo);
 
-  //  cellphone and username state
-  const [cellphone, setCellphone] = useState("");
-  const [username, setUsername] = useState("");
-
-  // errors state
-  const [errors, setErrors] = useState<ErrorsType>({});
-
-  ///  validation states
-  const [isCellphoneValid, setIsCellphoneValid] = useState(true);
-  const [isUsernameValid, setIsUsernameValid] = useState(true);
-  const [isNRCValid, setIsNRCValid] = useState(true);
-
   // api hooks
   const { data: countries } = useReadCountriesQuery(undefined);
 
   // check cellphone api hook
   const { data: cellphoneData } = useCheckUserMobileQuery(
     {
-      userMobile: cellphone,
+      userMobile: contactInfo.cellphone,
       countryCode: contactInfo.countryCode,
     },
     {
-      skip: !cellphone || !contactInfo.countryCode,
+      skip: !contactInfo.cellphone || !contactInfo.countryCode,
       refetchOnMountOrArgChange: true,
     }
   );
 
   /// check username api hook
-  const { data: usernameData } = useCheckUserNameQuery(
-    { username: username },
-    {
-      skip: !username,
-      refetchOnMountOrArgChange: true,
-    }
-  );
+  const { data: usernameData } = useCheckUserNameQuery(username, {
+    skip: !username,
+    refetchOnMountOrArgChange: true,
+  });
 
   // check nrc api hook
   const {
@@ -130,6 +104,12 @@ function useUserRegistration() {
 
   //  variable and hooks
   const navigate = useNavigate();
+  const disabledBackButton = stateCount === 1;
+  const stepTitle = [
+    "Personal <br /> Information",
+    "Contact <br /> Information",
+    "Login <br /> Information",
+  ];
 
   // set nrc based on noNRC
   useEffect(() => {
@@ -141,14 +121,9 @@ function useUserRegistration() {
   }, [noNRC]);
 
   // handle personal information changes
-  const handlePersonalInfoChange = (e) => {
-    // destructuring name and value from e.target
+  const handlePersonalInfoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-
-    // set personal info
     setPersonalInfo((prev) => ({ ...prev, [name]: value }));
-
-    // clear errors
     setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
@@ -157,72 +132,79 @@ function useUserRegistration() {
     if (value === "") {
       setIsUsernameValid(true);
     }
-
-    // set username
     setUsername(value);
-
-    // clear errors
     setErrors((prev) => ({ ...prev, username: "" }));
   }, 800);
 
   // handle contact information change
-  const handleContactInfoChange = (e) => {
-    // destructuring name and value from e.target
+  const handleContactInfoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-
-    // set contact info
-    setContactInfo((prev) => ({ ...prev, [name]: value }));
-
-    // clear errors
     setErrors((prev) => ({ ...prev, [name]: "" }));
+    setContactInfo((prev) => ({ ...prev, [name]: value }));
   };
 
   // handle login information changes
-  const handleLoginInfoChange = (e) => {
-    // destructuring name and value from e.target
+  const handleLoginInfoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-
-    // set login info
     setLoginInfo((prev) => ({ ...prev, [name]: value }));
-
-    // clear errors
     setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
+  // handle set no nrc
+  const handleSetNoNRC = () => {
+    if (!noNRC) setNrc("000000/00/0");
+    else setNrc("");
+    setNoNRC(!noNRC);
+    setErrors((prev) => ({ ...prev, nrc: "" }));
+  };
+
   // handle cellphone change
-  const handleCellphoneChange = (e) => {
-    // set cellphone
-
-    if (e.target.value === "" || TypeValidation.isOnlyNumber(e.target.value))
-      setCellphone(e.target.value);
-  };
-
-  //
-  const handleDateInputChange = (date) => {
-    setPersonalInfo((prev) => ({
-      ...prev,
-      dob: convertDateObjectToDateString(date),
-    }));
-
-    setErrors(null);
-  };
+  const handleCellphoneChange = debounce((value) => {
+    if (value === "" || TypeValidation.isOnlyNumber(value))
+      setContactInfo((prev) => ({ ...prev, cellphone: value }));
+  }, 400);
 
   // handle nrc change
   const handleNrcChange = debounce((nrc) => {
-    // if nrc is empty set isNRCValid to true
     if (nrc === "") {
       setIsNRCValid(true);
     }
-
-    // set nrc
     setNrc(nrc);
-
-    // clear errors
     setErrors((prev) => ({ ...prev, nrc: "" }));
   }, 800);
 
+  // handle back
+  const handleBack = () => {
+    setStateCount((prev: number) => Math.max(prev - 1, 1));
+  };
+
+  // handle next
+  const handleNext = () => {
+    if (stateCount === 1) {
+      const { error: personalInfoValidationError, isValid } =
+        userAccountPersonalInfoValidator({ ...personalInfo, nrc });
+      if (!isValid) return setErrors(personalInfoValidationError);
+      if (!isNRCValid) return;
+    }
+
+    if (stateCount === 2) {
+      const { error: contactInfoValidationError, isValid } =
+        contactInfoValidator(contactInfo);
+      if (!isValid) return setErrors(contactInfoValidationError);
+    }
+
+    if (stateCount === 3) {
+      const { errors: loginInfoValidationError, isValid } = loginInfoValidator({
+        ...loginInfo,
+        username,
+      });
+      if (!isValid) return setErrors(loginInfoValidationError);
+    }
+    setStateCount((next: number) => Math.min(next + 1, stepTitle.length));
+  };
+
   // handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormSubmitEventType) => {
     e.preventDefault();
 
     const data = {
@@ -231,15 +213,9 @@ function useUserRegistration() {
       ...loginInfo,
       nrc,
       username: username,
-      cellphone: cellphone,
-      userMobile: cellphone,
+      // cellphone: cellphone,
+      // userMobile: cellphone,
     };
-
-    // check validation
-    const { isValid, error } = userRegistrationValidator(data);
-
-    // if not valid set errors
-    if (!isValid) return setErrors(error);
 
     // call registration api
     registration(data);
@@ -254,7 +230,6 @@ function useUserRegistration() {
       setContactInfo(initialContactInfo);
       setLoginInfo(initialLoginInfo);
       setNrc("");
-      setCellphone("");
       setUsername("");
       setNoNRC(false);
 
@@ -262,14 +237,18 @@ function useUserRegistration() {
         expires: 1,
       });
 
-      navigate("/request-facility");
+      navigate(URLRequestFacility());
     }
 
     if (isError && status === "rejected") {
-      toast.dismiss();
-      toast.error(
-        typeof error?.data === "string" ? error?.data : "Error creating account"
-      );
+      if ("data" in error) {
+        toast.dismiss();
+        toast.error(
+          typeof error?.data === "string"
+            ? error?.data
+            : "Error creating account"
+        );
+      }
     }
   }, [isSuccess, isError, status, error, navigate, user?.oid]);
 
@@ -295,12 +274,12 @@ function useUserRegistration() {
     if (nrcIsSuccess && nrcStatus === "fulfilled") {
       return setIsNRCValid(false);
     }
-
     if (nrcIsError && nrcStatus === "rejected") {
       return setIsNRCValid(true);
     }
   }, [nrcIsSuccess, nrcIsError, nrcStatus]);
 
+  // return values
   return {
     personalInfo,
     contactInfo,
@@ -308,7 +287,6 @@ function useUserRegistration() {
     countries,
     nrc,
     noNRC,
-    cellphone,
     username,
     errors,
     isCellphoneValid,
@@ -319,14 +297,14 @@ function useUserRegistration() {
     handleLoginInfoChange,
     handleCellphoneChange,
     handleSubmit,
-    setNoNRC,
-    setUsername,
     handleUsernameChange,
-    handleDateInputChange,
-    setErrors,
-    setNrc,
-    setIsNRCValid,
     handleNrcChange,
+    handleSetNoNRC,
+    stepTitle,
+    stateCount,
+    handleBack,
+    handleNext,
+    disabledBackButton,
   };
 }
 
