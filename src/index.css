@@ -4,15 +4,14 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .light {
   --body: #fafafb;
   --primary: #1890ff;
   --primaryHover: #007aec;
-  --lightBlue: #cee7ffd3;  
+  --lightBlue: #cee7ffd3;
   --secondary: #1e0e62;
   --grayColor: #a1a1b0;
-  --lightGray: #f3f4f6
+  --lightGray: #f3f4f6;
   --black: #000000;
   --white: #ffffff;
   --danger: red;
@@ -24,17 +23,16 @@
   --body: #000000;
   --primary: #1890ff;
   --primaryHover: #007aec;
-  --lightBlue: #cee7ffd3; 
+  --lightBlue: #cee7ffd3;
   --secondary: #1e0e62;
   --grayColor: #a1a1b0;
-  --lightGray: #f3f4f6
+  --lightGray: #f3f4f6;
   --black: #ffffff;
   --white: #000000;
   --danger: red;
   --border: #ebeaed;
   --text: #374151;
 }
-
 
 @layer components {
   .heading_1 {
@@ -127,14 +125,32 @@ body {
   scrollbar-width: none;
 }
 
-.light .default_option{
+.light .default_option {
   color: #6b6e75 !important;
 }
 
-select option{
+select option {
   color: rgb(0, 0, 0) !important;
 }
 
 div[data-testid="flowbite-accordion"] button svg {
   display: none !important;
+}
+
+div[data-testid="flowbite-accordion"] button h2 {
+  width: 100%;
+}
+
+div[data-testid="flowbite-accordion"] button h2 svg {
+  display: block !important;
+}
+
+.last\:rounded-b-lg:last-child {
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+.first\:rounded-t-lg:first-child {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
 }

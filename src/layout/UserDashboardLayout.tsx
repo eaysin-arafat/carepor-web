@@ -38,10 +38,10 @@ function UserDashboardLayout() {
               className={` border-r bg-white h-[92vh] relative overflow-x-auto`}
               style={{
                 transition: "0.5s",
-                transform: sidebar && "translateX(-350px)",
+                transform: sidebar && "translateX(-300px)",
                 opacity: sidebar && "0",
-                width: sidebar ? "0px" : "350px",
-                minWidth: sidebar ? "0px" : "350px",
+                width: sidebar ? "0px" : "300px",
+                minWidth: sidebar ? "0px" : "300px",
               }}
             >
               <Sidebar />
