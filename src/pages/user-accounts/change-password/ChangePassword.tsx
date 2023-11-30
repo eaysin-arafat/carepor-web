@@ -1,4 +1,5 @@
-import Button from "@/components/core/buttons/Button";
+import OutlineButton from "@/components/core/buttons/OutlineButton";
+import SubmitButton from "@/components/core/buttons/SubmitButton";
 import Password from "@/components/core/form-elements/PasswordInput";
 import FormLayout from "@/components/core/form-layouts/FormLayout";
 import useChangePassword from "./useChangePassword";
@@ -42,11 +43,10 @@ function ChangePassword() {
             />
           </div>
           <div className="mt-5">
-            <Button type="submit" title="Change Password" />
+            <SubmitButton buttonType="submit" title="Change Password" />
           </div>
           <div className="mt-5">
-            {/* <Button type="outline" title="Cancel" /> */}
-            <Button type="button" title="Cancel" />
+            <OutlineButton buttonType="button" title="Cancel" />
           </div>
         </form>
       </FormLayout>

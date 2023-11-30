@@ -1,4 +1,4 @@
-import Button from "@/components/core/buttons/Button";
+import LinkButton from "@/components/core/buttons/LinkButton";
 import AppLogo from "@/components/core/logo/logo";
 import Title from "@/components/core/titles/Titles";
 import { useState } from "react";
@@ -77,10 +77,9 @@ function Header() {
             </div>
           </li>
           <li>
-            <Button
+            <LinkButton
               title="Select Client"
               className="block px-10 h-[45px] text-[10px] w-[170px]"
-              type="link"
               link="/"
             />
           </li>

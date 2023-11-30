@@ -97,8 +97,26 @@
 }
 
 @layer components {
+  .btn_sm {
+    @apply py-2.5 text-base ;
+  }
+}
+
+@layer components {
   .react-datepicker-wrapper {
     @apply w-full;
+  }
+}
+
+@layer components {
+  .svg_transition {
+    @apply transition-colors ease-out delay-200;
+  }
+}
+
+@layer components {
+  .svg_white {
+    @apply filter brightness-0 invert transition-all;
   }
 }
 

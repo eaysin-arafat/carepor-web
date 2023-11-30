@@ -1,4 +1,4 @@
-import Button from "@/components/core/buttons/Button";
+import SubmitButton from "@/components/core/buttons/SubmitButton";
 import DatePicker from "@/components/core/form-elements/CustomDatePicker";
 import Select from "@/components/core/form-elements/Select";
 import Textarea from "@/components/core/form-elements/textarea";
@@ -45,13 +45,13 @@ function CreateAdmission({}: Props) {
 
             <Textarea
               label="Additional Comments"
-              placeholder="Additinal Components"
+              placeholder="Additional Components"
               max={500}
             />
           </div>
           <div className="grid grid-cols-2 gap-5 mt-4">
-            <Button type="submit" title="Save & Admit" />
-            <Button type="outline" title="Cancel" />
+            <SubmitButton buttonType="submit" title="Save & Admit" />
+            <SubmitButton buttonType="button" title="Cancel" />
           </div>
         </form>
       </FormLayout>

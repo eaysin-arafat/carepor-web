@@ -1,4 +1,5 @@
-import Button from "@/components/core/buttons/Button";
+import OutlineButton from "@/components/core/buttons/OutlineButton";
+import SubmitButton from "@/components/core/buttons/SubmitButton";
 import RenderSelectOptions from "@/components/core/form-elements/RenderSelectOptions";
 import Select from "@/components/core/form-elements/Select";
 import FormLayout from "@/components/core/form-layouts/FormLayout";
@@ -63,15 +64,18 @@ const SelectFacility = () => {
             </Select>
           </div>
           <div className="text-right mt-3">
-            <Link to={URLRequestFacility()} className="text-grayColor text-xs">
+            <Link
+              to={URLRequestFacility()}
+              className="text-grayColor hover:text-primaryColor text-xs"
+            >
               Send Facility Access Request
             </Link>
           </div>
           <div className="mt-5">
-            <Button type="submit" title="Enter" />
+            <SubmitButton buttonType="submit" title="Enter" />
           </div>
           <div className="text-center mt-2">
-            <Button type="outline" title="Logout" onClick={handleLogout} />
+            <OutlineButton title="Logout" onClick={handleLogout} />
           </div>
         </form>
       </FormLayout>

@@ -1,6 +1,6 @@
 import Input from "@/components/core/form-elements/Input";
 
-import Button from "@/components/core/buttons/Button";
+import SubmitButton from "@/components/core/buttons/SubmitButton";
 import CountryCode from "@/components/core/form-elements/CountryCode";
 import PhoneNumberInput from "@/components/core/form-elements/PhoneNumber";
 import { FormFooterLink } from "@/components/core/form-layouts/FormFooterLink";
@@ -61,7 +61,7 @@ function RecoveryRequest() {
             </div>
 
             <div className="mt-5">
-              <Button type="submit" title="Submit" />
+              <SubmitButton buttonType="submit" title="Submit" />
             </div>
             <FormFooterLink
               btnText="Log in"

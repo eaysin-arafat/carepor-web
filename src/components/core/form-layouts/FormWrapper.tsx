@@ -56,14 +56,14 @@ function FormWrapper({
             <AppName />
             <div className="">
               {title && (
-                <Title type="h2" title={title} className={cn(titleClass)} />
+                <Title type="h2" title={title} className={cn(titleClass )} />
               )}
               {subTitle && <Title type="h3" title={subTitle} />}
               {titleNote && (
                 <Title
                   type="span"
                   title={titleNote}
-                  className={cn(titleClass)}
+                  className={cn("flex justify-center " , titleClass)}
                 />
               )}
               {paragraph && <Title type="p" title={paragraph} />}

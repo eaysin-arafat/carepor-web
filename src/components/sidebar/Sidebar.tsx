@@ -1,6 +1,5 @@
 import { Accordion } from "flowbite-react";
 import { useState } from "react";
-import { Bs0Circle } from "react-icons/bs";
 import SidebarList from "./SidebarData";
 
 function Sidebar() {
