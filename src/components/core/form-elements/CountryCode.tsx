@@ -66,6 +66,7 @@ Props) {
       onChange={handleFilter}
       placeholder={placeholder}
       required={required}
+      selectShow="Country Code"
     >
       {renderCodeOptions(countries)}
     </Select>
