@@ -1,6 +1,8 @@
+import { ChangeEvent } from "react";
+
 type Props = {
   value?: string | number;
-  onChange?: any;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   name?: string;
   label: string;
   required?: boolean;

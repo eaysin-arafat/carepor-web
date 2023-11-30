@@ -1,6 +1,7 @@
 type Props = {
   value?: string | number;
-  onChange?: (e: any) => void;
+  onChange?: (e: React.ChangeEvent) => void;
+  // onChange?: any;
   name?: string;
   label: string;
   required?: boolean;

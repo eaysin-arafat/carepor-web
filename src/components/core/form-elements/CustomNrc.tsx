@@ -1,21 +1,25 @@
-import PropTypes from "prop-types";
-import { ChangeEvent, FC } from "react";
+import { OnchangeEventType } from "@/types/htmlEvents";
+import { FC } from "react";
+// import { ChangeEvent, FC } from "react";
 import { PatternFormat } from "react-number-format";
 
 interface CustomNrcProps {
-  state: any;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  state?: any;
+  value?: string;
+  onChange: any;
+  // onChange: (e: ChangeEvent<HTMLInputElement>) => void ;
   required?: boolean;
   disabled?: boolean;
   errMsg?: string;
   name?: string;
   label: string;
   className?: string;
-  keyUpHandler?: any;
+  // keyUpHandler?: any;
 }
 
 const CustomNrc: FC<CustomNrcProps> = ({
-  state,
+  // state,
+  value,
   onChange,
   required,
   disabled,
@@ -23,9 +27,9 @@ const CustomNrc: FC<CustomNrcProps> = ({
   name = "nrc",
   label,
   className,
-  keyUpHandler = null,
+  // keyUpHandler = null,
 }) => {
-  const handleNrcChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleNrcChange = (e: OnchangeEventType) => {
     const nrcWithoutSlash = e.target.value.replace(/\//g, "")?.length;
     if (nrcWithoutSlash && nrcWithoutSlash <= 9) {
       onChange(e);
@@ -45,10 +49,10 @@ const CustomNrc: FC<CustomNrcProps> = ({
         format="######/##/#"
         placeholder="______/__/_"
         mask="_"
-        value={state}
+        value={value}
         onChange={handleNrcChange}
         disabled={disabled}
-        onKeyUp={keyUpHandler}
+        onKeyUp={null}
         name={name}
         className={`custom-input ${className}`}
       />
@@ -57,23 +61,8 @@ const CustomNrc: FC<CustomNrcProps> = ({
           {errMsg}
         </span>
       )}
-      {/* {isOnlyNumber && (
-        <p className="text-sm mt-1" style={{ color: "red" }}>
-          {isOnlyNumber}
-        </p>
-      )} */}
     </div>
   );
-};
-
-CustomNrc.propTypes = {
-  state: PropTypes.any,
-  onChange: PropTypes.func.isRequired,
-  required: PropTypes.bool.isRequired,
-  disabled: PropTypes.bool.isRequired,
-  errMsg: PropTypes.string,
-  name: PropTypes.string,
-  keyUpHandler: PropTypes.func,
 };
 
 export default CustomNrc;

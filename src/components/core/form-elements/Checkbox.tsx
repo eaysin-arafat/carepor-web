@@ -1,6 +1,6 @@
 type Props = {
   value?: string | number;
-  onChange?: any;
+  onChange?: (e:React.ChangeEvent<HTMLInputElement>) => void; 
   name?: string;
   marginTop?: string;
   label: string;
