@@ -6,6 +6,7 @@ type Props = {
   label: string;
   required?: boolean;
   errMsg?: string;
+  selectShow?: string;
   disabled?: boolean;
   className?: string;
   placeholder?: string;
@@ -19,11 +20,13 @@ function Select({
   label,
   required,
   errMsg,
+  selectShow = "--Select--",
   disabled,
   className,
   placeholder,
   children,
 }: Props) {
+  console.log({ value });
   return (
     <div className="flex flex-col w-full items-start justify-start gap-[6px]">
       <div className="flex">
@@ -34,14 +37,16 @@ function Select({
         {required && <span className="-mt-[6px] mx-1 text-dangerColor">*</span>}
       </div>
       <select
-        className={`custom-input ${className}`}
+        className={`custom-input ${value === "" && "default_option"} ${className}`}
         value={value}
         name={name}
         onChange={onChange}
         disabled={disabled}
         placeholder={`${placeholder ? placeholder : "Enter" + " " + label}`}
       >
-        <option value="">--Select--</option>
+        <option value="" className="text-black">
+          {selectShow}
+        </option>
         {children}
       </select>
       {errMsg && (

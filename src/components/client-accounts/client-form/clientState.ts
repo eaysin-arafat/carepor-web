@@ -85,6 +85,7 @@ export const contactInfoState: ClientContactInfoType = {
 export const placeOfBirthAndReligionState: ClientPlaceOfBirthAndReligionType = {
   homeLanguageId: "", //0
   isZambianBorn: "1", // server data is boolean true,
+
   provinceId: "", //0
   districtId: "", //0
   birthPlace: "",

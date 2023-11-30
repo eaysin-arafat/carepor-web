@@ -60,7 +60,7 @@ function ParentsGuardianDetails({
               <CustomNrc
                 label="NRC"
                 name="mothersNRC"
-                value={parentsOrGuardians.mothersNRC}
+                state={parentsOrGuardians.mothersNRC}
                 onChange={handleParentsGuardianDetailsChange}
                 errMsg={parentsOrGuardiansError?.mothersNRC}
               />
@@ -125,7 +125,7 @@ function ParentsGuardianDetails({
               <CustomNrc
                 label="NRC"
                 name="fathersNRC"
-                value={parentsOrGuardians.fathersNRC}
+                state={parentsOrGuardians.fathersNRC}
                 onChange={handleParentsGuardianDetailsChange}
                 errMsg={parentsOrGuardiansError?.fathersNRC}
               />
@@ -190,7 +190,7 @@ function ParentsGuardianDetails({
               <CustomNrc
                 label="NRC"
                 name="guardiansNRC"
-                value={parentsOrGuardians.guardiansNRC}
+                state={parentsOrGuardians.guardiansNRC}
                 onChange={handleParentsGuardianDetailsChange}
                 errMsg={parentsOrGuardiansError?.guardiansNRC}
               />

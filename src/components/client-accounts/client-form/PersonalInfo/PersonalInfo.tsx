@@ -83,7 +83,7 @@ function ClientPersonalInfo({
             <CustomNrc
               label="NRC"
               name="nrc"
-              value={personalInfo.nrc}
+              state={personalInfo.nrc}
               onChange={handlePersonalInfoChange}
               errMsg={personalInfoError?.nrc}
               required={!personalInfo.noNRC}

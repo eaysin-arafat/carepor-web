@@ -117,9 +117,10 @@ export type ClientContactInfoErrorType = {
 export type ClientPlaceOfBirthAndReligionType = {
   homeLanguageId: string; //0
   isZambianBorn: string; //
-  // provinceId: string; // server key name
-  province: string; //0
-  districtId: string; //0
+  provinceId?: string; // server key name
+  province?: string; //0
+  districtId?: string; //0
+  district?: string; //0
   birthPlace: string;
   religion: string; //0
 };
