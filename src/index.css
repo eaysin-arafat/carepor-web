@@ -134,7 +134,7 @@ body {
 select option{
   color: rgb(0, 0, 0) !important;
 }
-div.tableDataLast {
-  border-radius: 0px 9px 9px 9px;
-  /* background: rgb(167, 167, 167); */
+
+div[data-testid="flowbite-accordion"] button svg {
+  display: none !important;
 }

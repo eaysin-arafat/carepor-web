@@ -1,5 +1,6 @@
 import { Accordion } from "flowbite-react";
 import { useState } from "react";
+import { Bs0Circle } from "react-icons/bs";
 import SidebarList from "./SidebarData";
 
 function Sidebar() {
@@ -39,7 +40,10 @@ function Sidebar() {
             {filteredData.map((item, index) => (
               <Accordion.Panel key={index} className="border-none rounded-none">
                 <Accordion.Title className="p-3 border-none outline-none hover:bg-primaryColor focus:bg-primaryColor hover:text-white active:bg-primaryColor rounded-none">
-                  {item.title}
+                  <div className="flex justify-between items-center">
+                    {item.title}
+                    <img src="/public/assets/icons/search.svg" alt="" className="text-black" />
+                  </div>
                 </Accordion.Title>
               </Accordion.Panel>
             ))}
