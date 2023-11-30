@@ -1,6 +1,6 @@
+import { Accordion } from "flowbite-react";
 import { useState } from "react";
 import SidebarList from "./SidebarData";
-import SidebarListItem from "./SidebarList";
 
 function Sidebar() {
   const [search, setSearch] = useState("");
@@ -9,6 +9,8 @@ function Sidebar() {
       ? item
       : item.title.toLocaleLowerCase().includes(search.toLocaleLowerCase());
   });
+
+  console.log({ filteredData });
 
   return (
     <div className="w-full">
@@ -20,8 +22,8 @@ function Sidebar() {
           placeholder="Search..."
         />
       </div>
-      <ul>
-        {filteredData.length <= 0 && (
+      <div>
+        {filteredData?.length <= 0 && (
           <div
             className="bg-red-100 mx-3 text-center border border-red-400 text-red-700 px-4 py-2 rounded relative"
             role="alert"
@@ -29,15 +31,21 @@ function Sidebar() {
             <span>Menu Not Found</span>
           </div>
         )}
-        {filteredData.length > 0 &&
-          filteredData.map((item, index) => (
-            <SidebarListItem
-              key={index}
-              dropdown={item?.children ? true : false}
-              item={item}
-            />
-          ))}
-      </ul>
+        {filteredData?.length > 0 && (
+          <Accordion
+            className="border-none rounded-[1px] overflow-auto"
+            style={{ borderRadius: "0px" }}
+          >
+            {filteredData.map((item, index) => (
+              <Accordion.Panel key={index} className="border-none rounded-none">
+                <Accordion.Title className="p-3 border-none outline-none hover:bg-primaryColor focus:bg-primaryColor hover:text-white active:bg-primaryColor rounded-none">
+                  {item.title}
+                </Accordion.Title>
+              </Accordion.Panel>
+            ))}
+          </Accordion>
+        )}
+      </div>
     </div>
   );
 }
