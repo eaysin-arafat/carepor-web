@@ -1,24 +1,13 @@
-import React from "react";
-import Checkbox from "../core/form-elements/Checkbox";
-import CustomNrc from "../core/form-elements/CustomNrc";
-import DatePicker from "../core/form-elements/CustomDatePicker";
-import Input from "../core/form-elements/Input";
-import Select from "../core/form-elements/Select";
-import SectionWrapper from "../core/form-layouts/SectionWrapper";
+import Checkbox from "../../../core/form-elements/Checkbox";
+import DatePicker from "../../../core/form-elements/CustomDatePicker";
+import CustomNrc from "../../../core/form-elements/CustomNrc";
+import Input from "../../../core/form-elements/Input";
+import Select from "../../../core/form-elements/Select";
+import SectionWrapper from "../../../core/form-layouts/SectionWrapper";
 
 type Props = {};
 
 function ClientPersonalInfo({}: Props) {
-  const [selectedDate, setSelectedDate] = React.useState<string | null>(
-    "2023-11-23T10:46:17.000Z"
-  );
-
-  console.log(setSelectedDate);
-
-  const handler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
-  };
-
   return (
     <>
       <SectionWrapper title="Personal Information">
@@ -32,9 +21,9 @@ function ClientPersonalInfo({}: Props) {
           <div className="col-span-6 md:col-span-3">
             <DatePicker
               name="date"
-              value={selectedDate}
+              // value={selectedDate}
               label="Date of birth"
-              onChange={handler}
+              // onChange={handler}
               required
             />
           </div>
@@ -47,7 +36,12 @@ function ClientPersonalInfo({}: Props) {
             <Checkbox label="Date of birth is estimated" />
           </div>
           <div className="col-span-6 md:col-span-3">
-            <CustomNrc label="NRC" required state="s" onChange={handler} />
+            <CustomNrc
+              label="NRC"
+              required
+              state="s"
+              onChange={(e) => console.log(e.target)}
+            />
           </div>
           <div className="col-span-6 md:col-span-3">
             <Select label="Country" required>
@@ -66,8 +60,7 @@ function ClientPersonalInfo({}: Props) {
           <div className="col-span-6 md:col-span-2">
             <Input label="UnderFive Card Number" required />
           </div>
-          <div className="">
-          </div>
+          <div className=""></div>
         </div>
       </SectionWrapper>
     </>

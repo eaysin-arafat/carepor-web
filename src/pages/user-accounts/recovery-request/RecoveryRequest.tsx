@@ -5,8 +5,8 @@ import CountryCode from "@/components/core/form-elements/CountryCode";
 import PhoneNumberInput from "@/components/core/form-elements/PhoneNumber";
 import { FormFooterLink } from "@/components/core/form-layouts/FormFooterLink";
 import FormWrapper from "@/components/core/form-layouts/FormWrapper";
-import usePasswordRecovery from "./useRecoveryRequest";
 import { URLUserLogin } from "@/routers/public";
+import usePasswordRecovery from "./useRecoveryRequest";
 
 function RecoveryRequest() {
   const {
@@ -59,14 +59,15 @@ function RecoveryRequest() {
                 />
               </div>
             </div>
+
+            <div className="mt-5">
+              <Button type="submit" title="Submit" />
+            </div>
             <FormFooterLink
               btnText="Log in"
               link={URLUserLogin()}
               question="Remember password?"
             />
-            <div className="mt-5">
-              <Button type="submit" title="Submit" />
-            </div>
           </div>
         </form>
       </FormWrapper>

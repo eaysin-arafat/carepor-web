@@ -14,6 +14,7 @@ type Props = {
   disabled?: any;
   pattern?: any;
   type?: string;
+  placeholder?: string;
 };
 
 function DatePicker({
@@ -26,6 +27,7 @@ function DatePicker({
   // error,
   errMsg,
   disabled = false,
+  placeholder = "dd/mm/yyyy"
 }: Props) {
   const [selectedDate, setSelectedDate] = useState<string | null>(
     value || null
@@ -175,7 +177,7 @@ function DatePicker({
         </div>
         <input
           type="text"
-          placeholder="dd/mm/yyyy"
+          placeholder={`${placeholder}`}
           name={name}
           // onChange={handleChange}
           disabled={disabled}
@@ -190,22 +192,22 @@ function DatePicker({
           >
             {/* <div className="absolute mt-[70px] bg-whiteColor border border-grayColor w-72 rounded-md z-20 mb-9 pb-2"> */}
             <div className="bg-borderColor pt-3">
-              <div className="flex justify-between mb-2 px-2 ">
+              <div className="flex justify-between mb-2 px-2 gap-1">
                 <button
                   onClick={() => setShowDatepicker(false)}
-                  className="border border-grayColor rounded-full"
+                  className="border border-grayColor rounded-full h-fit mt-2"
                 >
                   <RxCross2 className="bg-borderColor shadow-md text-xl p-1 rounded-full h-6 w-6" />
                 </button>
                 <button
                   onClick={clearState}
-                  className="border border-grayColor rounded px-1 shadow"
+                  className="border border-grayColor rounded px-1 shadow h-fit mt-2"
                 >
                   Clear
                 </button>
                 {/* <div> */}
                 <select
-                  className="bg-borderColor rounded"
+                  className="bg-borderColor rounded border-none focus:outline-none focus:ring-0"
                   value={currentMonth}
                   onChange={(e) => setCurrentMonth(Number(e.target.value))}
                 >
@@ -213,7 +215,7 @@ function DatePicker({
                 </select>{" "}
                 {/* -{" "} */}
                 <select
-                  className="bg-borderColor rounded "
+                  className="bg-borderColor rounded border-none focus:outline-none focus:ring-0"
                   value={currentYear}
                   onChange={(e) => setCurrentYear(Number(e.target.value))}
                 >

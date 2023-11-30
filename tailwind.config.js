@@ -5,7 +5,7 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
-    "node_modules/flowbite-react/lib/esm/**/*.js",
+    "./node_modules/flowbite-react/lib/esm/**/*.js",
   ],
   darkMode: "class",
   theme: {
@@ -20,8 +20,10 @@ export default {
         bodyColor: "var(--body)",
         primaryColor: "var(--primary)",
         primaryHoverColor: "var(--primaryHover)",
+        lightBlueColor: "var(--lightBlue)",
         secondaryColor: "var(--secondary)",
         grayColor: "var(--grayColor)",
+        lightGrayColor: "var(--lightGray)",
         blackColor: "var(--black)",
         whiteColor: "var(--white)",
         dangerColor: "var(--danger)",
