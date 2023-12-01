@@ -22,7 +22,7 @@ const OutlineButton = ({
   return (
     <button
       className={cn(
-        `btn w-full text-blackColor bg-whiteColor hover:bg-slate-50 border-2 border-borderColor`,
+        `btn w-full text-blackColor bg-whiteColor hover:bg-slate-50 border-2 border-borderColor h-fit`,
         className
       )}
       type={buttonType}

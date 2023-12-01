@@ -41,7 +41,7 @@ const Button = ({
       return (
         <button
           className={cn(
-            `btn w-full text-whiteColor bg-primaryColor hover:bg-primaryHoverColor`,
+            `btn w-full text-whiteColor bg-primaryColor hover:bg-primaryHoverColor h-fit`,
             className
           )}
           type="submit"
@@ -61,7 +61,7 @@ const Button = ({
       return (
         <button
           className={cn(
-            `btn w-full text-blackColor bg-whiteColor hover:bg-slate-50 border-2 border-borderColor`,
+            `btn w-full text-blackColor bg-whiteColor hover:bg-slate-50 border-2 border-borderColor h-fit`,
             className
           )}
           type="button"
@@ -83,7 +83,7 @@ const Button = ({
           href={link!}
           style={style}
           className={cn(
-            `btn w-full text-whiteColor bg-primaryColor`,
+            `btn w-full text-whiteColor bg-primaryColor h-fit`,
             className
           )}
         >

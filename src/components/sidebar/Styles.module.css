@@ -1,3 +1,29 @@
 .item:hover img {
   filter: invert(100%);
 }
+
+.sidebar button {
+  background-color: #fff;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.sidebar button:hover {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.sidebar button:hover img {
+  filter: invert(100%);
+}
+
+.sidebar button:focus {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.sidebar button:active {
+  background-color: var(--primary);
+  color: #fff;
+}

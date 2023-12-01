@@ -1,6 +1,7 @@
 import Select from "@/components/core/form-elements/Select";
 
-import Button from "@/components/core/buttons/Button";
+import OutlineButton from "@/components/core/buttons/OutlineButton";
+import SubmitButton from "@/components/core/buttons/SubmitButton";
 import RenderSelectOptions from "@/components/core/form-elements/RenderSelectOptions";
 import FormWrapper from "@/components/core/form-layouts/FormWrapper";
 import { Navigate } from "react-router-dom";
@@ -65,19 +66,15 @@ const RequestFacility = () => {
             </Select>
           </div>
           <div className="mt-5">
-            <Button
+            <SubmitButton
               onClick={handleSendFacilityRequest}
-              type="submit"
+              buttonType="submit"
               title="Submit Request"
             />
           </div>
 
           <div className="mt-5 mb-3">
-            <Button
-              onClick={handleCancelRequest}
-              type="outline"
-              title="Cancel"
-            />
+            <OutlineButton onClick={handleCancelRequest} title="Cancel" />
           </div>
         </form>
       </FormWrapper>
