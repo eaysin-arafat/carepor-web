@@ -51,8 +51,10 @@ function CreateClientAccount() {
     // form Handler
     handleClintFormNextOperation,
     //
-
     notZMPhoneResetContractInfo,
+
+    // Submit Handler
+    handleClientDataSubmit,
   } = useCreateClientAccount();
 
   // console.log(personalInfo.dob);
@@ -156,7 +158,7 @@ function CreateClientAccount() {
                 <SubmitButton
                   title="Submit"
                   buttonType="submit"
-                  onClick={handleStepNext}
+                  onClick={handleClientDataSubmit}
                   className="w-40"
                 />
               )}

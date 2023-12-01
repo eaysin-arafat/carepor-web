@@ -13,6 +13,7 @@ import useMaritalStatusAndSpouse from "@/components/client-accounts/client-form/
 import useParentsGuardianDetails from "@/components/client-accounts/client-form/parents-guardian-details/useParentsGuardianDetails";
 import usePlaceOfBirthReligious from "@/components/client-accounts/client-form/place-of-birth-religious/usePlaceOfBirthReligious";
 // import { ClientPersonalInfoType } from "@/types/clientFormTypes";
+import useSubmitClientAccountCreate from "@/components/client-accounts/client-form/useSubmitClientAccountCreate";
 import {
   ClientContactInfoErrorType,
   ClientEducationAndEmploymentErrorType,
@@ -125,6 +126,21 @@ const useCreateClientAccount = (editClientId?: string) => {
     handleStepNext,
   });
 
+  const handleFormReset = () => {};
+
+  const { facilityState } = districtAndProvince;
+  const { handleClientDataSubmit, isFormSubmitted } =
+    useSubmitClientAccountCreate({
+      contactInfo,
+      educationAndEmployment,
+      maritalStatusAndSpouse,
+      parentsOrGuardians,
+      personalInfo,
+      placeOfBirthAndReligion,
+      facilityState,
+      handleFormReset,
+    });
+
   // personal info form Handler
   const handleClintFormNextOperation = () => {
     // Personal info form handler
@@ -159,8 +175,9 @@ const useCreateClientAccount = (editClientId?: string) => {
       // return; // skip for develop next operation
       handlePlaceOfBirthAndReligionNext();
     }
-    if (stateCount === 6) {
-    }
+    // if (stateCount === 6) {
+    //   handleClientDataSubmit;
+    // }
   };
 
   return {
@@ -200,20 +217,15 @@ const useCreateClientAccount = (editClientId?: string) => {
     placeOfBirthAndReligionError,
     educationAndEmploymentError,
 
-    // Error setState
-    // setPersonalInfoError,
-    // setParentsOrGuardiansError,
-    // setMaritalStatusAndSpouseError,
-    // setContactInfoError,
-    // setPlaceOfBirthAndReligionError,
-    // setEducationAndEmploymentError,
-
     // form Handler
     handleClintFormNextOperation,
     //
     isClientUnder18Years,
     // contractInfo phone reset function
     notZMPhoneResetContractInfo,
+
+    // Submit Handler
+    handleClientDataSubmit,
   };
 };
 
