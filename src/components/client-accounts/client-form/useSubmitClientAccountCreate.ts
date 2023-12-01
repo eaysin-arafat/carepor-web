@@ -1,7 +1,7 @@
 import { useCreateClientMutation } from "@/features/client/client-api";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 // export type ClientCreateFormSubmitHookType = {
@@ -24,7 +24,7 @@ const useSubmitClientAccountCreate = ({
   facilityState,
   handleFormReset,
 }) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [
     clientRegistration,
     { data: clientData, status, isError, isSuccess, error },
@@ -102,9 +102,12 @@ const useSubmitClientAccountCreate = ({
   useEffect(() => {
     if (isSuccess && status === "fulfilled") {
       toast.dismiss();
-      toast.success("Client registered successfully");
+      // toast.success("Client registered successfully");
+      toast.success(
+        "Successfully Register " + clientData.firstName + "'s Profile"
+      );
       handleFormReset();
-      navigate(`/clients/details/${clientData.oid}`);
+      // navigate(`/clients/details/${clientData.oid}`);
     }
   }, [isSuccess]);
 

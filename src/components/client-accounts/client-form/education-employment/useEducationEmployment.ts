@@ -13,11 +13,11 @@ type MaritalStatusAndSpouseType = {
 };
 
 const useEducationAndEmployment = ({
-  educationAndEmployment,
+  // educationAndEmployment,
   setEducationAndEmployment,
   setEducationAndEmploymentError,
-  handleStepNext,
-}: MaritalStatusAndSpouseType) => {
+}: // handleStepNext,
+MaritalStatusAndSpouseType) => {
   // console.log({ educationAndEmployment });
 
   // handle Education And Employment  form change
