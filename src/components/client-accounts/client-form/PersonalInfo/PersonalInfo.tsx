@@ -21,7 +21,7 @@ function ClientPersonalInfo({
   handlePersonalInfoChange,
   personalInfoError,
 }: Props) {
-  console.log({ personalInfoError });
+  // console.log({ personalInfoError });
 
   return (
     <>
@@ -29,10 +29,10 @@ function ClientPersonalInfo({
         <div className="grid md:grid-cols-6 gap-5">
           <div className="col-span-6 md:col-span-3">
             <Input
+              label="First Name"
               name={"firstName"}
               value={personalInfo.firstName}
               onChange={handlePersonalInfoChange}
-              label="First Name"
               errMsg={personalInfoError?.firstName}
               required
             />

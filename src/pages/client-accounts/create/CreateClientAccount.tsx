@@ -6,6 +6,7 @@ import GuardianDetails from "@/components/client-accounts/client-form/parents-gu
 import PlaceOfBirthAndReligious from "@/components/client-accounts/client-form/place-of-birth-religious/PlaceOfBirthAndReligious";
 import BackButton from "@/components/core/buttons/BackButton";
 import NextButton from "@/components/core/buttons/NextButton";
+import SubmitButton from "@/components/core/buttons/SubmitButton";
 import FormWrapper from "@/components/core/form-layouts/FormWrapper";
 import MultiStepComponent from "@/components/shared/multi-step/multiStep";
 import useCreateClientAccount from "./useCreateClientAccount";
@@ -46,7 +47,17 @@ function CreateClientAccount() {
     // setContactInfoError,
     // setPlaceOfBirthAndReligionError,
     // setEducationAndEmploymentError,
+
+    // form Handler
+    handleClintFormNextOperation,
+    //
+
+    notZMPhoneResetContractInfo,
   } = useCreateClientAccount();
+
+  // console.log(personalInfo.dob);
+  // const dateCheck = DateFunc.isOverYears("2018-11-29T11:50:03.000Z", 5);
+  // console.log(dateCheck);
 
   // form step state and handler
   const {
@@ -56,6 +67,8 @@ function CreateClientAccount() {
     stepTitle,
     stateCount,
   } = formStepState;
+
+  console.log({ parentsOrGuardiansError });
 
   return (
     <>
@@ -89,6 +102,7 @@ function CreateClientAccount() {
                   handleParentsGuardianDetailsChange={
                     handleParentsGuardianDetailsChange
                   }
+                  // guardianSECError={guardianSECError}
                 />
               )}
               {stateCount === 3 && (
@@ -107,6 +121,7 @@ function CreateClientAccount() {
                   handleContactInformationChange={
                     handleContactInformationChange
                   }
+                  notZMPhoneResetContractInfo={notZMPhoneResetContractInfo}
                 />
               )}
               {stateCount === 5 && (
@@ -138,18 +153,18 @@ function CreateClientAccount() {
                 className="w-40"
               />
               {stateCount === 6 && (
-                <NextButton
+                <SubmitButton
                   title="Submit"
-                  type="submit"
+                  buttonType="submit"
                   onClick={handleStepNext}
-                  className=""
+                  className="w-40"
                 />
               )}
               {stateCount !== 6 && (
                 <NextButton
                   title="Next"
                   type="button"
-                  onClick={handleStepNext}
+                  onClick={handleClintFormNextOperation}
                   className="w-40"
                 />
               )}

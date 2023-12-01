@@ -19,7 +19,9 @@ function MaritalStatusAndSpouse({
   maritalStatusAndSpouseError,
   handleMaritalStatusAndSpouseChange,
 }: Props) {
-  console.log(maritalStatusAndSpouseError);
+  // console.log(maritalStatusAndSpouseError);
+
+  console.log(maritalStatusAndSpouse?.maritalStatus);
 
   return (
     <>
@@ -50,7 +52,7 @@ function MaritalStatusAndSpouse({
                 value={maritalStatusAndSpouse.spousesLegalName}
                 onChange={handleMaritalStatusAndSpouseChange}
                 errMsg={maritalStatusAndSpouseError?.spousesLegalName}
-                disabled={maritalStatusAndSpouse.maritalStatus !== "2"}
+                disabled={maritalStatusAndSpouse.maritalStatus != "2"}
               />
             </div>
             <div className="col-span-2 md:col-span-1">
@@ -60,7 +62,7 @@ function MaritalStatusAndSpouse({
                 value={maritalStatusAndSpouse.spousesSurname}
                 onChange={handleMaritalStatusAndSpouseChange}
                 errMsg={maritalStatusAndSpouseError?.spousesSurname}
-                disabled={maritalStatusAndSpouse.maritalStatus !== "2"}
+                disabled={maritalStatusAndSpouse.maritalStatus != "2"}
               />
             </div>
           </div>

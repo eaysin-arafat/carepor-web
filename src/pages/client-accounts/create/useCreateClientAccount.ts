@@ -9,7 +9,7 @@ import {
 } from "@/components/client-accounts/client-form/clientState";
 import useContactInformation from "@/components/client-accounts/client-form/contact-information/useContactInformation";
 import useEducationAndEmployment from "@/components/client-accounts/client-form/education-employment/useEducationEmployment";
-import useMaritalStatusAndSpouse from "@/components/client-accounts/client-form/marital-status-And-spouse/useParentsGuardianDetails";
+import useMaritalStatusAndSpouse from "@/components/client-accounts/client-form/marital-status-And-spouse/useMaritalStatusAndSpouse";
 import useParentsGuardianDetails from "@/components/client-accounts/client-form/parents-guardian-details/useParentsGuardianDetails";
 import usePlaceOfBirthReligious from "@/components/client-accounts/client-form/place-of-birth-religious/usePlaceOfBirthReligious";
 // import { ClientPersonalInfoType } from "@/types/clientFormTypes";
@@ -21,13 +21,16 @@ import {
   ClientPersonalInfoErrorType,
   ClientPlaceOfBirthAndReligionErrorType,
 } from "@/types/clientFormTypes";
+import { DateFunc } from "@/utilities/data";
 import { useState } from "react";
 import useClientFormStep from "./useClientFormStype";
 
 const useCreateClientAccount = (editClientId?: string) => {
   console.log(editClientId);
+
   // form step state handler
   const formStepState = useClientFormStep();
+  const { handleStepNext, stateCount } = formStepState;
 
   // form data states
   const [personalInfo, setPersonalInfo] = useState(personalInfoState);
@@ -59,36 +62,106 @@ const useCreateClientAccount = (editClientId?: string) => {
   const [educationAndEmploymentError, setEducationAndEmploymentError] =
     useState<ClientEducationAndEmploymentErrorType>(null);
 
+  // //Parents Or Guardians Section message state
+  // const [guardianSECError, setGuardianSECError] =
+  //   useState<ParentORGuardianSECError | null>(null);
+
+  //
+  const isClientUnder18Years = !DateFunc.isOverYears(personalInfo.dob, 18);
+
   // Personal information functionality Hook
-  const { handlePersonalInfoChange } = usePersonalInfo({
+  const { handlePersonalInfoChange, handlePersonalInfoNext } = usePersonalInfo({
     personalInfo,
     setPersonalInfo,
+    setPersonalInfoError,
+    handleStepNext,
   });
   // Parent and guardian information functionality Hook
-  const { handleParentsGuardianDetailsChange } = useParentsGuardianDetails({
-    parentsOrGuardians,
-    setParentsOrGuardians,
-  });
+  const { handleParentsGuardianDetailsChange, parentsOrGuardiansNext } =
+    useParentsGuardianDetails({
+      parentsOrGuardians,
+      setParentsOrGuardians,
+      setParentsOrGuardiansError,
+      handleStepNext,
+      isClientUnder18Years, // 18 years validation
+    });
   // Marital status and Spouse functionality Hook
-  const { handleMaritalStatusAndSpouseChange } = useMaritalStatusAndSpouse({
+  const {
+    handleMaritalStatusAndSpouseChange,
+    handleMaritalStatusAndSpouseNext,
+  } = useMaritalStatusAndSpouse({
     maritalStatusAndSpouse,
     setMaritalStatusAndSpouse,
+    setMaritalStatusAndSpouseError,
+    handleStepNext,
   });
   // Parent and guardian information functionality Hook
-  const { handleContactInformationChange } = useContactInformation({
+  const {
+    handleContactInformationChange,
+    handleContactInformationNext,
+    notZMPhoneResetContractInfo,
+  } = useContactInformation({
     contactInfo,
     setContactInfo,
+    setContactInfoError,
+    handleStepNext,
   });
-  // Place Of Birth Religious functionality Hook
-  const { handlePlaceOfBirthAndReligionChange, districtAndProvince } =
-    usePlaceOfBirthReligious({
-      placeOfBirthAndReligion,
-      setPlaceOfBirthAndReligion,
-    });
+  // Place Of Birth Religious Functionality Hook
+  const {
+    handlePlaceOfBirthAndReligionChange,
+    districtAndProvince,
+    handlePlaceOfBirthAndReligionNext,
+  } = usePlaceOfBirthReligious({
+    placeOfBirthAndReligion,
+    setPlaceOfBirthAndReligion,
+    setPlaceOfBirthAndReligionError,
+    handleStepNext,
+  });
+  // EducationAndEmploymentChange Functionality Hook
   const { handleEducationAndEmploymentChange } = useEducationAndEmployment({
     educationAndEmployment,
     setEducationAndEmployment,
+    setEducationAndEmploymentError,
+    handleStepNext,
   });
+
+  // personal info form Handler
+  const handleClintFormNextOperation = () => {
+    // Personal info form handler
+    if (stateCount === 1) {
+      // handleStepNext();
+      // return; // skip for develop next operation
+      handlePersonalInfoNext();
+      return;
+    }
+    // Personal info form handler
+    if (stateCount === 2) {
+      // handleStepNext();
+      // return; // skip for develop next operation
+      parentsOrGuardiansNext();
+      return;
+    }
+    // Marital Status & Spouse Details
+    if (stateCount === 3) {
+      // handleStepNext();
+      // return; // skip for develop next operation
+      handleMaritalStatusAndSpouseNext();
+    }
+    // Contact Information
+    if (stateCount === 4) {
+      // handleStepNext();
+      // return; // skip for develop next operation
+      handleContactInformationNext();
+    }
+    // Place of Birth & Religious Denomination
+    if (stateCount === 5) {
+      // handleStepNext();
+      // return; // skip for develop next operation
+      handlePlaceOfBirthAndReligionNext();
+    }
+    if (stateCount === 6) {
+    }
+  };
 
   return {
     // form step state and handler
@@ -126,13 +199,21 @@ const useCreateClientAccount = (editClientId?: string) => {
     contactInfoError,
     placeOfBirthAndReligionError,
     educationAndEmploymentError,
+
     // Error setState
-    setPersonalInfoError,
-    setParentsOrGuardiansError,
-    setMaritalStatusAndSpouseError,
-    setContactInfoError,
-    setPlaceOfBirthAndReligionError,
-    setEducationAndEmploymentError,
+    // setPersonalInfoError,
+    // setParentsOrGuardiansError,
+    // setMaritalStatusAndSpouseError,
+    // setContactInfoError,
+    // setPlaceOfBirthAndReligionError,
+    // setEducationAndEmploymentError,
+
+    // form Handler
+    handleClintFormNextOperation,
+    //
+    isClientUnder18Years,
+    // contractInfo phone reset function
+    notZMPhoneResetContractInfo,
   };
 };
 

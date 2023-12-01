@@ -3,6 +3,7 @@ import Textarea from "@/components/core/form-elements/textarea";
 import {
   ClientContactInfoErrorType,
   ClientContactInfoType,
+  notZMPhoneResetType,
 } from "@/types/clientFormTypes";
 import Checkbox from "../../../core/form-elements/Checkbox";
 import Input from "../../../core/form-elements/Input";
@@ -13,15 +14,15 @@ type ContactInformationProps = {
   contactInfo: ClientContactInfoType;
   contactInfoError: ClientContactInfoErrorType;
   handleContactInformationChange: (e: React.ChangeEvent) => void;
+  notZMPhoneResetContractInfo: notZMPhoneResetType;
 };
 
 function ContactInformation({
   contactInfo,
   contactInfoError,
   handleContactInformationChange,
+  notZMPhoneResetContractInfo,
 }: ContactInformationProps) {
-  console.log(contactInfoError);
-
   return (
     <>
       <FormSection titleText="Contact Information">
@@ -42,7 +43,9 @@ function ContactInformation({
                       onChange={handleContactInformationChange}
                       errMsg={contactInfoError?.cellphoneCountryCode}
                       disabled={contactInfo.noCellphone}
-                      resetCellPhone={() => {}}
+                      resetCellPhone={() =>
+                        notZMPhoneResetContractInfo("cellphone")
+                      }
                     />
                   </div>
                   <div className="col-span-2">
@@ -82,7 +85,9 @@ function ContactInformation({
                       name="otherCellphoneCountryCode"
                       onChange={handleContactInformationChange}
                       errMsg={contactInfoError?.otherCellphoneCountryCode}
-                      resetCellPhone={() => {}}
+                      resetCellPhone={() =>
+                        notZMPhoneResetContractInfo("otherCellphone")
+                      }
                     />
                   </div>
                   <div className="col-span-2">
@@ -114,7 +119,9 @@ function ContactInformation({
                     value={contactInfo.landlineCountryCode}
                     onChange={handleContactInformationChange}
                     errMsg={contactInfoError?.landlineCountryCode}
-                    resetCellPhone={() => {}}
+                    resetCellPhone={() =>
+                      notZMPhoneResetContractInfo("landline")
+                    }
                   />
                 </div>
                 <div className="col-span-2">
