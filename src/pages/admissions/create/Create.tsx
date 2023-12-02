@@ -1,18 +1,21 @@
+import OutlineButton from "@/components/core/buttons/OutlineButton";
 import SubmitButton from "@/components/core/buttons/SubmitButton";
 import DatePicker from "@/components/core/form-elements/CustomDatePicker";
 import Select from "@/components/core/form-elements/Select";
 import Textarea from "@/components/core/form-elements/textarea";
-import FormLayout from "@/components/core/form-layouts/FormLayout";
+import FormWrapper from "@/components/core/form-layouts/FormWrapper";
 
 type Props = {};
 
 function CreateAdmission({}: Props) {
   return (
     <>
-      <FormLayout
-        layoutCenter
-        mainTitle="New Patient Admission"
-        className="md:w-[570px] "
+      <FormWrapper
+        contentCenter
+        title="New Patient Admission"
+        maxWidth="max-w-[570px]"
+        titleClass="text-center"
+        className="mb-5"
       >
         <form action="" className="mt-5">
           <div className="flex flex-col gap-5">
@@ -51,10 +54,10 @@ function CreateAdmission({}: Props) {
           </div>
           <div className="grid grid-cols-2 gap-5 mt-4">
             <SubmitButton buttonType="submit" title="Save & Admit" />
-            <SubmitButton buttonType="button" title="Cancel" />
+            <OutlineButton title="Cancel" />
           </div>
         </form>
-      </FormLayout>
+      </FormWrapper>
     </>
   );
 }

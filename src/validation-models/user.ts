@@ -1,7 +1,7 @@
 // Check if user is over 18 years old
 // USER REGISTRATION VALIDATOR
 
-import { DateFunc } from "@/utilities/data";
+import { DateFunc } from "@/utilities/date";
 
 interface UserType {
   firstName?: string;

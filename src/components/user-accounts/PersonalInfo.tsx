@@ -16,6 +16,7 @@ interface Props {
   nrc: string;
   errors?: ErrorsType;
   isNrcValid?: boolean;
+  editMode?: boolean;
 }
 
 function PersonalInfo({
@@ -27,6 +28,7 @@ function PersonalInfo({
   nrc,
   errors,
   isNrcValid,
+  editMode = false,
 }: Props) {
   const nrcRef = React.createRef<HTMLInputElement>();
   useEffect(() => {
@@ -89,7 +91,7 @@ function PersonalInfo({
           </div>
           <CustomNrc
             label="NRC"
-            // state={nrc}
+            {...(editMode && { state: nrc })}
             name="nrc"
             onChange={(e) => handleNrcChange(e.target.value)}
             disabled={noNrc}

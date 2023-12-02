@@ -1,4 +1,3 @@
-import LinkButton from "@/components/core/buttons/LinkButton";
 import AppLogo from "@/components/core/logo/logo";
 import Title from "@/components/core/titles/Titles";
 import { useState } from "react";
@@ -80,11 +79,13 @@ function Header() {
             </div>
           </li>
           <li>
-            <LinkButton
+            <Link
               title="Select Client"
-              className="block px-10 h-[45px] text-[10px] w-[170px]"
-              link="/"
-            />
+              className=" block px-10 py-3 rounded-full text-[14px] bg-primaryColor text-whiteColor"
+              to="/client-search"
+            >
+              Find Patients
+            </Link>
           </li>
         </ul>
       </div>
