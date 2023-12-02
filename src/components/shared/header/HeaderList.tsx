@@ -15,7 +15,7 @@ function HeaderList() {
   const w1100 = useWindowWidth(1100);
 
   return (
-    <ul className="flex items-center gap-5">
+    <ul className="flex items-center gap-5  dark:text-white">
       <li>
         <Link to="/" className="gap-1 flex items-center">
           <FaChartPie size={w1230 ? 15 : 19} />{" "}
@@ -39,20 +39,20 @@ function HeaderList() {
             )}
           </button>
           {queue && (
-            <div className="w-[250px] bg-white absolute top-full border shadow z-50">
+            <div className="w-[250px] bg-bodyColor absolute top-full border dark:border-gray-600 shadow z-50 rounded-lg">
               <ul>
                 <li>
                   <Link
                     to="/"
-                    className="flex items-center gap-3 hover:bg-blue-100 px-4 py-3 text-[15px]"
+                    className="flex items-center gap-3 hover:bg-lightBlueColor px-4 py-3 text-[15px]"
                   >
                     <GiMedicines size={20} /> Pharmacy Queue
                   </Link>
                 </li>
-                <li className="border-t border-b">
+                <li className="border-y dark:border-gray-600">
                   <Link
                     to="/"
-                    className="flex items-center gap-3 px-4 py-3 text-[15px]  hover:bg-blue-100"
+                    className="flex items-center gap-3 px-4 py-3 text-[15px]  hover:bg-lightBlueColor"
                   >
                     <BsFillHeartPulseFill size={20} /> Investigation Queue
                   </Link>
@@ -60,7 +60,7 @@ function HeaderList() {
                 <li>
                   <Link
                     to="/"
-                    className="flex items-center gap-3 px-4 py-3 text-[15px] hover:bg-blue-100"
+                    className="flex items-center gap-3 px-4 py-3 text-[15px] hover:bg-lightBlueColor"
                   >
                     <IoBagAddOutline size={20} /> Service Queue
                   </Link>
@@ -79,26 +79,26 @@ function HeaderList() {
             <FaRegFilePdf size={w1230 ? 15 : 19} />{" "}
             {!w1100 && (
               <>
-                <p className={w1230 && `font-[11px]`}>Reports</p>
+                <p className={`${w1230 && `font-[11px]`}  `}>Reports</p>
                 <IoChevronDownOutline size={15} />
               </>
             )}
           </button>
           {report && (
-            <div className="w-[250px] bg-white absolute top-full border shadow z-50">
+            <div className="w-[250px] bg-bodyColor absolute top-full border dark:border-gray-600 shadow z-50 rounded-lg">
               <ul>
                 <li>
                   <Link
                     to="/"
-                    className="flex items-center gap-3 hover:bg-blue-100 px-4 py-3 text-[15px]"
+                    className="flex items-center gap-3 hover:bg-lightBlueColor px-4 py-3 text-[15px]"
                   >
                     <GiMedicines size={20} /> Pharmacy Queue
                   </Link>
                 </li>
-                <li className="border-t border-b">
+                <li className="border-y dark:border-gray-600">
                   <Link
                     to="/"
-                    className="flex items-center gap-3 px-4 py-3 text-[15px]  hover:bg-blue-100"
+                    className="flex items-center gap-3 px-4 py-3 text-[15px]  hover:bg-lightBlueColor"
                   >
                     <BsFillHeartPulseFill size={20} /> Investigation Queue
                   </Link>
@@ -106,7 +106,7 @@ function HeaderList() {
                 <li>
                   <Link
                     to="/"
-                    className="flex items-center gap-3 px-4 py-3 text-[15px] hover:bg-blue-100"
+                    className="flex items-center gap-3 px-4 py-3 text-[15px] hover:bg-lightBlueColor"
                   >
                     <IoBagAddOutline size={20} /> Service Queue
                   </Link>

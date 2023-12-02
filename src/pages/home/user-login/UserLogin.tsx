@@ -54,7 +54,7 @@ function UserLogin() {
             </div>
 
             <div className="flex justify-end items-center">
-              <Link to={URLUserRecoveryRequest()} className="heading_5">
+              <Link to={URLUserRecoveryRequest()} className="heading_5 hover:text-primaryColor dark:text-gray-500">
                 Forgot Password
               </Link>
             </div>

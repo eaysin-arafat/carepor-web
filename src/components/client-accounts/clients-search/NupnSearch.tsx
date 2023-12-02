@@ -9,7 +9,7 @@ const NUPNSearch = ({ handleNupnChange, nupn }) => {
         placeholder="Search By NUPN"
         onChange={handleNupnChange}
         value={nupn}
-        className="border-gray-300 focus:border-gray-300"
+        className="border-gray-300 dark:border-gray-900 focus:border-gray-300  "
       />
     </div>
   );

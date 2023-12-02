@@ -17,7 +17,7 @@ const NameSearch = ({
   return (
     <div className="w-full">
       <div className="md:custom-input md:items-center md:py-0 md:mt-[6px] md:h-[52px] md:grid md:grid-cols-4 md:me-5 md:border-gray-300 md:focus:border-gray-300 space-y-3 md:space-y-0">
-        <div className="md:border-r ">
+        <div className="md:border-r dark:border-gray-700">
           <Input
             label=""
             name="firstName"
@@ -27,7 +27,7 @@ const NameSearch = ({
             className={"md:input_cellphone"}
           />
         </div>
-        <div className="md:border-r ">
+        <div className="md:border-r dark:border-gray-700 ">
           <Input
             label=""
             name="surname"
@@ -37,7 +37,7 @@ const NameSearch = ({
             className={"md:input_cellphone"}
           />
         </div>
-        <div className="md:border-r ">
+        <div className="md:border-r dark:border-gray-700 ">
           <DatePicker
             placeholder="DOB"
             name="dob"
