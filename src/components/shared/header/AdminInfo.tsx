@@ -12,20 +12,16 @@ function AdminInfo() {
   // * Hooks
   const [adminBar, setAdminBar] = useState(false);
   const w1230 = useWindowWidth(1230);
-  // const w1100 = useWindowWidth(1100);
-  const w800 = useWindowWidth(800);
 
   return (
     <div className="flex items-center gap-2">
-      {!w800 && (
-        <p
-          className={`border-r pr-2 text-primaryColor ${
-            w1230 ? "font-[11px]" : "font-[15px]"
-          }`}
-        >
-          Bauleni Mini Hospital
-        </p>
-      )}
+      <p
+        className={`border-r pr-2 text-primaryColor ${
+          w1230 ? "font-[11px]" : "font-[15px]"
+        }`}
+      >
+        Bauleni Mini Hospital
+      </p>
       <div className="relative">
         <img
           onClick={() => setAdminBar(!adminBar)}
@@ -74,11 +70,6 @@ function AdminInfo() {
         )}
       </div>
       <ThemeSwitcher />
-      {/* {w1100 && (
-        <button className="ml-2">
-          <FaBars color="#000" size={25} />
-        </button>
-      )} */}
     </div>
   );
 }
