@@ -3,7 +3,7 @@ import Title from "@/components/core/titles/Titles";
 import { useState } from "react";
 import { BsFillHeartPulseFill, BsLock } from "react-icons/bs";
 import { CiSettings } from "react-icons/ci";
-import { FaChartPie } from "react-icons/fa6";
+import { FaChartPie, FaRegFilePdf } from "react-icons/fa6";
 import { FiEdit } from "react-icons/fi";
 import { GiMedicines } from "react-icons/gi";
 import {
@@ -18,6 +18,8 @@ import { Link } from "react-router-dom";
 function Header() {
   const [queue, setQueue] = useState(false);
   const [adminBar, setAdminBar] = useState(false);
+  const [report, setReport] = useState(false);
+
   return (
     <div className="flex justify-between py-2 px-5 border-b items-center h-[100%]">
       <div className="flex items-center gap-2">
@@ -81,6 +83,47 @@ function Header() {
             </div>
           </li>
           <li>
+            <div className="relative">
+              <button
+                className="gap-1 flex items-center"
+                onClick={() => setReport(!report)}
+              >
+                <FaRegFilePdf size={19} /> <p>Reports</p>
+                <IoChevronDownOutline size={15} />
+              </button>
+              {report && (
+                <div className="w-[250px] bg-white absolute top-full border shadow z-50">
+                  <ul>
+                    <li>
+                      <Link
+                        to="/"
+                        className="flex items-center gap-3 hover:bg-blue-100 px-4 py-3 text-[15px]"
+                      >
+                        <GiMedicines size={20} /> Pharmacy Queue
+                      </Link>
+                    </li>
+                    <li className="border-t border-b">
+                      <Link
+                        to="/"
+                        className="flex items-center gap-3 px-4 py-3 text-[15px]  hover:bg-blue-100"
+                      >
+                        <BsFillHeartPulseFill size={20} /> Investigation Queue
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/"
+                        className="flex items-center gap-3 px-4 py-3 text-[15px] hover:bg-blue-100"
+                      >
+                        <IoBagAddOutline size={20} /> Service Queue
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </div>
+          </li>
+          <li>
             <Link
               title="Select Client"
               className=" block px-10 py-3 rounded-full text-[14px] bg-primaryColor text-whiteColor"
@@ -103,7 +146,7 @@ function Header() {
             alt=""
           />
           {adminBar && (
-            <div className="w-[300px] absolute top-full right-0 border shadow bg-white">
+            <div className="w-[300px] absolute top-full z-50 right-0 border shadow bg-white">
               <div className="text-center border-b p-5">
                 <Title type="h3" title="System Administrator" />
                 <p>CarePro Admin</p>
