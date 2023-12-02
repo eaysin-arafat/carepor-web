@@ -26,7 +26,7 @@ function PersonalInfo({
   handleNrcChange,
   nrc,
   errors,
-  isNrcValid,
+  isNrcValid
 }: Props) {
   const nrcRef = React.createRef<HTMLInputElement>();
   useEffect(() => {
