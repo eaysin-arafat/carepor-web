@@ -59,7 +59,7 @@ const useSelectFacility = () => {
       if (data?.user?.userType === 1) {
         setIsPermitted(true);
       } else {
-        let findApproved =
+        const findApproved =
           Array.isArray(data?.userAccount?.facilityAccesses) &&
           data?.userAccount?.facilityAccesses?.find((item) => {
             return (
