@@ -21,6 +21,15 @@ export class TypeValidation {
   static isOnlyAlphabet(value: string): boolean {
     return /^[a-zA-Z]+$/.test(value);
   }
+  static isOnlyAlphabetSpace(value: string): boolean {
+    return /^[a-zA-Z ]+$/.test(value);
+  }
+  static isOnlyAlphabetSpaceEmpty(value: string): boolean {
+    return /^[a-zA-Z]{0,1}[a-zA-Z ]*$/.test(value);
+  }
+  static isOnlyNameField(value: string): boolean {
+    return /^[a-zA-Z]{0,1}[a-zA-Z .]*$/.test(value);
+  }
 
   static isOnlyAlphaNumeric(value: string): boolean {
     return /^[a-zA-Z0-9]+$/.test(value);
@@ -48,5 +57,9 @@ export class TypeValidation {
 
   static isPassword(value: string): boolean {
     return /^[a-zA-Z0-9!@#$%^&*]{6,16}$/.test(value);
+  }
+
+  static isNrcValid(value: string): boolean {
+    return /^\d{6}\/\d{2}\/\d{1}$/.test(value);
   }
 }

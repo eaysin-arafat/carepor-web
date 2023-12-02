@@ -1,7 +1,7 @@
 import SubmitButton from "@/components/core/buttons/SubmitButton";
 import Checkbox from "@/components/core/form-elements/Checkbox";
 import Input from "@/components/core/form-elements/Input";
-import Password from "@/components/core/form-elements/PasswordInput";
+import Password from "@/components/core/form-elements/Password";
 import FormWrapper from "@/components/core/form-layouts/FormWrapper";
 import { URLUserRecoveryRequest } from "@/routers/public";
 import { Link } from "react-router-dom";

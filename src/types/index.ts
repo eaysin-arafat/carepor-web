@@ -8,6 +8,8 @@ export type FormSectionType = {
   titleBorder?: boolean;
   noteClass?: string;
   border?: boolean;
+  sectionErrorMsg?: string;
+  sectionErrorClass?: string;
 };
 
 export interface LoginDataType {

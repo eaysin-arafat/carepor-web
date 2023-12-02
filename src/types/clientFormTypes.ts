@@ -70,6 +70,11 @@ export type ClientParentsOrGuardiansErrorType = {
   guardianNAPSANumber?: string;
   guardianNationality?: string;
   guardianRelationship?: string;
+  // Section error keys
+  parentsOrGuardianFormError?: string;
+  mothersDataIncomplete?: boolean;
+  fathersDataIncomplete?: boolean;
+  guardianDataIncomplete?: boolean;
 };
 
 export type ClientMaritalStatusAndSpouseType = {
@@ -121,8 +126,8 @@ export type ClientPlaceOfBirthAndReligionType = {
   province?: string; //0
   districtId?: string; //0
   district?: string; //0
-  birthPlace: string;
-  religion: string; //0
+  birthPlace?: string;
+  religion?: string; //0
 };
 // Error Type
 export type ClientPlaceOfBirthAndReligionErrorType = {
@@ -143,3 +148,12 @@ export type ClientEducationAndEmploymentErrorType = {
   educationLevelId?: string;
   occupationId?: string;
 };
+
+export type ParentORGuardianSECError = {
+  isParentsOrGuardianFormError: boolean;
+  mothersDataIncomplete: boolean;
+  fathersDataIncomplete: boolean;
+  guardianDataIncomplete: boolean;
+};
+
+export type notZMPhoneResetType = (fieldName: string) => void;

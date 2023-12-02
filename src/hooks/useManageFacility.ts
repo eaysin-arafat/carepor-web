@@ -26,7 +26,7 @@ export type ManageFacilityType = {
   };
 };
 
-function useManageFacility(oldFacility?: string | number) {
+function useManageFacility(oldFacility?: string) {
   //facility =
 
   const { data: provinces } = useReadProvincesQuery(undefined);
@@ -109,8 +109,8 @@ function useManageFacility(oldFacility?: string | number) {
       if (findProvinceObj) {
         setFacilityState((prev) => ({
           ...prev,
-          province: findProvinceObj?.oid || "",
-          district: findDistrictObj?.oid || "",
+          province: JSON.stringify(findProvinceObj?.oid) || "",
+          district: JSON.stringify(findDistrictObj?.oid) || "",
           facility: oldFacility,
         }));
       }

@@ -1,6 +1,6 @@
 import OutlineButton from "@/components/core/buttons/OutlineButton";
 import SubmitButton from "@/components/core/buttons/SubmitButton";
-import Password from "@/components/core/form-elements/PasswordInput";
+import Password from "@/components/core/form-elements/Password";
 import FormWrapper from "@/components/core/form-layouts/FormWrapper";
 import { useNavigate } from "react-router-dom";
 import useChangePassword from "./useChangePassword";
