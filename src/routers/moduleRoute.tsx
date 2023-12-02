@@ -1,4 +1,4 @@
-import PublicGuard from "@/components/shared/guard/PublicGuard";
+import PrivateGuard from "@/components/shared/guard/PrivateGuard";
 import ModuleSidebar from "@/components/sidebar/ModuleSidebar";
 import RootLayout from "@/layout/RootLayout";
 import Vitals from "@/pages/vitals/Vitals";
@@ -17,7 +17,7 @@ const ModuleRoute = [
         element: <ModuleSidebar />,
         children: [
           {
-            element: <PublicGuard />,
+            element: <PrivateGuard />,
             children: [
               {
                 path: "/vitals",
