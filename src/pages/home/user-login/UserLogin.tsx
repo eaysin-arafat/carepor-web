@@ -1,11 +1,13 @@
-import Button from "@/components/core/buttons/Button";
+import SubmitButton from "@/components/core/buttons/SubmitButton";
 import Checkbox from "@/components/core/form-elements/Checkbox";
 import Input from "@/components/core/form-elements/Input";
 import Password from "@/components/core/form-elements/PasswordInput";
-import FormLayout from "@/components/core/form-layouts/FormLayout";
+import FormWrapper from "@/components/core/form-layouts/FormWrapper";
+import { URLUserRecoveryRequest } from "@/routers/public";
 import { Link } from "react-router-dom";
 import useUserLogin from "./useUserLogin";
-import { URLUserRecoveryRequest } from "@/routers/public";
+// import { Alert } from "flowbite-react";
+// import { HiInformationCircle } from 'react-icons/hi';
 
 function UserLogin() {
   const userLogin = useUserLogin();
@@ -13,14 +15,18 @@ function UserLogin() {
     userLogin;
 
   return (
-    <FormLayout
-      className=" !w-[570px] "
+    <FormWrapper
+      titleClass="text-center"
       emergencyAccess
       loginForm
-      layoutCenter
-      mainTitle="Welcome to SmartCare Pro"
+      maxWidth="max-w-[570px]"
+      title="Welcome to SmartCare Pro"
+      contentCenter
     >
       <form onSubmit={handleFormSubmit} className="my-5">
+        {/* <Alert icon={HiInformationCircle} color="failure" onDismiss={() => alert("Alert dismissed!")} className="mb-5">
+          You have entered an invalid username or password
+        </Alert> */}
         <div className="flex flex-col gap-5">
           <Input
             value={loginForm?.username}
@@ -54,10 +60,14 @@ function UserLogin() {
             </div>
           </div>
 
-          <Button loading={isLoading} type="submit" title="User Login" />
+          <SubmitButton
+            loading={isLoading}
+            buttonType="submit"
+            title="User Login"
+          />
         </div>
       </form>
-    </FormLayout>
+    </FormWrapper>
   );
 }
 

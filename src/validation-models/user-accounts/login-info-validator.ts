@@ -1,4 +1,4 @@
-import { ErrorsType } from "@/pages/user-accounts/create/useCreate";
+import { ErrorsType } from "@/types/user-accounts";
 
 interface LoginInfoType {
   username: string;

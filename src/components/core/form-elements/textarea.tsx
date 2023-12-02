@@ -35,7 +35,7 @@ Props) {
         {required && <span className="-mt-[6px] mx-1 text-dangerColor">*</span>}
       </div>
       <textarea
-        className={`w-full rounded-md text-blackColor bg-whiteColor box-border flex flex-row items-center justify-start py-[10px] px-4 border-[2px] border-solid border-borderColor outline-none ${className}`}
+        className={`custom-input rounded-lg ${className}`}
         value={value}
         name={name}
         onChange={onChange}

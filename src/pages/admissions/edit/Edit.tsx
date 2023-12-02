@@ -1,18 +1,21 @@
-import Button from "@/components/core/buttons/Button";
+import OutlineButton from "@/components/core/buttons/OutlineButton";
+import SubmitButton from "@/components/core/buttons/SubmitButton";
 import DatePicker from "@/components/core/form-elements/CustomDatePicker";
 import Select from "@/components/core/form-elements/Select";
 import Textarea from "@/components/core/form-elements/textarea";
-import FormLayout from "@/components/core/form-layouts/FormLayout";
+import FormWrapper from "@/components/core/form-layouts/FormWrapper";
 
 type Props = {};
 
 function EditAdmission({}: Props) {
   return (
     <>
-      <FormLayout
-        layoutCenter
-        mainTitle="Edit Admission"
-        className="md:w-[570px] "
+      <FormWrapper
+        contentCenter
+        title="Edit Admission"
+        maxWidth="max-w-[570px] "
+        titleClass="text-center"
+        className="mb-5"
       >
         <form action="" className="mt-5">
           <div className="flex flex-col gap-5">
@@ -50,11 +53,11 @@ function EditAdmission({}: Props) {
             />
           </div>
           <div className="grid grid-cols-2 gap-5 mt-4">
-            <Button type="submit" title="Save & Admit" />
-            <Button type="outline" title="Cancel" />
+            <SubmitButton buttonType="submit" title="Save & Admit" />
+            <OutlineButton buttonType="button" title="Cancel" />
           </div>
         </form>
-      </FormLayout>
+      </FormWrapper>
     </>
   );
 }

@@ -9,29 +9,29 @@ const FullNameSearch = () => {
   console.log({ amir });
   return (
     <div className="w-full">
-      <div className="custom-input items-center py-0 mt-[6px] h-[52px] grid grid-cols-4 me-5 border-gray-300 focus:border-gray-300">
-        <div className="border-r ">
+      <div className="md:custom-input md:items-center md:py-0 md:mt-[6px] md:h-[52px] md:grid md:grid-cols-4 md:me-5 md:border-gray-300 md:focus:border-gray-300 space-y-3 md:space-y-0">
+      <div className="md:border-r ">
           <Input
             label=""
             name=""
             placeholder="First Name"
-            className={"input_cellphone"}
+            className={"md:input_cellphone"}
           />
         </div>
-        <div className="border-r ">
+        <div className="md:border-r ">
           <Input
             label=""
             name=""
             placeholder="Surname"
-            className={"input_cellphone"}
+            className={"md:input_cellphone"}
           />
         </div>
-        <div className="border-r ">
+        <div className="md:border-r ">
           <DatePicker
             placeholder="DOB"
             name="dob"
             label=""
-            className={"input_cellphone"}
+            className={"md:input_cellphone"}
           />
         </div>
         <div className="">
@@ -39,8 +39,8 @@ const FullNameSearch = () => {
             label=""
             value={amir}
             selectShow="Sex"
-            className={"input_cellphone"}
-            onChange={(e) => setAmir(e.target.value)}
+            className={"md:input_cellphone"}
+            onChange={(e: any) => setAmir(e.target.value)}
           >
             <option value="1">Male</option>
             <option value="2">Female</option>

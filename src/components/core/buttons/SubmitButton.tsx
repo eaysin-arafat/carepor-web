@@ -2,7 +2,7 @@ import { cn } from "@/utilities/cn";
 
 interface SubmitButtonProps {
   title: string;
-  onClick?: () => void;
+  onClick?: (e: any) => any;
   className?: string;
   icon?: React.ReactNode;
   disabled?: boolean;
@@ -25,7 +25,7 @@ const SubmitButton = (props: SubmitButtonProps) => {
   return (
     <button
       className={cn(
-        `btn w-full text-whiteColor bg-primaryColor hover:bg-primaryHoverColor`,
+        `btn w-full text-whiteColor bg-primaryColor hover:bg-primaryHoverColor h-fit`,
         className
       )}
       type={buttonType}

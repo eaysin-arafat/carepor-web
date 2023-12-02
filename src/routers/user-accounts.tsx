@@ -1,5 +1,6 @@
 import PrivateGuard from "@/components/shared/guard/PrivateGuard";
 import ChangePassword from "@/pages/user-accounts/change-password/ChangePassword";
+import UserAccountDetails from "@/pages/user-accounts/details/UserAccountDetils";
 import EditUserAccount from "@/pages/user-accounts/edit/UserAccountEdit";
 
 // route paths for user accounts pages
@@ -25,7 +26,7 @@ const userAccountsRouter = [
       },
       {
         path: URLUserAccountDetails(":id"),
-        element: "<UserAccountDetails />",
+        element: <UserAccountDetails />,
       },
       {
         path: URLForgotPassword(),

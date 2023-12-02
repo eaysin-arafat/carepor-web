@@ -8,7 +8,23 @@ import {
   facilityStateType,
 } from "@/types/coreTypes";
 import { OnchangeEventType } from "@/types/htmlEvents";
+import { SetStateType } from "@/types/reactTypes";
 import React from "react";
+
+export type ManageFacilityType = {
+  provinceOptions?: any[];
+  districtOptions?: any[];
+  facilitiesOptions?: any[];
+  facilityChangeHandler?: (e: OnchangeEventType) => void;
+  setFacilityState?: React.Dispatch<React.SetStateAction<facilityStateType>>;
+  facilityState?: facilityStateType;
+  setFacilityError?: SetStateType<facilityStateErrorType>;
+  facilityError?: facilityStateErrorType;
+  facilityValid?: () => {
+    isFacilityValid: boolean;
+    facilityError: facilityStateErrorType;
+  };
+};
 
 function useManageFacility(oldFacility?: string | number) {
   //facility =

@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import React, { ChangeEvent, FC } from "react";
 import { PatternFormat } from "react-number-format";
 
@@ -13,6 +12,7 @@ interface CustomNrcProps {
   className?: string;
   keyUpHandler?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   ref?: React.ForwardedRef<HTMLInputElement>;
+  placeholder?: string
 }
 
 const CustomNrc: FC<CustomNrcProps> = React.forwardRef<
@@ -27,6 +27,7 @@ const CustomNrc: FC<CustomNrcProps> = React.forwardRef<
       disabled,
       errMsg,
       name = "nrc",
+      placeholder = "______/__/_",
       label,
       className,
       keyUpHandler = null,
@@ -52,7 +53,7 @@ const CustomNrc: FC<CustomNrcProps> = React.forwardRef<
         </div>
         <PatternFormat
           format="######/##/#"
-          placeholder="______/__/_"
+          placeholder={placeholder}
           mask="_"
           {...(state && { value: state })}
           onChange={handleNrcChange}
@@ -71,14 +72,5 @@ const CustomNrc: FC<CustomNrcProps> = React.forwardRef<
     );
   }
 );
-CustomNrc.propTypes = {
-  state: PropTypes.any,
-  onChange: PropTypes.func.isRequired,
-  required: PropTypes.bool.isRequired,
-  disabled: PropTypes.bool.isRequired,
-  errMsg: PropTypes.string,
-  name: PropTypes.string,
-  keyUpHandler: PropTypes.func,
-};
 
 export default CustomNrc;

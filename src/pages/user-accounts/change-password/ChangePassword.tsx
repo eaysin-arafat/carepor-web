@@ -1,6 +1,7 @@
-import Button from "@/components/core/buttons/Button";
+import OutlineButton from "@/components/core/buttons/OutlineButton";
+import SubmitButton from "@/components/core/buttons/SubmitButton";
 import Password from "@/components/core/form-elements/PasswordInput";
-import FormLayout from "@/components/core/form-layouts/FormLayout";
+import FormWrapper from "@/components/core/form-layouts/FormWrapper";
 import useChangePassword from "./useChangePassword";
 
 function ChangePassword() {
@@ -11,10 +12,10 @@ function ChangePassword() {
 
   return (
     <div>
-      <FormLayout
-        layoutCenter
-        mainTitle="Change Password"
-        className="max-w-[570px]"
+      <FormWrapper
+        contentCenter
+        title="Change Password"
+        maxWidth="max-w-[570px]"
         emergencyAccess
       >
         <form onSubmit={handleSubmit} className="mt-5">
@@ -42,14 +43,13 @@ function ChangePassword() {
             />
           </div>
           <div className="mt-5">
-            <Button type="submit" title="Change Password" />
+            <SubmitButton buttonType="submit" title="Change Password" />
           </div>
           <div className="mt-5">
-            {/* <Button type="outline" title="Cancel" /> */}
-            <Button type="button" title="Cancel" />
+            <OutlineButton buttonType="button" title="Cancel" />
           </div>
         </form>
-      </FormLayout>
+      </FormWrapper>
     </div>
   );
 }

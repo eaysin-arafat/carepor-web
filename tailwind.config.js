@@ -14,7 +14,8 @@ export default {
     },
     extend: {
       screens: {
-        xs: "360px",
+        xs: "480px",
+        xxs: "360px",
       },
       colors: {
         bodyColor: "var(--body)",
