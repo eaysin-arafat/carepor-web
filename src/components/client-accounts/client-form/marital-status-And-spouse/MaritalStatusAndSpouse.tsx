@@ -19,9 +19,7 @@ function MaritalStatusAndSpouse({
   maritalStatusAndSpouseError,
   handleMaritalStatusAndSpouseChange,
 }: Props) {
-  // console.log(maritalStatusAndSpouseError);
 
-  console.log(maritalStatusAndSpouse?.maritalStatus);
 
   return (
     <>

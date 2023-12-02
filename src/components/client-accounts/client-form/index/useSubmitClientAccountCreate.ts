@@ -154,4 +154,3 @@ export default useSubmitClientAccountCreate;
 // delete baseData.encounterId;
 // delete baseData.clientId;
 // delete baseData.encounterType;
-// console.log(baseData);

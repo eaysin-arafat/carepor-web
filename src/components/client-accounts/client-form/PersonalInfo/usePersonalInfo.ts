@@ -21,7 +21,7 @@ const usePersonalInfo = ({
   setPersonalInfoError,
   handleStepNext,
 }: PersonalInfoProps) => {
-  console.log({ personalInfo, setPersonalInfo });
+
   //
 
   // handle personal info form change

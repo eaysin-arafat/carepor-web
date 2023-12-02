@@ -1,18 +1,24 @@
+import { RootState } from "@/app/store";
 import Header from "@/components/shared/header/Header";
+import { sidebarState } from "@/features/sidebar/sidebar";
 import useWindowWidth from "@/hooks/useWindow";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { MdArrowBackIos } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 
 function RootLayout({ children }) {
+  const dispatch = useDispatch();
   const w1100 = useWindowWidth(1100);
   const sidebarVal = w1100 ? true : false;
-  const [sidebar, setSidebar] = useState(sidebarVal);
+
+  // * Redux
+  const sidebar = useSelector((state: RootState) => state.sidebar.sidebar);
 
   // * Sidebar Update on Responsive
   useEffect(() => {
-    setSidebar(sidebarVal);
+    dispatch(sidebarState({ sidebar: sidebarVal }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [w1100]);
 
@@ -22,9 +28,9 @@ function RootLayout({ children }) {
         <Header />
       </div>
       <div className="relative">
-        {sidebar && (
+        {sidebar && !w1100 && (
           <button
-            onClick={() => setSidebar(false)}
+            onClick={() => dispatch(sidebarState({ sidebar: false }))}
             className={`absolute bg-white h-[40px] w-[40px] top-0 left-0 border-r border-b rounded-br-lg flex justify-center items-center`}
           >
             <IoIosArrowForward className="cursor-pointer" size={20} />
@@ -32,9 +38,9 @@ function RootLayout({ children }) {
         )}
         <div className="flex justify-between">
           <div className="relative">
-            {!sidebar && (
+            {!sidebar && !w1100 && (
               <button
-                onClick={() => setSidebar(true)}
+                onClick={() => dispatch(sidebarState({ sidebar: true }))}
                 className={`absolute bg-white h-[40px] w-[40px] rounded-br-lg top-0 left-full border-r border-b flex justify-center items-center`}
               >
                 <MdArrowBackIos
@@ -44,7 +50,9 @@ function RootLayout({ children }) {
               </button>
             )}
             <div
-              className={`border-r bg-white h-[92vh] absolute overflow-x-auto`}
+              className={`border-r bg-white h-[92vh] z-50 ${
+                w1100 && "absolute"
+              } overflow-x-auto`}
               style={{
                 transition: "0.5s",
                 transform: sidebar && "translateX(-300px)",

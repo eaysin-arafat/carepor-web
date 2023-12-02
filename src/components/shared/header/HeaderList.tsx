@@ -1,6 +1,5 @@
 import useWindowWidth from "@/hooks/useWindow";
 import { useState } from "react";
-import { BiSearch } from "react-icons/bi";
 import { BsFillHeartPulseFill } from "react-icons/bs";
 import { FaChartPie, FaRegFilePdf } from "react-icons/fa6";
 import { GiMedicines } from "react-icons/gi";
@@ -125,7 +124,8 @@ function HeaderList() {
           } rounded-full text-[14px] bg-primaryColor text-whiteColor`}
           to="/client-search"
         >
-          {w1100 ? <BiSearch /> : "Find Patients"}
+          Find Patients
+          {/* {w1100 ? <BiSearch /> : "Find Patients"} */}
         </Link>
       </li>
     </ul>

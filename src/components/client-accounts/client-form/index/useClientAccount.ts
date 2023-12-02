@@ -1,4 +1,6 @@
 import usePersonalInfo from "@/components/client-accounts/client-form/PersonalInfo/usePersonalInfo";
+import useContactInformation from "@/components/client-accounts/client-form/contact-information/useContactInformation";
+import useEducationAndEmployment from "@/components/client-accounts/client-form/education-employment/useEducationEmployment";
 import {
   contactInfoState,
   educationAndEmploymentState,
@@ -6,14 +8,12 @@ import {
   parentsOrGuardiansState,
   personalInfoState,
   placeOfBirthAndReligionState,
-} from "@/components/client-accounts/client-form/clientState";
-import useContactInformation from "@/components/client-accounts/client-form/contact-information/useContactInformation";
-import useEducationAndEmployment from "@/components/client-accounts/client-form/education-employment/useEducationEmployment";
+} from "@/components/client-accounts/client-form/index/clientState";
 import useMaritalStatusAndSpouse from "@/components/client-accounts/client-form/marital-status-And-spouse/useMaritalStatusAndSpouse";
 import useParentsGuardianDetails from "@/components/client-accounts/client-form/parents-guardian-details/useParentsGuardianDetails";
 import usePlaceOfBirthReligious from "@/components/client-accounts/client-form/place-of-birth-religious/usePlaceOfBirthReligious";
 // import { ClientPersonalInfoType } from "@/types/clientFormTypes";
-import useSubmitClientAccountCreate from "@/components/client-accounts/client-form/useSubmitClientAccountCreate";
+import useSubmitClientAccountCreate from "@/components/client-accounts/client-form/index/useSubmitClientAccountCreate";
 import {
   ClientContactInfoErrorType,
   ClientEducationAndEmploymentErrorType,
@@ -22,12 +22,26 @@ import {
   ClientPersonalInfoErrorType,
   ClientPlaceOfBirthAndReligionErrorType,
 } from "@/types/clientFormTypes";
+import { RtkQueryType } from "@/types/reactTypes";
 import { DateFunc } from "@/utilities/date";
-import { useState } from "react";
-import useClientFormStep from "./useClientFormStype";
+import { useEffect, useState } from "react";
+import useClientFormStep from "./useClientFormStep";
+import useSetEditFormData from "./useSetEditFormData";
 
-const useCreateClientAccount = (editClientId?: string) => {
-  console.log(editClientId);
+/**
+ *
+ * @param editClientId  Client Oid
+ * @param isEditForm if client edit form
+ * @returns
+ */
+const useCreateClientAccount = (
+  ClientByKeyQuery: RtkQueryType,
+  isEditForm: boolean
+) => {
+  const { isSuccess, status, data: editClient } = ClientByKeyQuery || {};
+
+  // const { data, isLoading, isSuccess, status, isError, error } =
+  //   useClientReadByKeyQuery();
 
   // form step state handler
   const formStepState = useClientFormStep();
@@ -63,12 +77,15 @@ const useCreateClientAccount = (editClientId?: string) => {
   const [educationAndEmploymentError, setEducationAndEmploymentError] =
     useState<ClientEducationAndEmploymentErrorType>(null);
 
-  // //Parents Or Guardians Section message state
-  // const [guardianSECError, setGuardianSECError] =
-  //   useState<ParentORGuardianSECError | null>(null);
-
   //
   const isClientUnder18Years = !DateFunc.isOverYears(personalInfo.dob, 18);
+
+  // useEffect(() => {
+  //   if(isSuccess && status === "fulfilled") {
+  //     setPersonalInfo(prev=>({
+  //       ...prev,
+
+  //     })
 
   // Personal information functionality Hook
   const { handlePersonalInfoChange, handlePersonalInfoNext } = usePersonalInfo({
@@ -128,7 +145,7 @@ const useCreateClientAccount = (editClientId?: string) => {
 
   const handleFormReset = () => {};
 
-  const { facilityState } = districtAndProvince;
+  const { facilityState, setFacilityState } = districtAndProvince;
   const { handleClientDataSubmit } = useSubmitClientAccountCreate({
     contactInfo,
     educationAndEmployment,
@@ -139,6 +156,57 @@ const useCreateClientAccount = (editClientId?: string) => {
     facilityState,
     handleFormReset,
   });
+
+  // Client Edit form functionality starts here
+  //
+  useEffect(() => {
+    if (isEditForm && editClient) {
+      const {
+        prevPersonalInfo,
+        prevParentsOrGuardians,
+        prevMaritalStatusAndSpouse,
+        prevContactInfo,
+        prevEducationAndEmployment,
+        prevPlaceOfBirthAndReligion,
+        districtProvince,
+      } = useSetEditFormData(editClient);
+      console.log(prevPlaceOfBirthAndReligion);
+      setPersonalInfo((prev) => ({ ...prev, ...prevPersonalInfo }));
+
+      setParentsOrGuardians((prev) => ({
+        ...prev,
+        ...prevParentsOrGuardians,
+      }));
+      setMaritalStatusAndSpouse((prev) => ({
+        ...prev,
+        ...prevMaritalStatusAndSpouse,
+      }));
+      setContactInfo((prev) => ({ ...prev, ...prevContactInfo }));
+      setPlaceOfBirthAndReligion((prev) => ({
+        ...prev,
+        ...prevPlaceOfBirthAndReligion,
+      }));
+      setEducationAndEmployment((prev) => ({
+        ...prev,
+        ...prevEducationAndEmployment,
+      }));
+      setFacilityState((prev) => ({
+        ...prev,
+        province: editClient.provinceId,
+        district: editClient.districtId,
+      }));
+      // console.log(districtProvince);
+    }
+  }, [editClient, isEditForm]);
+
+  // useEffect(() => {
+  //   if (isEditForm && editClient) {
+  //     setPersonalInfo((prev) => ({ ...prev, dob: editClient.dob }));
+  //   }
+  // }, [editClient?.dob, isEditForm]);
+
+  //
+  // Client Edit form functionality end here
 
   // personal info form Handler
   const handleClintFormNextOperation = () => {
@@ -178,6 +246,8 @@ const useCreateClientAccount = (editClientId?: string) => {
     //   handleClientDataSubmit;
     // }
   };
+
+  // console.log("personal information", personalInfo);
 
   return {
     // form step state and handler

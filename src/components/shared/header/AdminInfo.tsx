@@ -1,3 +1,4 @@
+import ThemeSwitcher from "@/components/core/theme/theme-switcher";
 import Title from "@/components/core/titles/Titles";
 import { logout } from "@/features/authentication/authentication-slice";
 import useFacility from "@/hooks/useFacility";
@@ -8,7 +9,6 @@ import { BsLock } from "react-icons/bs";
 import { CiSettings } from "react-icons/ci";
 import { FiEdit } from "react-icons/fi";
 import { IoExitOutline } from "react-icons/io5";
-import { MdOutlineDarkMode } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -29,15 +29,13 @@ function AdminInfo() {
 
   return (
     <div className="flex items-center gap-2">
-      {!w800 && (
-        <p
-          className={`border-r pr-2 text-primaryColor ${
-            w1230 ? "font-[11px]" : "font-[15px]"
-          }`}
-        >
-          Bauleni Mini Hospital
-        </p>
-      )}
+      <p
+        className={`border-r pr-2 text-primaryColor ${
+          w1230 ? "font-[11px]" : "font-[15px]"
+        }`}
+      >
+        Bauleni Mini Hospital
+      </p>
       <div className="relative">
         <img
           onClick={() => setAdminBar(!adminBar)}
@@ -88,18 +86,7 @@ function AdminInfo() {
           </div>
         )}
       </div>
-      <button
-        className={`${
-          w1230 ? "h-[30px] w-[30px]" : "h-[40px] w-[40px]"
-        } bg-black rounded-full flex justify-center items-center`}
-      >
-        <MdOutlineDarkMode color="#fff" size={w1230 ? 20 : 25} />
-      </button>
-      {/* {w1100 && (
-        <button className="ml-2">
-          <FaBars color="#000" size={25} />
-        </button>
-      )} */}
+      <ThemeSwitcher />
     </div>
   );
 }

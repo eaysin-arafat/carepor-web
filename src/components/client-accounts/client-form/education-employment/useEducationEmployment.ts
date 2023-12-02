@@ -18,7 +18,7 @@ const useEducationAndEmployment = ({
   setEducationAndEmploymentError,
 }: // handleStepNext,
 MaritalStatusAndSpouseType) => {
-  // console.log({ educationAndEmployment });
+
 
   // handle Education And Employment  form change
   const handleEducationAndEmploymentChange = (e: OnchangeEventType): void => {

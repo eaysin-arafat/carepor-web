@@ -20,7 +20,7 @@ const useMaritalStatusAndSpouse = ({
   setMaritalStatusAndSpouseError,
   handleStepNext,
 }: MaritalStatusAndSpouseType) => {
-  // console.log({ maritalStatusAndSpouse });
+
 
   // handle Marital Status And Spouse  form change
   const handleMaritalStatusAndSpouseChange = (e: OnchangeEventType): void => {
