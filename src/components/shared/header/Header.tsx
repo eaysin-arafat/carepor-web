@@ -27,7 +27,9 @@ function Header() {
           className="h-[70%] w-[70%]"
         />
         <p>
-          <span>Smart</span> <span>Care</span> <b>PRO</b>
+          <span className="text-[#15ac12]">Smart</span>
+          <span className="text-primaryColor">Care</span>{" "}
+          <b className="text-primaryColor">PRO</b>
         </p>
       </div>
       <div>
