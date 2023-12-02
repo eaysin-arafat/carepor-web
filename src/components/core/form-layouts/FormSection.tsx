@@ -6,6 +6,8 @@ function FormSection({
   boxClass,
   titleClass,
   noteText,
+  sectionErrorMsg,
+  sectionErrorClass,
   titleBorder,
   noteClass,
 }: FormSectionType) {
@@ -23,6 +25,13 @@ function FormSection({
             {noteText}
           </span>
         )}
+
+        <span
+          className={`text-sm mb-3 text-red-500 block md:w-[80%] w-[90%] leading-4 ${sectionErrorClass}`}
+        >
+          {sectionErrorMsg}
+        </span>
+
         {titleBorder && <div className="border-b mt-2 h-0"></div>}
       </div>
       <div>{children}</div>

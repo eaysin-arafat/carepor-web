@@ -1,36 +1,40 @@
-import React from "react";
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { RootState } from "@/app/store";
 import IsPatientFound from "@/components/client-accounts/cards/IsPatientFound";
 import PatientCard from "@/components/client-accounts/cards/PatientCard";
 import CellPhoneSearch from "@/components/client-accounts/clients-search/CellPhoneSearch";
 import FullNameSearch from "@/components/client-accounts/clients-search/FullNameSearch";
+import NrcSearch from "@/components/client-accounts/clients-search/NrcSearch";
+import NUPNSearch from "@/components/client-accounts/clients-search/NupnSearch";
+import TabButton from "@/components/client-accounts/clients-search/TabButton";
 import Card from "@/components/core/card/Card";
 import Container from "@/components/core/container/Container";
-import CustomNrc from "@/components/core/form-elements/CustomNrc";
-import Input from "@/components/core/form-elements/Input";
 import Table from "@/components/core/table/Table";
 import TableData from "@/components/core/table/TableData";
 import TableHead from "@/components/core/table/TableHead";
-import { cn } from "@/utilities/cn";
+import { Client } from "@/interface/clients";
+import { format } from "date-fns";
+import { useSelector } from "react-redux";
+import useClientSearch from "./useClientSearch";
 
 const ClientSearch = () => {
-  const [search, setSearch] = React.useState("nrc");
-
-  const handleNrc = () => {
-    setSearch("nrc");
-  };
-
-  const handleNupn = () => {
-    setSearch("nupn");
-  };
-
-  const handleCellPhone = () => {
-    setSearch("cellPhone");
-  };
-
-  const handleName = () => {
-    setSearch("name");
-  };
+  const { user } = useSelector((state: RootState) => state.authentication);
+  const {
+    cellphoneSearch,
+    handleCellphoneSearchChange,
+    handleDateClear,
+    handleNameSearchChange,
+    handleNrcChange,
+    handleNupnChange,
+    handleSearchClick,
+    handleSearchTabChange,
+    nameSearchState,
+    nrc,
+    nupn,
+    search,
+    searchClients,
+    showRegister,
+  } = useClientSearch();
 
   return (
     <>
@@ -39,69 +43,48 @@ const ClientSearch = () => {
           <>
             <div className="md:flex justify-between mt-10 mb-3">
               <h2 className="text-2xl font-semibold text-secondaryColor ">
-                Welcome Amir Hamza
+                Welcome {user?.firstName} {user?.surname}
               </h2>
-              <h2 className="text-textColor ">Wednesday, November 29, 2023</h2>
+              <h2 className="text-textColor ">
+                {format(new Date(), "EEEE, MMMM dd, yyyy")}
+              </h2>
             </div>
             <div className="relative bg-lightBlueColor w-full p-5 rounded-lg shadow  transition-all ease-out">
               <h2 className="heading_2 text-center font-semibold text-secondaryColor text-2xl md:text-4xl pb-2">
                 Search or Add New Patient
               </h2>
-              <div className="flex flex-wrap justify-center gap-5 mt-5">
-                <button
-                  onClick={handleNrc}
-                  className={cn(defaultButtonCss, {
-                    "bg-primaryColor text-whiteColor": search === "nrc",
-                  })}
-                >
-                  NRC
-                </button>
-                <button
-                  onClick={handleNupn}
-                  className={cn(defaultButtonCss, {
-                    "bg-primaryColor text-whiteColor": search === "nupn",
-                  })}
-                >
-                  NUPN
-                </button>
-                <button
-                  onClick={handleCellPhone}
-                  className={cn(defaultButtonCss, {
-                    "bg-primaryColor text-whiteColor": search === "cellPhone",
-                  })}
-                >
-                  Cell Phone
-                </button>
-                <button
-                  onClick={handleName}
-                  className={cn(defaultButtonCss, {
-                    "bg-primaryColor text-whiteColor transition-all ease-in-out":
-                      search === "name",
-                  })}
-                >
-                  Full Name
-                </button>
-              </div>
-              <form action="" className="w-full flex justify-center gap-5 mt-5">
+              <TabButton
+                handleSearchTabChange={handleSearchTabChange}
+                search={search}
+              />
+              <form
+                action=""
+                className="w-full flex justify-center gap-5 mt-5"
+                onSubmit={handleSearchClick}
+              >
                 <div className="w-full max-w-[620px] pb-9">
                   {search === "nrc" && (
-                    <CustomNrc
-                      label=""
-                      placeholder="Search By NRC"
-                      onChange={() => {}}
-                      className="border-gray-300 focus:border-gray-300"
-                    />
+                    <NrcSearch handleNrcChange={handleNrcChange} nrc={nrc} />
                   )}
                   {search === "nupn" && (
-                    <Input
-                      label=""
-                      placeholder="Search By NUPN"
-                      onChange={() => {}}
-                      className="border-gray-300 focus:border-gray-300"
+                    <NUPNSearch
+                      handleNupnChange={handleNupnChange}
+                      nupn={nupn}
                     />
                   )}
-                  {search === "cellPhone" && <CellPhoneSearch />}
-                  {search === "name" && <FullNameSearch />}
+                  {search === "cellPhone" && (
+                    <CellPhoneSearch
+                      handleCellphoneSearchChange={handleCellphoneSearchChange}
+                      cellphoneSearch={cellphoneSearch}
+                    />
+                  )}
+                  {search === "name" && (
+                    <FullNameSearch
+                      handleNameSearchChange={handleNameSearchChange}
+                      nameSearchState={nameSearchState}
+                      handleDateClear={handleDateClear}
+                    />
+                  )}
                 </div>
                 <div className="absolute -bottom-6">
                   <button
@@ -115,14 +98,23 @@ const ClientSearch = () => {
               </form>
             </div>
 
-            {/* No Patient Found Card */}
-            <IsPatientFound
-              title="Did you find the patient?"
-              buttonTitle="Add New Patient"
-            />
-
             {/* Patient Card */}
-            <PatientCard />
+            <div className="mt-14">
+              {searchClients.length > 0 &&
+                searchClients.map((client: Client) => {
+                  return <PatientCard client={client} />;
+                })}
+
+              {/* No Patient Found Card */}
+              {showRegister && (
+                <IsPatientFound
+                  title="Did you find the patient?"
+                  buttonTitle="Add New Patient"
+                />
+              )}
+            </div>
+
+            {/* Work on later */}
 
             {/* Dashboard  */}
             <div className="mt-20">
@@ -261,9 +253,6 @@ const ClientSearch = () => {
 
 export default ClientSearch;
 
-const defaultButtonCss =
-  " w-[138px] text-primaryColor hover:bg-primaryHoverColor  hover:text-whiteColor bg-whiteColor border-2 border-primaryColor py-1.5 rounded-full transition-all ease-in-out duration-500 min-w-[84px]";
-
 const data = [
   {
     id: 1,
@@ -303,7 +292,8 @@ const data = [
 ];
 
 // Note client search for responsive
-{/* <div className="relative bg-lightBlueColor w-full p-5 rounded-lg shadow  transition-all ease-out">
+{
+  /* <div className="relative bg-lightBlueColor w-full p-5 rounded-lg shadow  transition-all ease-out">
   <h2 className="heading_2 text-center font-semibold text-secondaryColor text-4xl pb-2">
     Search or Add New Patient
   </h2>

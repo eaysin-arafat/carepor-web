@@ -23,8 +23,6 @@ function EducationAndEmployment({
   const { data: educations } = useReadEducationLevelsQuery(undefined);
   const { data: occupations } = useReadOccupationsQuery(undefined);
 
-  console.log(educationAndEmploymentError);
-
   return (
     <>
       <FormSection titleText="Education & Employment">

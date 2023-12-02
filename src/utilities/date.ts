@@ -52,3 +52,66 @@ export class DateFunc {
     return differenceMillisecond <= twentyFourHoursMillisecond;
   }
 }
+
+export const getAgeMessage = (dateString: string) => {
+  var DOB = new Date(dateString);
+  const now = new Date();
+
+  // if date is error select
+  if (now.getTime() - DOB.getTime() < 0) {
+    return { error: true, ageMessage: "Invalid date of birth" };
+  } else {
+    const yearNow = now.getFullYear();
+    const monthNow = now.getMonth();
+    const dateNow = now.getDate();
+
+    const dob = new Date(dateString);
+
+    const yearDob = dob.getFullYear();
+    const monthDob = dob.getMonth();
+    const dateDob = dob.getDate();
+
+    let yearAge = yearNow - yearDob;
+    let monthAge: number;
+
+    if (monthNow >= monthDob) {
+      monthAge = monthNow - monthDob;
+    } else {
+      yearAge--;
+      monthAge = 12 + monthNow - monthDob;
+    }
+
+    let dateAge: number;
+    if (dateNow >= dateDob) {
+      dateAge = dateNow - dateDob;
+    } else {
+      monthAge--;
+      dateAge = 31 + dateNow - dateDob;
+
+      if (monthAge < 0) {
+        monthAge = 11;
+        yearAge--;
+      }
+    }
+
+    const age = { years: yearAge, months: monthAge, days: dateAge };
+
+    // PLURAL STRING RETURN
+    const formatYearString = yearAge > 1 ? " years " : " year ";
+    const formatMonthString = monthAge > 1 ? " months " : " month ";
+    const formatDayString = age.days > 1 ? " days" : " day";
+
+    // IF VALUE ZERO THEN EMPTY RETURN
+    const showYear = yearAge > 0 ? yearAge + formatYearString : "";
+    const showMonth = monthAge > 0 ? monthAge + formatMonthString : "";
+    const showDays = dateAge > 0 ? dateAge + formatDayString : "";
+
+    const ageMessage = showYear + showMonth + showDays;
+
+    return {
+      ageMessage,
+      error: false,
+      age,
+    };
+  }
+};

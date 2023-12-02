@@ -9,6 +9,7 @@ import RenderSelectOptions, {
   RenderCountryOptions,
 } from "@/components/core/form-elements/RenderSelectOptions";
 import { relationshipsEnums } from "@/enum/clients";
+import { useState } from "react";
 import Input from "../../../core/form-elements/Input";
 import Select from "../../../core/form-elements/Select";
 import FormSection from "../../../core/form-layouts/FormSection";
@@ -17,26 +18,50 @@ type Props = {
   parentsOrGuardians: ClientParentsOrGuardiansType;
   parentsOrGuardiansError: ClientParentsOrGuardiansErrorType;
   handleParentsGuardianDetailsChange: (e: React.ChangeEvent) => void;
+  // guardianSECError: ParentORGuardianSECError;
 };
 
 function ParentsGuardianDetails({
   parentsOrGuardians,
   parentsOrGuardiansError,
   handleParentsGuardianDetailsChange,
-}: Props) {
-  console.log({ parentsOrGuardiansError });
+}: // guardianSECError,
+Props) {
+  // console.log({ guardianSECError });
+  const [formErrMsg, setFormErrMsg] = useState("");
+
+  console.log(parentsOrGuardiansError);
+
+  // useEffect(() => {
+  //   if (guardianSECError?.isParentsOrGuardianFormError) {
+  //     setFormErrMsg(
+  //       "Please complete at last one section of mother, father or guardian."
+  //     );
+  //   } else {
+  //     setFormErrMsg("");
+  //   }
+  // }, [guardianSECError?.isParentsOrGuardianFormError]);
 
   return (
     <>
       <FormSection
         titleText="Parents or Guardian Details"
         noteText="If the client's age is below 18 years, please provide the information of either parents or guardian."
+        sectionErrorMsg={parentsOrGuardiansError?.parentsOrGuardianFormError}
       >
         <>
           {/* Mother Details  */}
           <h1 className="text-xl font-semibold text-secondaryColor mb-2">
             Mother :
           </h1>
+          {parentsOrGuardiansError?.mothersDataIncomplete && (
+            <span
+              className={`text-sm mb-3 text-red-500 block md:w-[80%] w-[90%] leading-4 $`}
+            >
+              Please complete mothers details.
+            </span>
+          )}
+
           <div className="grid md:grid-cols-6 gap-5">
             <div className="col-span-6 md:col-span-3">
               <Input
@@ -100,6 +125,13 @@ function ParentsGuardianDetails({
           <h1 className="text-xl font-semibold text-secondaryColor mb-2 mt-10">
             Father :
           </h1>
+          {parentsOrGuardiansError?.fathersDataIncomplete && (
+            <span
+              className={`text-sm mb-3 text-red-500 block md:w-[80%] w-[90%] leading-4 $`}
+            >
+              Please complete fathers details.
+            </span>
+          )}
           <div className="grid md:grid-cols-6 gap-5">
             <div className="col-span-6 md:col-span-3">
               <Input
@@ -165,6 +197,13 @@ function ParentsGuardianDetails({
           <h1 className="text-xl font-semibold text-secondaryColor mb-2 mt-10">
             Guardian :
           </h1>
+          {parentsOrGuardiansError?.guardianDataIncomplete && (
+            <span
+              className={`text-sm mb-3 text-red-500 block md:w-[80%] w-[90%] leading-4 $`}
+            >
+              Please complete guardian details.
+            </span>
+          )}
           <div className="grid md:grid-cols-6 gap-5">
             <div className="col-span-6 md:col-span-3">
               <Input

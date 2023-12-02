@@ -1,14 +1,14 @@
 import OutlineButton from "@/components/core/buttons/OutlineButton";
 import SubmitButton from "@/components/core/buttons/SubmitButton";
-import Password from "@/components/core/form-elements/PasswordInput";
+import Password from "@/components/core/form-elements/Password";
 import FormWrapper from "@/components/core/form-layouts/FormWrapper";
+import { useNavigate } from "react-router-dom";
 import useChangePassword from "./useChangePassword";
 
 function ChangePassword() {
   const { fromData, errors, handleInputChange, handleSubmit } =
     useChangePassword();
-
-  console.log(fromData);
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -46,7 +46,11 @@ function ChangePassword() {
             <SubmitButton buttonType="submit" title="Change Password" />
           </div>
           <div className="mt-5">
-            <OutlineButton buttonType="button" title="Cancel" />
+            <OutlineButton
+              buttonType="button"
+              title="Cancel"
+              onClick={() => navigate("/client-search")}
+            />
           </div>
         </form>
       </FormWrapper>

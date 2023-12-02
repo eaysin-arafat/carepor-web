@@ -29,7 +29,7 @@ export const URLEditAdmission = ({
 }): string => `/admission-edit/${clientId}`;
 
 // routers for client pages
-const clientRouter = [
+const ClientRouter = [
   {
     element: <UserLayout />,
     children: [
@@ -74,4 +74,4 @@ const clientRouter = [
   },
 ];
 
-export default clientRouter;
+export default ClientRouter;

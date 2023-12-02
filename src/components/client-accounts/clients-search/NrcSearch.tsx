@@ -1,11 +1,18 @@
-import CustomNrc from "@/components/core/form-elements/CustomNrc"
+import CustomNrc from "@/components/core/form-elements/CustomNrc";
 
-const NrcSearch = () => {
+const NrcSearch = ({ handleNrcChange, nrc }) => {
   return (
     <div className="w-full">
-        <CustomNrc label="" placeholder="Search By NRC" onChange={()=>{}} className="border-gray-300 focus:border-gray-300" />
+      <CustomNrc
+        label=""
+        placeholder="Search By NRC"
+        name="nrc"
+        state={nrc}
+        onChange={handleNrcChange}
+        className="border-gray-300 focus:border-gray-300"
+      />
     </div>
-  )
-}
+  );
+};
 
-export default NrcSearch
+export default NrcSearch;
