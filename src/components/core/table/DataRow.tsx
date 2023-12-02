@@ -10,15 +10,15 @@ type Props = {
 
 const DataRow: React.FC<Props> = ({ title, data, titleClass, dataClass }) => {
   return (
-    <div className="flex items-start justify-end xs:justify-start">
+    <div className="flex items-center justify-end xs:justify-start">
       <div
-        className={cn("w-full xs:w-[50%] md:w-[50%] max-w-[350px] text-base py-2 pt-0", titleClass)}
+        className={cn("w-full xs:w-[50%] md:w-[50%] max-w-[350px] text-sm py-2", titleClass)}
       >
         {title}
       </div>
       <div
         className={cn(
-          "w-full md:w-[50%] flex gap-2 items-center justify-end xs:justify-start py-2",
+          "w-full md:w-[50%] flex gap-2 items-center justify-end xs:justify-start text-base py-2",
           dataClass
         )}
       >

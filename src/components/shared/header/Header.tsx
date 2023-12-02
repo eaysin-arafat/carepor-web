@@ -1,4 +1,5 @@
 import AppLogo from "@/components/core/logo/logo";
+import ThemeSwitcher from "@/components/core/theme/theme-switcher";
 import Title from "@/components/core/titles/Titles";
 import { useState } from "react";
 import { BsFillHeartPulseFill, BsLock } from "react-icons/bs";
@@ -12,14 +13,13 @@ import {
   IoExitOutline,
 } from "react-icons/io5";
 import { LiaFileMedicalAltSolid } from "react-icons/lia";
-import { MdOutlineDarkMode } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 function Header() {
   const [queue, setQueue] = useState(false);
   const [adminBar, setAdminBar] = useState(false);
   return (
-    <div className="flex justify-between py-2 px-5 border-b items-center h-[100%]">
+    <div className="flex justify-between py-2 px-5 border-b items-center h-[100%] bg-whiteColor sticky top-0 z-[999]">
       <div className="flex items-center gap-2">
         <AppLogo
           type="rounded"
@@ -130,9 +130,7 @@ function Header() {
             </div>
           )}
         </div>
-        <button className="h-[40px] w-[40px] bg-black rounded-full flex justify-center items-center">
-          <MdOutlineDarkMode color="#fff" size={25} />
-        </button>
+        <ThemeSwitcher />
       </div>
     </div>
   );

@@ -14,21 +14,23 @@
   --lightGray: #f3f4f6;
   --black: #000000;
   --white: #ffffff;
+  --whiteBg: #ffffff;
   --danger: red;
   --border: #ebeaed;
   --text: #374151;
 }
 
 .dark {
-  --body: #000000;
+  --body: #0B0E11;
   --primary: #1890ff;
   --primaryHover: #007aec;
-  --lightBlue: #cee7ffd3;
-  --secondary: #1e0e62;
+  --lightBlue: #181A20;
+  --secondary: #ffffff;
   --grayColor: #a1a1b0;
   --lightGray: #f3f4f6;
-  --black: #ffffff;
-  --white: #000000;
+  --black: ##6B7280;
+  --white: #fff;
+  --whiteBg: #181A20;
   --danger: red;
   --border: #ebeaed;
   --text: #374151;
@@ -161,7 +163,7 @@ body {
   scrollbar-width: none;
 }
 
-.light .default_option {
+.default_option {
   color: #6b6e75 !important;
 }
 

@@ -6,6 +6,7 @@ type Props = {
   action?: boolean;
   gridCol?: number;
   result?: boolean;
+  className?: string;
 };
 
 const TableHead = ({
@@ -14,6 +15,7 @@ const TableHead = ({
   gridCol,
   action,
   result,
+  className
 }: Props) => {
   const length = tableHead.length;
   const lengthWithAction = tableHead.length + 1;
@@ -23,7 +25,7 @@ const TableHead = ({
   return (
     <div
       className={cn(
-        `bg-whiteColor border-b p-3 rounded-t-lg grid grid-cols-${grid}`
+        `bg-whiteBgColor text-blackColor dark:text-grayColor border-b dark:border-b-gray-700 p-3 rounded-t-lg grid grid-cols-${grid}` , className
       )}
     >
       {tableHead.map((item, index) => (

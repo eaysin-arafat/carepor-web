@@ -31,7 +31,7 @@ const Card = ({
   editHandler,
 }: Props) => {
   return (
-    <div className={cn("bg-borderColor rounded-lg shadow-md", className)}>
+    <div className={cn("bg-borderColor dark:bg-whiteBgColor rounded-lg shadow-md", className)}>
       <div className={cn("flex justify-between", titleBorder)}>
         {title && (
           <h2
