@@ -1,8 +1,8 @@
 // use manage facility hook
 export type facilityStateType = {
-  facility: string | number;
-  district: string | number;
-  province: string | number;
+  facility: string;
+  district: string;
+  province: string;
 };
 export type facilityStateErrorType = {
   facility?: string;

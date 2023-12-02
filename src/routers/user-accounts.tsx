@@ -16,7 +16,7 @@ export const URLForgotPassword = (): string => "/forgot-password";
 export const URLChangePassword = (): string => "/change-password";
 
 // routers for user accounts pages
-const userAccountsRouter = [
+const UserAccountsRouter = [
   {
     element: <PrivateGuard />,
     children: [
@@ -40,6 +40,6 @@ const userAccountsRouter = [
   },
 ];
 
-export default userAccountsRouter;
+export default UserAccountsRouter;
 
 // userAccountEdit

@@ -1,7 +1,7 @@
 import DatePicker from "@/components/core/form-elements/CustomDatePicker";
 import Input from "@/components/core/form-elements/Input";
 import Select from "@/components/core/form-elements/Select";
-import { NameSearchType } from "@/pages/client-accounts/index/ClientSearch";
+import { NameSearchType } from "@/interface/clientSearch";
 
 interface NameSearchProps {
   handleNameSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

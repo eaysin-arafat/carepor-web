@@ -1,6 +1,6 @@
 import CountryCode from "@/components/core/form-elements/CountryCode";
 import PhoneNumber from "@/components/core/form-elements/PhoneNumber";
-import { CellPhoneSearchType } from "@/pages/client-accounts/index/ClientSearch";
+import { CellPhoneSearchType } from "@/interface/clientSearch";
 import { cn } from "@/utilities/cn";
 
 interface CellPhoneSearchProps {

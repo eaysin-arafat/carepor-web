@@ -3,6 +3,7 @@ import {
   ClientPersonalInfoErrorType,
   ClientPersonalInfoType,
 } from "@/types/clientFormTypes";
+import { getAgeMessage } from "@/utilities/date";
 import Checkbox from "../../../core/form-elements/Checkbox";
 import DatePicker from "../../../core/form-elements/CustomDatePicker";
 import CustomNrc from "../../../core/form-elements/CustomNrc";
@@ -21,7 +22,7 @@ function ClientPersonalInfo({
   handlePersonalInfoChange,
   personalInfoError,
 }: Props) {
-  console.log({ personalInfoError });
+  console.log({ noNRC: personalInfo.noNRC });
 
   return (
     <>
@@ -29,10 +30,10 @@ function ClientPersonalInfo({
         <div className="grid md:grid-cols-6 gap-5">
           <div className="col-span-6 md:col-span-3">
             <Input
+              label="First Name"
               name={"firstName"}
               value={personalInfo.firstName}
               onChange={handlePersonalInfoChange}
-              label="First Name"
               errMsg={personalInfoError?.firstName}
               required
             />
@@ -71,13 +72,31 @@ function ClientPersonalInfo({
               <option value="2">Female</option>
             </Select>
           </div>
-          <div className="col-span-6 flex items-center">
-            <Checkbox
-              label="Date of birth is estimated"
-              name="isDOBEstimated"
-              checked={personalInfo.isDOBEstimated}
-              onChange={handlePersonalInfoChange}
-            />
+          <div className="col-span-6 flex justify-start items-center gap-2">
+            <div className="flex items-center justify-between ">
+              <Checkbox
+                label="Date of birth is estimated"
+                name="isDOBEstimated"
+                checked={personalInfo.isDOBEstimated}
+                onChange={handlePersonalInfoChange}
+              />
+            </div>
+            {/* SHOW CLIENT AGE */}
+            {personalInfo?.dob && (
+              <div className=" font-semibold ">
+                Age:
+                <span
+                  className={` ${
+                    getAgeMessage(personalInfo?.dob)?.error
+                      ? "text-red-500"
+                      : ""
+                  } `}
+                >
+                  {" "}
+                  {getAgeMessage(personalInfo?.dob)?.ageMessage}
+                </span>
+              </div>
+            )}
           </div>
           <div className="col-span-6 md:col-span-3">
             <CustomNrc
@@ -145,3 +164,13 @@ function ClientPersonalInfo({
 }
 
 export default ClientPersonalInfo;
+
+/**
+ *                   <div
+                    className={` ${
+                      getAgeMessage(personalInfo?.dob)?.error
+                        ? "text-red-500"
+                        : ""
+                    } `}
+                  >
+ */

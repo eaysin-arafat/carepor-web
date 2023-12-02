@@ -1,6 +1,6 @@
 type Props = {
   value?: string | number;
-  onChange?: (e:React.ChangeEvent<HTMLInputElement>) => void; 
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   name?: string;
   marginTop?: string;
   label: string;
@@ -22,7 +22,7 @@ function Checkbox({
   marginTop,
 }: Props) {
   return (
-    <div className="flex flex-col w-full items-start justify-start gap-[6px]">
+    <div className="flex flex-col w-full items-start justify-start ">
       <div className="flex"></div>
       <label
         className={`flex justify-center items-center gap-2 ${

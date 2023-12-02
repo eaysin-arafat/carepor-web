@@ -1,11 +1,10 @@
 import Header from "@/components/shared/header/Header";
-import Sidebar from "@/components/sidebar/Sidebar";
 import { useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { MdArrowBackIos } from "react-icons/md";
 import { Outlet } from "react-router-dom";
 
-function UserDashboardLayout() {
+function RootLayout({ children }) {
   const [sidebar, setSidebar] = useState(false);
   return (
     <div>
@@ -44,7 +43,8 @@ function UserDashboardLayout() {
                 minWidth: sidebar ? "0px" : "300px",
               }}
             >
-              <Sidebar />
+              {/* <Sidebar /> */}
+              {children}
             </div>
           </div>
           <div className="w-full h-[92vh] overflow-x-auto bg-white">
@@ -56,4 +56,4 @@ function UserDashboardLayout() {
   );
 }
 
-export default UserDashboardLayout;
+export default RootLayout;

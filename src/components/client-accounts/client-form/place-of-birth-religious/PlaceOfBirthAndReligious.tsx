@@ -25,7 +25,7 @@ function PlaceOfBirthAndReligious({
   handlePlaceOfBirthAndReligionChange,
   districtAndProvince,
 }: Props) {
-  console.log(placeOfBirthAndReligionError);
+  // console.log(placeOfBirthAndReligionError);
 
   //
   const {
@@ -76,7 +76,8 @@ function PlaceOfBirthAndReligious({
                 value={facilityState.province}
                 errMsg={placeOfBirthAndReligionError?.province}
                 // server key name ==  provinceId
-                required
+                disabled={placeOfBirthAndReligion.isZambianBorn != "1"}
+                required={placeOfBirthAndReligion.isZambianBorn == "1"}
               >
                 <RenderSelectOptions options={provinceOptions} />
               </Select>
@@ -89,19 +90,21 @@ function PlaceOfBirthAndReligious({
                 value={facilityState.district}
                 onChange={facilityChangeHandler}
                 errMsg={placeOfBirthAndReligionError?.district}
-                required
+                disabled={placeOfBirthAndReligion.isZambianBorn != "1"}
+                required={placeOfBirthAndReligion.isZambianBorn == "1"}
               >
                 <RenderSelectOptions options={districtOptions} />
               </Select>
             </div>
             <div className="flex items-center">
               <Input
-                required
                 label="Place of Birth"
                 name="birthPlace"
                 onChange={handlePlaceOfBirthAndReligionChange}
                 value={placeOfBirthAndReligion.birthPlace}
                 errMsg={placeOfBirthAndReligionError?.birthPlace}
+                disabled={placeOfBirthAndReligion.isZambianBorn == "1"}
+                required={placeOfBirthAndReligion.isZambianBorn != "1"}
               />
             </div>
             <div className="flex items-center">

@@ -5,7 +5,7 @@ import SelectFacility from "@/pages/home/select-facility/SelectFacility";
 export const URLSelectFacility = (): string => "/select-facility";
 
 // routers for facility
-const facilityRouter = [
+const FacilityRouter = [
   {
     element: <PrivateGuard />,
     children: [
@@ -17,4 +17,4 @@ const facilityRouter = [
   },
 ];
 
-export default facilityRouter;
+export default FacilityRouter;

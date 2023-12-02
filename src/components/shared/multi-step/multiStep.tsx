@@ -13,8 +13,10 @@ const MultiStepComponent: React.FC<Props> = ({
   const middleData = removeFirst?.filter(
     (_, i) => i !== removeFirst?.length - 1
   );
-  const firstTitle = removeFirst[0];
-  const lastTitle = removeFirst[removeFirst.length - 1];
+  // const firstTitle = removeFirst[0];
+  // const lastTitle = removeFirst[removeFirst.length - 1];
+  const firstTitle = title[0];
+  const lastTitle = title[title.length - 1];
 
   return (
     <div className="w-full">
