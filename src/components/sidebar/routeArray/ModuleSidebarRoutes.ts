@@ -1,4 +1,4 @@
-const SidebarList = [
+const ModuleSidebarRoutes = [
   {
     id: 1,
     title: "Dashboard",
@@ -190,4 +190,4 @@ const SidebarList = [
   },
 ];
 
-export default SidebarList;
+export default ModuleSidebarRoutes;

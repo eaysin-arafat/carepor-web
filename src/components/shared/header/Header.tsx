@@ -153,18 +153,27 @@ function Header() {
               </div>
               <ul>
                 <li className="border-b">
-                  <Link to="/" className="px-5 py-3 flex items-center gap-3">
+                  <Link
+                    to="/facility-settings"
+                    className="px-5 py-3 flex items-center gap-3"
+                  >
                     <CiSettings size={28} className="w-[30px]" /> Facility
                     Setting
                   </Link>
                 </li>
                 <li className="border-b">
-                  <Link to="/" className="px-5 py-3 flex items-center gap-3">
+                  <Link
+                    to="/user-accounts/edit/40"
+                    className="px-5 py-3 flex items-center gap-3"
+                  >
                     <FiEdit size={20} className="w-[30px]" /> Edit Profile
                   </Link>
                 </li>
                 <li className="border-b">
-                  <Link to="/" className="px-5 py-3 flex items-center gap-3">
+                  <Link
+                    to="/change-password"
+                    className="px-5 py-3 flex items-center gap-3"
+                  >
                     <BsLock size={22} className="w-[30px]" /> Change Password
                   </Link>
                 </li>

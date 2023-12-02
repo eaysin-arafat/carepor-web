@@ -1,0 +1,31 @@
+import PrivateGuard from "@/components/shared/guard/PrivateGuard";
+import FacilitySettingsSidebar from "@/components/sidebar/FacilitySettingsSidebar";
+import RootLayout from "@/layout/RootLayout";
+import Test from "@/pages/test/Test";
+
+// * route paths for client pages
+export const URLFacilitySettings = (): string => "/facility-settings";
+
+// * routers for client pages
+const FacilitySettings = [
+  {
+    element: <PrivateGuard />,
+    children: [
+      {
+        element: (
+          <RootLayout>
+            <FacilitySettingsSidebar />
+          </RootLayout>
+        ),
+        children: [
+          {
+            path: URLFacilitySettings(),
+            element: <Test />,
+          },
+        ],
+      },
+    ],
+  },
+];
+
+export default FacilitySettings;

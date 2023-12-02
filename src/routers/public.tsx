@@ -8,7 +8,7 @@ export const URLUserAccountCreate = (): string => "/user-accounts/create";
 export const URLUserLogin = (): string => "/";
 export const URLUserRecoveryRequest = (): string => "/recovery-request";
 
-const publicRoutes = [
+const PublicRoutes = [
   {
     element: <PublicGuard />,
     children: [
@@ -28,4 +28,4 @@ const publicRoutes = [
   },
 ];
 
-export default publicRoutes;
+export default PublicRoutes;
