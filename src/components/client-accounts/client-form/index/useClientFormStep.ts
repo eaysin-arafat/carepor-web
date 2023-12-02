@@ -9,7 +9,7 @@ type ClientFormStepHookReturnType = {
 };
 // client form multi step hook
 const useClientFormStep = (editStep?: number): ClientFormStepHookReturnType => {
-  const [stateCount, setStateCount] = useState<number>(1);
+  const [stateCount, setStateCount] = useState<number>(5);
 
   const stepTitle = [
     "Personal <br /> Information",

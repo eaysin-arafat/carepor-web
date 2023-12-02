@@ -18,16 +18,6 @@ const useSelectFacility = () => {
   const { user } = useSelector((state: RootState) => state.authentication);
 
   // // const gf = cookieManager;
-
-  // const [username, setUsername] = useState<string>(""); // MARY / Idah
-  const [facilityId, setFacilityId] = useState<string | number>("");
-
-  const isFacilityId: boolean = !facilityId;
-  const { data: facilityByKey } = useReadFacilityByKeyQuery(facilityId, {
-    skip: !isFacilityId,
-  });
-  const [getFacilityAccesses, { data }] = useGetUserAccessByUserNameMutation();
-
   const {
     districtOptions,
     facilitiesOptions,
@@ -37,6 +27,16 @@ const useSelectFacility = () => {
     facilityState,
     facilityValid,
   } = useManageFacility(undefined);
+
+  // const isFacilityId: boolean = !facilityId;
+  const { data: facilityByKey } = useReadFacilityByKeyQuery(
+    facilityState.facility,
+    {
+      skip: !facilityState.facility,
+      refetchOnMountOrArgChange: true,
+    }
+  );
+  const [getFacilityAccesses, { data }] = useGetUserAccessByUserNameMutation();
 
   // // initial state
   const [isPermitted, setIsPermitted] = useState(false);
@@ -123,10 +123,6 @@ const useSelectFacility = () => {
   useEffect(() => {
     getFacilityAccesses(user?.username);
   }, [user?.username]);
-
-  useEffect(() => {
-    setFacilityId(facilityState?.facility);
-  }, [facilityState?.facility]);
 
   return {
     districtOptions,

@@ -33,7 +33,6 @@ const contactInformationValidation = (formData: ClientContactInfoType) => {
       errors: errors,
       required: true,
     });
-    console.log(errors);
   }
   phoneNumberValidation({
     phone: otherCellphone,

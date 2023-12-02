@@ -22,8 +22,6 @@ const usePlaceOfBirthReligious = ({
   setPlaceOfBirthAndReligionError,
   handleStepNext,
 }: Props) => {
-  // console.log({ placeOfBirthAndReligion });
-
   const districtAndProvince = useManageFacility();
   const { facilityState, setFacilityState } = districtAndProvince;
 

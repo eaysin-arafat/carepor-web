@@ -9,7 +9,6 @@ import RenderSelectOptions, {
   RenderCountryOptions,
 } from "@/components/core/form-elements/RenderSelectOptions";
 import { relationshipsEnums } from "@/enum/clients";
-import { useState } from "react";
 import Input from "../../../core/form-elements/Input";
 import Select from "../../../core/form-elements/Select";
 import FormSection from "../../../core/form-layouts/FormSection";
@@ -27,11 +26,6 @@ function ParentsGuardianDetails({
   handleParentsGuardianDetailsChange,
 }: // guardianSECError,
 Props) {
-  // console.log({ guardianSECError });
-  const [formErrMsg, setFormErrMsg] = useState("");
-
-  console.log(parentsOrGuardiansError);
-
   // useEffect(() => {
   //   if (guardianSECError?.isParentsOrGuardianFormError) {
   //     setFormErrMsg(
