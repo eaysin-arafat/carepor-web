@@ -22,7 +22,7 @@ import {
   ClientPersonalInfoErrorType,
   ClientPlaceOfBirthAndReligionErrorType,
 } from "@/types/clientFormTypes";
-import { DateFunc } from "@/utilities/data";
+import { DateFunc } from "@/utilities/date";
 import { useState } from "react";
 import useClientFormStep from "./useClientFormStype";
 

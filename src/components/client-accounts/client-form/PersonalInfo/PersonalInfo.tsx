@@ -3,6 +3,7 @@ import {
   ClientPersonalInfoErrorType,
   ClientPersonalInfoType,
 } from "@/types/clientFormTypes";
+import { getAgeMessage } from "@/utilities/date";
 import Checkbox from "../../../core/form-elements/Checkbox";
 import DatePicker from "../../../core/form-elements/CustomDatePicker";
 import CustomNrc from "../../../core/form-elements/CustomNrc";
@@ -84,12 +85,11 @@ function ClientPersonalInfo({
               {/* {personalInfo?.dob && ( */}
               <div
                 className={` ${
-                  " "
-                  // getAgeMessage(personalInfo?.dob)?.error ? "text-red-500" : ""
+                  getAgeMessage(personalInfo?.dob)?.error ? "text-red-500" : ""
                 } `}
               >
                 <div className="inline mr-1 font-semibold ">Age:</div>
-                {/* {getAgeMessage(personalInfo?.dob)?.ageMessage} */}
+                {getAgeMessage(personalInfo?.dob)?.ageMessage}
                 message
               </div>
             </div>
