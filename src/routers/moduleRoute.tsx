@@ -10,13 +10,14 @@ export const URLUserRecoveryRequest = (): string => "/recovery-request";
 
 const ModuleRoute = [
   {
-    element: <PublicGuard />,
+    // element: <PublicGuard />,
+    element: <RootLayout />,
     children: [
       {
-        element: <RootLayout />,
+        element: <ModuleSidebar />,
         children: [
           {
-            element: <ModuleSidebar />,
+            element: <PublicGuard />,
             children: [
               {
                 path: "/vitals",
