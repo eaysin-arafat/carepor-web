@@ -13,6 +13,7 @@ import {
   IoExitOutline,
 } from "react-icons/io5";
 import { LiaFileMedicalAltSolid } from "react-icons/lia";
+import { MdOutlineDarkMode } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 function Header() {
@@ -93,7 +94,7 @@ function Header() {
           <img
             onClick={() => setAdminBar(!adminBar)}
             src="/public/assets/img/menu-avatar.png"
-            className="h-[50px] cursor-pointer"
+            className="w-[60px] cursor-pointer"
             alt=""
           />
           {adminBar && (
@@ -128,6 +129,9 @@ function Header() {
             </div>
           )}
         </div>
+        <button className="h-[40px] w-[40px] bg-black rounded-full flex justify-center items-center">
+          <MdOutlineDarkMode color="#fff" size={25} />
+        </button>
       </div>
     </div>
   );
