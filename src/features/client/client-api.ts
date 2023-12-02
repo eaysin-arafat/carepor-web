@@ -69,7 +69,7 @@ const clientApi = API.injectEndpoints({
      */
     readClientByNRC: builder.query({
       query: (NRC) => ({
-        url: `/client/NRC/${NRC}`,
+        url: `/client/NRC/${NRC?.split("/").join("%2F")}`,
         method: "GET",
       }),
     }),
@@ -106,8 +106,8 @@ const clientApi = API.injectEndpoints({
      * @returns Client
      */
     readClientByCellphone: builder.query({
-      query: (cellphone) => ({
-        url: `/client/Cellphone/${cellphone}`,
+      query: ({ cellphone, countryCode }) => ({
+        url: `/client/Cellphone?cellphone=${cellphone}&countryCode=${countryCode}`,
         method: "GET",
       }),
     }),
@@ -136,6 +136,30 @@ const clientApi = API.injectEndpoints({
         url: `/client/clientnodob/${clientNoDob}`,
         method: "GET",
       }),
+    }),
+
+    /**
+     * @description this endpoints for reading client by name search
+     * @param name
+     *  @returns Client
+     */
+    readNameSearchClients: builder.query({
+      query: ({ firstName, surname, sex, dob }) => {
+        let url = `/client/clientnodob/?firstname=${firstName}&surname=${surname}&sex=${sex}`;
+        if (dob) {
+          let d = null;
+          d = new Date(dob)?.toISOString().split("T")[0]?.split("-")?.reverse();
+          d[0] = `${+d[0] + 1}`.padStart(2, "0");
+          d[1] = `${+d[1]}`.padStart(2, "0");
+          d = d?.join("/");
+
+          url = `/client/clientbasicinfo/?firstname=${firstName}&surname=${surname}&sex=${sex}&dob=${d}`;
+        }
+        return {
+          url,
+          method: "GET",
+        };
+      },
     }),
 
     /**
@@ -255,6 +279,7 @@ export const {
   useReadClientDetailsForTOPCardQuery,
   useReadClientDetailsForRightCardQuery,
   useClientUpdateMutation,
+  useReadNameSearchClientsQuery,
 } = clientApi;
 
 // export endpoints

@@ -15,6 +15,7 @@ type Props = {
   pattern?: any;
   type?: string;
   placeholder?: string;
+  handleClear?: () => void;
 };
 
 function DatePicker({
@@ -24,10 +25,10 @@ function DatePicker({
   label = "Select a Date",
   required,
   value,
-  // error,
   errMsg,
   disabled = false,
-  placeholder = "dd/mm/yyyy"
+  placeholder = "dd/mm/yyyy",
+  handleClear,
 }: Props) {
   const [selectedDate, setSelectedDate] = useState<string | null>(
     value || null
@@ -114,6 +115,7 @@ function DatePicker({
     event.preventDefault();
 
     setSelectedDate(null);
+    handleClear && handleClear();
     // setShowDatepicker(false);
   };
 
