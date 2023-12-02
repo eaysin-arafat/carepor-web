@@ -8,7 +8,7 @@
   --body: #fafafb;
   --primary: #1890ff;
   --primaryHover: #007aec;
-  --lightBlue: #cee7ffd3;
+  --lightBlue: #e3effb;
   --secondary: #1e0e62;
   --grayColor: #a1a1b0;
   --lightGray: #f3f4f6;
@@ -95,8 +95,26 @@
 }
 
 @layer components {
+  .default_button {
+    @apply min-w-[170px] text-whiteColor hover:bg-primaryHoverColor  hover:text-whiteColor bg-primaryColor border-2 border-primaryColor py-[14px] rounded-full transition-all ease-in-out duration-500 ;
+  }
+}
+
+@layer components {
+  .go_back {
+    @apply flex gap-2 items-center text-[22px] font-medium py-2 rounded-lg ;
+  }
+}
+
+@layer components {
+  .outline_btn {
+    @apply bg-whiteColor text-primaryColor  ;
+  }
+}
+
+@layer components {
   .btn_sm {
-    @apply py-2.5 text-base ;
+    @apply py-1.5 text-base ;
   }
 }
 

@@ -1,4 +1,5 @@
 import { cn } from "@/utilities/cn";
+import { MdOutlineEdit } from "react-icons/md";
 
 type Props = {
   children?: any;
@@ -9,6 +10,10 @@ type Props = {
   icon?: boolean;
   titleClass?: string;
   imageClass?: string;
+  view?: string;
+  titleBorder?: string;
+  edit?: boolean;
+  editHandler?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 const Card = ({
@@ -20,21 +25,49 @@ const Card = ({
   icon,
   titleClass = " ",
   imageClass = " ",
+  view,
+  titleBorder = " ",
+  edit,
+  editHandler,
 }: Props) => {
   return (
     <div className={cn("bg-borderColor rounded-lg shadow-md", className)}>
-      {title && (
-        <h2
-          className={cn(
-            "text-blackColor heading_2 text-2xl px-4 py-3 border-b flex items-center gap-2 rounded-t ",
-            titleClass
-          )}
-        >
-          {image && <img src={image} alt="Home" className={cn(" " , imageClass )} />}
-          {icon && icon}
-          {title}
-        </h2>
-      )}
+      <div className={cn("flex justify-between", titleBorder)}>
+        {title && (
+          <h2
+            className={cn(
+              " heading_2 text-2xl px-4 py-3 flex items-center gap-2 rounded-t ",
+              titleClass
+            )}
+          >
+            {image && (
+              <img src={image} alt="Home" className={cn(" ", imageClass)} />
+            )}
+            {icon && icon}
+            {title}
+          </h2>
+        )}
+        {view && (
+          <>
+            <button className="text-gray-500 text-base font-semibold px-4 py-3 font-poppins flex items-center gap-1">
+              {view}{" "}
+              <img
+                src="/public/assets/icons/arrow-right.svg"
+                alt=""
+                className="
+            "
+              />
+            </button>
+          </>
+        )}
+        {edit && (
+          <>
+            <button onClick={editHandler} className="text-primaryColor text-base font-normal px-1 me-4 font-poppins flex items-center gap-1">
+              <MdOutlineEdit/>Edit
+            </button>
+          </>
+        )}
+      </div>
       <div className={`${!isImage && "p-4"}`}>{children}</div>
     </div>
   );
