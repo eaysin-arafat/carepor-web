@@ -1,4 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  font-family: "Poppins", sans-serif !important;
+}
 
 @tailwind base;
 @tailwind components;
@@ -96,25 +99,25 @@
 
 @layer components {
   .default_button {
-    @apply min-w-[170px] text-whiteColor hover:bg-primaryHoverColor  hover:text-whiteColor bg-primaryColor border-2 border-primaryColor py-[14px] rounded-full transition-all ease-in-out duration-500 ;
+    @apply min-w-[170px] text-whiteColor hover:bg-primaryHoverColor  hover:text-whiteColor bg-primaryColor border-2 border-primaryColor py-[14px] rounded-full transition-all ease-in-out duration-500;
   }
 }
 
 @layer components {
   .go_back {
-    @apply flex gap-2 items-center text-[22px] font-medium py-2 rounded-lg ;
+    @apply flex gap-2 items-center text-[22px] font-medium py-2 rounded-lg;
   }
 }
 
 @layer components {
   .outline_btn {
-    @apply bg-whiteColor text-primaryColor  ;
+    @apply bg-whiteColor text-primaryColor;
   }
 }
 
 @layer components {
   .btn_sm {
-    @apply py-1.5 text-base ;
+    @apply py-1.5 text-base;
   }
 }
 

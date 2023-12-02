@@ -1,3 +1,4 @@
+import sidebar from "@/features/sidebar/sidebar";
 import { configureStore } from "@reduxjs/toolkit";
 import { API } from "../features/API/API";
 import authenticationReducer from "../features/authentication/authentication-slice";
@@ -12,6 +13,7 @@ export const store = configureStore({
     facilityAccess: facilityAccessReducer,
     publicKey: publicKeyReducer,
     authentication: authenticationReducer,
+    sidebar: sidebar,
   },
 
   devTools: import.meta.env.MODE !== "production",
