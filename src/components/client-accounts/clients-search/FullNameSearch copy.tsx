@@ -9,8 +9,8 @@ const FullNameSearch = () => {
   console.log({ amir });
   return (
     <div className="w-full">
-      <div className="md:custom-input md:items-center md:py-0 md:mt-[6px] md:h-[52px] md:grid md:grid-cols-4 md:me-5 md:border-gray-300 md:focus:border-gray-300 space-y-3 md:space-y-0">
-      <div className="md:border-r ">
+      <div className="md:custom-input md:items-center md:py-0 md:mt-[6px] md:h-[52px] grid md:grid-cols-4 md:me-5 md:border-gray-300 md:focus:border-gray-300">
+        <div className="md:border-r ">
           <Input
             label=""
             name=""

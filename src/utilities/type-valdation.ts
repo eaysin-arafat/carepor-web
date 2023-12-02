@@ -3,7 +3,7 @@ export class TypeValidation {
     return /^\d+$/.test(value);
   }
   static isZambiaCellphone = (cellphone: string): boolean => {
-    return /^0?\d{0,10}$/.test(cellphone);
+    return /^0?\d{0,9}$/.test(cellphone);
   };
 
   static isPhoneNumber(value: string): boolean {

@@ -1,4 +1,3 @@
-import LinkButton from "@/components/core/buttons/LinkButton";
 import AppLogo from "@/components/core/logo/logo";
 import Title from "@/components/core/titles/Titles";
 import { useState } from "react";
@@ -13,6 +12,7 @@ import {
   IoExitOutline,
 } from "react-icons/io5";
 import { LiaFileMedicalAltSolid } from "react-icons/lia";
+import { MdOutlineDarkMode } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 function Header() {
@@ -77,11 +77,13 @@ function Header() {
             </div>
           </li>
           <li>
-            <LinkButton
+            <Link
               title="Select Client"
-              className="block px-10 h-[45px] text-[10px] w-[170px]"
-              link="/"
-            />
+              className=" block px-10 py-3 rounded-full text-[14px] bg-primaryColor text-whiteColor"
+              to="/client-search"
+            >
+              Find Patients
+            </Link>
           </li>
         </ul>
       </div>
@@ -93,7 +95,7 @@ function Header() {
           <img
             onClick={() => setAdminBar(!adminBar)}
             src="/public/assets/img/menu-avatar.png"
-            className="h-[50px] cursor-pointer"
+            className="w-[60px] cursor-pointer"
             alt=""
           />
           {adminBar && (
@@ -128,6 +130,9 @@ function Header() {
             </div>
           )}
         </div>
+        <button className="h-[40px] w-[40px] bg-black rounded-full flex justify-center items-center">
+          <MdOutlineDarkMode color="#fff" size={25} />
+        </button>
       </div>
     </div>
   );

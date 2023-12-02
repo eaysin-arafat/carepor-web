@@ -1,4 +1,5 @@
 import PrivateGuard from "@/components/shared/guard/PrivateGuard";
+import UserLayout from "@/layout/UserLayout";
 import CreateAdmission from "@/pages/admissions/create/Create";
 import CreateClientAccount from "@/pages/client-accounts/create/CreateClientAccount";
 import ClientAccountEdit from "@/pages/client-accounts/edit/ClientAccountEdit";
@@ -28,35 +29,40 @@ export const URLEditAdmission = ({
 // routers for client pages
 const clientRouter = [
   {
-    element: <PrivateGuard />,
+    element: <UserLayout />,
     children: [
       {
-        path: URLClientSearch(),
-        element: <ClientSearch />,
-      },
-      {
-        path: URLAdmissionSearch(),
-        element: <AdmissionSearch />,
-      },
-      {
-        path: URLClientDetails({ id: ":id" }),
-        element: "<ClientDetails />",
-      },
-      {
-        path: URLClientCreate(),
-        element: <CreateClientAccount />,
-      },
-      {
-        path: URLClientEdit({ id: ":id" }),
-        element: <ClientAccountEdit />,
-      },
-      {
-        path: URLCreateAdmission({ clientId: ":clientId" }),
-        element: <CreateAdmission />,
-      },
-      {
-        path: URLEditAdmission({ clientId: ":clientId" }),
-        element: <EditAdmission />,
+        element: <PrivateGuard />,
+        children: [
+          {
+            path: URLClientSearch(),
+            element: <ClientSearch />,
+          },
+          {
+            path: URLAdmissionSearch(),
+            element: <AdmissionSearch />,
+          },
+          {
+            path: URLClientDetails({ id: ":id" }),
+            element: "<ClientDetails />",
+          },
+          {
+            path: URLClientCreate(),
+            element: <CreateClientAccount />,
+          },
+          {
+            path: URLClientEdit({ id: ":id" }),
+            element: <ClientAccountEdit />,
+          },
+          {
+            path: URLCreateAdmission({ clientId: ":clientId" }),
+            element: <CreateAdmission />,
+          },
+          {
+            path: URLEditAdmission({ clientId: ":clientId" }),
+            element: <EditAdmission />,
+          },
+        ],
       },
     ],
   },

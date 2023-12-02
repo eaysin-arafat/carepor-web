@@ -13,8 +13,6 @@ const useSetPublicKey = () => {
       try {
         const response = await fetch("/public_key.json"); // Adjust the path accordingly
 
-        console.log(response);
-
         const key = await response.json();
         console.log("key", key);
         cookieManager.saveCookie("carepro_public_key", JSON.stringify(key), {

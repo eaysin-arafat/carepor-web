@@ -1,4 +1,5 @@
 import { useReadCountriesQuery } from "@/features/country/country-api";
+import { Country } from "@/interface/country";
 import { OnchangeEventType } from "@/types/htmlEvents";
 import Select from "./Select";
 
@@ -16,19 +17,6 @@ type Props = {
   resetCellPhone: () => void;
 };
 
-/**
- * @params resetCellPhone *** use for reset cellPhone field if not valid
- * @params value
- * @params onChange
- * @params name
- * @params label
- * @params errMsg
- * @params className
- * @params disabled
- * @params placeholder
- * @params required
- */
-
 function CountryCode({
   value,
   onChange,
@@ -40,8 +28,7 @@ function CountryCode({
   className,
   placeholder,
   resetCellPhone,
-}: // countries,
-Props) {
+}: Props) {
   const { data: countries } = useReadCountriesQuery(undefined);
 
   const handleFilter = (e: OnchangeEventType) => {
@@ -73,7 +60,7 @@ Props) {
   );
 }
 
-const renderCodeOptions = (countries: any) => {
+const renderCodeOptions = (countries: Country[]) => {
   return Array.isArray(countries) ? (
     countries?.map((countryCode) => {
       return (

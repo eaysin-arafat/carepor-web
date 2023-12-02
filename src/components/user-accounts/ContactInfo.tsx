@@ -12,6 +12,7 @@ type Props = {
   countries: Country[];
   handleCellphoneChange: (e: string) => void;
   isCellphoneValid?: boolean;
+  editMode?: boolean;
 };
 
 function ContactInfo({
@@ -21,6 +22,7 @@ function ContactInfo({
   countries,
   handleCellphoneChange,
   isCellphoneValid,
+  editMode = false,
 }: Props) {
   const renderCountryOptions = () => {
     return countries.map((country: Country) => (
@@ -54,7 +56,11 @@ function ContactInfo({
               value={contactInfo.countryCode}
               name="countryCode"
               onChange={handleChange}
-              errMsg={errors?.countryCode || errors?.cellphone}
+              errMsg={
+                errors?.countryCode ||
+                errors?.cellphone ||
+                (!isCellphoneValid ? "Cellphone already exists" : "")
+              }
             >
               {countries?.length > 0 && renderCountryOptions()}
             </Select>
@@ -63,7 +69,7 @@ function ContactInfo({
                 required
                 label="Cellphone"
                 placeholder="Phone"
-                // value={contactInfo.cellphone}
+                {...(editMode && { value: contactInfo.cellphone })}
                 name="cellphone"
                 onChange={(e) => handleCellphoneChange(e.target.value)}
               />
