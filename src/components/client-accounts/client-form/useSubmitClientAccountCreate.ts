@@ -1,5 +1,5 @@
 import { useCreateClientMutation } from "@/features/client/client-api";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import toast from "react-hot-toast";
 // import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -30,13 +30,10 @@ const useSubmitClientAccountCreate = ({
     { data: clientData, status, isError, isSuccess, error },
   ] = useCreateClientMutation();
 
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
-
   const handleClientDataSubmit = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault();
-    setIsFormSubmitted(true);
 
     const baseData = {
       createdBy: "f53101db-baf7-4f2c-4e44-08dbcd4df0dd",
@@ -131,10 +128,8 @@ const useSubmitClientAccountCreate = ({
     }
   }, [isError]);
 
-  return {
-    isFormSubmitted: isFormSubmitted,
-    handleClientDataSubmit,
-  };
+  // Return handler
+  return { handleClientDataSubmit };
 };
 
 export default useSubmitClientAccountCreate;

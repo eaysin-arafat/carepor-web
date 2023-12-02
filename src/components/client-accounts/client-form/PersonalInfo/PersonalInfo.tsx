@@ -72,28 +72,31 @@ function ClientPersonalInfo({
               <option value="2">Female</option>
             </Select>
           </div>
-          <div className="col-span-6 flex justify-start items-center">
-            <div className="flex items-center  gap-2">
+          <div className="col-span-6 flex justify-start items-center gap-2">
+            <div className="flex items-center justify-between ">
               <Checkbox
                 label="Date of birth is estimated"
                 name="isDOBEstimated"
                 checked={personalInfo.isDOBEstimated}
                 onChange={handlePersonalInfoChange}
               />
-              {/* SHOW CLIENT AGE */}
-
-              {/* {personalInfo?.dob && ( */}
-              <div
-                className={` ${
-                  getAgeMessage(personalInfo?.dob)?.error ? "text-red-500" : ""
-                } `}
-              >
-                <div className="inline mr-1 font-semibold ">Age:</div>
-                {getAgeMessage(personalInfo?.dob)?.ageMessage}
-                message
-              </div>
             </div>
-            {/* )} */}
+            {/* SHOW CLIENT AGE */}
+            {personalInfo?.dob && (
+              <div className=" font-semibold ">
+                Age:
+                <span
+                  className={` ${
+                    getAgeMessage(personalInfo?.dob)?.error
+                      ? "text-red-500"
+                      : ""
+                  } `}
+                >
+                  {" "}
+                  {getAgeMessage(personalInfo?.dob)?.ageMessage}
+                </span>
+              </div>
+            )}
           </div>
           <div className="col-span-6 md:col-span-3">
             <CustomNrc
@@ -161,3 +164,13 @@ function ClientPersonalInfo({
 }
 
 export default ClientPersonalInfo;
+
+/**
+ *                   <div
+                    className={` ${
+                      getAgeMessage(personalInfo?.dob)?.error
+                        ? "text-red-500"
+                        : ""
+                    } `}
+                  >
+ */

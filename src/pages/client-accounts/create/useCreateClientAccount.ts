@@ -129,17 +129,16 @@ const useCreateClientAccount = (editClientId?: string) => {
   const handleFormReset = () => {};
 
   const { facilityState } = districtAndProvince;
-  const { handleClientDataSubmit, isFormSubmitted } =
-    useSubmitClientAccountCreate({
-      contactInfo,
-      educationAndEmployment,
-      maritalStatusAndSpouse,
-      parentsOrGuardians,
-      personalInfo,
-      placeOfBirthAndReligion,
-      facilityState,
-      handleFormReset,
-    });
+  const { handleClientDataSubmit } = useSubmitClientAccountCreate({
+    contactInfo,
+    educationAndEmployment,
+    maritalStatusAndSpouse,
+    parentsOrGuardians,
+    personalInfo,
+    placeOfBirthAndReligion,
+    facilityState,
+    handleFormReset,
+  });
 
   // personal info form Handler
   const handleClintFormNextOperation = () => {

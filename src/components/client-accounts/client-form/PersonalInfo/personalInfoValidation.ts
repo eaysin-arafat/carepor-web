@@ -21,6 +21,8 @@ const personalInfoValidation = (formData: ClientPersonalInfoType) => {
   if (!formData.nrc) errors.nrc = "Required";
   if (!formData.countryId) errors.countryId = "Required";
   if (!formData.registrationDate) errors.countryId = "Required";
+  if (isFuture(new Date(formData.registrationDate)))
+    errors.registrationDate = "This date should not be a future date!";
 
   // if (formData.napsaNumber && formData.napsaNumber.length > 20) errors.napsaNumber = "Required";
   // if (formData.underFiveCardNumber && formData.underFiveCardNumber > 20) errors.underFiveCardNumber = "Required";

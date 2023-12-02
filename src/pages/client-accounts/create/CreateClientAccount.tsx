@@ -65,7 +65,7 @@ function CreateClientAccount() {
   const {
     disabledBackButton,
     handleStepBack,
-    handleStepNext,
+    // handleStepNext,
     stepTitle,
     stateCount,
   } = formStepState;
