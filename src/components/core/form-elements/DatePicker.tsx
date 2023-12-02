@@ -38,8 +38,8 @@ const DateInput: React.FC<DateInputProps> = ({
   };
 
   return (
-    <div className="flex w-[100%] flex-col items-start justify-start gap-[6px]">
-      <div className="flex">
+    <div className="flex  flex-col w-full items-start justify-start gap-[6px]">
+      <div className="flex w-full">
         <div className="text-blackColor leading-[125%] capitalize ">
           {" "}
           {label}
@@ -60,6 +60,7 @@ const DateInput: React.FC<DateInputProps> = ({
         dateFormat={"dd/MM/yyyy"}
         placeholderText="dd/mm/yyyy"
         onKeyDown={handleOnKeyDown}
+        wrapperClassName="w-full"
         className={`custom-input w-[100%] ${className}`}
       />
       {errMsg && (

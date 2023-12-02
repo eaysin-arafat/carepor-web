@@ -24,9 +24,6 @@ const useParentsGuardianDetails = ({
   handleStepNext,
   isClientUnder18Years,
 }: ParentsGuardianDetailsType) => {
-  // console.log({ parentsOrGuardians, setParentsOrGuardians });
-  //
-
   // handle personal info form change
   const handleParentsGuardianDetailsChange = (e: OnchangeEventType): void => {
     const { name, type, checked, value } = e.target;

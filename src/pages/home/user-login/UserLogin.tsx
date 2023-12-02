@@ -24,7 +24,12 @@ function UserLogin() {
       contentCenter
     >
       <form onSubmit={handleFormSubmit} className="my-5">
-        {/* <Alert icon={HiInformationCircle} color="failure" onDismiss={() => alert("Alert dismissed!")} className="mb-5">
+        {/* <Alert
+          icon={HiInformationCircle}
+          color="failure"
+          onDismiss={() => alert("Alert dismissed!")}
+          className="mb-5"
+        >
           You have entered an invalid username or password
         </Alert> */}
         <div className="flex flex-col gap-5">

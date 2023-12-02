@@ -1,35 +1,30 @@
-import ClientPersonalInfo from "@/components/client-accounts/client-form/PersonalInfo/PersonalInfo";
-import ContactInformation from "@/components/client-accounts/client-form/contact-information/ContactInformation";
-import EducationAndEmployment from "@/components/client-accounts/client-form/education-employment/EducationAndEmployment";
-import MaritalStatusAndSpouse from "@/components/client-accounts/client-form/marital-status-And-spouse/MaritalStatusAndSpouse";
-import GuardianDetails from "@/components/client-accounts/client-form/parents-guardian-details/ParentsGuardianDetails";
-import PlaceOfBirthAndReligious from "@/components/client-accounts/client-form/place-of-birth-religious/PlaceOfBirthAndReligious";
-import BackButton from "@/components/core/buttons/BackButton";
-import NextButton from "@/components/core/buttons/NextButton";
 import FormWrapper from "@/components/core/form-layouts/FormWrapper";
 import MultiStepComponent from "@/components/shared/multi-step/multiStep";
-import { useState } from "react";
+import { useParams } from "react-router-dom";
+import ClientForm from "../../../components/client-accounts/client-form/index/ClientForm";
+import useClientAccount from "../../../components/client-accounts/client-form/index/useClientAccount";
+import { useReadClientByKeyQuery } from "@/features/client/client-api";
 
 function ClientAccountEdit() {
-  const [stateCount, setStateCount] = useState(1);
-  const stepTitle = [
-    "Personal <br /> Information",
-    "Parents or  <br /> Guardian Details",
-    "Marital Status &  <br /> Spouse Details",
-    "Contact <br /> Information",
-    "Place of Birth & <br /> Religious Denomination",
-    "Education &  <br /> Employment",
-  ];
-  console.log({ stateCount });
-  console.log({ stepTitle: stepTitle.length });
-  const disabledBackButton = stateCount === 1;
+  const params = useParams();
+  const editClientId = params.id;
+  const ClientByKeyQuery = useReadClientByKeyQuery(editClientId, {
+    skip: !editClientId,
+    refetchOnMountOrArgChange: true,
+  });
 
-  const handleBack = () => {
-    setStateCount((prev: number) => Math.max(prev - 1, 1));
-  };
-  const handleNext = () => {
-    setStateCount((next: number) => Math.min(next + 1, stepTitle.length));
-  };
+  const {
+    data: editClient,
+    isSuccess,
+    isError,
+    error,
+    status,
+  } = ClientByKeyQuery;
+  const clientEditManager = useClientAccount(ClientByKeyQuery, true);
+
+  const { formStepState } = clientEditManager;
+  // form step state and handler
+  const { stepTitle, stateCount } = formStepState;
 
   return (
     <>
@@ -43,45 +38,7 @@ function ClientAccountEdit() {
           maxWidth="max-w-[1022px]"
           noBackground
         >
-          <>
-            <p className="text-center mt-2">
-              Fields marked by <span className="text-dangerColor">*</span> are
-              mandatory
-            </p>
-            <form action="" className="my-5">
-              {stateCount === 1 && <ClientPersonalInfo />}
-              {stateCount === 2 && <GuardianDetails />}
-              {stateCount === 3 && <MaritalStatusAndSpouse />}
-              {stateCount === 4 && <ContactInformation />}
-              {stateCount === 5 && <PlaceOfBirthAndReligious />}
-              {stateCount === 6 && <EducationAndEmployment />}
-            </form>
-            <div className="flex gap-5 mt-5 justify-end">
-              <BackButton
-                disabled={disabledBackButton}
-                title="Back"
-                type="button"
-                onClick={handleBack}
-                className="w-40"
-              />
-              {stateCount === 6 && (
-                <NextButton
-                  title="Submit"
-                  type="submit"
-                  onClick={handleNext}
-                  className=""
-                />
-              )}
-              {stateCount !== 6 && (
-                <NextButton
-                  title="Next"
-                  type="button"
-                  onClick={handleNext}
-                  className="w-40"
-                />
-              )}
-            </div>
-          </>
+          <ClientForm clientManager={clientEditManager} isEditForm={true} />
         </FormWrapper>
       </div>
     </>

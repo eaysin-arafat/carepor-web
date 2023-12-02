@@ -13,7 +13,6 @@ const personalInfoValidation = (formData: ClientPersonalInfoType) => {
   //   if (!formData.firstName) errors.firstName = "Required";
   //   if (!formData.surname) errors.surname = "Required";
   if (!formData.dob) errors.dob = "Required";
-  console.log(isFuture(new Date(formData.dob)));
 
   if (isFuture(new Date(formData.dob)))
     errors.dob = "This date should not be a future date!";

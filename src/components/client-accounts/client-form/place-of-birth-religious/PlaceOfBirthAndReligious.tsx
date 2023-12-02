@@ -25,8 +25,6 @@ function PlaceOfBirthAndReligious({
   handlePlaceOfBirthAndReligionChange,
   districtAndProvince,
 }: Props) {
-  // console.log(placeOfBirthAndReligionError);
-
   //
   const {
     districtOptions,
@@ -35,7 +33,7 @@ function PlaceOfBirthAndReligious({
     facilityChangeHandler,
   } = districtAndProvince;
 
-  console.log({ ...facilityState, ...placeOfBirthAndReligion });
+  console.log(facilityState);
 
   return (
     <>

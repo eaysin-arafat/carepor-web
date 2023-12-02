@@ -8,7 +8,11 @@ import { MdArrowBackIos } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 
-function RootLayout({ children }) {
+interface RootLayoutProps {
+  children?: React.ReactNode;
+}
+
+function RootLayout({ children }: RootLayoutProps) {
   const dispatch = useDispatch();
   const w1100 = useWindowWidth(1100);
   const sidebarVal = w1100 ? true : false;

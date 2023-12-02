@@ -1,3 +1,4 @@
+import DateInput from "@/components/core/form-elements/DatePicker";
 import { RenderCountryOptions } from "@/components/core/form-elements/RenderSelectOptions";
 import {
   ClientPersonalInfoErrorType,
@@ -22,8 +23,6 @@ function ClientPersonalInfo({
   handlePersonalInfoChange,
   personalInfoError,
 }: Props) {
-  console.log({ noNRC: personalInfo.noNRC });
-
   return (
     <>
       <SectionWrapper title="Personal Information">
@@ -50,13 +49,16 @@ function ClientPersonalInfo({
             />
           </div>
           <div className="col-span-6 md:col-span-3">
-            <DatePicker
+            <DateInput
               label="Date of birth"
-              name="dob"
-              value={personalInfo.dob}
-              onChange={handlePersonalInfoChange}
-              errMsg={personalInfoError?.dob}
+              selected={personalInfo?.dob ? new Date(personalInfo?.dob) : null}
+              onChange={(date: Date) =>
+                handlePersonalInfoChange({
+                  target: { name: "dob", value: date.toISOString() },
+                } as React.ChangeEvent<HTMLInputElement>)
+              }
               required
+              errMsg={personalInfoError?.dob}
             />
           </div>
           <div className="col-span-6 md:col-span-3">
