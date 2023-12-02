@@ -1,4 +1,5 @@
 import Container from "@/components/core/container/Container";
+import ServicePointBox from "@/components/service-point/ServicePointBox";
 
 const ServicePoints = () => {
   return (
@@ -7,18 +8,7 @@ const ServicePoints = () => {
         <div className="my-10">
           <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-items-center sm:justify-between gap-9 mx-8">
             {servicePointsArray.map((servicePoint: any, index: number) => (
-              <div key={index} className={servicePointStyle}>
-                <div className={servicePointBoxStyle}>
-                  <div className={servicePointIconStyle}>
-                    <img src={servicePoint.imgSrc} alt="" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-secondaryColor">
-                      {servicePoint.title}
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <ServicePointBox item={servicePoint} key={index} />
             ))}
           </div>
         </div>
@@ -28,13 +18,6 @@ const ServicePoints = () => {
 };
 
 export default ServicePoints;
-
-const servicePointBoxStyle =
-  "flex items-center rounded-xl h-24 w-full bg-lightBlueColor border border-blue-300";
-const servicePointIconStyle =
-  "bg-white h-20 w-20 -ml-5 rounded-xl border border-blue-300 shadow-md p-2 mr-6 flex items-center justify-center";
-const servicePointStyle =
-  "h-24 w-full xs:max-w-full max-w-[220px]  flex justify-end ";
 
 const servicePointsArray = [
   { imgSrc: "/public/assets/svg/service-point/OPD.svg", title: "Me (OPD)" },

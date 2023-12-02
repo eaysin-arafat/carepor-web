@@ -1,13 +1,17 @@
 import Container from "@/components/core/container/Container";
 import { Client } from "@/interface/clients";
-import { URLClientEdit, URLCreateAdmission } from "@/routers/client";
+import {
+  URLClientEdit,
+  URLCreateAdmission,
+  URLServicePoint,
+} from "@/routers/client";
 import { cn } from "@/utilities/cn";
 import { format } from "date-fns";
 import { FaCalendarAlt } from "react-icons/fa";
 import { FaRegAddressCard } from "react-icons/fa6";
 import { LuMapPin } from "react-icons/lu";
 import { MdOutlinePerson2, MdOutlinePhone } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const gender = {
   1: "male",
@@ -19,6 +23,7 @@ type PatientCardProps = {
 };
 
 const PatientCard = ({ client }: PatientCardProps) => {
+  const navigate = useNavigate();
   return (
     <div>
       <Container className="my-5">
@@ -97,7 +102,12 @@ const PatientCard = ({ client }: PatientCardProps) => {
                 </div> */}
               </div>
               <div className="flex flex-row flex-wrap gap-5">
-                <Link to={URLClientEdit(client?.oid)} className={cn("default_button outline_btn btn_sm text-center")}>
+                <Link
+                  to={URLClientEdit(client?.oid)}
+                  className={cn(
+                    "default_button outline_btn btn_sm text-center"
+                  )}
+                >
                   Edit Profile
                 </Link>
                 {!client.isAdmitted && (
@@ -121,7 +131,10 @@ const PatientCard = ({ client }: PatientCardProps) => {
                 <button className={cn("default_button btn_sm")}>
                   Service Queue
                 </button>
-                <button className={cn("default_button btn_sm")}>
+                <button
+                  className={cn("default_button btn_sm")}
+                  onClick={() => navigate(URLServicePoint())}
+                >
                   Attend to Patient
                 </button>
               </div>

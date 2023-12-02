@@ -8,7 +8,7 @@ import { MdArrowBackIos } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 
-function RootLayout({ children }) {
+function RootLayout() {
   const dispatch = useDispatch();
   const w1100 = useWindowWidth(1100);
   const sidebarVal = w1100 ? true : false;
@@ -61,7 +61,10 @@ function RootLayout({ children }) {
                 minWidth: sidebar ? "0px" : "300px",
               }}
             >
-              <div>{children}</div>
+              <div>
+                {" "}
+                <Outlet />{" "}
+              </div>
             </div>
           </div>
           <div className="w-full h-[92vh] overflow-x-auto bg-white">
