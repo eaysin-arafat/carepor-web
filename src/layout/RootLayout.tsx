@@ -62,8 +62,7 @@ function RootLayout() {
               }}
             >
               <div>
-                {" "}
-                <Outlet />{" "}
+                <Outlet />
               </div>
             </div>
           </div>
