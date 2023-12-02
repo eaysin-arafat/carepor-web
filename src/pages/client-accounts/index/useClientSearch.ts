@@ -83,7 +83,8 @@ const useClientSearch = () => {
     setIsShowRegisterLink(status);
   };
 
-  const handleSearchClick = () => {
+  const handleSearchClick = (e) => {
+    e.preventDefault();
     switch (search) {
       case "nrc":
         return dispatch<any>(clientApiEndpoints.readClientByNRC.initiate(nrc))

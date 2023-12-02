@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { RootState } from "@/app/store";
 import IsPatientFound from "@/components/client-accounts/cards/IsPatientFound";
 import PatientCard from "@/components/client-accounts/cards/PatientCard";
 import CellPhoneSearch from "@/components/client-accounts/clients-search/CellPhoneSearch";
@@ -12,9 +13,12 @@ import Table from "@/components/core/table/Table";
 import TableData from "@/components/core/table/TableData";
 import TableHead from "@/components/core/table/TableHead";
 import { Client } from "@/interface/clients";
+import { format } from "date-fns";
+import { useSelector } from "react-redux";
 import useClientSearch from "./useClientSearch";
 
 const ClientSearch = () => {
+  const { user } = useSelector((state: RootState) => state.authentication);
   const {
     cellphoneSearch,
     handleCellphoneSearchChange,
@@ -39,9 +43,11 @@ const ClientSearch = () => {
           <>
             <div className="md:flex justify-between mt-10 mb-3">
               <h2 className="text-2xl font-semibold text-secondaryColor ">
-                Welcome Amir Hamza
+                Welcome {user?.firstName} {user?.surname}
               </h2>
-              <h2 className="text-textColor ">Wednesday, November 29, 2023</h2>
+              <h2 className="text-textColor ">
+                {format(new Date(), "EEEE, MMMM dd, yyyy")}
+              </h2>
             </div>
             <div className="relative bg-lightBlueColor w-full p-5 rounded-lg shadow  transition-all ease-out">
               <h2 className="heading_2 text-center font-semibold text-secondaryColor text-2xl md:text-4xl pb-2">
@@ -51,7 +57,11 @@ const ClientSearch = () => {
                 handleSearchTabChange={handleSearchTabChange}
                 search={search}
               />
-              <form action="" className="w-full flex justify-center gap-5 mt-5">
+              <form
+                action=""
+                className="w-full flex justify-center gap-5 mt-5"
+                onSubmit={handleSearchClick}
+              >
                 <div className="w-full max-w-[620px] pb-9">
                   {search === "nrc" && (
                     <NrcSearch handleNrcChange={handleNrcChange} nrc={nrc} />
@@ -78,9 +88,8 @@ const ClientSearch = () => {
                 </div>
                 <div className="absolute -bottom-6">
                   <button
-                    type="button"
+                    type="submit"
                     className="main_btn w-40 flex justify-center gap-2"
-                    onClick={handleSearchClick}
                   >
                     <img src="/assets/icons/search.svg" alt="search" />
                     Search

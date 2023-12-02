@@ -87,9 +87,21 @@ const PatientCard = ({ client }: PatientCardProps) => {
                 <button className={cn("default_button outline_btn btn_sm")}>
                   Edit Profile
                 </button>
-                <button className={cn("default_button btn_sm")}>
-                  Admit Patient
-                </button>
+                {!client.isAdmitted && (
+                  <button className={cn("default_button btn_sm")}>
+                    Admit Patient
+                  </button>
+                )}
+                {client?.isAdmitted && (
+                  <>
+                    <button className={cn("default_button btn_sm")}>
+                      Admission Details
+                    </button>
+                    <button className={cn("default_button btn_sm")}>
+                      Discharge
+                    </button>
+                  </>
+                )}
                 <button className={cn("default_button btn_sm")}>
                   Service Queue
                 </button>
