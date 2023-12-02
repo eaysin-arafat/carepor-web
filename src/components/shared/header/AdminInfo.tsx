@@ -16,11 +16,9 @@ function AdminInfo() {
   // * Hooks
   const [adminBar, setAdminBar] = useState(false);
   const w1230 = useWindowWidth(1230);
-  const w800 = useWindowWidth(800);
   const dispatch = useDispatch();
 
   const { facility } = useFacility();
-  console.log("facility header", facility);
 
   const handleLogout = () => {
     cookieManager.removeCookie("carepro_token");
@@ -34,7 +32,7 @@ function AdminInfo() {
           w1230 ? "font-[11px]" : "font-[15px]"
         }`}
       >
-        Bauleni Mini Hospital
+        {facility?.facilityName}
       </p>
       <div className="relative">
         <img
