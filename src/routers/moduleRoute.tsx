@@ -1,6 +1,5 @@
 import PrivateGuard from "@/components/shared/guard/PrivateGuard";
 import ModuleSidebar from "@/components/sidebar/ModuleSidebar";
-import RootLayout from "@/layout/RootLayout";
 import Vitals from "@/pages/vitals/Vitals";
 
 // routes for public
@@ -10,20 +9,14 @@ export const URLUserRecoveryRequest = (): string => "/recovery-request";
 
 const ModuleRoute = [
   {
-    // element: <PublicGuard />,
-    element: <RootLayout />,
+    element: <PrivateGuard />,
     children: [
       {
         element: <ModuleSidebar />,
         children: [
           {
-            element: <PrivateGuard />,
-            children: [
-              {
-                path: "/vitals",
-                element: <Vitals />,
-              },
-            ],
+            path: "/vitals",
+            element: <Vitals />,
           },
         ],
       },
