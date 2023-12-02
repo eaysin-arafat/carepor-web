@@ -6,9 +6,11 @@ import ClientAccountEdit from "@/pages/client-accounts/edit/ClientAccountEdit";
 import ClientSearch from "@/pages/client-accounts/index/ClientSearch";
 import EditAdmission from "../pages/admissions/edit/Edit";
 import AdmissionSearch from "./../pages/admissions/index/AdmissionSearch";
+import ServicePoints from "@/pages/service-point/ServicePoints";
 
 // route paths for client pages
 export const URLClientSearch = (): string => "/client-search";
+export const URLServicePoint = (): string => "/service-points";
 export const URLAdmissionSearch = (): string => "/admission-search";
 export const URLClientDetails = ({ id = ":id" }: { id: string }): string =>
   `/client-details/${id}`;
@@ -27,7 +29,7 @@ export const URLEditAdmission = ({
 }): string => `/admission-edit/${clientId}`;
 
 // routers for client pages
-const clientRouter = [
+const ClientRouter = [
   {
     element: <UserLayout />,
     children: [
@@ -62,10 +64,14 @@ const clientRouter = [
             path: URLEditAdmission({ clientId: ":clientId" }),
             element: <EditAdmission />,
           },
+          {
+            path: URLServicePoint(),
+            element: <ServicePoints />,
+          },
         ],
       },
     ],
   },
 ];
 
-export default clientRouter;
+export default ClientRouter;

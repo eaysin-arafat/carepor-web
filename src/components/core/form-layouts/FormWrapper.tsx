@@ -53,7 +53,7 @@ function FormWrapper({
           <div className="bg-transparent pt-[88px]">
             <div
               className={cn(
-                `p-2 md:p-10 md:pb-5 bg-whiteColor rounded-md md:shadow-lg mx-auto `,
+                `p-2 md:p-10 md:pb-5 bg-whiteBgColor rounded-md md:shadow-lg mx-auto `,
                 className
               )}
             >

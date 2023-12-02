@@ -27,6 +27,7 @@ export default {
         lightGrayColor: "var(--lightGray)",
         blackColor: "var(--black)",
         whiteColor: "var(--white)",
+        whiteBgColor: "var(--whiteBg)",
         dangerColor: "var(--danger)",
         borderColor: "var(--border)",
         textColor: "var(--text)",

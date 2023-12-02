@@ -3,19 +3,16 @@ import { useState } from "react";
 import { FaChartPie } from "react-icons/fa6";
 import { IoChevronDown } from "react-icons/io5";
 import DropdownList from "./DropdownList";
-import SidebarList from "./SidebarData";
 import css from "./Styles.module.css";
+import ModuleSidebarRoutes from "./routeArray/ModuleSidebarRoutes";
 
-function Sidebar() {
+function ModuleSidebar() {
   const [search, setSearch] = useState("");
-  const filteredData = SidebarList.filter((item) => {
+  const filteredData = ModuleSidebarRoutes.filter((item) => {
     return search.toLocaleLowerCase() === ""
       ? item
       : item.title.toLocaleLowerCase().includes(search.toLocaleLowerCase());
   });
-
-  console.log({ filteredData });
-
   return (
     <div className="w-full">
       <div className="text-left p-3">
@@ -43,10 +40,7 @@ function Sidebar() {
             {filteredData?.map((item, index) => (
               <Accordion.Panel key={index} className="border-none rounded-none">
                 {item?.children ? (
-                  <Accordion.Title
-                    // onClick={() => !item.children && alert("okay")}
-                    className="p-3 border-none outline-none hover:bg-primaryColor active:text-white focus:bg-primaryColor hover:text-white active:bg-primaryColor rounded-none"
-                  >
+                  <Accordion.Title className="p-3 border-none outline-none hover:bg-primaryColor active:text-white focus:bg-primaryColor hover:text-white active:bg-primaryColor rounded-none">
                     <div className="flex justify-between items-center w-full">
                       <div className="flex items-center gap-3">
                         {item.icon ? (
@@ -101,4 +95,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+export default ModuleSidebar;

@@ -26,7 +26,7 @@ const TableData = ({
     <div className="rounded-b-lg">
       <div
         className={cn(
-          `bg-gray-200 tableDataLast bg-whiteColor rounded-b-lg p-3 border-t grid ${grid}`
+          `bg-gray-200 tableDataLast bg-whiteBgColor dark:text-grayColor rounded-b-lg p-3 border-t dark:border-t-0 grid ${grid}`
         )}
       >
         {tableData.map((item: string, index: number) => (
@@ -50,7 +50,7 @@ const TableData = ({
           <div className="space-x-2 text-end me-4 ">
             <button
               onClick={() => {}}
-              className="bg-lightBlueColor px-3 rounded-full"
+              className="bg-lightBlueColor dark:bg-gray-800 px-3 rounded-full"
             >
               Preview
             </button>
