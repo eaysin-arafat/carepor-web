@@ -55,7 +55,6 @@ const CustomNrc: FC<CustomNrcProps> = React.forwardRef<
           placeholder="______/__/_"
           mask="_"
           {...(state && { value: state })}
-          // value={state}
           onChange={handleNrcChange}
           disabled={disabled}
           onKeyUp={keyUpHandler}
@@ -68,11 +67,6 @@ const CustomNrc: FC<CustomNrcProps> = React.forwardRef<
             {errMsg}
           </span>
         )}
-        {/* {isOnlyNumber && (
-        <p className="text-sm mt-1" style={{ color: "red" }}>
-          {isOnlyNumber}
-        </p>
-      )} */}
       </div>
     );
   }

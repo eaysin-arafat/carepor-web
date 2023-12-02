@@ -1,4 +1,4 @@
-import { DateFunc } from "@/utilities/data";
+import { DateFunc } from "@/utilities/date";
 
 interface PersonalInfoType {
   firstName?: string;

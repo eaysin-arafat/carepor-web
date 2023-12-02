@@ -54,6 +54,7 @@ const userAccountsApi = API.injectEndpoints({
         url: `/user-account/key/${key}`,
         method: "GET",
       }),
+      providesTags: ["UserAccount"],
     }),
 
     /**
@@ -110,11 +111,27 @@ const userAccountsApi = API.injectEndpoints({
      * @returns UserAccount
      */
     updateUserAccount: builder.mutation({
-      query: ({ key, ...body }) => ({
+      query: ({ key, body }) => ({
         url: `/user-account/${key}`,
         method: "PUT",
         body,
       }),
+      invalidatesTags: ["UserAccount"],
+
+      // async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
+      //   try {
+      //     await queryFulfilled;
+      //     dispatch(
+      //       login({
+      //         user: { ..._arg },
+      //         token: _arg?.key,
+      //       })
+      //     );
+      //   } catch (error) {
+      //     console.log(error);
+      //     dispatch(logout());
+      //   }
+      // },
     }),
 
     /**

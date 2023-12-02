@@ -18,8 +18,6 @@ function RecoveryRequest() {
     resetCellPhone,
   } = usePasswordRecovery();
 
-  console.log(errors);
-
   return (
     <>
       <FormWrapper

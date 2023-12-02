@@ -103,10 +103,10 @@ const useSelectFacility = () => {
 
     if (data?.userAccount.userType == 1) {
       cookieManager.saveCookie("facility_token", cookieData, null);
-      navigate("/clients");
+      navigate("/client-search");
     } else if (isPermitted) {
       cookieManager.saveCookie("facility_token", cookieData, null);
-      navigate("/clients");
+      navigate("  /client-search");
     } else if (!isPermitted && isFacilityValid) {
       Alert.error(
         "You are not authorized to login with this facility. Please contact the administrator."
