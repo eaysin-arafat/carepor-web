@@ -1,13 +1,22 @@
 import Container from "@/components/core/container/Container";
+import { Client } from "@/interface/clients";
 import { cn } from "@/utilities/cn";
+import { format } from "date-fns";
 import { FaCalendarAlt } from "react-icons/fa";
 import { FaRegAddressCard } from "react-icons/fa6";
 import { LuMapPin } from "react-icons/lu";
 import { MdOutlinePerson2, MdOutlinePhone } from "react-icons/md";
 
-type Props = {};
+const gender = {
+  1: "male",
+  2: "femaile",
+};
 
-const PatientCard = ({}: Props) => {
+type PatientCardProps = {
+  client: Client;
+};
+
+const PatientCard = ({ client }: PatientCardProps) => {
   return (
     <div>
       <Container className="my-5">
@@ -15,7 +24,7 @@ const PatientCard = ({}: Props) => {
           <div className="lg:flex  gap-5 p-5">
             <div className=" flex items-center justify-center pb-5">
               <p className="text-2xl font-medium text-secondaryColor">
-                Adaman Smamntha
+                {client?.firstName} {client?.surname}
               </p>
             </div>
             <div className="lg:border"></div>
@@ -23,27 +32,31 @@ const PatientCard = ({}: Props) => {
               <div className=" flex flex-wrap items-center">
                 <Card
                   title="Date of Birth"
-                  value="3-Jan-1991"
+                  value={
+                    client.dob
+                      ? format(new Date(client.dob), "dd-MMM-yyyy")
+                      : ""
+                  }
                   icon={<FaCalendarAlt className="text-grayColor" />}
                 />
                 <Card
                   title="Sex"
-                  value="Male"
+                  value={gender[client.sex]}
                   icon={<MdOutlinePerson2 className="text-grayColor" />}
                 />
                 <Card
                   title="Cellphone"
-                  value="+260 22222222"
+                  value={client.cellphoneCountryCode + " " + client.cellphone}
                   icon={<MdOutlinePhone className="text-grayColor" />}
                 />
                 <Card
                   title="NUPN"
-                  value="mupn56"
+                  value={client.nupn}
                   icon={<FaRegAddressCard className="text-grayColor" />}
                 />
                 <Card
                   title="NRC"
-                  value="56567/76/9"
+                  value={client.nrc}
                   icon={<FaRegAddressCard className="text-grayColor" />}
                 />
                 {/* <Card
@@ -58,7 +71,14 @@ const PatientCard = ({}: Props) => {
                       <LuMapPin className="text-grayColor" />
                     </span>
                     <span className="text-grayColor">
-                      H# Flat 23A, R#456 8th Street, Khaka,Greenbush
+                      {client?.householdNumber &&
+                        "H#" + client?.householdNumber + ","}
+                      &nbsp;
+                      {client?.road && "R#" + client?.road + ","}&nbsp;
+                      {client?.area && client?.area + ","}
+                      &nbsp;
+                      {client?.townName && client?.townName}{" "}
+                      {client?.landmarks && `(${client?.landmarks})`}
                     </span>
                   </div>
                 </div>
@@ -90,7 +110,7 @@ export default PatientCard;
 interface CardProps {
   title: string;
   value: string;
-  icon: any;
+  icon: React.ReactNode;
 }
 const Card = ({ title, value, icon }: CardProps) => {
   return (
