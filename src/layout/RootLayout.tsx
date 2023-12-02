@@ -1,11 +1,21 @@
 import Header from "@/components/shared/header/Header";
-import { useState } from "react";
+import useWindowWidth from "@/hooks/useWindow";
+import { useEffect, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { MdArrowBackIos } from "react-icons/md";
 import { Outlet } from "react-router-dom";
 
 function RootLayout({ children }) {
-  const [sidebar, setSidebar] = useState(false);
+  const w1100 = useWindowWidth(1100);
+  const sidebarVal = w1100 ? true : false;
+  const [sidebar, setSidebar] = useState(sidebarVal);
+
+  // * Sidebar Update on Responsive
+  useEffect(() => {
+    setSidebar(sidebarVal);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [w1100]);
+
   return (
     <div>
       <div className="h-[8vh] relative z-50 bg-white">
@@ -20,7 +30,7 @@ function RootLayout({ children }) {
             <IoIosArrowForward className="cursor-pointer" size={20} />
           </button>
         )}
-        <div className="flex justify-between ">
+        <div className="flex justify-between">
           <div className="relative">
             {!sidebar && (
               <button
@@ -34,7 +44,7 @@ function RootLayout({ children }) {
               </button>
             )}
             <div
-              className={` border-r bg-white h-[92vh] relative overflow-x-auto`}
+              className={`border-r bg-white h-[92vh] absolute overflow-x-auto`}
               style={{
                 transition: "0.5s",
                 transform: sidebar && "translateX(-300px)",
@@ -43,8 +53,7 @@ function RootLayout({ children }) {
                 minWidth: sidebar ? "0px" : "300px",
               }}
             >
-              {/* <Sidebar /> */}
-              {children}
+              <div>{children}</div>
             </div>
           </div>
           <div className="w-full h-[92vh] overflow-x-auto bg-white">
