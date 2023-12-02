@@ -27,6 +27,11 @@ const usePersonalInfo = ({
   // handle personal info form change
   const handlePersonalInfoChange = (e: OnchangeEventType): void => {
     const { name, checked, value } = e.target;
+    if (name === "isDOBEstimated") {
+      setPersonalInfo((prev) => ({ ...prev, [name]: checked }));
+      setPersonalInfoError((prev) => ({ ...prev, [name]: "" }));
+      return;
+    }
     const nameField = ["firstName", "surname"];
     if (name === "noNRC") {
       if (name === "noNRC" && checked) {
