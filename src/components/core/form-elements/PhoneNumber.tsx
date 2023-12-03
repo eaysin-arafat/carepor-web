@@ -55,9 +55,9 @@ const PhoneNumber: React.FC<PhoneNumberInputProps> = ({
         {required && <span className="-mt-[6px] mx-1 text-dangerColor">*</span>}
       </div>
       <input
-        style={{ backgroundColor: disabled ? "#eef2f3" : undefined }}
+        // style={{ backgroundColor: disabled ? "#eef2f3" : undefined }}
         type={type || "text"}
-        className={`custom-input ${className}`}
+        className={`custom-input ${disabled && "disabled_bg"} ${className}`}
         value={value}
         name={name}
         onChange={handleFilter}

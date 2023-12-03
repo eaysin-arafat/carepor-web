@@ -35,7 +35,7 @@ Props) {
         {required && <span className="-mt-[6px] mx-1 text-dangerColor">*</span>}
       </div>
       <textarea
-        className={`custom-input rounded-lg ${className}`}
+        className={`custom-input rounded-lg ${disabled && "disabled_bg"} ${className}`}
         value={value}
         name={name}
         onChange={onChange}

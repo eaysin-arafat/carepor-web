@@ -22,7 +22,7 @@ const DataRow: React.FC<Props> = ({ title, data, titleClass, dataClass }) => {
       </div>
       <div
         className={cn(
-          "w-full md:w-[50%] flex gap-2 items-center  text-black dark:text-gray-300 justify-end xs:justify-start text-base py-2",
+          "w-full md:w-[100%] flex gap-2 items-center  text-black dark:text-gray-300 justify-end xs:justify-start text-right xs:text-left text-base py-2",
           dataClass
         )}
       >

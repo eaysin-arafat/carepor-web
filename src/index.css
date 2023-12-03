@@ -71,13 +71,13 @@
 
 @layer components {
   .disabled_bg {
-    @apply bg-borderColor text-grayColor;
+    @apply !bg-gray-100 !text-grayColor dark:!bg-gray-800 ;
   }
 }
 
 @layer components {
   .custom-input {
-    @apply w-full rounded-full text-blackColor bg-whiteColor dark:bg-[#000] box-border flex flex-row items-center justify-start py-[12px] px-4 border-[2px] border-solid border-borderColor dark:border-gray-800 focus:border-borderColor focus:shadow-none outline-none focus:outline-none focus:ring-0;
+    @apply w-full rounded-full text-blackColor dark:text-gray-400 bg-whiteColor dark:bg-[#000] box-border flex flex-row items-center justify-start py-[12px] px-4 border-[2px] border-solid border-borderColor dark:border-gray-800 focus:border-borderColor focus:shadow-none outline-none focus:outline-none focus:ring-0;
   }
 }
 
@@ -101,13 +101,13 @@
 
 @layer components {
   .default_button {
-    @apply min-w-[170px] text-whiteColor hover:bg-primaryHoverColor  hover:text-whiteColor bg-primaryColor border-2 border-primaryColor py-[14px] rounded-full transition-all ease-in-out duration-500;
+    @apply min-w-[170px] text-whiteColor hover:bg-primaryHoverColor dark:hover:bg-primaryHoverColor  hover:text-whiteColor bg-primaryColor border-2 border-primaryColor py-[14px] rounded-full transition-all ease-in-out duration-500;
   }
 }
 
 @layer components {
   .go_back {
-    @apply flex gap-2 items-center text-[22px] font-medium py-2 rounded-lg;
+    @apply flex gap-2 items-center text-[22px] font-medium py-2 rounded-lg text-black dark:text-white;
   }
 }
 
@@ -132,6 +132,12 @@
 @layer components {
   .svg_transition {
     @apply transition-colors ease-out delay-200;
+  }
+}
+
+@layer components {
+  .svg_white {
+    @apply filter brightness-0 invert transition-all;
   }
 }
 

@@ -1,7 +1,7 @@
 import { cn } from "@/utilities/cn";
 
 const defaultButtonCss =
-  " w-[138px] text-primaryColor dark:bg-black hover:bg-primaryHoverColor  hover:text-whiteColor bg-whiteColor border-2 border-primaryColor py-1.5 rounded-full transition-all ease-in-out duration-500 min-w-[84px]";
+  " w-[138px] text-primaryColor dark:bg-black hover:bg-primaryHoverColor  dark:hover:bg-primaryHoverColor hover:text-whiteColor bg-whiteColor border-2 border-primaryColor py-1.5 rounded-full transition-all ease-in-out duration-500 min-w-[84px]";
 
 const TabButton = ({ handleSearchTabChange, search }) => {
   return (

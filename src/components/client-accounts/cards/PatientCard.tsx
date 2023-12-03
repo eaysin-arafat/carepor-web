@@ -1,6 +1,7 @@
 import Container from "@/components/core/container/Container";
 import { Client } from "@/interface/clients";
 import {
+  URLAdmissionDischarge,
   URLClientEdit,
   URLCreateAdmission,
   URLServicePoint,
@@ -29,7 +30,7 @@ const PatientCard = ({ client }: PatientCardProps) => {
       <Container className="my-5">
         <div className="border-2 border-primaryColor dark:border-none rounded-lg bg-whiteBgColor">
           <div className="grid grid-cols-9 gap-5 p-5">
-            <div className="col-span-2 hidden lg:flex items-center justify-center min-2/12 pb-5 border-r">
+            <div className="col-span-2 hidden lg:flex items-center justify-center min-2/12 border-r">
               <p className="text-2xl font-medium text-secondaryColor ">
                 {client?.firstName} {client?.surname}
               </p>
@@ -118,9 +119,9 @@ const PatientCard = ({ client }: PatientCardProps) => {
                     <button className={cn("default_button btn_sm  text-sm")}>
                       Admission Details
                     </button>
-                    <button className={cn("default_button btn_sm text-sm")}>
+                    <Link to={URLAdmissionDischarge({ clientId: client?.oid })} className={cn("default_button btn_sm text-center text-sm")}>
                       Discharge
-                    </button>
+                    </Link>
                   </>
                 )}
                 <button className={cn("default_button btn_sm text-sm")}>
