@@ -8,6 +8,7 @@ import EditAdmission from "../pages/admissions/edit/Edit";
 import AdmissionSearch from "./../pages/admissions/index/AdmissionSearch";
 import AdmissionDetails from "./../pages/admissions/details/AdmissionDetails";
 import ServicePoints from "@/pages/service-point/ServicePoints";
+import AdmissionDischarge from "@/pages/admissions/discharge/AdmissionDischarge";
 
 // route paths for client pages
 export const URLClientSearch = (): string => "/client-search";
@@ -16,7 +17,7 @@ export const URLAdmissionSearch = (): string => "/admission-search";
 export const URLClientDetails = ({ id = ":id" }: { id: string }): string =>
   `/client-details/${id}`;
 export const URLClientCreate = (): string => "/client-create";
-export const URLClientEdit = ({ id = ":id" }: { id: string }): string =>
+export const URLClientEdit = ({ id }: { id: string }): string =>
   `/client-edit/${id}`;
 export const URLCreateAdmission = ({
   clientId = ":clientId",
@@ -33,6 +34,11 @@ export const URLAdmissionDetails = ({
 }: {
   clientId: string;
 }): string => `/admission-details/${clientId}`;
+export const URLAdmissionDischarge = ({
+  clientId = ":clientId",
+}: {
+  clientId: string;
+}): string => `/admission-discharge/${clientId}`;
 
 // routers for client pages
 const ClientRouter = [
@@ -73,6 +79,10 @@ const ClientRouter = [
           {
             path: URLEditAdmission({ clientId: ":clientId" }),
             element: <EditAdmission />,
+          },
+          {
+            path: URLAdmissionDischarge({ clientId: ":clientId" }),
+            element: <AdmissionDischarge />,
           },
           {
             path: URLServicePoint(),

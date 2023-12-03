@@ -14,7 +14,7 @@ type Props = {
   titleNote?: string;
   paragraph?: string;
   titleClass?: string;
-  children: JSX.Element;
+  children: React.ReactNode;
   loginForm?: boolean;
   signUpForm?: boolean;
   emergencyAccess?: boolean;

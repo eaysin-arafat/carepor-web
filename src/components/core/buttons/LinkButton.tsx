@@ -18,8 +18,8 @@ const LinkButton = (props: LinkButtonProps) => {
     <Link
       to={link!}
       style={style}
-      className={cn("btn w-40 border-2 border-borderColor h-fit ", className, {
-        "disabled_bg cursor-not-allowed": disabled,
+      className={cn("btn w-40 border-2 border-borderColor dark:bg-transparent dark:text-white h-fit ", className, {
+        "disabled_bg cursor-not-allowed ": disabled,
         " bg-whiteColor hover:bg-borderColor text-blackColor": !disabled,
       })}
     >

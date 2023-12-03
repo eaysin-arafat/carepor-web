@@ -1,180 +1,7 @@
-// import Container from "@/components/core/container/Container";
-// import { Client } from "@/interface/clients";
-// import {
-//   URLClientEdit,
-//   URLCreateAdmission,
-//   URLServicePoint,
-// } from "@/routers/client";
-// import { cn } from "@/utilities/cn";
-// import { format } from "date-fns";
-// import { FaCalendarAlt } from "react-icons/fa";
-// import { FaRegAddressCard } from "react-icons/fa6";
-// import { LuMapPin } from "react-icons/lu";
-// import { MdOutlinePerson2, MdOutlinePhone } from "react-icons/md";
-// import { Link, useNavigate } from "react-router-dom";
-
-// const gender = {
-//   1: "male",
-//   2: "femaile",
-// };
-
-// type PatientCardProps = {
-//   client: Client;
-// };
-
-// const PatientCard = ({ client }: PatientCardProps) => {
-//   const navigate = useNavigate();
-//   return (
-//     <div>
-//       <Container className="my-5">
-//         <div className="border-2 border-primaryColor dark:border-none rounded-lg bg-whiteBgColor">
-//           <div className="grid grid-cols-9 gap-5 p-5">
-//             <div className="col-span-2 flex items-center justify-center pb-5">
-//               <p className="text-2xl font-medium text-secondaryColor ">
-//                 {client?.firstName} {client?.surname}
-//               </p>
-//             </div>
-//             {/* <div className="lg:border dark:border-gray-700"></div> */}
-//             {/* <div className="col-span-7"> */}
-//               {/* <div className=" grid grid-cols-6 items-center"> */}
-//                 <Card
-//                   title="Date of Birth"
-//                   className="col-span-1"
-//                   value={
-//                     client.dob
-//                       ? format(new Date(client.dob), "dd-MMM-yyyy")
-//                       : ""
-//                   }
-//                   icon={<FaCalendarAlt className="text-grayColor" />}
-//                 />
-//                 <Card
-//                   title="Sex"
-//                   className="col-span-1"
-//                   value={gender[client.sex]}
-//                   icon={<MdOutlinePerson2 className="text-grayColor" />}
-//                 />
-//                 <Card
-//                   title="Cellphone"
-//                   className="col-span-1"
-//                   value={client.cellphoneCountryCode + " " + client.cellphone}
-//                   icon={<MdOutlinePhone className="text-grayColor" />}
-//                 />
-//                 <Card
-//                   title="NUPN"
-//                   className="col-span-1"
-//                   value={client.nupn}
-//                   icon={<FaRegAddressCard className="text-grayColor" />}
-//                 />
-//                 <Card
-//                   title="NRC"
-//                   value={client.nrc}
-//                   icon={<FaRegAddressCard className="text-grayColor" />}
-//                 />
-//                 {/* <Card
-//                   title="NRC"
-//                   value="H# Flat 23A, R#456 8th Street, Khaka,Greenbush"
-//                   icon={<FaRegAddressCard className="text-grayColor" />}
-//                 /> */}
-//                 {/* <Card
-//                   title="Address"
-//                   className="max-w-40"
-//                   value="H# Flat 23A, R#456 8th Street, Khaka,Greenbush"
-//                   icon={<LuMapPin className="text-grayColor" />}
-//                 /> */}
-//                 {/* <Card
-//                   title="Address"
-//                   value="H# Flat 23A, R#456 8th Street, Khaka,Greenbush"
-//                   icon={<LuMapPin className="text-grayColor" />}
-//                 /> */}
-//                 <div className=" min-w-80 px-5 mb-5">
-//                   <span>Address</span>
-//                   <div className="flex items-center flex-row gap-2">
-//                     <span>
-//                       <LuMapPin className="text-grayColor" />
-//                     </span>
-//                     <span className="text-grayColor">
-//                       {client?.householdNumber &&
-//                         "H#" + client?.householdNumber + ","}
-//                       &nbsp;
-//                       {client?.road && "R#" + client?.road + ","}&nbsp;
-//                       {client?.area && client?.area + ","}
-//                       &nbsp;
-//                       {client?.townName && client?.townName}{" "}
-//                       {client?.landmarks && `(${client?.landmarks})`}
-//                     </span>
-//                   </div>
-//                 </div>
-//               {/* </div> */}
-//               <div className="grid gap-5">
-//                 <Link
-//                   to={URLClientEdit(client?.oid)}
-//                   className={cn(
-//                     "default_button outline_btn btn_sm text-center"
-//                   )}
-//                 >
-//                   Edit Profile
-//                 </Link>
-//                 {!client.isAdmitted && (
-//                   <Link
-//                     to={URLCreateAdmission(client?.oid)}
-//                     className={cn("default_button btn_sm text-center")}
-//                   >
-//                     Admit Patient
-//                   </Link>
-//                 )}
-//                 {client?.isAdmitted && (
-//                   <>
-//                     <button className={cn("default_button btn_sm")}>
-//                       Admission Details
-//                     </button>
-//                     <button className={cn("default_button btn_sm")}>
-//                       Discharge
-//                     </button>
-//                   </>
-//                 )}
-//                 <button className={cn("default_button btn_sm")}>
-//                   Service Queue
-//                 </button>
-//                 <button
-//                   className={cn("default_button btn_sm")}
-//                   onClick={() => navigate(URLServicePoint())}
-//                 >
-//                   Attend to Patient
-//                 </button>
-//               </div>
-//             {/* </div> */}
-//           </div>
-//         </div>
-//       </Container>
-//     </div>
-//   );
-// };
-
-// export default PatientCard;
-
-// interface CardProps {
-//   title: string;
-//   value: string;
-//   className?: string;
-//   icon: React.ReactNode;
-// }
-// const Card = ({ title, value, icon, className }: CardProps) => {
-//   return (
-//     <div className={cn(" px-5 mb-5", className)}>
-//       <span className="text-xs font-semibold text-secondaryColor">
-//         {title}
-//       </span>
-//       <div className="flex flex-row items-center gap-2 mt-2">
-//         <span>{icon}</span>
-//         <span className="text-grayColor text-xs">{value}</span>
-//       </div>
-//     </div>
-//   );
-// };
-
 import Container from "@/components/core/container/Container";
 import { Client } from "@/interface/clients";
 import {
+  URLAdmissionDischarge,
   URLClientEdit,
   URLCreateAdmission,
   URLServicePoint,
@@ -203,7 +30,7 @@ const PatientCard = ({ client }: PatientCardProps) => {
       <Container className="my-5">
         <div className="border-2 border-primaryColor dark:border-none rounded-lg bg-whiteBgColor">
           <div className="grid grid-cols-9 gap-5 p-5">
-            <div className="col-span-2 hidden lg:flex items-center justify-center min-2/12 pb-5 border-r">
+            <div className="col-span-2 hidden lg:flex items-center justify-center min-2/12 border-r">
               <p className="text-2xl font-medium text-secondaryColor ">
                 {client?.firstName} {client?.surname}
               </p>
@@ -250,7 +77,9 @@ const PatientCard = ({ client }: PatientCardProps) => {
                   icon={<LuMapPin className="text-grayColor" />}
                 /> */}
                 <div className=" me-5 mb-5">
-                  <span className="text-xs font-semibold text-secondaryColor">Address</span>
+                  <span className="text-xs font-semibold text-secondaryColor">
+                    Address
+                  </span>
                   <div className="flex items-center flex-row gap-2 mt-2">
                     <span>
                       <LuMapPin className="text-grayColor" />
@@ -270,7 +99,7 @@ const PatientCard = ({ client }: PatientCardProps) => {
               </div>
               <div className="flex flex-row sm:justify-start justify-center flex-wrap gap-5 mt-2">
                 <Link
-                  to={URLClientEdit(client?.oid)}
+                  to={URLClientEdit({ id: client?.oid })}
                   className={cn(
                     "default_button outline_btn btn_sm text-center text-sm"
                   )}
@@ -279,7 +108,7 @@ const PatientCard = ({ client }: PatientCardProps) => {
                 </Link>
                 {!client.isAdmitted && (
                   <Link
-                    to={URLCreateAdmission(client?.oid)}
+                    to={URLCreateAdmission({ clientId: client?.oid })}
                     className={cn("default_button btn_sm text-center text-sm")}
                   >
                     Admit Patient
@@ -290,9 +119,9 @@ const PatientCard = ({ client }: PatientCardProps) => {
                     <button className={cn("default_button btn_sm  text-sm")}>
                       Admission Details
                     </button>
-                    <button className={cn("default_button btn_sm text-sm")}>
+                    <Link to={URLAdmissionDischarge({ clientId: client?.oid })} className={cn("default_button btn_sm text-center text-sm")}>
                       Discharge
-                    </button>
+                    </Link>
                   </>
                 )}
                 <button className={cn("default_button btn_sm text-sm")}>

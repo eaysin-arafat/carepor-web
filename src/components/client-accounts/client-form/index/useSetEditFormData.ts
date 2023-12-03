@@ -88,10 +88,9 @@ const useSetEditFormData = (data) => {
   const prevPlaceOfBirthAndReligion = {
     homeLanguageId: JSON.stringify(data?.homeLanguageId),
     isZambianBorn: data?.isZambianBorn ? "1" : "2",
-    // provinceId: data?.provinceId ,
-    // provinceId: data?.district?.provinceId,
-    // districtId: data?.districtId,
-    // birthPlace: data?.birthPlace,
+    provinceId: data?.district?.provinceId ? data?.district?.provinceId : "",
+    districtId: data?.districtId ? data?.districtId : "",
+    birthPlace: data?.birthPlace ? data?.birthPlace : "",
     religion: JSON.stringify(data?.religion),
   };
   const districtProvince = {
