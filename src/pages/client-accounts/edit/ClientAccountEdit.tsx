@@ -1,9 +1,9 @@
 import FormWrapper from "@/components/core/form-layouts/FormWrapper";
 import MultiStepComponent from "@/components/shared/multi-step/multiStep";
+import { useReadClientByKeyQuery } from "@/features/client/client-api";
 import { useParams } from "react-router-dom";
 import ClientForm from "../../../components/client-accounts/client-form/index/ClientForm";
 import useClientAccount from "../../../components/client-accounts/client-form/index/useClientAccount";
-import { useReadClientByKeyQuery } from "@/features/client/client-api";
 
 function ClientAccountEdit() {
   const params = useParams();
@@ -13,13 +13,7 @@ function ClientAccountEdit() {
     refetchOnMountOrArgChange: true,
   });
 
-  const {
-    data: editClient,
-    isSuccess,
-    isError,
-    error,
-    status,
-  } = ClientByKeyQuery;
+  const { isSuccess, isError } = ClientByKeyQuery;
   const clientEditManager = useClientAccount(ClientByKeyQuery, true);
 
   const { formStepState } = clientEditManager;
@@ -38,7 +32,11 @@ function ClientAccountEdit() {
           maxWidth="max-w-[1022px]"
           noBackground
         >
-          <ClientForm clientManager={clientEditManager} isEditForm={true} />
+          {/* {isLoading && <div>Loading...</div>} */}
+          {isSuccess && (
+            <ClientForm clientManager={clientEditManager} isEditForm={true} />
+          )}
+          {isError && <div>There was an error.</div>}
         </FormWrapper>
       </div>
     </>

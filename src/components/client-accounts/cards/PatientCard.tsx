@@ -97,12 +97,17 @@ const PatientCard = ({ client }: PatientCardProps) => {
                 </div> */}
               </div>
               <div className="flex flex-row flex-wrap gap-5">
-                <Link to={URLClientEdit(client?.oid)} className={cn("default_button outline_btn btn_sm text-center")}>
+                <Link
+                  to={URLClientEdit({ id: client?.oid })}
+                  className={cn(
+                    "default_button outline_btn btn_sm text-center"
+                  )}
+                >
                   Edit Profile
                 </Link>
                 {!client.isAdmitted && (
                   <Link
-                    to={URLCreateAdmission(client?.oid)}
+                    to={URLCreateAdmission({ clientId: client?.oid })}
                     className={cn("default_button btn_sm text-center")}
                   >
                     Admit Patient
