@@ -68,6 +68,7 @@ function RootLayout({ children }: RootLayoutProps) {
               <div>{children}</div>
             </div>
           </div>
+
           <div className="w-full h-[92vh] overflow-x-auto bg-white">
             <Outlet />
           </div>
