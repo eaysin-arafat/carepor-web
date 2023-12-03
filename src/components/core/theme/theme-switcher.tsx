@@ -20,7 +20,7 @@ const ThemeSwitcher = () => {
   return (
     <>
       <label
-        className={` h-[40px] w-[40px] bg-black dark:bg-gray-800 rounded-full flex justify-center items-center`}
+        className={` h-[40px] w-[40px] bg-black cursor-pointer dark:bg-gray-800 rounded-full flex justify-center items-center`}
       >
         <input
           type="checkbox"

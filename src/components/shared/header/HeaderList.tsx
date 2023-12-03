@@ -43,7 +43,7 @@ function HeaderList() {
               <ul>
                 <li>
                   <Link
-                    to="/"
+                    to="/pharmacy-queue"
                     className="flex items-center gap-3 hover:bg-lightBlueColor px-4 py-3 text-[15px]"
                   >
                     <GiMedicines size={20} /> Pharmacy Queue
@@ -51,7 +51,7 @@ function HeaderList() {
                 </li>
                 <li className="border-y dark:border-gray-600">
                   <Link
-                    to="/"
+                    to="/investigations-dashboard"
                     className="flex items-center gap-3 px-4 py-3 text-[15px]  hover:bg-lightBlueColor"
                   >
                     <BsFillHeartPulseFill size={20} /> Investigation Queue
@@ -59,7 +59,7 @@ function HeaderList() {
                 </li>
                 <li>
                   <Link
-                    to="/"
+                    to="/service-queue"
                     className="flex items-center gap-3 px-4 py-3 text-[15px] hover:bg-lightBlueColor"
                   >
                     <IoBagAddOutline size={20} /> Service Queue
@@ -89,7 +89,7 @@ function HeaderList() {
               <ul>
                 <li>
                   <Link
-                    to="/"
+                    to="/pharmacy-queue"
                     className="flex items-center gap-3 hover:bg-lightBlueColor px-4 py-3 text-[15px]"
                   >
                     <GiMedicines size={20} /> Pharmacy Queue
@@ -97,7 +97,7 @@ function HeaderList() {
                 </li>
                 <li className="border-y dark:border-gray-600">
                   <Link
-                    to="/"
+                    to="/investigations-dashboard"
                     className="flex items-center gap-3 px-4 py-3 text-[15px]  hover:bg-lightBlueColor"
                   >
                     <BsFillHeartPulseFill size={20} /> Investigation Queue
@@ -105,7 +105,7 @@ function HeaderList() {
                 </li>
                 <li>
                   <Link
-                    to="/"
+                    to="/service-queue"
                     className="flex items-center gap-3 px-4 py-3 text-[15px] hover:bg-lightBlueColor"
                   >
                     <IoBagAddOutline size={20} /> Service Queue

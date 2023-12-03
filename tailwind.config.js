@@ -31,6 +31,7 @@ export default {
         dangerColor: "var(--danger)",
         borderColor: "var(--border)",
         textColor: "var(--text)",
+        activeColor: "var(--activeColor)",
       },
     },
   },
