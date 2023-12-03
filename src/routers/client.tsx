@@ -6,6 +6,7 @@ import ClientAccountEdit from "@/pages/client-accounts/edit/ClientAccountEdit";
 import ClientSearch from "@/pages/client-accounts/index/ClientSearch";
 import EditAdmission from "../pages/admissions/edit/Edit";
 import AdmissionSearch from "./../pages/admissions/index/AdmissionSearch";
+import AdmissionDetails from "./../pages/admissions/details/AdmissionDetails";
 import ServicePoints from "@/pages/service-point/ServicePoints";
 
 // route paths for client pages
@@ -27,6 +28,11 @@ export const URLEditAdmission = ({
 }: {
   clientId: string;
 }): string => `/admission-edit/${clientId}`;
+export const URLAdmissionDetails = ({
+  clientId = ":clientId",
+}: {
+  clientId: string;
+}): string => `/admission-details/${clientId}`;
 
 // routers for client pages
 const ClientRouter = [
@@ -43,6 +49,10 @@ const ClientRouter = [
           {
             path: URLAdmissionSearch(),
             element: <AdmissionSearch />,
+          },
+          {
+            path: URLAdmissionDetails({clientId: ":clientId"}),
+            element: <AdmissionDetails />,
           },
           {
             path: URLClientDetails({ id: ":id" }),

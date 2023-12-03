@@ -1,13 +1,17 @@
 import Container from "@/components/core/container/Container";
 import { Client } from "@/interface/clients";
-import { URLClientEdit, URLCreateAdmission } from "@/routers/client";
+import {
+  URLClientEdit,
+  URLCreateAdmission,
+  URLServicePoint,
+} from "@/routers/client";
 import { cn } from "@/utilities/cn";
 import { format } from "date-fns";
 import { FaCalendarAlt } from "react-icons/fa";
 import { FaRegAddressCard } from "react-icons/fa6";
 import { LuMapPin } from "react-icons/lu";
 import { MdOutlinePerson2, MdOutlinePhone } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const gender = {
   1: "male",
@@ -19,19 +23,24 @@ type PatientCardProps = {
 };
 
 const PatientCard = ({ client }: PatientCardProps) => {
+  const navigate = useNavigate();
   return (
     <div>
       <Container className="my-5">
         <div className="border-2 border-primaryColor dark:border-none rounded-lg bg-whiteBgColor">
-          <div className="lg:flex  gap-5 p-5">
-            <div className=" flex items-center justify-center pb-5">
-              <p className="text-2xl font-medium text-secondaryColor">
+          <div className="grid grid-cols-9 gap-5 p-5">
+            <div className="col-span-2 hidden lg:flex items-center justify-center min-2/12 pb-5 border-r">
+              <p className="text-2xl font-medium text-secondaryColor ">
                 {client?.firstName} {client?.surname}
               </p>
             </div>
-            <div className="lg:border dark:border-gray-700"></div>
-            <div className="">
+            <div className="col-span-9 lg:col-span-7">
               <div className=" flex flex-wrap items-center">
+                <div className=" lg:hidden flex items-center justify-center min-w-80 pb-5 me-5">
+                  <p className="text-2xl font-medium text-secondaryColor ">
+                    {client?.firstName} {client?.surname}
+                  </p>
+                </div>
                 <Card
                   title="Date of Birth"
                   value={
@@ -61,29 +70,20 @@ const PatientCard = ({ client }: PatientCardProps) => {
                   value={client.nrc}
                   icon={<FaRegAddressCard className="text-grayColor" />}
                 />
-                <Card
-                  title="NRC"
-                  value="56567/76/9"
-                  icon={<FaRegAddressCard className="text-grayColor" />}
-                />
-                <Card
-                  title="Address"
-                  className="max-w-40"
-                  value="H# Flat 23A, R#456 8th Street, Khaka,Greenbush"
-                  icon={<LuMapPin className="text-grayColor" />}
-                />
                 {/* <Card
                   title="Address"
                   value="H# Flat 23A, R#456 8th Street, Khaka,Greenbush"
                   icon={<LuMapPin className="text-grayColor" />}
                 /> */}
-                {/* <div className=" min-w-80 px-5 mb-5">
-                  <span>Address</span>
-                  <div className="flex items-center flex-row gap-2">
+                <div className=" me-5 mb-5">
+                  <span className="text-xs font-semibold text-secondaryColor">
+                    Address
+                  </span>
+                  <div className="flex items-center flex-row gap-2 mt-2">
                     <span>
                       <LuMapPin className="text-grayColor" />
                     </span>
-                    <span className="text-grayColor">
+                    <span className="text-grayColor text-xs">
                       {client?.householdNumber &&
                         "H#" + client?.householdNumber + ","}
                       &nbsp;
@@ -94,13 +94,13 @@ const PatientCard = ({ client }: PatientCardProps) => {
                       {client?.landmarks && `(${client?.landmarks})`}
                     </span>
                   </div>
-                </div> */}
+                </div>
               </div>
-              <div className="flex flex-row flex-wrap gap-5">
+              <div className="flex flex-row sm:justify-start justify-center flex-wrap gap-5 mt-2">
                 <Link
                   to={URLClientEdit({ id: client?.oid })}
                   className={cn(
-                    "default_button outline_btn btn_sm text-center"
+                    "default_button outline_btn btn_sm text-center text-sm"
                   )}
                 >
                   Edit Profile
@@ -108,25 +108,28 @@ const PatientCard = ({ client }: PatientCardProps) => {
                 {!client.isAdmitted && (
                   <Link
                     to={URLCreateAdmission({ clientId: client?.oid })}
-                    className={cn("default_button btn_sm text-center")}
+                    className={cn("default_button btn_sm text-center text-sm")}
                   >
                     Admit Patient
                   </Link>
                 )}
                 {client?.isAdmitted && (
                   <>
-                    <button className={cn("default_button btn_sm")}>
+                    <button className={cn("default_button btn_sm  text-sm")}>
                       Admission Details
                     </button>
-                    <button className={cn("default_button btn_sm")}>
+                    <button className={cn("default_button btn_sm text-sm")}>
                       Discharge
                     </button>
                   </>
                 )}
-                <button className={cn("default_button btn_sm")}>
+                <button className={cn("default_button btn_sm text-sm")}>
                   Service Queue
                 </button>
-                <button className={cn("default_button btn_sm")}>
+                <button
+                  className={cn("default_button btn_sm text-sm")}
+                  onClick={() => navigate(URLServicePoint())}
+                >
                   Attend to Patient
                 </button>
               </div>
@@ -148,13 +151,11 @@ interface CardProps {
 }
 const Card = ({ title, value, icon, className }: CardProps) => {
   return (
-    <div className={cn(" px-5 mb-5", className)}>
-      <span className="text-base font-semibold text-secondaryColor">
-        {title}
-      </span>
+    <div className={cn("me-5 mb-5", className)}>
+      <span className="text-xs font-semibold text-secondaryColor">{title}</span>
       <div className="flex flex-row items-center gap-2 mt-2">
         <span>{icon}</span>
-        <span className="text-grayColor">{value}</span>
+        <span className="text-grayColor text-xs ">{value}</span>
       </div>
     </div>
   );

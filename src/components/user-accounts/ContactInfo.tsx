@@ -73,7 +73,7 @@ function ContactInfo({
                 name="cellphone"
                 onChange={(e) => handleCellphoneChange(e.target.value)}
               />
-              <p className="">Note: Cellphone must be unique.</p>
+              <p className="dark:text-gray-500 mt-2">Note: Cellphone must be unique.</p>
             </div>
           </div>
         </>

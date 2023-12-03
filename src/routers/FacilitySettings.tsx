@@ -12,15 +12,16 @@ const FacilitySettings = [
     element: <PrivateGuard />,
     children: [
       {
-        element: (
-          <RootLayout>
-            <FacilitySettingsSidebar />
-          </RootLayout>
-        ),
+        element: <RootLayout />,
         children: [
           {
-            path: URLFacilitySettings(),
-            element: <Test />,
+            element: <FacilitySettingsSidebar />,
+            children: [
+              {
+                path: URLFacilitySettings(),
+                element: <Test />,
+              },
+            ],
           },
         ],
       },

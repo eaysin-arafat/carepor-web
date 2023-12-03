@@ -25,7 +25,7 @@ export default {
         secondaryColor: "var(--secondary)",
         grayColor: "var(--grayColor)",
         lightGrayColor: "var(--lightGray)",
-        blackColor: "var(--black)",
+        blackColor: "var(--blackColor)",
         whiteColor: "var(--white)",
         whiteBgColor: "var(--whiteBg)",
         dangerColor: "var(--danger)",

@@ -6,6 +6,7 @@ import RequestFacility from "@/pages/user-accounts/request-facility/RequestFacil
 import FacilitySettings from "./FacilitySettings";
 import clientRouter from "./client";
 import facilityRouter from "./facility";
+import ModuleRoute from "./moduleRoute";
 import publicRoutes from "./public";
 import userAccountsRouter from "./user-accounts";
 
@@ -18,6 +19,7 @@ const Routes = [
   ...clientRouter,
   ...publicRoutes,
   ...FacilitySettings,
+  ...ModuleRoute,
   {
     path: URLRequestFacility(),
     element: <RequestFacility />,
@@ -28,15 +30,16 @@ const Routes = [
   },
 
   {
-    element: (
-      <RootLayout>
-        <ModuleSidebar />
-      </RootLayout>
-    ),
+    element: <RootLayout />,
     children: [
       {
-        path: "/test",
-        element: <Test />,
+        element: <ModuleSidebar />,
+        children: [
+          {
+            path: "/test",
+            element: <Test />,
+          },
+        ],
       },
     ],
   },
