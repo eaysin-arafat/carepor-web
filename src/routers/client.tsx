@@ -1,11 +1,13 @@
 import PrivateGuard from "@/components/shared/guard/PrivateGuard";
 import UserLayout from "@/layout/UserLayout";
 import CreateAdmission from "@/pages/admissions/create/Create";
+import AdmissionDischarge from "@/pages/admissions/discharge/AdmissionDischarge";
 import CreateClientAccount from "@/pages/client-accounts/create/CreateClientAccount";
 import ClientAccountEdit from "@/pages/client-accounts/edit/ClientAccountEdit";
 import ClientSearch from "@/pages/client-accounts/index/ClientSearch";
 import ServicePoints from "@/pages/service-point/ServicePoints";
 import EditAdmission from "../pages/admissions/edit/Edit";
+import AdmissionDetails from "./../pages/admissions/details/AdmissionDetails";
 import AdmissionSearch from "./../pages/admissions/index/AdmissionSearch";
 
 // route paths for client pages
@@ -15,7 +17,7 @@ export const URLAdmissionSearch = (): string => "/admission-search";
 export const URLClientDetails = ({ id = ":id" }: { id: string }): string =>
   `/client-details/${id}`;
 export const URLClientCreate = (): string => "/client-create";
-export const URLClientEdit = ({ id = ":id" }: { id: string }): string =>
+export const URLClientEdit = ({ id }: { id: string }): string =>
   `/client-edit/${id}`;
 export const URLCreateAdmission = ({
   clientId = ":clientId",
@@ -27,6 +29,16 @@ export const URLEditAdmission = ({
 }: {
   clientId: string;
 }): string => `/admission-edit/${clientId}`;
+export const URLAdmissionDetails = ({
+  clientId = ":clientId",
+}: {
+  clientId: string;
+}): string => `/admission-details/${clientId}`;
+export const URLAdmissionDischarge = ({
+  clientId = ":clientId",
+}: {
+  clientId: string;
+}): string => `/admission-discharge/${clientId}`;
 
 // routers for client pages
 const ClientRouter = [
@@ -43,6 +55,10 @@ const ClientRouter = [
           {
             path: URLAdmissionSearch(),
             element: <AdmissionSearch />,
+          },
+          {
+            path: URLAdmissionDetails({ clientId: ":clientId" }),
+            element: <AdmissionDetails />,
           },
           {
             path: URLClientDetails({ id: ":id" }),
@@ -63,6 +79,10 @@ const ClientRouter = [
           {
             path: URLEditAdmission({ clientId: ":clientId" }),
             element: <EditAdmission />,
+          },
+          {
+            path: URLAdmissionDischarge({ clientId: ":clientId" }),
+            element: <AdmissionDischarge />,
           },
           {
             path: URLServicePoint(),

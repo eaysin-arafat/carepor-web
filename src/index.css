@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 * {
   font-family: "Poppins", sans-serif !important;
+  border-color: var(--border) !important;
 }
 
 @tailwind base;
@@ -11,32 +12,48 @@
   --body: #fafafb;
   --primary: #1890ff;
   --primaryHover: #007aec;
+  --activeColor: #007aec;
   --lightBlue: #e3effb;
   --secondary: #1e0e62;
   --grayColor: #a1a1b0;
   --lightGray: #f3f4f6;
-  --black: #000000;
+  --blackColor: #000000;
   --white: #ffffff;
   --whiteBg: #ffffff;
   --danger: red;
   --border: #ebeaed;
   --text: #374151;
+  --textColor: #374151;
 }
 
 .dark {
   --body: #0b0e11;
   --primary: #1890ff;
   --primaryHover: #007aec;
+  --activeColor: #1f2937;
   --lightBlue: #181a20;
   --secondary: #ffffff;
   --grayColor: #a1a1b0;
   --lightGray: #f3f4f6;
-  --black: #6b7280;
+  --blackColor: #6b7280;
   --white: #fff;
   --whiteBg: #181a20;
   --danger: red;
-  --border: #ebeaed;
+  --border: #ebeaed2d;
   --text: #374151;
+  --textColor: #f3f4f6;
+}
+
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+div {
+  color: var(--textColor);
 }
 
 @layer components {
@@ -45,7 +62,7 @@
   }
 
   .heading_2 {
-    @apply text-3xl font-medium leading-normal tracking-tighter;
+    @apply text-3xl font-medium leading-normal tracking-tighter dark:text-white;
   }
 
   .heading_3 {
@@ -61,11 +78,11 @@
   }
 
   .disabled_bg {
-    @apply bg-borderColor text-grayColor;
+    @apply !bg-gray-100 !text-grayColor dark:!bg-gray-800 ;
   }
 
   .custom-input {
-    @apply w-full rounded-full text-blackColor bg-whiteColor dark:bg-[#000] box-border flex flex-row items-center justify-start py-[12px] px-4 border-[2px] border-solid border-borderColor focus:border-borderColor focus:shadow-none outline-none focus:outline-none focus:ring-0;
+    @apply w-full rounded-full text-blackColor dark:text-gray-400 bg-whiteColor dark:bg-[#000] box-border flex flex-row items-center justify-start py-[12px] px-4 border-[2px] border-solid border-borderColor dark:border-gray-800 focus:border-borderColor focus:shadow-none outline-none focus:outline-none focus:ring-0;
   }
 
   .input_cellphone {
@@ -81,15 +98,15 @@
   }
 
   .default_button {
-    @apply min-w-[170px] text-whiteColor hover:bg-primaryHoverColor  hover:text-whiteColor bg-primaryColor border-2 border-primaryColor py-[14px] rounded-full transition-all ease-in-out duration-500;
+    @apply min-w-[170px] text-whiteColor hover:bg-primaryHoverColor dark:hover:bg-primaryHoverColor  hover:text-whiteColor bg-primaryColor border-2 border-primaryColor py-[14px] rounded-full transition-all ease-in-out duration-500;
   }
 
   .go_back {
-    @apply flex gap-2 items-center text-[22px] font-medium py-2 rounded-lg;
+    @apply flex gap-2 items-center text-[22px] font-medium py-2 rounded-lg text-black dark:text-white;
   }
 
   .outline_btn {
-    @apply bg-whiteColor text-primaryColor;
+    @apply bg-whiteColor text-primaryColor dark:bg-gray-900;
   }
 
   .btn_sm {
@@ -110,6 +127,12 @@
 
   .box_shadow {
     box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 8px;
+  }
+}
+
+@layer components {
+  .svg_white {
+    @apply filter brightness-0 invert transition-all;
   }
 }
 
@@ -166,4 +189,11 @@ div[data-testid="flowbite-accordion"] button h2 svg {
 .first\:rounded-t-lg:first-child {
   border-top-left-radius: 0 !important;
   border-top-right-radius: 0 !important;
+}
+select option {
+  background: #fff;
+}
+.dark select option {
+  background: #000;
+  color: #fff !important;
 }

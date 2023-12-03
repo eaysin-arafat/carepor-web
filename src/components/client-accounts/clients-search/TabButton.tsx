@@ -1,7 +1,7 @@
 import { cn } from "@/utilities/cn";
 
 const defaultButtonCss =
-  " w-[138px] text-primaryColor hover:bg-primaryHoverColor  hover:text-whiteColor bg-whiteColor border-2 border-primaryColor py-1.5 rounded-full transition-all ease-in-out duration-500 min-w-[84px]";
+  " w-[138px] text-primaryColor dark:bg-black hover:bg-primaryHoverColor  dark:hover:bg-primaryHoverColor hover:text-whiteColor bg-whiteColor border-2 border-primaryColor py-1.5 rounded-full transition-all ease-in-out duration-500 min-w-[84px]";
 
 const TabButton = ({ handleSearchTabChange, search }) => {
   return (
@@ -9,7 +9,7 @@ const TabButton = ({ handleSearchTabChange, search }) => {
       <button
         onClick={() => handleSearchTabChange("nrc")}
         className={cn(defaultButtonCss, {
-          "bg-primaryColor text-whiteColor": search === "nrc",
+          "bg-primaryColor dark:bg-primaryColor text-whiteColor": search === "nrc",
         })}
       >
         NRC
@@ -17,7 +17,7 @@ const TabButton = ({ handleSearchTabChange, search }) => {
       <button
         onClick={() => handleSearchTabChange("nupn")}
         className={cn(defaultButtonCss, {
-          "bg-primaryColor text-whiteColor": search === "nupn",
+          "bg-primaryColor dark:bg-primaryColor text-whiteColor": search === "nupn",
         })}
       >
         NUPN
@@ -25,7 +25,7 @@ const TabButton = ({ handleSearchTabChange, search }) => {
       <button
         onClick={() => handleSearchTabChange("cellPhone")}
         className={cn(defaultButtonCss, {
-          "bg-primaryColor text-whiteColor": search === "cellPhone",
+          "bg-primaryColor dark:bg-primaryColor text-whiteColor": search === "cellPhone",
         })}
       >
         Cell Phone
@@ -33,7 +33,7 @@ const TabButton = ({ handleSearchTabChange, search }) => {
       <button
         onClick={() => handleSearchTabChange("name")}
         className={cn(defaultButtonCss, {
-          "bg-primaryColor text-whiteColor transition-all ease-in-out":
+          "bg-primaryColor dark:bg-primaryColor text-whiteColor transition-all ease-in-out":
             search === "name",
         })}
       >

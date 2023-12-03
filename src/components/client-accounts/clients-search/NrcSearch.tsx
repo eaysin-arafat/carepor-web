@@ -9,7 +9,7 @@ const NrcSearch = ({ handleNrcChange, nrc }) => {
         name="nrc"
         state={nrc}
         onChange={handleNrcChange}
-        className="border-gray-300 focus:border-gray-300"
+        className="border-gray-300 dark:border-gray-900 focus:border-gray-300"
       />
     </div>
   );

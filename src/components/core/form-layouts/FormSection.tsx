@@ -12,10 +12,10 @@ function FormSection({
   noteClass,
 }: FormSectionType) {
   return (
-    <div className={"p-5 mt-5 border rounded-md" + " " + boxClass}>
+    <div className={"p-5 mt-5 border dark:border-gray-600 rounded-md" + " " + boxClass}>
       {/* Title Section */}
       <div className="mb-2">
-        <h2 className={"text-xl font-semibold mb-1" + " " + titleClass}>
+        <h2 className={"text-xl font-semibold mb-1 dark:text-white" + " " + titleClass}>
           {titleText}
         </h2>
         {noteText && (

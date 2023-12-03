@@ -14,6 +14,7 @@ import useParentsGuardianDetails from "@/components/client-accounts/client-form/
 import usePlaceOfBirthReligious from "@/components/client-accounts/client-form/place-of-birth-religious/usePlaceOfBirthReligious";
 // import { ClientPersonalInfoType } from "@/types/clientFormTypes";
 import useSubmitClientAccountCreate from "@/components/client-accounts/client-form/index/useSubmitClientAccountCreate";
+import { useReadClientByNRCQuery } from "@/features/client/client-api";
 import {
   ClientContactInfoErrorType,
   ClientEducationAndEmploymentErrorType,
@@ -27,6 +28,12 @@ import { DateFunc } from "@/utilities/date";
 import { useEffect, useState } from "react";
 import useClientFormStep from "./useClientFormStep";
 import useSetEditFormData from "./useSetEditFormData";
+import useSubmitClientAccountEdit from "./useSubmitClientAccountEdit";
+
+const nrcValidateForSearchReq = (value) => {
+  const nrcReqPattern = /^\d{6}\/\d{2}\/[\d_]{1}$/;
+  return !nrcReqPattern.test(value) && value != "000000/00/0";
+};
 
 /**
  *
@@ -34,14 +41,12 @@ import useSetEditFormData from "./useSetEditFormData";
  * @param isEditForm if client edit form
  * @returns
  */
-const useCreateClientAccount = (
+const useClientAccount = (
   ClientByKeyQuery: RtkQueryType,
   isEditForm: boolean
 ) => {
-  const { isSuccess, status, data: editClient } = ClientByKeyQuery || {};
-
-  // const { data, isLoading, isSuccess, status, isError, error } =
-  //   useClientReadByKeyQuery();
+  // resux state receive and distructure
+  const { data: editClient } = ClientByKeyQuery || {};
 
   // form step state handler
   const formStepState = useClientFormStep();
@@ -77,15 +82,15 @@ const useCreateClientAccount = (
   const [educationAndEmploymentError, setEducationAndEmploymentError] =
     useState<ClientEducationAndEmploymentErrorType>(null);
 
+  // const [prevClientByNRC, setPrevClientByNRC] = useState();
+  const { data: NRCprevClient } = useReadClientByNRCQuery(personalInfo?.nrc, {
+    skip: nrcValidateForSearchReq(personalInfo?.nrc),
+    refetchOnMountOrArgChange: true,
+  });
+
+  console.log(NRCprevClient);
   //
   const isClientUnder18Years = !DateFunc.isOverYears(personalInfo.dob, 18);
-
-  // useEffect(() => {
-  //   if(isSuccess && status === "fulfilled") {
-  //     setPersonalInfo(prev=>({
-  //       ...prev,
-
-  //     })
 
   // Personal information functionality Hook
   const { handlePersonalInfoChange, handlePersonalInfoNext } = usePersonalInfo({
@@ -93,6 +98,7 @@ const useCreateClientAccount = (
     setPersonalInfo,
     setPersonalInfoError,
     handleStepNext,
+    NRCprevClient: NRCprevClient || [],
   });
   // Parent and guardian information functionality Hook
   const { handleParentsGuardianDetailsChange, parentsOrGuardiansNext } =
@@ -127,7 +133,6 @@ const useCreateClientAccount = (
   // Place Of Birth Religious Functionality Hook
   const {
     handlePlaceOfBirthAndReligionChange,
-    districtAndProvince,
     handlePlaceOfBirthAndReligionNext,
   } = usePlaceOfBirthReligious({
     placeOfBirthAndReligion,
@@ -145,7 +150,7 @@ const useCreateClientAccount = (
 
   const handleFormReset = () => {};
 
-  const { facilityState, setFacilityState } = districtAndProvince;
+  // Create Client Data submission
   const { handleClientDataSubmit } = useSubmitClientAccountCreate({
     contactInfo,
     educationAndEmployment,
@@ -153,14 +158,13 @@ const useCreateClientAccount = (
     parentsOrGuardians,
     personalInfo,
     placeOfBirthAndReligion,
-    facilityState,
     handleFormReset,
   });
 
   // Client Edit form functionality starts here
   //
   useEffect(() => {
-    if (isEditForm && editClient) {
+    if (isEditForm && editClient?.oid) {
       const {
         prevPersonalInfo,
         prevParentsOrGuardians,
@@ -168,7 +172,7 @@ const useCreateClientAccount = (
         prevContactInfo,
         prevEducationAndEmployment,
         prevPlaceOfBirthAndReligion,
-        districtProvince,
+        // districtProvince,
       } = useSetEditFormData(editClient);
       console.log(prevPlaceOfBirthAndReligion);
       setPersonalInfo((prev) => ({ ...prev, ...prevPersonalInfo }));
@@ -190,20 +194,8 @@ const useCreateClientAccount = (
         ...prev,
         ...prevEducationAndEmployment,
       }));
-      setFacilityState((prev) => ({
-        ...prev,
-        province: editClient.provinceId,
-        district: editClient.districtId,
-      }));
-      // console.log(districtProvince);
     }
-  }, [editClient, isEditForm]);
-
-  // useEffect(() => {
-  //   if (isEditForm && editClient) {
-  //     setPersonalInfo((prev) => ({ ...prev, dob: editClient.dob }));
-  //   }
-  // }, [editClient?.dob, isEditForm]);
+  }, [editClient?.oid, isEditForm]);
 
   //
   // Client Edit form functionality end here
@@ -243,10 +235,24 @@ const useCreateClientAccount = (
       handlePlaceOfBirthAndReligionNext();
     }
     // if (stateCount === 6) {
-    //   handleClientDataSubmit;
+    //   // if (editClient?.oid) {
+    //   //   handleUpdateClientDataSubmit;
+    //   // } else {
+    //     handleClientDataSubmit;
+    //   // }
     // }
   };
 
+  // Update Client Information Submissions
+  const { handleClientDataUpdate } = useSubmitClientAccountEdit({
+    contactInfo,
+    educationAndEmployment,
+    maritalStatusAndSpouse,
+    parentsOrGuardians,
+    personalInfo,
+    placeOfBirthAndReligion,
+    editClient,
+  });
   // console.log("personal information", personalInfo);
 
   return {
@@ -275,9 +281,6 @@ const useCreateClientAccount = (
     handlePlaceOfBirthAndReligionChange,
     handleEducationAndEmploymentChange,
 
-    // district and provence filtered with Hooks // ContactInformation
-    districtAndProvince,
-
     // Error State
     personalInfoError,
     parentsOrGuardiansError,
@@ -295,7 +298,11 @@ const useCreateClientAccount = (
 
     // Submit Handler
     handleClientDataSubmit,
+    handleClientDataUpdate,
+
+    // NRC prev
+    NRCprevClient: NRCprevClient || [],
   };
 };
 
-export default useCreateClientAccount;
+export default useClientAccount;

@@ -45,7 +45,7 @@ function Password({
       <div className="relative w-full">
         <input
           type={showPassword ? type : "password"}
-          className={`custom-input ${className}`}
+          className={`custom-input text-base min-h-[52px] ${disabled && "disabled_bg"} ${className}`}
           value={value}
           name={name}
           onChange={onChange}
@@ -57,9 +57,9 @@ function Password({
         <button
           type="button"
           onClick={togglePasswordVisibility}
-          className="absolute right-5 top-1/2 transform -translate-y-1/2 cursor-pointer"
+          className="absolute right-5 top-1/2 text-base transform -translate-y-1/2 cursor-pointer dark:text-gray-500"
         >
-          {showPassword ? <FiEyeOff /> : <FiEye />}
+          {showPassword ? <FiEyeOff className="text-xl" /> : <FiEye className="text-xl" />}
         </button>
       </div>
 

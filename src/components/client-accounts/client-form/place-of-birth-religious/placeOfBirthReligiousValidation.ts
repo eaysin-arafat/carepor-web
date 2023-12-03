@@ -11,8 +11,8 @@ const placeOfBirthReligiousValidation = (
   if (!formData.homeLanguageId) errors.homeLanguageId = "Required";
   if (!formData.isZambianBorn) errors.isZambianBorn = "Required";
   if (formData.isZambianBorn == "1") {
-    if (!formData.district) errors.district = "Required";
-    if (!formData.province) errors.province = "Required";
+    if (!formData.districtId) errors.districtId = "Required";
+    if (!formData.provinceId) errors.provinceId = "Required";
   }
   if (formData.isZambianBorn == "2") {
     if (!formData.birthPlace) errors.birthPlace = "Required";

@@ -135,6 +135,8 @@ export type ClientPlaceOfBirthAndReligionErrorType = {
   isZambianBorn?: string;
   province?: string;
   district?: string;
+  provinceId?: string;
+  districtId?: string;
   birthPlace?: string;
   religion?: string;
 };

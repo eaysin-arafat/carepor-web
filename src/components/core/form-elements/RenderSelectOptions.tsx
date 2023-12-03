@@ -1,5 +1,7 @@
 import { useReadCountriesQuery } from "@/features/country/country-api";
+import { useReadDistrictsQuery } from "@/features/district/district-api";
 import { useReadHomeLanguagesQuery } from "@/features/home-language/home-language-api";
+import { useReadProvincesQuery } from "@/features/province/province-api";
 
 type SelectOptionType = {
   oid: string | number;
@@ -43,6 +45,27 @@ export const RenderCountryOptions = () => {
   const { data: countries } = useReadCountriesQuery(undefined);
 
   return renderOptions(countries);
+};
+
+/**
+ * @default countries select options
+ * @param no params required
+ * @returns select options for countries
+ */
+export const RenderProvinceOptions = () => {
+  const { data: province } = useReadProvincesQuery(undefined);
+
+  return <>{renderOptions(province)}</>;
+};
+
+export const RenderDistrictOptions = ({ provinceId }) => {
+  const { data } = useReadDistrictsQuery(undefined);
+
+  const filterDistrict = Array.isArray(data)
+    ? data.filter((dist) => dist.provinceId == provinceId)
+    : [];
+
+  return <>{renderOptions(filterDistrict)} </>;
 };
 
 // default Home Language select options

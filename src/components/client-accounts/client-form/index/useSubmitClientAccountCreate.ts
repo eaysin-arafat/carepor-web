@@ -21,7 +21,6 @@ const useSubmitClientAccountCreate = ({
   contactInfo,
   placeOfBirthAndReligion,
   educationAndEmployment,
-  facilityState,
   handleFormReset,
 }) => {
   // const navigate = useNavigate();
@@ -85,10 +84,8 @@ const useSubmitClientAccountCreate = ({
       spousesSurname: maritalStatusAndSpouse?.spousesSurname || null,
       occupationId: educationAndEmployment?.occupationId || null,
       educationLevelId: educationAndEmployment?.educationLevelId || null,
-      // districtId: placeOfBirthAndReligion?.districtId || null,
-      // provinceId: placeOfBirthAndReligion?.provinceId || null,
-      districtId: facilityState?.district || null,
-      provinceId: facilityState?.province || null,
+      districtId: placeOfBirthAndReligion?.districtId || null,
+      provinceId: placeOfBirthAndReligion?.provinceId || null,
     };
 
     // RTK mutation // Post
@@ -133,24 +130,3 @@ const useSubmitClientAccountCreate = ({
 };
 
 export default useSubmitClientAccountCreate;
-
-// const { isValid, error: validationError } = clientCreateValidator({
-//   ...dateInputs,
-//   ...personalInfo,
-//   ...parentsOrGuardians, // no required filed if client over of same age 18.
-//   ...maritalStatusAndSpouse,
-//   ...contactInfo,
-//   ...placeOfBirthAndReligion,
-//   ...educationAndEmployment,
-//   searchClients: prevClientByNRC,
-// });
-
-// If from data is on valid set form error
-// if (!isValid) {
-//   setInputError(validationError);
-//   return false;
-// }
-
-// delete baseData.encounterId;
-// delete baseData.clientId;
-// delete baseData.encounterType;
