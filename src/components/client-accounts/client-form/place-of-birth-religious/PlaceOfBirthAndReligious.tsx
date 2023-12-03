@@ -1,5 +1,7 @@
 import RenderSelectOptions, {
+  RenderDistrictOptions,
   RenderLanguageOptions,
+  RenderProvinceOptions,
 } from "@/components/core/form-elements/RenderSelectOptions";
 import { religionsEnums } from "@/enum/clients";
 import { ManageFacilityType } from "@/hooks/useManageFacility";
@@ -23,18 +25,7 @@ function PlaceOfBirthAndReligious({
   placeOfBirthAndReligion,
   placeOfBirthAndReligionError,
   handlePlaceOfBirthAndReligionChange,
-  districtAndProvince,
 }: Props) {
-  //
-  const {
-    districtOptions,
-    provinceOptions,
-    facilityState,
-    facilityChangeHandler,
-  } = districtAndProvince;
-
-  console.log(facilityState);
-
   return (
     <>
       <FormSection titleText="Place of Birth & Religious Denomination">
@@ -69,29 +60,31 @@ function PlaceOfBirthAndReligious({
             <div className="flex items-center">
               <Select
                 label="Province of Birth"
-                name="province"
-                onChange={facilityChangeHandler}
-                value={facilityState.province}
-                errMsg={placeOfBirthAndReligionError?.province}
+                name="provinceId"
+                onChange={handlePlaceOfBirthAndReligionChange}
+                value={placeOfBirthAndReligion.provinceId}
+                errMsg={placeOfBirthAndReligionError?.provinceId}
                 // server key name ==  provinceId
                 disabled={placeOfBirthAndReligion.isZambianBorn != "1"}
                 required={placeOfBirthAndReligion.isZambianBorn == "1"}
               >
-                <RenderSelectOptions options={provinceOptions} />
+                <RenderProvinceOptions />
               </Select>
             </div>
             <div className="flex items-center">
               <Select
                 label="District of Birth"
-                name="district"
+                name="districtId"
                 // server key name == districtId
-                value={facilityState.district}
-                onChange={facilityChangeHandler}
-                errMsg={placeOfBirthAndReligionError?.district}
+                value={placeOfBirthAndReligion?.districtId}
+                onChange={handlePlaceOfBirthAndReligionChange}
+                errMsg={placeOfBirthAndReligionError?.districtId}
                 disabled={placeOfBirthAndReligion.isZambianBorn != "1"}
                 required={placeOfBirthAndReligion.isZambianBorn == "1"}
               >
-                <RenderSelectOptions options={districtOptions} />
+                <RenderDistrictOptions
+                  provinceId={placeOfBirthAndReligion.provinceId}
+                />
               </Select>
             </div>
             <div className="flex items-center">

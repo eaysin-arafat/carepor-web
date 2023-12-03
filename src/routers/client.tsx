@@ -15,7 +15,7 @@ export const URLAdmissionSearch = (): string => "/admission-search";
 export const URLClientDetails = ({ id = ":id" }: { id: string }): string =>
   `/client-details/${id}`;
 export const URLClientCreate = (): string => "/client-create";
-export const URLClientEdit = ({ id = ":id" }: { id: string }): string =>
+export const URLClientEdit = ({ id }: { id: string }): string =>
   `/client-edit/${id}`;
 export const URLCreateAdmission = ({
   clientId = ":clientId",

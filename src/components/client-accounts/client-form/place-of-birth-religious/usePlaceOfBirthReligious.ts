@@ -1,5 +1,4 @@
 // const usePlaceOfBirthReligious
-import useManageFacility from "@/hooks/useManageFacility";
 import {
   ClientPlaceOfBirthAndReligionErrorType,
   ClientPlaceOfBirthAndReligionType,
@@ -22,15 +21,12 @@ const usePlaceOfBirthReligious = ({
   setPlaceOfBirthAndReligionError,
   handleStepNext,
 }: Props) => {
-  const districtAndProvince = useManageFacility();
-  const { facilityState, setFacilityState } = districtAndProvince;
-
   useEffect(() => {
     if (placeOfBirthAndReligion.isZambianBorn != "1") {
       setPlaceOfBirthAndReligionError((p) => ({
         ...p,
-        district: "",
-        province: "",
+        districtId: "",
+        provinceId: "",
       }));
     }
     if (placeOfBirthAndReligion.isZambianBorn != "2") {
@@ -49,10 +45,16 @@ const usePlaceOfBirthReligious = ({
         setPlaceOfBirthAndReligion((prev) => ({
           ...prev,
           [name]: value,
-          birthPlace: "",
+          districtId: "",
+          provinceId: "",
         }));
-        setPlaceOfBirthAndReligionError((prev) => ({ ...prev, [name]: "" }));
-        setFacilityState((prev) => ({ ...prev, district: "", province: "" }));
+        setPlaceOfBirthAndReligionError((prev) => ({
+          ...prev,
+          [name]: "",
+          districtId: "",
+          provinceId: "",
+        }));
+
         return;
       }
       if (value == "1") {
@@ -61,20 +63,35 @@ const usePlaceOfBirthReligious = ({
           [name]: value,
           birthPlace: "",
         }));
-        setPlaceOfBirthAndReligionError((prev) => ({ ...prev, [name]: "" }));
+        setPlaceOfBirthAndReligionError((prev) => ({
+          ...prev,
+          [name]: "",
+          birthPlace: "",
+        }));
       }
-    } else {
-      setPlaceOfBirthAndReligion((prev) => ({ ...prev, [name]: value }));
-      setPlaceOfBirthAndReligionError((prev) => ({ ...prev, [name]: "" }));
     }
+    if (name === "ProvinceId") {
+      setPlaceOfBirthAndReligion((prev) => ({
+        ...prev,
+        [name]: value,
+        districtId: "",
+      }));
+      setPlaceOfBirthAndReligionError((prev) => ({
+        ...prev,
+        [name]: "",
+        districtId: "",
+      }));
+      return;
+    }
+    setPlaceOfBirthAndReligion((prev) => ({ ...prev, [name]: value }));
+    setPlaceOfBirthAndReligionError((prev) => ({ ...prev, [name]: "" }));
+    return;
   };
 
   const handlePlaceOfBirthAndReligionNext = () => {
     const { isPersonalInfoValid, placeOfBirthReligiousErrors } =
       placeOfBirthReligiousValidation({
         ...placeOfBirthAndReligion,
-        district: facilityState.district,
-        province: facilityState.province,
       });
 
     if (!isPersonalInfoValid) {
@@ -88,7 +105,6 @@ const usePlaceOfBirthReligious = ({
 
   return {
     handlePlaceOfBirthAndReligionChange,
-    districtAndProvince,
     handlePlaceOfBirthAndReligionNext,
   };
 };

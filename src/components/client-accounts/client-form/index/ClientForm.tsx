@@ -9,7 +9,6 @@ import NextButton from "@/components/core/buttons/NextButton";
 import SubmitButton from "@/components/core/buttons/SubmitButton";
 
 function ClientForm({ clientManager, isEditForm }) {
-  
   const {
     // form step state
     formStepState,
@@ -38,13 +37,6 @@ function ClientForm({ clientManager, isEditForm }) {
     contactInfoError,
     placeOfBirthAndReligionError,
     educationAndEmploymentError,
-    // Error setState
-    // setPersonalInfoError,
-    // setParentsOrGuardiansError,
-    // setMaritalStatusAndSpouseError,
-    // setContactInfoError,
-    // setPlaceOfBirthAndReligionError,
-    // setEducationAndEmploymentError,
 
     // form Handler
     handleClintFormNextOperation,
@@ -53,6 +45,7 @@ function ClientForm({ clientManager, isEditForm }) {
 
     // Submit Handler
     handleClientDataSubmit,
+    handleClientDataUpdate,
   } = clientManager;
 
   // form step state and handler
@@ -131,7 +124,9 @@ function ClientForm({ clientManager, isEditForm }) {
           <SubmitButton
             title="Submit"
             buttonType="submit"
-            onClick={handleClientDataSubmit}
+            onClick={
+              isEditForm ? handleClientDataUpdate : handleClientDataSubmit
+            }
             className="w-40"
           />
         )}

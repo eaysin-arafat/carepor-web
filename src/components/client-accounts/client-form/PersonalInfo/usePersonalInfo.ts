@@ -14,15 +14,17 @@ type PersonalInfoProps = {
   setPersonalInfo: SetStateType<ClientPersonalInfoType>;
   setPersonalInfoError: SetStateType<ClientPersonalInfoErrorType>;
   handleStepNext: () => void;
+  NRCprevClient: any[];
 };
 const usePersonalInfo = ({
   personalInfo,
   setPersonalInfo,
   setPersonalInfoError,
   handleStepNext,
+  NRCprevClient,
 }: PersonalInfoProps) => {
-
-  //
+  // //
+  // const dddd = NRCprevClient[0]?.nrc;
 
   // handle personal info form change
   const handlePersonalInfoChange = (e: OnchangeEventType): void => {
