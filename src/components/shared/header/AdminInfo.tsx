@@ -28,7 +28,7 @@ function AdminInfo() {
   return (
     <div className="flex items-center gap-2">
       <p
-        className={`border-r pr-2 text-primaryColor ${
+        className={`border-r pr-2 text-primaryColor dark:text-white ${
           w1230 ? "font-[11px]" : "font-[15px]"
         }`}
       >
@@ -42,32 +42,32 @@ function AdminInfo() {
           alt=""
         />
         {adminBar && (
-          <div className="w-[300px] absolute top-full z-50 right-0 border shadow bg-white">
-            <div className="text-center border-b p-5">
+          <div className="w-[300px] absolute top-full z-50 right-0 border dark:border-gray-600 dark:text-white shadow bg-bodyColor rounded-lg">
+            <div className="text-center border-b dark:border-gray-600 p-5">
               <Title type="h3" title="System Administrator" />
-              <p>CarePro Admin</p>
+              <p className="dark:text-gray-500">CarePro Admin</p>
             </div>
             <ul>
-              <li className="border-b">
+              <li className="border-b  dark:border-gray-600">
                 <Link
                   to="/facility-settings"
-                  className="px-5 py-3 flex items-center gap-3"
+                  className="px-5 py-3 flex items-center gap-3 hover:bg-lightBlueColor"
                 >
                   <CiSettings size={28} className="w-[30px]" /> Facility Setting
                 </Link>
               </li>
-              <li className="border-b">
+              <li className="border-b dark:border-gray-600">
                 <Link
                   to="/user-accounts/edit/40"
-                  className="px-5 py-3 flex items-center gap-3"
+                  className="px-5 py-3 flex items-center gap-3 hover:bg-lightBlueColor"
                 >
                   <FiEdit size={20} className="w-[30px]" /> Edit Profile
                 </Link>
               </li>
-              <li className="border-b">
+              <li className="border-b dark:border-gray-600">
                 <Link
                   to="/change-password"
-                  className="px-5 py-3 flex items-center gap-3"
+                  className="px-5 py-3 flex items-center gap-3 hover:bg-lightBlueColor"
                 >
                   <BsLock size={22} className="w-[30px]" /> Change Password
                 </Link>

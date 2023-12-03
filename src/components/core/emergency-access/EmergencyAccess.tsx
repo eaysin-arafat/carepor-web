@@ -5,7 +5,7 @@ function EmergencyAccess({}: Props) {
     <div className="pb-5">
       <div className=" h-6 text-base flex justify-center">
         <div className=" my-5">
-          <div className="  text-dodgerblue">
+          <div className="  text-dodgerblue dark:text-white/60">
             Emergency Access &nbsp;
             <a
               href="tel:(844) 569-8628"

@@ -57,7 +57,7 @@ function Password({
         <button
           type="button"
           onClick={togglePasswordVisibility}
-          className="absolute right-5 top-1/2 transform -translate-y-1/2 cursor-pointer"
+          className="absolute right-5 top-1/2 transform -translate-y-1/2 cursor-pointer dark:text-gray-500"
         >
           {showPassword ? <FiEyeOff /> : <FiEye />}
         </button>
