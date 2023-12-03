@@ -8,10 +8,12 @@ import EditAdmission from "../pages/admissions/edit/Edit";
 import AdmissionSearch from "./../pages/admissions/index/AdmissionSearch";
 import AdmissionDetails from "./../pages/admissions/details/AdmissionDetails";
 import ServicePoints from "@/pages/service-point/ServicePoints";
+import AssignServiceQueue from "@/pages/service-point/AssignServiceQueue";
 
 // route paths for client pages
 export const URLClientSearch = (): string => "/client-search";
 export const URLServicePoint = (): string => "/service-points";
+export const URLAssignServiceQueue = (): string => "/assign-service-queue";
 export const URLAdmissionSearch = (): string => "/admission-search";
 export const URLClientDetails = ({ id = ":id" }: { id: string }): string =>
   `/client-details/${id}`;
@@ -51,7 +53,7 @@ const ClientRouter = [
             element: <AdmissionSearch />,
           },
           {
-            path: URLAdmissionDetails({clientId: ":clientId"}),
+            path: URLAdmissionDetails({ clientId: ":clientId" }),
             element: <AdmissionDetails />,
           },
           {
@@ -77,6 +79,10 @@ const ClientRouter = [
           {
             path: URLServicePoint(),
             element: <ServicePoints />,
+          },
+          {
+            path: URLAssignServiceQueue(),
+            element: <AssignServiceQueue />,
           },
         ],
       },
