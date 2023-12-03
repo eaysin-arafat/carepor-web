@@ -1,13 +1,14 @@
-import SubmitButton from "@/components/core/buttons/SubmitButton";
 import Container from "@/components/core/container/Container";
+import { URLClientCreate } from "@/routers/client";
 import { BsPlus } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 type Props = {
   title: string;
   buttonTitle: string;
 };
 
-const IsPatientFound = ({title , buttonTitle}: Props) => {
+const IsPatientFound = ({ title, buttonTitle }: Props) => {
   return (
     <div>
       <Container className="my-5">
@@ -16,12 +17,13 @@ const IsPatientFound = ({title , buttonTitle}: Props) => {
             {title}
           </p>
           <div className="flex justify-center">
-            <SubmitButton
-              title={buttonTitle}
-              buttonType="submit"
-              icon={<BsPlus className="h-7 w-7 font-bold" />}
-              className="w-60 text-base"
-            />
+            <Link
+              to={URLClientCreate()}
+              className=" text-base btn w-fit flex gap-2 px-8 text-whiteColor bg-primaryColor hover:bg-primaryHoverColor h-fit"
+            >
+              <BsPlus className="h-7 w-7 font-bold" />
+              {buttonTitle}
+            </Link>
           </div>
         </div>
       </Container>

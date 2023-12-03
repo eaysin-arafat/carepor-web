@@ -37,7 +37,7 @@ function Input({
       </div>
       <input
         type={type}
-        className={`custom-input ${className}`}
+        className={`custom-input ${disabled && "disabled_bg"} ${className}`}
         value={value}
         name={name}
         onChange={onChange}

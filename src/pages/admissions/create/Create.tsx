@@ -4,10 +4,15 @@ import DatePicker from "@/components/core/form-elements/CustomDatePicker";
 import Select from "@/components/core/form-elements/Select";
 import Textarea from "@/components/core/form-elements/textarea";
 import FormWrapper from "@/components/core/form-layouts/FormWrapper";
+import { useNavigate, useParams } from "react-router-dom";
 
-type Props = {};
+function CreateAdmission() {
+  const navigate = useNavigate();
+  const { clientId } = useParams();
 
-function CreateAdmission({}: Props) {
+  const handleCancelButtonClick = () => {
+    navigate(-1);
+  };
   return (
     <>
       <FormWrapper
@@ -65,7 +70,7 @@ function CreateAdmission({}: Props) {
           </div>
           <div className="grid grid-cols-2 gap-5 mt-4 mb-4">
             <SubmitButton buttonType="submit" title="Save & Admit" />
-            <OutlineButton title="Cancel" />
+            <OutlineButton title="Cancel" onClick={handleCancelButtonClick} />
           </div>
         </form>
       </FormWrapper>

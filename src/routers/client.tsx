@@ -1,14 +1,15 @@
 import PrivateGuard from "@/components/shared/guard/PrivateGuard";
 import UserLayout from "@/layout/UserLayout";
 import CreateAdmission from "@/pages/admissions/create/Create";
+import AdmissionDischarge from "@/pages/admissions/discharge/AdmissionDischarge";
 import CreateClientAccount from "@/pages/client-accounts/create/CreateClientAccount";
 import ClientAccountEdit from "@/pages/client-accounts/edit/ClientAccountEdit";
 import ClientSearch from "@/pages/client-accounts/index/ClientSearch";
-import EditAdmission from "../pages/admissions/edit/Edit";
-import AdmissionSearch from "./../pages/admissions/index/AdmissionSearch";
-import AdmissionDetails from "./../pages/admissions/details/AdmissionDetails";
 import ServicePoints from "@/pages/service-point/ServicePoints";
 import AssignServiceQueue from "@/pages/service-point/AssignServiceQueue";
+import EditAdmission from "../pages/admissions/edit/Edit";
+import AdmissionDetails from "./../pages/admissions/details/AdmissionDetails";
+import AdmissionSearch from "./../pages/admissions/index/AdmissionSearch";
 
 // route paths for client pages
 export const URLClientSearch = (): string => "/client-search";
@@ -35,6 +36,11 @@ export const URLAdmissionDetails = ({
 }: {
   clientId: string;
 }): string => `/admission-details/${clientId}`;
+export const URLAdmissionDischarge = ({
+  clientId = ":clientId",
+}: {
+  clientId: string;
+}): string => `/admission-discharge/${clientId}`;
 
 // routers for client pages
 const ClientRouter = [
@@ -75,6 +81,10 @@ const ClientRouter = [
           {
             path: URLEditAdmission({ clientId: ":clientId" }),
             element: <EditAdmission />,
+          },
+          {
+            path: URLAdmissionDischarge({ clientId: ":clientId" }),
+            element: <AdmissionDischarge />,
           },
           {
             path: URLServicePoint(),

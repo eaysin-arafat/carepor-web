@@ -37,7 +37,7 @@ function Select({
         {required && <span className="-mt-[6px] mx-1 text-dangerColor">*</span>}
       </div>
       <select
-        className={`custom-input ${
+        className={`custom-input ${disabled && "disabled_bg"} ${
           value === "" && "default_option"
         } ${className}`}
         value={value}
