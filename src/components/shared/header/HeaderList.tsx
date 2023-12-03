@@ -1,6 +1,6 @@
 import useWindowWidth from "@/hooks/useWindow";
 import { Dropdown } from "flowbite-react";
-import { useState } from "react";
+import { BiSearch } from "react-icons/bi";
 import { BsFillHeartPulseFill } from "react-icons/bs";
 import { FaChartPie, FaRegFilePdf } from "react-icons/fa6";
 import { GiMedicines } from "react-icons/gi";
@@ -10,8 +10,6 @@ import { Link } from "react-router-dom";
 
 function HeaderList() {
   // * Hooks
-  const [queue, setQueue] = useState(false);
-  const [report, setReport] = useState(false);
   const w1230 = useWindowWidth(1230);
   const w1100 = useWindowWidth(1100);
 
@@ -109,11 +107,12 @@ function HeaderList() {
         <Link
           title="Select Client"
           className={`block ${
-            w1230 ? "px-5 py-2" : "px-10 py-3"
-          } rounded-full text-[14px] bg-primaryColor text-whiteColor`}
+            w1230 ? "px-5 py-2" : "px-6 py-3"
+          } rounded-full flex items-center gap-1 text-[14px] bg-primaryColor text-whiteColor`}
           to="/client-search"
         >
-          Find Patients
+          <BiSearch size={18} />
+          Search CLient
           {/* {w1100 ? <BiSearch /> : "Find Patients"} */}
         </Link>
       </li>
