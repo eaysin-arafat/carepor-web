@@ -1,14 +1,14 @@
 import PrivateGuard from "@/components/shared/guard/PrivateGuard";
 import UserLayout from "@/layout/UserLayout";
 import CreateAdmission from "@/pages/admissions/create/Create";
+import AdmissionDischarge from "@/pages/admissions/discharge/AdmissionDischarge";
 import CreateClientAccount from "@/pages/client-accounts/create/CreateClientAccount";
 import ClientAccountEdit from "@/pages/client-accounts/edit/ClientAccountEdit";
 import ClientSearch from "@/pages/client-accounts/index/ClientSearch";
-import EditAdmission from "../pages/admissions/edit/Edit";
-import AdmissionSearch from "./../pages/admissions/index/AdmissionSearch";
-import AdmissionDetails from "./../pages/admissions/details/AdmissionDetails";
 import ServicePoints from "@/pages/service-point/ServicePoints";
-import AdmissionDischarge from "@/pages/admissions/discharge/AdmissionDischarge";
+import EditAdmission from "../pages/admissions/edit/Edit";
+import AdmissionDetails from "./../pages/admissions/details/AdmissionDetails";
+import AdmissionSearch from "./../pages/admissions/index/AdmissionSearch";
 
 // route paths for client pages
 export const URLClientSearch = (): string => "/client-search";
@@ -57,7 +57,7 @@ const ClientRouter = [
             element: <AdmissionSearch />,
           },
           {
-            path: URLAdmissionDetails({clientId: ":clientId"}),
+            path: URLAdmissionDetails({ clientId: ":clientId" }),
             element: <AdmissionDetails />,
           },
           {
