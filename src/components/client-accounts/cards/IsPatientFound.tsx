@@ -19,8 +19,8 @@ const IsPatientFound = ({title , buttonTitle}: Props) => {
             <SubmitButton
               title={buttonTitle}
               buttonType="submit"
-              icon={<BsPlus className="h-7 w-7 font-semibold" />}
-              className="w-64"
+              icon={<BsPlus className="h-7 w-7 font-bold" />}
+              className="w-60 text-base"
             />
           </div>
         </div>
