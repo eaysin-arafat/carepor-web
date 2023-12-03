@@ -16,7 +16,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const gender = {
   1: "male",
-  2: "femaile",
+  2: "female",
 };
 
 type PatientCardProps = {
@@ -119,7 +119,12 @@ const PatientCard = ({ client }: PatientCardProps) => {
                     <button className={cn("default_button btn_sm  text-sm")}>
                       Admission Details
                     </button>
-                    <Link to={URLAdmissionDischarge({ clientId: client?.oid })} className={cn("default_button btn_sm text-center text-sm")}>
+                    <Link
+                      to={URLAdmissionDischarge({ clientId: client?.oid })}
+                      className={cn(
+                        "default_button btn_sm text-center text-sm"
+                      )}
+                    >
                       Discharge
                     </Link>
                   </>

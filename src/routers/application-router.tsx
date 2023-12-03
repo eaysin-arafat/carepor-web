@@ -3,6 +3,7 @@ import Error from "@/pages/error/error";
 import Test from "@/pages/test/Test";
 import RequestFacility from "@/pages/user-accounts/request-facility/RequestFacility";
 import FacilitySettings from "./FacilitySettings";
+import QueueRoutes from "./QueueRoutes";
 import clientRouter from "./client";
 import facilityRouter from "./facility";
 import ModuleRoute from "./moduleRoute";
@@ -19,6 +20,7 @@ const Routes = [
   ...publicRoutes,
   ...FacilitySettings,
   ...ModuleRoute,
+  ...QueueRoutes,
   {
     path: URLRequestFacility(),
     element: <RequestFacility />,
