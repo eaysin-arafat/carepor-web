@@ -15,7 +15,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const gender = {
   1: "male",
-  2: "femaile",
+  2: "female",
 };
 
 type PatientCardProps = {
@@ -103,7 +103,7 @@ const PatientCard = ({ client }: PatientCardProps) => {
               </div>
               <div className="flex flex-row flex-wrap gap-5">
                 <Link
-                  to={URLClientEdit(client?.oid)}
+                  to={URLClientEdit({ id: client?.oid })}
                   className={cn(
                     "default_button outline_btn btn_sm text-center"
                   )}
@@ -112,7 +112,7 @@ const PatientCard = ({ client }: PatientCardProps) => {
                 </Link>
                 {!client.isAdmitted && (
                   <Link
-                    to={URLCreateAdmission(client?.oid)}
+                    to={URLCreateAdmission({ clientId: client?.oid })}
                     className={cn("default_button btn_sm text-center")}
                   >
                     Admit Patient

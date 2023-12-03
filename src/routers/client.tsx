@@ -4,9 +4,9 @@ import CreateAdmission from "@/pages/admissions/create/Create";
 import CreateClientAccount from "@/pages/client-accounts/create/CreateClientAccount";
 import ClientAccountEdit from "@/pages/client-accounts/edit/ClientAccountEdit";
 import ClientSearch from "@/pages/client-accounts/index/ClientSearch";
+import ServicePoints from "@/pages/service-point/ServicePoints";
 import EditAdmission from "../pages/admissions/edit/Edit";
 import AdmissionSearch from "./../pages/admissions/index/AdmissionSearch";
-import ServicePoints from "@/pages/service-point/ServicePoints";
 
 // route paths for client pages
 export const URLClientSearch = (): string => "/client-search";

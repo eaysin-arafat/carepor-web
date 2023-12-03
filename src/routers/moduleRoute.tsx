@@ -1,11 +1,11 @@
 import PrivateGuard from "@/components/shared/guard/PrivateGuard";
 import ModuleSidebar from "@/components/sidebar/ModuleSidebar";
+import Investigation from "@/pages/investigations/index/Investigation";
 import Vitals from "@/pages/vitals/Vitals";
 
 // routes for public
-export const URLUserAccountCreate = (): string => "/user-accounts/create";
-export const URLUserLogin = (): string => "/";
-export const URLUserRecoveryRequest = (): string => "/recovery-request";
+
+export const URLInvestigation = (): string => "/investigation";
 
 const ModuleRoute = [
   {
@@ -17,6 +17,10 @@ const ModuleRoute = [
           {
             path: "/vitals",
             element: <Vitals />,
+          },
+          {
+            path: URLInvestigation(),
+            element: <Investigation />,
           },
         ],
       },

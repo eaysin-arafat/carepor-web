@@ -43,101 +43,73 @@
   .heading_1 {
     @apply text-center font-bold text-2xl md:text-4xl leading-[1.625] tracking-tighter text-secondaryColor;
   }
-}
 
-@layer components {
   .heading_2 {
     @apply text-3xl font-medium leading-normal tracking-tighter;
   }
-}
 
-@layer components {
   .heading_3 {
     @apply text-secondaryColor text-lg font-bold leading-6 tracking-tighter;
   }
-}
 
-@layer components {
   .heading_4 {
     @apply text-center text-grayColor text-sm font-normal leading-6;
   }
-}
 
-@layer components {
   .heading_5 {
     @apply text-textColor font-normal text-sm leading-5;
   }
-}
 
-@layer components {
   .disabled_bg {
     @apply bg-borderColor text-grayColor;
   }
-}
 
-@layer components {
   .custom-input {
     @apply w-full rounded-full text-blackColor bg-whiteColor dark:bg-[#000] box-border flex flex-row items-center justify-start py-[12px] px-4 border-[2px] border-solid border-borderColor focus:border-borderColor focus:shadow-none outline-none focus:outline-none focus:ring-0;
   }
-}
 
-@layer components {
   .input_cellphone {
     @apply border-none focus:border-none focus:ring-0 bg-transparent -mt-2;
   }
-}
 
-@layer components {
   .btn {
     @apply rounded-full flex flex-row items-center justify-center py-[14px] px-4 text-[18px] cursor-pointer transition-all ease-out capitalize;
   }
-}
 
-@layer components {
   .main_btn {
     @apply rounded-full bg-primaryColor hover:bg-primaryHoverColor text-whiteColor flex flex-row items-center justify-center py-[14px] px-4 text-[18px] cursor-pointer transition-all ease-out capitalize w-full;
   }
-}
 
-@layer components {
   .default_button {
     @apply min-w-[170px] text-whiteColor hover:bg-primaryHoverColor  hover:text-whiteColor bg-primaryColor border-2 border-primaryColor py-[14px] rounded-full transition-all ease-in-out duration-500;
   }
-}
 
-@layer components {
   .go_back {
     @apply flex gap-2 items-center text-[22px] font-medium py-2 rounded-lg;
   }
-}
 
-@layer components {
   .outline_btn {
     @apply bg-whiteColor text-primaryColor;
   }
-}
 
-@layer components {
   .btn_sm {
     @apply py-1.5 text-base;
   }
-}
 
-@layer components {
   .react-datepicker-wrapper {
     @apply w-full;
   }
-}
 
-@layer components {
   .svg_transition {
     @apply transition-colors ease-out delay-200;
   }
-}
 
-@layer components {
   .svg_white {
     @apply filter brightness-0 invert transition-all;
+  }
+
+  .box_shadow {
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 8px;
   }
 }
 
