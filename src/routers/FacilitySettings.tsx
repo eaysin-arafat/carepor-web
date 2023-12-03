@@ -1,6 +1,5 @@
 import PrivateGuard from "@/components/shared/guard/PrivateGuard";
 import FacilitySettingsSidebar from "@/components/sidebar/FacilitySettingsSidebar";
-import RootLayout from "@/layout/RootLayout";
 import Test from "@/pages/test/Test";
 
 // * route paths for client pages
@@ -12,16 +11,11 @@ const FacilitySettings = [
     element: <PrivateGuard />,
     children: [
       {
-        element: <RootLayout />,
+        element: <FacilitySettingsSidebar />,
         children: [
           {
-            element: <FacilitySettingsSidebar />,
-            children: [
-              {
-                path: URLFacilitySettings(),
-                element: <Test />,
-              },
-            ],
+            path: URLFacilitySettings(),
+            element: <Test />,
           },
         ],
       },
