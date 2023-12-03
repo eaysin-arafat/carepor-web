@@ -1,4 +1,5 @@
 import useWindowWidth from "@/hooks/useWindow";
+import { Dropdown } from "flowbite-react";
 import { useState } from "react";
 import { BsFillHeartPulseFill } from "react-icons/bs";
 import { FaChartPie, FaRegFilePdf } from "react-icons/fa6";
@@ -25,96 +26,84 @@ function HeaderList() {
         </Link>
       </li>
       <li>
-        <div className="relative">
-          <button
-            className="gap-1 flex items-center"
-            onClick={() => setQueue(!queue)}
+        <Dropdown
+          arrowIcon={false}
+          inline
+          className="min-w-[300px] w-[300px]"
+          label={
+            <button className="gap-1 flex items-center">
+              <LiaFileMedicalAltSolid size={19} />{" "}
+              {!w1100 && (
+                <>
+                  <p className={w1230 && `font-[11px]`}>Services Queue</p>
+                  <IoChevronDownOutline size={15} />
+                </>
+              )}
+            </button>
+          }
+        >
+          <Dropdown.Item
+            as={Link}
+            to="/pharmacy-queue"
+            className="flex items-center gap-3 hover:bg-lightBlueColor px-4 py-3 text-[15px]"
           >
-            <LiaFileMedicalAltSolid size={19} />{" "}
-            {!w1100 && (
-              <>
-                <p className={w1230 && `font-[11px]`}>Services Queue</p>
-                <IoChevronDownOutline size={15} />
-              </>
-            )}
-          </button>
-          {queue && (
-            <div className="w-[250px] bg-bodyColor absolute top-full border dark:border-gray-600 shadow z-50 rounded-lg">
-              <ul>
-                <li>
-                  <Link
-                    to="/pharmacy-queue"
-                    className="flex items-center gap-3 hover:bg-lightBlueColor px-4 py-3 text-[15px]"
-                  >
-                    <GiMedicines size={20} /> Pharmacy Queue
-                  </Link>
-                </li>
-                <li className="border-y dark:border-gray-600">
-                  <Link
-                    to="/investigations-dashboard"
-                    className="flex items-center gap-3 px-4 py-3 text-[15px]  hover:bg-lightBlueColor"
-                  >
-                    <BsFillHeartPulseFill size={20} /> Investigation Queue
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/service-queue"
-                    className="flex items-center gap-3 px-4 py-3 text-[15px] hover:bg-lightBlueColor"
-                  >
-                    <IoBagAddOutline size={20} /> Service Queue
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          )}
-        </div>
+            <GiMedicines size={20} /> Pharmacy Queue
+          </Dropdown.Item>
+          <Dropdown.Item
+            className="flex items-center gap-3 hover:bg-lightBlueColor px-4 py-3 text-[15px]"
+            as={Link}
+            to="/investigations-dashboard"
+          >
+            <BsFillHeartPulseFill size={20} /> Investigation Queue
+          </Dropdown.Item>
+          <Dropdown.Item
+            className="flex items-center gap-3 hover:bg-lightBlueColor px-4 py-3 text-[15px]"
+            as={Link}
+            to="/service-queue"
+          >
+            <IoBagAddOutline size={20} /> Service Queue
+          </Dropdown.Item>
+        </Dropdown>
       </li>
       <li>
-        <div className="relative">
-          <button
-            className="gap-1 flex items-center"
-            onClick={() => setReport(!report)}
+        <Dropdown
+          arrowIcon={false}
+          inline
+          className="min-w-[300px] w-[300px]"
+          label={
+            <button className="gap-1 flex items-center">
+              <FaRegFilePdf size={w1230 ? 15 : 19} />{" "}
+              {!w1100 && (
+                <>
+                  <p className={`${w1230 && `font-[11px]`}  `}>Reports</p>
+                  <IoChevronDownOutline size={15} />
+                </>
+              )}
+            </button>
+          }
+        >
+          <Dropdown.Item
+            as={Link}
+            to="/pharmacy-queue"
+            className="flex items-center gap-3 hover:bg-lightBlueColor px-4 py-3 text-[15px]"
           >
-            <FaRegFilePdf size={w1230 ? 15 : 19} />{" "}
-            {!w1100 && (
-              <>
-                <p className={`${w1230 && `font-[11px]`}  `}>Reports</p>
-                <IoChevronDownOutline size={15} />
-              </>
-            )}
-          </button>
-          {report && (
-            <div className="w-[250px] bg-bodyColor absolute top-full border dark:border-gray-600 shadow z-50 rounded-lg">
-              <ul>
-                <li>
-                  <Link
-                    to="/pharmacy-queue"
-                    className="flex items-center gap-3 hover:bg-lightBlueColor px-4 py-3 text-[15px]"
-                  >
-                    <GiMedicines size={20} /> Pharmacy Queue
-                  </Link>
-                </li>
-                <li className="border-y dark:border-gray-600">
-                  <Link
-                    to="/investigations-dashboard"
-                    className="flex items-center gap-3 px-4 py-3 text-[15px]  hover:bg-lightBlueColor"
-                  >
-                    <BsFillHeartPulseFill size={20} /> Investigation Queue
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/service-queue"
-                    className="flex items-center gap-3 px-4 py-3 text-[15px] hover:bg-lightBlueColor"
-                  >
-                    <IoBagAddOutline size={20} /> Service Queue
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          )}
-        </div>
+            <GiMedicines size={20} /> Pharmacy Queue
+          </Dropdown.Item>
+          <Dropdown.Item
+            className="flex items-center gap-3 hover:bg-lightBlueColor px-4 py-3 text-[15px]"
+            as={Link}
+            to="/investigations-dashboard"
+          >
+            <BsFillHeartPulseFill size={20} /> Investigation Queue
+          </Dropdown.Item>
+          <Dropdown.Item
+            className="flex items-center gap-3 hover:bg-lightBlueColor px-4 py-3 text-[15px]"
+            as={Link}
+            to="/service-queue"
+          >
+            <IoBagAddOutline size={20} /> Service Queue
+          </Dropdown.Item>
+        </Dropdown>
       </li>
       <li>
         <Link

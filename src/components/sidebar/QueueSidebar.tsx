@@ -28,7 +28,7 @@ function QueueSidebar() {
                 style={{
                   backgroundColor:
                     path?.pathname === item?.link && "var(--activeColor)",
-                  color: "#fff",
+                  color: "red",
                 }}
               >
                 <div className="flex justify-between items-center w-full">
@@ -44,7 +44,7 @@ function QueueSidebar() {
                     )}
                     {item.title}
                     <div className="inline-flex items-center justify-center w-8 h-8 text-xs font-bold text-white bg-primaryColor border-2 border-white rounded-full dark:border-gray-900">
-                      99
+                      9
                     </div>
                   </div>
                 </div>
