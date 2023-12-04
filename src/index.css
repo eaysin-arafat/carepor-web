@@ -78,7 +78,7 @@ div {
   }
 
   .disabled_bg {
-    @apply !bg-gray-100 !text-grayColor dark:!bg-gray-800 ;
+    @apply !bg-gray-100 !text-grayColor dark:!bg-gray-800;
   }
 
   .custom-input {
