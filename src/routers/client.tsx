@@ -1,6 +1,7 @@
 import PrivateGuard from "@/components/shared/guard/PrivateGuard";
 import UserLayout from "@/layout/UserLayout";
 import CreateAdmission from "@/pages/admissions/create/Create";
+import AdmissionDischarge from "@/pages/admissions/discharge/AdmissionDischarge";
 import CreateClientAccount from "@/pages/client-accounts/create/CreateClientAccount";
 import ClientDetails from "@/pages/client-accounts/details/ClientsDetils";
 import ClientAccountEdit from "@/pages/client-accounts/edit/ClientAccountEdit";
@@ -36,6 +37,11 @@ export const URLAdmissionDetails = ({
 }: {
   clientId: string;
 }): string => `/admission-details/${clientId}`;
+export const URLAdmissionDischarge = ({
+  clientId = ":clientId",
+}: {
+  clientId: string;
+}): string => `/admission-discharge/${clientId}`;
 
 // routers for client pages
 const ClientRouter = [
@@ -80,6 +86,10 @@ const ClientRouter = [
           {
             path: URLEditAdmission({ clientId: ":clientId" }),
             element: <EditAdmission />,
+          },
+          {
+            path: URLAdmissionDischarge({ clientId: ":clientId" }),
+            element: <AdmissionDischarge />,
           },
           {
             path: URLServicePoint(),

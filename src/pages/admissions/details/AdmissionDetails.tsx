@@ -27,7 +27,7 @@ const AdmissionDetails = ({}: Props) => {
             <div className="">
               <DataRow title="Admission Date " data="02-12-2023" />
               <DataRow title="Department" data="Data" />
-              <DataRow title="Firm/Unit " data="Data vgsjdkfbsdjk" />
+              <DataRow title="Firm/Unit " data="Data vgsjdkfbsdjk DXSfvsvs sfc fg ststrfgdf hdfghj fghj " />
               <DataRow title="Ward" data="Data" />
               <DataRow title="Bed " data="Data" />
               <DataRow title="Admission Note " data="Data" />

@@ -61,7 +61,7 @@ const CustomNrc: FC<CustomNrcProps> = React.forwardRef<
           onKeyUp={keyUpHandler}
           name={name}
           getInputRef={ref}
-          className={`custom-input ${className}`}
+          className={`custom-input ${disabled && "disabled_bg"} ${className}`}
         />
         {errMsg && (
           <span className="text-dangerColor leading-[125%] font-normal ">

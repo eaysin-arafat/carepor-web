@@ -185,7 +185,7 @@ function DatePicker({
           disabled={disabled}
           onClick={() => setShowDatepicker(!showDatepicker)}
           value={selectedDate ? formatDate(new Date(selectedDate)) : ""}
-          className={`custom-input w-[100%] ${className}`}
+          className={`custom-input w-[100%] ${disabled && "disabled_bg"} ${className}`}
         />
         {showDatepicker && (
           <div

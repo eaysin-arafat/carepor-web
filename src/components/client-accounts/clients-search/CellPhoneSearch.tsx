@@ -23,7 +23,7 @@ const CellPhoneSearch = ({
             resetCellPhone={() => {}}
             onChange={handleCellphoneSearchChange}
             className={cn(
-              "border-gray-300 focus:border-gray-300 input_cellphone"
+              "border-gray-300 focus:border-gray-300 input_cellphone -mt-[6px] rounded-s-full  rounded-e-none bg-white"
             )}
           />
         </div>
@@ -36,7 +36,7 @@ const CellPhoneSearch = ({
             onChange={handleCellphoneSearchChange}
             countryCode=""
             className={cn(
-              "border-gray-300 focus:border-gray-300 input_cellphone"
+              "border-gray-300 focus:border-gray-300 input_cellphone -mt-[6px] rounded-e-full rounded-s-none"
             )}
           />
         </div>

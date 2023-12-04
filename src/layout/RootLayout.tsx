@@ -54,7 +54,7 @@ function RootLayout({ children }: RootLayoutProps) {
               </button>
             )}
             <div
-              className={`border-r bg-white h-[92vh] z-50 ${
+              className={`border-r bg-whiteBgColor h-[92vh] z-50 ${
                 w1100 && "absolute"
               } overflow-x-auto`}
               style={{
@@ -65,11 +65,11 @@ function RootLayout({ children }: RootLayoutProps) {
                 minWidth: sidebar ? "0px" : "300px",
               }}
             >
-              <div>{children}</div>
+              <div className="">{children}</div>
             </div>
           </div>
 
-          <div className="w-full h-[92vh] overflow-x-auto bg-white">
+          <div className="w-full h-[92vh] overflow-x-auto bg-bodyColor block py-5 px-6">
             <Outlet />
           </div>
         </div>

@@ -102,6 +102,8 @@ function ContactInformation({
                   </div>
                 </div>
               </div>
+              <div className="col-span-2 md:mt-10">
+              </div>
             </div>
           </div>
 
