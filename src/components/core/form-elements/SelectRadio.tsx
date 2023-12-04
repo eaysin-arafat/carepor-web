@@ -30,7 +30,7 @@ const SelectRadio = ({
   return (
     <label
       className={cn(
-        "inline-flex cursor-pointer gap-4 justify-center items-center px-5 py-2.5 text-sm font-medium text-center  border-2 border-primaryColor rounded-sm ",
+        "inline-flex cursor-pointer gap-4 justify-center items-center px-5 py-3 text-sm font-medium text-center  border-2 border-primaryColor rounded-sm ",
         classNmae
       )}
     >
