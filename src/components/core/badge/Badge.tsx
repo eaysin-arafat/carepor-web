@@ -17,9 +17,9 @@ const Badge = ({ value, className , type = "circle" }: Props) => {
   return (
     <span
       className={cn(" ", {
-        "inline-flex items-center justify-center w-8 h-8 text-xs font-bold text-white bg-primaryColor border-2 border-white rounded-full dark:border-gray-900":
+        "inline-flex items-center justify-center w-8 h-8 text-xs font-bold text-white bg-primaryColor rounded-full":
           type === "circle",
-        "flex items-center justify-center px-5 py-1 text-xs font-bold text-white bg-primaryColor border-2 border-white rounded-full dark:border-gray-900":
+        "flex items-center justify-center px-5 py-1 text-xs font-bold text-white bg-primaryColor rounded-full":
           type === "rectangle",
       } , className)}
     >
