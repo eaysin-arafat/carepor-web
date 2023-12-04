@@ -30,16 +30,16 @@ const SelectRadio = ({
   return (
     <label
       className={cn(
-        "inline-flex cursor-pointer gap-4 items-center px-5 py-2.5 text-sm font-medium text-center border-2 border-primaryColor rounded-sm ",
+        "inline-flex cursor-pointer gap-4 justify-center items-center px-5 py-2.5 text-sm font-medium text-center  border-2 border-primaryColor rounded-sm ",
         classNmae
       )}
     >
       {counter && (
-        <span className="inline-flex items-center justify-center w-8 h-8 ms-2 text-xs font-semibold text-whiteColor bg-primaryColor rounded-full">
+        <span className="inline-flex items-center justify-center border border-white w-8 h-8 ms-2 text-xs font-semibold text-whiteColor bg-primaryColor rounded-full">
           {count}
         </span>
       )}
-      <span className=" font-semibold text-whiteColor">{title}</span>
+      {title}
       <input
         type="radio"
         className="hidden"

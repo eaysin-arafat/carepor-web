@@ -60,62 +60,81 @@ const client: Client = {
 
 function AssignServiceQueue({}: Props) {
   const [service, setService] = useState("");
+  const [urgency, setUrgency] = useState("");
 
   console.log({ service });
 
+  const array = [
+    {
+      id: 1,
+      name: service,
+      title: "OPD",
+      value: "OPD",
+    },
+    {
+      id: 2,
+      name: service,
+      title: "Vital",
+      value: "Vital",
+    },
+    {
+      id: 3,
+      name: service,
+      title: "PEP",
+      value: "PEP",
+    },
+    {
+      id: 4,
+      name: service,
+      title: "PrEP",
+      value: "PrEP",
+    },
+    {
+      id: 5,
+      name: service,
+      title: "TB Service",
+      value: "TB Service",
+    },
+  ];
+
   return (
     <>
-      <PatientCard client={client} />
-      <div>
-        <p>Select Service Point for the Patient</p>
-      </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <SelectRadio
-          counter
-          title="Surgery"
-          count="5"
-          handler={(e: any) => setService(e.target.value)}
-          value="s"
-          classNmae=""
-          name={""}
-        />
-        <SelectRadio
-          counter
-          title="Vital"
-          count="5"
-          handler={(e: any) => setService(e.target.value)}
-          value="s"
-          classNmae=""
-          name={""}
-        />
-        <SelectRadio
-          counter
-          title="HTS"
-          count="5"
-          handler={(e: any) => setService(e.target.value)}
-          value="s"
-          classNmae=""
-          name={""}
-        />
-        <SelectRadio
-          counter
-          title="Room"
-          count="5"
-          handler={(e: any) => setService(e.target.value)}
-          value="s"
-          classNmae=""
-          name={""}
-        />
-      </div>
-      <div className="mt-8">
-        <SelectRadio
-          title="Surgery"
-          count="5"
-          handler={(e: any) => setService(e.target.value)}
-          value="s"
-          classNmae="bg-primaryColor text-white"
-          name={""}
-        />
+      <div className="border p-5 w-[1340px] rounded m-auto mt-5">
+        <PatientCard client={client} />
+        <div>
+          <p className="heading_3 font-medium">
+            Select Service Point for the Patient
+          </p>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+          {array.map((item, index) => (
+            <SelectRadio
+              key={index}
+              counter
+              title={item.title}
+              count="5"
+              handler={(e: any) => setService(e.target.value)}
+              value={item.value}
+              classNmae={service === item.value && "bg-primaryColor text-white"}
+              name={item.name}
+            />
+          ))}
+        </div>
+        <div className="mt-5">
+          <p className="heading_3 font-medium">Select Urgency</p>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+          {array.map((item, index) => (
+            <SelectRadio
+              key={index}
+              title={item.title}
+              handler={(e: any) => setUrgency(e.target.value)}
+              value={item.value}
+              classNmae={urgency === item.value && "bg-primaryColor text-white"}
+              name={item.name}
+            />
+          ))}
+        </div>
       </div>
     </>
   );
