@@ -1,9 +1,11 @@
 import Badge from "@/components/core/badge/Badge";
 import { cn } from "@/utilities/cn";
+import { Link } from "react-router-dom";
 
 type Props = {
   title: string;
   className?: string;
+  viewLink?: string;
   badgeValue?: string | number;
   badgeType?: "circle" | "rectangle";
   icon?: JSX.Element;
@@ -18,14 +20,12 @@ const QueueTableLayout = ({
   children,
   className,
   viewHandler,
+  viewLink,
 }: Props) => {
   return (
     <div>
       <div
-        className={cn(
-          "border p-5 bg-whiteBgColor rounded-md shadow mt-5",
-          className
-        )}
+        className={cn("border p-5 bg-whiteBgColor rounded-md  mt-5", className)}
       >
         <div className="flex justify-between">
           <h1 className="text-2xl mb-4 flex items-center gap-3">
@@ -39,6 +39,14 @@ const QueueTableLayout = ({
             >
               View All
             </button>
+          )}
+          {viewLink && (
+            <Link
+              to={viewLink}
+              className="text-xl text-primaryColor hover:text-primaryHoverColor mb-4 flex items-center gap-3 cursor-pointer"
+            >
+              View All
+            </Link>
           )}
         </div>
 

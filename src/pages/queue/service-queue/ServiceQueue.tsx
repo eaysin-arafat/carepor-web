@@ -1,15 +1,43 @@
-import Filters from "@/components/queue/Filters";
 import QueueTableLayout from "@/components/queue/QueueTableLayout";
+import ServiceQueueFilters from "@/components/queue/service-queue/ServiceQueueFilters";
+import useWindowWidth from "@/hooks/useWindow";
 
 function ServiceQueue() {
+  const w1100 = useWindowWidth(1100);
   return (
-    <>
-      <Filters />
+    <div className={`${w1100 && "mt-12"}`}>
+      {/* <h1 className="text-3xl font-medium text-black dark:text-white mb-4">
+        Service Queue
+      </h1> */}
+      <ServiceQueueFilters />
 
-      <QueueTableLayout title="Triage" badgeValue={5} className="">
+      <QueueTableLayout
+        viewLink="/service-queue/triage"
+        title="Triage"
+        badgeValue={5}
+        className=""
+      >
         <> Table Content </>
       </QueueTableLayout>
-    </>
+
+      <QueueTableLayout
+        viewLink="/service-queue/opd"
+        title="OPD"
+        badgeValue={5}
+        className=""
+      >
+        <> Table Content </>
+      </QueueTableLayout>
+
+      <QueueTableLayout
+        viewLink="/service-queue/burn-skin"
+        title="Burn & Skin"
+        badgeValue={5}
+        className=""
+      >
+        <> Table Content </>
+      </QueueTableLayout>
+    </div>
   );
 }
 
