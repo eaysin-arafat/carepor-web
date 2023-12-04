@@ -1,7 +1,7 @@
 import {
   ClientEducationAndEmploymentErrorType,
   ClientEducationAndEmploymentType,
-} from "@/types/clientFormTypes";
+} from "@/types/clientTypes";
 import { OnchangeEventType } from "@/types/htmlEvents";
 import { SetStateType } from "@/types/reactTypes";
 
@@ -18,8 +18,6 @@ const useEducationAndEmployment = ({
   setEducationAndEmploymentError,
 }: // handleStepNext,
 MaritalStatusAndSpouseType) => {
-
-
   // handle Education And Employment  form change
   const handleEducationAndEmploymentChange = (e: OnchangeEventType): void => {
     const { name, type, checked, value } = e.target;

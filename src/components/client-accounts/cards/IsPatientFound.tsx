@@ -1,5 +1,6 @@
-import SubmitButton from "@/components/core/buttons/SubmitButton";
+import LinkButton from "@/components/core/buttons/LinkButton";
 import Container from "@/components/core/container/Container";
+import { URLClientCreate } from "@/routers/client";
 import { BsPlus } from "react-icons/bs";
 
 type Props = {
@@ -7,7 +8,7 @@ type Props = {
   buttonTitle: string;
 };
 
-const IsPatientFound = ({title , buttonTitle}: Props) => {
+const IsPatientFound = ({ title, buttonTitle }: Props) => {
   return (
     <div>
       <Container className="my-5">
@@ -16,12 +17,18 @@ const IsPatientFound = ({title , buttonTitle}: Props) => {
             {title}
           </p>
           <div className="flex justify-center">
-            <SubmitButton
+            <LinkButton
+              title={buttonTitle}
+              link={URLClientCreate()}
+              icon={<BsPlus className="h-7 w-7 font-bold" />}
+              className="w-60 text-base"
+            />
+            {/* <SubmitButton
               title={buttonTitle}
               buttonType="submit"
               icon={<BsPlus className="h-7 w-7 font-bold" />}
               className="w-60 text-base"
-            />
+            /> */}
           </div>
         </div>
       </Container>

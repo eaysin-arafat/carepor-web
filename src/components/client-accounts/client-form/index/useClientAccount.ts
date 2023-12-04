@@ -15,6 +15,8 @@ import usePlaceOfBirthReligious from "@/components/client-accounts/client-form/p
 // import { ClientPersonalInfoType } from "@/types/clientFormTypes";
 import useSubmitClientAccountCreate from "@/components/client-accounts/client-form/index/useSubmitClientAccountCreate";
 import { useReadClientByNRCQuery } from "@/features/client/client-api";
+import { useReadDistrictsQuery } from "@/features/district/district-api";
+import { useReadProvincesQuery } from "@/features/province/province-api";
 import {
   ClientContactInfoErrorType,
   ClientEducationAndEmploymentErrorType,
@@ -22,7 +24,7 @@ import {
   ClientParentsOrGuardiansErrorType,
   ClientPersonalInfoErrorType,
   ClientPlaceOfBirthAndReligionErrorType,
-} from "@/types/clientFormTypes";
+} from "@/types/clientTypes";
 import { RtkQueryType } from "@/types/reactTypes";
 import { DateFunc } from "@/utilities/date";
 import { useEffect, useState } from "react";
@@ -47,6 +49,8 @@ const useClientAccount = (
 ) => {
   // resux state receive and distructure
   const { data: editClient } = ClientByKeyQuery || {};
+  const { data: province } = useReadProvincesQuery(undefined);
+  const { data: district } = useReadDistrictsQuery(undefined);
 
   // form step state handler
   const formStepState = useClientFormStep();
@@ -88,9 +92,34 @@ const useClientAccount = (
     refetchOnMountOrArgChange: true,
   });
 
-  console.log(NRCprevClient);
   //
   const isClientUnder18Years = !DateFunc.isOverYears(personalInfo.dob, 18);
+
+  const noNrc = personalInfo.nrc != "000000/00/0";
+  const notPreNrc = personalInfo.nrc != editClient?.nrc;
+
+  let alreadyExists = "";
+  if (
+    noNrc &&
+    notPreNrc &&
+    NRCprevClient?.length > 0 &&
+    !nrcValidateForSearchReq(personalInfo?.nrc)
+  ) {
+    alreadyExists = "NRC already exists";
+  } else {
+    alreadyExists = "";
+  }
+
+  // useEffect(() => {
+  //   if (noNrc && notPreNrc && NRCprevClient?.length > 0) {
+  //     console.log(personalInfo.nrc);
+
+  //     setPersonalInfoError((prev) => ({ ...prev, nrc: "NRC already exists" }));
+  //   } else {
+  //     console.log(personalInfo.nrc + "hh");
+  //     setPersonalInfoError((prev) => ({ ...prev, nrc: "" }));
+  //   }
+  // }, [NRCprevClient]);
 
   // Personal information functionality Hook
   const { handlePersonalInfoChange, handlePersonalInfoNext } = usePersonalInfo({
@@ -98,7 +127,10 @@ const useClientAccount = (
     setPersonalInfo,
     setPersonalInfoError,
     handleStepNext,
-    NRCprevClient: NRCprevClient || [],
+    NRCprevClient,
+    isEditForm,
+    noNrc,
+    notPreNrc,
   });
   // Parent and guardian information functionality Hook
   const { handleParentsGuardianDetailsChange, parentsOrGuardiansNext } =
@@ -148,7 +180,20 @@ const useClientAccount = (
     handleStepNext,
   });
 
-  const handleFormReset = () => {};
+  const handleFormReset = () => {
+    setPersonalInfo(personalInfoState);
+    setParentsOrGuardians(parentsOrGuardiansState);
+    setMaritalStatusAndSpouse(maritalStatusAndSpouseState);
+    setContactInfo(contactInfoState);
+    setPlaceOfBirthAndReligion(placeOfBirthAndReligionState);
+    setEducationAndEmployment(educationAndEmploymentState);
+    setPersonalInfoError(null);
+    setParentsOrGuardiansError(null);
+    setMaritalStatusAndSpouseError(null);
+    setContactInfoError(null);
+    setPlaceOfBirthAndReligionError(null);
+    setEducationAndEmploymentError(null);
+  };
 
   // Create Client Data submission
   const { handleClientDataSubmit } = useSubmitClientAccountCreate({
@@ -174,7 +219,7 @@ const useClientAccount = (
         prevPlaceOfBirthAndReligion,
         // districtProvince,
       } = useSetEditFormData(editClient);
-      console.log(prevPlaceOfBirthAndReligion);
+
       setPersonalInfo((prev) => ({ ...prev, ...prevPersonalInfo }));
 
       setParentsOrGuardians((prev) => ({
@@ -235,11 +280,7 @@ const useClientAccount = (
       handlePlaceOfBirthAndReligionNext();
     }
     // if (stateCount === 6) {
-    //   // if (editClient?.oid) {
-    //   //   handleUpdateClientDataSubmit;
-    //   // } else {
-    //     handleClientDataSubmit;
-    //   // }
+    // Submission
     // }
   };
 
@@ -253,11 +294,12 @@ const useClientAccount = (
     placeOfBirthAndReligion,
     editClient,
   });
-  // console.log("personal information", personalInfo);
 
   return {
     // form step state and handler
     formStepState,
+    province,
+    district,
 
     // state value
     personalInfo,
@@ -301,7 +343,7 @@ const useClientAccount = (
     handleClientDataUpdate,
 
     // NRC prev
-    NRCprevClient: NRCprevClient || [],
+    alreadyExists,
   };
 };
 

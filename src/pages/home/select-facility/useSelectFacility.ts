@@ -137,16 +137,3 @@ const useSelectFacility = () => {
 };
 
 export default useSelectFacility;
-
-// const validation = (data) => {
-//   const errors = {};
-
-//   if (!data.facility) errors.facility = "Required";
-//   if (!data.district) errors.district = "Required";
-//   if (!data.province) errors.province = "Required";
-
-//   return {
-//     isFacilityValid: Object.keys(errors).length == 0,
-//     errors,
-//   };
-// };

@@ -1,4 +1,4 @@
-import { ClientPersonalInfoType } from "@/types/clientFormTypes";
+import { ClientPersonalInfoType } from "@/types/clientTypes";
 
 const useSetEditFormData = (data) => {
   // let provinceId = data?.district?.provinceId;

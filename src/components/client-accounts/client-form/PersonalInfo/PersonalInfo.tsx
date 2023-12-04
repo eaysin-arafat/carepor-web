@@ -3,7 +3,7 @@ import { RenderCountryOptions } from "@/components/core/form-elements/RenderSele
 import {
   ClientPersonalInfoErrorType,
   ClientPersonalInfoType,
-} from "@/types/clientFormTypes";
+} from "@/types/clientTypes";
 import { getAgeMessage } from "@/utilities/date";
 import Checkbox from "../../../core/form-elements/Checkbox";
 import DatePicker from "../../../core/form-elements/CustomDatePicker";
@@ -16,12 +16,14 @@ type Props = {
   personalInfo: ClientPersonalInfoType;
   personalInfoError: ClientPersonalInfoErrorType;
   handlePersonalInfoChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  alreadyExists: string;
 };
 
 function ClientPersonalInfo({
   personalInfo,
   handlePersonalInfoChange,
   personalInfoError,
+  alreadyExists,
 }: Props) {
   return (
     <>
@@ -106,7 +108,7 @@ function ClientPersonalInfo({
               name="nrc"
               state={personalInfo.nrc}
               onChange={handlePersonalInfoChange}
-              errMsg={personalInfoError?.nrc}
+              errMsg={alreadyExists || personalInfoError?.nrc}
               required={!personalInfo.noNRC}
               disabled={personalInfo.noNRC}
             />
@@ -166,13 +168,3 @@ function ClientPersonalInfo({
 }
 
 export default ClientPersonalInfo;
-
-/**
- *                   <div
-                    className={` ${
-                      getAgeMessage(personalInfo?.dob)?.error
-                        ? "text-red-500"
-                        : ""
-                    } `}
-                  >
- */

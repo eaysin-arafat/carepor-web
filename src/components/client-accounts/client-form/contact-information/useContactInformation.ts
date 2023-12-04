@@ -2,7 +2,7 @@ import {
   ClientContactInfoErrorType,
   ClientContactInfoType,
   notZMPhoneResetType,
-} from "@/types/clientFormTypes";
+} from "@/types/clientTypes";
 import { OnchangeEventType } from "@/types/htmlEvents";
 import { SetStateType } from "@/types/reactTypes";
 import contactInformationValidation from "./contactInformationValidation";
@@ -20,8 +20,6 @@ const useContactInformation = ({
   setContactInfoError,
   handleStepNext,
 }: MaritalStatusAndSpouseType) => {
-  
-
   // handle Marital Status And Spouse  form change
   const handleContactInformationChange = (e: OnchangeEventType): void => {
     const { name, type, checked, value } = e.target;

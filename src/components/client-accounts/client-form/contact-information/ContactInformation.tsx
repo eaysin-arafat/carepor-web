@@ -4,7 +4,7 @@ import {
   ClientContactInfoErrorType,
   ClientContactInfoType,
   notZMPhoneResetType,
-} from "@/types/clientFormTypes";
+} from "@/types/clientTypes";
 import Checkbox from "../../../core/form-elements/Checkbox";
 import Input from "../../../core/form-elements/Input";
 import PhoneNumberInput from "../../../core/form-elements/PhoneNumber";

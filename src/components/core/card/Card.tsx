@@ -31,7 +31,12 @@ const Card = ({
   editHandler,
 }: Props) => {
   return (
-    <div className={cn("bg-borderColor dark:bg-whiteBgColor rounded-lg shadow-md", className)}>
+    <div
+      className={cn(
+        "bg-borderColor dark:bg-whiteBgColor rounded-lg shadow-md",
+        className
+      )}
+    >
       <div className={cn("flex justify-between", titleBorder)}>
         {title && (
           <h2
@@ -62,8 +67,12 @@ const Card = ({
         )}
         {edit && (
           <>
-            <button onClick={editHandler} className="text-primaryColor text-base font-normal px-1 pt-3 me-4 font-poppins flex items-center gap-1">
-              <MdOutlineEdit/>Edit
+            <button
+              onClick={editHandler}
+              className="text-primaryColor text-base font-normal px-1 pt-3 me-4 font-poppins flex items-center gap-1"
+            >
+              <MdOutlineEdit />
+              Edit
             </button>
           </>
         )}

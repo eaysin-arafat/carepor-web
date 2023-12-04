@@ -1,7 +1,7 @@
 import {
   ClientContactInfoErrorType,
   ClientContactInfoType,
-} from "@/types/clientFormTypes";
+} from "@/types/clientTypes";
 import { phoneNumberValidation } from "@/utilities/phone-number-validation";
 import { TypeValidation } from "@/utilities/type-valdation";
 
@@ -34,6 +34,7 @@ const contactInformationValidation = (formData: ClientContactInfoType) => {
       required: true,
     });
   }
+
   phoneNumberValidation({
     phone: otherCellphone,
     phoneKey: "otherCellphone",
@@ -50,6 +51,7 @@ const contactInformationValidation = (formData: ClientContactInfoType) => {
     errors: errors,
     required: false,
   });
+  console.log({ landline, landlineCountryCode });
 
   if (householdNumber && householdNumber?.length > 30)
     errors.householdNumber = "Household number should be max 30 characters.";

@@ -1,7 +1,8 @@
 import {
+  ClientObjectType,
   ClientPersonalInfoErrorType,
   ClientPersonalInfoType,
-} from "@/types/clientFormTypes";
+} from "@/types/clientTypes";
 import { OnchangeEventType } from "@/types/htmlEvents";
 // import { OnchangeEventType } from "@/types/htmlEvents";
 // import { OnchangeEventType } from "@/types/htmlEvents";
@@ -15,6 +16,9 @@ type PersonalInfoProps = {
   setPersonalInfoError: SetStateType<ClientPersonalInfoErrorType>;
   handleStepNext: () => void;
   NRCprevClient: any[];
+  isEditForm: boolean;
+  noNrc: boolean;
+  notPreNrc: boolean;
 };
 const usePersonalInfo = ({
   personalInfo,
@@ -22,6 +26,9 @@ const usePersonalInfo = ({
   setPersonalInfoError,
   handleStepNext,
   NRCprevClient,
+  isEditForm,
+  noNrc,
+  notPreNrc,
 }: PersonalInfoProps) => {
   // //
   // const dddd = NRCprevClient[0]?.nrc;
@@ -79,6 +86,26 @@ const usePersonalInfo = ({
   };
 
   const handlePersonalInfoNext = () => {
+    if (isEditForm) {
+      if (noNrc && notPreNrc && NRCprevClient?.length > 0) {
+        console.log(NRCprevClient);
+        setPersonalInfoError((prev) => ({
+          ...prev,
+          nrc: "NRC already exists!",
+        }));
+        return;
+      }
+    } else {
+      if (noNrc && NRCprevClient?.length > 0) {
+        console.log(NRCprevClient);
+        setPersonalInfoError((prev) => ({
+          ...prev,
+          nrc: "NRC already exists!",
+        }));
+        return;
+      }
+    }
+
     const { personalInfoErrors, isPersonalInfoValid } =
       personalInfoValidation(personalInfo);
     if (!isPersonalInfoValid) {

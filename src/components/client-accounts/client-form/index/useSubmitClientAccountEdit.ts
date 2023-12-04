@@ -1,6 +1,10 @@
 import { useClientUpdateMutation } from "@/features/client/client-api";
+import useFacility from "@/hooks/useFacility";
+import { URLClientDetails } from "@/routers/client";
 import { FormEvent, useEffect } from "react";
 import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const useSubmitClientAccountEdit = ({
@@ -15,6 +19,13 @@ const useSubmitClientAccountEdit = ({
   const [clientUpdate, { status, isError, isSuccess, error }] =
     useClientUpdateMutation();
 
+  // @ts-ignore
+  const { user } = useSelector((state) => state.authentication);
+  const facility = useFacility();
+
+  // React Hook
+  const navigate = useNavigate();
+
   const handleClientDataUpdate = async (e: FormEvent) => {
     e.preventDefault();
 
@@ -24,18 +35,12 @@ const useSubmitClientAccountEdit = ({
 
       // dateCreated: today(),
       // createdBy: session?.user?.oid,
-      modifiedIn: 2912, // baseData?.createdIn,
+      //@ts-ignore
+      modifiedIn: facility?.facilityId, // baseData?.createdIn,
       dateModified: new Date().toISOString(), // today(),
-      modifiedBy: "f53101db-baf7-4f2c-4e44-08dbcd4df0dd", //  baseData?.modifiedBy,
-      // isDeleted: false,
-      // isSynced: false,
-      // hivStatus: 0,
-      // isDeceased: false,
-      // isOnART: false,
-      // isAdmitted: false,
+      modifiedBy: user.oid, //  baseData?.modifiedBy,
 
-      // ...initialState,
-      // ...dateInputs,
+      // default edit form data
       ...personalInfo,
       ...parentsOrGuardians,
       ...maritalStatusAndSpouse,
@@ -83,7 +88,7 @@ const useSubmitClientAccountEdit = ({
     if (isSuccess && status === "fulfilled") {
       toast.dismiss();
       toast.success("Client Account Update successful");
-      // navigate(`/clients/details/${data?.oid}`);
+      navigate(URLClientDetails({ id: editClient.oid }));
     }
   }, [isSuccess]);
 
