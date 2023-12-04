@@ -69,7 +69,7 @@ function AssignServiceQueue({}: Props) {
       <div>
         <p>Select Service Point for the Patient</p>
       </div>
-      <div>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <SelectRadio
           counter
           title="Surgery"
@@ -77,6 +77,44 @@ function AssignServiceQueue({}: Props) {
           handler={(e: any) => setService(e.target.value)}
           value="s"
           classNmae=""
+          name={""}
+        />
+        <SelectRadio
+          counter
+          title="Vital"
+          count="5"
+          handler={(e: any) => setService(e.target.value)}
+          value="s"
+          classNmae=""
+          name={""}
+        />
+        <SelectRadio
+          counter
+          title="HTS"
+          count="5"
+          handler={(e: any) => setService(e.target.value)}
+          value="s"
+          classNmae=""
+          name={""}
+        />
+        <SelectRadio
+          counter
+          title="Room"
+          count="5"
+          handler={(e: any) => setService(e.target.value)}
+          value="s"
+          classNmae=""
+          name={""}
+        />
+      </div>
+      <div className="mt-8">
+        <SelectRadio
+          title="Surgery"
+          count="5"
+          handler={(e: any) => setService(e.target.value)}
+          value="s"
+          classNmae="bg-primaryColor text-white"
+          name={""}
         />
       </div>
     </>

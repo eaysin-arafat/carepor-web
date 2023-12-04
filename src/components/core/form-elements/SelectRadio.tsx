@@ -5,7 +5,7 @@ type Props = {
   counter?: boolean;
   count?: string;
   title: string;
-  value: string | number | boolean;
+  value: string;
   handler: (e: React.ChangeEvent) => void;
   name: string;
   classNmae: string;
@@ -30,7 +30,7 @@ const SelectRadio = ({
   return (
     <label
       className={cn(
-        "inline-flex cursor-pointer gap-2 items-center px-5 py-2.5 text-sm font-medium text-center border-2 border-primaryColor rounded-sm ",
+        "inline-flex cursor-pointer gap-4 items-center px-5 py-2.5 text-sm font-medium text-center border-2 border-primaryColor rounded-sm ",
         classNmae
       )}
     >
@@ -39,7 +39,7 @@ const SelectRadio = ({
           {count}
         </span>
       )}
-      <span className="text-primaryColor font-semibold">{title}</span>
+      <span className=" font-semibold text-whiteColor">{title}</span>
       <input
         type="radio"
         className="hidden"
