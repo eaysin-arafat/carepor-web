@@ -1,7 +1,7 @@
 import {
   ClientParentsOrGuardiansErrorType,
   ClientParentsOrGuardiansType,
-} from "@/types/clientFormTypes";
+} from "@/types/clientTypes";
 import { OnchangeEventType } from "@/types/htmlEvents";
 // import { OnchangeEventType } from "@/types/htmlEvents";
 // import { OnchangeEventType } from "@/types/htmlEvents";

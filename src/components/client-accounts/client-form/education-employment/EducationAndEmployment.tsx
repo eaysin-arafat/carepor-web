@@ -1,13 +1,13 @@
-import {
-  ClientEducationAndEmploymentErrorType,
-  ClientEducationAndEmploymentType,
-} from "@/types/clientFormTypes";
-import React from "react";
-import Select from "../../../core/form-elements/Select";
-import FormSection from "../../../core/form-layouts/FormSection";
 import RenderSelectOptions from "@/components/core/form-elements/RenderSelectOptions";
 import { useReadEducationLevelsQuery } from "@/features/education-level/education-level-api";
 import { useReadOccupationsQuery } from "@/features/occupation/occupation-api";
+import {
+  ClientEducationAndEmploymentErrorType,
+  ClientEducationAndEmploymentType,
+} from "@/types/clientTypes";
+import React from "react";
+import Select from "../../../core/form-elements/Select";
+import FormSection from "../../../core/form-layouts/FormSection";
 
 type Props = {
   educationAndEmployment: ClientEducationAndEmploymentType;

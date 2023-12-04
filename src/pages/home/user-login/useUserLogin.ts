@@ -4,7 +4,6 @@ import { FormSubmitEventType, OnchangeEventType } from "@/types/htmlEvents";
 import { cookieManager } from "@/utilities/cookie-manager";
 import { loginValidator } from "@/validation-models/user-accounts/login";
 import React from "react";
-import toast from "react-hot-toast";
 
 // initial state
 const initialState: LoginDataType = {
@@ -24,6 +23,7 @@ type LoginErrorTypes = {
 function useUserLogin() {
   const [loginForm, setLoginForm] = React.useState(initialState);
   const [errors, setErrors] = React.useState<LoginErrorTypes>({});
+  const [credentialError, setCredentialError] = React.useState("");
 
   // api hooks
   const [
@@ -63,10 +63,6 @@ function useUserLogin() {
         expires: 1,
       });
 
-      // show alert
-      toast.dismiss();
-      toast.success("Login Successful");
-
       // reset state
       setLoginForm(initialState);
       setErrors(initialState);
@@ -74,9 +70,16 @@ function useUserLogin() {
 
     // handle error
     if (isError && status === "rejected") {
+      //@ts-ignore
+      if (typeof error?.data === "string" && error?.data) {
+        //@ts-ignore
+        setCredentialError(error.data);
+      } else {
+        setCredentialError("Invalid username or password!");
+      }
       // show alert
-      toast.dismiss();
-      toast.error("Login failed");
+      // toast.dismiss();
+      // toast.error("Login failed");
     }
   }, [isSuccess, isError, status, error, userData?.userAccount?.oid]);
 
@@ -86,6 +89,8 @@ function useUserLogin() {
     isLoading,
     handleInputChange,
     handleFormSubmit,
+    credentialError,
+    setCredentialError,
   };
 }
 

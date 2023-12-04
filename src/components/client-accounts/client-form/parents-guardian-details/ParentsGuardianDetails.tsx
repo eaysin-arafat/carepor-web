@@ -1,7 +1,7 @@
 import {
   ClientParentsOrGuardiansErrorType,
   ClientParentsOrGuardiansType,
-} from "@/types/clientFormTypes";
+} from "@/types/clientTypes";
 import Checkbox from "../../../core/form-elements/Checkbox";
 // import CustomNrc from "../form-elements/CustomNrc";
 import CustomNrc from "@/components/core/form-elements/CustomNrc";

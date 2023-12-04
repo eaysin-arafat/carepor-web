@@ -1,4 +1,9 @@
-import { useEffect, useState } from "react";
+import { RootState } from "@/app/store";
+import {
+  clientFormStepBack,
+  clientFormStepNext,
+} from "@/features/client/client-form-slice";
+import { useDispatch, useSelector } from "react-redux";
 
 type ClientFormStepHookReturnType = {
   stepTitle: string[];
@@ -8,8 +13,10 @@ type ClientFormStepHookReturnType = {
   handleStepNext: () => void;
 };
 // client form multi step hook
-const useClientFormStep = (editStep?: number): ClientFormStepHookReturnType => {
-  const [stateCount, setStateCount] = useState<number>(1);
+const useClientFormStep = (): ClientFormStepHookReturnType => {
+  const dispatch = useDispatch();
+  // const [stateCount, setStateCount] = useState<number>(1);
+  const { formStep } = useSelector((state: RootState) => state.clientForm);
 
   const stepTitle = [
     "Personal <br /> Information",
@@ -20,24 +27,18 @@ const useClientFormStep = (editStep?: number): ClientFormStepHookReturnType => {
     "Education &  <br /> Employment",
   ];
 
-  const disabledBackButton = stateCount === 1;
+  const disabledBackButton = formStep === 1;
 
   const handleStepBack = () => {
-    setStateCount((prev: number) => Math.max(prev - 1, 1));
+    dispatch(clientFormStepBack());
   };
   const handleStepNext = () => {
-    setStateCount((next: number) => Math.min(next + 1, stepTitle.length));
+    dispatch(clientFormStepNext());
   };
-
-  useEffect(() => {
-    if (editStep) {
-      setStateCount(editStep);
-    }
-  }, [editStep]);
 
   return {
     stepTitle,
-    stateCount,
+    stateCount: formStep,
     disabledBackButton,
     handleStepBack,
     handleStepNext,

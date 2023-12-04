@@ -2,7 +2,7 @@
 import {
   ClientPlaceOfBirthAndReligionErrorType,
   ClientPlaceOfBirthAndReligionType,
-} from "@/types/clientFormTypes";
+} from "@/types/clientTypes";
 import { OnchangeEventType } from "@/types/htmlEvents";
 import { SetStateType } from "@/types/reactTypes";
 import { useEffect } from "react";

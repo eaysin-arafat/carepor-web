@@ -33,11 +33,14 @@ export const phoneNumberValidation = ({
   // if (required && (!code || !phone)) return;
   //   console.log({ phone, phoneKey, code, codeKey, errors, required });
 
-  //   if (phone || code) {
-  if (!phone && code) errors[phoneKey] = "Please enter phone number";
-  if (phone && !code) errors[codeKey] = "Please  select country code";
-  // return;
-  //   }
+  if (phone || code) {
+    if (!phone && code && code != "0000")
+      errors[phoneKey] = "Please enter phone number";
+    if (phone && !code && code != "0000")
+      errors[codeKey] = "Please  select country code";
+    // return;
+  }
+  console.log({ phoneKey, phone, code });
 
   if (phone && code == "+260") {
     if (!/^0?\d{9}$/.test(phone)) {
