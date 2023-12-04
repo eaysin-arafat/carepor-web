@@ -7,6 +7,7 @@ import ClientDetails from "@/pages/client-accounts/details/ClientsDetils";
 import ClientAccountEdit from "@/pages/client-accounts/edit/ClientAccountEdit";
 import ClientSearch from "@/pages/client-accounts/index/ClientSearch";
 import ServicePoints from "@/pages/service-point/ServicePoints";
+import AssignServiceQueue from "@/pages/service-point/AssignServiceQueue";
 import EditAdmission from "../pages/admissions/edit/Edit";
 import AdmissionDetails from "./../pages/admissions/details/AdmissionDetails";
 import AdmissionSearch from "./../pages/admissions/index/AdmissionSearch";
@@ -14,6 +15,7 @@ import AdmissionSearch from "./../pages/admissions/index/AdmissionSearch";
 // route paths for client pages
 export const URLClientSearch = (): string => "/client-search";
 export const URLServicePoint = (): string => "/service-points";
+export const URLAssignServiceQueue = (): string => "/assign-service-queue";
 export const URLAdmissionSearch = (): string => "/admission-search";
 export const URLClientDetails = ({ id }: { id: string }): string =>
   `/client-details/${id}`;
@@ -94,6 +96,10 @@ const ClientRouter = [
           {
             path: URLServicePoint(),
             element: <ServicePoints />,
+          },
+          {
+            path: URLAssignServiceQueue(),
+            element: <AssignServiceQueue />,
           },
         ],
       },
