@@ -38,9 +38,6 @@ function ServiceQueue() {
       <div className="border p-5 bg-whiteBgColor rounded-md shadow mt-5">
         <h1 className="text-2xl mb-4 flex items-center gap-3">
           OPD
-          <div className="inline-flex items-center justify-center w-8 h-8 text-xs font-bold text-white bg-primaryColor border-2 border-white rounded-full dark:border-gray-900">
-            90
-          </div>
           <Badge type="circle" value={10} />
         </h1>
 

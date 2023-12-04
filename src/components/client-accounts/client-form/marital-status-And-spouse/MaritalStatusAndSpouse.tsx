@@ -3,7 +3,7 @@ import { maritalStatusEnums } from "@/enum/clients";
 import {
   ClientMaritalStatusAndSpouseErrorType,
   ClientMaritalStatusAndSpouseType,
-} from "@/types/clientFormTypes";
+} from "@/types/clientTypes";
 import Input from "../../../core/form-elements/Input";
 import Select from "../../../core/form-elements/Select";
 import FormSection from "../../../core/form-layouts/FormSection";
@@ -19,8 +19,6 @@ function MaritalStatusAndSpouse({
   maritalStatusAndSpouseError,
   handleMaritalStatusAndSpouseChange,
 }: Props) {
-
-
   return (
     <>
       <FormSection titleText="Marital Status & Spouse Details">

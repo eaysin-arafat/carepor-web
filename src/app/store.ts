@@ -5,6 +5,7 @@ import authenticationReducer from "../features/authentication/authentication-sli
 import facilityAccessReducer from "../features/facility-access/facility-access-slice";
 import publicKeyReducer from "../features/public-key/public-key-slice";
 import userAccountsReducer from "../features/user-accounts/user-accounts-slice";
+import clientFormSlice from "@/features/client/client-form-slice";
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     publicKey: publicKeyReducer,
     authentication: authenticationReducer,
     sidebar: sidebar,
+    clientForm: clientFormSlice,
   },
 
   devTools: import.meta.env.MODE !== "production",

@@ -16,7 +16,7 @@ function HeaderList() {
   return (
     <ul className="flex items-center gap-5  dark:text-white">
       <li>
-        <Link to="/" className="gap-1 flex items-center">
+        <Link to="/dashboard" className="gap-1 flex items-center">
           <FaChartPie size={w1230 ? 15 : 19} />{" "}
           {!w1100 && (
             <p className={`mt-1 ${w1230 && "font-[11px]"}`}>Dashboard</p>

@@ -5,7 +5,7 @@ import {
   ClientParentsOrGuardiansType,
   ClientPersonalInfoType,
   ClientPlaceOfBirthAndReligionType,
-} from "@/types/clientFormTypes";
+} from "@/types/clientTypes";
 
 //  // note
 // export const initialState = {

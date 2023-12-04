@@ -1,14 +1,11 @@
 import RenderSelectOptions, {
-  RenderDistrictOptions,
   RenderLanguageOptions,
-  RenderProvinceOptions,
 } from "@/components/core/form-elements/RenderSelectOptions";
 import { religionsEnums } from "@/enum/clients";
-import { ManageFacilityType } from "@/hooks/useManageFacility";
 import {
   ClientPlaceOfBirthAndReligionErrorType,
   ClientPlaceOfBirthAndReligionType,
-} from "@/types/clientFormTypes";
+} from "@/types/clientTypes";
 import React from "react";
 import Input from "../../../core/form-elements/Input";
 import Select from "../../../core/form-elements/Select";
@@ -18,13 +15,16 @@ type Props = {
   placeOfBirthAndReligion: ClientPlaceOfBirthAndReligionType;
   placeOfBirthAndReligionError: ClientPlaceOfBirthAndReligionErrorType;
   handlePlaceOfBirthAndReligionChange: (e: React.ChangeEvent) => void;
-  districtAndProvince: ManageFacilityType;
+  province: { oid: string; description: string }[];
+  district: { oid: string; description: string; provinceId: string }[];
 };
 
 function PlaceOfBirthAndReligious({
   placeOfBirthAndReligion,
   placeOfBirthAndReligionError,
   handlePlaceOfBirthAndReligionChange,
+  province,
+  district,
 }: Props) {
   return (
     <>
@@ -68,7 +68,7 @@ function PlaceOfBirthAndReligious({
                 disabled={placeOfBirthAndReligion.isZambianBorn != "1"}
                 required={placeOfBirthAndReligion.isZambianBorn == "1"}
               >
-                <RenderProvinceOptions />
+                <RenderSelectOptions options={province} />
               </Select>
             </div>
             <div className="flex items-center">
@@ -82,8 +82,12 @@ function PlaceOfBirthAndReligious({
                 disabled={placeOfBirthAndReligion.isZambianBorn != "1"}
                 required={placeOfBirthAndReligion.isZambianBorn == "1"}
               >
-                <RenderDistrictOptions
-                  provinceId={placeOfBirthAndReligion.provinceId}
+                {/*  */}
+                <RenderSelectOptions
+                  options={district?.filter(
+                    (dist) =>
+                      dist.provinceId == placeOfBirthAndReligion.provinceId
+                  )}
                 />
               </Select>
             </div>

@@ -1,7 +1,7 @@
 import {
   ClientMaritalStatusAndSpouseErrorType,
   ClientMaritalStatusAndSpouseType,
-} from "@/types/clientFormTypes";
+} from "@/types/clientTypes";
 import { nameMinMaxCheck } from "@/utilities/string-validation";
 
 const maritalStatusAndSpouseValidation = (
