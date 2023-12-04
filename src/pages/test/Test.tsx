@@ -3,7 +3,7 @@ import { useState } from "react";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 
 function Test() {
-  const [state, setState] = useState(3);
+  const [state, setState] = useState(1);
   const data = [
     {
       id: 1,
@@ -167,7 +167,7 @@ function Test() {
                     </button>
                   </div>
                 </p>
-                <p className="p-2 text-white text-xs font-bold sticky right-0 z-50 bg-primaryColor">
+                <p className="p-2 text-white text-xs font-bold w-[100px] sticky right-0 z-50 bg-primaryColor">
                   Action
                 </p>
               </div>
@@ -184,7 +184,7 @@ function Test() {
                   <p className="p-2 text-textColor text-xs">{item.position}</p>
                   <p className="p-2 text-textColor text-xs">{item.salary}</p>
                   <p
-                    className={`p-2 text-textColor text-xs sticky right-0 z-50 ${
+                    className={`p-2 text-textColor text-xs sticky w-[100px] right-0 z-50 ${
                       index % 2 ? "bg-gray-200" : "bg-white"
                     }`}
                   >
@@ -194,12 +194,14 @@ function Test() {
               ))}
             </div>
           </div>
-          <CustomPagination
-            currentPage={50}
-            limit={1}
-            setCurrentPage={setState}
-            totalItemCount={10}
-          />
+          <div className="flex justify-end">
+            <CustomPagination
+              activePage={50}
+              itemsCountPerPage={1}
+              setActivePage={setState}
+              totalItemsCount={1000}
+            />
+          </div>
         </div>
       </div>
     </div>

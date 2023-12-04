@@ -1,52 +1,55 @@
-import ReactPaginate from "react-paginate";
+import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import ReactPagination from "react-js-pagination";
 
 type Props = {
-  currentPage: number;
-  setCurrentPage: (page: number) => void;
-  limit: number;
-  totalItemCount: number;
+  activePage: number;
+  setActivePage: (page: number) => void;
+  itemsCountPerPage: number;
+  totalItemsCount: number;
 };
 
 /**
  *
- * @param currentPage Number
- * @param page Number
+ * @param activePage Number
+ * @param setActivePage Function
  * @param totalItemCount Number
- * @param limit Number
- * @param setCurrentPage Function
+ * @param itemsCountPerPage Number
+ * @param totalItemsCount Function
  * @returns
  */
 
 function CustomPagination({
-  currentPage,
-  setCurrentPage,
-  limit,
-  totalItemCount,
+  activePage = 1,
+  setActivePage = () => {},
+  itemsCountPerPage = 5,
+  totalItemsCount = 10,
 }: Props) {
-  const handlePagination = (page) => {
-    setCurrentPage(page.selected);
+  const handlePageChange = (getPageNo: number) => {
+    // console.log(getPageNo);
+    setActivePage(getPageNo);
   };
   return (
-    <ReactPaginate
-      previousLabel="Prev"
-      nextLabel="Next"
-      forcePage={currentPage}
-      onPageChange={(page) => handlePagination(page)}
-      pageCount={Math.ceil(totalItemCount / limit) || 1}
-      breakLabel="..."
-      pageRangeDisplayed={2}
-      marginPagesDisplayed={1}
-      activeClassName="active"
-      pageClassName="page-item"
-      breakClassName="page-item"
-      nextLinkClassName="page-link"
-      pageLinkClassName="page-link"
-      breakLinkClassName="page-link"
-      previousLinkClassName="page-link"
-      nextClassName="page-item next-item"
-      previousClassName="page-item prev-item"
-      containerClassName="pagination react-paginate separated-pagination pagination-sm justify-content-center justify-content-md-end pe-1  mt-1 pagination-without-padding mt-0 mb-1"
-    />
+    <div className="flex mt-5">
+      <ReactPagination
+        activePage={activePage}
+        itemsCountPerPage={itemsCountPerPage}
+        totalItemsCount={totalItemsCount}
+        pageRangeDisplayed={5}
+        onChange={handlePageChange}
+        // hideDisabled={true}
+        innerClass={"flex gap-1 select-none "}
+        activeClass={"!bg-primaryColor text-[var(--white)]"}
+        itemClass={
+          "bg-[var(--gray)] cursor-pointer border w-[30px] h-[30px] text-[14px] text-center rounded flex justify-center items-center"
+        }
+        firstPageText={<BiLeftArrowAlt />}
+        lastPageText={<BiRightArrowAlt />}
+        prevPageText={<IoIosArrowBack />}
+        nextPageText={<IoIosArrowForward />}
+        getPageUrl={() => false}
+      />
+    </div>
   );
 }
 
