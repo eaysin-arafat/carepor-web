@@ -1,4 +1,6 @@
 import PatientCard from "@/components/client-accounts/cards/PatientCard";
+import OutlineButton from "@/components/core/buttons/OutlineButton";
+import SubmitButton from "@/components/core/buttons/SubmitButton";
 import SelectRadio from "@/components/core/form-elements/SelectRadio";
 
 import { Client } from "@/interface/clients";
@@ -99,14 +101,14 @@ function AssignServiceQueue({}: Props) {
 
   return (
     <>
-      <div className="border p-5 w-[1340px] rounded m-auto mt-5">
+      <div className="border p-5 max-w-[1340px] rounded m-auto mt-5">
         <PatientCard client={client} />
         <div>
-          <p className="heading_3 font-medium">
+          <p className="heading_3 font-medium my-5">
             Select Service Point for the Patient
           </p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
           {array.map((item, index) => (
             <SelectRadio
               key={index}
@@ -121,9 +123,9 @@ function AssignServiceQueue({}: Props) {
           ))}
         </div>
         <div className="mt-5">
-          <p className="heading_3 font-medium">Select Urgency</p>
+          <p className="heading_3 font-medium my-5">Select Urgency</p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
           {array.map((item, index) => (
             <SelectRadio
               key={index}
@@ -134,6 +136,19 @@ function AssignServiceQueue({}: Props) {
               name={item.name}
             />
           ))}
+        </div>
+        <div className="my-5">
+          <p className="heading_3 font-medium my-5">Vital Purpose</p>
+          <input
+            type="text"
+            className="custom-input"
+            placeholder="Type Purpose of visit here"
+          />
+        </div>
+
+        <div className="flex justify-end gap-5">
+          <OutlineButton title={"Cancel"} className="w-[150px]" />
+          <SubmitButton title={"Assign"} className="w-[150px]" />
         </div>
       </div>
     </>
