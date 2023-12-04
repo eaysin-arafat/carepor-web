@@ -12,6 +12,10 @@ function ClientForm({ clientManager, isEditForm }) {
   const {
     // form step state
     formStepState,
+    // Select enums
+    district,
+    province,
+
     // state values
     personalInfo,
     parentsOrGuardians,
@@ -27,8 +31,6 @@ function ClientForm({ clientManager, isEditForm }) {
     handleContactInformationChange,
     handlePlaceOfBirthAndReligionChange,
     handleEducationAndEmploymentChange,
-    // filtered district and province //
-    districtAndProvince,
 
     // Error State
     personalInfoError,
@@ -46,6 +48,8 @@ function ClientForm({ clientManager, isEditForm }) {
     // Submit Handler
     handleClientDataSubmit,
     handleClientDataUpdate,
+    //
+    alreadyExists,
   } = clientManager;
 
   // form step state and handler
@@ -63,6 +67,7 @@ function ClientForm({ clientManager, isEditForm }) {
             personalInfo={personalInfo}
             personalInfoError={personalInfoError}
             handlePersonalInfoChange={handlePersonalInfoChange}
+            alreadyExists={alreadyExists}
           />
         )}
         {stateCount === 2 && (
@@ -72,7 +77,6 @@ function ClientForm({ clientManager, isEditForm }) {
             handleParentsGuardianDetailsChange={
               handleParentsGuardianDetailsChange
             }
-            // guardianSECError={guardianSECError}
           />
         )}
         {stateCount === 3 && (
@@ -99,7 +103,8 @@ function ClientForm({ clientManager, isEditForm }) {
             handlePlaceOfBirthAndReligionChange={
               handlePlaceOfBirthAndReligionChange
             }
-            districtAndProvince={districtAndProvince}
+            province={province}
+            district={district}
           />
         )}
         {stateCount === 6 && (

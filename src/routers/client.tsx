@@ -3,6 +3,7 @@ import UserLayout from "@/layout/UserLayout";
 import CreateAdmission from "@/pages/admissions/create/Create";
 import AdmissionDischarge from "@/pages/admissions/discharge/AdmissionDischarge";
 import CreateClientAccount from "@/pages/client-accounts/create/CreateClientAccount";
+import ClientDetails from "@/pages/client-accounts/details/ClientsDetils";
 import ClientAccountEdit from "@/pages/client-accounts/edit/ClientAccountEdit";
 import ClientSearch from "@/pages/client-accounts/index/ClientSearch";
 import ServicePoints from "@/pages/service-point/ServicePoints";
@@ -16,8 +17,10 @@ export const URLClientSearch = (): string => "/client-search";
 export const URLServicePoint = (): string => "/service-points";
 export const URLAssignServiceQueue = (): string => "/assign-service-queue";
 export const URLAdmissionSearch = (): string => "/admission-search";
-export const URLClientDetails = ({ id = ":id" }: { id: string }): string =>
+export const URLClientDetails = ({ id }: { id: string }): string =>
   `/client-details/${id}`;
+export const URLLinkWithMother = ({ id }: { id: string }): string =>
+  `/link-with-mother/${id}`;
 export const URLClientCreate = (): string => "/client-create";
 export const URLClientEdit = ({ id }: { id: string }): string =>
   `/client-edit/${id}`;
@@ -63,8 +66,12 @@ const ClientRouter = [
             element: <AdmissionDetails />,
           },
           {
-            path: URLClientDetails({ id: ":id" }),
-            element: "<ClientDetails />",
+            path: URLClientDetails({ id: ":clientId" }),
+            element: <ClientDetails />,
+          },
+          {
+            path: URLLinkWithMother({ id: ":id" }),
+            element: "", // "<LinkWithMother />",
           },
           {
             path: URLClientCreate(),

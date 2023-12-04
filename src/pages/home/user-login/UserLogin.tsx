@@ -4,15 +4,23 @@ import Input from "@/components/core/form-elements/Input";
 import Password from "@/components/core/form-elements/Password";
 import FormWrapper from "@/components/core/form-layouts/FormWrapper";
 import { URLUserRecoveryRequest } from "@/routers/public";
+
+import { Alert } from "flowbite-react";
+import { HiInformationCircle } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import useUserLogin from "./useUserLogin";
-// import { Alert } from "flowbite-react";
-// import { HiInformationCircle } from 'react-icons/hi';
 
 function UserLogin() {
   const userLogin = useUserLogin();
-  const { errors, handleFormSubmit, loginForm, handleInputChange, isLoading } =
-    userLogin;
+  const {
+    errors,
+    handleFormSubmit,
+    loginForm,
+    handleInputChange,
+    setCredentialError,
+    credentialError,
+    isLoading,
+  } = userLogin;
 
   return (
     <FormWrapper
@@ -24,14 +32,19 @@ function UserLogin() {
       contentCenter
     >
       <form onSubmit={handleFormSubmit} className="my-5">
-        {/* <Alert
-          icon={HiInformationCircle}
-          color="failure"
-          onDismiss={() => alert("Alert dismissed!")}
-          className="mb-5"
-        >
-          You have entered an invalid username or password
-        </Alert> */}
+        {credentialError && (
+          <>
+            <Alert
+              icon={HiInformationCircle}
+              color="failure"
+              onDismiss={() => setCredentialError("")}
+              className="mb-5"
+            >
+              {credentialError}
+            </Alert>
+          </>
+        )}
+
         <div className="flex flex-col gap-5">
           <Input
             value={loginForm?.username}
@@ -59,7 +72,10 @@ function UserLogin() {
             </div>
 
             <div className="flex justify-end items-center">
-              <Link to={URLUserRecoveryRequest()} className="heading_5 hover:text-primaryColor dark:text-gray-500">
+              <Link
+                to={URLUserRecoveryRequest()}
+                className="heading_5 hover:text-primaryColor dark:text-gray-500"
+              >
                 Forgot Password
               </Link>
             </div>

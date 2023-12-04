@@ -1,7 +1,7 @@
 import {
   ClientMaritalStatusAndSpouseErrorType,
   ClientMaritalStatusAndSpouseType,
-} from "@/types/clientFormTypes";
+} from "@/types/clientTypes";
 import { OnchangeEventType } from "@/types/htmlEvents";
 import { SetStateType } from "@/types/reactTypes";
 import { TypeValidation } from "@/utilities/type-valdation";
@@ -20,8 +20,6 @@ const useMaritalStatusAndSpouse = ({
   setMaritalStatusAndSpouseError,
   handleStepNext,
 }: MaritalStatusAndSpouseType) => {
-
-
   // handle Marital Status And Spouse  form change
   const handleMaritalStatusAndSpouseChange = (e: OnchangeEventType): void => {
     const { name, value } = e.target;

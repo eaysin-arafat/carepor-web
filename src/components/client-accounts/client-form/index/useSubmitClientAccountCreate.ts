@@ -1,6 +1,10 @@
 import { useCreateClientMutation } from "@/features/client/client-api";
+import useFacility from "@/hooks/useFacility";
+import { URLClientDetails } from "@/routers/client";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -23,11 +27,18 @@ const useSubmitClientAccountCreate = ({
   educationAndEmployment,
   handleFormReset,
 }) => {
-  // const navigate = useNavigate();
+  // @ts-ignore
+  const { user } = useSelector((state) => state.authentication);
+
+  const facility = useFacility();
+
   const [
     clientRegistration,
     { data: clientData, status, isError, isSuccess, error },
   ] = useCreateClientMutation();
+
+  // React Hook
+  const navigate = useNavigate();
 
   const handleClientDataSubmit = async (
     e: React.FormEvent<HTMLFormElement>
@@ -35,9 +46,10 @@ const useSubmitClientAccountCreate = ({
     e.preventDefault();
 
     const baseData = {
-      createdBy: "f53101db-baf7-4f2c-4e44-08dbcd4df0dd",
-      createdIn: 2912,
-      dateCreated: "2023-12-01T18:10:00",
+      createdBy: user.oid,
+      // @ts-ignore
+      createdIn: facility?.facilityId,
+      dateCreated: new Date().toISOString(),
       isDeleted: false,
       isSynced: false,
       //
@@ -96,12 +108,9 @@ const useSubmitClientAccountCreate = ({
   useEffect(() => {
     if (isSuccess && status === "fulfilled") {
       toast.dismiss();
-      // toast.success("Client registered successfully");
-      toast.success(
-        "Successfully Register " + clientData.firstName + "'s Profile"
-      );
+      toast.success("Client registered successfully");
       handleFormReset();
-      // navigate(`/clients/details/${clientData.oid}`);
+      navigate(URLClientDetails(clientData.oid));
     }
   }, [isSuccess]);
 

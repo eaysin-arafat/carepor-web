@@ -47,27 +47,6 @@ export const RenderCountryOptions = () => {
   return renderOptions(countries);
 };
 
-/**
- * @default countries select options
- * @param no params required
- * @returns select options for countries
- */
-export const RenderProvinceOptions = () => {
-  const { data: province } = useReadProvincesQuery(undefined);
-
-  return <>{renderOptions(province)}</>;
-};
-
-export const RenderDistrictOptions = ({ provinceId }) => {
-  const { data } = useReadDistrictsQuery(undefined);
-
-  const filterDistrict = Array.isArray(data)
-    ? data.filter((dist) => dist.provinceId == provinceId)
-    : [];
-
-  return <>{renderOptions(filterDistrict)} </>;
-};
-
 // default Home Language select options
 /**
  * @

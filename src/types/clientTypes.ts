@@ -123,7 +123,6 @@ export type ClientPlaceOfBirthAndReligionType = {
   homeLanguageId: string; //0
   isZambianBorn: string; //
   provinceId?: string; // server key name
-  province?: string; //0
   districtId?: string; //0
   district?: string; //0
   birthPlace?: string;
@@ -159,3 +158,14 @@ export type ParentORGuardianSECError = {
 };
 
 export type notZMPhoneResetType = (fieldName: string) => void;
+
+export type ClientObjectType = ClientPersonalInfoType &
+  ClientParentsOrGuardiansType &
+  ClientMaritalStatusAndSpouseType &
+  ClientContactInfoType &
+  ClientPlaceOfBirthAndReligionErrorType &
+  ClientEducationAndEmploymentType & {
+    oid: string;
+    key: string;
+    motherProfileId: string;
+  };

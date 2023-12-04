@@ -1,7 +1,7 @@
 import {
   ClientPlaceOfBirthAndReligionErrorType,
   ClientPlaceOfBirthAndReligionType,
-} from "@/types/clientFormTypes";
+} from "@/types/clientTypes";
 
 const placeOfBirthReligiousValidation = (
   formData: ClientPlaceOfBirthAndReligionType

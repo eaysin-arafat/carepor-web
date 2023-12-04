@@ -1,7 +1,7 @@
 import {
   ClientPersonalInfoErrorType,
   ClientPersonalInfoType,
-} from "@/types/clientFormTypes";
+} from "@/types/clientTypes";
 import { nameMinMaxCheck } from "@/utilities/string-validation";
 import { isFuture } from "date-fns";
 

@@ -1,7 +1,7 @@
 import {
   ClientParentsOrGuardiansErrorType,
   ClientParentsOrGuardiansType,
-} from "@/types/clientFormTypes";
+} from "@/types/clientTypes";
 import { nameMinMaxCheck } from "@/utilities/string-validation";
 import { TypeValidation } from "@/utilities/type-valdation";
 
