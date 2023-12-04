@@ -1,6 +1,8 @@
 import CustomPagination from "@/components/core/custom-pagination/CustomPagination";
+import Table from "@/components/shared/table/Table";
+import TableBody from "@/components/shared/table/TableBody";
+import TableHeader from "@/components/shared/table/TableHeader";
 import { useState } from "react";
-import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 
 function Test() {
   const [state, setState] = useState(1);
@@ -109,91 +111,12 @@ function Test() {
         }}
       >
         <div className="w-full">
-          <div className="overflow-x-auto">
-            <div className="min-w-[900px] w-[1300px] border p-5">
-              <div className="grid grid-cols-6 bg-primaryColor items-center">
-                <p className="p-2 text-white text-xs font-bold flex items-center gap-1">
-                  name
-                  <div className="">
-                    <button className="block">
-                      <IoMdArrowDropup size={20} />
-                    </button>
-                    <button className="block p-0 mt-[-10px]">
-                      <IoMdArrowDropdown size={20} />
-                    </button>
-                  </div>
-                </p>
-                <p className="p-2 text-white text-xs font-bold flex items-center gap-1">
-                  Age
-                  <div className="">
-                    <button className="block">
-                      <IoMdArrowDropup size={20} />
-                    </button>
-                    <button className="block p-0 mt-[-10px]">
-                      <IoMdArrowDropdown size={20} />
-                    </button>
-                  </div>
-                </p>
-                <p className="p-2 text-white text-xs font-bold flex items-center gap-1">
-                  Office
-                  <div className="">
-                    <button className="block">
-                      <IoMdArrowDropup size={20} />
-                    </button>
-                    <button className="block p-0 mt-[-10px]">
-                      <IoMdArrowDropdown size={20} />
-                    </button>
-                  </div>
-                </p>
-                <p className="p-2 text-white text-xs font-bold flex items-center gap-1">
-                  Start Date
-                  <div className="">
-                    <button className="block">
-                      <IoMdArrowDropup size={20} />
-                    </button>
-                    <button className="block p-0 mt-[-10px]">
-                      <IoMdArrowDropdown size={20} />
-                    </button>
-                  </div>
-                </p>
-                <p className="p-2 text-white text-xs font-bold flex items-center gap-1">
-                  Salary
-                  <div className="">
-                    <button className="block">
-                      <IoMdArrowDropup size={20} />
-                    </button>
-                    <button className="block p-0 mt-[-10px]">
-                      <IoMdArrowDropdown size={20} />
-                    </button>
-                  </div>
-                </p>
-                <p className="p-2 text-white text-xs font-bold w-[100px] sticky right-0 z-50 bg-primaryColor">
-                  Action
-                </p>
-              </div>
-              {data.map((item, index) => (
-                <div
-                  key={index}
-                  className={`grid grid-cols-6 items-center ${
-                    index % 2 ? "bg-gray-200" : "bg-white"
-                  }`}
-                >
-                  <p className="p-2 text-textColor text-xs">{item.name}</p>
-                  <p className="p-2 text-textColor text-xs">{item.age} years</p>
-                  <p className="p-2 text-textColor text-xs">{item.office}</p>
-                  <p className="p-2 text-textColor text-xs">{item.position}</p>
-                  <p className="p-2 text-textColor text-xs">{item.salary}</p>
-                  <p
-                    className={`p-2 text-textColor text-xs sticky w-[100px] right-0 z-50 ${
-                      index % 2 ? "bg-gray-200" : "bg-white"
-                    }`}
-                  >
-                    Action
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
+          <Table>
+            <TableHeader />
+            {data.map((item, index) => (
+              <TableBody item={item} index={index}  />
+            ))}
+          </Table>
           <div className="flex justify-end">
             <CustomPagination
               activePage={50}
