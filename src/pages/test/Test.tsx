@@ -167,7 +167,7 @@ function Test() {
                     </button>
                   </div>
                 </p>
-                <p className="p-2 text-white text-xs font-bold w-[100px] sticky right-0 z-50 bg-primaryColor">
+                <p className="p-2 text-white text-xs font-bold w-[100px] sticky right-0 z-40 bg-primaryColor">
                   Action
                 </p>
               </div>
@@ -184,7 +184,7 @@ function Test() {
                   <p className="p-2 text-textColor text-xs">{item.position}</p>
                   <p className="p-2 text-textColor text-xs">{item.salary}</p>
                   <p
-                    className={`p-2 text-textColor text-xs sticky w-[100px] right-0 z-50 ${
+                    className={`p-2 text-textColor text-xs sticky w-[100px] right-0 z-40 ${
                       index % 2 ? "bg-gray-200" : "bg-white"
                     }`}
                   >
