@@ -81,7 +81,7 @@ function Test() {
     },
     {
       id: 9,
-      name: "Colleen Hurst",
+      name: "orem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis ",
       position: "Javascript Developer",
       office: "San Francisco",
       age: "39",
@@ -90,7 +90,7 @@ function Test() {
     },
     {
       id: 10,
-      name: "Sonya Frost",
+      name: "orem ipsum dolor sit amet e eiuseniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit",
       position: "Software Engineer",
       office: "Edinburgh",
       age: "23",
@@ -112,9 +112,26 @@ function Test() {
       >
         <div className="w-full">
           <Table>
-            <TableHeader />
+            <TableHeader
+              isAction
+              title={["Name", "Age", "Salary", "Date", "Address", "Position"]}
+            />
             {data.map((item, index) => (
-              <TableBody item={item} index={index} />
+              <TableBody
+                isAction
+                edit
+                delete
+                show
+                item={[
+                  item.name,
+                  item.age,
+                  item.salary,
+                  item.date,
+                  item.office,
+                  item.position,
+                ]}
+                index={index}
+              />
             ))}
           </Table>
           <div className="flex justify-end">
