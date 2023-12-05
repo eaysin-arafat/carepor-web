@@ -30,12 +30,22 @@ function PersonalInfo({
   isNrcValid,
   editMode = false,
 }: Props) {
-  const nrcRef = React.createRef<HTMLInputElement>();
+  // const nrcRef = React.createRef<HTMLInputElement>();
+  const nrcRef = React.useRef<HTMLInputElement>(null);
+
   useEffect(() => {
     if (nrcRef.current) {
       nrcRef.current.value = nrc;
     }
   }, [noNrc, nrcRef]);
+
+  useEffect(() => {
+    if (nrc && nrcRef.current) {
+      nrcRef.current.value = nrc;
+    }
+  }, []);
+
+  console.log("nrcRef", nrcRef);
 
   return (
     <>
