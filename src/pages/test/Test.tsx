@@ -111,12 +111,12 @@ function Test() {
         }}
       >
         <div className="w-full">
-          {/* <Table>
+          <Table>
             <TableHeader />
             {data.map((item, index) => (
-              <TableBody item={item} index={index}  />
+              <TableBody item={item} index={index} />
             ))}
-          </Table> */}
+          </Table>
           <div className="flex justify-end">
             <CustomPagination
               activePage={50}

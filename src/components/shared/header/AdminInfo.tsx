@@ -36,7 +36,7 @@ function AdminInfo() {
       <Dropdown
         arrowIcon={false}
         inline
-        className="min-w-[300px] w-[300px]"
+        className="min-w-[300px] w-[300px] z-50"
         label={
           <img
             src="/public/assets/img/menu-avatar.png"
@@ -51,25 +51,29 @@ function AdminInfo() {
             <p className="dark:text-gray-500">CarePro Admin</p>
           </div>
         </Dropdown.Header>
-        <Dropdown.Item className="border-b py-3">
-          <Link to="/facility-settings" className="flex items-center gap-3 ">
-            <CiSettings size={28} className="w-[30px]" /> Facility Setting
-          </Link>
+        <Dropdown.Item
+          className="border-b py-3"
+          as={Link}
+          to="/facility-settings"
+        >
+          <CiSettings size={28} className="w-[30px]" /> Facility Setting
         </Dropdown.Item>
-        <Dropdown.Item className="border-b py-3">
-          <Link to="/user-accounts/edit/40" className="flex items-center gap-3">
-            <FiEdit size={20} className="w-[30px]" /> Edit Profile
-          </Link>
+        <Dropdown.Item
+          className="border-b py-3"
+          as={Link}
+          to="/user-accounts/edit/40"
+        >
+          <FiEdit size={20} className="w-[30px]" /> Edit Profile
         </Dropdown.Item>
-        <Dropdown.Item className="border-b py-3">
-          <Link to="/change-password" className="flex items-center gap-3 ">
-            <BsLock size={22} className="w-[30px]" /> Change Password
-          </Link>
+        <Dropdown.Item
+          className="border-b py-3"
+          as={Link}
+          to="/change-password"
+        >
+          <BsLock size={22} className="w-[30px]" /> Change Password
         </Dropdown.Item>
-        <Dropdown.Item className="py-3">
-          <button className="flex items-center gap-3" onClick={handleLogout}>
-            <IoExitOutline size={25} className="w-[30px]" /> Sign Out
-          </button>
+        <Dropdown.Item className="py-3" onClick={handleLogout}>
+          <IoExitOutline size={25} className="w-[30px]" /> Sign Out
         </Dropdown.Item>
       </Dropdown>
       <ThemeSwitcher />

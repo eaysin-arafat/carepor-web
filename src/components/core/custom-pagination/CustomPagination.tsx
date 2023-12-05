@@ -35,7 +35,7 @@ function CustomPagination({
         activePage={activePage}
         itemsCountPerPage={itemsCountPerPage}
         totalItemsCount={totalItemsCount}
-        pageRangeDisplayed={5}
+        pageRangeDisplayed={3}
         onChange={handlePageChange}
         // hideDisabled={true}
         innerClass={"flex gap-1 select-none "}
