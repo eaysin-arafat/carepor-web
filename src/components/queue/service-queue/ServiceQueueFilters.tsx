@@ -1,11 +1,12 @@
-import useWindowWidth from "@/hooks/useWindow";
 import React from "react";
-import Input from "../core/form-elements/Input";
-import Select from "../core/form-elements/Select";
+import Search from "../../core/form-elements/Search";
+import Select from "../../core/form-elements/Select";
 
-const Filters = () => {
+type Props = {
+  withoutTitle?: boolean
+}
+const ServiceQueueFilters = ({ withoutTitle }:Props) => {
   const [allFilters, setAllFilters] = React.useState(false);
-  const w1100 = useWindowWidth(1100);
 
   const filtersHandler = () => {
     setAllFilters((prev) => !prev);
@@ -14,17 +15,20 @@ const Filters = () => {
 
   return (
     <div>
-      <div className={`bg-transparent  rounded-md  ${w1100 && "mt-12"}`}>
-        <h1 className="text-3xl font-medium text-black dark:text-white mb-4">
-          Service Queue
-        </h1>
+      <div className={`bg-white border p-5 pb-8 rounded-md `}>
+        {!withoutTitle && (
+          <h1 className="text-3xl font-medium text-black dark:text-white mb-4">
+            Service Queue
+          </h1>
+        )}
         <div className={`grid grid-cols-8 gap-3 justify-between`}>
           <div className="col-span-full md:col-span-4 lg:col-span-2 w-full">
             <Select label="Service Point"></Select>
           </div>
           <div className="col-span-8 md:col-span-4 lg:col-span-2 w-full grid grid-cols-4 justify-between">
             <div className="col-span-3 md:col-span-4">
-              <Input label="Client Name" placeholder="Search..." />
+              {/* <Input label="Client Name" placeholder="Search..." /> */}
+              <Search label="Client Name" placeholder="Search..." />
             </div>
             <div className="text-end md:hidden">
               <button
@@ -55,4 +59,4 @@ const Filters = () => {
   );
 };
 
-export default Filters;
+export default ServiceQueueFilters;

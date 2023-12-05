@@ -13,15 +13,19 @@ type Props = {
  * @returns
  */
 
-const Badge = ({ value, className , type = "circle" }: Props) => {
+const Badge = ({ value, className, type = "circle" }: Props) => {
   return (
     <span
-      className={cn(" ", {
-        "inline-flex items-center justify-center w-8 h-8 text-xs font-bold text-white bg-primaryColor rounded-full":
-          type === "circle",
-        "flex items-center justify-center px-5 py-1 text-xs font-bold text-white bg-primaryColor rounded-full":
-          type === "rectangle",
-      } , className)}
+      className={cn(
+        "                 ",
+        {
+          "inline-flex items-center justify-center w-7 h-7 text-xs font-bold text-white bg-primaryColor rounded-full":
+            type === "circle",
+          "flex items-center justify-center px-5 py-1 text-xs font-bold text-white bg-primaryColor rounded-full":
+            type === "rectangle",
+        },
+        className
+      )}
     >
       {value}
     </span>
