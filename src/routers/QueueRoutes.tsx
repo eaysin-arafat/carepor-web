@@ -1,3 +1,6 @@
+import ServiceQueueBurnSkin from "@/components/queue/service-queue/burn-skin/ServiceQueueBurnSkin";
+import ServiceQueueOpd from "@/components/queue/service-queue/opd/ServiceQueueOpd";
+import ServiceQueueTriage from "@/components/queue/service-queue/triage/ServiceQueueTriage";
 import PrivateGuard from "@/components/shared/guard/PrivateGuard";
 import QueueSidebar from "@/components/sidebar/QueueSidebar";
 import InvestigationsDashboard from "@/pages/queue/investigations-dashboard/InvestigationsDashboard";
@@ -9,6 +12,9 @@ export const URLInvestigationsDashboard = (): string =>
   "/investigations-dashboard";
 export const URLPharmacyQueue = (): string => "/pharmacy-queue";
 export const URLServiceQueue = (): string => "/service-queue";
+export const URLServiceQueueTriage = (): string => "/service-queue/triage";
+export const URLServiceQueueOpd = (): string => "/service-queue/opd";
+export const URLServiceQueueBurnSkin = (): string => "/service-queue/burn-skin";
 
 // * routers for client pages
 const QueueRoutes = [
@@ -29,6 +35,18 @@ const QueueRoutes = [
           {
             path: URLServiceQueue(),
             element: <ServiceQueue />,
+          },
+          {
+            path: URLServiceQueueTriage(),
+            element: <ServiceQueueTriage />,
+          },
+          {
+            path: URLServiceQueueOpd(),
+            element: <ServiceQueueOpd />, 
+          },
+          {
+            path: URLServiceQueueBurnSkin(),
+            element: <ServiceQueueBurnSkin />,
           },
         ],
       },
