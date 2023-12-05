@@ -47,14 +47,14 @@ export const RenderCountryOptions = () => {
   return renderOptions(countries);
 };
 
-// default Home Language select options
-/**
- * @
- * @param no prams
- * @returns select options for homeLanguage
- */
-export const RenderLanguageOptions = () => {
-  const { data: homeLanguageEnum } = useReadHomeLanguagesQuery(undefined);
+// // default Home Language select options
+// /**
+//  * @
+//  * @param no prams
+//  * @returns select options for homeLanguage
+//  */
+// export const RenderLanguageOptions = () => {
+//   const { data: homeLanguageEnum } = useReadHomeLanguagesQuery(undefined);
 
-  return renderOptions(homeLanguageEnum);
-};
+//   return renderOptions(homeLanguageEnum);
+// };

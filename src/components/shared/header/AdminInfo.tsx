@@ -3,6 +3,7 @@ import Title from "@/components/core/titles/Titles";
 import { logout } from "@/features/authentication/authentication-slice";
 import useFacility from "@/hooks/useFacility";
 import useWindowWidth from "@/hooks/useWindow";
+import { URLUserAccountEdit } from "@/routers/user-accounts";
 import { cookieManager } from "@/utilities/cookie-manager";
 import { Dropdown } from "flowbite-react";
 import { BsLock } from "react-icons/bs";
@@ -57,7 +58,10 @@ function AdminInfo() {
           </Link>
         </Dropdown.Item>
         <Dropdown.Item className="border-b py-3">
-          <Link to="/user-accounts/edit/40" className="flex items-center gap-3">
+          <Link
+            to={URLUserAccountEdit({ userId: "" })}
+            className="flex items-center gap-3"
+          >
             <FiEdit size={20} className="w-[30px]" /> Edit Profile
           </Link>
         </Dropdown.Item>

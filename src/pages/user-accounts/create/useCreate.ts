@@ -6,7 +6,7 @@ import {
   useCreateUserAccountMutation,
 } from "@/features/user-accounts/user-accounts-api";
 import { URLRequestFacility } from "@/routers/application-router";
-import { FormSubmitEventType } from "@/types/htmlEvents";
+import { FormSubmitEventType, OnchangeEventType } from "@/types/htmlEvents";
 import {
   ContactInfoType,
   ErrorsType,
@@ -42,6 +42,14 @@ const initialLoginInfo = {
   confirmPassword: "",
 };
 
+const phoneIsValidForCheck = (phone: string, code: string): boolean => {
+  if (code && /^[\d]{8,11}$/.test(phone)) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
 function useUserRegistration() {
   //  nrc state
   const [nrc, setNrc] = useState("");
@@ -74,10 +82,15 @@ function useUserRegistration() {
       countryCode: contactInfo.countryCode,
     },
     {
-      skip: !contactInfo.cellphone || !contactInfo.countryCode,
+      skip: !phoneIsValidForCheck(
+        contactInfo.cellphone,
+        contactInfo.countryCode
+      ),
       refetchOnMountOrArgChange: true,
     }
   );
+
+  console.log(contactInfo.countryCode);
 
   /// check username api hook
   const { data: usernameData } = useCheckUserNameQuery(username, {
@@ -123,18 +136,33 @@ function useUserRegistration() {
   // handle personal information changes
   const handlePersonalInfoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    const nameField = ["firstName", "surname", "designation"];
+    if (nameField.includes(name)) {
+      if (TypeValidation.isOnlyNameField(value)) {
+        setPersonalInfo((prev) => ({
+          ...prev,
+          [name]: value.replace(/  /g, " "),
+        }));
+        setErrors((prev) => ({ ...prev, [name]: "" }));
+      }
+      return;
+    }
     setPersonalInfo((prev) => ({ ...prev, [name]: value }));
     setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   // handle username change
-  const handleUsernameChange = debounce((value) => {
+  const handleUsernameChange = (e: OnchangeEventType) => {
+    const { value } = e.target;
+    // setUsername(value);
+    if (TypeValidation.isUserNameInput(value)) {
+      setUsername(value);
+      setErrors((prev) => ({ ...prev, username: "" }));
+    }
     if (value === "") {
       setIsUsernameValid(true);
     }
-    setUsername(value);
-    setErrors((prev) => ({ ...prev, username: "" }));
-  }, 800);
+  };
 
   // handle contact information change
   const handleContactInfoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -164,6 +192,28 @@ function useUserRegistration() {
       setContactInfo((prev) => ({ ...prev, cellphone: value }));
   }, 400);
 
+  // handle cellphone change With ZM*** validation
+  const handleChangeCellphoneAndCode = (e: OnchangeEventType) => {
+    const { name, value } = e.target;
+    if (name == "cellphone") {
+      setContactInfo((prev) => ({ ...prev, [name]: value }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
+      return;
+    }
+    if (name == "countryCode") {
+      setContactInfo((prev) => ({ ...prev, [name]: value }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
+      if (
+        value === "+260" &&
+        !TypeValidation.isZmPhoneInput(contactInfo.cellphone)
+      ) {
+        setContactInfo((prev) => ({ ...prev, cellphone: "" }));
+        setErrors((prev) => ({ ...prev, cellphone: "" }));
+      }
+      return;
+    }
+  };
+
   // handle nrc change
   const handleNrcChange = debounce((nrc) => {
     if (nrc === "") {
@@ -190,29 +240,46 @@ function useUserRegistration() {
     if (stateCount === 2) {
       const { error: contactInfoValidationError, isValid } =
         contactInfoValidator(contactInfo);
-      if (!isValid) return setErrors(contactInfoValidationError);
+      console.log(contactInfoValidationError);
+
+      if (!isValid) {
+        setErrors(contactInfoValidationError);
+        return;
+      }
+      if (!isCellphoneValid) {
+        setErrors((prev) => ({
+          ...prev,
+          cellphone: "Cellphone already exists",
+        }));
+        return;
+      }
     }
 
-    if (stateCount === 3) {
-      const { errors: loginInfoValidationError, isValid } = loginInfoValidator({
-        ...loginInfo,
-        username,
-      });
-      if (!isValid) return setErrors(loginInfoValidationError);
-    }
+    // if (stateCount === 3) {
+    //   const { errors: loginInfoValidationError, isValid } = loginInfoValidator({
+    //     ...loginInfo,
+    //     username,
+    //   });
+    //   if (!isValid) return setErrors(loginInfoValidationError);
+    // }
     setStateCount((next: number) => Math.min(next + 1, stepTitle.length));
   };
 
   // handle form submission
   const handleSubmit = (e: FormSubmitEventType) => {
     e.preventDefault();
+    const { errors: loginInfoValidationError, isValid } = loginInfoValidator({
+      ...loginInfo,
+      username,
+    });
+    if (!isValid) return setErrors(loginInfoValidationError);
 
     const data = {
       ...personalInfo,
       ...contactInfo,
       ...loginInfo,
       nrc,
-      username: username,
+      username,
       // cellphone: cellphone,
       // userMobile: cellphone,
     };
@@ -254,12 +321,14 @@ function useUserRegistration() {
 
   // check if cellphone is valid
   useEffect(() => {
-    if (cellphoneData) {
+    if (cellphoneData?.oid) {
       setIsCellphoneValid(false);
+      console.log("invalid cellphone");
+    } else {
+      setIsCellphoneValid(true);
+      console.log("valid cellphone");
     }
-
-    setIsCellphoneValid(true);
-  }, [cellphoneData]);
+  }, [cellphoneData?.oid]);
 
   // check if username is valid
   useEffect(() => {
@@ -296,6 +365,7 @@ function useUserRegistration() {
     handleContactInfoChange,
     handleLoginInfoChange,
     handleCellphoneChange,
+    handleChangeCellphoneAndCode,
     handleSubmit,
     handleUsernameChange,
     handleNrcChange,

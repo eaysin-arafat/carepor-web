@@ -31,8 +31,9 @@ import { useEffect, useState } from "react";
 import useClientFormStep from "./useClientFormStep";
 import useSetEditFormData from "./useSetEditFormData";
 import useSubmitClientAccountEdit from "./useSubmitClientAccountEdit";
+import { useReadHomeLanguagesQuery } from "@/features/home-language/home-language-api";
 
-const nrcValidateForSearchReq = (value) => {
+const nrcValidateForSearchReq = (value: string) => {
   const nrcReqPattern = /^\d{6}\/\d{2}\/[\d_]{1}$/;
   return !nrcReqPattern.test(value) && value != "000000/00/0";
 };
@@ -51,6 +52,7 @@ const useClientAccount = (
   const { data: editClient } = ClientByKeyQuery || {};
   const { data: province } = useReadProvincesQuery(undefined);
   const { data: district } = useReadDistrictsQuery(undefined);
+  const { data: homeLanguageEnum } = useReadHomeLanguagesQuery(undefined);
 
   // form step state handler
   const formStepState = useClientFormStep();
@@ -100,38 +102,33 @@ const useClientAccount = (
 
   let alreadyExists = "";
   if (
-    noNrc &&
-    notPreNrc &&
     NRCprevClient?.length > 0 &&
-    !nrcValidateForSearchReq(personalInfo?.nrc)
+    !isEditForm &&
+    personalInfo.nrc != "000000/00/0"
   ) {
     alreadyExists = "NRC already exists";
-  } else {
-    alreadyExists = "";
+  }
+  if (
+    NRCprevClient?.length > 0 &&
+    isEditForm &&
+    personalInfo.nrc != "000000/00/0" &&
+    NRCprevClient[0]?.nrc != editClient?.nrc
+  ) {
+    alreadyExists = "NRC already exists";
   }
 
-  // useEffect(() => {
-  //   if (noNrc && notPreNrc && NRCprevClient?.length > 0) {
-  //     console.log(personalInfo.nrc);
-
-  //     setPersonalInfoError((prev) => ({ ...prev, nrc: "NRC already exists" }));
-  //   } else {
-  //     console.log(personalInfo.nrc + "hh");
-  //     setPersonalInfoError((prev) => ({ ...prev, nrc: "" }));
-  //   }
-  // }, [NRCprevClient]);
-
   // Personal information functionality Hook
-  const { handlePersonalInfoChange, handlePersonalInfoNext } = usePersonalInfo({
-    personalInfo,
-    setPersonalInfo,
-    setPersonalInfoError,
-    handleStepNext,
-    NRCprevClient,
-    isEditForm,
-    noNrc,
-    notPreNrc,
-  });
+  const { handlePersonalInfoChange, handleNrcChange, handlePersonalInfoNext } =
+    usePersonalInfo({
+      personalInfo,
+      setPersonalInfo,
+      setPersonalInfoError,
+      handleStepNext,
+      NRCprevClient,
+      isEditForm,
+      noNrc,
+      notPreNrc,
+    });
   // Parent and guardian information functionality Hook
   const { handleParentsGuardianDetailsChange, parentsOrGuardiansNext } =
     useParentsGuardianDetails({
@@ -217,7 +214,6 @@ const useClientAccount = (
         prevContactInfo,
         prevEducationAndEmployment,
         prevPlaceOfBirthAndReligion,
-        // districtProvince,
       } = useSetEditFormData(editClient);
 
       setPersonalInfo((prev) => ({ ...prev, ...prevPersonalInfo }));
@@ -244,44 +240,30 @@ const useClientAccount = (
 
   //
   // Client Edit form functionality end here
-
   // personal info form Handler
   const handleClintFormNextOperation = () => {
     // Personal info form handler
     if (stateCount === 1) {
-      // handleStepNext();
-      // return; // skip for develop next operation
       handlePersonalInfoNext();
       return;
     }
     // Personal info form handler
     if (stateCount === 2) {
-      // handleStepNext();
-      // return; // skip for develop next operation
       parentsOrGuardiansNext();
       return;
     }
     // Marital Status & Spouse Details
     if (stateCount === 3) {
-      // handleStepNext();
-      // return; // skip for develop next operation
       handleMaritalStatusAndSpouseNext();
     }
     // Contact Information
     if (stateCount === 4) {
-      // handleStepNext();
-      // return; // skip for develop next operation
       handleContactInformationNext();
     }
     // Place of Birth & Religious Denomination
     if (stateCount === 5) {
-      // handleStepNext();
-      // return; // skip for develop next operation
       handlePlaceOfBirthAndReligionNext();
     }
-    // if (stateCount === 6) {
-    // Submission
-    // }
   };
 
   // Update Client Information Submissions
@@ -300,6 +282,7 @@ const useClientAccount = (
     formStepState,
     province,
     district,
+    homeLanguageEnum,
 
     // state value
     personalInfo,
@@ -322,6 +305,8 @@ const useClientAccount = (
     handleContactInformationChange,
     handlePlaceOfBirthAndReligionChange,
     handleEducationAndEmploymentChange,
+    // handle NRC Change
+    handleNrcChange,
 
     // Error State
     personalInfoError,

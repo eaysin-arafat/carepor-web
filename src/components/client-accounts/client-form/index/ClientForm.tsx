@@ -31,6 +31,7 @@ function ClientForm({ clientManager, isEditForm }) {
     handleContactInformationChange,
     handlePlaceOfBirthAndReligionChange,
     handleEducationAndEmploymentChange,
+    handleNrcChange,
 
     // Error State
     personalInfoError,
@@ -48,6 +49,7 @@ function ClientForm({ clientManager, isEditForm }) {
     // Submit Handler
     handleClientDataSubmit,
     handleClientDataUpdate,
+    homeLanguageEnum,
     //
     alreadyExists,
   } = clientManager;
@@ -68,6 +70,7 @@ function ClientForm({ clientManager, isEditForm }) {
             personalInfoError={personalInfoError}
             handlePersonalInfoChange={handlePersonalInfoChange}
             alreadyExists={alreadyExists}
+            handleNrcChange={handleNrcChange}
           />
         )}
         {stateCount === 2 && (
@@ -105,6 +108,7 @@ function ClientForm({ clientManager, isEditForm }) {
             }
             province={province}
             district={district}
+            homeLanguageEnum={homeLanguageEnum}
           />
         )}
         {stateCount === 6 && (

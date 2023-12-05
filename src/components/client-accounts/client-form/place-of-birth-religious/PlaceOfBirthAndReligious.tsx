@@ -1,6 +1,4 @@
-import RenderSelectOptions, {
-  RenderLanguageOptions,
-} from "@/components/core/form-elements/RenderSelectOptions";
+import RenderSelectOptions from "@/components/core/form-elements/RenderSelectOptions";
 import { religionsEnums } from "@/enum/clients";
 import {
   ClientPlaceOfBirthAndReligionErrorType,
@@ -17,6 +15,7 @@ type Props = {
   handlePlaceOfBirthAndReligionChange: (e: React.ChangeEvent) => void;
   province: { oid: string; description: string }[];
   district: { oid: string; description: string; provinceId: string }[];
+  homeLanguageEnum: { oid: string; description: string }[];
 };
 
 function PlaceOfBirthAndReligious({
@@ -25,6 +24,7 @@ function PlaceOfBirthAndReligious({
   handlePlaceOfBirthAndReligionChange,
   province,
   district,
+  homeLanguageEnum,
 }: Props) {
   return (
     <>
@@ -41,7 +41,7 @@ function PlaceOfBirthAndReligious({
                 errMsg={placeOfBirthAndReligionError?.homeLanguageId}
                 required
               >
-                <RenderLanguageOptions />
+                <RenderSelectOptions options={homeLanguageEnum} />
               </Select>
             </div>
             <div className="flex items-center">

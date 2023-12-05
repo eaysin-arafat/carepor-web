@@ -58,6 +58,7 @@ function PersonalInfo({
             errMsg={errors.surname}
           />
           <DateInput
+            max={new Date()}
             label="Date of birth"
             selected={personalInfo.dob ? new Date(personalInfo.dob) : null}
             onChange={(date: Date) =>
@@ -91,11 +92,12 @@ function PersonalInfo({
           </div>
           <CustomNrc
             label="NRC"
-            {...(editMode && { state: nrc })}
+            // {...(editMode && { state: nrc })}
+            state={nrc}
             name="nrc"
             onChange={(e) => handleNrcChange(e.target.value)}
             disabled={noNrc}
-            required
+            required={!noNrc}
             errMsg={errors.nrc || (!isNrcValid ? "NRC already exists" : "")}
             ref={nrcRef}
           />
