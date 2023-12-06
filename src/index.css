@@ -166,16 +166,16 @@ span {
 .light input:-webkit-autofill:hover,
 .light input:-webkit-autofill:focus,
 .light input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0px 1000px white inset;
-    transition: background-color 5000s ease-in-out 0s;
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  transition: background-color 5000s ease-in-out 0s;
 }
 .dark input:-webkit-autofill,
 .dark input:-webkit-autofill:hover,
 .dark input:-webkit-autofill:focus,
 .dark input:-webkit-autofill:active {
-    -webkit-text-fill-color: #e7e7e7;
-    -webkit-box-shadow: 0 0 0px 1000px black inset;
-    transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: #e7e7e7;
+  -webkit-box-shadow: 0 0 0px 1000px black inset;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 html {
@@ -238,4 +238,10 @@ select option {
 .dark select option {
   background: #000;
   color: #fff !important;
+}
+
+/*  modal posisiton */
+div#\:ri\: {
+  left: 4%;
+  max-width: 70rem;
 }
