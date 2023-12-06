@@ -6,20 +6,20 @@ import {
 import { OnchangeEventType } from "@/types/htmlEvents";
 import { SetStateType } from "@/types/reactTypes";
 import { useEffect } from "react";
-import placeOfBirthReligiousValidation from "./placeOfBirthReligiousValidation";
+// import placeOfBirthReligiousValidation from "./placeOfBirthReligiousValidation";
 
 type Props = {
   placeOfBirthAndReligion: ClientPlaceOfBirthAndReligionType;
   setPlaceOfBirthAndReligion: SetStateType<ClientPlaceOfBirthAndReligionType>;
   setPlaceOfBirthAndReligionError: SetStateType<ClientPlaceOfBirthAndReligionErrorType>;
-  handleStepNext: () => void;
+  // handleStepNext: () => void;
 };
 
 const usePlaceOfBirthReligious = ({
   placeOfBirthAndReligion,
   setPlaceOfBirthAndReligion,
   setPlaceOfBirthAndReligionError,
-  handleStepNext,
+  // handleStepNext,
 }: Props) => {
   useEffect(() => {
     if (placeOfBirthAndReligion.isZambianBorn != "1") {
@@ -88,24 +88,31 @@ const usePlaceOfBirthReligious = ({
     return;
   };
 
-  const handlePlaceOfBirthAndReligionNext = () => {
-    const { isPersonalInfoValid, placeOfBirthReligiousErrors } =
-      placeOfBirthReligiousValidation({
-        ...placeOfBirthAndReligion,
-      });
+  // const handlePlaceOfBirthAndReligionNext = (): {
+  //   isSuccessPlaceOfBirthAndReligion: boolean;
+  // } => {
+  //   const { isPlaceOfBirthReligious, placeOfBirthReligiousErrors } =
+  //     placeOfBirthReligiousValidation({
+  //       ...placeOfBirthAndReligion,
+  //     });
 
-    if (!isPersonalInfoValid) {
-      setPlaceOfBirthAndReligionError(placeOfBirthReligiousErrors);
-      return false;
-    } else {
-      setPlaceOfBirthAndReligionError(null);
-      handleStepNext();
-    }
-  };
+  //   if (!isPlaceOfBirthReligious) {
+  //     setPlaceOfBirthAndReligionError(placeOfBirthReligiousErrors);
+  //     return {
+  //       isSuccessPlaceOfBirthAndReligion: false,
+  //     };
+  //   } else {
+  //     setPlaceOfBirthAndReligionError(null);
+  //     // handleStepNext();
+  //     return {
+  //       isSuccessPlaceOfBirthAndReligion: true,
+  //     };
+  //   }
+  // };
 
   return {
     handlePlaceOfBirthAndReligionChange,
-    handlePlaceOfBirthAndReligionNext,
+    // handlePlaceOfBirthAndReligionNext,
   };
 };
 export default usePlaceOfBirthReligious;

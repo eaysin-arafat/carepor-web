@@ -5,7 +5,7 @@ import {
 import { OnchangeEventType } from "@/types/htmlEvents";
 import { SetStateType } from "@/types/reactTypes";
 import { TypeValidation } from "@/utilities/type-valdation";
-import maritalStatusAndSpouseValidation from "./maritalStatusAndSpouseValidation";
+// import maritalStatusAndSpouseValidation from "./maritalStatusAndSpouseValidation";
 
 type MaritalStatusAndSpouseType = {
   maritalStatusAndSpouse: ClientMaritalStatusAndSpouseType;
@@ -15,11 +15,11 @@ type MaritalStatusAndSpouseType = {
 };
 
 const useMaritalStatusAndSpouse = ({
-  maritalStatusAndSpouse,
+  // maritalStatusAndSpouse,
   setMaritalStatusAndSpouse,
   setMaritalStatusAndSpouseError,
-  handleStepNext,
-}: MaritalStatusAndSpouseType) => {
+}: // handleStepNext,
+MaritalStatusAndSpouseType) => {
   // handle Marital Status And Spouse  form change
   const handleMaritalStatusAndSpouseChange = (e: OnchangeEventType): void => {
     const { name, value } = e.target;
@@ -51,25 +51,32 @@ const useMaritalStatusAndSpouse = ({
     }
   };
 
-  const handleMaritalStatusAndSpouseNext = () => {
-    const {
-      isMaritalStatusAndSpouseValid,
-      maritalStatusAndSpouseErrors,
-      // Form section Error
-    } = maritalStatusAndSpouseValidation(maritalStatusAndSpouse);
+  // const handleMaritalStatusAndSpouseNext = (): {
+  //   isSuccessMaritalStatusAndSpouse: boolean;
+  // } => {
+  //   const {
+  //     isMaritalStatusAndSpouseValid,
+  //     maritalStatusAndSpouseErrors,
+  //     // Form section Error
+  //   } = maritalStatusAndSpouseValidation(maritalStatusAndSpouse);
 
-    if (!isMaritalStatusAndSpouseValid) {
-      setMaritalStatusAndSpouseError(maritalStatusAndSpouseErrors);
-      return false;
-    } else {
-      setMaritalStatusAndSpouseError(null);
-      return handleStepNext();
-    }
-  };
+  //   if (!isMaritalStatusAndSpouseValid) {
+  //     setMaritalStatusAndSpouseError(maritalStatusAndSpouseErrors);
+  //     return {
+  //       isSuccessMaritalStatusAndSpouse: false,
+  //     };
+  //   } else {
+  //     setMaritalStatusAndSpouseError(null);
+  //     // handleStepNext()
+  //     return {
+  //       isSuccessMaritalStatusAndSpouse: true,
+  //     };
+  //   }
+  // };
 
   return {
     handleMaritalStatusAndSpouseChange,
-    handleMaritalStatusAndSpouseNext,
+    // handleMaritalStatusAndSpouseNext,
   };
 };
 export default useMaritalStatusAndSpouse;

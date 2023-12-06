@@ -23,7 +23,7 @@ const usePersonalInfo = ({
   personalInfo,
   setPersonalInfo,
   setPersonalInfoError,
-  handleStepNext,
+  // handleStepNext,
   NRCprevClient,
   isEditForm,
   noNrc,
@@ -90,7 +90,7 @@ const usePersonalInfo = ({
     setPersonalInfoError((prev) => ({ ...prev, [name]: "" }));
   };
 
-  const handlePersonalInfoNext = () => {
+  const handlePersonalInfoNext = (): { isSuccessPersonalInfo: boolean } => {
     if (isEditForm) {
       if (noNrc && notPreNrc && NRCprevClient?.length > 0) {
         console.log(NRCprevClient);
@@ -98,7 +98,10 @@ const usePersonalInfo = ({
           ...prev,
           nrc: "NRC already exists!",
         }));
-        return;
+        // return;
+        return {
+          isSuccessPersonalInfo: false,
+        };
       }
     } else {
       if (noNrc && NRCprevClient?.length > 0) {
@@ -107,7 +110,10 @@ const usePersonalInfo = ({
           ...prev,
           nrc: "NRC already exists!",
         }));
-        return;
+        // return;
+        return {
+          isSuccessPersonalInfo: false,
+        };
       }
     }
 
@@ -115,10 +121,16 @@ const usePersonalInfo = ({
       personalInfoValidation(personalInfo);
     if (!isPersonalInfoValid) {
       setPersonalInfoError(personalInfoErrors);
-      return false;
+      // return false;
+      return {
+        isSuccessPersonalInfo: false,
+      };
     } else {
       setPersonalInfoError(null);
-      return handleStepNext();
+      // return handleStepNext();
+      return {
+        isSuccessPersonalInfo: true,
+      };
     }
   };
 
