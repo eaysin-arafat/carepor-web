@@ -1,6 +1,6 @@
 import PrivateGuard from "@/components/shared/guard/PrivateGuard";
 import FacilitySettingsSidebar from "@/components/sidebar/FacilitySettingsSidebar";
-import Test from "@/pages/test/Test";
+import FacilityAccess from "@/pages/user-managment/facility-access/FacilityAccess";
 
 // * route paths for client pages
 export const URLFacilitySettings = (): string => "/facility-settings";
@@ -15,7 +15,7 @@ const FacilitySettings = [
         children: [
           {
             path: URLFacilitySettings(),
-            element: <Test />,
+            element: <FacilityAccess />,
           },
         ],
       },
