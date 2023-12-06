@@ -1,42 +1,44 @@
-import { ZIndex } from "@/constants/z-index";
-import { X } from "react-feather";
+import { Modal } from "flowbite-react";
+import Textarea from "../form-elements/textarea";
 
-const DefaultOpenModal = ({
-  children,
-  className,
-  title = "Modal Title",
-  handler = () => {},
-  Z_index = 99,
-}) => {
+const DefaultOpenModal = ({ isShow = false, toggler = () => {} }) => {
   return (
     <>
-      <div className={`modal modal-open`} style={{ zIndex: ZIndex.modal }}>
-        <div
-          className={` ${className} modal-box border-b px-2 md:px-6 `}
-          style={{
-            background: "var(--body)",
-          }}
-        >
-          <div
-            className="border-b flex items-center justify-between sticky py-3 -mt-[10px] -top-[24px] gap-2"
-            style={{
-              background: "var(--body)",
-              zIndex: Z_index,
-            }}
-          >
-            <h3 className="text-lg font-bold ps-2 w-[90%]">{title}</h3>
-            <div className="w-[10%]">
-              <label
-                className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 mt-2 "
-                onClick={handler}
-              >
-                <X size={18} color="var(--text)" />
-              </label>
-            </div>
+      <Modal
+        show={isShow}
+        onClose={toggler}
+        size="5xl"
+        style={{ zIndex: "999999" }}
+      >
+        <Modal.Header className="py-3">
+          <h1 className=" text-[#1E0E62] font-poppins text-2xl">
+            Presenting Complaints
+          </h1>
+        </Modal.Header>
+        <Modal.Body className="space-y-6">
+          <div className="space-y-4">
+            <Textarea
+              label="Presenting Complaints"
+              placeholder="Enter Present Complaints"
+            />
+            <Textarea
+              label="History of Presenting Complaints"
+              placeholder="Enter Present Complaints"
+            />
           </div>
-          <div className="modal_body ">{children}</div>
-        </div>
-      </div>
+          <div className="flex justify-end gap-4">
+            <button className="flex gap-2 items-center  border border-gray-400 px-7 rounded-full text-lg">
+              {/* <XCircle size={16} /> */}
+              Cancel
+            </button>
+            <button className="flex gap-2 items-center border border-[#1890FF] bg-[#1890FF] py-2.5  px-7 rounded-full">
+              {/* <PlusCircle size={16} />{" "} */}
+              <span className="inline-block text-lg text-white">Save</span>
+            </button>
+          </div>
+        </Modal.Body>
+        {/* <Modal.Footer className="justify-end py-3"></Modal.Footer> */}
+      </Modal>
     </>
   );
 };
