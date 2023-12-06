@@ -28,14 +28,14 @@ function RootLayout({ children }: RootLayoutProps) {
 
   return (
     <div>
-      <div className="h-[8vh] relative z-50 bg-white">
+      <div className="h-[8vh] relative z-50 bg-whiteBgColor">
         <Header />
       </div>
       <div className="relative">
         {sidebar && !w1100 && (
           <button
             onClick={() => dispatch(sidebarState({ sidebar: false }))}
-            className={`absolute bg-white h-[40px] w-[40px] top-0 left-0 border-r border-b rounded-br-lg flex justify-center items-center`}
+            className={`absolute bg-whiteBgColor h-[40px] w-[40px] top-0 border-r-borderColor border-b-borderColor left-0 border-r border-b rounded-br-lg flex justify-center items-center`}
           >
             <IoIosArrowForward className="cursor-pointer" size={20} />
           </button>
@@ -45,7 +45,7 @@ function RootLayout({ children }: RootLayoutProps) {
             {!sidebar && !w1100 && (
               <button
                 onClick={() => dispatch(sidebarState({ sidebar: true }))}
-                className={`absolute bg-white h-[40px] w-[40px] rounded-br-lg top-0 left-full border-r border-b flex justify-center items-center`}
+                className={`absolute bg-whiteBgColor h-[40px] w-[40px] rounded-br-lg top-0 left-full border-r border-b border-r-borderColor border-b-borderColor flex justify-center items-center`}
               >
                 <MdArrowBackIos
                   size={20}

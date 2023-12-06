@@ -16,7 +16,9 @@ const InvestigationQueueFilters = () => {
   return (
     <div>
       <div
-        className={`bg-white border p-5 pb-8 rounded-md  ${w1100 && "mt-12"}`}
+        className={`bg-whiteBgColor border border-borderColor p-5 pb-8 rounded-md  ${
+          w1100 && "mt-12"
+        }`}
       >
         <h1 className="text-3xl font-medium text-black dark:text-white mb-4">
           Investigation Queue

@@ -2,7 +2,7 @@ import { Edit, Eye, Trash } from "react-feather";
 
 type Props = {
   index: number;
-  item: Array<string>;
+  item: Array<number | string | JSX.Element>;
   isAction?: boolean;
   edit?: boolean;
   delete?: boolean;

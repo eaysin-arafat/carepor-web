@@ -21,7 +21,7 @@ function ModuleSidebar() {
           <input
             type="search"
             onChange={(e) => setSearch(e.target.value)}
-            className="border rounded w-[100%] py-2 px-3 outline-none my-auto"
+            className="border rounded w-[100%] py-2 px-3 outline-none my-auto bg-whiteBgColor"
             placeholder="Search..."
           />
         </div>
@@ -42,10 +42,10 @@ function ModuleSidebar() {
               {filteredData?.map((item, index) => (
                 <Accordion.Panel
                   key={index}
-                  className="border-none rounded-none"
+                  className="border-none rounded-none bg-black"
                 >
                   {item?.children ? (
-                    <Accordion.Title className="p-3 border-none outline-none hover:bg-primaryColor active:text-white focus:bg-primaryColor hover:text-white active:bg-primaryColor rounded-none">
+                    <Accordion.Title className="p-3 border-none outline-none hover:bg-primaryColor hover:text-white bg-whiteBgColor rounded-none">
                       <div className="flex justify-between items-center w-full">
                         <div className="flex items-center gap-3">
                           {item.icon ? (
@@ -65,7 +65,7 @@ function ModuleSidebar() {
                   ) : (
                     <Accordion.Title
                       onClick={() => !item.children && alert("okay")}
-                      className="p-3 border-none outline-none hover:bg-primaryColor active:text-white focus:bg-primaryColor hover:text-white active:bg-primaryColor rounded-none"
+                      className="p-3 border-none outline-none rounded-none"
                     >
                       <div className="flex justify-between items-center w-full">
                         <div className="flex items-center gap-3">

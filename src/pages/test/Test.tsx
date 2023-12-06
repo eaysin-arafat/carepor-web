@@ -100,6 +100,15 @@ function Test() {
     },
   ];
 
+  const Test2 = ({ tt }: { tt: string }) => {
+    return (
+      <div>
+        <p>{tt}</p>
+        <span>Test</span>
+      </div>
+    );
+  };
+
   return (
     <div>
       <div
@@ -125,7 +134,7 @@ function Test() {
                 delete
                 show
                 item={[
-                  item.name,
+                  <Test2 tt={item.name} key="ss" />,
                   item.age,
                   item.salary,
                   item.date,
