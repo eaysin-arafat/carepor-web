@@ -46,7 +46,7 @@ function TableBody({ item, index, isAction, btn }: Props) {
       {item.map((data, i) => (
         <p
           className="p-2 text-textColor text-xs text-justify"
-          style={{ width: data.w + "px" }}
+          style={{ width: data.w }}
           key={i}
         >
           {data.title}

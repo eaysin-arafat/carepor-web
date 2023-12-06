@@ -152,11 +152,10 @@ function Test() {
                 index={index}
                 isAction
                 btn={{
-                  btnOutline: "Delete",
-                  btn: "Amir",
+                  delete: true,
                 }}
                 item={[
-                  { title: item.age, w: 50 },
+                  { title: item.age, w: "100%" },
                   { title: item.age, w: 200 },
                   { title: item.age, w: 300 },
                   { title: item.age, w: 100 },
