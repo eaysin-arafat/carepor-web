@@ -9,9 +9,11 @@ import ClientDetailsCard from "@/components/core/card/ClientDetailsCard";
 import Input from "@/components/core/form-elements/Input";
 import Select from "@/components/core/form-elements/Select";
 import Textarea from "@/components/core/form-elements/textarea";
+import DefaultOpenModal from "@/components/core/modal/DefaultOpenModal";
 import SelectContainer from "@/components/core/selectable-container/SelectContainer";
 import Header from "@/components/shared/header/Header";
 import { cn } from "@/utilities/cn";
+import React from "react";
 import {
   ArrowLeft,
   Check,
@@ -202,6 +204,11 @@ const AllergiesCardItem = () => {
 };
 
 const CreateMedicalEncounter = () => {
+  const [openModal, setOpenModal] = React.useState(false);
+
+  const toggleModal = () => {
+    setOpenModal(!openModal);
+  };
   return (
     <div>
       <Header />
@@ -224,23 +231,29 @@ const CreateMedicalEncounter = () => {
         <div className="col-span-7">
           <Stepping />
           <div className="box_shadow_2 mt-5 flex flex-col gap-4 px-4 py-3">
-            <Accordion title="Present Complaints">
+            <Accordion title="Present Complaints" modalHandler={toggleModal}>
               <div className="space-y-4">
                 <Textarea label="Presenting Complaint" />
                 <Textarea label="Presenting Complaint" />
               </div>
             </Accordion>
-            <Accordion title="Serostatus and Disclosure">
+            <Accordion
+              title="Serostatus and Disclosure"
+              modalHandler={toggleModal}
+            >
               <div className="">
-                <SelectContainer />
+                <SelectContainer isOne />
               </div>
             </Accordion>
-            <Accordion title="TB Symptoms">
+            <Accordion title="TB Symptoms" modalHandler={toggleModal}>
               <div className="">
-                <SelectContainer />
+                <SelectContainer isOne={false} />
               </div>
             </Accordion>
-            <Accordion title="Constitutional Symptoms ">
+            <Accordion
+              title="Constitutional Symptoms "
+              modalHandler={toggleModal}
+            >
               <div className="">
                 <SelectContainer>
                   <select className="py-1 rounded w-2/5 inline-block mb-5">
@@ -250,7 +263,7 @@ const CreateMedicalEncounter = () => {
                 </SelectContainer>
               </div>
             </Accordion>
-            <Accordion title="Review of Systems">
+            <Accordion title="Review of Systems" modalHandler={toggleModal}>
               <div className="">
                 <div className="flex gap-2">
                   <Select label="Review of Systems" className="py-1 rounded" />
@@ -271,14 +284,14 @@ const CreateMedicalEncounter = () => {
                 </div>
               </div>
             </Accordion>
-            <Accordion title="Past Medical History">
+            <Accordion title="Past Medical History" modalHandler={toggleModal}>
               <div className="space-y-4">
                 <Textarea label="Drug History" />
                 <Textarea label="Admission History" />
                 <Textarea label="Surgical History" />
               </div>
             </Accordion>
-            <Accordion title="Allergies">
+            <Accordion title="Allergies" modalHandler={toggleModal}>
               <div>
                 <div className="grid grid-cols-2 gap-4">
                   <Select
@@ -319,7 +332,10 @@ const CreateMedicalEncounter = () => {
                 </div>
               </div>
             </Accordion>
-            <Accordion title="Family & Social History">
+            <Accordion
+              title="Family & Social History"
+              modalHandler={toggleModal}
+            >
               <div className="space-y-4">
                 <Textarea label="Family Medical History" />
                 <Textarea label="Family Medical History" />
@@ -356,6 +372,7 @@ const CreateMedicalEncounter = () => {
             </div>
           </div>
         </div>
+        <DefaultOpenModal isShow={openModal} toggler={toggleModal} />
       </div>
     </div>
   );
