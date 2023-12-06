@@ -83,6 +83,63 @@ const ClientDetails = ({}: Props) => {
               </Card>
 
               <Card
+                title="Contact Information"
+                className="bg-whiteColor shadow-none border md:px-5 my-5"
+                titleClass="text-secondaryColor pt-6"
+                edit
+                editHandler={() => handleClientEdit(1)}
+              >
+                <DataRow
+                  title="Cellphone Number"
+                  data={
+                    clientObj?.cellphone &&
+                    clientObj?.cellphone != "00000000000"
+                      ? clientObj?.cellphoneCountryCode +
+                        " " +
+                        clientObj?.cellphone
+                      : ""
+                  }
+                />
+                <DataRow
+                  title="Other Cellphone Number"
+                  data={
+                    clientObj?.otherCellphone &&
+                    clientObj?.otherCellphone != "00000000000"
+                      ? clientObj?.otherCellphoneCountryCode +
+                        " " +
+                        clientObj?.otherCellphone
+                      : ""
+                  }
+                />
+                <DataRow
+                  title="Landline Number"
+                  data={
+                    clientObj?.landline && clientObj?.landline != "00000000000"
+                      ? clientObj?.landlineCountryCode +
+                        " " +
+                        clientObj?.landline
+                      : ""
+                  }
+                />
+                <DataRow title="Email" data={clientObj?.email} />
+                <DataRow
+                  title="Country of Origin"
+                  data={clientObj?.isZambianBorn ? "Zambia" : "Others"}
+                />
+                <DataRow
+                  title="House Number"
+                  data={clientObj?.householdNumber}
+                />
+                <DataRow title="Road" data={clientObj?.road} />
+                <DataRow title="Area" data={clientObj?.area} />
+                <DataRow title="Town" data={clientObj?.townName} />
+                <DataRow
+                  title="Landmarks & Direction"
+                  data={clientObj?.landmarks}
+                />
+              </Card>
+
+              <Card
                 title="Parents Guardian Details"
                 className="bg-whiteColor shadow-none border md:px-5 mt-5"
                 titleClass="text-secondaryColor pt-6"
@@ -180,68 +237,11 @@ const ClientDetails = ({}: Props) => {
               </Card>
 
               <Card
-                title="Contact Information"
-                className="bg-whiteColor shadow-none border md:px-5 my-5"
-                titleClass="text-secondaryColor pt-6"
-                edit
-                editHandler={() => handleClientEdit(4)}
-              >
-                <DataRow
-                  title="Cellphone Number"
-                  data={
-                    clientObj?.cellphone &&
-                    clientObj?.cellphone != "00000000000"
-                      ? clientObj?.cellphoneCountryCode +
-                        " " +
-                        clientObj?.cellphone
-                      : ""
-                  }
-                />
-                <DataRow
-                  title="Other Cellphone Number"
-                  data={
-                    clientObj?.otherCellphone &&
-                    clientObj?.otherCellphone != "00000000000"
-                      ? clientObj?.otherCellphoneCountryCode +
-                        " " +
-                        clientObj?.otherCellphone
-                      : ""
-                  }
-                />
-                <DataRow
-                  title="Landline Number"
-                  data={
-                    clientObj?.landline && clientObj?.landline != "00000000000"
-                      ? clientObj?.landlineCountryCode +
-                        " " +
-                        clientObj?.landline
-                      : ""
-                  }
-                />
-                <DataRow title="Email" data={clientObj?.email} />
-                <DataRow
-                  title="Country of Origin"
-                  data={clientObj?.isZambianBorn ? "Zambia" : "Others"}
-                />
-                <DataRow
-                  title="House Number"
-                  data={clientObj?.householdNumber}
-                />
-                <DataRow title="Road" data={clientObj?.road} />
-                <DataRow title="Area" data={clientObj?.area} />
-                <DataRow title="Town" data={clientObj?.townName} />
-                <DataRow
-                  title="Landmarks & Direction"
-                  data={clientObj?.landmarks}
-                />
-              </Card>
-
-              <Card
                 title="Place of Birth & Religious Denomination"
                 className="bg-whiteColor shadow-none border md:px-5 mt-5"
                 titleClass="text-secondaryColor pt-6"
                 edit
-                editHandler={() => handleClientEdit(5)}
+                editHandler={() => handleClientEdit(3)}
               >
                 <DataRow
                   title="Home Language"
@@ -261,7 +261,7 @@ const ClientDetails = ({}: Props) => {
                 className="bg-whiteColor shadow-none border md:px-5 mt-5"
                 titleClass="text-secondaryColor pt-6"
                 edit
-                editHandler={() => handleClientEdit(6)}
+                editHandler={() => handleClientEdit(3)}
               >
                 <DataRow
                   title="Highest Level of Education "

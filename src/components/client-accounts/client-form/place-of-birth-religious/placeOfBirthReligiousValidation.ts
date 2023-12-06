@@ -19,7 +19,7 @@ const placeOfBirthReligiousValidation = (
   }
 
   return {
-    isPersonalInfoValid: Object.keys(errors).length === 0,
+    isPlaceOfBirthReligious: Object.keys(errors).length === 0,
     placeOfBirthReligiousErrors: errors,
   };
 };

@@ -8,6 +8,10 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import maritalStatusAndSpouseValidation from "../marital-status-And-spouse/maritalStatusAndSpouseValidation";
+import placeOfBirthReligiousValidation from "../place-of-birth-religious/placeOfBirthReligiousValidation";
+import { useDispatch } from "react-redux";
+import { setClientFormStep } from "@/features/client/client-form-slice";
 
 // export type ClientCreateFormSubmitHookType = {
 //   personalInfo: ClientPersonalInfoType;
@@ -27,8 +31,12 @@ const useSubmitClientAccountCreate = ({
   placeOfBirthAndReligion,
   educationAndEmployment,
   handleFormReset,
+  setMaritalStatusAndSpouseError,
+  setPlaceOfBirthAndReligionError,
+  // setEducationAndEmploymentError,
 }) => {
   const { user } = useSelector((state: RootState) => state.authentication);
+  const dispatch = useDispatch();
 
   const facility = cookieManager.parseCookie("facility_token");
 
@@ -44,6 +52,24 @@ const useSubmitClientAccountCreate = ({
     e: React.FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault();
+
+    //with three step
+    const { isMaritalStatusAndSpouseValid, maritalStatusAndSpouseErrors } =
+      maritalStatusAndSpouseValidation(maritalStatusAndSpouse);
+    const { isPlaceOfBirthReligious, placeOfBirthReligiousErrors } =
+      placeOfBirthReligiousValidation(placeOfBirthAndReligion);
+
+    if (!isMaritalStatusAndSpouseValid) {
+      setMaritalStatusAndSpouseError(maritalStatusAndSpouseErrors);
+      setPlaceOfBirthAndReligionError(maritalStatusAndSpouseErrors);
+    }
+    if (!isPlaceOfBirthReligious) {
+      setMaritalStatusAndSpouseError(maritalStatusAndSpouseErrors);
+      setPlaceOfBirthAndReligionError(placeOfBirthReligiousErrors);
+    }
+    if (!isMaritalStatusAndSpouseValid || !isPlaceOfBirthReligious) {
+      return false;
+    }
 
     //@ts-ignore
     if (!facility?.facilityId) {
@@ -116,6 +142,7 @@ const useSubmitClientAccountCreate = ({
       if (clientData.oid) {
         toast.dismiss();
         toast.success("Client registered successfully");
+        dispatch(setClientFormStep(1));
         handleFormReset();
         navigate(URLClientDetails({ id: clientData.oid }));
       }
@@ -147,3 +174,48 @@ const useSubmitClientAccountCreate = ({
 };
 
 export default useSubmitClientAccountCreate;
+
+// const handleMaritalStatusAndSpouseNext = (): {
+//   isSuccessMaritalStatusAndSpouse: boolean;
+// } => {
+//   const {
+//     isMaritalStatusAndSpouseValid,
+//     maritalStatusAndSpouseErrors,
+//     // Form section Error
+//   } = maritalStatusAndSpouseValidation(maritalStatusAndSpouse);
+
+//   if (!isMaritalStatusAndSpouseValid) {
+//     setMaritalStatusAndSpouseError(maritalStatusAndSpouseErrors);
+//     return {
+//       isSuccessMaritalStatusAndSpouse: false,
+//     };
+//   } else {
+//     setMaritalStatusAndSpouseError(null);
+//     // handleStepNext()
+//     return {
+//       isSuccessMaritalStatusAndSpouse: true,
+//     };
+//   }
+// };
+
+// const handlePlaceOfBirthAndReligionNext = (): {
+//   isSuccessPlaceOfBirthAndReligion: boolean;
+// } => {
+//   const { isPersonalInfoValid, placeOfBirthReligiousErrors } =
+//     placeOfBirthReligiousValidation({
+//       ...placeOfBirthAndReligion,
+//     });
+
+//   if (!isPersonalInfoValid) {
+//     setPlaceOfBirthAndReligionError(placeOfBirthReligiousErrors);
+//     return {
+//       isSuccessPlaceOfBirthAndReligion: false,
+//     };
+//   } else {
+//     setPlaceOfBirthAndReligionError(null);
+//     // handleStepNext();
+//     return {
+//       isSuccessPlaceOfBirthAndReligion: true,
+//     };
+//   }
+// };

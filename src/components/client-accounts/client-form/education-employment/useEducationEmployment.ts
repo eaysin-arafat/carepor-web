@@ -9,7 +9,7 @@ type MaritalStatusAndSpouseType = {
   educationAndEmployment: ClientEducationAndEmploymentType;
   setEducationAndEmployment: SetStateType<ClientEducationAndEmploymentType>;
   setEducationAndEmploymentError: SetStateType<ClientEducationAndEmploymentErrorType>;
-  handleStepNext: () => void;
+  // handleStepNext: () => void;
 };
 
 const useEducationAndEmployment = ({
