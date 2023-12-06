@@ -1,17 +1,17 @@
 import { cn } from "@/utilities/cn";
 
-const SelectableButton = ({ isActive = false }) => {
+const SelectableButton = ({ isActive = false, text = "Text" }) => {
   return (
     <button
       className={cn(
-        "py-1.5 px-4 font-poppins flex justify-center items-center rounded",
+        "py-1 px-6 font-poppins flex justify-center items-center rounded text-sm whitespace-nowrap flex-grow",
         {
           "border border-[#1890FF] text-[#1890FF]": !isActive,
           "bg-[#1890FF] text-white": isActive,
         }
       )}
     >
-      Press Me
+      {text}
     </button>
   );
 };

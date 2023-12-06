@@ -17,10 +17,12 @@ function CreateAdmission() {
     <>
       <FormWrapper
         noBackground
+        isAppNameHide
         title="New Patient Admission"
         maxWidth="max-w-[1022px]"
         titleClass="text-center"
-        className="mb-5"
+        className="rounded-lg mb-5"
+        childrenMaxWidth="w-full"
       >
         <form action="" className="mt-5">
           <div className="grid grid-cols-2 gap-5">

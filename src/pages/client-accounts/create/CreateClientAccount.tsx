@@ -16,10 +16,13 @@ function CreateClientAccount() {
       </div>
       <div className="my-8">
         <FormWrapper
+          isAppNameHide
           title="Client Profile Registration"
           titleClass="text-center"
           maxWidth="max-w-[1022px]"
           noBackground
+          className="rounded-lg"
+          childrenMaxWidth="w-full"
         >
           <ClientForm clientManager={clientCreateManager} isEditForm={false} />
         </FormWrapper>

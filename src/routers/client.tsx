@@ -6,8 +6,8 @@ import CreateClientAccount from "@/pages/client-accounts/create/CreateClientAcco
 import ClientDetails from "@/pages/client-accounts/details/ClientsDetils";
 import ClientAccountEdit from "@/pages/client-accounts/edit/ClientAccountEdit";
 import ClientSearch from "@/pages/client-accounts/index/ClientSearch";
-import ServicePoints from "@/pages/service-point/ServicePoints";
 import AssignServiceQueue from "@/pages/service-point/AssignServiceQueue";
+import ServicePoints from "@/pages/service-point/ServicePoints";
 import EditAdmission from "../pages/admissions/edit/Edit";
 import AdmissionDetails from "./../pages/admissions/details/AdmissionDetails";
 import AdmissionSearch from "./../pages/admissions/index/AdmissionSearch";

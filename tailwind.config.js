@@ -34,7 +34,7 @@ export default {
         activeColor: "var(--activeColor)",
       },
       boxShadow: {
-        light: '0 8px 16px 0 rgba(0, 0, 0, 0.05)',
+        light: "0 8px 16px 0 rgba(0, 0, 0, 0.05)",
       },
     },
   },

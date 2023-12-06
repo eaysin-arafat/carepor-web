@@ -44,7 +44,7 @@ const CustomNrc: FC<CustomNrcProps> = React.forwardRef<
     return (
       <div className="flex flex-col w-full items-start justify-start gap-[6px]">
         <div className="flex">
-          <div className="text-blackColor leading-[125%] capitalize ">
+          <div className="input_label ">
             {label}
           </div>
           {required && (

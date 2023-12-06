@@ -26,12 +26,14 @@ const SelectFacility = () => {
     <>
       <FormWrapper
         contentCenter
+        appTitle
+        emergencyAccess
         title="Select Facility"
-        titleNote="Please select a facility to enter."
-        maxWidth="max-w-[570px] "
+        // titleNote="Please select a facility to enter."
+        // maxWidth="max-w-[570px] "
         titleClass="text-center"
       >
-        <form onSubmit={handleRequestSubmit} className="mt-5">
+        <form onSubmit={handleRequestSubmit} className="my-0">
           <div className="flex flex-col gap-5">
             <Select
               onChange={facilityChangeHandler}

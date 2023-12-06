@@ -26,13 +26,15 @@ const RequestFacility = () => {
   ) : (
     <div>
       <FormWrapper
+        emergencyAccess
         title="Request Facility Login"
-        titleNote="Please select a Facility to send login request."
-        className="max-w-[570px]"
+        appTitle
+        // titleNote="Please select a Facility to send login request."
+        // className="max-w-[570px]"
         titleClass="text-center"
         contentCenter
       >
-        <form action="" className="mt-5">
+        <form action="" className="my-0">
           <div className="flex flex-col gap-5">
             <Select
               onChange={facilityChangeHandler}
@@ -73,7 +75,7 @@ const RequestFacility = () => {
             />
           </div>
 
-          <div className="mt-5 mb-3">
+          <div className="mt-5">
             <OutlineButton onClick={handleCancelRequest} title="Cancel" />
           </div>
         </form>

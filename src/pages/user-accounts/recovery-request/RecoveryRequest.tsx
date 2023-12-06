@@ -23,10 +23,11 @@ function RecoveryRequest() {
       <FormWrapper
         emergencyAccess
         contentCenter
+        appTitle
         titleClass="text-center"
         title="Login Recovery Request"
       >
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="my-0">
           <div className="grid gap-5">
             <Input
               onChange={handleRecoveryInfoChange}
@@ -62,7 +63,7 @@ function RecoveryRequest() {
               <SubmitButton buttonType="submit" title="Submit" />
             </div>
             <FormFooterLink
-              btnText="Log in"
+              btnText="Sign In"
               link={URLUserLogin()}
               question="Remember password?"
             />

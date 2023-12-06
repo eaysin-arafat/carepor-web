@@ -16,6 +16,19 @@ function HeaderList() {
   return (
     <ul className="flex items-center gap-5  dark:text-white">
       <li>
+        <Link
+          title="Select Client"
+          className={`block ${
+            w1230 ? "px-5 py-2" : "px-6 py-3"
+          } rounded-full flex items-center gap-1 text-[14px] bg-primaryColor text-whiteColor`}
+          to="/client-search"
+        >
+          <BiSearch size={18} />
+          Search CLient
+          {/* {w1100 ? <BiSearch /> : "Find Patients"} */}
+        </Link>
+      </li>
+      <li>
         <Link to="/dashboard" className="gap-1 flex items-center">
           <FaChartPie size={w1230 ? 15 : 19} />{" "}
           {!w1100 && (
@@ -102,19 +115,6 @@ function HeaderList() {
             <IoBagAddOutline size={20} /> Service Queue
           </Dropdown.Item>
         </Dropdown>
-      </li>
-      <li>
-        <Link
-          title="Select Client"
-          className={`block ${
-            w1230 ? "px-5 py-2" : "px-6 py-3"
-          } rounded-full flex items-center gap-1 text-[14px] bg-primaryColor text-whiteColor`}
-          to="/client-search"
-        >
-          <BiSearch size={18} />
-          Search CLient
-          {/* {w1100 ? <BiSearch /> : "Find Patients"} */}
-        </Link>
       </li>
     </ul>
   );
