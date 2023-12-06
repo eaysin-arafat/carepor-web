@@ -12,10 +12,12 @@ function EditAdmission({}: Props) {
     <>
       <FormWrapper
         noBackground
+        isAppNameHide
         title="Edit Admission"
         maxWidth="max-w-[1022px] "
         titleClass="text-center"
-        className="mb-5"
+        className="rounded-lg mb-5"
+        childrenMaxWidth="w-full"
       >
         <form action="" className="mt-5">
           <div className="grid grid-cols-2 gap-5">
@@ -63,7 +65,7 @@ function EditAdmission({}: Props) {
               />
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-5 mt-4 mb-4">
+          <div className="grid grid-cols-2 gap-5 mt-5 ">
             <SubmitButton buttonType="submit" title="Save & Admit" />
             <OutlineButton title="Cancel" />
           </div>

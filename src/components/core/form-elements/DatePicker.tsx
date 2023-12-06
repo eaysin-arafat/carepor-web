@@ -40,7 +40,7 @@ const DateInput: React.FC<DateInputProps> = ({
   return (
     <div className="flex  flex-col w-full items-start justify-start gap-[6px]">
       <div className="flex w-full">
-        <div className="text-blackColor leading-[125%] capitalize ">
+        <div className="input_label ">
           {" "}
           {label}
         </div>

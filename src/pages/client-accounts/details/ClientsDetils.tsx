@@ -6,6 +6,7 @@ import { BiArrowBack } from "react-icons/bi";
 import LinkButton from "@/components/core/buttons/LinkButton";
 import { relationshipsEnums, religionsEnums } from "@/enum/clients";
 import { URLClientSearch, URLLinkWithMother } from "@/routers/client";
+import { cn } from "@/utilities/cn";
 import { DateFunc } from "@/utilities/date";
 import { Link } from "react-router-dom";
 import useClientDetails from "./useClientDetails";
@@ -282,7 +283,9 @@ const ClientDetails = ({}: Props) => {
                 />
               </Card>
               <div className="mt-5 flex justify-center w-full">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
+                <div
+                  className={cn(`grid grid-cols-1 md:grid-cols-${isOverFive ? "1" : "2"} gap-4 `)}
+                >
                   <LinkButton
                     link={URLClientSearch()}
                     title="Finish"

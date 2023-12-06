@@ -14,11 +14,12 @@ function ChangePassword() {
     <div>
       <FormWrapper
         contentCenter
+        appTitle
         title="Change Password"
-        maxWidth="max-w-[570px]"
+        // maxWidth="max-w-[570px]"
         emergencyAccess
       >
-        <form onSubmit={handleSubmit} className="mt-5">
+        <form onSubmit={handleSubmit} className="my-0">
           <div className="grid gap-5">
             <Password
               onChange={handleInputChange}

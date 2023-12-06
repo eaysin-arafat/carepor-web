@@ -39,7 +39,7 @@ function Password({
   return (
     <div className="flex flex-col w-full items-start justify-start gap-[6px]">
       <div className="flex">
-        <div className="text-blackColor leading-[125%] capitalize">{label}</div>
+        <div className="input_label">{label}</div>
         {required && <span className="-mt-[6px] mx-1 text-dangerColor">*</span>}
       </div>
       <div className="relative w-full">
@@ -59,7 +59,7 @@ function Password({
           onClick={togglePasswordVisibility}
           className="absolute right-5 top-1/2 text-base transform -translate-y-1/2 cursor-pointer dark:text-gray-500"
         >
-          {showPassword ? <FiEyeOff className="text-xl" /> : <FiEye className="text-xl" />}
+          {showPassword ? <FiEyeOff className="text-xl text-primaryColor" /> : <FiEye className="text-xl text-primaryColor" />}
         </button>
       </div>
 

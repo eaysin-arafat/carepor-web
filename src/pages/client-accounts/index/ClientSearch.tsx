@@ -89,7 +89,7 @@ const ClientSearch = () => {
                 <div className="absolute -bottom-6">
                   <button
                     type="submit"
-                    className="main_btn w-40 flex justify-center gap-2"
+                    className="main_btn w-40 flex justify-center gap-2 py-3"
                   >
                     <img src="/assets/icons/search.svg" alt="search" />
                     Search
@@ -108,7 +108,7 @@ const ClientSearch = () => {
               {/* No Patient Found Card */}
               {showRegister && (
                 <IsPatientFound
-                  title="Did you find the patient?"
+                  title="No Patient Found"
                   buttonTitle="Add New Patient"
                 />
               )}
@@ -132,7 +132,7 @@ const ClientSearch = () => {
                       />
                       {data.slice(0, 3).map((item: any) => {
                         return (
-                          <div className="rounded-lg">
+                          <div className="rounded-lg ">
                             <TableData
                               gridCol={3}
                               tableData={[item.name, item.date, item.date]}

@@ -46,6 +46,8 @@ function CreateUserAccount() {
           titleClass="text-center"
           maxWidth="max-w-[1022px]"
           noBackground
+          className="rounded-lg"
+          childrenMaxWidth="w-full"
         >
           <>
             <form action="" className="my-5" onSubmit={handleSubmit}>

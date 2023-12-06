@@ -4,7 +4,7 @@ import AdminInfo from "./AdminInfo";
 import HeaderList from "./HeaderList";
 import MobileHeader from "./MobileHeader";
 
-function Header() {
+function AuthHeader() {
   // * Hooks
   const w1230 = useWindowWidth(1230);
   const w1100 = useWindowWidth(1100);
@@ -19,7 +19,7 @@ function Header() {
             className="h-[70%] w-[70%]"
           />
           {!w1100 && (
-            <p className="text-xl">
+            <p>
               <span className="text-[#15ac12]">Smart</span>
               <span className="text-primaryColor">Care</span>{" "}
               <b className="text-primaryColor">PRO</b>
@@ -41,4 +41,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default AuthHeader;

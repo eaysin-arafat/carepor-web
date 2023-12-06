@@ -43,6 +43,9 @@ function EditUserAccount() {
           titleClass="text-center"
           maxWidth="max-w-[1022px]"
           noBackground
+          isAppNameHide
+          className="rounded-lg"
+          childrenMaxWidth="w-full"
         >
           <>
             <form action="" className="my-5" onSubmit={handleSubmit}>

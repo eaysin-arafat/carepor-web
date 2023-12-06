@@ -24,11 +24,11 @@ function UserLogin() {
 
   return (
     <FormWrapper
-      titleClass="text-center"
+      titleClass="text-center "
+      className=""
       emergencyAccess
+      appTitle
       loginForm
-      maxWidth="max-w-[570px]"
-      title="Welcome to SmartCare Pro"
       contentCenter
     >
       <form onSubmit={handleFormSubmit} className="my-5">
@@ -60,8 +60,8 @@ function UserLogin() {
             onChange={handleInputChange}
             label="password"
           />
-          <div className="grid grid-cols-2">
-            <div>
+          <div className="grid grid-cols-2 items-center ">
+            <div className="flex justify-end items-center" >
               <Checkbox
                 onChange={handleInputChange}
                 name="rememberMe"
@@ -84,7 +84,7 @@ function UserLogin() {
           <SubmitButton
             loading={isLoading}
             buttonType="submit"
-            title="User Login"
+            title="Sign In"
           />
         </div>
       </form>
