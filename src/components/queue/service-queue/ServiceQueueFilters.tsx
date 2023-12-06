@@ -3,9 +3,9 @@ import Search from "../../core/form-elements/Search";
 import Select from "../../core/form-elements/Select";
 
 type Props = {
-  withoutTitle?: boolean
-}
-const ServiceQueueFilters = ({ withoutTitle }:Props) => {
+  withoutTitle?: boolean;
+};
+const ServiceQueueFilters = ({ withoutTitle }: Props) => {
   const [allFilters, setAllFilters] = React.useState(false);
 
   const filtersHandler = () => {
@@ -15,7 +15,9 @@ const ServiceQueueFilters = ({ withoutTitle }:Props) => {
 
   return (
     <div>
-      <div className={`bg-white border p-5 pb-8 rounded-md `}>
+      <div
+        className={`bg-whiteBgColor border border-borderColor p-5 pb-8 rounded-md `}
+      >
         {!withoutTitle && (
           <h1 className="text-3xl font-medium text-black dark:text-white mb-4">
             Service Queue

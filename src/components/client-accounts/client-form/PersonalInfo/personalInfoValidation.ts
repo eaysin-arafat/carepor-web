@@ -18,8 +18,11 @@ const personalInfoValidation = (formData: ClientPersonalInfoType) => {
   if (isFuture(new Date(formData.dob)))
     errors.dob = "This date should not be a future date!";
   if (!formData.sex) errors.sex = "Required";
-  if (!formData.nrc || formData.nrc == "______/__/_") errors.nrc = "Required";
-  if (!TypeValidation.isNrcValid(formData.nrc) && formData.nrc != "______/__/_")
+  console.log(formData.nrc);
+
+  if (formData.nrc == "______/__/_") errors.nrc = "Required";
+  if (!formData.nrc) errors.nrc = "Required";
+  if (!TypeValidation.isNrcValid(formData.nrc) && formData.nrc)
     errors.nrc = "Invalid NRC!";
   if (!formData.countryId) errors.countryId = "Required";
   if (!formData.registrationDate) errors.countryId = "Required";

@@ -89,7 +89,7 @@ const ClientSearch = () => {
                 <div className="absolute -bottom-6">
                   <button
                     type="submit"
-                    className="main_btn w-40 flex justify-center gap-2 py-3"
+                    className="main_btn text-lg w-40 flex justify-center items-center font gap-2 py-3"
                   >
                     <img src="/assets/icons/search.svg" alt="search" />
                     Search

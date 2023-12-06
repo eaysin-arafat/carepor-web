@@ -59,6 +59,18 @@ div {
 span {
   display: inline-block;
 }
+/* .background_image::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--primary);
+  z-index: 9;
+  height: 100%;
+  opacity: 0.8;
+} */
 
 @layer utilities {
   .grid-cols-dynamic {
@@ -92,7 +104,7 @@ span {
   }
 
   .custom-input {
-    @apply w-full rounded-full text-blackColor dark:text-gray-400 bg-whiteColor dark:bg-[#000] box-border flex flex-row items-center justify-start py-[12px] px-4 border-[2px] border-solid border-borderColor dark:border-gray-800 focus:border-borderColor focus:shadow-none outline-none focus:outline-none focus:ring-0;
+    @apply w-full rounded-xl text-blackColor dark:text-gray-400 bg-whiteColor dark:bg-[#000] box-border flex flex-row items-center justify-start py-[12px] px-4 border-[2px] border-solid border-borderColor dark:border-gray-800 focus:border-borderColor focus:shadow-none outline-none focus:outline-none focus:ring-0;
   }
 
   .input_label {
@@ -108,19 +120,14 @@ span {
   }
 
   .main_btn {
-    @apply rounded-full bg-primaryColor hover:bg-primaryHoverColor text-whiteColor flex flex-row items-center justify-center py-[14px] px-4 text-[18px] cursor-pointer transition-all ease-out capitalize w-full;
+    @apply rounded-full bg-primaryColor hover:bg-primaryHoverColor text-whiteColor flex flex-row items-center justify-center py-[14px] px-8 text-[18px] cursor-pointer transition-all ease-out capitalize;
   }
 
-  .default_button {
-    @apply min-w-[170px] text-whiteColor hover:bg-primaryHoverColor dark:hover:bg-primaryHoverColor  hover:text-whiteColor bg-primaryColor border-2 border-primaryColor py-[14px] rounded-full transition-all ease-in-out duration-500;
+  .transparent_btn {
+    @apply rounded-full text-black dark:text-white border-2 flex flex-row items-center justify-center py-[14px] px-12 text-[18px] cursor-pointer transition-all ease-out capitalize;
   }
-
   .go_back {
     @apply flex gap-2 items-center text-[22px] font-medium py-2 rounded-lg text-black dark:text-white;
-  }
-
-  .outline_btn {
-    @apply bg-whiteColor text-primaryColor dark:bg-gray-900;
   }
 
   .btn_sm {

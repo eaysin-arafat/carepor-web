@@ -97,11 +97,11 @@ const PatientCard = ({ client }: PatientCardProps) => {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-row sm:justify-start justify-center flex-wrap gap-5 mt-2">
+              <div className="flex flex-row sm:justify-start justify-center flex-wrap gap-1 mt-2">
                 <Link
                   to={URLClientEdit({ id: client?.oid })}
                   className={cn(
-                    "default_button outline_btn border !border-primaryColor btn_sm text-center text-sm"
+                    "main_btn bg-whiteColor text-primaryColor dark:bg-gray-900 border !border-primaryColor btn_sm text-center text-sm"
                   )}
                 >
                   Edit Profile
@@ -109,31 +109,31 @@ const PatientCard = ({ client }: PatientCardProps) => {
                 {!client.isAdmitted && (
                   <Link
                     to={URLCreateAdmission({ clientId: client?.oid })}
-                    className={cn("default_button btn_sm text-center text-sm")}
+                    className={cn("main_btn btn_sm text-center text-sm")}
                   >
                     Admit Patient
                   </Link>
                 )}
                 {client?.isAdmitted && (
                   <>
-                    <button className={cn("default_button btn_sm  text-sm")}>
+                    <button className={cn("main_btn btn_sm  text-sm")}>
                       Admission Details
                     </button>
                     <Link
                       to={URLAdmissionDischarge({ clientId: client?.oid })}
                       className={cn(
-                        "default_button btn_sm text-center text-sm"
+                        "main_btn btn_sm text-center text-sm"
                       )}
                     >
                       Discharge
                     </Link>
                   </>
                 )}
-                <button className={cn("default_button btn_sm text-sm")}>
+                <button className={cn("main_btn btn_sm text-sm")}>
                   Service Queue
                 </button>
                 <button
-                  className={cn("default_button btn_sm text-sm")}
+                  className={cn("main_btn btn_sm text-sm")}
                   onClick={() => navigate(URLServicePoint())}
                 >
                   Attend to Patient

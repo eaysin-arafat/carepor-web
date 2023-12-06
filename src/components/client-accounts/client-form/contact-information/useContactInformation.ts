@@ -54,16 +54,23 @@ const useContactInformation = ({
     setContactInfoError((prev) => ({ ...prev, [fieldName]: "" }));
   };
 
-  const handleContactInformationNext = () => {
+  const handleContactInformationNext = (): {
+    isSuccessContractInfo: boolean;
+  } => {
     const { isContactInformationValid, contactInformationError } =
       contactInformationValidation(contactInfo);
 
     if (!isContactInformationValid) {
       setContactInfoError(contactInformationError);
-      return false;
+      return {
+        isSuccessContractInfo: false,
+      };
     } else {
       setContactInfoError(null);
-      return handleStepNext();
+      // return handleStepNext();
+      return {
+        isSuccessContractInfo: true,
+      };
     }
   };
 

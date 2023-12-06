@@ -16,6 +16,7 @@ import usePlaceOfBirthReligious from "@/components/client-accounts/client-form/p
 import useSubmitClientAccountCreate from "@/components/client-accounts/client-form/index/useSubmitClientAccountCreate";
 import { useReadClientByNRCQuery } from "@/features/client/client-api";
 import { useReadDistrictsQuery } from "@/features/district/district-api";
+import { useReadHomeLanguagesQuery } from "@/features/home-language/home-language-api";
 import { useReadProvincesQuery } from "@/features/province/province-api";
 import {
   ClientContactInfoErrorType,
@@ -31,7 +32,6 @@ import { useEffect, useState } from "react";
 import useClientFormStep from "./useClientFormStep";
 import useSetEditFormData from "./useSetEditFormData";
 import useSubmitClientAccountEdit from "./useSubmitClientAccountEdit";
-import { useReadHomeLanguagesQuery } from "@/features/home-language/home-language-api";
 
 const nrcValidateForSearchReq = (value: string) => {
   const nrcReqPattern = /^\d{6}\/\d{2}\/[\d_]{1}$/;
@@ -141,7 +141,7 @@ const useClientAccount = (
   // Marital status and Spouse functionality Hook
   const {
     handleMaritalStatusAndSpouseChange,
-    handleMaritalStatusAndSpouseNext,
+    // handleMaritalStatusAndSpouseNext,
   } = useMaritalStatusAndSpouse({
     maritalStatusAndSpouse,
     setMaritalStatusAndSpouse,
@@ -162,46 +162,35 @@ const useClientAccount = (
   // Place Of Birth Religious Functionality Hook
   const {
     handlePlaceOfBirthAndReligionChange,
-    handlePlaceOfBirthAndReligionNext,
+    // handlePlaceOfBirthAndReligionNext,
   } = usePlaceOfBirthReligious({
     placeOfBirthAndReligion,
     setPlaceOfBirthAndReligion,
     setPlaceOfBirthAndReligionError,
-    handleStepNext,
+    // handleStepNext,
   });
   // EducationAndEmploymentChange Functionality Hook
   const { handleEducationAndEmploymentChange } = useEducationAndEmployment({
     educationAndEmployment,
     setEducationAndEmployment,
     setEducationAndEmploymentError,
-    handleStepNext,
+    // handleStepNext,
   });
 
   const handleFormReset = () => {
     setPersonalInfo(personalInfoState);
+    setContactInfo(contactInfoState);
     setParentsOrGuardians(parentsOrGuardiansState);
     setMaritalStatusAndSpouse(maritalStatusAndSpouseState);
-    setContactInfo(contactInfoState);
     setPlaceOfBirthAndReligion(placeOfBirthAndReligionState);
     setEducationAndEmployment(educationAndEmploymentState);
     setPersonalInfoError(null);
+    setContactInfoError(null);
     setParentsOrGuardiansError(null);
     setMaritalStatusAndSpouseError(null);
-    setContactInfoError(null);
     setPlaceOfBirthAndReligionError(null);
     setEducationAndEmploymentError(null);
   };
-
-  // Create Client Data submission
-  const { handleClientDataSubmit } = useSubmitClientAccountCreate({
-    contactInfo,
-    educationAndEmployment,
-    maritalStatusAndSpouse,
-    parentsOrGuardians,
-    personalInfo,
-    placeOfBirthAndReligion,
-    handleFormReset,
-  });
 
   // Client Edit form functionality starts here
   //
@@ -238,33 +227,19 @@ const useClientAccount = (
     }
   }, [editClient?.oid, isEditForm]);
 
-  //
-  // Client Edit form functionality end here
-  // personal info form Handler
-  const handleClintFormNextOperation = () => {
-    // Personal info form handler
-    if (stateCount === 1) {
-      handlePersonalInfoNext();
-      return;
-    }
-    // Personal info form handler
-    if (stateCount === 2) {
-      parentsOrGuardiansNext();
-      return;
-    }
-    // Marital Status & Spouse Details
-    if (stateCount === 3) {
-      handleMaritalStatusAndSpouseNext();
-    }
-    // Contact Information
-    if (stateCount === 4) {
-      handleContactInformationNext();
-    }
-    // Place of Birth & Religious Denomination
-    if (stateCount === 5) {
-      handlePlaceOfBirthAndReligionNext();
-    }
-  };
+  // Create Client Data submission
+  const { handleClientDataSubmit } = useSubmitClientAccountCreate({
+    contactInfo,
+    educationAndEmployment,
+    maritalStatusAndSpouse,
+    parentsOrGuardians,
+    personalInfo,
+    placeOfBirthAndReligion,
+    handleFormReset,
+    setMaritalStatusAndSpouseError,
+    setPlaceOfBirthAndReligionError,
+    // setEducationAndEmploymentError,
+  });
 
   // Update Client Information Submissions
   const { handleClientDataUpdate } = useSubmitClientAccountEdit({
@@ -274,8 +249,35 @@ const useClientAccount = (
     parentsOrGuardians,
     personalInfo,
     placeOfBirthAndReligion,
+    setMaritalStatusAndSpouseError,
+    setPlaceOfBirthAndReligionError,
+    // setEducationAndEmploymentError,
     editClient,
   });
+
+  //
+  // Client Edit form functionality end here
+  // personal info form Handler
+  const handleClintFormNextOperation = () => {
+    // Personal info form handler
+    if (stateCount === 1) {
+      const { isSuccessPersonalInfo } = handlePersonalInfoNext();
+      const { isSuccessContractInfo } = handleContactInformationNext();
+
+      // return;
+      if (!isSuccessPersonalInfo || !isSuccessContractInfo) {
+        return;
+      }
+      // handleContactInformationNext();
+      handleStepNext();
+    }
+    // Personal info form handler
+    if (stateCount === 2) {
+      parentsOrGuardiansNext();
+      // handleStepNext();
+      return;
+    }
+  };
 
   return {
     // form step state and handler
@@ -323,6 +325,9 @@ const useClientAccount = (
     // contractInfo phone reset function
     notZMPhoneResetContractInfo,
 
+    //
+    // handleMaritalStatusAndSpouseNext,
+    // handlePlaceOfBirthAndReligionNext,
     // Submit Handler
     handleClientDataSubmit,
     handleClientDataUpdate,

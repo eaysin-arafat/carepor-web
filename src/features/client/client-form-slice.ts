@@ -7,18 +7,20 @@ const initialState = {
   //   formTotalSteps: 6,
 };
 
+const totalStep = 3;
+
 export const clientFormSlice = createSlice({
   name: "client",
   initialState,
   reducers: {
     clientFormStepNext: (state) => {
-      state.formStep = Math.min(state.formStep + 1, 6);
+      state.formStep = Math.min(state.formStep + 1, totalStep);
     },
     clientFormStepBack: (state) => {
       state.formStep = Math.max(state.formStep - 1, 1);
     },
     setClientFormStep: (state, action: PayloadAction<number>) => {
-      state.formStep = Math.min(Math.max(action.payload, 1), 6);
+      state.formStep = Math.min(Math.max(action.payload, 1), totalStep);
     },
   },
 });

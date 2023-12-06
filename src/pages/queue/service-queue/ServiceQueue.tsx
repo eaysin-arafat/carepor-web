@@ -1,8 +1,5 @@
 import QueueTableLayout from "@/components/queue/QueueTableLayout";
 import ServiceQueueFilters from "@/components/queue/service-queue/ServiceQueueFilters";
-import Table from "@/components/shared/table/Table";
-import TableBody from "@/components/shared/table/TableBody";
-import TableHeader from "@/components/shared/table/TableHeader";
 import useWindowWidth from "@/hooks/useWindow";
 
 function ServiceQueue() {

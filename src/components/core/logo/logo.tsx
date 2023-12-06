@@ -23,7 +23,7 @@ function AppLogo({ marginTop, type, className }: Props) {
             <div className="flex justify-center ">
               <div
                 className={cn(
-                  "w-[126px] h-[126px] border-4 border-borderColor bg-whiteBgColor rounded-full flex justify-center items-center",
+                  "w-[126px] h-[126px] border-4 border-borderColor bg-whiteBgColor dark:bg-black md:bg-whiteBgColor dark:md:bg-whiteBgColor rounded-full flex justify-center items-center",
                   marginTop
                 )}
               >

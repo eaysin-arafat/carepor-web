@@ -6,6 +6,8 @@ import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import maritalStatusAndSpouseValidation from "../marital-status-And-spouse/maritalStatusAndSpouseValidation";
+import placeOfBirthReligiousValidation from "../place-of-birth-religious/placeOfBirthReligiousValidation";
 
 const useSubmitClientAccountEdit = ({
   contactInfo,
@@ -15,6 +17,9 @@ const useSubmitClientAccountEdit = ({
   personalInfo,
   placeOfBirthAndReligion,
   editClient,
+  setMaritalStatusAndSpouseError,
+  setPlaceOfBirthAndReligionError,
+  // setEducationAndEmploymentError,
 }) => {
   const [clientUpdate, { status, isError, isSuccess, error }] =
     useClientUpdateMutation();
@@ -28,6 +33,24 @@ const useSubmitClientAccountEdit = ({
 
   const handleClientDataUpdate = async (e: FormEvent) => {
     e.preventDefault();
+
+    //with three step
+    const { isMaritalStatusAndSpouseValid, maritalStatusAndSpouseErrors } =
+      maritalStatusAndSpouseValidation(maritalStatusAndSpouse);
+    const { isPlaceOfBirthReligious, placeOfBirthReligiousErrors } =
+      placeOfBirthReligiousValidation(placeOfBirthAndReligion);
+
+    if (!isMaritalStatusAndSpouseValid) {
+      setMaritalStatusAndSpouseError(maritalStatusAndSpouseErrors);
+      setPlaceOfBirthAndReligionError(maritalStatusAndSpouseErrors);
+    }
+    if (!isPlaceOfBirthReligious) {
+      setMaritalStatusAndSpouseError(maritalStatusAndSpouseErrors);
+      setPlaceOfBirthAndReligionError(placeOfBirthReligiousErrors);
+    }
+    if (!isMaritalStatusAndSpouseValid || !isPlaceOfBirthReligious) {
+      return false;
+    }
 
     const clientData = {
       oid: editClient.oid,
