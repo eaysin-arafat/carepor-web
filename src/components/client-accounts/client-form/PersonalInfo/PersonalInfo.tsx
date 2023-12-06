@@ -16,15 +16,18 @@ type Props = {
   personalInfo: ClientPersonalInfoType;
   personalInfoError: ClientPersonalInfoErrorType;
   handlePersonalInfoChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleNrcChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   alreadyExists: string;
 };
 
 function ClientPersonalInfo({
   personalInfo,
   handlePersonalInfoChange,
+  handleNrcChange,
   personalInfoError,
   alreadyExists,
 }: Props) {
+  console.log(personalInfo.nrc);
   return (
     <>
       <SectionWrapper title="Personal Information">
@@ -96,7 +99,6 @@ function ClientPersonalInfo({
                       : ""
                   } `}
                 >
-                  {" "}
                   {getAgeMessage(personalInfo?.dob)?.ageMessage}
                 </span>
               </div>
@@ -107,7 +109,7 @@ function ClientPersonalInfo({
               label="NRC"
               name="nrc"
               state={personalInfo.nrc}
-              onChange={handlePersonalInfoChange}
+              onChange={handleNrcChange}
               errMsg={alreadyExists || personalInfoError?.nrc}
               required={!personalInfo.noNRC}
               disabled={personalInfo.noNRC}

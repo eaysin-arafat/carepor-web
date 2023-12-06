@@ -1,4 +1,5 @@
 import PrivateGuard from "@/components/shared/guard/PrivateGuard";
+import UserLayout from "@/layout/UserLayout";
 import ChangePassword from "@/pages/user-accounts/change-password/ChangePassword";
 import UserAccountDetails from "@/pages/user-accounts/details/UserAccountDetils";
 import EditUserAccount from "@/pages/user-accounts/edit/UserAccountEdit";
@@ -21,20 +22,25 @@ const UserAccountsRouter = [
     element: <PrivateGuard />,
     children: [
       {
-        path: URLUserAccountEdit({ userId: ":userId" }),
-        element: <EditUserAccount />,
-      },
-      {
-        path: URLUserAccountDetails(":id"),
-        element: <UserAccountDetails />,
-      },
-      {
         path: URLForgotPassword(),
         element: "<ForgotPassword />",
       },
       {
         path: URLChangePassword(),
         element: <ChangePassword />,
+      },
+      {
+        element: <UserLayout />,
+        children: [
+          {
+            path: URLUserAccountEdit({ userId: ":userId" }),
+            element: <EditUserAccount />,
+          },
+          {
+            path: URLUserAccountDetails(":id"),
+            element: <UserAccountDetails />,
+          },
+        ],
       },
     ],
   },

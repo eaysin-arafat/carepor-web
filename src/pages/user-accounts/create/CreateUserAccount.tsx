@@ -1,10 +1,12 @@
 import BackButton from "@/components/core/buttons/BackButton";
+import LinkButton from "@/components/core/buttons/LinkButton";
 import NextButton from "@/components/core/buttons/NextButton";
 import FormWrapper from "@/components/core/form-layouts/FormWrapper";
 import MultiStepComponent from "@/components/shared/multi-step/multiStep";
 import ContactInfo from "@/components/user-accounts/ContactInfo";
 import LoginInfo from "@/components/user-accounts/LoginInfo";
 import PersonalInfo from "@/components/user-accounts/PersonalInfo";
+import { URLUserLogin } from "@/routers/public";
 import useUserRegistration from "./useCreate";
 
 function CreateUserAccount() {
@@ -13,6 +15,7 @@ function CreateUserAccount() {
     countries,
     errors,
     handleCellphoneChange,
+    handleChangeCellphoneAndCode,
     handleContactInfoChange,
     handleLoginInfoChange,
     handleNrcChange,
@@ -46,6 +49,8 @@ function CreateUserAccount() {
           titleClass="text-center"
           maxWidth="max-w-[1022px]"
           noBackground
+          className="rounded-lg"
+          childrenMaxWidth="w-full"
         >
           <>
             <form action="" className="my-5" onSubmit={handleSubmit}>
@@ -68,6 +73,7 @@ function CreateUserAccount() {
                   errors={errors}
                   countries={countries}
                   handleCellphoneChange={handleCellphoneChange}
+                  handleChangeCellphoneAndCode={handleChangeCellphoneAndCode}
                   isCellphoneValid={isCellphoneValid}
                 />
               )}
@@ -82,26 +88,29 @@ function CreateUserAccount() {
                 />
               )}
 
-              <div className="flex gap-5 mt-5 justify-end">
-                <BackButton
-                  disabled={disabledBackButton}
-                  title="Back"
-                  type="button"
-                  onClick={handleBack}
-                  className="w-40"
-                />
-                {stateCount === 3 && (
-                  <NextButton title="Submit" type="submit" className="" />
-                )}
-
-                {stateCount !== 3 && (
-                  <NextButton
-                    title="Next"
+              <div className="flex gap-5 mt-5 justify-between">
+                <LinkButton title="Cancel" link={URLUserLogin()} />
+                <div className="flex gap-5 justify-end">
+                  <BackButton
+                    disabled={disabledBackButton}
+                    title="Back"
                     type="button"
-                    onClick={handleNext}
+                    onClick={handleBack}
                     className="w-40"
                   />
-                )}
+                  {stateCount === 3 && (
+                    <NextButton title="Submit" type="submit" className="" />
+                  )}
+
+                  {stateCount !== 3 && (
+                    <NextButton
+                      title="Next"
+                      type="button"
+                      onClick={handleNext}
+                      className="w-40"
+                    />
+                  )}
+                </div>
               </div>
             </form>
           </>

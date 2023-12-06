@@ -169,7 +169,7 @@ function DatePicker({
         className="relative flex w-[100%] flex-col items-start justify-start gap-[6px]"
       >
         <div className="flex">
-          <div className="text-blackColor leading-[125%] capitalize ">
+          <div className="input_label ">
             {" "}
             {label}
           </div>

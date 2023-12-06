@@ -2,6 +2,9 @@ import { LoginDataType } from "@/types";
 import { API } from "../API/API";
 import { login, logout } from "../authentication/authentication-slice";
 
+let countryCodeEncode = (countryCode: string): string =>
+  countryCode.replace(/\+/g, "%2B");
+
 const userAccountsApi = API.injectEndpoints({
   endpoints: (builder) => ({
     /**
@@ -244,7 +247,9 @@ const userAccountsApi = API.injectEndpoints({
      */
     checkUserMobile: builder.query({
       query: ({ userMobile, countryCode }) => ({
-        url: `/user-account/user-check-by-cell?userMobile=${userMobile}&CountryCode=${countryCode}`,
+        url: `/user-account/user-check-by-cell?userMobile=${userMobile}&CountryCode=${countryCodeEncode(
+          countryCode
+        )}`,
         method: "GET",
       }),
     }),
@@ -258,8 +263,8 @@ const userAccountsApi = API.injectEndpoints({
       query: (body) => ({
         // url: "/user-account/change-password",
         url: "/user-account/update-password",
-        method: "PUT",
-        // method: "POST",
+        // method: "PUT",
+        method: "POST",
         body,
       }),
     }),

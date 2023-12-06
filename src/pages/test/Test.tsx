@@ -6,6 +6,7 @@ import { useState } from "react";
 
 function Test() {
   const [state, setState] = useState(1);
+
   const data = [
     {
       id: 1,
@@ -81,7 +82,7 @@ function Test() {
     },
     {
       id: 9,
-      name: "Colleen Hurst",
+      name: "orem ipsum dolor sit amet consectetur adipisicing elit. Maxime ",
       position: "Javascript Developer",
       office: "San Francisco",
       age: "39",
@@ -90,7 +91,7 @@ function Test() {
     },
     {
       id: 10,
-      name: "Sonya Frost",
+      name: "orem ipsum dolor sit amet e eiuseniet aliquid culpa officia aut! Impedit sit sunt quaerat",
       position: "Software Engineer",
       office: "Edinburgh",
       age: "23",
@@ -112,15 +113,32 @@ function Test() {
       >
         <div className="w-full">
           <Table>
-            <TableHeader />
+            <TableHeader
+              isAction
+              title={["Name", "Age", "Salary", "Date", "Address", "Position"]}
+            />
             {data.map((item, index) => (
-              <TableBody item={item} index={index} />
+              <TableBody
+                index={index}
+                isAction
+                edit
+                delete
+                show
+                item={[
+                  item.name,
+                  item.age,
+                  item.salary,
+                  item.date,
+                  item.office,
+                  item.position,
+                ]}
+              />
             ))}
           </Table>
           <div className="flex justify-end">
             <CustomPagination
               activePage={50}
-              itemsCountPerPage={1}
+              itemsCountPerPage={state}
               setActivePage={setState}
               totalItemsCount={1000}
             />

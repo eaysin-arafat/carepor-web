@@ -1,6 +1,7 @@
 import { RootState } from "@/app/store";
 import { setIsRegisteredFalse } from "@/features/authentication/authentication-slice";
 import { useCreateFacilityAccessMutation } from "@/features/facility-access/facility-access-api";
+import { useGetUserAccessByUserNameMutation } from "@/features/user-accounts/user-accounts-api";
 import useManageFacility from "@/hooks/useManageFacility";
 import { URLSelectFacility } from "@/routers/facility";
 import { FormSubmitEventType } from "@/types/htmlEvents";
@@ -10,6 +11,7 @@ import { useDispatch } from "react-redux";
 
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 type FacilityRequestType = {
   isDeleted: boolean;
@@ -29,6 +31,10 @@ const useRequestFacility = () => {
     (state: RootState) => state.authentication
   );
 
+  // Redux query state
+  const [getFacilityAccesses, { data: accesses }] =
+    useGetUserAccessByUserNameMutation();
+
   const [
     sendFacilityRequest,
     { data: facilityAccess, isError, isSuccess, status, error },
@@ -47,27 +53,40 @@ const useRequestFacility = () => {
   const handleSendFacilityRequest = (e: FormSubmitEventType): void => {
     e.preventDefault();
 
-    const { isFacilityValid } = facilityValid();
-    if (!isFacilityValid) {
-      return;
+    let findApproved =
+      Array.isArray(accesses?.userAccount?.facilityAccesses) &&
+      accesses?.userAccount?.facilityAccesses?.find((item) => {
+        return (
+          item.facilityId == facilityState?.facility &&
+          item?.isApproved === true
+        );
+      });
+
+    if (findApproved || user.userType == 1) {
+      Alert.warning("Already Permitted!");
+    } else {
+      const { isFacilityValid } = facilityValid();
+      if (!isFacilityValid) {
+        return;
+      }
+
+      const today = () => {
+        return new Date().toISOString();
+      };
+      const requestData: FacilityRequestType = {
+        isDeleted: false,
+        dateRequested: today(),
+        dateApproved: null,
+        isApproved: false,
+        isIgnored: false,
+        forgotPassword: false,
+        userAccountId: user?.oid,
+        facilityId: facilityState.facility,
+      };
+
+      // request
+      sendFacilityRequest(requestData);
     }
-
-    const today = () => {
-      return new Date().toISOString();
-    };
-    const requestData: FacilityRequestType = {
-      isDeleted: false,
-      dateRequested: today(),
-      dateApproved: null,
-      isApproved: false,
-      isIgnored: false,
-      forgotPassword: false,
-      userAccountId: user?.oid,
-      facilityId: facilityState.facility,
-    };
-
-    // request
-    sendFacilityRequest(requestData);
   };
 
   //@ts-ignore
@@ -92,6 +111,10 @@ const useRequestFacility = () => {
   const handleCancelRequest = (): void => {
     navigate(URLSelectFacility());
   };
+
+  useEffect(() => {
+    getFacilityAccesses(user?.username);
+  }, [user?.username]);
 
   return {
     districtOptions,

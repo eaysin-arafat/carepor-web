@@ -29,6 +29,7 @@ function MaritalStatusAndSpouse({
               <Select
                 label="Marital Status"
                 name="maritalStatus"
+                required
                 value={maritalStatusAndSpouse.maritalStatus}
                 onChange={handleMaritalStatusAndSpouseChange}
                 errMsg={maritalStatusAndSpouseError?.maritalStatus}
@@ -49,6 +50,7 @@ function MaritalStatusAndSpouse({
                 onChange={handleMaritalStatusAndSpouseChange}
                 errMsg={maritalStatusAndSpouseError?.spousesLegalName}
                 disabled={maritalStatusAndSpouse.maritalStatus != "2"}
+                required={maritalStatusAndSpouse.maritalStatus == "2"}
               />
             </div>
             <div className="col-span-2 md:col-span-1">
@@ -59,6 +61,7 @@ function MaritalStatusAndSpouse({
                 onChange={handleMaritalStatusAndSpouseChange}
                 errMsg={maritalStatusAndSpouseError?.spousesSurname}
                 disabled={maritalStatusAndSpouse.maritalStatus != "2"}
+                required={maritalStatusAndSpouse.maritalStatus == "2"}
               />
             </div>
           </div>

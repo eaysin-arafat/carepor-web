@@ -72,7 +72,7 @@ span {
   }
 
   .heading_2 {
-    @apply text-3xl font-medium leading-normal tracking-tighter dark:text-white;
+    @apply text-2xl md:text-3xl font-medium leading-normal tracking-tighter dark:text-white;
   }
 
   .heading_3 {
@@ -93,6 +93,10 @@ span {
 
   .custom-input {
     @apply w-full rounded-full text-blackColor dark:text-gray-400 bg-whiteColor dark:bg-[#000] box-border flex flex-row items-center justify-start py-[12px] px-4 border-[2px] border-solid border-borderColor dark:border-gray-800 focus:border-borderColor focus:shadow-none outline-none focus:outline-none focus:ring-0;
+  }
+
+  .input_label {
+    @apply text-blackColor dark:text-[#F2F3F5] leading-[125%] capitalize;
   }
 
   .input_cellphone {
@@ -149,6 +153,22 @@ span {
   .svg_white {
     @apply filter brightness-0 invert transition-all;
   }
+}
+
+.light input:-webkit-autofill,
+.light input:-webkit-autofill:hover,
+.light input:-webkit-autofill:focus,
+.light input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:hover,
+.dark input:-webkit-autofill:focus,
+.dark input:-webkit-autofill:active {
+    -webkit-text-fill-color: #e7e7e7;
+    -webkit-box-shadow: 0 0 0px 1000px black inset;
+    transition: background-color 5000s ease-in-out 0s;
 }
 
 html {

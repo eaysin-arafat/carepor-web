@@ -31,7 +31,7 @@ function ContactInformation({
           <div className="grid md:grid-cols-2 gap-5">
             <div className="grid md:grid-cols-2 md:col-span-1">
               <h2 className="text-lg text-blackColor col-span-2 mb-5">
-                Cellphone Number : <span className="text-dangerColor"> *</span>
+                Cellphone Number : <span className="text-dangerColor"></span>
               </h2>
               <div className="col-span-2 items-center ">
                 <div className="grid grid-cols-3 gap-2">
@@ -43,6 +43,7 @@ function ContactInformation({
                       onChange={handleContactInformationChange}
                       errMsg={contactInfoError?.cellphoneCountryCode}
                       disabled={contactInfo.noCellphone}
+                      required={!contactInfo.noCellphone}
                       resetCellPhone={() =>
                         notZMPhoneResetContractInfo("cellphone")
                       }
@@ -51,12 +52,13 @@ function ContactInformation({
                   <div className="col-span-2">
                     <PhoneNumberInput
                       name="cellphone"
+                      label="Cellphone Number"
                       value={contactInfo.cellphone}
                       onChange={handleContactInformationChange}
                       countryCode={contactInfo.cellphoneCountryCode}
                       errMsg={contactInfoError?.cellphone}
                       disabled={contactInfo.noCellphone}
-                      label="Cellphone Number"
+                      required={!contactInfo.noCellphone}
                     />
                   </div>
                 </div>
@@ -82,6 +84,7 @@ function ContactInformation({
                     <CountryCode
                       value={contactInfo.otherCellphoneCountryCode}
                       label="Code"
+                      disabled={contactInfo.noCellphone}
                       name="otherCellphoneCountryCode"
                       onChange={handleContactInformationChange}
                       errMsg={contactInfoError?.otherCellphoneCountryCode}
@@ -94,6 +97,7 @@ function ContactInformation({
                     <PhoneNumberInput
                       label="Cellphone Number"
                       name="otherCellphone"
+                      disabled={contactInfo.noCellphone}
                       value={contactInfo.otherCellphone}
                       onChange={handleContactInformationChange}
                       errMsg={contactInfoError?.otherCellphone}
@@ -102,8 +106,7 @@ function ContactInformation({
                   </div>
                 </div>
               </div>
-              <div className="col-span-2 md:mt-10">
-              </div>
+              <div className="col-span-2 md:mt-10"></div>
             </div>
           </div>
 

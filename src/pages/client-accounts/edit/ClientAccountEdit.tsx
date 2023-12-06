@@ -31,6 +31,9 @@ function ClientAccountEdit() {
           titleClass="text-center"
           maxWidth="max-w-[1022px]"
           noBackground
+          isAppNameHide
+          className="rounded-lg"
+          childrenMaxWidth="w-full"
         >
           {/* {isLoading && <div>Loading...</div>} */}
           {isSuccess && (
