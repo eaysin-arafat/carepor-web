@@ -101,10 +101,19 @@ const mothersSectionValidation = (formData: ClientParentsOrGuardiansType) => {
     errors.motherNationality = "Please select nationality";
 
   if (
-    (mothersNRC || motherNAPSANumber) &&
-    (!motherNationality || !mothersFirstName || !mothersSurname)
+    mothersNRC ||
+    motherNAPSANumber ||
+    motherNationality ||
+    mothersFirstName ||
+    mothersSurname
   ) {
-    mothersDataIncomplete = true;
+    if (!mothersFirstName) errors.mothersFirstName = "Please enter first name";
+    if (!mothersSurname) errors.mothersSurname = "Please enter sure name";
+    if (!motherNationality)
+      errors.motherNationality = "Please select nationality";
+    if (!motherNationality || !mothersFirstName || !mothersSurname) {
+      mothersDataIncomplete = true;
+    }
   } else {
     mothersDataIncomplete = false;
   }
@@ -132,10 +141,18 @@ const fatherSectionValidation = (formData: ClientParentsOrGuardiansType) => {
   if (!fatherNationality) errors.fatherNationality = "Please Select National";
 
   if (
-    (fathersNRC || fatherNAPSANumber) &&
-    (!fatherNationality || !fathersFirstName || !fathersSurname)
+    fathersNRC ||
+    fatherNAPSANumber ||
+    fatherNationality ||
+    fathersFirstName ||
+    fathersSurname
   ) {
-    fathersDataIncomplete = true;
+    if (!fathersFirstName) errors.fathersFirstName = "Please enter first name";
+    if (!fathersSurname) errors.fathersSurname = "Please enter sure name";
+    if (!fatherNationality) errors.fatherNationality = "Please Select National";
+    if (!fatherNationality || !fathersFirstName || !fathersSurname) {
+      fathersDataIncomplete = true;
+    }
   } else {
     fathersDataIncomplete = false;
   }
@@ -146,6 +163,7 @@ const fatherSectionValidation = (formData: ClientParentsOrGuardiansType) => {
     fathersDataIncomplete,
   };
 };
+
 const guardianSectionValidation = (formData: ClientParentsOrGuardiansType) => {
   const errors: ClientParentsOrGuardiansErrorType = {};
   let guardianDataIncomplete: boolean = false;
@@ -166,10 +184,22 @@ const guardianSectionValidation = (formData: ClientParentsOrGuardiansType) => {
     errors.guardianNationality = "Please select nationality";
 
   if (
-    (guardianRelationship || guardianNAPSANumber || guardiansNRC) &&
-    (!guardianNationality || !guardiansFirstName || !guardiansSurname)
+    guardianRelationship ||
+    guardianNAPSANumber ||
+    guardiansNRC ||
+    guardianNationality ||
+    guardiansFirstName ||
+    guardiansSurname
   ) {
-    guardianDataIncomplete = true;
+    if (!guardiansFirstName)
+      errors.guardiansFirstName = "Please enter first name";
+    if (!guardiansSurname) errors.guardiansSurname = "Please enter sure name";
+    if (!guardianNationality)
+      errors.guardianNationality = "Please select nationality";
+
+    if (!guardianNationality || !guardiansFirstName || !guardiansSurname) {
+      guardianDataIncomplete = true;
+    }
   } else {
     guardianDataIncomplete = false;
   }

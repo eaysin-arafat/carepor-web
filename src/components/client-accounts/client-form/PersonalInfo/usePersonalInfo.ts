@@ -1,5 +1,4 @@
 import {
-  ClientObjectType,
   ClientPersonalInfoErrorType,
   ClientPersonalInfoType,
 } from "@/types/clientTypes";
@@ -84,6 +83,12 @@ const usePersonalInfo = ({
     setPersonalInfo((prev) => ({ ...prev, [name]: value }));
     setPersonalInfoError((prev) => ({ ...prev, [name]: "" }));
   };
+  // handle NRC change
+  const handleNrcChange = (e: OnchangeEventType): void => {
+    const { name, value } = e.target;
+    setPersonalInfo((prev) => ({ ...prev, [name]: value }));
+    setPersonalInfoError((prev) => ({ ...prev, [name]: "" }));
+  };
 
   const handlePersonalInfoNext = () => {
     if (isEditForm) {
@@ -121,6 +126,7 @@ const usePersonalInfo = ({
     handlePersonalInfoChange,
     // personalInfo,
     handlePersonalInfoNext,
+    handleNrcChange,
   };
 };
 

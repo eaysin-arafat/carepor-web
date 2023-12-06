@@ -2,7 +2,9 @@
 // import { changePasswordValidator } from "@/validation-model/change-password";
 import { RootState } from "@/app/store";
 import { RtkStatusEnum } from "@/enum/rtk";
+import { logout } from "@/features/authentication/authentication-slice";
 import { useChangedPasswordMutation } from "@/features/user-accounts/user-accounts-api";
+import { URLClientSearch } from "@/routers/client";
 
 import { FormSubmitEventType, OnchangeEventType } from "@/types/htmlEvents";
 import {
@@ -10,10 +12,14 @@ import {
   ChangePasswordFormType,
 } from "@/types/user-accounts";
 import Alert from "@/utilities/alert";
+import { cookieManager } from "@/utilities/cookie-manager";
 import { changePasswordValidator } from "@/validation-models/change-password";
 // import { formEvent } from "@/types/htmlEvents";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 // initial state
 const initialState = {
@@ -23,6 +29,8 @@ const initialState = {
 };
 
 function useChangePassword() {
+  // const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { user } = useSelector((state: RootState) => state.authentication);
 
   const [fromData, setFromData] =
@@ -56,13 +64,22 @@ function useChangePassword() {
     updatePassword({ ...fromData, username: user?.username });
   };
 
+  // If Required redirect to login after change password. ***
+  // const handleLogout = () => {
+  //   cookieManager.removeCookie("carepro_token");
+  //   dispatch(logout());
+  // };
+
   // handle error side effect
   React.useEffect(() => {
     if (isError && status === RtkStatusEnum.rejected) {
       Alert.error("Password change failed");
     }
-    if (isError && status === RtkStatusEnum.fulfilled) {
-      Alert.success("Password change successful");
+    if (isSuccess && status === RtkStatusEnum.fulfilled) {
+      // Alert.success("Password change successful");
+      toast.success("Password change successful");
+      // handleLogout(); ***
+      navigate(URLClientSearch());
     }
   }, [isError, isSuccess, status, error]);
 

@@ -7,7 +7,13 @@ export class TypeValidation {
   };
 
   static isPhoneNumber(value: string): boolean {
-    return /^[0-9]{11}$/.test(value);
+    return /^[0-9]{9,11}$/.test(value);
+  }
+  static isZmPhoneInput(value: string): boolean {
+    return /^0?\d{0,9}$/.test(value);
+  }
+  static isNotZMPhoneInput(value: string): boolean {
+    return /^\d{0,11}$/.test(value);
   }
 
   static isOnlyInteger(value: string): boolean {
@@ -28,7 +34,7 @@ export class TypeValidation {
     return /^[a-zA-Z]{0,1}[a-zA-Z ]*$/.test(value);
   }
   static isOnlyNameField(value: string): boolean {
-    return /^[a-zA-Z]{0,1}[a-zA-Z .]*$/.test(value);
+    return /^[a-zA-Z]{0,1}[a-zA-Z .]{0,59}$/.test(value);
   }
 
   static isOnlyAlphaNumeric(value: string): boolean {
@@ -61,5 +67,8 @@ export class TypeValidation {
 
   static isNrcValid(value: string): boolean {
     return /^\d{6}\/\d{2}\/\d{1}$/.test(value);
+  }
+  static isUserNameInput(value: string): boolean {
+    return /^[A-Za-z0-9]{0,30}$/.test(value);
   }
 }

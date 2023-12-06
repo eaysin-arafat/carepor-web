@@ -26,7 +26,12 @@ const useContactInformation = ({
     if (type === "checkbox") {
       // noCellphone
       if (checked === true) {
-        setContactInfo((prev) => ({ ...prev, [name]: checked, cellphone: "" }));
+        setContactInfo((prev) => ({
+          ...prev,
+          [name]: checked,
+          cellphone: "",
+          otherCellphone: "",
+        }));
         setContactInfoError((prev) => ({ ...prev, [name]: "" }));
       } else {
         setContactInfo((prev) => ({ ...prev, [name]: checked }));

@@ -7,7 +7,7 @@ import Vitals from "@/pages/vitals/Vitals";
 //! Will change later Dashboard URL
 export const URLDashboard = (): string => "/dashboard";
 export const URLUserAccountCreate = (): string => "/user-accounts/create";
-export const URLUserLogin = (): string => "/";
+
 export const URLUserRecoveryRequest = (): string => "/recovery-request";
 import Investigation from "@/pages/investigations/index/Investigation";
 

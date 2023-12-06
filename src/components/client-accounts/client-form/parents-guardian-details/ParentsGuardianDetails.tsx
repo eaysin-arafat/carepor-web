@@ -24,18 +24,7 @@ function ParentsGuardianDetails({
   parentsOrGuardians,
   parentsOrGuardiansError,
   handleParentsGuardianDetailsChange,
-}: // guardianSECError,
-Props) {
-  // useEffect(() => {
-  //   if (guardianSECError?.isParentsOrGuardianFormError) {
-  //     setFormErrMsg(
-  //       "Please complete at last one section of mother, father or guardian."
-  //     );
-  //   } else {
-  //     setFormErrMsg("");
-  //   }
-  // }, [guardianSECError?.isParentsOrGuardianFormError]);
-
+}: Props) {
   return (
     <>
       <FormSection
@@ -134,7 +123,6 @@ Props) {
                 value={parentsOrGuardians.fathersFirstName}
                 onChange={handleParentsGuardianDetailsChange}
                 errMsg={parentsOrGuardiansError?.fathersFirstName}
-                required
               />
             </div>
             <div className="col-span-6 md:col-span-3">
@@ -144,7 +132,6 @@ Props) {
                 value={parentsOrGuardians.fathersSurname}
                 onChange={handleParentsGuardianDetailsChange}
                 errMsg={parentsOrGuardiansError?.fathersSurname}
-                required
               />
             </div>
             <div className="col-span-6 md:col-span-3">
@@ -206,7 +193,6 @@ Props) {
                 value={parentsOrGuardians.guardiansFirstName}
                 onChange={handleParentsGuardianDetailsChange}
                 errMsg={parentsOrGuardiansError?.guardiansFirstName}
-                required
               />
             </div>
             <div className="col-span-6 md:col-span-3">
@@ -216,7 +202,6 @@ Props) {
                 value={parentsOrGuardians.guardiansSurname}
                 onChange={handleParentsGuardianDetailsChange}
                 errMsg={parentsOrGuardiansError?.guardiansSurname}
-                required
               />
             </div>
             <div className="col-span-6 md:col-span-3">

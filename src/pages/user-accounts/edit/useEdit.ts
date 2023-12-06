@@ -1,11 +1,12 @@
 import { RootState } from "@/app/store";
+import { API } from "@/features/API/API";
 import { useReadCountriesQuery } from "@/features/country/country-api";
 import {
   useCheckUserMobileQuery,
   useCheckUserNRCQuery,
   useUpdateUserAccountMutation,
 } from "@/features/user-accounts/user-accounts-api";
-import { FormSubmitEventType } from "@/types/htmlEvents";
+import { FormSubmitEventType, OnchangeEventType } from "@/types/htmlEvents";
 import {
   ContactInfoType,
   ErrorsType,
@@ -17,7 +18,7 @@ import { userAccountPersonalInfoValidator } from "@/validation-models/user-accou
 import { debounce } from "lodash";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const initialPersonalInfo = {
@@ -36,6 +37,9 @@ const initialContactInfo = {
 
 function useEditUserAccounts() {
   const { user } = useSelector((state: RootState) => state.authentication);
+
+  // test with promises
+  const dispatch = useDispatch();
 
   //  nrc state
   const [nrc, setNrc] = useState(user?.nrc || "");
@@ -104,10 +108,20 @@ function useEditUserAccounts() {
   // handle personal information changes
   const handlePersonalInfoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    const nameField = ["firstName", "surname", "designation"];
+    if (nameField.includes(name)) {
+      if (TypeValidation.isOnlyNameField(value)) {
+        setPersonalInfo((prev) => ({
+          ...prev,
+          [name]: value.replace(/  /g, " "),
+        }));
+        setErrors((prev) => ({ ...prev, [name]: "" }));
+      }
+      return;
+    }
     setPersonalInfo((prev) => ({ ...prev, [name]: value }));
     setErrors((prev) => ({ ...prev, [name]: "" }));
   };
-
   // handle contact information change
   const handleContactInfoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -128,6 +142,27 @@ function useEditUserAccounts() {
     if (value === "" || TypeValidation.isOnlyNumber(value))
       setContactInfo((prev) => ({ ...prev, cellphone: value }));
     setErrors((prev) => ({ ...prev, cellphone: "" }));
+  };
+
+  const handleChangeCellphoneAndCode = (e: OnchangeEventType) => {
+    const { name, value } = e.target;
+    if (name == "cellphone") {
+      setContactInfo((prev) => ({ ...prev, [name]: value }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
+      return;
+    }
+    if (name == "countryCode") {
+      setContactInfo((prev) => ({ ...prev, [name]: value }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
+      if (
+        value === "+260" &&
+        !TypeValidation.isZmPhoneInput(contactInfo.cellphone)
+      ) {
+        setContactInfo((prev) => ({ ...prev, cellphone: "" }));
+        setErrors((prev) => ({ ...prev, cellphone: "" }));
+      }
+      return;
+    }
   };
 
   // handle nrc change
@@ -176,6 +211,14 @@ function useEditUserAccounts() {
       key: user?.oid,
       body: data,
     });
+
+    // use with dispatch as promise
+    // dispatch(
+    //   API.endpoints.updateUserAccount.initiate()({
+    //     key: user?.oid,
+    //     body: data,
+    //   })
+    // );
   };
 
   // show success or fail status
@@ -235,6 +278,7 @@ function useEditUserAccounts() {
     handlePersonalInfoChange,
     handleContactInfoChange,
     handleCellphoneChange,
+    handleChangeCellphoneAndCode,
     handleSubmit,
     handleNrcChange,
     handleSetNoNRC,

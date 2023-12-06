@@ -8,7 +8,7 @@ export const URLUserAccountEdit = ({
   userId = ":userId",
 }: {
   userId: string;
-}): string => `/user-accounts/edit/${userId}`;
+}): string => `/user-accounts/edit`;
 
 export const URLUserAccountDetails = (id: string): string =>
   `/user-accounts/details/${id}`;
