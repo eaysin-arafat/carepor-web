@@ -6,12 +6,14 @@ type Props = {
   item: Array<object | string | JSX.Element>;
   isAction?: boolean;
   length?: number;
+  actionWidth?: string;
   btn?: {
     show?: boolean;
     edit?: boolean;
     delete?: boolean;
     btn?: string;
-    btnOutline?: string;
+    btnOutline?: string; 
+    viewResult?: string; 
   };
 };
 
@@ -27,7 +29,7 @@ type Props = {
  * @returns
  */
 
-function TableBody({ item, index, isAction, btn }: Props) {
+function TableBody({ item, index, isAction, btn , actionWidth }: Props) {
   const action = (isAction && 1) || 0;
 
   return (
@@ -54,7 +56,7 @@ function TableBody({ item, index, isAction, btn }: Props) {
       ))}
       {isAction && (
         <p
-          className={`p-2 text-textColor flex gap-1.5 text-xs sticky right-0 z-50 ${
+          className={`p-2 text-textColor flex gap-1.5 text-xs sticky right-0 z-50 ${actionWidth }  ${
             index % 2 ? "bg-gray-100" : "bg-white"
           }`}
         >
@@ -85,6 +87,12 @@ function TableBody({ item, index, isAction, btn }: Props) {
           {btn?.btnOutline && (
             <button className="border rounded-full border-primaryColor text-primaryColor flex items-center justify-center  px-3 text-[13px] pt-[5px] pb-[3px]">
               {btn.btnOutline}
+            </button>
+          )}
+
+          {btn?.viewResult && (
+            <button className="border rounded-full border-primaryColor text-primaryColor flex items-center justify-center  px-3 text-[13px] pt-[5px] pb-[3px]">
+              {btn.viewResult}
             </button>
           )}
         </p>

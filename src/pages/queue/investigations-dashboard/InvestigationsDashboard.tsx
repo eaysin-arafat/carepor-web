@@ -10,6 +10,16 @@ import useWindowWidth from "@/hooks/useWindow";
 
 function InvestigationsDashboard() {
   const w1100 = useWindowWidth(1100);
+  
+  const Test2 = ({ aa }: { aa: string }) => {
+    return (
+      <div className="flex gap-1 items-center">
+        <span className="h-2 w-2 bg-green-500 rounded-full"></span>
+        <p>{aa}</p>
+      </div>
+    );
+  };
+
   return (
     <div className={`${w1100 && "mt-12"}`}>
       <InvestigationQueueFilters />
@@ -20,26 +30,60 @@ function InvestigationsDashboard() {
         image="/public/assets/icons/referrals.svg"
         titleClass="heading_3 text-secondaryColor"
         view="View All"
+        className="bg-gray-200"
       >
-        <Table className="bg-white rounded-xl w-full">
+        <Table isRounded>
           <TableHeader
+            className="bg-gray-300 "
             isAction
-            title={["Name", "Age", "Salary", "Date"]}
+            actionWidth="min-w-[270px]"
+            title={[
+              {
+                title: "Patient Name",
+                w: "20%",
+              },
+              {
+                title: "Priority",
+                w: "20%",
+              },
+              {
+                title: "Order Date",
+                w: "20%",
+              },
+              {
+                title: "Test",
+                w: "20%",
+              },
+              {
+                title: "Order Number",
+                w: "20%",
+              },
+              {
+                title: "Sample Date Collection",
+                w: "20%",
+              },
+            ]}
           />
           {data.map((item, index) => (
-          <TableBody
-            index={index}
-            isAction
-            edit
-            delete
-            show
-            item={[
-              item.name,
-              item.age,
-              item.salary,
-              item.date,
-            ]}
-          />))}
+            
+            <TableBody
+              index={index}
+              isAction
+              actionWidth="min-w-[270px]"
+              btn={{
+                viewResult: "View Results",
+                btnOutline: "Sample Collected",
+              }}
+              item={[
+                { title: item.name, w: "20%" },
+                { title: <Test2 aa={item?.priority} key="test" /> , w: "20%" },
+                { title: item.orderDate, w: "20%" },
+                { title: item.test, w: "20%" },
+                { title: item.orderNumber, w: "20%" },
+                { title: item.sample, w: "20%" },
+              ]}
+            />
+          ))}
         </Table>
         {/* <Table>
           <TableHead
@@ -70,29 +114,30 @@ const data = [
     id: 1,
     name: "Amir Hamza",
     age: "23",
-    date: "25 Nov, 2023",
-    salary: '50,000'
-  },
-  {
-    id: 1,
-    name: "John Doe",
-    age: "23",
-    date: "25 Nov, 2023",
-    salary: '50,000'
+    orderDate: "25 Nov, 2023",
+    priority: "Regular",
+    test: "test",
+    orderNumber: "1",
+    sample: "25 Nov, 2023",
   },
   {
     id: 1,
     name: "Amir Hamza",
     age: "23",
-    date: "25 Nov, 2023",
-    salary: '50,000'
+    orderDate: "25 Nov, 2023",
+    priority: "Regular",
+    test: "test",
+    orderNumber: "1",
+    sample: "25 Nov, 2023",
   },
   {
     id: 1,
-    name: "John Doe",
+    name: "Amir Hamza",
     age: "23",
-    date: "25 Nov, 2023",
-    salary: '50,000'
+    orderDate: "25 Nov, 2023",
+    priority: "Regular",
+    test: "test",
+    orderNumber: "1",
+    sample: "25 Nov, 2023",
   },
-  
 ];

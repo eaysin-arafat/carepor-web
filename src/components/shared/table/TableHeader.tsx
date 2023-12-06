@@ -6,6 +6,7 @@ type Props = {
   isAction?: boolean;
   title: Array<object | string>;
   className?: string;
+  actionWidth?: string;
 };
 
 /**
@@ -15,10 +16,10 @@ type Props = {
  * @Props className Css Class Name
  * @returns
  */
-function TableHeader({ isAction, title, className }: Props) {
+function TableHeader({ isAction, title, className , actionWidth }: Props) {
   return (
     <div
-      className={cn("flex bg-primaryColor items-center", className)}
+      className={cn("flex bg-white items-center", className)}
       // style={{ gridTemplateColumns: `repeat(${title.length + action}, 1fr)` }}
     >
       <p className="p-2">
@@ -28,7 +29,7 @@ function TableHeader({ isAction, title, className }: Props) {
         <p
           className="p-2 text-white text-xs font-bold flex items-center gap-1"
           key={index}
-          style={{ width: item.w + "px" }}
+          style={{ width: item.w }}
         >
           {item.title}
           <div className="">
@@ -43,7 +44,7 @@ function TableHeader({ isAction, title, className }: Props) {
       ))}
 
       {isAction && (
-        <p className="p-2 text-white text-xs font-bold sticky right-0 z-50 bg-primaryColor">
+        <p className={` ${actionWidth} p-2 text-white text-xs font-bold sticky right-0 z-50 `}>
           Action
         </p>
       )}
