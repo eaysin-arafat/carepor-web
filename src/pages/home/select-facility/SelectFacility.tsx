@@ -33,7 +33,7 @@ const SelectFacility = () => {
         // maxWidth="max-w-[570px] "
         titleClass="text-center"
       >
-        <form onSubmit={handleRequestSubmit} className="my-0">
+        <form onSubmit={handleRequestSubmit} className="mt-8">
           <div className="flex flex-col gap-5">
             <Select
               onChange={facilityChangeHandler}

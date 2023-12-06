@@ -48,12 +48,9 @@ function FormWrapper({
 }: Props) {
   return (
     <BodyBackground noBackground={noBackground}>
-      {/* <div className="z-20 relative">
-        <ThemeSwitcher />
-      </div> */}
       <div
-        className={cn("mx-auto ", maxWidth, {
-          "flex items-center justify-center h-screen": contentCenter,
+        className={cn("mx-auto mt-10 xs:mt-auto ", maxWidth, {
+          "flex items-center justify-center xs:h-screen": contentCenter,
         })}
       >
         {/* <div className="flex items-center justify-center h-screen"> */}
@@ -91,7 +88,7 @@ function FormWrapper({
                 {title && (
                   <div
                     className={cn(
-                      "heading_2 text-4xl mt-5 font-normal text-secondaryColor",
+                      "heading_2 text-4xl text-center mt-5 font-normal text-secondaryColor",
                       titleClass
                     )}
                   >
