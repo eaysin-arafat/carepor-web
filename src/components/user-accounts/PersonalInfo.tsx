@@ -30,12 +30,22 @@ function PersonalInfo({
   isNrcValid,
   editMode = false,
 }: Props) {
-  const nrcRef = React.createRef<HTMLInputElement>();
+  // const nrcRef = React.createRef<HTMLInputElement>();
+  const nrcRef = React.useRef<HTMLInputElement>(null);
+
   useEffect(() => {
     if (nrcRef.current) {
       nrcRef.current.value = nrc;
     }
   }, [noNrc, nrcRef]);
+
+  useEffect(() => {
+    if (nrc && nrcRef.current) {
+      nrcRef.current.value = nrc;
+    }
+  }, []);
+
+  console.log("nrcRef", nrcRef);
 
   return (
     <>
@@ -58,6 +68,7 @@ function PersonalInfo({
             errMsg={errors.surname}
           />
           <DateInput
+            max={new Date()}
             label="Date of birth"
             selected={personalInfo.dob ? new Date(personalInfo.dob) : null}
             onChange={(date: Date) =>
@@ -91,11 +102,12 @@ function PersonalInfo({
           </div>
           <CustomNrc
             label="NRC"
-            {...(editMode && { state: nrc })}
+            // {...(editMode && { state: nrc })}
+            state={nrc}
             name="nrc"
             onChange={(e) => handleNrcChange(e.target.value)}
             disabled={noNrc}
-            required
+            required={!noNrc}
             errMsg={errors.nrc || (!isNrcValid ? "NRC already exists" : "")}
             ref={nrcRef}
           />

@@ -7,7 +7,7 @@ interface Props {
   loginInfo: LoginInfoType;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   errors?: ErrorsType;
-  handleUsernameChange: (e: string) => void;
+  handleUsernameChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   username: string;
   isUsernameValid?: boolean;
 }
@@ -18,7 +18,9 @@ function LoginInfo({
   errors,
   handleUsernameChange,
   isUsernameValid,
+  username,
 }: Props) {
+  console.log(username);
   return (
     <>
       <FormSection titleText="Login Information">
@@ -29,7 +31,8 @@ function LoginInfo({
               label="User Name"
               placeholder="Add User Name"
               name="username"
-              onChange={(e) => handleUsernameChange(e.target.value)}
+              value={username}
+              onChange={handleUsernameChange}
               errMsg={
                 errors?.username ||
                 (!isUsernameValid ? "Username already exists" : "")

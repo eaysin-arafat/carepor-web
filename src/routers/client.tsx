@@ -8,8 +8,6 @@ import ClientAccountEdit from "@/pages/client-accounts/edit/ClientAccountEdit";
 import ClientSearch from "@/pages/client-accounts/index/ClientSearch";
 import AssignServiceQueue from "@/pages/service-point/AssignServiceQueue";
 import ServicePoints from "@/pages/service-point/ServicePoints";
-import UserAccountDetails from "@/pages/user-accounts/details/UserAccountDetils";
-import EditUserAccount from "@/pages/user-accounts/edit/UserAccountEdit";
 import EditAdmission from "../pages/admissions/edit/Edit";
 import AdmissionDetails from "./../pages/admissions/details/AdmissionDetails";
 import AdmissionSearch from "./../pages/admissions/index/AdmissionSearch";
@@ -46,13 +44,6 @@ export const URLAdmissionDischarge = ({
 }: {
   clientId: string;
 }): string => `/admission-discharge/${clientId}`;
-export const URLUserAccountEdit = ({
-  userId = ":userId",
-}: {
-  userId: string;
-}): string => `/user-accounts/edit/${userId}`;
-export const URLUserAccountDetails = (id: string): string =>
-  `/user-accounts/details/${id}`;
 
 // routers for client pages
 const ClientRouter = [
@@ -109,14 +100,6 @@ const ClientRouter = [
           {
             path: URLAssignServiceQueue(),
             element: <AssignServiceQueue />,
-          },
-          {
-            path: URLUserAccountEdit({ userId: ":userId" }),
-            element: <EditUserAccount />,
-          },
-          {
-            path: URLUserAccountDetails(":id"),
-            element: <UserAccountDetails />,
           },
         ],
       },

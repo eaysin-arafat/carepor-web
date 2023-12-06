@@ -38,7 +38,7 @@ function UserLogin() {
               icon={HiInformationCircle}
               color="failure"
               onDismiss={() => setCredentialError("")}
-              className="mb-5"
+              className="mb-5 "
             >
               {credentialError}
             </Alert>

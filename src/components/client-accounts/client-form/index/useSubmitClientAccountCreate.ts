@@ -1,6 +1,7 @@
+import { RootState } from "@/app/store";
 import { useCreateClientMutation } from "@/features/client/client-api";
-import useFacility from "@/hooks/useFacility";
 import { URLClientDetails } from "@/routers/client";
+import { cookieManager } from "@/utilities/cookie-manager";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
@@ -27,10 +28,9 @@ const useSubmitClientAccountCreate = ({
   educationAndEmployment,
   handleFormReset,
 }) => {
-  // @ts-ignore
-  const { user } = useSelector((state) => state.authentication);
+  const { user } = useSelector((state: RootState) => state.authentication);
 
-  const facility = useFacility();
+  const facility = cookieManager.parseCookie("facility_token");
 
   const [
     clientRegistration,
@@ -44,6 +44,12 @@ const useSubmitClientAccountCreate = ({
     e: React.FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault();
+
+    //@ts-ignore
+    if (!facility?.facilityId) {
+      console.log("facility not found");
+      return;
+    }
 
     const baseData = {
       createdBy: user.oid,
@@ -62,7 +68,7 @@ const useSubmitClientAccountCreate = ({
       // modifiedBy: "f53101db-baf7-4f2c-4e44-08dbcd4df0dd",
     };
 
-    const clientData = {
+    const clientFormData = {
       ...baseData,
       // initialization state data
       ...personalInfo,
@@ -101,18 +107,20 @@ const useSubmitClientAccountCreate = ({
     };
 
     // RTK mutation // Post
-    clientRegistration(clientData);
+    clientRegistration(clientFormData);
   };
 
   // Handle Side Effects
   useEffect(() => {
     if (isSuccess && status === "fulfilled") {
-      toast.dismiss();
-      toast.success("Client registered successfully");
-      handleFormReset();
-      navigate(URLClientDetails(clientData.oid));
+      if (clientData.oid) {
+        toast.dismiss();
+        toast.success("Client registered successfully");
+        handleFormReset();
+        navigate(URLClientDetails({ id: clientData.oid }));
+      }
     }
-  }, [isSuccess]);
+  }, [isSuccess, clientData?.oid, status]);
 
   useEffect(() => {
     if (isError && status === "rejected") {

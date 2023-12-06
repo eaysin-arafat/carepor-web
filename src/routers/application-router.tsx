@@ -1,5 +1,6 @@
 import ModuleSidebar from "@/components/sidebar/ModuleSidebar";
 import Error from "@/pages/error/error";
+import CreateMedicalEncounter from "@/pages/medical-encounter/create/Create";
 import Test from "@/pages/test/Test";
 import RequestFacility from "@/pages/user-accounts/request-facility/RequestFacility";
 import FacilitySettings from "./FacilitySettings";
@@ -38,6 +39,10 @@ const Routes = [
         element: <Test />,
       },
     ],
+  },
+  {
+    path: "encounter",
+    element: <CreateMedicalEncounter />,
   },
 ];
 

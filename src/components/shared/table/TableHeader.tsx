@@ -1,68 +1,45 @@
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 
-type Props = {};
+type Props = {
+  isAction?: boolean;
+  title: Array<string>;
+};
 
-function TableHeader({}: Props) {
+/**
+ *
+ * @Props isAction it's for action column
+ * @Props title Table Title Array
+ * @returns
+ */
+function TableHeader({ isAction, title }: Props) {
+  const action = (isAction && 1) || 0;
   return (
-    <div className="grid grid-cols-6 bg-primaryColor items-center">
-      <p className="p-2 text-white text-xs font-bold flex items-center gap-1">
-        name
-        <div className="">
-          <button className="block">
-            <IoMdArrowDropup size={20} />
-          </button>
-          <button className="block p-0 mt-[-10px]">
-            <IoMdArrowDropdown size={20} />
-          </button>
-        </div>
-      </p>
-      <p className="p-2 text-white text-xs font-bold flex items-center gap-1">
-        Age
-        <div className="">
-          <button className="block">
-            <IoMdArrowDropup size={20} />
-          </button>
-          <button className="block p-0 mt-[-10px]">
-            <IoMdArrowDropdown size={20} />
-          </button>
-        </div>
-      </p>
-      <p className="p-2 text-white text-xs font-bold flex items-center gap-1">
-        Office
-        <div className="">
-          <button className="block">
-            <IoMdArrowDropup size={20} />
-          </button>
-          <button className="block p-0 mt-[-10px]">
-            <IoMdArrowDropdown size={20} />
-          </button>
-        </div>
-      </p>
-      <p className="p-2 text-white text-xs font-bold flex items-center gap-1">
-        Start Date
-        <div className="">
-          <button className="block">
-            <IoMdArrowDropup size={20} />
-          </button>
-          <button className="block p-0 mt-[-10px]">
-            <IoMdArrowDropdown size={20} />
-          </button>
-        </div>
-      </p>
-      <p className="p-2 text-white text-xs font-bold flex items-center gap-1">
-        Salary
-        <div className="">
-          <button className="block">
-            <IoMdArrowDropup size={20} />
-          </button>
-          <button className="block p-0 mt-[-10px]">
-            <IoMdArrowDropdown size={20} />
-          </button>
-        </div>
-      </p>
-      <p className="p-2 text-white text-xs font-bold w-[100px] sticky right-0 z-50 bg-primaryColor">
-        Action
-      </p>
+    <div
+      className="grid bg-primaryColor items-center"
+      style={{ gridTemplateColumns: `repeat(${title.length + action}, 1fr)` }}
+    >
+      {title.map((item, index) => (
+        <p
+          className="p-2 text-white text-xs font-bold flex items-center gap-1"
+          key={index}
+        >
+          {item}
+          <div className="">
+            <button className="block">
+              <IoMdArrowDropup size={20} />
+            </button>
+            <button className="block p-0 mt-[-10px]">
+              <IoMdArrowDropdown size={20} />
+            </button>
+          </div>
+        </p>
+      ))}
+
+      {isAction && (
+        <p className="p-2 text-white text-xs font-bold w-[100px] sticky right-0 z-50 bg-primaryColor">
+          Action
+        </p>
+      )}
     </div>
   );
 }

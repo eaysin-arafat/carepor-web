@@ -13,7 +13,7 @@ const ClientDetailsCard = ({ className }: Props) => {
     <div>
       <div
         className={cn(
-          "flex flex-wrap bg-lightBlueColor gap-2 py-6 justify-between box_shadow rounded-lg border sm:border-none !border-primaryColor dark:!border-blue-900 p-5",
+          "flex flex-wrap bg-lightBlueColor gap-2 py-6 justify-between box_shadow_2 rounded-lg border sm:border-none !border-primaryColor dark:!border-blue-900 p-5",
           className
         )}
       >

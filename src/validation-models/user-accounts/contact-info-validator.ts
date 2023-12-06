@@ -19,13 +19,19 @@ export const contactInfoValidator = (
 
   // validate cellphone
   if (!contactInfo.cellphone) error.cellphone = "Required";
-  else if (
-    contactInfo?.countryCode == "+260" &&
-    !TypeValidation.isZambiaCellphone(contactInfo.cellphone)
-  ) {
-    error.cellphone = "Invalid cellphone number";
-  } else if (contactInfo?.cellphone?.length > 11)
-    error.cellphone = "Cellphone must be 11 digits";
+
+  if (contactInfo?.countryCode == "+260") {
+    if (!TypeValidation.isZambiaCellphone(contactInfo.cellphone)) {
+      error.cellphone = "Invalid cellphone number";
+    }
+  }
+  console.log("gss" + contactInfo?.countryCode);
+
+  if (contactInfo?.countryCode != "+260") {
+    if (!TypeValidation.isPhoneNumber(contactInfo.cellphone)) {
+      error.cellphone = "Cellphone must be max 11 & min 9 digits";
+    }
+  }
 
   // return error state
   return {

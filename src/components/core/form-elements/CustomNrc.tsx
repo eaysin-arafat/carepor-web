@@ -12,7 +12,7 @@ interface CustomNrcProps {
   className?: string;
   keyUpHandler?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   ref?: React.ForwardedRef<HTMLInputElement>;
-  placeholder?: string
+  placeholder?: string;
 }
 
 const CustomNrc: FC<CustomNrcProps> = React.forwardRef<
