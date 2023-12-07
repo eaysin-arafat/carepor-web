@@ -1,14 +1,24 @@
-import { TypeAPIEnum, TypeAPIObject } from "@/types";
+import { TypeAPIObject } from "@/types";
 
 // *** Static enums reference from enumerators
+// EnumEyeScore
+// EnumVerbalScore
+// EnumMotorScore
 
 // ENUM TYPE
 // export type TypeEnum = TypeAPIEnum;
 
 // DATA TYPE
 export type TypeContraceptiveHistories = TypeAPIObject & {
-  contraceptiveId: string;
-  gynObsHistoryId: string;
+  eyeScore: string | number;
+  verbalScore: string | number;
+  motorScale: string | number;
+  glasgowComaScore: string;
+  result: string;
+  rightPupilsLightReactionSize: string;
+  rightPupilsLightReactionReaction: string;
+  leftPupilsLightReactionSize: string;
+  leftPupilsLightReactionReaction: string;
 };
 
 /**

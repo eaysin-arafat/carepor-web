@@ -6,24 +6,7 @@ export type TypePhysicalSystemsEnum = TypeAPIEnum;
 
 // DATA TYPE
 // Submit Array type Data
-export type TypeSystemReviews = TypeAPIObject & {
+export type TypeSystemExaminations = TypeAPIObject & {
   note: string;
   physicalSystemId: string; // ***
 };
-
-/**
- * 
-InteractionId
-Note
-PhysicalSystemId
-ClientId
-EncounterId
-CreatedIn
-DateCreated
-CreatedBy
-ModifiedIn
-DateModified
-ModifiedBy
-IsDeleted
-IsSynced
- */
