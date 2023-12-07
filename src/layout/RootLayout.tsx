@@ -2,6 +2,7 @@ import { RootState } from "@/app/store";
 import Header from "@/components/shared/header/Header";
 import { sidebarState } from "@/features/sidebar/sidebar";
 import useWindowWidth from "@/hooks/useWindow";
+import { cn } from "@/utilities/cn";
 import { useEffect } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { MdArrowBackIos } from "react-icons/md";
@@ -15,6 +16,7 @@ interface RootLayoutProps {
 function RootLayout({ children }: RootLayoutProps) {
   const dispatch = useDispatch();
   const w1100 = useWindowWidth(1100);
+
   const sidebarVal = w1100 ? true : false;
 
   // * Redux
@@ -28,7 +30,11 @@ function RootLayout({ children }: RootLayoutProps) {
 
   return (
     <div>
-      <div className="h-[8vh] relative z-50 bg-whiteBgColor">
+      <div
+        className={cn("h-[8vh] relative z-50 bg-whiteBgColor", {
+          "h-[10vh]": w1100,
+        })}
+      >
         <Header />
       </div>
       <div className="relative">
@@ -54,8 +60,8 @@ function RootLayout({ children }: RootLayoutProps) {
               </button>
             )}
             <div
-              className={`border-r bg-whiteBgColor h-[92vh] z-50 ${
-                w1100 && "absolute"
+              className={`border-r bg-whiteBgColor h-[100vh] z-50 ${
+                w1100 && "absolute bottom-0"
               } overflow-x-auto`}
               style={{
                 transition: "0.5s",
@@ -69,7 +75,12 @@ function RootLayout({ children }: RootLayoutProps) {
             </div>
           </div>
 
-          <div className="w-full h-[92vh] overflow-x-auto bg-bodyColor block py-5 px-6">
+          <div
+            className={cn(
+              "w-full h-[92vh] overflow-x-auto bg-bodyColor block py-5 px-6",
+              { "h-[90vh]": w1100 }
+            )}
+          >
             <Outlet />
           </div>
         </div>
