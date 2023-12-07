@@ -1,4 +1,5 @@
 import Card from "@/components/core/card/Card";
+import CustomPagination from "@/components/core/custom-pagination/CustomPagination";
 // import Table from "@/components/core/table/Table";
 // import TableData from "@/components/core/table/TableData";
 // import TableHead from "@/components/core/table/TableHead";
@@ -7,9 +8,11 @@ import Table from "@/components/shared/table/Table";
 import TableBody from "@/components/shared/table/TableBody";
 import TableHeader from "@/components/shared/table/TableHeader";
 import useWindowWidth from "@/hooks/useWindow";
+import React from "react";
 
 function InvestigationsDashboard() {
   const w1100 = useWindowWidth(1100);
+  const [state, setState] = React.useState(1);
   
   const Test2 = ({ aa }: { aa: string }) => {
     return (
@@ -25,16 +28,10 @@ function InvestigationsDashboard() {
       <InvestigationQueueFilters />
 
       <br />
-      <Card
-        title="Referrals"
-        image="/public/assets/icons/referrals.svg"
-        titleClass="heading_3 text-secondaryColor"
-        view="View All"
-        className="bg-gray-200"
-      >
+      <div className="mt-5 bg-whiteBgColor pb-5 rounded-xl shadow-light">
         <Table isRounded>
           <TableHeader
-            className="bg-gray-300 "
+            className="bg-tableHeadColor text-textColor"
             isAction
             actionWidth="min-w-[270px]"
             title={[
@@ -85,25 +82,15 @@ function InvestigationsDashboard() {
             />
           ))}
         </Table>
-        {/* <Table>
-          <TableHead
-            gridCol={4}
-            action
-            tableHead={["PATIENT NAME", "Sex", "Added"]}
-          />
-          {data.slice(0, 7).map((item: any) => {
-            return (
-              <div className="rounded-lg">
-                <TableData
-                  gridCol={4}
-                  preview
-                  tableData={[item.name, item.date, item.date]}
-                />
-              </div>
-            );
-          })}
-        </Table> */}
-      </Card>
+        <div className="flex justify-end mx-5">
+            <CustomPagination
+              activePage={1}
+              itemsCountPerPage={state}
+              setActivePage={setState}
+              totalItemsCount={100}
+            />
+          </div>
+      </div>
     </div>
   );
 }

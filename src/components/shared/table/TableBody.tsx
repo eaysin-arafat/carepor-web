@@ -20,6 +20,9 @@ type Props = {
     btnOutline?: string;
     viewResult?: string;
   };
+  btnHandler?: () => void;
+  btnOutlineHandler?: () => void;
+  viewResultHandler?: () => void;
 };
 
 /**
@@ -35,7 +38,16 @@ type Props = {
  * @returns
  */
 
-function TableBody({ item, index, isAction, btn, actionWidth }: Props) {
+function TableBody({
+  item,
+  index,
+  isAction,
+  btn,
+  actionWidth,
+  btnHandler,
+  btnOutlineHandler,
+  viewResultHandler,
+}: Props) {
   return (
     <div
       key={index}
@@ -86,19 +98,28 @@ function TableBody({ item, index, isAction, btn, actionWidth }: Props) {
           )}
 
           {btn?.btn && (
-            <button className="main_btn pt-[5px] pb-[3px] px-3 text-[13px]">
+            <button
+              onClick={btnHandler}
+              className="main_btn pt-[5px] pb-[3px] px-3 text-[13px]"
+            >
               {btn.btn}
             </button>
           )}
 
           {btn?.btnOutline && (
-            <button className="border rounded-full hover:bg-primaryColor hover:text-white border-primaryColor text-primaryColor flex items-center justify-center  px-3 text-[13px] pt-[5px] pb-[3px]">
+            <button
+              onClick={btnOutlineHandler}
+              className="border rounded-full hover:bg-primaryColor hover:text-white border-primaryColor text-primaryColor flex items-center justify-center  px-3 text-[13px] pt-[5px] pb-[3px]"
+            >
               {btn.btnOutline}
             </button>
           )}
 
           {btn?.viewResult && (
-            <button className="border rounded-full hover:bg-primaryColor hover:text-white border-primaryColor text-primaryColor flex items-center justify-center  px-3 text-[13px] pt-[5px] pb-[3px]">
+            <button
+              onClick={viewResultHandler}
+              className="border rounded-full hover:bg-primaryColor hover:text-white border-primaryColor text-primaryColor flex items-center justify-center  px-3 text-[13px] pt-[5px] pb-[3px]"
+            >
               {btn.viewResult}
             </button>
           )}

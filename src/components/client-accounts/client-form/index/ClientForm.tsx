@@ -51,7 +51,8 @@ function ClientForm({ clientManager, isEditForm }) {
     handleClientDataSubmit,
     handleClientDataUpdate,
     homeLanguageEnum,
-    //
+
+    //NRC already exists
     alreadyExists,
   } = clientManager;
 
@@ -129,7 +130,7 @@ function ClientForm({ clientManager, isEditForm }) {
             title="Back"
             type="button"
             onClick={handleStepBack}
-            className="w-40"
+            className=""
           />
           {stateCount === 3 && (
             <SubmitButton
@@ -138,7 +139,7 @@ function ClientForm({ clientManager, isEditForm }) {
               // onClick={
               //   isEditForm ? handleClientDataUpdate : handleClientDataSubmit
               // }
-              className="w-40"
+              className=""
             />
           )}
           {stateCount !== 3 && (
@@ -146,7 +147,7 @@ function ClientForm({ clientManager, isEditForm }) {
               title="Next"
               type="button"
               onClick={handleClintFormNextOperation}
-              className="w-40"
+              className=""
             />
           )}
         </div>

@@ -1,6 +1,3 @@
-import { useReadCountriesQuery } from "@/features/country/country-api";
-import { useReadHomeLanguagesQuery } from "@/features/home-language/home-language-api";
-
 export const relationshipsEnums: {
   [key: number]: string;
 } = {

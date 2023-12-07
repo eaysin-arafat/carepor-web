@@ -2,7 +2,7 @@ import { cn } from "@/utilities/cn";
 
 type Props = {
   marginTop?: string;
-  type?: "rounded" | "";
+  type: "rounded" | "normal";
   className?: string;
 };
 
@@ -29,6 +29,27 @@ function AppLogo({ marginTop, type, className }: Props) {
               >
                 <img
                   className={cn("w-[65px] h-[75px]", className)}
+                  alt=""
+                  src="/assets/img/logo.png"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+
+    case "normal":
+      return (
+        <div>
+          <div className="text-center mx-auto">
+            <div className="flex justify-center ">
+              <div
+                className={cn(
+                  "w-[110px] h-[110px] flex justify-center items-center"
+                )}
+              >
+                <img
+                  className={cn("", className)}
                   alt=""
                   src="/assets/img/logo.png"
                 />
