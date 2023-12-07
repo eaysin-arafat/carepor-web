@@ -9,8 +9,8 @@
 @tailwind utilities;
 
 .light {
-  --body: #f6f9ff;
-  /* --body: #F4F4F4; */
+  /* --body: #f6f9ff; */
+  --body: #F4F4F4;
   /* --body: #FAFCFE; */
   --primary: #1890ff;
   --primaryHover: #007aec;

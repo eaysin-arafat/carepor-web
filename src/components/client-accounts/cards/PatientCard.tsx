@@ -21,6 +21,7 @@ const gender = {
 
 type PatientCardProps = {
   client: Client;
+  className: string;
 };
 
 const PatientCard = ({ client }: PatientCardProps) => {

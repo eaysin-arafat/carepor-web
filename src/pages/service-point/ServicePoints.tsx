@@ -45,7 +45,7 @@ const ServicePoints = () => {
 export default ServicePoints;
 
 const parantDiv_Style =
-  "flex flex-col rounded-lg justify-center items-center gap-5 border-2 border-primaryColor p-5 h-[150px] w-[141px] hover:bg-primaryColor group transition-all duration-300 ";
+  "flex flex-col rounded-lg justify-center items-center gap-5 border border-primaryColor p-5 h-[150px] w-[141px] hover:bg-primaryColor group transition-all duration-300 ";
 const image_Style = "group-hover:svg_white transition-all duration-300";
 const text_Style =
   "group-hover:text-whiteColor text-black dark:text-primaryColor transition-all duration-300 font-medium text-center";

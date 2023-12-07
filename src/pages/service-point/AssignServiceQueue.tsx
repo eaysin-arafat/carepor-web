@@ -64,6 +64,17 @@ function AssignServiceQueue({}: Props) {
   const [service, setService] = useState("");
   const [urgency, setUrgency] = useState("");
 
+  const urgencyCheck = (value:string)=>{
+    if(urgency === value && urgency === "standard"){
+      return "bg-blue-500 text-white"
+    }
+    if(urgency === value && urgency === "urgent"){
+      return "bg-orange-400 border-orange-400 text-white"
+    }
+    if(urgency === value && urgency === "emergency"){
+      return "bg-red-500 border-red-500 text-white"
+    }
+  }
   console.log({ service });
 
   const array = [
@@ -99,9 +110,30 @@ function AssignServiceQueue({}: Props) {
     },
   ];
 
+  const selectUrgency = [
+    {
+      id: 1,
+      name: "urgent",
+      title: "Standard",
+      value: "standard",
+    },
+    {
+      id: 2,
+      name: "urgent",
+      title: "Urgent",
+      value: "urgent",
+    },
+    {
+      id: 3,
+      name: "urgent",
+      title: "Emergency",
+      value: "emergency",
+    },
+  ];
+
   return (
     <>
-      <div className="border p-5 max-w-[1340px] rounded m-auto mt-5">
+      <div className="border bg-whiteBgColor p-5 max-w-[1340px] rounded-lg m-auto mt-5">
         <PatientCard client={client} />
         <div>
           <p className="heading_3 font-medium my-5">
@@ -126,13 +158,14 @@ function AssignServiceQueue({}: Props) {
           <p className="heading_3 font-medium my-5">Select Urgency</p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
-          {array.map((item, index) => (
+          {selectUrgency.map((item, index) => (
             <SelectRadio
               key={index}
               title={item.title}
               handler={(e: any) => setUrgency(e.target.value)}
               value={item.value}
-              classNmae={urgency === item.value && "bg-primaryColor text-white"}
+              classNmae={urgencyCheck(item.value)}
+              // classNmae={urgency === item.value && "bg-primaryColor text-white"}
               name={item.name}
             />
           ))}
