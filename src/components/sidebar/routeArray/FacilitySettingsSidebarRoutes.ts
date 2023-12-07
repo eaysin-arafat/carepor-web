@@ -2,21 +2,21 @@ const FacilitySettingsRoutes = [
   {
     id: 1,
     title: "User Management",
-    link: "/",
+    link: "/facility-settings",
     icon: "",
   },
   {
     id: 2,
     title: "Department",
-    link: "/",
+    link: "/department",
     icon: "",
   },
-  {
-    id: 3,
-    title: "Service Point",
-    link: "/",
-    icon: "",
-  },
+  // {
+  //   id: 3,
+  //   title: "Service Point",
+  //   link: "/",
+  //   icon: "",
+  // },
 ];
 
 export default FacilitySettingsRoutes;

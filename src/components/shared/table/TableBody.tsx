@@ -3,7 +3,12 @@ import { Edit, Eye, Trash } from "react-feather";
 
 type Props = {
   index: number;
-  item: Array<object | string | JSX.Element>;
+  item: [
+    {
+      w: string;
+      title: string;
+    }
+  ];
   isAction?: boolean;
   length?: number;
   actionWidth?: string;
@@ -12,8 +17,8 @@ type Props = {
     edit?: boolean;
     delete?: boolean;
     btn?: string;
-    btnOutline?: string; 
-    viewResult?: string; 
+    btnOutline?: string;
+    viewResult?: string;
   };
 };
 
@@ -26,28 +31,28 @@ type Props = {
  * @Props delete for delete button
  * @Props show for show button
  * @props length = length for border radius
+ * @props actionWidth
  * @returns
  */
 
-function TableBody({ item, index, isAction, btn , actionWidth }: Props) {
-  const action = (isAction && 1) || 0;
-
+function TableBody({ item, index, isAction, btn, actionWidth }: Props) {
   return (
     <div
       key={index}
-      className={`flex ${length === index + 1 && "rounded-b-lg"} items-start ${
-        index % 2 ? "bg-gray-100" : "bg-white"
+      className={`flex justify-between ${
+        length === index + 1 && "rounded-b-lg"
+      } items-center ${
+        index % 2
+          ? "bg-gray-100 dark:bg-whiteBgColor"
+          : "bg-white dark:bg-slate-800"
       }`}
-      // style={{
-      //   gridTemplateColumns: `repeat(${item.length + action}, 1fr)`,
-      // }}
     >
       <p className="p-2">
         <Checkbox className="h-[15px] w-[15px]" />
       </p>
       {item.map((data, i) => (
         <p
-          className="p-2 text-textColor text-xs text-justify"
+          className="p-2 text-textColor dark:text-white text-xs text-justify"
           style={{ width: data.w }}
           key={i}
         >
@@ -56,8 +61,10 @@ function TableBody({ item, index, isAction, btn , actionWidth }: Props) {
       ))}
       {isAction && (
         <p
-          className={`p-2 text-textColor flex gap-1.5 text-xs sticky right-0 z-50 ${actionWidth }  ${
-            index % 2 ? "bg-gray-100" : "bg-white"
+          className={`p-2 text-textColor  flex gap-1.5 text-xs sticky right-0 z-50 ${actionWidth}  ${
+            index % 2
+              ? "bg-gray-100 dark:bg-whiteBgColor"
+              : "bg-white dark:bg-slate-800"
           }`}
         >
           {btn?.show && (
@@ -85,13 +92,13 @@ function TableBody({ item, index, isAction, btn , actionWidth }: Props) {
           )}
 
           {btn?.btnOutline && (
-            <button className="border rounded-full border-primaryColor text-primaryColor flex items-center justify-center  px-3 text-[13px] pt-[5px] pb-[3px]">
+            <button className="border rounded-full hover:bg-primaryColor hover:text-white border-primaryColor text-primaryColor flex items-center justify-center  px-3 text-[13px] pt-[5px] pb-[3px]">
               {btn.btnOutline}
             </button>
           )}
 
           {btn?.viewResult && (
-            <button className="border rounded-full border-primaryColor text-primaryColor flex items-center justify-center  px-3 text-[13px] pt-[5px] pb-[3px]">
+            <button className="border rounded-full hover:bg-primaryColor hover:text-white border-primaryColor text-primaryColor flex items-center justify-center  px-3 text-[13px] pt-[5px] pb-[3px]">
               {btn.viewResult}
             </button>
           )}

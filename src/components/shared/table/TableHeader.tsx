@@ -4,7 +4,12 @@ import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 
 type Props = {
   isAction?: boolean;
-  title: Array<object | string>;
+  title: [
+    {
+      title: string;
+      w: string;
+    }
+  ];
   className?: string;
   actionWidth?: string;
 };
@@ -14,12 +19,13 @@ type Props = {
  * @Props isAction it's for action column
  * @Props title Table Title Array
  * @Props className Css Class Name
+ * @Props actionWidth
  * @returns
  */
-function TableHeader({ isAction, title, className , actionWidth }: Props) {
+function TableHeader({ isAction, title, className, actionWidth }: Props) {
   return (
     <div
-      className={cn("flex bg-white items-center", className)}
+      className={cn("flex justify-between bg-white items-center", className)}
       // style={{ gridTemplateColumns: `repeat(${title.length + action}, 1fr)` }}
     >
       <p className="p-2">
@@ -44,7 +50,9 @@ function TableHeader({ isAction, title, className , actionWidth }: Props) {
       ))}
 
       {isAction && (
-        <p className={` ${actionWidth} p-2 text-white text-xs font-bold sticky right-0 z-50 `}>
+        <p
+          className={` ${actionWidth} p-2 text-white text-xs font-bold sticky right-0 z-50 `}
+        >
           Action
         </p>
       )}
