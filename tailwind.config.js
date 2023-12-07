@@ -32,6 +32,7 @@ export default {
         borderColor: "var(--border)",
         textColor: "var(--text)",
         activeColor: "var(--activeColor)",
+        tableHeadColor: "var(--tableHead)",
       },
       boxShadow: {
         light: "0 8px 16px 0 rgba(0, 0, 0, 0.05)",

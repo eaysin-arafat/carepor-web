@@ -53,7 +53,7 @@ const QueueTableLayout = ({
           )}
         </div>
 
-        <div className="flex md:order-2">{children}</div>
+        <div className=" md:order-2 ">{children}</div>
       </div>
     </div>
   );
