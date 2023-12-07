@@ -33,7 +33,7 @@ function TableHeader({ isAction, title, className, actionWidth }: Props) {
       </p>
       {title.map((item, index) => (
         <p
-          className="p-2 text-white text-xs font-bold flex items-center gap-1"
+          className="p-2 text-textColor text-xs font-bold flex items-center gap-1"
           key={index}
           style={{ width: item.w }}
         >
@@ -51,7 +51,7 @@ function TableHeader({ isAction, title, className, actionWidth }: Props) {
 
       {isAction && (
         <p
-          className={` ${actionWidth} p-2 text-white text-xs font-bold sticky right-0 z-50 `}
+          className={` ${actionWidth} p-2 text-textColor text-xs font-bold sticky right-0 z-50 `}
         >
           Action
         </p>

@@ -35,7 +35,7 @@ const SelectRadio = ({
       )}
     >
       {counter && (
-        <span className="inline-flex items-center justify-center border border-white w-8 h-8 ms-2 text-xs font-semibold text-whiteColor bg-primaryColor rounded-full">
+        <span className="inline-flex items-center justify-center border border-white w-6 h-6 md:w-8 md:h-8 ms-2 text-xs font-semibold text-whiteColor bg-primaryColor rounded-full">
           {count}
         </span>
       )}

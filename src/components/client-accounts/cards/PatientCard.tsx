@@ -2,7 +2,7 @@ import Container from "@/components/core/container/Container";
 import { Client } from "@/interface/clients";
 import {
   URLAdmissionDischarge,
-  URLClientEdit,
+  URLClientDetails,
   URLCreateAdmission,
   URLServicePoint,
 } from "@/routers/client";
@@ -21,14 +21,20 @@ const gender = {
 
 type PatientCardProps = {
   client: Client;
+  className?: string;
 };
 
-const PatientCard = ({ client }: PatientCardProps) => {
+const PatientCard = ({ client, className }: PatientCardProps) => {
   const navigate = useNavigate();
   return (
     <div>
       <Container className="my-5">
-        <div className="border-2 !border-primaryColor dark:!border-none rounded-lg bg-whiteBgColor">
+        <div
+          className={cn(
+            "border-2 !border-primaryColor dark:!border-none rounded-lg bg-whiteBgColor",
+            className
+          )}
+        >
           <div className="grid grid-cols-9 gap-5 p-5">
             <div className="col-span-2 hidden lg:flex items-center justify-center min-2/12 border-r">
               <p className="text-2xl font-medium text-secondaryColor ">
@@ -99,7 +105,7 @@ const PatientCard = ({ client }: PatientCardProps) => {
               </div>
               <div className="flex flex-row sm:justify-start justify-center flex-wrap gap-1 mt-2">
                 <Link
-                  to={URLClientEdit({ id: client?.oid })}
+                  to={URLClientDetails({ id: client?.oid })}
                   className={cn(
                     "main_btn bg-whiteColor hover:text-white text-primaryColor dark:bg-gray-900 hover:dark:bg-gray-800 border !border-primaryColor btn_sm text-center text-sm"
                   )}
@@ -121,9 +127,7 @@ const PatientCard = ({ client }: PatientCardProps) => {
                     </button>
                     <Link
                       to={URLAdmissionDischarge({ clientId: client?.oid })}
-                      className={cn(
-                        "main_btn btn_sm text-center text-sm"
-                      )}
+                      className={cn("main_btn btn_sm text-center text-sm")}
                     >
                       Discharge
                     </Link>
