@@ -1,6 +1,5 @@
+import SimplePatientDetails from "@/components/client-accounts/cards/SimplePatientDetails";
 import Container from "@/components/core/container/Container";
-import { cn } from "@/utilities/cn";
-import { Calendar } from "react-feather";
 import { Link } from "react-router-dom";
 
 const ServicePoints = () => {
@@ -9,13 +8,13 @@ const ServicePoints = () => {
       <Container className="max-w-[1345px] bg-whiteBgColor my-8 rounded-lg px-5 shadow-light">
         <div className="py-8 pb-1">
           <div className="border rounded-lg border-primaryColor xl:mx-8">
-            <ClientDetailsCard
+            <SimplePatientDetails
               withoutAction
               className="bg-whiteBgColor shadow-none sm:!border !border-primaryColor"
             />
           </div>
           <div className="max-w-[1072px] mx-auto my-10 ">
-          <h2 className="heading_2 mb-7">Select Service for the Patient</h2>
+            <h2 className="heading_2 mb-7">Select Service for the Patient</h2>
             <div className="grid grid-cols-2 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 justify-items-center sm:justify-between gap-9 ">
               {servicePointsArray.map((servicePoint: any, index: number) => (
                 <div
@@ -147,83 +146,6 @@ const servicePointsArray = [
     link: "#",
   },
 ];
-
-interface Props {
-  className?: string;
-  withoutAction?: boolean;
-}
-
-const ClientDetailsCard = ({ className }: Props) => {
-  return (
-    <div>
-      <div
-        className={cn(
-          "grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-9 bg-lightBlueColor gap-2 py-6 justify-between shadow-md rounded-lg border sm:border-none !border-primaryColor dark:!border-blue-900 p-5",
-          className
-        )}
-      >
-        <div className="col-span-2 flex items-center">
-          <h1 className="text-xl font-medium font-poppins text-secondaryColor w-[80%]">
-            Chukwuebuka Nwachinemelu
-          </h1>
-          <div className="w-[20%] sm:border-s  h-12"></div>
-        </div>
-        <Item
-          title="Date of Birth"
-          data="3-Jan-1991"
-          icon={<Calendar size={18} />}
-        />
-        <Item
-          title="Date of Birth"
-          data="3-Jan-1991"
-          icon={<Calendar size={18} />}
-        />
-        <Item
-          title="Date of Birth"
-          data="3-Jan-1991"
-          icon={<Calendar size={18} />}
-        />
-        <Item
-          title="Date of Birth"
-          data="3-Jan-1991"
-          icon={<Calendar size={18} />}
-        />
-        <Item
-          title="Date of Birth"
-          data="3-Jan-1991"
-          icon={<Calendar size={18} />}
-        />
-        <div className="col-span-2">
-          <Item
-            title="Date of Birth"
-            data="3-Jan-1991 sdfghjk fdghjkl dfghjk, thjkm, dfghjnm "
-            icon={<Calendar size={18} />}
-          />
-        </div>
-      </div>
-    </div>
-  );
-};
-
-type CardProps = {
-  title: string;
-  data: string;
-  icon: React.ReactNode;
-};
-
-const Item = ({ title, data, icon }: CardProps) => {
-  return (
-    <div className="flex flex-col font-poppins my-[6px]">
-      <div className="text-xs font-semibold text-secondaryColor">{title}</div>
-      <div className="flex gap-x-2 items-start mt-1.5">
-        <span className="text-secondaryColor">{icon}</span>
-        <span className="dark:text-grayColor text-secondaryColor text-xs ">
-          {data}
-        </span>
-      </div>
-    </div>
-  );
-};
 
 // import Container from "@/components/core/container/Container";
 // import ServicePointBox from "@/components/service-point/ServicePointBox";
