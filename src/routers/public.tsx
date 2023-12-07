@@ -1,4 +1,5 @@
 import PublicGuard from "@/components/shared/guard/PublicGuard";
+import AuthHeader from "@/components/shared/header/AuthHeader";
 import UserLogin from "@/pages/home/user-login/UserLogin";
 import CreateUserAccount from "@/pages/user-accounts/create/CreateUserAccount";
 import RecoveryRequest from "@/pages/user-accounts/recovery-request/RecoveryRequest";
@@ -17,8 +18,13 @@ const PublicRoutes = [
         element: <UserLogin />,
       },
       {
-        path: URLUserAccountCreate(),
-        element: <CreateUserAccount />,
+        element: <AuthHeader />,
+        children: [
+          {
+            path: URLUserAccountCreate(),
+            element: <CreateUserAccount />,
+          },
+        ],
       },
       {
         path: URLUserRecoveryRequest(),

@@ -3,7 +3,7 @@ type Props = {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   name?: string;
   marginTop?: string;
-  label: string;
+  label?: string;
   required?: boolean;
   disabled?: boolean;
   className?: string;
@@ -35,7 +35,7 @@ function Checkbox({
           checked={checked}
           id={name}
           onChange={onChange}
-          className={`border-gray-300 rounded h-5 w-5 focus:border-borderColor focus:shadow-none outline-none focus:outline-none focus:ring-0 ${className}`}
+          className={` dark:bg-black border-gray-300 active:outline-none active:shadow-none rounded-sm h-5 w-5 focus:border-borderColor focus:shadow-none outline-none focus:outline-none focus:ring-0 ${className}`}
         />
         <p className="text-sm dark:text-gray-500">{label}</p>
         {required && <span className="-mt-[6px] text-dangerColor">*</span>}

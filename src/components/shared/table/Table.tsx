@@ -1,11 +1,15 @@
+import { cn } from "@/utilities/cn";
+
 type Props = {
   children: React.ReactNode;
+  className?: string;
+  isRounded?: boolean;
 };
 
-function Table({ children }: Props) {
+function Table({ children, className , isRounded }: Props) {
   return (
-    <div className="overflow-x-auto">
-      <div className="min-w-[900px] w-[1300px] border p-5">{children}</div>
+    <div className={`overflow-x-auto ${isRounded ? " rounded-lg" : " "}`}>
+      <div className={cn("min-w-[900px]  w-full ", className)}>{children}</div>
     </div>
   );
 }

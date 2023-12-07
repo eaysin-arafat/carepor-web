@@ -25,7 +25,10 @@ const QueueTableLayout = ({
   return (
     <div>
       <div
-        className={cn("border p-5 bg-whiteBgColor rounded-md  mt-5", className)}
+        className={cn(
+          "border border-borderColor p-5 bg-whiteBgColor rounded-md  mt-5",
+          className
+        )}
       >
         <div className="flex justify-between">
           <h1 className="text-2xl mb-4 flex items-center gap-3">

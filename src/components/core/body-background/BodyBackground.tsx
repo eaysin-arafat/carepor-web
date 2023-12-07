@@ -12,16 +12,16 @@ function BodyBackground({ children, noBackground }: Props) {
     <div
       className={`${
         noBackground
-          ? ""
-          : "bg-whiteBgColor md:bg-[url('/assets/img/Carepro_Background.jpg')] bg-cover bg-center h-screen relative "
+          ? " bg-bodyColor "
+          : "background_image dark:bg-black md:bg-[url('/assets/img/Carepro_Background.jpg')] bg-cover bg-center relative "
       } w-full overflow-auto text-left text-sm text-black font-poppins`}
     >
-      <div className="z-20 absolute top-5 right-5">
+      <div className="z-20 absolute top-2 right-2 xs:top-5 xs:right-5">
         <ThemeSwitcher />
       </div>
-      <div className="relative z-10">{children}</div>
+      <div className="relative z-10 ">{children}</div>
       {!noBackground && (
-        <div className="absolute inset-0 md:bg-blue-500 dark:bg-black opacity-80 dark:opacity-80"></div>
+        <div className="fixed inset-0 md:bg-blue-500 dark:bg-black opacity-80 dark:opacity-80 h-[100%]"></div>
       )}
     </div>
   );

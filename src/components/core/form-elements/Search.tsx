@@ -50,7 +50,7 @@ function Search({
         />
         <button
           type="button"
-          className="absolute right-0 rounded-r-full bg-whiteColor dark:bg-[#000] border-[2px] border-s-0 border-solid border-borderColor dark:border-gray-800 h-full ps-2 w-[50px] top-1/2 text-base transform -translate-y-1/2 dark:text-gray-500 cursor-default"
+          className="absolute right-0 rounded-r-[6px] bg-whiteColor dark:bg-[#000] border-[2px] border-s-0 border-solid border-borderColor dark:border-gray-800 h-full ps-2 w-[50px] top-1/2 text-base transform -translate-y-1/2 dark:text-gray-500 cursor-default"
         >
           <IoMdSearch className="text-2xl" />
         </button>

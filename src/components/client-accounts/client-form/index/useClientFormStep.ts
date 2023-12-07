@@ -19,9 +19,9 @@ const useClientFormStep = (): ClientFormStepHookReturnType => {
   const { formStep } = useSelector((state: RootState) => state.clientForm);
 
   const stepTitle = [
-    "Personal & Contact <br /> Information",
-    "Parents or  <br /> Guardian Details",
-    "Marital, Birth & Education  <br /> Details",
+    "Personal Information",
+    "Parents or Guardian Details",
+    "Marital, Birth & Education Details",
   ];
 
   const disabledBackButton = formStep === 1;

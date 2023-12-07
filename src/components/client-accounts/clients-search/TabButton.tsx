@@ -5,7 +5,7 @@ const defaultButtonCss =
 
 const TabButton = ({ handleSearchTabChange, search }) => {
   return (
-    <div className="flex flex-wrap justify-center gap-5 mt-5">
+    <div className="flex flex-wrap justify-center gap-4 mt-5">
       <button
         onClick={() => handleSearchTabChange("nrc")}
         className={cn(defaultButtonCss, {

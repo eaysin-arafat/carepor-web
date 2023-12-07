@@ -115,7 +115,7 @@ function ContactInformation({
             Landline Number (Optional) :
           </h2>
           <div className="grid md:grid-cols-2 gap-5">
-            <div className="col-span-1 items-center ">
+            <div className="col-span-2 md:col-span-1 items-center ">
               <div className="grid grid-cols-3 gap-2">
                 <div className="col-span-1">
                   <CountryCode
@@ -141,7 +141,7 @@ function ContactInformation({
                 </div>
               </div>
             </div>
-            <div className="col-span-1">
+            <div className="col-span-2 md:col-span-1">
               <Input
                 value={contactInfo.email}
                 label="Email"
@@ -150,7 +150,7 @@ function ContactInformation({
                 errMsg={contactInfoError?.email}
               />
             </div>
-            <div className="col-span-1">
+            <div className="col-span-2 md:col-span-1">
               <Input
                 label="House Number"
                 name="householdNumber"
@@ -159,7 +159,7 @@ function ContactInformation({
                 errMsg={contactInfoError?.householdNumber}
               />
             </div>
-            <div className="col-span-1">
+            <div className="col-span-2 md:col-span-1">
               <Input
                 label="Road/Street"
                 name="road"
@@ -168,7 +168,7 @@ function ContactInformation({
                 errMsg={contactInfoError?.road}
               />
             </div>
-            <div className="col-span-1">
+            <div className="col-span-2 md:col-span-1">
               <Input
                 label="Area"
                 name="area"
@@ -177,7 +177,7 @@ function ContactInformation({
                 errMsg={contactInfoError?.area}
               />
             </div>
-            <div className="col-span-1">
+            <div className="col-span-2 md:col-span-1">
               <Input
                 label="Town Name"
                 name="townName"

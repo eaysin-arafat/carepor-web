@@ -20,7 +20,7 @@ const ThemeSwitcher = () => {
   return (
     <>
       <label
-        className={` h-[40px] w-[40px] bg-black cursor-pointer dark:bg-gray-800 rounded-full flex justify-center items-center`}
+        className={`h-[30px] w-[30px] xs:h-[40px] xs:w-[40px] bg-black cursor-pointer dark:bg-gray-800 rounded-full flex justify-center items-center`}
       >
         <input
           type="checkbox"
@@ -30,10 +30,10 @@ const ThemeSwitcher = () => {
         />
 
         {/* Moon icon */}
-        {mode === "light" && <MdOutlineDarkMode color="#fff" size={25} />}
+        {mode === "light" && <MdOutlineDarkMode color="#fff"  className="text-lg xs:text-2xl"/>}
 
         {/* Sun icon */}
-        {mode === "dark" && <LuSunMedium color="#fff" size={25} />}
+        {mode === "dark" && <LuSunMedium color="#fff"  className="text-lg xs:text-2xl" />}
       </label>
     </>
   );

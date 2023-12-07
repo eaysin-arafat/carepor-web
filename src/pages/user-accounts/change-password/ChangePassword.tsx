@@ -19,7 +19,7 @@ function ChangePassword() {
         // maxWidth="max-w-[570px]"
         emergencyAccess
       >
-        <form onSubmit={handleSubmit} className="my-0">
+        <form onSubmit={handleSubmit} className="mt-8">
           <div className="grid gap-5">
             <Password
               onChange={handleInputChange}

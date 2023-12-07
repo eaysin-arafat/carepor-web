@@ -31,7 +31,7 @@ const NextButton = ({
         <Link
           to={link!}
           style={style}
-          className={` btn w-full border-2 border-primaryColor text-whiteColor bg-primaryColor ${className}`}
+          className={` btn w-full border-2 border-primaryColor text-whiteColor bg-primaryColor text-base xs:text-[18px] ${className}`}
         >
           {icon} {title}
         </Link>
@@ -40,7 +40,7 @@ const NextButton = ({
     case "button":
       return (
         <button
-          className={`btn w-40 border-2 border-primaryColor text-whiteColor bg-primaryColor hover:bg-primaryHoverColor ${className} `}
+          className={`btn w-40 border-2 border-primaryColor text-whiteColor bg-primaryColor hover:bg-primaryHoverColor text-base xs:text-[18px] ${className} `}
           type="button"
           style={style}
           onClick={onClick}
@@ -52,7 +52,7 @@ const NextButton = ({
     case "submit":
       return (
         <button
-        className={`btn w-40 text-whiteColor bg-primaryColor hover:bg-primaryHoverColor ${className}`}
+        className={`btn w-40  text-whiteColor bg-primaryColor hover:bg-primaryHoverColor text-base xs:text-[18px] ${className}`}
         type="submit"
         disabled={loading}
         onClick={onClick}

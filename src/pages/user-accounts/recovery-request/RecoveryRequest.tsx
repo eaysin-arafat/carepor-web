@@ -27,7 +27,7 @@ function RecoveryRequest() {
         titleClass="text-center"
         title="Login Recovery Request"
       >
-        <form onSubmit={handleSubmit} className="my-0">
+        <form onSubmit={handleSubmit} className="mt=8">
           <div className="grid gap-5">
             <Input
               onChange={handleRecoveryInfoChange}

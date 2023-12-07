@@ -1,15 +1,16 @@
 import { cn } from "@/utilities/cn";
 
 type Props = {
-  children: any;
+  children: React.ReactNode;
   className?: string;
 };
 
-const Table = ({ children , className }: Props) => {
-  
+const Table = ({ children, className }: Props) => {
   return (
-    <div className={cn("bg-whiteBgColor rounded-lg" , className)}>
-      {children}
+    <div className="overflow-x-auto">
+      <div className={cn("bg-whiteBgColor   max-full", className)}>
+        {children}
+      </div>
     </div>
   );
 };

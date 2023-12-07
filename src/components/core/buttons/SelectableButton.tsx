@@ -4,9 +4,9 @@ const SelectableButton = ({ isActive = false, text = "Text" }) => {
   return (
     <button
       className={cn(
-        "py-1 px-6 font-poppins flex justify-center items-center rounded text-sm whitespace-nowrap flex-grow",
+        "py-2 px-6 font-poppins flex justify-center items-center rounded text-sm whitespace-nowrap flex-grow",
         {
-          "border border-[#1890FF] text-[#1890FF]": !isActive,
+          "border-2 border-[#F2F3F5] text-[#6B7280]": !isActive,
           "bg-[#1890FF] text-white": isActive,
         }
       )}

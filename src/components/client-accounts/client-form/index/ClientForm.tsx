@@ -61,10 +61,10 @@ function ClientForm({ clientManager, isEditForm }) {
 
   return (
     <>
-      <p className="text-center mt-2">
+      {/* <p className="text-center mt-2">
         Fields marked by <span className="text-dangerColor">*</span> are
         mandatory
-      </p>
+      </p> */}
       <form
         onSubmit={isEditForm ? handleClientDataUpdate : handleClientDataSubmit}
         className="my-5"
@@ -130,7 +130,7 @@ function ClientForm({ clientManager, isEditForm }) {
             title="Back"
             type="button"
             onClick={handleStepBack}
-            className="w-40"
+            className=""
           />
           {stateCount === 3 && (
             <SubmitButton
@@ -139,7 +139,7 @@ function ClientForm({ clientManager, isEditForm }) {
               // onClick={
               //   isEditForm ? handleClientDataUpdate : handleClientDataSubmit
               // }
-              className="w-40"
+              className=""
             />
           )}
           {stateCount !== 3 && (
@@ -147,7 +147,7 @@ function ClientForm({ clientManager, isEditForm }) {
               title="Next"
               type="button"
               onClick={handleClintFormNextOperation}
-              className="w-40"
+              className=""
             />
           )}
         </div>

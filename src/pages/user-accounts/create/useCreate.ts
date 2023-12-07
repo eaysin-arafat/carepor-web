@@ -119,9 +119,9 @@ function useUserRegistration() {
   const navigate = useNavigate();
   const disabledBackButton = stateCount === 1;
   const stepTitle = [
-    "Personal <br /> Information",
-    "Contact <br /> Information",
-    "Login <br /> Information",
+    "Personal Information",
+    "Contact Information",
+    "Login Information",
   ];
 
   // set nrc based on noNRC

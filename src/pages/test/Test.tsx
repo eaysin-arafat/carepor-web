@@ -100,6 +100,15 @@ function Test() {
     },
   ];
 
+  const Test2 = ({ tt }: { tt: string }) => {
+    return (
+      <div>
+        <p>{tt}</p>
+        <span>Test</span>
+      </div>
+    );
+  };
+
   return (
     <div>
       <div
@@ -115,22 +124,42 @@ function Test() {
           <Table>
             <TableHeader
               isAction
-              title={["Name", "Age", "Salary", "Date", "Address", "Position"]}
+              title={[
+                {
+                  title: "Age",
+                  w: 50,
+                },
+                {
+                  title: "Age",
+                  w: 200,
+                },
+                {
+                  title: "Age",
+                  w: 300,
+                },
+                {
+                  title: "Age",
+                  w: 100,
+                },
+                {
+                  title: "Age",
+                  w: 100,
+                },
+              ]}
             />
             {data.map((item, index) => (
               <TableBody
                 index={index}
                 isAction
-                edit
-                delete
-                show
+                btn={{
+                  delete: true,
+                }}
                 item={[
-                  item.name,
-                  item.age,
-                  item.salary,
-                  item.date,
-                  item.office,
-                  item.position,
+                  { title: item.age, w: "100%" },
+                  { title: item.age, w: 200 },
+                  { title: item.age, w: 300 },
+                  { title: item.age, w: 100 },
+                  { title: item.age, w: 100 },
                 ]}
               />
             ))}

@@ -11,7 +11,7 @@ function SectionWrapper({
   border,
 }: FormSectionType) {
   return (
-    <div className={"mt-5 border  rounded-md" + " " + boxClass}>
+    <div className={"mt-5 border dark:border-gray-600 rounded-md" + " " + boxClass}>
       {/* Title Section */}
       <div className="mb-2">
         <h2 className={`text-xl font-semibold mb-1" ${border ? " border-b py-3 px-5" : "px-5 pt-3"}  ${titleClass}`}>
