@@ -60,10 +60,10 @@ function ClientForm({ clientManager, isEditForm }) {
 
   return (
     <>
-      <p className="text-center mt-2">
+      {/* <p className="text-center mt-2">
         Fields marked by <span className="text-dangerColor">*</span> are
         mandatory
-      </p>
+      </p> */}
       <form
         onSubmit={isEditForm ? handleClientDataUpdate : handleClientDataSubmit}
         className="my-5"
