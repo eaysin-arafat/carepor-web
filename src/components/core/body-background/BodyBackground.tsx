@@ -12,8 +12,8 @@ function BodyBackground({ children, noBackground }: Props) {
     <div
       className={`${
         noBackground
-          ? ""
-          : "background_image bg-whiteBgColor dark:bg-black md:bg-[url('/assets/img/Carepro_Background.jpg')] bg-cover bg-center relative "
+          ? " bg-bodyColor "
+          : "background_image dark:bg-black md:bg-[url('/assets/img/Carepro_Background.jpg')] bg-cover bg-center relative "
       } w-full overflow-auto text-left text-sm text-black font-poppins`}
     >
       <div className="z-20 absolute top-2 right-2 xs:top-5 xs:right-5">

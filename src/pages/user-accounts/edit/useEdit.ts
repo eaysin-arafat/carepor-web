@@ -101,8 +101,8 @@ function useEditUserAccounts() {
   const disabledBackButton = stateCount === 1;
   const navigate = useNavigate();
   const stepTitle = [
-    "Personal <br /> Information",
-    "Contact <br /> Information",
+    "Personal Information",
+    "Contact Information",
   ];
 
   // handle personal information changes
