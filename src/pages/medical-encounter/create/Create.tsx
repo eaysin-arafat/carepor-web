@@ -1,27 +1,23 @@
-import Diagnosis from "@/assets/icons/Diagnosis";
+import { RootState } from "@/app/store";
 import HTSStatus from "@/assets/icons/HTSStatus";
-import HeartBit from "@/assets/icons/HeartBit";
-import LabOrder from "@/assets/icons/Laborder";
-import Medication from "@/assets/icons/Medication";
-import Accordion from "@/components/core/accordion/Accordion";
-import SubmitButton from "@/components/core/buttons/SubmitButton";
 import ClientDetailsCard from "@/components/core/card/ClientDetailsCard";
-import Input from "@/components/core/form-elements/Input";
-import Select from "@/components/core/form-elements/Select";
-import Textarea from "@/components/core/form-elements/textarea";
-import DefaultOpenModal from "@/components/core/modal/DefaultOpenModal";
-import SelectContainer from "@/components/core/selectable-container/SelectContainer";
+import FormHeading from "@/components/core/form-heading/FormHeading";
+import FormSubHeader from "@/components/core/form-subheader/FormSubHeader";
+import DataSummaryList from "@/components/shared/data-summary/DataSummaryList";
 import Header from "@/components/shared/header/Header";
+import ModuleStepping from "@/components/shared/multi-step/ModuleStepping";
+import PastRecordList from "@/components/shared/past-record-list/PastRecordList";
+import { medicalEncounterModalTypes } from "@/constants/modal-types";
+import { closeAddModal, openAddModal } from "@/features/modal/modal-slice";
+import CreateAllergy from "@/pages/allergies/create/Create";
+import CreateChiefComplaints from "@/pages/chief-complaints/create/Create";
+import CreatePastMedicalHistory from "@/pages/past-medical-histories/create/Create";
+import CreateReviewOfSystems from "@/pages/review-of-systems/create/Create";
+import CreateTbConstitutionalSymptom from "@/pages/tb-constitutional-symptoms/create/Create";
 import { cn } from "@/utilities/cn";
 import React from "react";
-import {
-  ArrowLeft,
-  Check,
-  ChevronRight,
-  Edit2,
-  PlusCircle,
-  Trash2,
-} from "react-feather";
+import { ArrowLeft, Check, ChevronRight, Edit2, Trash2 } from "react-feather";
+import { useDispatch, useSelector } from "react-redux";
 
 const CreateSubHeader = () => {
   return (
@@ -206,32 +202,73 @@ const AllergiesCardItem = () => {
 const CreateMedicalEncounter = () => {
   const [openModal, setOpenModal] = React.useState(false);
 
+  const { addModal } = useSelector((state: RootState) => state.modal);
+
+  const dispatch = useDispatch();
+
   const toggleModal = () => {
     setOpenModal(!openModal);
+  };
+
+  const closeModal = () => {
+    dispatch(closeAddModal());
+  };
+
+  const handleChiefComplaints = () => {
+    dispatch(
+      openAddModal({
+        modalId: medicalEncounterModalTypes.addPresentingComplaint,
+        data: null,
+      })
+    );
+  };
+
+  const handleTbConstitutionalSymptom = () => {
+    dispatch(
+      openAddModal({
+        modalId: medicalEncounterModalTypes.addTbConstitutionalSymptom,
+        data: null,
+      })
+    );
+  };
+
+  const handlePastMedicalHistory = () => {
+    dispatch(
+      openAddModal({
+        modalId: medicalEncounterModalTypes.addPastMedicalHistory,
+        data: null,
+      })
+    );
+  };
+
+  const handleReviewOfSystems = () => {
+    dispatch(
+      openAddModal({
+        modalId: medicalEncounterModalTypes.addReviewOfSystem,
+        data: null,
+      })
+    );
+  };
+
+  const handleAllergies = () => {
+    dispatch(
+      openAddModal({
+        modalId: medicalEncounterModalTypes.addAllergies,
+        data: null,
+      })
+    );
   };
   return (
     <div>
       <Header />
-      <CreateSubHeader />
+      <FormSubHeader />
       <ClientDetailsCard />
       <div className="grid grid-cols-12 gap-4 mt-3 px-5">
-        <div className="col-span-3">
-          <div className="box_shadow_2">
-            <h1 className="text-center text-[#03045E] font-semibold font-poppins py-2.5 border-b border-b-[#1890FF80]">
-              Past Encounters
-            </h1>
-            <div className="px-5 py-2">
-              <PastRecordCard />
-              <PastRecordCard />
-              <PastRecordCard />
-              <PastRecordCard />
-            </div>
-          </div>
-        </div>
+        <PastRecordList />
         <div className="col-span-7">
-          <Stepping />
+          <ModuleStepping />
           <div className="box_shadow_2 mt-5 flex flex-col gap-4 px-4 py-3">
-            <Accordion title="Present Complaints" modalHandler={toggleModal}>
+            {/* <Accordion title="Present Complaints" modalHandler={toggleModal}>
               <div className="space-y-4">
                 <Textarea label="Presenting Complaint" />
                 <Textarea label="Presenting Complaint" />
@@ -331,8 +368,8 @@ const CreateMedicalEncounter = () => {
                   <AllergiesCardItem />
                 </div>
               </div>
-            </Accordion>
-            <Accordion
+            </Accordion> */}
+            {/* <Accordion
               title="Family & Social History"
               modalHandler={toggleModal}
             >
@@ -340,39 +377,64 @@ const CreateMedicalEncounter = () => {
                 <Textarea label="Family Medical History" />
                 <Textarea label="Family Medical History" />
               </div>
-            </Accordion>
+            </Accordion> */}
+
+            {/* Presenting complaints */}
+            <FormHeading
+              title="Present Complaints"
+              modalHandler={handleChiefComplaints}
+            />
+            {addModal?.modalId ===
+              medicalEncounterModalTypes.addPresentingComplaint && (
+              <CreateChiefComplaints toggler={closeModal} />
+            )}
+
+            {/* TB constitutional symptoms */}
+            <FormHeading
+              title="TB & Constitutional Symptoms"
+              modalHandler={handleTbConstitutionalSymptom}
+            />
+            {addModal?.modalId ===
+              medicalEncounterModalTypes.addTbConstitutionalSymptom && (
+              <CreateTbConstitutionalSymptom toggler={closeModal} />
+            )}
+
+            {/* REVIEW of SYSTEM */}
+            <FormHeading
+              title="Review of Systems"
+              modalHandler={handleReviewOfSystems}
+            />
+            {addModal?.modalId ===
+              medicalEncounterModalTypes.addReviewOfSystem && (
+              <CreateReviewOfSystems toggler={closeModal} />
+            )}
+
+            {/* PAST MEDICAL HISTORY */}
+            <FormHeading
+              title="Past Medical History"
+              modalHandler={handlePastMedicalHistory}
+            />
+            {addModal?.modalId ===
+              medicalEncounterModalTypes.addPastMedicalHistory && (
+              <CreatePastMedicalHistory toggler={closeModal} />
+            )}
+
+            <FormHeading
+              title="Chronic / Non Chronic Conditions"
+              modalHandler={toggleModal}
+            />
+
+            <FormHeading title="Allergies" modalHandler={handleAllergies} />
+            {addModal?.modalId === medicalEncounterModalTypes.addAllergies && (
+              <CreateAllergy toggler={closeModal} />
+            )}
+            <FormHeading
+              title="Family & Social History"
+              modalHandler={toggleModal}
+            />
           </div>
         </div>
-        <div className="col-span-2 col-start-11">
-          <div className="box_shadow_2 pb-4">
-            <h1 className="text-center text-[#03045E] font-semibold font-poppins py-2.5 border-b border-b-[#1890FF80]">
-              Data Summary
-            </h1>
-            <div className="flex flex-col gap-5 px-5 py-2">
-              <SidebarItem
-                title="HTS Status"
-                Icon={<HTSStatus size={16} color="#1890FF" />}
-              />
-              <SidebarItem
-                title="Medications"
-                Icon={<Medication size={16} color="#1890FF" />}
-              />
-              <SidebarItem
-                title="Lab Orders"
-                Icon={<LabOrder size={20} color="#1890FF" />}
-              />
-              <SidebarItem
-                title="Vitals"
-                Icon={<HeartBit size={18} color="#1890FF" />}
-              />
-              <SidebarItem
-                title="Diagnoses"
-                Icon={<Diagnosis size={18} color="#1890FF" />}
-              />
-            </div>
-          </div>
-        </div>
-        <DefaultOpenModal isShow={openModal} toggler={toggleModal} />
+        <DataSummaryList />
       </div>
     </div>
   );

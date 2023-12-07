@@ -1,6 +1,6 @@
 import { cn } from "@/utilities/cn";
 
-const SelectableButton = ({ isActive = false, text = "Text" }) => {
+const SelectableButton = ({ isActive = false, text = "Text", handler }) => {
   return (
     <button
       className={cn(
@@ -10,6 +10,8 @@ const SelectableButton = ({ isActive = false, text = "Text" }) => {
           "bg-[#1890FF] text-white": isActive,
         }
       )}
+      onClick={() => handler(text)}
+      type="button"
     >
       {text}
     </button>
