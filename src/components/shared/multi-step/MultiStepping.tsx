@@ -39,17 +39,17 @@ const StepButton = ({
 }) => {
   return (
     <button
-      className={cn("flex items-center justify-center gap-1 text-sm py-5", {
+      className={cn("flex items-start justify-center gap-1 text-sm py-5", {
         "border-b-[3px] border-b-[#1890FF]": isActive,
       })}
     >
       {isComplete && (
-        <span className="inline-block bg-[#1890FF] rounded-full p-[2px]">
+        <span className="inline-block bg-[#1890FF] rounded-full p-[2px] sm:mt-1">
           <Check size={12} color="white" />
         </span>
       )}
       <p
-        className={cn("inline-block capitalize text-base", {
+        className={cn("inline-block capitalize text-xs xs:text-sm sm:text-base", {
           "text-[#1890FF]": isActive,
           "text-textColor": !isActive,
         })}

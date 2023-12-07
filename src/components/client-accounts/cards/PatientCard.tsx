@@ -101,7 +101,7 @@ const PatientCard = ({ client }: PatientCardProps) => {
                 <Link
                   to={URLClientEdit({ id: client?.oid })}
                   className={cn(
-                    "main_btn bg-whiteColor text-primaryColor dark:bg-gray-900 border !border-primaryColor btn_sm text-center text-sm"
+                    "main_btn bg-whiteColor hover:text-white text-primaryColor dark:bg-gray-900 hover:dark:bg-gray-800 border !border-primaryColor btn_sm text-center text-sm"
                   )}
                 >
                   Edit Profile

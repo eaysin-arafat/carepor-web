@@ -19,7 +19,7 @@ const useClientFormStep = (): ClientFormStepHookReturnType => {
   const { formStep } = useSelector((state: RootState) => state.clientForm);
 
   const stepTitle = [
-    "Personal & Contact Information",
+    "Personal Information",
     "Parents or Guardian Details",
     "Marital, Birth & Education Details",
   ];
