@@ -5,11 +5,7 @@ import UserAccountDetails from "@/pages/user-accounts/details/UserAccountDetils"
 import EditUserAccount from "@/pages/user-accounts/edit/UserAccountEdit";
 
 // route paths for user accounts pages
-export const URLUserAccountEdit = ({
-  userId = ":userId",
-}: {
-  userId: string;
-}): string => `/user-accounts/edit/${userId}`;
+export const URLUserAccountEdit = (): string => `/user-accounts/edit`;
 
 export const URLUserAccountDetails = (id: string): string =>
   `/user-accounts/details/${id}`;
@@ -33,7 +29,7 @@ const UserAccountsRouter = [
         element: <UserLayout />,
         children: [
           {
-            path: URLUserAccountEdit({ userId: ":userId" }),
+            path: URLUserAccountEdit(),
             element: <EditUserAccount />,
           },
           {

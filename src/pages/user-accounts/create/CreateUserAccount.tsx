@@ -39,7 +39,7 @@ function CreateUserAccount() {
   } = useUserRegistration();
 
   return (
-    <>
+    <div className=" px-2">
       <h2 className="heading_2 text-center mt-8">
         User Profile Registration
       </h2>
@@ -52,7 +52,7 @@ function CreateUserAccount() {
           <div className="">
             <MultiStepping stepCount={stateCount} stepTitle={stepTitle} />{" "}
           </div>
-          <div className="max-w-[894px] mx-auto py-10">
+          <div className="max-w-[894px] mx-auto py-10  px-2">
             <form action="" onSubmit={handleSubmit}>
               {stateCount === 1 && (
                 <PersonalInfo
@@ -120,12 +120,13 @@ function CreateUserAccount() {
           </div>
         </>
       </Container>
-    </>
+    </div>
   );
 }
 
 export default CreateUserAccount;
 
+//! Old Stepping
 // const StepButton = ({
 //   isComplete = false,
 //   isActive = false,
