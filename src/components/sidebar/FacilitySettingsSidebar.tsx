@@ -1,9 +1,11 @@
 import RootLayout from "@/layout/RootLayout";
 import { Accordion } from "flowbite-react";
 import { FaChartPie } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 import FacilitySettingsRoutes from "./routeArray/FacilitySettingsSidebarRoutes";
 
 function FacilitySettingsSidebar() {
+  const navigate = useNavigate();
   return (
     <RootLayout>
       <div>
@@ -14,7 +16,7 @@ function FacilitySettingsSidebar() {
           {FacilitySettingsRoutes?.map((item, index) => (
             <Accordion.Panel key={index} className="border-none rounded-none">
               <Accordion.Title
-                onClick={() => alert("okay")}
+                onClick={() => navigate(item.link)}
                 className="p-3 border-none outline-none hover:bg-primaryColor active:text-white focus:bg-primaryColor hover:text-white active:bg-primaryColor rounded-none"
               >
                 <div className="flex justify-between items-center w-full">

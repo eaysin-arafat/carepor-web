@@ -15,7 +15,7 @@ function MobileHeader() {
   const sidebar = useSelector((state: RootState) => state.sidebar.sidebar);
 
   return (
-    <div className="flex justify-between px-5 border-b py-2 items-center">
+    <div className="flex justify-between px-5 bg-whiteBgColor border-b py-2 items-center">
       <div>
         <HeaderList />
       </div>
