@@ -21,15 +21,15 @@ const gender = {
 
 type PatientCardProps = {
   client: Client;
-  className: string;
+  className?: string;
 };
 
-const PatientCard = ({ client }: PatientCardProps) => {
+const PatientCard = ({ client , className }: PatientCardProps) => {
   const navigate = useNavigate();
   return (
     <div>
       <Container className="my-5">
-        <div className="border-2 !border-primaryColor dark:!border-none rounded-lg bg-whiteBgColor">
+        <div className={cn("border-2 !border-primaryColor dark:!border-none rounded-lg bg-whiteBgColor" , className)}>
           <div className="grid grid-cols-9 gap-5 p-5">
             <div className="col-span-2 hidden lg:flex items-center justify-center min-2/12 border-r">
               <p className="text-2xl font-medium text-secondaryColor ">
