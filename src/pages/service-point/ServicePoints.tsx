@@ -58,7 +58,7 @@ const servicePointsArray = [
   {
     imgSrc: "/assets/svg/service-point/Vital.svg",
     title: "Vital",
-    link: "#",
+    link: "/vitals",
   },
   {
     imgSrc: "/assets/svg/service-point/PEP.svg",

@@ -1,4 +1,5 @@
 import useWindowWidth from "@/hooks/useWindow";
+import { URLUserDashboard } from "@/routers/user-accounts";
 import { Dropdown } from "flowbite-react";
 import { BiSearch } from "react-icons/bi";
 import { BsFillHeartPulseFill } from "react-icons/bs";
@@ -29,7 +30,7 @@ function HeaderList() {
         </Link>
       </li>
       <li>
-        <Link to="/dashboard" className="gap-1 flex items-center">
+        <Link to={URLUserDashboard()} className="gap-1 flex items-center">
           <FaChartPie size={w1230 ? 15 : 19} />{" "}
           {!w1100 && (
             <p className={`mt-1 ${w1230 && "font-[11px]"}`}>Dashboard</p>

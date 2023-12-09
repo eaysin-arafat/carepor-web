@@ -3,48 +3,48 @@ const ModuleSidebarRoutes = [
     id: 1,
     title: "Dashboard",
 
-    link: "/",
+    link: "/dashboard",
     icon: "",
   },
   {
     id: 2,
     title: "Vital",
 
-    link: "/",
+    link: "/vitals",
     icon: "/assets/svg/sidebar/vital.svg",
   },
   {
     id: 3,
     title: "HTS",
 
-    link: "/",
+    link: "#",
     icon: "/assets/svg/sidebar/hts.svg",
   },
   {
     id: 4,
     title: "Encounter (OPD)",
     icon: "/assets/svg/sidebar/opd.svg",
-    link: "/",
+    link: "#",
     children: [
       {
         id: 1,
         title: "HTS",
 
-        link: "/",
+        link: "#",
         icon: "",
       },
       {
         id: 2,
         title: "HTS",
 
-        link: "/",
+        link: "#",
         icon: "",
       },
       {
         id: 3,
         title: "HTS",
 
-        link: "/",
+        link: "#",
         icon: "",
       },
     ],
@@ -53,41 +53,41 @@ const ModuleSidebarRoutes = [
     id: 5,
     title: "PEP",
 
-    link: "/",
+    link: "#",
     icon: "/assets/svg/sidebar/pep.svg",
   },
   {
     id: 6,
     title: "PrEP",
-    link: "/",
+    link: "#",
     icon: "/assets/svg/sidebar/prep.svg",
   },
   {
     id: 7,
     title: "TB Service",
 
-    link: "/",
+    link: "#",
     icon: "/assets/svg/sidebar/tv.svg",
     children: [
       {
         id: 1,
         title: "PEP",
 
-        link: "/",
+        link: "#",
         icon: "",
       },
       {
         id: 1,
         title: "PrEP",
 
-        link: "/",
+        link: "#",
         icon: "",
       },
       {
         id: 1,
         title: "TB Service",
 
-        link: "/",
+        link: "#",
         icon: "",
       },
     ],
@@ -96,96 +96,96 @@ const ModuleSidebarRoutes = [
     id: 8,
     title: "VMMC Service",
 
-    link: "/",
+    link: "#",
     icon: "/assets/svg/sidebar/vmmc.svg",
   },
   {
     id: 9,
     title: "Under 5",
 
-    link: "/",
+    link: "#",
     icon: "/assets/svg/sidebar/setting.svg",
   },
   {
     id: 10,
     title: "Pain Scaling Tool",
 
-    link: "/",
+    link: "#",
     icon: "/assets/svg/sidebar/pain.svg",
   },
   {
     id: 11,
     title: "Investigation",
 
-    link: "/",
+    link: "#",
     icon: "/assets/svg/sidebar/investigation.svg",
   },
   {
     id: 12,
     title: "Surgery",
 
-    link: "/",
+    link: "#",
     icon: "/assets/svg/sidebar/surgery.svg",
   },
   {
     id: 13,
     title: "Referrals",
-    link: "/",
+    link: "#",
     icon: "/assets/svg/sidebar/referrals.svg",
   },
   {
     id: 14,
     title: "Covax",
 
-    link: "/",
+    link: "#",
     icon: "/assets/svg/sidebar/covax.svg",
   },
   {
     id: 15,
     title: "Covid",
 
-    link: "/",
+    link: "#",
     icon: "/assets/svg/sidebar/covid.svg",
   },
   {
     id: 16,
     title: "Birth Record",
 
-    link: "/",
+    link: "#",
     icon: "/assets/svg/sidebar/birthrecord.svg",
   },
   {
     id: 17,
     title: "Death Record",
 
-    link: "/",
+    link: "#",
     icon: "/assets/svg/sidebar/deathrecord.svg",
   },
   {
     id: 18,
     title: "Pharmacy",
 
-    link: "/",
+    link: "#",
     icon: "/assets/svg/sidebar/pharmacy.svg",
   },
   {
     id: 19,
     title: "ART (Pediatric)",
 
-    link: "/",
+    link: "#",
     icon: "/assets/svg/sidebar/artpad.svg",
   },
   {
     id: 20,
     title: "Postnatal (PNC)",
 
-    link: "/",
+    link: "#",
     icon: "/assets/svg/sidebar/postnatal.svg",
   },
   {
     id: 22,
     title: "Family Planning",
-    link: "/",
+    link: "#",
     icon: "/assets/svg/sidebar/family-planing.svg",
   },
 ];

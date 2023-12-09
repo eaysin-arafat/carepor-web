@@ -3,17 +3,20 @@ import { Accordion } from "flowbite-react";
 import { useState } from "react";
 import { FaChartPie } from "react-icons/fa6";
 import { IoChevronDown } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 import DropdownList from "./DropdownList";
 import css from "./Styles.module.css";
 import ModuleSidebarRoutes from "./routeArray/ModuleSidebarRoutes";
 
 function ModuleSidebar() {
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
   const filteredData = ModuleSidebarRoutes.filter((item) => {
     return search.toLocaleLowerCase() === ""
       ? item
       : item.title.toLocaleLowerCase().includes(search.toLocaleLowerCase());
   });
+
   return (
     <RootLayout>
       <div className="w-full">
@@ -64,7 +67,8 @@ function ModuleSidebar() {
                     </Accordion.Title>
                   ) : (
                     <Accordion.Title
-                      onClick={() => !item.children && alert("okay")}
+                      onClick={() => !item.children && navigate(item?.link)}
+                      // onClick={() => !item.children && alert("okay")}
                       className="p-3 border-none outline-none rounded-none"
                     >
                       <div className="flex justify-between items-center w-full">
