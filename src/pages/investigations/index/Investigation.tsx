@@ -48,7 +48,7 @@ const columns = [
     // right: true,
   },
   {
-    cell: (row) => (
+    cell: () => (
       <button
         onClick={handleButtonClick}
         className="flex items-center gap-2 whitespace-nowrap"

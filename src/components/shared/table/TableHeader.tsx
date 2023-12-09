@@ -2,14 +2,14 @@ import Checkbox from "@/components/core/form-elements/Checkbox";
 import { cn } from "@/utilities/cn";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 
+type Title = {
+  title: string;
+  w: string;
+};
+
 type Props = {
   isAction?: boolean;
-  title: [
-    {
-      title: string;
-      w: string;
-    }
-  ];
+  title: Title[];
   className?: string;
   actionWidth?: string;
 };

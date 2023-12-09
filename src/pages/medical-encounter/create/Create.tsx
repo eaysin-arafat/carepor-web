@@ -199,6 +199,15 @@ const AllergiesCardItem = () => {
   );
 };
 
+console.log(
+  AllergiesCardItem,
+  ReviewOfSystemCardItem,
+  Stepping,
+  SidebarItem,
+  PastRecordCard,
+  CreateSubHeader
+);
+
 const CreateMedicalEncounter = () => {
   const [openModal, setOpenModal] = React.useState(false);
 

@@ -10,7 +10,7 @@ import React from "react";
 function PharmacyQueue() {
   const w1100 = useWindowWidth(1100);
   const [state, setState] = React.useState(1);
-  
+
   const Test2 = ({ aa }: { aa: string }) => {
     return (
       <div className="flex gap-1 items-center">
@@ -19,6 +19,8 @@ function PharmacyQueue() {
       </div>
     );
   };
+
+  console.log(Test2);
 
   return (
     <div className={`${w1100 && "mt-12"}`}>

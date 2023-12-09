@@ -20,6 +20,8 @@ const useContactInformation = ({
   setContactInfoError,
   handleStepNext,
 }: MaritalStatusAndSpouseType) => {
+  console.log(handleStepNext);
+
   // handle Marital Status And Spouse  form change
   const handleContactInformationChange = (e: OnchangeEventType): void => {
     const { name, type, checked, value } = e.target;

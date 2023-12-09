@@ -22,6 +22,9 @@ const SelectContainer = ({
   selected,
   handleChange = () => {},
 }: SelectContainerProps) => {
+  console.log(selected);
+  console.log(handleChange);
+
   const [selectedItems, setSelectedItems] = React.useState<string[]>([]);
   const handleSelect = (item: string) => {
     if (selectedItems?.includes(item)) {

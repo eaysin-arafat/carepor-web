@@ -1,4 +1,4 @@
-import { TypeAPIEnum, TypeAPIObject } from "@/types";
+import { TypeAPIObject } from "@/types";
 
 // *** Static enums reference from enumerators
 

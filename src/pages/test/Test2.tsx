@@ -3,7 +3,9 @@ import DefaultOpenModal from "@/components/core/modal/DefaultOpenModal";
 const Test2 = () => {
   return (
     <div>
-      <DefaultOpenModal />
+      <DefaultOpenModal isShow toggler={() => {}}>
+        <div>hello</div>
+      </DefaultOpenModal>
     </div>
   );
 };
