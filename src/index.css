@@ -48,6 +48,25 @@
   --tableHead: #181a20;
 }
 
+.gray {
+  --body: #424242;
+  --primary: #1890ff;
+  --primaryHover: #007aec;
+  --activeColor: #1f2937;
+  --lightBlue: #5f5f60;
+  --secondary: #ffffff;
+  --grayColor: #a1a1b0;
+  --lightGray: #20232b;
+  --blackColor: #6b7280;
+  --white: #424242;
+  --whiteBg: #7e7e7e;
+  --danger: red;
+  --border: #ebeaed2d;
+  --text: #f3f4f6;
+  --textColor: #f3f4f6;
+  --tableHead: #181a20;
+}
+
 p,
 span,
 h1,
