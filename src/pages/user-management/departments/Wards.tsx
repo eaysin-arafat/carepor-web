@@ -4,7 +4,7 @@ import Table from "@/components/core/table/Table";
 import TableBody from "@/components/shared/table/TableBody";
 import TableHeader from "@/components/shared/table/TableHeader";
 import useWindowWidth from "@/hooks/useWindow";
-import { URLBeds } from "@/routers/FacilitySettings";
+import { URLBeds } from "@/routers/facility-settings";
 import { cn } from "@/utilities/cn";
 import { Plus } from "react-feather";
 import { BiLeftArrowAlt } from "react-icons/bi";

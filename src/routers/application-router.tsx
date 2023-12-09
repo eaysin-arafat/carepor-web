@@ -4,12 +4,12 @@ import CreateMedicalEncounter from "@/pages/medical-encounter/create/Create";
 import Test from "@/pages/test/Test";
 import Test2 from "@/pages/test/Test2";
 import RequestFacility from "@/pages/user-accounts/request-facility/RequestFacility";
-import FacilitySettings from "./FacilitySettings";
-import QueueRoutes from "./QueueRoutes";
 import clientRouter from "./client";
 import facilityRouter from "./facility";
-import ModuleRoute from "./moduleRoute";
+import FacilitySettings from "./facility-settings";
+import ModuleRoute from "./module-route";
 import publicRoutes from "./public";
+import QueueRoutes from "./queue-routes";
 import userAccountsRouter from "./user-accounts";
 
 // routes for facility

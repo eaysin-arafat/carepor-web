@@ -12,10 +12,11 @@ export type TypeSystemReviews = TypeAPIObject & {
 };
 
 /**
- * 
 InteractionId
+
 Note
 PhysicalSystemId
+
 ClientId
 EncounterId
 CreatedIn

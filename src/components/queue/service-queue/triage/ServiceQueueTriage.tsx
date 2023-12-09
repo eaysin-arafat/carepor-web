@@ -6,7 +6,7 @@ import Table from "@/components/shared/table/Table";
 import TableBody from "@/components/shared/table/TableBody";
 import TableHeader from "@/components/shared/table/TableHeader";
 import useWindowWidth from "@/hooks/useWindow";
-import { URLServiceQueue } from "@/routers/QueueRoutes";
+import { URLServiceQueue } from "@/routers/queue-routes";
 import React from "react";
 import ServiceQueueFilters from "../ServiceQueueFilters";
 

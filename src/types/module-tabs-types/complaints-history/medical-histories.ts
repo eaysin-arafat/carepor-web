@@ -1,15 +1,19 @@
-// ***
-//
 // Past Medical Histories and Family & Social Histories is equal to the Medical Histories
 
-import { TypeAPIObject } from "@/types";
+import { TypeAPIEnum, TypeAPIObject } from "@/types";
 
 // *** Static enums reference from enumerators
 // EnumInformationType
 
 // ENUM TYPES
+export type TypeRisks = TypeAPIEnum & {
+  // risk: string | number;
+};
 
 // DATA TYPES
+export type TypeRiskStatuses = TypeAPIObject & {
+  riskId: string;
+};
 // FamilyMedicalHistory / Past Medical Histories
 export type TypeMedicalHistory = TypeAPIObject & {
   history: string;
@@ -18,8 +22,10 @@ export type TypeMedicalHistory = TypeAPIObject & {
 
 /**
 InteractionId
+
 History
 InformationType
+
 ClientId
 EncounterId
 CreatedIn

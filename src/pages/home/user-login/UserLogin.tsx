@@ -4,7 +4,7 @@ import Input from "@/components/core/form-elements/Input";
 import Password from "@/components/core/form-elements/Password";
 import FormWrapper from "@/components/core/form-layouts/FormWrapper";
 import { URLUserRecoveryRequest } from "@/routers/public";
-import { HiInformationCircle } from 'react-icons/hi';
+import { HiInformationCircle } from "react-icons/hi";
 import { Alert } from "flowbite-react";
 import { Link } from "react-router-dom";
 import useUserLogin from "./useUserLogin";
@@ -39,7 +39,9 @@ function UserLogin() {
               onDismiss={() => setCredentialError("")}
               className="mb-5 bg-red-100 dark:bg-gray-800"
             >
-              <span className="inline-flex items-center gap-1 text-red-500"><HiInformationCircle className="text-base" /> {credentialError}</span>
+              <span className="inline-flex items-center gap-1 text-red-500">
+                <HiInformationCircle className="text-base" /> {credentialError}
+              </span>
             </Alert>
           </>
         )}
