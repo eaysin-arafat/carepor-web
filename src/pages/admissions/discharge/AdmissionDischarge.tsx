@@ -8,9 +8,7 @@ import DataRow from "@/components/core/table/DataRow";
 import { BiArrowBack } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
-type Props = {};
-
-const AdmissionDischarge = (props: Props) => {
+const AdmissionDischarge = () => {
   return (
     <div>
       <div className="mt-5">

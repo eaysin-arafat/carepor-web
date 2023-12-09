@@ -1,14 +1,14 @@
 import Checkbox from "@/components/core/form-elements/Checkbox";
 import { Edit, Eye, Trash } from "react-feather";
 
+type Title = {
+  title: string | JSX.Element;
+  w: string;
+};
+
 type Props = {
   index: number;
-  item: [
-    {
-      w: string;
-      title: string;
-    }
-  ];
+  item: Title[];
   isAction?: boolean;
   length?: number;
   actionWidth?: string;

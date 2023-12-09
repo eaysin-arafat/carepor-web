@@ -62,7 +62,7 @@ function AdminInfo() {
         <Dropdown.Item
           className="border-b py-3"
           as={Link}
-          to={URLUserAccountEdit({ userId: "" })}
+          to={URLUserAccountEdit()}
         >
           <FiEdit size={20} className="w-[30px]" /> Edit Profile
         </Dropdown.Item>

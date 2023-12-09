@@ -6,6 +6,7 @@ import facilityAccessReducer from "../features/facility-access/facility-access-s
 import publicKeyReducer from "../features/public-key/public-key-slice";
 import userAccountsReducer from "../features/user-accounts/user-accounts-slice";
 import clientFormSlice from "@/features/client/client-form-slice";
+import modalSlice from "@/features/modal/modal-slice";
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     authentication: authenticationReducer,
     sidebar: sidebar,
     clientForm: clientFormSlice,
+    modal: modalSlice.reducer,
   },
 
   devTools: import.meta.env.MODE !== "production",

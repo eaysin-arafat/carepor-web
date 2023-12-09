@@ -82,7 +82,7 @@ function FormWrapper({
                       "text-sm mt-6 text-center text-secondaryColor"
                     )}
                   >
-                    Ministry of Health SmartCare
+                    A Ministry of Health SmartCare System
                   </div>
                 )}
                 {title && (

@@ -1,4 +1,3 @@
-import PatientCard from "@/components/client-accounts/cards/PatientCard";
 import SimplePatientDetails from "@/components/client-accounts/cards/SimplePatientDetails";
 import OutlineButton from "@/components/core/buttons/OutlineButton";
 import SubmitButton from "@/components/core/buttons/SubmitButton";
@@ -6,8 +5,6 @@ import SelectRadio from "@/components/core/form-elements/SelectRadio";
 
 import { Client } from "@/interface/clients";
 import { useState } from "react";
-
-type Props = {};
 
 const client: Client = {
   oid: "ec6c61bf-32e4-4235-ce8b-08dbe4c5c412",
@@ -61,21 +58,23 @@ const client: Client = {
   occupationId: 0,
 };
 
-function AssignServiceQueue({}: Props) {
+console.log(client);
+
+function AssignServiceQueue() {
   const [service, setService] = useState("");
   const [urgency, setUrgency] = useState("");
 
-  const urgencyCheck = (value:string)=>{
-    if(urgency === value && urgency === "standard"){
-      return "bg-green-500 border-green-500 text-white"
+  const urgencyCheck = (value: string) => {
+    if (urgency === value && urgency === "standard") {
+      return "bg-green-500 border-green-500 text-white";
     }
-    if(urgency === value && urgency === "urgent"){
-      return "bg-orange-400 border-orange-400 text-white"
+    if (urgency === value && urgency === "urgent") {
+      return "bg-orange-400 border-orange-400 text-white";
     }
-    if(urgency === value && urgency === "emergency"){
-      return "bg-red-500 border-red-500 text-white"
+    if (urgency === value && urgency === "emergency") {
+      return "bg-red-500 border-red-500 text-white";
     }
-  }
+  };
   console.log({ service });
 
   const array = [
@@ -149,7 +148,9 @@ function AssignServiceQueue({}: Props) {
               counter
               title={item.title}
               count="5"
-              handler={(e: any) => setService(e.target.value)}
+              handler={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setService(e.target.value)
+              }
               value={item.value}
               classNmae={service === item.value && "bg-primaryColor text-white"}
               name={item.name}
@@ -157,14 +158,18 @@ function AssignServiceQueue({}: Props) {
           ))}
         </div>
         <div className="mt-5">
-          <p className="heading_2 text-2xl font-medium mb-3 mt-8">Select Urgency</p>
+          <p className="heading_2 text-2xl font-medium mb-3 mt-8">
+            Select Urgency
+          </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
           {selectUrgency.map((item, index) => (
             <SelectRadio
               key={index}
               title={item.title}
-              handler={(e: any) => setUrgency(e.target.value)}
+              handler={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setUrgency(e.target.value)
+              }
               value={item.value}
               classNmae={urgencyCheck(item.value)}
               // classNmae={urgency === item.value && "bg-primaryColor text-white"}
@@ -173,9 +178,14 @@ function AssignServiceQueue({}: Props) {
           ))}
         </div>
         <div className="my-5">
-          <p className="heading_2 text-2xl font-medium mb-3 mt-8">Visit Purpose</p>
+          <p className="heading_2 text-2xl font-medium mb-3 mt-8">
+            Visit Purpose
+          </p>
           <input
             type="text"
+            onClick={(e) => {
+              e;
+            }}
             className="custom-input"
             placeholder="Type Purpose of visit here"
           />

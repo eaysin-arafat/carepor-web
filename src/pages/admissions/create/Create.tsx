@@ -4,11 +4,11 @@ import DatePicker from "@/components/core/form-elements/CustomDatePicker";
 import Select from "@/components/core/form-elements/Select";
 import Textarea from "@/components/core/form-elements/textarea";
 import FormWrapper from "@/components/core/form-layouts/FormWrapper";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function CreateAdmission() {
   const navigate = useNavigate();
-  const { clientId } = useParams();
+  // const { clientId } = useParams();
 
   const handleCancelButtonClick = () => {
     navigate(-1);

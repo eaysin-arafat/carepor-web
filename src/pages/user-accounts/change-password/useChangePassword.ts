@@ -2,7 +2,6 @@
 // import { changePasswordValidator } from "@/validation-model/change-password";
 import { RootState } from "@/app/store";
 import { RtkStatusEnum } from "@/enum/rtk";
-import { logout } from "@/features/authentication/authentication-slice";
 import { useChangedPasswordMutation } from "@/features/user-accounts/user-accounts-api";
 import { URLClientSearch } from "@/routers/client";
 
@@ -12,12 +11,10 @@ import {
   ChangePasswordFormType,
 } from "@/types/user-accounts";
 import Alert from "@/utilities/alert";
-import { cookieManager } from "@/utilities/cookie-manager";
 import { changePasswordValidator } from "@/validation-models/change-password";
 // import { formEvent } from "@/types/htmlEvents";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 

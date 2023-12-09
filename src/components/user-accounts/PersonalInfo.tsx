@@ -32,6 +32,7 @@ function PersonalInfo({
 }: Props) {
   // const nrcRef = React.createRef<HTMLInputElement>();
   const nrcRef = React.useRef<HTMLInputElement>(null);
+  console.log(editMode);
 
   useEffect(() => {
     if (nrcRef.current) {
