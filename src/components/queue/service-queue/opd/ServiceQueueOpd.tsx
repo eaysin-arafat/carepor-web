@@ -1,9 +1,9 @@
+import Badge from "@/components/core/badge/Badge";
 import BreadcrumbItem from "@/components/core/breadcumb/BreadcrumbItem";
 import GlobalBreadcrumb from "@/components/core/breadcumb/Breadcumb";
 import useWindowWidth from "@/hooks/useWindow";
-import { URLServiceQueue } from "@/routers/QueueRoutes";
+import { URLServiceQueue } from "@/routers/queue-routes";
 import ServiceQueueFilters from "../ServiceQueueFilters";
-import Badge from "@/components/core/badge/Badge";
 
 function ServiceQueueOpd() {
   const w1100 = useWindowWidth(1100);
