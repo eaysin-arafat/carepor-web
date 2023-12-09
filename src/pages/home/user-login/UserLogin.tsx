@@ -38,7 +38,7 @@ function UserLogin() {
               icon={HiInformationCircle}
               color="failure"
               onDismiss={() => setCredentialError("")}
-              className="mb-5 "
+              className="mb-5 dark:bg-gray-400 dark:text-red-500"
             >
               {credentialError}
             </Alert>
@@ -61,7 +61,7 @@ function UserLogin() {
             label="password"
           />
           <div className="grid grid-cols-2 items-center ">
-            <div className="flex justify-end items-center" >
+            <div className="flex justify-end items-center">
               <Checkbox
                 onChange={handleInputChange}
                 name="rememberMe"

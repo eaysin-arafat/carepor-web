@@ -3,8 +3,10 @@ import ContactInformation from "@/components/client-accounts/client-form/contact
 import MaritalStatusAndSpouse from "@/components/client-accounts/client-form/marital-status-And-spouse/MaritalStatusAndSpouse";
 import GuardianDetails from "@/components/client-accounts/client-form/parents-guardian-details/ParentsGuardianDetails";
 import BackButton from "@/components/core/buttons/BackButton";
+import LinkButton from "@/components/core/buttons/LinkButton";
 import NextButton from "@/components/core/buttons/NextButton";
 import SubmitButton from "@/components/core/buttons/SubmitButton";
+import { URLClientSearch } from "@/routers/client";
 import EducationAndEmployment from "../education-employment/EducationAndEmployment";
 import PlaceOfBirthAndReligious from "../place-of-birth-religious/PlaceOfBirthAndReligious";
 // import { FormSubmitEventType } from "@/types/htmlEvents";
@@ -16,7 +18,6 @@ function ClientForm({ clientManager, isEditForm }) {
     // Select enums
     district,
     province,
-
     // state values
     personalInfo,
     parentsOrGuardians,
@@ -24,7 +25,6 @@ function ClientForm({ clientManager, isEditForm }) {
     contactInfo,
     placeOfBirthAndReligion,
     educationAndEmployment,
-
     // onchange event handlers
     handlePersonalInfoChange,
     handleParentsGuardianDetailsChange,
@@ -33,7 +33,6 @@ function ClientForm({ clientManager, isEditForm }) {
     handlePlaceOfBirthAndReligionChange,
     handleEducationAndEmploymentChange,
     handleNrcChange,
-
     // Error State
     personalInfoError,
     parentsOrGuardiansError,
@@ -41,12 +40,10 @@ function ClientForm({ clientManager, isEditForm }) {
     contactInfoError,
     placeOfBirthAndReligionError,
     educationAndEmploymentError,
-
     // form Handler
     handleClintFormNextOperation,
     //
     notZMPhoneResetContractInfo,
-
     // Submit Handler
     handleClientDataSubmit,
     handleClientDataUpdate,
@@ -123,71 +120,45 @@ function ClientForm({ clientManager, isEditForm }) {
             />
           </>
         )}
-
-        <div className="flex gap-5 mt-5 justify-end">
-          <BackButton
-            disabled={disabledBackButton}
-            title="Back"
-            type="button"
-            onClick={handleStepBack}
-            className=""
+        <div className="flex flex-wrap gap-5 mt-5 justify-between">
+          <LinkButton
+            title="Cancel"
+            link={URLClientSearch()}
+            className="order-last xs:order-first w-40"
           />
-          {stateCount === 3 && (
-            <SubmitButton
-              title="Submit"
-              buttonType="submit"
-              // onClick={
-              //   isEditForm ? handleClientDataUpdate : handleClientDataSubmit
-              // }
-              className=""
-            />
-          )}
-          {stateCount !== 3 && (
-            <NextButton
-              title="Next"
+          <div className="flex gap-5 justify-end">
+            <BackButton
+              disabled={disabledBackButton}
+              title="Back"
               type="button"
-              onClick={handleClintFormNextOperation}
-              className=""
+              onClick={handleStepBack}
+              className="w-40"
             />
-          )}
+            {stateCount === 3 && (
+              <SubmitButton
+                title="Submit"
+                buttonType="submit"
+                // onClick={ isEditForm ? handleClientDataUpdate : handleClientDataSubmit }
+                className="w-40"
+              />
+            )}
+            {stateCount !== 3 && (
+              <NextButton
+                title="Next"
+                type="button"
+                onClick={handleClintFormNextOperation}
+                className="w-40"
+              />
+            )}
+          </div>
         </div>
+
+        {/* <div className="flex gap-5 mt-5 justify-end">
+          
+        </div> */}
       </form>
     </>
   );
 }
 
 export default ClientForm;
-
-{
-  /* {stateCount === 4 && (
-          <ContactInformation
-            contactInfo={contactInfo}
-            contactInfoError={contactInfoError}
-            handleContactInformationChange={handleContactInformationChange}
-            notZMPhoneResetContractInfo={notZMPhoneResetContractInfo}
-          />
-        )} */
-}
-{
-  /* {stateCount === 5 && (
-          <PlaceOfBirthAndReligious
-            placeOfBirthAndReligion={placeOfBirthAndReligion}
-            placeOfBirthAndReligionError={placeOfBirthAndReligionError}
-            handlePlaceOfBirthAndReligionChange={
-              handlePlaceOfBirthAndReligionChange
-            }
-            province={province}
-            district={district}
-            homeLanguageEnum={homeLanguageEnum}
-          />
-        )}
-        {stateCount === 6 && (
-          <EducationAndEmployment
-            educationAndEmployment={educationAndEmployment}
-            educationAndEmploymentError={educationAndEmploymentError}
-            handleEducationAndEmploymentChange={
-              handleEducationAndEmploymentChange
-            }
-          />
-        )} */
-}
