@@ -16,8 +16,8 @@ const NameSearch = ({
 }: NameSearchProps) => {
   return (
     <div className="w-full">
-      <div className="md:custom-input md:items-center md:py-0 md:mt-[6px] md:h-[52px] md:grid md:grid-cols-4 md:me-5 md:border-gray-300 md:focus:border-gray-300 space-y-3 md:space-y-0">
-        <div className="md:border-r dark:border-gray-700">
+      <div className="md:custom-input md:items-center md:py-0 md:mt-[6px] md:h-[53px] md:grid md:grid-cols-4 md:me-5 md:borderColor md:dark:border-[#6B7280] md:focus:border-gray-300 space-y-3 md:space-y-0 ">
+        <div className="md:border-r dark:dark:border-[#6B7280]">
           <Input
             label=""
             name="firstName"
@@ -27,7 +27,7 @@ const NameSearch = ({
             className={"md:input_cellphone"}
           />
         </div>
-        <div className="md:border-r dark:border-gray-700 ">
+        <div className="md:border-r dark:border-[#6B7280] ">
           <Input
             label=""
             name="surname"
@@ -37,7 +37,7 @@ const NameSearch = ({
             className={"md:input_cellphone"}
           />
         </div>
-        <div className="md:border-r dark:border-gray-700 ">
+        <div className="md:border-r  dark:border-[#6B7280] ">
           <DatePicker
             placeholder="DOB"
             name="dob"
@@ -48,7 +48,7 @@ const NameSearch = ({
             handleClear={handleDateClear}
           />
         </div>
-        <div className="">
+        <div className=" ">
           <Select
             label=""
             value={nameSearchState.sex}
