@@ -10,7 +10,7 @@
 
 .light {
   /* --body: #f6f9ff; */
-  --body: #F4F4F4;
+  --body: #f4f4f4;
   /* --body: #FAFCFE; */
   --primary: #1890ff;
   --primaryHover: #007aec;
@@ -160,7 +160,7 @@ span {
   }
   .dark .shadow_dark {
     box-shadow: 0 8px 16px 0 rgba(114, 114, 114, 0.05),
-    0 8px 16px 0 rgba(100, 100, 100, 0.05)
+      0 8px 16px 0 rgba(100, 100, 100, 0.05);
   }
 }
 
@@ -249,7 +249,12 @@ select option {
 }
 
 /*  modal posisiton */
-div#\:ri\: {
+/* div#\:ri\: {
+  left: 4%;
+  max-width: 70rem;
+} */
+
+.custom__modal > div {
   left: 4%;
   max-width: 70rem;
 }

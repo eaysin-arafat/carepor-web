@@ -1,5 +1,4 @@
 import { RootState } from "@/app/store";
-import { API } from "@/features/API/API";
 import { useReadCountriesQuery } from "@/features/country/country-api";
 import {
   useCheckUserMobileQuery,
@@ -18,7 +17,7 @@ import { userAccountPersonalInfoValidator } from "@/validation-models/user-accou
 import { debounce } from "lodash";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const initialPersonalInfo = {
@@ -39,7 +38,6 @@ function useEditUserAccounts() {
   const { user } = useSelector((state: RootState) => state.authentication);
 
   // test with promises
-  const dispatch = useDispatch();
 
   //  nrc state
   const [nrc, setNrc] = useState(user?.nrc || "");
@@ -100,10 +98,7 @@ function useEditUserAccounts() {
   //  variable and hooks
   const disabledBackButton = stateCount === 1;
   const navigate = useNavigate();
-  const stepTitle = [
-    "Personal Information",
-    "Contact Information",
-  ];
+  const stepTitle = ["Personal Information", "Contact Information"];
 
   // handle personal information changes
   const handlePersonalInfoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -113,6 +108,7 @@ function useEditUserAccounts() {
       if (TypeValidation.isOnlyNameField(value)) {
         setPersonalInfo((prev) => ({
           ...prev,
+          // eslint-disable-next-line no-regex-spaces
           [name]: value.replace(/  /g, " "),
         }));
         setErrors((prev) => ({ ...prev, [name]: "" }));

@@ -35,6 +35,7 @@ function ContactInfo({
   //     </option>
   //   ));
   // };
+  console.log(countries, editMode);
 
   console.log(handleCellphoneChange);
   console.log(contactInfo.countryCode);

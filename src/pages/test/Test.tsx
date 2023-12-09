@@ -109,6 +109,8 @@ function Test() {
     );
   };
 
+  console.log(Test2);
+
   return (
     <div>
       <div
@@ -127,23 +129,23 @@ function Test() {
               title={[
                 {
                   title: "Age",
-                  w: 50,
+                  w: "50",
                 },
                 {
                   title: "Age",
-                  w: 200,
+                  w: "200",
                 },
                 {
                   title: "Age",
-                  w: 300,
+                  w: "300",
                 },
                 {
                   title: "Age",
-                  w: 100,
+                  w: "100",
                 },
                 {
                   title: "Age",
-                  w: 100,
+                  w: "100",
                 },
               ]}
             />
@@ -156,10 +158,10 @@ function Test() {
                 }}
                 item={[
                   { title: item.age, w: "100%" },
-                  { title: item.age, w: 200 },
-                  { title: item.age, w: 300 },
-                  { title: item.age, w: 100 },
-                  { title: item.age, w: 100 },
+                  { title: item.age, w: "200" },
+                  { title: item.age, w: "300" },
+                  { title: item.age, w: "100" },
+                  { title: item.age, w: "100" },
                 ]}
               />
             ))}

@@ -1,4 +1,3 @@
-import Card from "@/components/core/card/Card";
 import CustomPagination from "@/components/core/custom-pagination/CustomPagination";
 // import Table from "@/components/core/table/Table";
 // import TableData from "@/components/core/table/TableData";
@@ -13,7 +12,7 @@ import React from "react";
 function InvestigationsDashboard() {
   const w1100 = useWindowWidth(1100);
   const [state, setState] = React.useState(1);
-  
+
   const Test2 = ({ aa }: { aa: string }) => {
     return (
       <div className="flex gap-1 items-center">
@@ -62,7 +61,6 @@ function InvestigationsDashboard() {
             ]}
           />
           {data.map((item, index) => (
-            
             <TableBody
               index={index}
               isAction
@@ -73,7 +71,7 @@ function InvestigationsDashboard() {
               }}
               item={[
                 { title: item.name, w: "20%" },
-                { title: <Test2 aa={item?.priority} key="test" /> , w: "20%" },
+                { title: <Test2 aa={item?.priority} key="test" />, w: "20%" },
                 { title: item.orderDate, w: "20%" },
                 { title: item.test, w: "20%" },
                 { title: item.orderNumber, w: "20%" },
@@ -83,13 +81,13 @@ function InvestigationsDashboard() {
           ))}
         </Table>
         <div className="flex justify-end mx-5">
-            <CustomPagination
-              activePage={1}
-              itemsCountPerPage={state}
-              setActivePage={setState}
-              totalItemsCount={100}
-            />
-          </div>
+          <CustomPagination
+            activePage={1}
+            itemsCountPerPage={state}
+            setActivePage={setState}
+            totalItemsCount={100}
+          />
+        </div>
       </div>
     </div>
   );

@@ -1,7 +1,4 @@
 import { useReadCountriesQuery } from "@/features/country/country-api";
-import { useReadDistrictsQuery } from "@/features/district/district-api";
-import { useReadHomeLanguagesQuery } from "@/features/home-language/home-language-api";
-import { useReadProvincesQuery } from "@/features/province/province-api";
 
 type SelectOptionType = {
   oid: string | number;

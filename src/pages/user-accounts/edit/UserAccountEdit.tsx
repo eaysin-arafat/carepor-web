@@ -24,7 +24,6 @@ function EditUserAccount() {
     handleSetNoNRC,
     handleSubmit,
     isCellphoneValid,
-    isLoading,
     isNRCValid,
     noNRC,
     nrc,
