@@ -5,7 +5,7 @@ import { TypeAPIEnum, TypeAPIObject } from "@/types";
 // EnumInformantRelationship
 
 // ENUM TYPE
-export type TypePainScales = TypeAPIEnum;
+export type TypePainScalesEnum = TypeAPIEnum;
 
 // DATA TYPE
 export type TypePainRecords = TypeAPIObject & {

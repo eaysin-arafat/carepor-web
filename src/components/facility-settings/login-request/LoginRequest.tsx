@@ -1,10 +1,16 @@
 import Input from "@/components/core/form-elements/Input";
 import Select from "@/components/core/form-elements/Select";
 import Table from "@/components/core/table/Table";
-import TableBody from "@/components/shared/table/TableBody";
 import TableHeader from "@/components/shared/table/TableHeader";
+import { TypeFacilityAccess } from "@/types/facility";
+import RequestsItems, { headerData } from "../components/RequestsItem";
 
-function LoginRequest() {
+type Props = {
+  loginRequests: TypeFacilityAccess[];
+};
+
+// recovery-requests
+function LoginRequest({ loginRequests }: Props) {
   return (
     <div>
       <div className="flex gap-5">
@@ -22,46 +28,10 @@ function LoginRequest() {
             className="bg-primaryHoverColor"
             actionWidth="w-[180px]"
             isAction
-            title={[
-              {
-                title: "User Name",
-                w: "20%",
-              },
-              {
-                title: "Designation",
-                w: "10%",
-              },
-              {
-                title: "Facility",
-                w: "30%",
-              },
-              {
-                title: "Cell Phone",
-                w: "20%",
-              },
-              {
-                title: "Contact Address",
-                w: "20%",
-              },
-            ]}
+            title={headerData}
           />
-          {data.map((item, index) => (
-            <TableBody
-              index={index}
-              actionWidth="w-[160px]"
-              isAction
-              btn={{
-                viewResult: "Accept",
-                btnOutline: "Reject",
-              }}
-              item={[
-                { title: item.name, w: "20%" },
-                { title: item.des, w: "10%" },
-                { title: item.facility, w: "30%" },
-                { title: item.number, w: "20%" },
-                { title: item.address, w: "20%" },
-              ]}
-            />
+          {loginRequests.map((item, index) => (
+            <RequestsItems request={item} key={index} requestType="login" />
           ))}
         </Table>
       </div>
@@ -71,109 +41,39 @@ function LoginRequest() {
 
 export default LoginRequest;
 
-const data = [
-  {
-    id: 1,
-    name: "John Smith",
-    des: "Admin",
-    facility: "Bauleni Mini Hospital",
-    number: "+260 555555555",
-    address: "5285258258",
-  },
-  {
-    id: 1,
-    name: "John Smith",
-    des: "Admin",
-    facility: "Bauleni Mini Hospital",
-    number: "+260 555555555",
-    address: "5285258258",
-  },
-  {
-    id: 1,
-    name: "John Smith",
-    des: "Admin",
-    facility: "Bauleni Mini Hospital",
-    number: "+260 555555555",
-    address: "5285258258",
-  },
-  {
-    id: 1,
-    name: "John Smith",
-    des: "Admin",
-    facility: "Bauleni Mini Hospital",
-    number: "+260 555555555",
-    address: "5285258258",
-  },
-  {
-    id: 1,
-    name: "John Smith",
-    des: "Admin",
-    facility: "Bauleni Mini Hospital",
-    number: "+260 555555555",
-    address: "5285258258",
-  },
-  {
-    id: 1,
-    name: "John Smith",
-    des: "Admin",
-    facility: "Bauleni Mini Hospital",
-    number: "+260 555555555",
-    address: "5285258258",
-  },
-  {
-    id: 1,
-    name: "John Smith",
-    des: "Admin",
-    facility: "Bauleni Mini Hospital",
-    number: "+260 555555555",
-    address: "5285258258",
-  },
-  {
-    id: 1,
-    name: "John Smith",
-    des: "Admin",
-    facility: "Bauleni Mini Hospital",
-    number: "+260 555555555",
-    address: "5285258258",
-  },
-  {
-    id: 1,
-    name: "John Smith",
-    des: "Admin",
-    facility: "Bauleni Mini Hospital",
-    number: "+260 555555555",
-    address: "5285258258",
-  },
-  {
-    id: 1,
-    name: "John Smith",
-    des: "Admin",
-    facility: "Bauleni Mini Hospital",
-    number: "+260 555555555",
-    address: "5285258258",
-  },
-  {
-    id: 1,
-    name: "John Smith",
-    des: "Admin",
-    facility: "Bauleni Mini Hospital",
-    number: "+260 555555555",
-    address: "5285258258",
-  },
-  {
-    id: 1,
-    name: "John Smith",
-    des: "Admin",
-    facility: "Bauleni Mini Hospital",
-    number: "+260 555555555",
-    address: "5285258258",
-  },
-  {
-    id: 1,
-    name: "John Smith",
-    des: "Admin",
-    facility: "Bauleni Mini Hospital",
-    number: "+260 555555555",
-    address: "5285258258",
-  },
-];
+/**
+ *             <TableBody
+              index={index}
+              actionWidth="w-[160px]"
+              isAction
+              viewResultHandler={() => alert("view")}
+              btnOutlineHandler={() => alert("out")}
+              btnHandler={() => alert("h")}
+              btn={{
+                viewResult: "Accept",
+                btnOutline: "Reject",
+              }}
+              item={[
+                {
+                  title:
+                    item?.userAccount?.firstName +
+                    " " +
+                    item?.userAccount?.surname,
+                  w: "20%",
+                },
+                { title: item?.userAccount?.designation, w: "15%" },
+                {
+                  title: useFacilityData(item?.facilityId)?.facilityName,
+                  w: "25%",
+                },
+                {
+                  title:
+                    item?.userAccount?.countryCode +
+                    " " +
+                    item?.userAccount?.cellphone,
+                  w: "15%",
+                },
+                { title: item?.userAccount?.contactAddress, w: "25%" },
+              ]}
+            />
+ */

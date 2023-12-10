@@ -54,6 +54,7 @@ const defaultAlertValue = {
   showCancelButton: false,
   confirmButtonColor: "#3085d6",
   cancelButtonColor: "#d33",
+  confirmButtonText: "Ok",
 };
 
 export const AlertMessage = ({
@@ -62,6 +63,7 @@ export const AlertMessage = ({
   icon,
   showCancelButton = false,
   confirmedHandler = () => {},
+  confirmButtonText,
 }) => {
   Swal.fire({
     ...defaultAlertValue,
@@ -69,9 +71,9 @@ export const AlertMessage = ({
     text,
     icon,
     showCancelButton,
+    confirmButtonText,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
-    // confirmButtonText: "Ok",
   }).then((result) => {
     if (result.isConfirmed) {
       confirmedHandler();
