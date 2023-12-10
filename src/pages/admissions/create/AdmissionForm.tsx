@@ -1,13 +1,16 @@
+import OutlineButton from "@/components/core/buttons/OutlineButton";
+import SubmitButton from "@/components/core/buttons/SubmitButton";
 import DatePicker from "@/components/core/form-elements/CustomDatePicker";
 import Select from "@/components/core/form-elements/Select";
 import Textarea from "@/components/core/form-elements/textarea";
+import { closeAddModal } from "@/features/modal/modal-slice";
+import { useDispatch } from "react-redux";
 
 const AdmissionForm = () => {
-  //   const navigate = useNavigate();
-
-  //   const handleCancelButtonClick = () => {
-  //     navigate(-1);
-  //   };
+  const dispatch = useDispatch();
+  const closeModal = () => {
+    dispatch(closeAddModal());
+  };
 
   return (
     <div>
@@ -57,10 +60,18 @@ const AdmissionForm = () => {
             />
           </div>
         </div>
-        {/* <div className="grid grid-cols-2 gap-5 mt-4 mb-4">
-          <SubmitButton buttonType="submit" title="Save & Admit" />
-          <OutlineButton title="Cancel" onClick={handleCancelButtonClick} />
-        </div> */}
+        <div className="flex justify-end gap-5 mt-4 mb-4">
+          <OutlineButton
+            title="Cancel"
+            onClick={closeModal}
+            className="w-fit px-10 text-base sm:text-lg"
+          />
+          <SubmitButton
+            buttonType="submit"
+            title="Save & Admit"
+            className="w-fit text-base sm:px-10 sm:text-lg "
+          />
+        </div>
       </form>
     </div>
   );

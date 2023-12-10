@@ -112,9 +112,9 @@ body.modal-open {
   }
 
   .modal {
-    @apply bg-whiteBgColor text-textColor w-[80%] max-w-screen-sm rounded-lg mx-auto;
+    @apply bg-whiteBgColor text-textColor w-[95%] max-w-screen-sm rounded-lg mx-auto;
   }
-  
+
   .heading_1 {
     @apply text-center font-bold text-2xl md:text-4xl leading-[1.625] tracking-tighter text-secondaryColor;
   }
@@ -140,7 +140,7 @@ body.modal-open {
   }
 
   .custom-input {
-    @apply w-full rounded-[6px] text-blackColor dark:text-gray-400 bg-whiteColor dark:bg-[#000] box-border flex flex-row items-center justify-start py-[12px] px-4 border-[2px] border-solid border-borderColor dark:border-[#6B7280] focus:border-borderColor focus:shadow-none outline-none focus:outline-none focus:ring-0;
+    @apply w-full rounded-[6px] text-blackColor dark:text-gray-400 bg-whiteColor dark:bg-[#000] box-border flex flex-row items-center justify-start py-[8px] xs:py-[12px] px-4 border-[2px] border-solid border-borderColor dark:border-[#6B7280] focus:border-borderColor focus:shadow-none outline-none focus:outline-none focus:ring-0;
   }
 
   .input_label {

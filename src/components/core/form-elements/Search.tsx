@@ -37,7 +37,7 @@ function Search({
       <div className="relative w-full">
         <input
           type={type}
-          className={`custom-input text-base min-h-[52px] ${
+          className={`custom-input text-base  ${
             disabled && "disabled_bg"
           } ${className}`}
           value={value}

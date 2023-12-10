@@ -53,23 +53,24 @@ const Modal: React.FC<ModalProps> = ({
       {isModalId && (
         <div className={`modal-container z-[9999]`}>
           <div
-            className={cn("modal mx-2 overflow-y-auto max-h-[80%] ", className)}
+            className={cn("modal  overflow-y-auto max-h-[90%] ", className)}
           >
             <div
-              className={`flex ${
+              style={{zIndex: "99"}}
+              className={`flex sticky top-0 bg-whiteBgColor ${
                 title
                   ? "border-b border-borderColor justify-between "
                   : "justify-end pb-0"
-              } px-5 py-2.5`}
+              } px-5 py-2.5 `}
             >
               {title && (
-                <h2 className={`text-xl font-semibold text-secondaryColor`}>
+                <h2 className={`text-xl sm:text-2xl font-semibold text-secondaryColor`}>
                   {title}
                 </h2>
               )}
               <button
                 type="button"
-                className={` flex items-center justify-center border border-borderColor hover:bg-bodyColor w-7 h-7 rounded-full`}
+                className={` flex items-center justify-center border border-borderColor hover:bg-bodyColor w-8 h-8 rounded-full`}
                 onClick={() => {
                   dispatch(closeAddModal());
                 }}

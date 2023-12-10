@@ -19,4 +19,6 @@ export const vitalModalTypes = Object.freeze({
 });
 export const admissionModalTypes = Object.freeze({
   addAdmission: "addAdmission",
+  admissionDischarge: "admissionDischarge",
+  admissionDetails: "admissionDetails",
 });
