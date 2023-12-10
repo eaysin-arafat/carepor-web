@@ -25,7 +25,10 @@ type Props = {
 function TableHeader({ isAction, title, className, actionWidth }: Props) {
   return (
     <div
-      className={cn("flex justify-between bg-white items-center", className)}
+      className={cn(
+        "flex justify-between bg-tableHeadColor text-textColor items-center",
+        className
+      )}
       // style={{ gridTemplateColumns: `repeat(${title.length + action}, 1fr)` }}
     >
       <p className="p-2">
@@ -51,7 +54,7 @@ function TableHeader({ isAction, title, className, actionWidth }: Props) {
 
       {isAction && (
         <p
-          className={` ${actionWidth} p-2 text-textColor text-xs font-bold sticky right-0 z-50 `}
+          className={` ${actionWidth} p-2 text-textColor bg-tableHeadColor text-xs font-bold sticky right-0 z-50 `}
         >
           Action
         </p>

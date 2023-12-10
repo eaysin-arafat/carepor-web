@@ -115,68 +115,75 @@ const ModuleSidebarRoutes = [
   },
   {
     id: 11,
+    title: "Admissions",
+
+    link: "/admissions",
+    icon: "/assets/svg/sidebar/admissions.svg",
+  },
+  {
+    id: 12,
     title: "Investigation",
 
     link: "#",
     icon: "/assets/svg/sidebar/investigation.svg",
   },
   {
-    id: 12,
+    id: 13,
     title: "Surgery",
 
     link: "#",
     icon: "/assets/svg/sidebar/surgery.svg",
   },
   {
-    id: 13,
+    id: 14,
     title: "Referrals",
     link: "#",
     icon: "/assets/svg/sidebar/referrals.svg",
   },
   {
-    id: 14,
+    id: 15,
     title: "Covax",
 
     link: "#",
     icon: "/assets/svg/sidebar/covax.svg",
   },
   {
-    id: 15,
+    id: 16,
     title: "Covid",
 
     link: "#",
     icon: "/assets/svg/sidebar/covid.svg",
   },
   {
-    id: 16,
+    id: 17,
     title: "Birth Record",
 
     link: "#",
     icon: "/assets/svg/sidebar/birthrecord.svg",
   },
   {
-    id: 17,
+    id: 18,
     title: "Death Record",
 
     link: "#",
     icon: "/assets/svg/sidebar/deathrecord.svg",
   },
   {
-    id: 18,
+    id: 19,
     title: "Pharmacy",
 
     link: "#",
     icon: "/assets/svg/sidebar/pharmacy.svg",
   },
   {
-    id: 19,
+    id: 20,
     title: "ART (Pediatric)",
 
     link: "#",
     icon: "/assets/svg/sidebar/artpad.svg",
   },
   {
-    id: 20,
+    id: 21,
     title: "Postnatal (PNC)",
 
     link: "#",
