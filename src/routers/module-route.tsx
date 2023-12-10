@@ -9,7 +9,9 @@ export const URLDashboard = (): string => "/dashboard";
 export const URLUserAccountCreate = (): string => "/user-accounts/create";
 
 export const URLUserRecoveryRequest = (): string => "/recovery-request";
+export const URLAdmissions = (): string => "/admissions";
 import Investigation from "@/pages/investigations/index/Investigation";
+import AdmissionsIndex from "@/pages/admissions/index/Index";
 
 // routes for public
 
@@ -33,6 +35,10 @@ const ModuleRoute = [
           {
             path: URLInvestigation(),
             element: <Investigation />,
+          },
+          {
+            path: URLAdmissions(),
+            element: <AdmissionsIndex />,
           },
         ],
       },
