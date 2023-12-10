@@ -27,6 +27,7 @@
   --text: #374151;
   --textColor: #374151;
   --tableHead: #e8f4ff;
+  --tableRow: #f3f8ff;
 }
 
 .dark {
@@ -46,6 +47,7 @@
   --text: #f3f4f6;
   --textColor: #f3f4f6;
   --tableHead: #181a20;
+  --tableRow: #000;
 }
 
 .gray {
@@ -65,6 +67,7 @@
   --text: #f3f4f6;
   --textColor: #f3f4f6;
   --tableHead: #181a20;
+  --tableRow: #000;
 }
 
 p,
@@ -82,18 +85,18 @@ div {
 span {
   display: inline-block;
 }
-/* .background_image::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: var(--primary);
-  z-index: 9;
-  height: 100%;
-  opacity: 0.8;
-} */
+
+._sidebar_1dh2t_5 div button {
+  background-color: var(--body);
+}
+
+._sidebar_1dh2t_5 div button:hover {
+  background-color: var(--activeColor);
+  color: white;
+}
+._sidebar_1dh2t_5 div button:hover h2 div {
+  color: white !important;
+}
 
 @layer utilities {
   .grid-cols-dynamic {
