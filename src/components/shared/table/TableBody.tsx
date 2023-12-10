@@ -53,11 +53,7 @@ function TableBody({
       key={index}
       className={`flex justify-between ${
         length === index + 1 && "rounded-b-lg"
-      } items-center ${
-        index % 2
-          ? "bg-gray-100 dark:bg-whiteBgColor"
-          : "bg-white dark:bg-slate-800"
-      }`}
+      } items-center ${index % 2 ? "bg-tableRow" : "bg-whiteBgColor"}`}
     >
       <p className="p-2">
         <Checkbox className="h-[15px] w-[15px]" />
@@ -74,9 +70,7 @@ function TableBody({
       {isAction && (
         <p
           className={`p-2 text-textColor  flex gap-1.5 text-xs sticky right-0 z-50 ${actionWidth}  ${
-            index % 2
-              ? "bg-gray-100 dark:bg-whiteBgColor"
-              : "bg-white dark:bg-slate-800"
+            index % 2 ? "bg-tableRow" : "bg-whiteBgColor"
           }`}
         >
           {btn?.show && (

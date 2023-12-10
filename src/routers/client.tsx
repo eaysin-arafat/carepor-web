@@ -1,7 +1,7 @@
 import PrivateGuard from "@/components/shared/guard/PrivateGuard";
 import UserLayout from "@/layout/UserLayout";
-import CreateAdmission from "@/pages/admissions/create/Create";
 import AdmissionDischarge from "@/pages/admissions/discharge/AdmissionDischarge";
+import AdmissionsIndex from "@/pages/admissions/index/Index";
 import CreateClientAccount from "@/pages/client-accounts/create/CreateClientAccount";
 import ClientDetails from "@/pages/client-accounts/details/ClientsDetils";
 import ClientAccountEdit from "@/pages/client-accounts/edit/ClientAccountEdit";
@@ -24,11 +24,11 @@ export const URLLinkWithMother = ({ id }: { id: string }): string =>
 export const URLClientCreate = (): string => "/client-create";
 export const URLClientEdit = ({ id }: { id: string }): string =>
   `/client-edit/${id}`;
-export const URLCreateAdmission = ({
+export const URLAdmissions = ({
   clientId = ":clientId",
 }: {
   clientId: string;
-}): string => `/admission-create/${clientId}`;
+}): string => `/admissions/${clientId}`;
 export const URLEditAdmission = ({
   clientId = ":clientId",
 }: {
@@ -44,6 +44,7 @@ export const URLAdmissionDischarge = ({
 }: {
   clientId: string;
 }): string => `/admission-discharge/${clientId}`;
+// export const URLAdmissions = (): string => "/admissions";
 
 // routers for client pages
 const ClientRouter = [
@@ -81,10 +82,10 @@ const ClientRouter = [
             path: URLClientEdit({ id: ":id" }),
             element: <ClientAccountEdit />,
           },
-          {
-            path: URLCreateAdmission({ clientId: ":clientId" }),
-            element: <CreateAdmission />,
-          },
+          // {
+          //   path: URLCreateAdmission({ clientId: ":clientId" }),
+          //   element: <CreateAdmission />,
+          // },
           {
             path: URLEditAdmission({ clientId: ":clientId" }),
             element: <EditAdmission />,
@@ -100,6 +101,10 @@ const ClientRouter = [
           {
             path: URLAssignServiceQueue(),
             element: <AssignServiceQueue />,
+          },
+          {
+            path: URLAdmissions({ clientId: ":clientId" }),
+            element: <AdmissionsIndex />,
           },
         ],
       },

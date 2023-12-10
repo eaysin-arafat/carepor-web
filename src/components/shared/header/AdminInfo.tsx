@@ -28,7 +28,7 @@ function AdminInfo() {
   return (
     <div className="flex items-center gap-2">
       <p
-        className={`border-r pr-2 text-primaryColor dark:text-white ${
+        className={`border-r pr-2 text-primaryColor dark:text-white font-medium ${
           w1230 ? "font-[11px]" : "font-[15px]"
         }`}
       >

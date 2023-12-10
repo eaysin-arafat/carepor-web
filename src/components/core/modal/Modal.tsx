@@ -62,20 +62,19 @@ const Modal: React.FC<ModalProps> = ({
     <>
       {isModalId && (
         <div className={`modal-container z-[9999]`}>
-          <div
-            className={cn("modal mx-2 overflow-y-auto max-h-[80%] ", className)}
-          >
+          <div className={cn("modal  overflow-y-auto max-h-[90%] ", className)}>
             <div
-              className={`flex ${
+              style={{ zIndex: "99" }}
+              className={`flex sticky top-0 bg-whiteBgColor ${
                 title
                   ? "border-b border-borderColor justify-between "
                   : "justify-end pb-0"
-              } px-5 py-2.5`}
+              } px-5 py-2.5 `}
             >
               {title && (
                 <h2
                   className={
-                    `text-xl font-semibold text-secondaryColor` +
+                    `text-xl sm:text-2xl font-semibold text-secondaryColor` +
                     " " +
                     titleClass
                   }
@@ -85,8 +84,10 @@ const Modal: React.FC<ModalProps> = ({
               )}
               <button
                 type="button"
-                className={` flex items-center justify-center border border-borderColor hover:bg-bodyColor w-7 h-7 rounded-full`}
-                onClick={handleModalClose}
+                className={` flex items-center justify-center border border-borderColor hover:bg-bodyColor w-8 h-8 rounded-full`}
+                onClick={() => {
+                  handleModalClose();
+                }}
               >
                 <RxCross2 />
               </button>
