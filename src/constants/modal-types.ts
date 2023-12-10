@@ -20,3 +20,8 @@ export const vitalModalTypes = Object.freeze({
 export const admissionModalTypes = Object.freeze({
   addAdmission: "addAdmission",
 });
+
+export const facilitySettingsModalType = Object.freeze({
+  resetPasswordModal: "resetPasswordModal",
+  moduleAccessPermissionModal: "moduleAccessPermissionModal",
+});

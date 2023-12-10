@@ -4,20 +4,24 @@
 //   useRevokeLoginMutation,
 // } from "@/features/facility/facility-access-api";
 // import { today } from "@/lib/helpers/date-helpers";
+import { facilitySettingsModalType } from "@/constants/modal-types";
 import { RtkStatusEnum } from "@/enum/rtk";
 import {
   useApproveFacilityAccessMutation,
   useRejectFacilityAccessMutation,
   useRevokeLoginByUserAccountIDMutation,
 } from "@/features/facility-access/facility-access-api";
+import { openEditModal } from "@/features/modal/modal-slice";
 import ConfirmAlert from "@/utilities/confirm-alert";
 
 import { DateFunc } from "@/utilities/date";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 // import { useNavigate } from "react-router-dom";
 
 const useRequestItem = ({ data }) => {
+  const dispatch = useDispatch();
   // const navigate = useNavigate();
   const user = data?.userAccount;
   const isApproved = data?.isApproved;
@@ -86,13 +90,22 @@ const useRequestItem = ({ data }) => {
   };
 
   const handleLoginRecovery = () => {
-    alert("handleLoginRecovery");
     // navigate(`/login-recovery/${data?.oid}`);
+    dispatch(
+      openEditModal({
+        modalId: facilitySettingsModalType.resetPasswordModal,
+        data: data,
+      })
+    );
   };
 
   const handlePermission = () => {
-    alert("handlePermission");
-    // navigate(`/facility-administration/permission/${data?.oid}`);
+    dispatch(
+      openEditModal({
+        modalId: facilitySettingsModalType.moduleAccessPermissionModal,
+        data: data,
+      })
+    );
   };
 
   // side effects

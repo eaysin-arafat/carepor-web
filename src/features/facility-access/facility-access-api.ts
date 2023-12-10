@@ -111,11 +111,14 @@ const facilityAccessApi = API.injectEndpoints({
      * @param key
      * @returns FacilityAccess
      */
+
     loginRecoveryFacilityAccess: builder.mutation({
-      query: ({ key }) => ({
-        url: `/login-recovery-facility-access/${key}`,
-        method: "PUT",
+      query: ({ body }) => ({
+        url: `/login-recovery-facility-access`,
+        method: "POST",
+        body,
       }),
+      invalidatesTags: ["FacilityAccess"],
     }),
 
     /**

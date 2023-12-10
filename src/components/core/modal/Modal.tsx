@@ -1,4 +1,4 @@
-import { closeAddModal } from "@/features/modal/modal-slice";
+import { closeAddModal, closeEditModal } from "@/features/modal/modal-slice";
 import { cn } from "@/utilities/cn";
 import React, { useEffect } from "react";
 import { RxCross2 } from "react-icons/rx";
@@ -8,6 +8,7 @@ type ModalProps = {
   children: React.ReactNode;
   className?: string;
   title?: string;
+  titleClass?: string;
   addModalId?: string;
   editModalId?: string;
 };
@@ -16,6 +17,7 @@ const Modal: React.FC<ModalProps> = ({
   children,
   className,
   title,
+  titleClass = "",
   addModalId,
   editModalId,
 }) => {
@@ -48,6 +50,14 @@ const Modal: React.FC<ModalProps> = ({
   const isModalId =
     addModal?.modalId === addModalId || editModal?.modalId === editModalId;
 
+  const handleModalClose = () => {
+    if (editModal?.modalId) {
+      dispatch(closeEditModal());
+    } else {
+      dispatch(closeAddModal());
+    }
+  };
+
   return (
     <>
       {isModalId && (
@@ -63,16 +73,20 @@ const Modal: React.FC<ModalProps> = ({
               } px-5 py-2.5`}
             >
               {title && (
-                <h2 className={`text-xl font-semibold text-secondaryColor`}>
+                <h2
+                  className={
+                    `text-xl font-semibold text-secondaryColor` +
+                    " " +
+                    titleClass
+                  }
+                >
                   {title}
                 </h2>
               )}
               <button
                 type="button"
                 className={` flex items-center justify-center border border-borderColor hover:bg-bodyColor w-7 h-7 rounded-full`}
-                onClick={() => {
-                  dispatch(closeAddModal());
-                }}
+                onClick={handleModalClose}
               >
                 <RxCross2 />
               </button>

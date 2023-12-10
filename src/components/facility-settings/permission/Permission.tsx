@@ -4,6 +4,7 @@ import Table from "@/components/core/table/Table";
 import TableHeader from "@/components/shared/table/TableHeader";
 import { TypeFacilityAccess } from "@/types/facility";
 import RequestsItems, { headerData } from "../components/RequestsItem";
+import ModulePermissionModal from "../components/module-permission/ModulePermissionModal";
 
 type Props = {
   activeUsers: TypeFacilityAccess[];
@@ -11,6 +12,8 @@ type Props = {
 function UserPermission({ activeUsers }: Props) {
   return (
     <div>
+      {/* Modal */}
+      <ModulePermissionModal />
       <div className="flex gap-5">
         <Input label="Search" />
         <Select label="Facility">
@@ -19,11 +22,12 @@ function UserPermission({ activeUsers }: Props) {
         <Select label="Designation">
           <option value="">Designation</option>
         </Select>
+        M
       </div>
       <div className="mt-5">
         <Table className="min-w-[1000px]">
           <TableHeader
-            className="bg-primaryHoverColor"
+            className="bg-tableHeadColor"
             actionWidth="w-[280px]"
             isAction
             title={headerData}
