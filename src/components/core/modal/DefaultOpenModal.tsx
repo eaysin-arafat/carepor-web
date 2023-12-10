@@ -16,7 +16,7 @@ const DefaultOpenModal = ({
         className="custom__modal"
       >
         <Modal.Header className="py-2.5">
-          <h1 className=" text-[#1E0E62] font-poppins text-xl font-medium">
+          <h1 className=" text-secondaryColor font-poppins text-xl font-medium">
             {title}
           </h1>
         </Modal.Header>

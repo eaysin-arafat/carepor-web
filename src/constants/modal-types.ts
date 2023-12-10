@@ -14,3 +14,9 @@ export const medicalEncounterModalTypes = Object.freeze({
   addFamilySocial: "addFamilySocial",
   editFamilySocial: "editFamilySocial",
 });
+export const vitalModalTypes = Object.freeze({
+  addVital: "addVital",
+});
+export const admissionModalTypes = Object.freeze({
+  addAdmission: "addAdmission",
+});

@@ -48,6 +48,25 @@
   --tableHead: #181a20;
 }
 
+.gray {
+  --body: #424242;
+  --primary: #1890ff;
+  --primaryHover: #007aec;
+  --activeColor: #1f2937;
+  --lightBlue: #5f5f60;
+  --secondary: #ffffff;
+  --grayColor: #a1a1b0;
+  --lightGray: #20232b;
+  --blackColor: #6b7280;
+  --white: #424242;
+  --whiteBg: #7e7e7e;
+  --danger: red;
+  --border: #ebeaed2d;
+  --text: #f3f4f6;
+  --textColor: #f3f4f6;
+  --tableHead: #181a20;
+}
+
 p,
 span,
 h1,
@@ -81,8 +100,21 @@ span {
     grid-template-columns: repeat(auto-fill, minmax(max-content, 1fr));
   }
 }
+/* Modal css  */
+body.modal-open {
+  overflow: hidden;
+}
 
 @layer components {
+
+  .modal-container {
+    @apply fixed top-0 left-0 w-full h-full bg-opacity-40 bg-black z-10 flex items-center justify-center ;
+  }
+
+  .modal {
+    @apply bg-whiteBgColor text-textColor w-[80%] max-w-screen-sm rounded-lg mx-auto;
+  }
+  
   .heading_1 {
     @apply text-center font-bold text-2xl md:text-4xl leading-[1.625] tracking-tighter text-secondaryColor;
   }

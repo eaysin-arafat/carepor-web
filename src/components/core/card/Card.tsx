@@ -57,7 +57,7 @@ const Card = ({
             <button className="text-gray-500 text-base font-semibold px-4 py-3 font-poppins flex items-center gap-1">
               {view}{" "}
               <img
-                src="/public/assets/icons/arrow-right.svg"
+                src="/assets/icons/arrow-right.svg"
                 alt=""
                 className="
             "
