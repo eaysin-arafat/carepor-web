@@ -67,7 +67,7 @@ function ModuleSidebar() {
                     <Accordion.Title
                       onClick={() => !item.children && navigate(item?.link)}
                       // onClick={() => !item.children && alert("okay")}
-                      onMouseOver={() => setIconColor("white")}
+                      // onMouseOver={() => setIconColor("white")}
                       className="p-3 border-none outline-none rounded-none"
                     >
                       <div className="flex justify-between items-center w-full">

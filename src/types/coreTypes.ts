@@ -45,3 +45,8 @@ export type FacilityType = {
   isDeleted?: boolean;
   isSynced?: boolean;
 };
+
+export type FacilityToken = {
+  facilityId: number;
+  facilityName: string;
+};
