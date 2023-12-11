@@ -124,7 +124,7 @@ const ModuleSidebarRoutes = [
     id: 12,
     title: "Investigation",
 
-    link: "#",
+    link: "/investigation",
     icon: "/assets/svg/sidebar/investigation.svg",
   },
   {

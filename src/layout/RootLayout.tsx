@@ -60,7 +60,7 @@ function RootLayout({ children }: RootLayoutProps) {
               </button>
             )}
             <div
-              className={`border-r bg-whiteBgColor h-[100vh] z-50 ${
+              className={`border-r bg-whiteBgColor h-[92vh] z-50 ${
                 w1100 && "absolute bottom-0"
               } overflow-x-auto`}
               style={{

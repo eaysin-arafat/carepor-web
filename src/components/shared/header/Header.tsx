@@ -11,7 +11,7 @@ function Header() {
 
   return (
     <>
-      <div className="flex justify-between py-2 px-5 border-b dark:border-b-0 items-center w-full max-w-full bg-whiteColor dark:bg-whiteBgColor sticky top-0 z-[999]">
+      <div className="flex justify-between py-2 px-5 border-b dark:border-b-0 items-center w-full max-w-full bg-whiteColor dark:bg-whiteBgColor sticky top-0 z-[999] h-full">
         <div className="flex items-center gap-1">
           <AppLogo
             type="rounded"
