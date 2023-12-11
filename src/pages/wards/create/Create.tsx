@@ -3,27 +3,27 @@ import Input from "@/components/core/form-elements/Input";
 import DefaultOpenModal from "@/components/core/modal/DefaultOpenModal";
 import useCreate from "./useCreate";
 
-const CreateFirm = () => {
+const CreateWard = () => {
   const {
-    errorMsg,
-    firmName,
-    handleFirmNameChange,
+    errMsg,
     handleSubmit,
+    handleWardNameChange,
     isLoading,
     toggler,
+    wardName,
     status,
   } = useCreate();
 
   return (
-    <DefaultOpenModal isShow={true} toggler={toggler}>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+    <DefaultOpenModal isShow={true} toggler={toggler} title="Create ward">
+      <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
         <div>
           <Input
-            label="Firm Name"
-            placeholder="Enter Firm Name"
-            value={firmName}
-            errMsg={errorMsg}
-            onChange={handleFirmNameChange}
+            label="Ward Name"
+            placeholder="Enter Ward Name"
+            errMsg={errMsg}
+            value={wardName}
+            onChange={handleWardNameChange}
           />
         </div>
         <div>
@@ -37,4 +37,4 @@ const CreateFirm = () => {
   );
 };
 
-export default CreateFirm;
+export default CreateWard;
