@@ -1,5 +1,4 @@
 import Input from "@/components/core/form-elements/Input";
-import Select from "@/components/core/form-elements/Select";
 import Table from "@/components/core/table/Table";
 import TableBody from "@/components/shared/table/TableBody";
 import TableHeader from "@/components/shared/table/TableHeader";
@@ -25,6 +24,9 @@ function Beds() {
     isSuccess,
     navigate,
     status,
+    handleFilter,
+    handleSearchChange,
+    search,
   } = useBeds();
 
   return (
@@ -43,13 +45,14 @@ function Beds() {
             "grid-cols-2 gap-2": w500,
           })}
         >
-          <Input label="Search" />
-          <Select label="Facility">
-            <option value="">Hello</option>
-          </Select>
-          <Select label="Designation">
-            <option value="">Designation</option>
-          </Select>
+          <div className="col-span-3">
+            <Input
+              label="Search"
+              value={search}
+              onChange={handleSearchChange}
+            />
+          </div>
+
           <button
             className="bg-primaryColor flex items-center gap-2 justify-center text-sm py-3.5 text-white rounded-md px-1"
             onClick={handleAddBed}
@@ -102,27 +105,30 @@ function Beds() {
             )}
 
             {/* ERROR */}
-            {beds?.map((item, index) => (
-              <TableBody
-                index={index}
-                actionWidth="w-[100px]"
-                isAction
-                btn={{
-                  btnOutline: "Edit",
-                }}
-                btnOutlineHandler={() => handleEditBed(item)}
-                item={[
-                  { title: (index + 1).toString(), w: "10%" },
-                  {
-                    title: item?.ward?.firm?.department?.description,
-                    w: "25%",
-                  },
-                  { title: item?.ward?.firm?.description, w: "25%" },
-                  { title: item?.ward?.description, w: "20%" },
-                  { title: item?.description, w: "20%" },
-                ]}
-              />
-            ))}
+            {beds
+              ?.slice()
+              ?.filter(handleFilter)
+              ?.map((item, index) => (
+                <TableBody
+                  index={index}
+                  actionWidth="w-[100px]"
+                  isAction
+                  btn={{
+                    btnOutline: "Edit",
+                  }}
+                  btnOutlineHandler={() => handleEditBed(item)}
+                  item={[
+                    { title: (index + 1).toString(), w: "10%" },
+                    {
+                      title: item?.ward?.firm?.department?.description,
+                      w: "25%",
+                    },
+                    { title: item?.ward?.firm?.description, w: "25%" },
+                    { title: item?.ward?.description, w: "20%" },
+                    { title: item?.description, w: "20%" },
+                  ]}
+                />
+              ))}
           </Table>
         </div>
 

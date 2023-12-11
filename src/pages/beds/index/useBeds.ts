@@ -2,15 +2,19 @@ import { RootState } from "@/app/store";
 import { bedModalTypes } from "@/constants/modal-types";
 import { BedType, useReadBedByWardQuery } from "@/features/bed/bed-api";
 import { openAddModal, openEditModal } from "@/features/modal/modal-slice";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
 const useBeds = () => {
-  // * get data from the redux store
+  // local state
+  const [search, setSearch] = useState("");
+
+  // get data from the redux store
   const { addModal, editModal } = useSelector(
     (state: RootState) => state.modal
   );
-  // * Hokes
+  // Hokes
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { wardId } = useParams();
@@ -26,7 +30,7 @@ const useBeds = () => {
     refetchOnMountOrArgChange: true,
   });
 
-  // * Handlers
+  // Handlers
   const handleAddBed = () => {
     dispatch(
       openAddModal({
@@ -34,6 +38,15 @@ const useBeds = () => {
         data: null,
       })
     );
+  };
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
+
+  const handleFilter = (item: BedType) => {
+    if (search === "") return true;
+    return item?.description?.toLowerCase()?.includes(search.toLowerCase());
   };
 
   const handleEditBed = (item: BedType) => {
@@ -55,6 +68,9 @@ const useBeds = () => {
     addModal,
     navigate,
     isSuccess,
+    search,
+    handleSearchChange,
+    handleFilter,
   };
 };
 

@@ -7,10 +7,12 @@ import {
 import { openAddModal, openEditModal } from "@/features/modal/modal-slice";
 import { FacilityToken } from "@/types/coreTypes";
 import { cookieManager } from "@/utilities/cookie-manager";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const useDepartments = () => {
+  const [search, setSearch] = useState("");
   // * Hokes
   const navigate = useNavigate();
 
@@ -35,6 +37,15 @@ const useDepartments = () => {
     );
   };
 
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
+
+  const handleFilter = (item: Department) => {
+    if (search === "") return true;
+    return item?.description?.toLowerCase()?.includes(search.toLowerCase());
+  };
+
   const handleAddDepartment = () => {
     dispatch(
       openAddModal({
@@ -54,6 +65,9 @@ const useDepartments = () => {
     addModal,
     navigate,
     isSuccess,
+    search,
+    handleSearchChange,
+    handleFilter,
   };
 };
 
