@@ -1,22 +1,24 @@
+import { RootState } from "@/app/store";
 import AdmissionDetailsCard from "@/components/admissions/AdmissionDetailsCard";
-import Modal from "@/components/core/modal/Modal";
-import { admissionModalTypes } from "@/constants/modal-types";
+import DefaultModal from "@/components/core/modal/DefaultModal";
+import { closeAddModal } from "@/features/modal/modal-slice";
+import { useDispatch, useSelector } from "react-redux";
 
-type Props = {};
+const AdmissionDetails = () => {
+  const { addModal } = useSelector((state: RootState) => state.modal);
 
-const AdmissionDetails = ({}: Props) => {
+  const dispatch = useDispatch();
+
+  const closeModal = () => {
+    dispatch(closeAddModal());
+  };
+
   return (
-    <div className="mt-5">
-      <>
-        <Modal
-          className="max-w-[800px]"
-          title="Admission Details"
-          addModalId={admissionModalTypes.admissionDetails}
-        >
-          <AdmissionDetailsCard />
-        </Modal>
-      </>
-    </div>
+    <>
+      <DefaultModal title="Admission Details" size="4xl" toggler={closeModal}>
+        <AdmissionDetailsCard data={addModal?.data} />
+      </DefaultModal>
+    </>
   );
 };
 

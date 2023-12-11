@@ -37,7 +37,9 @@ function ModulePermissionModal({}: Props) {
       <div className="bg-lightBlueColor rounded-lg p-5">
         <div className="grid grid-cols-3 gap-1 ">
           <div className="col-span-3 md:col-span-1 ">
-            <h2 className="py-1 text-xl font-semibold">{userFullName}</h2>
+            <h2 className="py-1 text-xl font-semibold capitalize">
+              {userFullName}
+            </h2>
             <h3 onClick={handleUnselectAll} className="py-1  font-semibold">
               {facilityName}
             </h3>

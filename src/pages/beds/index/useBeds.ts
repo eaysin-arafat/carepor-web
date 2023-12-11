@@ -1,44 +1,40 @@
 import { RootState } from "@/app/store";
-import { firmModalTypes } from "@/constants/modal-types";
-import {
-  FirmType,
-  useReadFirmsByDepartmentIdQuery,
-} from "@/features/firm/firm-api";
+import { bedModalTypes } from "@/constants/modal-types";
+import { BedType, useReadBedByWardQuery } from "@/features/bed/bed-api";
 import { openAddModal, openEditModal } from "@/features/modal/modal-slice";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
-const useFirm = () => {
+const useBeds = () => {
   // local state
   const [search, setSearch] = useState("");
-
-  // hooks
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { departmentId } = useParams();
 
   // get data from the redux store
   const { addModal, editModal } = useSelector(
     (state: RootState) => state.modal
   );
+  // Hokes
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { wardId } = useParams();
 
   // api hooks
   const {
-    data: firms,
-    isLoading,
+    data: beds,
     isSuccess,
+    isLoading,
     status,
-  } = useReadFirmsByDepartmentIdQuery(departmentId, {
-    skip: !departmentId,
+  } = useReadBedByWardQuery(wardId, {
+    skip: !wardId,
     refetchOnMountOrArgChange: true,
   });
 
-  // handlers
-  const handleAddFirm = () => {
+  // Handlers
+  const handleAddBed = () => {
     dispatch(
       openAddModal({
-        modalId: firmModalTypes.addFirm,
+        modalId: bedModalTypes.addBed,
         data: null,
       })
     );
@@ -48,34 +44,34 @@ const useFirm = () => {
     setSearch(e.target.value);
   };
 
-  const handleFilter = (item: FirmType) => {
+  const handleFilter = (item: BedType) => {
     if (search === "") return true;
     return item?.description?.toLowerCase()?.includes(search.toLowerCase());
   };
 
-  const handleEditFirm = (item: FirmType) => {
+  const handleEditBed = (item: BedType) => {
     dispatch(
       openEditModal({
-        modalId: firmModalTypes.editFirm,
+        modalId: bedModalTypes.editBed,
         data: item,
       })
     );
   };
 
   return {
-    firms,
-    handleAddFirm,
-    handleEditFirm,
-    addModal,
-    editModal,
-    navigate,
-    status,
-    isSuccess,
+    beds,
     isLoading,
+    status,
+    handleAddBed,
+    handleEditBed,
+    editModal,
+    addModal,
+    navigate,
+    isSuccess,
     search,
     handleSearchChange,
     handleFilter,
   };
 };
 
-export default useFirm;
+export default useBeds;

@@ -1,44 +1,41 @@
 import { RootState } from "@/app/store";
-import { firmModalTypes } from "@/constants/modal-types";
-import {
-  FirmType,
-  useReadFirmsByDepartmentIdQuery,
-} from "@/features/firm/firm-api";
+import { wardModalTypes } from "@/constants/modal-types";
 import { openAddModal, openEditModal } from "@/features/modal/modal-slice";
+import { Ward, useReadWardByFirmQuery } from "@/features/ward/ward-api";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
-const useFirm = () => {
+const useWard = () => {
   // local state
   const [search, setSearch] = useState("");
 
-  // hooks
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { departmentId } = useParams();
-
-  // get data from the redux store
+  //  get data from redux store
   const { addModal, editModal } = useSelector(
     (state: RootState) => state.modal
   );
 
-  // api hooks
+  //  Hokes
+  const { firmId } = useParams();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  //  api hooks
   const {
-    data: firms,
-    isLoading,
+    data: wards,
     isSuccess,
+    isLoading,
     status,
-  } = useReadFirmsByDepartmentIdQuery(departmentId, {
-    skip: !departmentId,
+  } = useReadWardByFirmQuery(firmId, {
+    skip: !firmId,
     refetchOnMountOrArgChange: true,
   });
 
-  // handlers
+  //  Handlers
   const handleAddFirm = () => {
     dispatch(
       openAddModal({
-        modalId: firmModalTypes.addFirm,
+        modalId: wardModalTypes.addWard,
         data: null,
       })
     );
@@ -48,34 +45,34 @@ const useFirm = () => {
     setSearch(e.target.value);
   };
 
-  const handleFilter = (item: FirmType) => {
+  const handleFilter = (item: Ward) => {
     if (search === "") return true;
     return item?.description?.toLowerCase()?.includes(search.toLowerCase());
   };
 
-  const handleEditFirm = (item: FirmType) => {
+  const handleEditFirm = (item: Ward) => {
     dispatch(
       openEditModal({
-        modalId: firmModalTypes.editFirm,
+        modalId: wardModalTypes.editWard,
         data: item,
       })
     );
   };
 
   return {
-    firms,
+    wards,
+    isLoading,
+    status,
     handleAddFirm,
     handleEditFirm,
-    addModal,
     editModal,
+    addModal,
     navigate,
-    status,
     isSuccess,
-    isLoading,
     search,
     handleSearchChange,
     handleFilter,
   };
 };
 
-export default useFirm;
+export default useWard;

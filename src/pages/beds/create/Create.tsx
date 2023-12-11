@@ -1,28 +1,29 @@
 import CancelAndAddButton from "@/components/core/buttons/CancelAndAddButton";
 import Input from "@/components/core/form-elements/Input";
 import DefaultOpenModal from "@/components/core/modal/DefaultOpenModal";
-import useEdit from "./useEdit";
+import useCreate from "./useCreate";
 
-const EditFirm = () => {
+const CreateBed = () => {
   const {
-    errorMsg,
-    firmName,
-    handleFirmNameChange,
+    bedName,
+    errMsg,
+    handleBedNameChange,
     handleSubmit,
     isLoading,
     toggler,
-  } = useEdit();
+    status,
+  } = useCreate();
 
   return (
-    <DefaultOpenModal isShow={true} toggler={toggler} title="Update Firm">
-      <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+    <DefaultOpenModal isShow={true} toggler={toggler} title="Create Bed">
+      <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
         <div>
           <Input
-            label="Firm Name"
-            placeholder="Enter Firm Name"
-            value={firmName}
-            errMsg={errorMsg}
-            onChange={handleFirmNameChange}
+            label="Bed name"
+            placeholder="Enter Bed Name"
+            errMsg={errMsg}
+            onChange={handleBedNameChange}
+            value={bedName}
           />
         </div>
         <div>
@@ -36,4 +37,4 @@ const EditFirm = () => {
   );
 };
 
-export default EditFirm;
+export default CreateBed;

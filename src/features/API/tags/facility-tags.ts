@@ -5,4 +5,6 @@ export const facilityTags = [
   "FacilityAccessId",
   "Departments",
   "Firms",
+  "Wards",
+  "Beds",
 ];

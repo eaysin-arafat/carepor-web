@@ -1,3 +1,4 @@
+import { RootState } from "@/app/store";
 import { closeAddModal, closeEditModal } from "@/features/modal/modal-slice";
 import { cn } from "@/utilities/cn";
 import React, { useEffect } from "react";
@@ -22,7 +23,9 @@ const Modal: React.FC<ModalProps> = ({
   editModalId,
 }) => {
   const dispatch = useDispatch();
-  const { addModal, editModal } = useSelector((store: any) => store.modal);
+  const { addModal, editModal } = useSelector(
+    (store: RootState) => store.modal
+  );
 
   useEffect(() => {
     const handleModalOpen = () => {

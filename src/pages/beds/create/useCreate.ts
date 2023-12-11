@@ -1,4 +1,4 @@
-import { useCreateFirmMutation } from "@/features/firm/firm-api";
+import { useCreateBedMutation } from "@/features/bed/bed-api";
 import { closeAddModal } from "@/features/modal/modal-slice";
 import React from "react";
 import toast from "react-hot-toast";
@@ -6,60 +6,63 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
 const useCreate = () => {
-  const [firmName, setFirmName] = React.useState("");
-  const [errorMsg, setErrorMsg] = React.useState("");
-  const dispatch = useDispatch();
+  const [bedName, setBedName] = React.useState("");
+  const [errMsg, setErrMsg] = React.useState("");
 
-  const { departmentId } = useParams();
+  const dispatch = useDispatch();
+  const { wardId } = useParams();
+
+  const [createBed, { status, isSuccess, isError, error, isLoading }] =
+    useCreateBedMutation();
 
   const toggler = () => {
     dispatch(closeAddModal());
   };
 
-  const [createFirm, { isLoading, isSuccess, isError, error, status }] =
-    useCreateFirmMutation();
-
-  const handleFirmNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFirmName(e.target.value);
-    setErrorMsg("");
+  const handleBedNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setBedName(e.target.value);
+    setErrMsg("");
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!firmName) {
-      setErrorMsg("Required");
+
+    if (bedName.trim() === "") {
+      setErrMsg("Required");
       return;
     }
 
     const data = {
-      description: firmName,
-      departmentId: departmentId,
+      description: bedName,
+      wardId,
     };
 
-    createFirm(data);
+    createBed(data);
   };
 
   React.useEffect(() => {
     if (isSuccess && status === "fulfilled") {
-      dispatch(closeAddModal());
       toast.dismiss();
-      toast.success("Firm Created Successfully");
+      toast.success("Bed created successfully");
+      dispatch(closeAddModal());
+      setBedName("");
+      setErrMsg("");
     } else if (isError && "data" in error) {
       toast.dismiss();
       toast.error(
-        typeof error.data === "string" ? error.data : "Error creating firm"
+        typeof error.data === "string" ? error.data : "Error creating bed"
       );
     }
   }, [isSuccess, isError, status, error, dispatch]);
 
   return {
-    firmName,
-    errorMsg,
+    bedName,
+    errMsg,
     isLoading,
+    status,
     toggler,
     handleSubmit,
-    handleFirmNameChange,
-    status,
+    handleBedNameChange,
   };
 };
 

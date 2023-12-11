@@ -1,28 +1,29 @@
 import CancelAndAddButton from "@/components/core/buttons/CancelAndAddButton";
 import Input from "@/components/core/form-elements/Input";
 import DefaultOpenModal from "@/components/core/modal/DefaultOpenModal";
-import useEdit from "./useEdit";
+import useCreate from "./useCreate";
 
-const EditFirm = () => {
+const CreateWard = () => {
   const {
-    errorMsg,
-    firmName,
-    handleFirmNameChange,
+    errMsg,
     handleSubmit,
+    handleWardNameChange,
     isLoading,
     toggler,
-  } = useEdit();
+    wardName,
+    status,
+  } = useCreate();
 
   return (
-    <DefaultOpenModal isShow={true} toggler={toggler} title="Update Firm">
-      <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+    <DefaultOpenModal isShow={true} toggler={toggler} title="Create ward">
+      <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
         <div>
           <Input
-            label="Firm Name"
-            placeholder="Enter Firm Name"
-            value={firmName}
-            errMsg={errorMsg}
-            onChange={handleFirmNameChange}
+            label="Ward Name"
+            placeholder="Enter Ward Name"
+            errMsg={errMsg}
+            value={wardName}
+            onChange={handleWardNameChange}
           />
         </div>
         <div>
@@ -36,4 +37,4 @@ const EditFirm = () => {
   );
 };
 
-export default EditFirm;
+export default CreateWard;

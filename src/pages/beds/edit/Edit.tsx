@@ -3,26 +3,27 @@ import Input from "@/components/core/form-elements/Input";
 import DefaultOpenModal from "@/components/core/modal/DefaultOpenModal";
 import useEdit from "./useEdit";
 
-const EditFirm = () => {
+const EditBed = () => {
   const {
-    errorMsg,
-    firmName,
-    handleFirmNameChange,
+    bedName,
+    errMsg,
+    handleBedNameChange,
     handleSubmit,
     isLoading,
+    status,
     toggler,
   } = useEdit();
 
   return (
-    <DefaultOpenModal isShow={true} toggler={toggler} title="Update Firm">
-      <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+    <DefaultOpenModal isShow={true} toggler={toggler} title="Update Bed">
+      <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
         <div>
           <Input
-            label="Firm Name"
-            placeholder="Enter Firm Name"
-            value={firmName}
-            errMsg={errorMsg}
-            onChange={handleFirmNameChange}
+            label="Bed name"
+            placeholder="Enter Bed Name"
+            errMsg={errMsg}
+            onChange={handleBedNameChange}
+            value={bedName}
           />
         </div>
         <div>
@@ -36,4 +37,4 @@ const EditFirm = () => {
   );
 };
 
-export default EditFirm;
+export default EditBed;

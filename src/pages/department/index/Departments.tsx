@@ -1,5 +1,4 @@
 import Input from "@/components/core/form-elements/Input";
-import Select from "@/components/core/form-elements/Select";
 import Table from "@/components/core/table/Table";
 import TableBody from "@/components/shared/table/TableBody";
 import TableHeader from "@/components/shared/table/TableHeader";
@@ -24,6 +23,10 @@ function Departments() {
     isLoading,
     navigate,
     status,
+    isSuccess,
+    handleSearchChange,
+    search,
+    handleFilter,
   } = useDepartments();
 
   return (
@@ -35,13 +38,13 @@ function Departments() {
             "grid-cols-2 gap-2": w500,
           })}
         >
-          <Input label="Search" />
-          <Select label="Facility">
-            <option value="">Hello</option>
-          </Select>
-          <Select label="Designation">
-            <option value="">Designation</option>
-          </Select>
+          <div className="col-span-3">
+            <Input
+              label="Search"
+              value={search}
+              onChange={handleSearchChange}
+            />
+          </div>
           <button
             className="bg-primaryColor  flex items-center gap-2 justify-center text-sm py-3.5 text-white rounded-md px-1"
             onClick={handleAddDepartment}
@@ -69,6 +72,15 @@ function Departments() {
               ]}
             />
 
+            {/* EMPTY DATA MESSAGE */}
+            {isSuccess &&
+              status === "fulfilled" &&
+              departments?.length === 0 && (
+                <div className="flex justify-center items-center h-40">
+                  <p className="text-xl text-gray-500">No Wards Found</p>
+                </div>
+              )}
+
             {/* LOADING SPINNER */}
             {(isLoading || status === "pending") && (
               <div className="flex justify-center items-center h-52">
@@ -77,25 +89,29 @@ function Departments() {
             )}
 
             {/* TABLE DATA */}
-            {departments?.map((item, index) => (
-              <TableBody
-                index={index}
-                actionWidth="w-[190px]"
-                isAction
-                btn={{
-                  viewResult: "Firms",
-                  btnOutline: "Edit",
-                }}
-                btnOutlineHandler={() => handleEdit(item)}
-                viewResultHandler={() =>
-                  navigate(URLFirms(item?.oid?.toString()))
-                }
-                item={[
-                  { title: (index + 1).toString(), w: "20%" },
-                  { title: item.description, w: "70%" },
-                ]}
-              />
-            ))}
+            {departments
+              ?.slice()
+              ?.filter(handleFilter)
+              ?.map((item, index) => (
+                <TableBody
+                  key={item?.oid}
+                  index={index}
+                  actionWidth="w-[190px]"
+                  isAction
+                  btn={{
+                    viewResult: "Firms",
+                    btnOutline: "Edit",
+                  }}
+                  btnOutlineHandler={() => handleEdit(item)}
+                  viewResultHandler={() =>
+                    navigate(URLFirms(item?.oid?.toString()))
+                  }
+                  item={[
+                    { title: (index + 1).toString(), w: "20%" },
+                    { title: item.description, w: "70%" },
+                  ]}
+                />
+              ))}
           </Table>
         </div>
         {/* ADD DEPARTMENT MODAL */}

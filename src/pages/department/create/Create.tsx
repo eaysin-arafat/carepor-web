@@ -15,7 +15,7 @@ const CreateDepartment = () => {
   } = useCreate();
 
   return (
-    <DefaultOpenModal isShow={true} toggler={toggler}>
+    <DefaultOpenModal isShow={true} toggler={toggler} title="Create Department">
       <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
         <div>
           <Input
