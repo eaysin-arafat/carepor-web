@@ -14,7 +14,7 @@ const EditFirm = () => {
   } = useEdit();
 
   return (
-    <DefaultOpenModal isShow={true} toggler={toggler}>
+    <DefaultOpenModal isShow={true} toggler={toggler} title="Update Firm">
       <form onSubmit={handleSubmit} className="flex flex-col gap-6">
         <div>
           <Input

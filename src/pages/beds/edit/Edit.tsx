@@ -15,7 +15,7 @@ const EditBed = () => {
   } = useEdit();
 
   return (
-    <DefaultOpenModal isShow={true} toggler={toggler} title="Edit Bed">
+    <DefaultOpenModal isShow={true} toggler={toggler} title="Update Bed">
       <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
         <div>
           <Input

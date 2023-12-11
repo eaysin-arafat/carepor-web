@@ -112,8 +112,8 @@ function Firms() {
                 }
                 item={[
                   { title: (index + 1).toString(), w: "20%" },
-                  { title: item.description, w: "35%" },
                   { title: item.department?.description, w: "35%" },
+                  { title: item?.description, w: "35%" },
                 ]}
               />
             ))}

@@ -15,7 +15,7 @@ const EditWard = () => {
   } = useEdit();
 
   return (
-    <DefaultOpenModal isShow={true} toggler={toggler} title="Edit ward">
+    <DefaultOpenModal isShow={true} toggler={toggler} title="Update ward">
       <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
         <div>
           <Input
