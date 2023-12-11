@@ -92,9 +92,9 @@ span {
 
 ._sidebar_1dh2t_5 div button:hover {
   background-color: var(--activeColor);
-  color: white;
+  color: white !important;
 }
-._sidebar_1dh2t_5 div button:hover h2 div {
+._sidebar_1dh2t_5 div button:hover h2 div div {
   color: white !important;
 }
 
@@ -109,15 +109,14 @@ body.modal-open {
 }
 
 @layer components {
-
   .modal-container {
-    @apply fixed top-0 left-0 w-full h-full bg-opacity-40 bg-black z-10 flex items-center justify-center ;
+    @apply fixed top-0 left-0 w-full h-full bg-opacity-40 bg-black z-10 flex items-center justify-center;
   }
 
   .modal {
     @apply bg-whiteBgColor text-textColor w-[80%] max-w-screen-sm rounded-lg mx-auto;
   }
-  
+
   .heading_1 {
     @apply text-center font-bold text-2xl md:text-4xl leading-[1.625] tracking-tighter text-secondaryColor;
   }
