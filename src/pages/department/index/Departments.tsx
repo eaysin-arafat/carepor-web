@@ -5,7 +5,7 @@ import TableBody from "@/components/shared/table/TableBody";
 import TableHeader from "@/components/shared/table/TableHeader";
 import { departmentModalTypes } from "@/constants/modal-types";
 import useWindowWidth from "@/hooks/useWindow";
-import { URLFirms } from "@/routers/FacilitySettings";
+import { URLFirms } from "@/routers/facility-settings";
 import { cn } from "@/utilities/cn";
 import { Loader, Plus } from "react-feather";
 import CreateDepartment from "../create/Create";

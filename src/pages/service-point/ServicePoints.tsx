@@ -51,11 +51,7 @@ const text_Style =
 
 const servicePointsArray = [
   {
-<<<<<<< HEAD
     imgSrc: "assets/svg/service-point/OPD.svg",
-=======
-    imgSrc: "/assets/svg/service-point/OPD.svg",
->>>>>>> d9be0c6ec2e6baf6aa7e4941771b842ed019aceb
     title: "Me (OPD)",
     link: "#",
   },
