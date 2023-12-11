@@ -23,4 +23,5 @@ export const API = createApi({
   }),
   endpoints: () => ({}),
   tagTypes: [...apiTags],
+  // tagTypes: ["Departments", "Firms"], // moved to  facility-tags file
 });

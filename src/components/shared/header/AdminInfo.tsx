@@ -40,7 +40,7 @@ function AdminInfo() {
         className="min-w-[300px] w-[300px] z-50"
         label={
           <img
-            src="/assets/img/menu-avatar.png"
+            src="assets/img/menu-avatar.png"
             className={`${w1230 ? "w-[50px]" : "w-[60px]"} cursor-pointer`}
             alt=""
           />

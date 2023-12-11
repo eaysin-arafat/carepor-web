@@ -10,8 +10,8 @@
 
 .light {
   /* --body: #f6f9ff; */
-  --body: #f4f4f4;
   /* --body: #FAFCFE; */
+  --body: #f4f4f4;
   --primary: #1890ff;
   --primaryHover: #007aec;
   --activeColor: #007aec;
@@ -28,6 +28,7 @@
   --textColor: #374151;
   --tableHead: #e8f4ff;
   --tableRow: #f3f8ff;
+  --overlay: #007aecbb;
 }
 
 .dark {
@@ -48,12 +49,13 @@
   --textColor: #f3f4f6;
   --tableHead: #181a20;
   --tableRow: #000;
+  --overlay: #20232b;
 }
 
 .gray {
-  --body: #424242;
-  --primary: #1890ff;
-  --primaryHover: #007aec;
+  --body: #000000;
+  --primary: #2a2a2a;
+  --primaryHover: #2a2a2a;
   --activeColor: #1f2937;
   --lightBlue: #5f5f60;
   --secondary: #ffffff;
@@ -64,10 +66,11 @@
   --whiteBg: #7e7e7e;
   --danger: red;
   --border: #ebeaed2d;
-  --text: #f3f4f6;
+  --text: #ffffff;
   --textColor: #f3f4f6;
   --tableHead: #181a20;
   --tableRow: #000;
+  --overlay: #333333;
 }
 
 p,
@@ -82,6 +85,14 @@ div {
   color: var(--textColor);
 }
 
+*::placeholder {
+  color: var(--text) !important;
+}
+
+input {
+  color: var(--text) !important;
+}
+
 span {
   display: inline-block;
 }
@@ -92,9 +103,9 @@ span {
 
 ._sidebar_1dh2t_5 div button:hover {
   background-color: var(--activeColor);
-  color: white;
+  color: white !important;
 }
-._sidebar_1dh2t_5 div button:hover h2 div {
+._sidebar_1dh2t_5 div button:hover h2 div div {
   color: white !important;
 }
 
@@ -109,9 +120,8 @@ body.modal-open {
 }
 
 @layer components {
-
   .modal-container {
-    @apply fixed top-0 left-0 w-full h-full bg-opacity-40 bg-black z-10 flex items-center justify-center ;
+    @apply fixed top-0 left-0 w-full h-full bg-opacity-40 bg-black z-10 flex items-center justify-center;
   }
 
   .modal {
@@ -147,7 +157,7 @@ body.modal-open {
   }
 
   .input_label {
-    @apply text-blackColor dark:text-[#F2F3F5] leading-[125%] capitalize;
+    @apply text-blackColor text-textColor leading-[125%] capitalize;
   }
 
   .input_cellphone {

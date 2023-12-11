@@ -115,7 +115,7 @@ function AdmissionSearch({}: Props) {
           <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-5 justify-between ">
             <div className={parantDiv_Style}>
               <img
-                src="/assets/svg/TBService.svg"
+                src="assets/svg/TBService.svg"
                 alt=""
                 className={image_Style}
               />
@@ -135,7 +135,7 @@ function AdmissionSearch({}: Props) {
             </div>
             <div className="border-2 p-5 h-36 w-36">
               <img
-                src="/assets/svg/TBService.svg"
+                src="assets/svg/TBService.svg"
                 alt=""
                 className="h-12 w-12 my_image"
               />
@@ -143,7 +143,7 @@ function AdmissionSearch({}: Props) {
             </div>
             <div className="border-2 p-5 h-36 w-36">
               <img
-                src="/assets/svg/TBService.svg"
+                src="assets/svg/TBService.svg"
                 alt=""
                 className="h-12 w-12"
               />
@@ -151,7 +151,7 @@ function AdmissionSearch({}: Props) {
             </div>
             <div className="border-2 p-5 h-36 w-36 hover:bg-primaryColor">
               <img
-                src="/assets/svg/TBService.svg"
+                src="assets/svg/TBService.svg"
                 alt=""
                 className="h-12 w-12 "
               />

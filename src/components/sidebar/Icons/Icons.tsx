@@ -11,7 +11,7 @@ type Props = {
   color?: string;
 };
 
-function Icons({ label, color }: Props) {
+function  Icons({ label, color }: Props) {
   const size = 26;
 
   if (label === "Vital") {
