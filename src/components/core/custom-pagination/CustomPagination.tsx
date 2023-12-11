@@ -25,9 +25,9 @@ function CustomPagination({
   itemsCountPerPage = 5,
   totalItemsCount = 10,
 }: Props) {
-  const handlePageChange = (getPageNo: number) => {
+  const handlePageChange = (pageNo: number) => {
     // console.log(getPageNo);
-    setActivePage(getPageNo);
+    setActivePage(pageNo);
   };
   return (
     <div className="flex mt-5">
@@ -37,7 +37,6 @@ function CustomPagination({
         totalItemsCount={totalItemsCount}
         pageRangeDisplayed={3}
         onChange={handlePageChange}
-        // hideDisabled={true}
         innerClass={"flex gap-1 select-none "}
         activeClass={"!bg-primaryColor text-[var(--white)]"}
         itemClass={

@@ -1,4 +1,22 @@
 import { API } from "../API/API";
+import { BedType } from "../bed/bed-api";
+
+export type Encounter = {
+  oid: string;
+  ipdAdmissionDate: string;
+  admissionNote: string;
+  ipdDischargeDate: string;
+  dischargeNote: string;
+  bedId: number;
+  bed: BedType;
+  clientId: string;
+  createdIn: number;
+  dateCreated: string;
+  createdBy: string;
+  dateModified: string;
+  isDeleted: boolean;
+  isSynced: boolean;
+};
 
 const medicalEncounterApi = API.injectEndpoints({
   endpoints: (builder) => ({
@@ -63,6 +81,18 @@ const medicalEncounterApi = API.injectEndpoints({
     }),
 
     /**
+     * @description This endpoint is used to read admission list by client
+     * @param key
+     * @returns Encounter
+     */
+    readAdmissionListByClient: builder.query<Encounter[], string>({
+      query: (clientId) => ({
+        url: `encounters/addmissions-by-client/${clientId}`,
+        method: "GET",
+      }),
+    }),
+
+    /**
      * @description This endpoint is used to update encounter
      * @param key
      * @param body
@@ -114,6 +144,7 @@ export const {
   useUpdateEncounterMutation,
   useUpdateAdmissionMutation,
   useDeleteEncounterMutation,
+  useReadAdmissionListByClientQuery,
 } = medicalEncounterApi;
 
 // export endpoints

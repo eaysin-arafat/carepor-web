@@ -1,3 +1,4 @@
+import { RootState } from "@/app/store";
 import AdmissionsFilters from "@/components/admissions/AdmissionsFilters";
 import SimplePatientDetails from "@/components/client-accounts/cards/SimplePatientDetails";
 import Container from "@/components/core/container/Container";
@@ -6,20 +7,35 @@ import Table from "@/components/shared/table/Table";
 import TableBody from "@/components/shared/table/TableBody";
 import TableHeader from "@/components/shared/table/TableHeader";
 import { admissionModalTypes } from "@/constants/modal-types";
+import {
+  Encounter,
+  useReadAdmissionListByClientQuery,
+} from "@/features/medical-encounter/medical-encounter-api";
 import { openAddModal } from "@/features/modal/modal-slice";
+import { DateFunc } from "@/utilities/date";
 import React from "react";
 import { FiPlusCircle } from "react-icons/fi";
 import { IoArrowBack } from "react-icons/io5";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import AdmissionCreateModal from "../create/AdmissionCreateModal";
-import AdmissionDischarge from "../discharge/AdmissionDischarge";
 import AdmissionDetails from "../details/AdmissionDetails";
+import AdmissionDischarge from "../discharge/AdmissionDischarge";
 
 const AdmissionsIndex = () => {
+  const { addModal, editModal } = useSelector(
+    (state: RootState) => state.modal
+  );
   const [state, setState] = React.useState(1);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { clientId } = useParams();
+
+  const { data: admissionList } = useReadAdmissionListByClientQuery(clientId, {
+    skip: !clientId,
+    refetchOnMountOrArgChange: true,
+  });
 
   const handleAdmissionModal = () => {
     dispatch(
@@ -30,11 +46,11 @@ const AdmissionsIndex = () => {
     );
   };
 
-  const handleAdmissionDetails = () => {
+  const handleAdmissionDetails = (item: Encounter) => {
     dispatch(
       openAddModal({
         modalId: admissionModalTypes.admissionDetails,
-        data: null,
+        data: item,
       })
     );
   };
@@ -52,11 +68,6 @@ const AdmissionsIndex = () => {
     <div className="mx-2">
       <Container className="max-w-[1400px]">
         <div>
-            {/* Modal Components  */}
-          <AdmissionCreateModal />
-          <AdmissionDischarge />
-          <AdmissionDetails />
-
           <SimplePatientDetails className=" shadow-none mt-5" />
           <div className="grid grid-cols-7 gap-5 mt-5 bg-whiteBgColor p-5 rounded-lg ">
             <div className="col-span-7">
@@ -72,14 +83,15 @@ const AdmissionsIndex = () => {
                     className="main_btn text-[14px] py-2 px-3 sm:px-5"
                     onClick={handleAdmissionModal}
                   >
-                    <FiPlusCircle className="mr-1 text-xl sm:text-xl " /> Admit Patient
+                    <FiPlusCircle className="mr-1 text-xl sm:text-xl " /> Admit
+                    Patient
                   </button>
                 </div>
               </div>
               <AdmissionsFilters />
               <div className="">
                 <div className="mt-2 bg-whiteBgColor pb-5 rounded-xl ">
-                  <Table isRounded >
+                  <Table isRounded>
                     <TableHeader
                       className=""
                       isAction
@@ -111,34 +123,53 @@ const AdmissionsIndex = () => {
                         },
                       ]}
                     />
-                    {data.map((item, index) => (
+                    {admissionList?.map((item, index) => (
                       <TableBody
                         index={index}
                         isAction
                         actionWidth="min-w-[220px]"
                         btnOutlineHandler={handleAdmissionDischarge}
-                        viewResultHandler={handleAdmissionDetails}
+                        viewResultHandler={() => handleAdmissionDetails(item)}
                         btn={{
                           viewResult: "View Details ",
-                          btnOutline: "Discharge",
+                          ...(!item?.ipdDischargeDate && {
+                            btnOutline: "Discharge",
+                          }),
                         }}
                         item={[
-                          { title: item.name, w: "20%" },
-                          { title: item?.priority, w: "20%" },
-                          { title: item.orderDate, w: "20%" },
-                          { title: item.test, w: "20%" },
-                          { title: item.orderNumber, w: "20%" },
-                          { title: item.sample, w: "20%" },
+                          {
+                            title: item?.ipdAdmissionDate
+                              ? DateFunc.toFormatted(item?.ipdAdmissionDate)
+                              : "",
+                            w: "20%",
+                          },
+                          {
+                            title:
+                              item?.bed?.ward?.firm?.department?.description,
+                            w: "20%",
+                          },
+                          {
+                            title: item?.bed?.ward?.firm?.description,
+                            w: "20%",
+                          },
+                          { title: item?.bed?.ward?.description, w: "20%" },
+                          { title: item?.bed?.description, w: "20%" },
+                          {
+                            title: item?.ipdDischargeDate
+                              ? DateFunc.toFormatted(item?.ipdDischargeDate)
+                              : "",
+                            w: "20%",
+                          },
                         ]}
                       />
                     ))}
                   </Table>
                   <div className="flex justify-end mx-5">
                     <CustomPagination
-                      activePage={1}
-                      itemsCountPerPage={state}
+                      activePage={state}
                       setActivePage={setState}
-                      totalItemsCount={100}
+                      itemsCountPerPage={5}
+                      totalItemsCount={admissionList?.length}
                     />
                   </div>
                 </div>
@@ -147,6 +178,16 @@ const AdmissionsIndex = () => {
           </div>
         </div>
       </Container>
+
+      {/* Modal Components  */}
+      <AdmissionCreateModal />
+      <AdmissionDischarge />
+
+      {/* DETAILS MODAL */}
+      {addModal?.isOpen &&
+        addModal?.modalId === admissionModalTypes.admissionDetails && (
+          <AdmissionDetails />
+        )}
     </div>
   );
 };
