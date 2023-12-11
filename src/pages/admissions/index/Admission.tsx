@@ -1,4 +1,3 @@
-import { RootState } from "@/app/store";
 import AdmissionsFilters from "@/components/admissions/AdmissionsFilters";
 import SimplePatientDetails from "@/components/client-accounts/cards/SimplePatientDetails";
 import Container from "@/components/core/container/Container";
@@ -7,62 +6,27 @@ import Table from "@/components/shared/table/Table";
 import TableBody from "@/components/shared/table/TableBody";
 import TableHeader from "@/components/shared/table/TableHeader";
 import { admissionModalTypes } from "@/constants/modal-types";
-import {
-  Encounter,
-  useReadAdmissionListByClientQuery,
-} from "@/features/medical-encounter/medical-encounter-api";
-import { openAddModal } from "@/features/modal/modal-slice";
 import { DateFunc } from "@/utilities/date";
-import React from "react";
 import { FiPlusCircle } from "react-icons/fi";
 import { IoArrowBack } from "react-icons/io5";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import AdmissionCreateModal from "../create/AdmissionCreateModal";
+import AdmissionCreateModal from "../create/Create";
 import AdmissionDetails from "../details/AdmissionDetails";
 import AdmissionDischarge from "../discharge/AdmissionDischarge";
+import useAdmission from "./useAdmission";
 
 const AdmissionsIndex = () => {
-  const { addModal, editModal } = useSelector(
-    (state: RootState) => state.modal
-  );
-  const [state, setState] = React.useState(1);
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { clientId } = useParams();
-
-  const { data: admissionList } = useReadAdmissionListByClientQuery(clientId, {
-    skip: !clientId,
-    refetchOnMountOrArgChange: true,
-  });
-
-  const handleAdmissionModal = () => {
-    dispatch(
-      openAddModal({
-        modalId: admissionModalTypes.addAdmission,
-        data: null,
-      })
-    );
-  };
-
-  const handleAdmissionDetails = (item: Encounter) => {
-    dispatch(
-      openAddModal({
-        modalId: admissionModalTypes.admissionDetails,
-        data: item,
-      })
-    );
-  };
-
-  const handleAdmissionDischarge = () => {
-    dispatch(
-      openAddModal({
-        modalId: admissionModalTypes.admissionDischarge,
-        data: null,
-      })
-    );
-  };
+  const {
+    addModal,
+    admissionList,
+    editModal,
+    handleAdmissionDetails,
+    handleAdmissionDischarge,
+    handleAdmissionModal,
+    navigate,
+    setState,
+    state,
+    tableHeader,
+  } = useAdmission();
 
   return (
     <div className="mx-2">
@@ -96,39 +60,14 @@ const AdmissionsIndex = () => {
                       className=""
                       isAction
                       actionWidth="min-w-[220px]"
-                      title={[
-                        {
-                          title: "Admission Date",
-                          w: "20%",
-                        },
-                        {
-                          title: "Department",
-                          w: "20%",
-                        },
-                        {
-                          title: "Firm/Unit",
-                          w: "20%",
-                        },
-                        {
-                          title: "Ward",
-                          w: "20%",
-                        },
-                        {
-                          title: "Bed",
-                          w: "20%",
-                        },
-                        {
-                          title: "Discharge Date",
-                          w: "20%",
-                        },
-                      ]}
+                      title={tableHeader}
                     />
                     {admissionList?.map((item, index) => (
                       <TableBody
                         index={index}
                         isAction
                         actionWidth="min-w-[220px]"
-                        btnOutlineHandler={handleAdmissionDischarge}
+                        btnOutlineHandler={() => handleAdmissionDischarge(item)}
                         viewResultHandler={() => handleAdmissionDetails(item)}
                         btn={{
                           viewResult: "View Details ",
@@ -179,9 +118,17 @@ const AdmissionsIndex = () => {
         </div>
       </Container>
 
-      {/* Modal Components  */}
-      <AdmissionCreateModal />
-      <AdmissionDischarge />
+      {/* CLIENT ADMISSION  */}
+      {addModal?.isOpen &&
+        addModal?.modalId === admissionModalTypes.addAdmission && (
+          <AdmissionCreateModal />
+        )}
+
+      {/* DISCHARGE MODAL */}
+      {editModal?.isOpen &&
+        editModal?.modalId === admissionModalTypes.admissionDischarge && (
+          <AdmissionDischarge />
+        )}
 
       {/* DETAILS MODAL */}
       {addModal?.isOpen &&
@@ -193,35 +140,3 @@ const AdmissionsIndex = () => {
 };
 
 export default AdmissionsIndex;
-const data = [
-  {
-    id: 1,
-    name: "Amir Hamza",
-    age: "23",
-    orderDate: "25 Nov, 2023",
-    priority: "Regular",
-    test: "test",
-    orderNumber: "1",
-    sample: "25 Nov, 2023",
-  },
-  {
-    id: 1,
-    name: "Amir Hamza",
-    age: "23",
-    orderDate: "25 Nov, 2023",
-    priority: "Regular",
-    test: "test",
-    orderNumber: "1",
-    sample: "25 Nov, 2023",
-  },
-  {
-    id: 1,
-    name: "Amir Hamza",
-    age: "23",
-    orderDate: "25 Nov, 2023",
-    priority: "Regular",
-    test: "test",
-    orderNumber: "1",
-    sample: "25 Nov, 2023",
-  },
-];
