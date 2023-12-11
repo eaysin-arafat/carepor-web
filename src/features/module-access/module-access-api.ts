@@ -13,6 +13,12 @@ const moduleAccessAPI = API.injectEndpoints({
         method: "POST",
         body,
       }),
+      //@ts-ignore
+      invalidatesTags: (result, error, body) => [
+        { type: "FacilityAccess" },
+        { type: "FacilityAccessPermission", requestId: body.facilityAccessId },
+      ],
+      // invalidatesTags: ["FacilityAccess"],
     }),
 
     /**

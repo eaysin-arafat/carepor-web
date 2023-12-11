@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import apiTags from "./tags";
 
 // interface PublicKey {
 //   PUBLIC_KEY: string;
@@ -21,5 +22,6 @@ export const API = createApi({
     },
   }),
   endpoints: () => ({}),
-  tagTypes: ["Departments", "Firms", "Wards", "Beds"],
+  tagTypes: [...apiTags],
+  // tagTypes: ["Departments", "Firms"], // moved to  facility-tags file
 });

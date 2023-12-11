@@ -44,3 +44,8 @@ export const admissionModalTypes = Object.freeze({
   admissionDischarge: "admissionDischarge",
   admissionDetails: "admissionDetails",
 });
+
+export const facilitySettingsModalType = Object.freeze({
+  resetPasswordModal: "resetPasswordModal",
+  moduleAccessPermissionModal: "moduleAccessPermissionModal",
+});

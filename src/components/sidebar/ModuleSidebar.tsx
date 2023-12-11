@@ -19,6 +19,9 @@ function ModuleSidebar() {
       : item.title.toLocaleLowerCase().includes(search.toLocaleLowerCase());
   });
 
+  // only solve build problems
+  console.log(setIconColor);
+
   return (
     <RootLayout>
       <div className="w-full">

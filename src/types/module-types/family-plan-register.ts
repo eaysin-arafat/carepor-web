@@ -2,7 +2,7 @@
 
 // // ENUM TYPE
 // // PhysicalSystem enum
-// export type TypePhysicalSystemsEnum = TypeAPIEnum;
+// export type TypeEnum = TypeAPIEnum;
 
 // // DATA TYPE
 // export type TypeSystemExaminations = TypeAPIObject & {
