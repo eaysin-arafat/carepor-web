@@ -144,7 +144,7 @@ const ClientSearch = () => {
                   </Card>
                   <Card
                     title="Surgery Queue"
-                    image="/public/assets/icons/surgery-queue.svg"
+                    image="assets/icons/surgery-queue.svg"
                     titleClass="heading_3 text-secondaryColor"
                     view="View All"
                   >
@@ -166,7 +166,7 @@ const ClientSearch = () => {
                   </Card>
                   <Card
                     title="Reports"
-                    image="/public/assets/icons/reports.svg"
+                    image="assets/icons/reports.svg"
                     titleClass="heading_3 text-secondaryColor"
                     view="View All"
                   >
@@ -193,7 +193,7 @@ const ClientSearch = () => {
                 <div className="grid gap-5 h-fit">
                   <Card
                     title="Lab Orders"
-                    image="/public/assets/icons/lab-orders.svg"
+                    image="assets/icons/lab-orders.svg"
                     titleClass="heading_3 text-secondaryColor"
                     view="View All"
                   >
@@ -218,7 +218,7 @@ const ClientSearch = () => {
                   </Card>
                   <Card
                     title="Referrals"
-                    image="/public/assets/icons/referrals.svg"
+                    image="assets/icons/referrals.svg"
                     titleClass="heading_3 text-secondaryColor"
                     view="View All"
                   >

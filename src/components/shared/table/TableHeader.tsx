@@ -5,6 +5,7 @@ import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 type Title = {
   title: string;
   w: string;
+  sortIcon?: boolean;
 };
 
 type Props = {
@@ -38,14 +39,16 @@ function TableHeader({ isAction, title, className, actionWidth }: Props) {
           style={{ width: item.w }}
         >
           {item.title}
-          <div className="">
-            <button className="block">
-              <IoMdArrowDropup size={20} />
-            </button>
-            <button className="block p-0 mt-[-10px]">
-              <IoMdArrowDropdown size={20} />
-            </button>
-          </div>
+          {item?.sortIcon && (
+            <div className="">
+              <button className="block">
+                <IoMdArrowDropup size={20} />
+              </button>
+              <button className="block p-0 mt-[-10px]">
+                <IoMdArrowDropdown size={20} />
+              </button>
+            </div>
+          )}
         </p>
       ))}
 

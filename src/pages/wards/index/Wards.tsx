@@ -49,24 +49,24 @@ function Wards() {
               isAction
               title={[
                 {
-                  title: "User Name",
+                  title: "#",
                   w: "20%",
+                  sortIcon: false,
                 },
                 {
-                  title: "Designation",
+                  title: "Department",
                   w: "10%",
+                  sortIcon: true,
                 },
                 {
-                  title: "Facility",
+                  title: "Firm",
                   w: "30%",
+                  sortIcon: true,
                 },
                 {
-                  title: "Cell Phone",
+                  title: "Ward",
                   w: "20%",
-                },
-                {
-                  title: "Contact Address",
-                  w: "20%",
+                  sortIcon: true,
                 },
               ]}
             />

@@ -21,5 +21,5 @@ export const API = createApi({
     },
   }),
   endpoints: () => ({}),
-  tagTypes: [],
+  tagTypes: ["Departments", "Firms"],
 });
