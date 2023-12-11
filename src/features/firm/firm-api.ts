@@ -1,4 +1,19 @@
 import { API } from "../API/API";
+import { Department } from "../department/department-api";
+
+export type FirmType = {
+  oid: number;
+  description: string;
+  departmentId: number;
+  department: Department;
+  createdIn: number;
+  dateCreated: string;
+  createdBy: string;
+  dateModified: string;
+  modifiedBy: string;
+  isDeleted: boolean;
+  isSynced: boolean;
+};
 
 export const firmApi = API.injectEndpoints({
   endpoints: (builder) => ({
@@ -8,6 +23,7 @@ export const firmApi = API.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags: ["Firms"],
     }),
     ReadFirms: builder.query({
       query: () => "firms",
@@ -15,18 +31,20 @@ export const firmApi = API.injectEndpoints({
     ReadFirmsByFacilityId: builder.query({
       query: (facilityId) => `firms/facility/${facilityId}`,
     }),
-    ReadFirmsByDepartmentId: builder.query({
+    ReadFirmsByDepartmentId: builder.query<FirmType[], string>({
       query: (departmentId) => `firms/department/${departmentId}`,
+      providesTags: ["Firms"],
     }),
     ReadFirmByKey: builder.query({
       query: (key) => `firm/key/${key}`,
     }),
     UpdateFirm: builder.mutation({
       query: (body) => ({
-        url: `firm`,
+        url: `firm/${body?.oid}`,
         method: "PUT",
         body,
       }),
+      invalidatesTags: ["Firms"],
     }),
     FirmByDepartment: builder.query({
       query: (departmentId) => `firm/firm-by-department/${departmentId}`,

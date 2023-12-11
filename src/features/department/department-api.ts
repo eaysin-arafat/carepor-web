@@ -1,4 +1,14 @@
 import { API } from "../API/API";
+export interface Department {
+  oid: number;
+  description: string;
+  facilityId: number;
+  createdIn: number;
+  dateCreated: string;
+  createdBy: string;
+  isDeleted: boolean;
+  isSynced: boolean;
+}
 
 // define department api
 const departmentApi = API.injectEndpoints({
@@ -9,19 +19,22 @@ const departmentApi = API.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags: ["Departments"],
     }),
-    ReadDepartments: builder.query({
+    ReadDepartments: builder.query<Department[], number>({
       query: (key) => `departments/key/${key}`,
+      providesTags: ["Departments"],
     }),
     ReadDepartmentByKey: builder.query({
       query: (key) => `department/key/${key}`,
     }),
     UpdateDepartment: builder.mutation({
       query: (body) => ({
-        url: `department`,
+        url: `department/${body?.oid}`,
         method: "PUT",
         body,
       }),
+      invalidatesTags: ["Departments"],
     }),
     DeleteDepartment: builder.mutation({
       query: (key) => ({
