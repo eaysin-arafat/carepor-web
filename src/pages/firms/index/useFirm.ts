@@ -19,7 +19,12 @@ const useFirm = () => {
     (state: RootState) => state.modal
   );
 
-  const { data: firms } = useReadFirmsByDepartmentIdQuery(departmentId, {
+  const {
+    data: firms,
+    isLoading,
+    isSuccess,
+    status,
+  } = useReadFirmsByDepartmentIdQuery(departmentId, {
     skip: !departmentId,
     refetchOnMountOrArgChange: true,
   });
@@ -49,6 +54,9 @@ const useFirm = () => {
     addModal,
     editModal,
     navigate,
+    status,
+    isSuccess,
+    isLoading,
   };
 };
 

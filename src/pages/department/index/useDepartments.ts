@@ -25,6 +25,7 @@ const useDepartments = () => {
   const {
     data: departments,
     isLoading,
+    isSuccess,
     status,
   } = useReadDepartmentsQuery(facility?.facilityId ?? 0);
 
@@ -52,6 +53,7 @@ const useDepartments = () => {
     editModal,
     addModal,
     navigate,
+    isSuccess,
   };
 };
 

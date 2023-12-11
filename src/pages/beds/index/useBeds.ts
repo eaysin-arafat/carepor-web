@@ -1,56 +1,56 @@
 import { RootState } from "@/app/store";
-import { wardModalTypes } from "@/constants/modal-types";
+import { bedModalTypes } from "@/constants/modal-types";
+import { BedType, useReadBedByWardQuery } from "@/features/bed/bed-api";
 import { openAddModal, openEditModal } from "@/features/modal/modal-slice";
-import { Ward, useReadWardByFirmQuery } from "@/features/ward/ward-api";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
-const useWard = () => {
-  // * get data from redux store
+const useBeds = () => {
+  // * get data from the redux store
   const { addModal, editModal } = useSelector(
     (state: RootState) => state.modal
   );
-
   // * Hokes
-  const { firmId } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { wardId } = useParams();
 
-  //  api hooks
+  // api hooks
   const {
-    data: wards,
+    data: beds,
     isSuccess,
     isLoading,
     status,
-  } = useReadWardByFirmQuery(firmId, {
-    skip: !firmId,
+  } = useReadBedByWardQuery(wardId, {
+    skip: !wardId,
     refetchOnMountOrArgChange: true,
   });
 
-  const handleAddFirm = () => {
+  // * Handlers
+  const handleAddBed = () => {
     dispatch(
       openAddModal({
-        modalId: wardModalTypes.addWard,
+        modalId: bedModalTypes.addBed,
         data: null,
       })
     );
   };
 
-  const handleEditFirm = (item: Ward) => {
+  const handleEditBed = (item: BedType) => {
     dispatch(
       openEditModal({
-        modalId: wardModalTypes.editWard,
+        modalId: bedModalTypes.editBed,
         data: item,
       })
     );
   };
 
   return {
-    wards,
+    beds,
     isLoading,
     status,
-    handleAddFirm,
-    handleEditFirm,
+    handleAddBed,
+    handleEditBed,
     editModal,
     addModal,
     navigate,
@@ -58,4 +58,4 @@ const useWard = () => {
   };
 };
 
-export default useWard;
+export default useBeds;

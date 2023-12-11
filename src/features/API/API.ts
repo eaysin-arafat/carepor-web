@@ -21,5 +21,5 @@ export const API = createApi({
     },
   }),
   endpoints: () => ({}),
-  tagTypes: ["Departments", "Firms", "Wards"],
+  tagTypes: ["Departments", "Firms", "Wards", "Beds"],
 });

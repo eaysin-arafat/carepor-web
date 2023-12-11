@@ -26,6 +26,7 @@ function Wards() {
     navigate,
     status,
     wards,
+    isSuccess,
   } = useWard();
 
   return (
@@ -88,11 +89,21 @@ function Wards() {
               ]}
             />
 
+            {/* EMPTY DATA MESSAGE */}
+            {isSuccess && status === "fulfilled" && wards?.length === 0 && (
+              <div className="flex justify-center items-center h-40">
+                <p className="text-xl text-gray-500">No Wards Found</p>
+              </div>
+            )}
+
+            {/* LOADING SPINNER */}
             {(isLoading || status === "pending") && (
               <div className="flex justify-center py-4">
                 <Loader size={40} />
               </div>
             )}
+
+            {/* TABLE DATA */}
             {wards?.map((item: Ward, index) => (
               <TableBody
                 index={index}
