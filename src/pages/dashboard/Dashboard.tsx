@@ -1,8 +1,8 @@
 import ClientDetailsCard from "@/components/core/card/ClientDetailsCard";
-import Demographics from "@/components/dashmoard/Demographics";
-import FamilyHistory from "@/components/dashmoard/FamilyHistory";
-import DashboardSummary from "@/components/dashmoard/Summary";
-import DashboardTabButton from "@/components/dashmoard/TabButton";
+import Demographics from "@/components/dashboard/Demographics";
+import FamilyHistory from "@/components/dashboard/FamilyHistory";
+import DashboardSummary from "@/components/dashboard/Summary";
+import DashboardTabButton from "@/components/dashboard/TabButton";
 import useWindowWidth from "@/hooks/useWindow";
 import React from "react";
 
@@ -24,9 +24,9 @@ const Dashboard = () => {
         <DashboardTabButton handleSearchTabChange={handleTabClick} tab={tab} />
       </div>
       <div className=" -translate-y-[50px] sm:-translate-y-[40px]">
-      {tab === "summary" && <DashboardSummary />}
-      {tab === "demographics" && <Demographics />}
-      {tab === "family" && <FamilyHistory />}
+        {tab === "summary" && <DashboardSummary />}
+        {tab === "demographics" && <Demographics />}
+        {tab === "family" && <FamilyHistory />}
       </div>
     </div>
   );

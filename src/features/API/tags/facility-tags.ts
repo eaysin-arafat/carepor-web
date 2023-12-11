@@ -1,3 +1,8 @@
 // Facility Tags
 
-export const facilityTags = ["FacilityAccess", "Departments", "Firms"];
+export const facilityTags = [
+  "FacilityAccess",
+  "FacilityAccessId",
+  "Departments",
+  "Firms",
+];

@@ -1,11 +1,14 @@
 import { religionsEnums } from "@/enum/clients";
-import useClientDetails from "@/pages/client-accounts/details/useClientDetails";
+import { Client } from "@/interface/clients";
+import { cookieManager } from "@/utilities/cookie-manager";
 import { DateFunc } from "@/utilities/date";
 import React from "react";
 import Card from "../core/card/Card";
 import DataRow from "../core/table/DataRow";
+import useClientData from "./useClientData";
 
 const Demographics: React.FC = () => {
+  const client: Client | null = cookieManager.parseCookie("client") || null;
   const {
     clientObj,
     handleClientEdit,
@@ -14,7 +17,8 @@ const Demographics: React.FC = () => {
     getOccupationsName,
     getEducationLevelName,
     districtName,
-  } = useClientDetails();
+  } = useClientData({ client });
+
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-stretch gap-5">
@@ -37,7 +41,7 @@ const Demographics: React.FC = () => {
           />
           <DataRow
             title="Country"
-            data={getCountryName(clientObj?.countryId)}
+            data={getCountryName(+clientObj?.countryId)}
           />
           <DataRow title="NRC" data={clientObj?.nrc} />
           <DataRow title="NUPN" data={clientObj?.nupn} />
@@ -96,7 +100,7 @@ const Demographics: React.FC = () => {
           <DataRow title="Town" data={clientObj?.townName} />
           <DataRow title="Landmarks & Direction" data={clientObj?.landmarks} />
         </Card>
-        <Card   
+        <Card
           title="Martial Status / Spouse Details"
           className="bg-whiteColor shadow-none border md:px-5"
           titleClass="text-secondaryColor pt-6 text-xl"

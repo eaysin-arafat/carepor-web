@@ -1,17 +1,15 @@
-import { useReadClientByKeyQuery } from "@/features/client/client-api";
 import { setClientFormStep } from "@/features/client/client-form-slice";
 import { useReadCountriesQuery } from "@/features/country/country-api";
 import { useReadDistrictByKeyQuery } from "@/features/district/district-api";
 import { useReadEducationLevelsQuery } from "@/features/education-level/education-level-api";
 import { useReadHomeLanguagesQuery } from "@/features/home-language/home-language-api";
 import { useReadOccupationsQuery } from "@/features/occupation/occupation-api";
-import { Client } from "@/interface/clients";
 import { URLClientEdit } from "@/routers/client";
 import { DateFunc } from "@/utilities/date";
 import { useDispatch } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const useClientDetails = () => {
+const useClientData = ({ client: clientObj }) => {
   const { data: homeLanguage } = useReadHomeLanguagesQuery(undefined);
   const { data: countries } = useReadCountriesQuery(undefined);
   const { data: educationLevel } = useReadEducationLevelsQuery(undefined);
@@ -19,20 +17,19 @@ const useClientDetails = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const params = useParams();
-  const clientId = params?.clientId;
 
-  const {
-    data: clientsData,
-    isError,
-    isLoading,
-    isSuccess,
-  } = useReadClientByKeyQuery(clientId, {
-    skip: !clientId,
-    refetchOnMountOrArgChange: true,
-  });
-
-  const clientObj: Client = clientsData;
+  // const params = useParams();
+  // const clientId = params?.clientId;
+  // const {
+  //   data: clientsData,
+  //   isError,
+  //   isLoading,
+  //   isSuccess,
+  // } = useReadClientByKeyQuery(clientId, {
+  //   skip: !clientId,
+  //   refetchOnMountOrArgChange: true,
+  // });
+  // const clientObj: ClientObjectType = clientsData;
 
   const { data: district } = useReadDistrictByKeyQuery(clientObj?.districtId, {
     skip: !clientObj?.districtId,
@@ -86,14 +83,15 @@ const useClientDetails = () => {
   // Handle edit redirect
   const handleClientEdit = (step: number) => {
     dispatch(setClientFormStep(step));
-    navigate(URLClientEdit({ id: clientId }));
+    // navigate(URLClientEdit({ id: clientId }));
+    navigate(URLClientEdit({ id: clientObj?.oid, query: "?back=dashboard" }));
   };
 
   return {
     clientObj,
-    isError,
-    isLoading,
-    isSuccess,
+    // isError,
+    // isLoading,
+    // isSuccess,
     districtName,
     getCountryName,
     getHomeLanguagesName,
@@ -108,4 +106,4 @@ const useClientDetails = () => {
   };
 };
 
-export default useClientDetails;
+export default useClientData;

@@ -32,6 +32,7 @@ import { useEffect, useState } from "react";
 import useClientFormStep from "./useClientFormStep";
 import useSetEditFormData from "./useSetEditFormData";
 import useSubmitClientAccountEdit from "./useSubmitClientAccountEdit";
+import getQueryParams from "@/utilities/get-query-params";
 
 const nrcValidateForSearchReq = (value: string) => {
   const nrcReqPattern = /^\d{6}\/\d{2}\/[\d_]{1}$/;
@@ -57,6 +58,9 @@ const useClientAccount = (
   // form step state handler
   const formStepState = useClientFormStep();
   const { handleStepNext, stateCount } = formStepState;
+
+  // back page
+  const backTo = getQueryParams("back");
 
   // form data states
   const [personalInfo, setPersonalInfo] = useState(personalInfoState);
@@ -334,6 +338,8 @@ const useClientAccount = (
 
     // NRC prev
     alreadyExists,
+    // Handle cancel edit
+    backTo
   };
 };
 

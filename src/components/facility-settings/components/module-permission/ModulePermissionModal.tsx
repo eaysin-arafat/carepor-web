@@ -104,11 +104,7 @@ function ModulePermissionModal({}: Props) {
                 dispatch(closeEditModal());
               }}
             />
-            <SubmitButton
-              className="py-2 "
-              buttonType="submit"
-              title="Change Password"
-            />
+            <SubmitButton className="py-2 " buttonType="submit" title="Save" />
           </div>
         </form>
       </div>

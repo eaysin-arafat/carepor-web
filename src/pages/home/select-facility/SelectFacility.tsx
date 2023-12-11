@@ -8,9 +8,6 @@ import { Link } from "react-router-dom";
 import useSelectFacility from "./useSelectFacility";
 
 const SelectFacility = () => {
-  // const { data } = useReadProvincesQuery(undefined);
-  // console.log(data);
-
   const {
     districtOptions,
     facilitiesOptions,

@@ -4,15 +4,16 @@ import {
   URLAdmissionDischarge,
   URLAdmissions,
   URLClientDetails,
-  URLServicePoint,
 } from "@/routers/client";
+import { clientAddress } from "@/utilities";
 import { cn } from "@/utilities/cn";
 import { format } from "date-fns";
 import { FaCalendarAlt } from "react-icons/fa";
 import { FaRegAddressCard } from "react-icons/fa6";
 import { LuMapPin } from "react-icons/lu";
 import { MdOutlinePerson2, MdOutlinePhone } from "react-icons/md";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import usePatientCard from "./usePatientCard";
 
 const gender = {
   1: "male",
@@ -25,7 +26,8 @@ type PatientCardProps = {
 };
 
 const PatientCard = ({ client, className }: PatientCardProps) => {
-  const navigate = useNavigate();
+  const { handleAttendToPatient } = usePatientCard(client);
+
   return (
     <div>
       <Container className="my-5">
@@ -91,14 +93,15 @@ const PatientCard = ({ client, className }: PatientCardProps) => {
                       <LuMapPin className="text-grayColor" />
                     </span>
                     <span className="text-grayColor text-xs">
-                      {client?.householdNumber &&
+                      {clientAddress(client)}
+                      {/* {client?.householdNumber &&
                         "H#" + client?.householdNumber + ","}
                       &nbsp;
                       {client?.road && "R#" + client?.road + ","}&nbsp;
                       {client?.area && client?.area + ","}
                       &nbsp;
                       {client?.townName && client?.townName}{" "}
-                      {client?.landmarks && `(${client?.landmarks})`}
+                      {client?.landmarks && `(${client?.landmarks})`} */}
                     </span>
                   </div>
                 </div>
@@ -138,7 +141,7 @@ const PatientCard = ({ client, className }: PatientCardProps) => {
                 </button>
                 <button
                   className={cn("main_btn btn_sm text-sm")}
-                  onClick={() => navigate(URLServicePoint())}
+                  onClick={handleAttendToPatient}
                 >
                   Attend to Patient
                 </button>

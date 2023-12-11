@@ -5,8 +5,8 @@ import { useReadDistrictByKeyQuery } from "@/features/district/district-api";
 import { useReadEducationLevelsQuery } from "@/features/education-level/education-level-api";
 import { useReadHomeLanguagesQuery } from "@/features/home-language/home-language-api";
 import { useReadOccupationsQuery } from "@/features/occupation/occupation-api";
-import { Client } from "@/interface/clients";
 import { URLClientEdit } from "@/routers/client";
+import { ClientObjectType } from "@/types/clientTypes";
 import { DateFunc } from "@/utilities/date";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -32,7 +32,7 @@ const useClientDetails = () => {
     refetchOnMountOrArgChange: true,
   });
 
-  const clientObj: Client = clientsData;
+  const clientObj: ClientObjectType = clientsData;
 
   const { data: district } = useReadDistrictByKeyQuery(clientObj?.districtId, {
     skip: !clientObj?.districtId,
@@ -44,13 +44,13 @@ const useClientDetails = () => {
     return countriesDescription;
   };
 
-  const getHomeLanguagesName = (id: number) => {
+  const getHomeLanguagesName = (id) => {
     const homeLanguages = Array.isArray(homeLanguage) ? homeLanguage : [];
     const homeLanguagesDescription =
       homeLanguages?.find((data) => data.oid == id)?.description || "";
     return homeLanguagesDescription;
   };
-  const getEducationLevelName = (id: number) => {
+  const getEducationLevelName = (id) => {
     const educationLevelData = Array.isArray(educationLevel)
       ? educationLevel
       : [];
@@ -58,7 +58,7 @@ const useClientDetails = () => {
       educationLevelData?.find((data) => data.oid == id)?.description || "";
     return educationLevelDescription;
   };
-  const getOccupationsName = (id: number) => {
+  const getOccupationsName = (id) => {
     const occupationsData = Array.isArray(occupations) ? occupations : [];
     const occupationDescription =
       occupationsData?.find((data) => data.oid == id)?.description || "";

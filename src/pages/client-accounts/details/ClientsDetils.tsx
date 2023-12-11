@@ -56,7 +56,7 @@ const ClientDetails = ({}: Props) => {
                   <DataRow title="Last Name" data={clientObj?.surname} />
                   <DataRow
                     title="Sex"
-                    data={clientObj?.sex == "1" ? "Male" : "Female"}
+                    data={clientObj?.sex == 1 ? "Male" : "Female"}
                   />
                   <DataRow
                     title="Date of Birth"
@@ -284,7 +284,11 @@ const ClientDetails = ({}: Props) => {
               </Card>
               <div className="mt-5 flex justify-center w-full">
                 <div
-                  className={cn(`grid grid-cols-1 md:grid-cols-${isOverFive ? "1" : "2"} gap-4 `)}
+                  className={cn(
+                    `grid grid-cols-1 md:grid-cols-${
+                      isOverFive ? "1" : "2"
+                    } gap-4 `
+                  )}
                 >
                   <LinkButton
                     link={URLClientSearch()}

@@ -22,8 +22,20 @@ export const URLClientDetails = ({ id }: { id: string }): string =>
 export const URLLinkWithMother = ({ id }: { id: string }): string =>
   `/link-with-mother/${id}`;
 export const URLClientCreate = (): string => "/client-create";
-export const URLClientEdit = ({ id }: { id: string }): string =>
-  `/client-edit/${id}`;
+export const URLClientEdit = ({
+  id,
+  query,
+}: {
+  id: string;
+  query?: string;
+}): string => {
+  if (query) {
+    return `/client-edit/${id + query}`;
+  } else {
+    return `/client-edit/${id}`;
+  }
+};
+
 export const URLAdmissions = ({
   clientId = ":clientId",
 }: {

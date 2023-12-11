@@ -1,5 +1,11 @@
+import { EnumSex } from "@/enum/enumerators";
+import { Client } from "@/interface/clients";
+import { clientAddress } from "@/utilities";
 import { cn } from "@/utilities/cn";
-import { Calendar } from "react-feather";
+import { cookieManager } from "@/utilities/cookie-manager";
+import { DateFunc } from "@/utilities/date";
+import { Calendar, MapPin, Phone, User } from "react-feather";
+import { FaRegAddressCard } from "react-icons/fa6";
 
 interface Props {
   className?: string;
@@ -7,6 +13,8 @@ interface Props {
 }
 
 const SimplePatientDetails = ({ className }: Props) => {
+  const client: Client | null = cookieManager.parseCookie("client") || null;
+
   return (
     <div>
       <div
@@ -17,47 +25,46 @@ const SimplePatientDetails = ({ className }: Props) => {
       >
         <div className="col-span-2 flex items-center">
           <h1 className="text-xl font-medium font-poppins text-secondaryColor w-[80%]">
-            Chukwuebuka Nwachinemelu
+            {client?.firstName && client?.surname
+              ? client.firstName + " " + client.surname
+              : ""}
           </h1>
           <div className="w-[20%] sm:border-s  h-12"></div>
         </div>
         <Item
           title="Date of Birth"
-          data="3-Jan-1991"
+          data={DateFunc.formatDate(client?.dob)}
           icon={<Calendar size={18} />}
         />
         <Item
-          title="Date of Birth"
-          data="3-Jan-1991"
-          icon={<Calendar size={18} />}
+          title="Sex"
+          data={client?.sex && EnumSex[client?.sex]}
+          icon={<User size={18} />}
         />
         <Item
-          title="Date of Birth"
-          data="3-Jan-1991"
-          icon={<Calendar size={18} />}
+          title="Cellphone"
+          data={
+            client?.cellphone && client.cellphoneCountryCode
+              ? client?.cellphoneCountryCode + " " + client.cellphone
+              : ""
+          }
+          icon={<Phone size={18} />}
         />
-        <Item
-          title="Date of Birth"
-          data="3-Jan-1991"
-          icon={<Calendar size={18} />}
-        />
-        <Item
-          title="Date of Birth"
-          data="3-Jan-1991"
-          icon={<Calendar size={18} />}
-        />
+        <Item title="NUPN" data={client?.nupn} icon={<FaRegAddressCard />} />
+        <Item title="NRC" data={client?.nrc} icon={<FaRegAddressCard />} />
+
         <div className="col-span-2">
           <Item
-            title="Date of Birth"
-            data="3-Jan-1991 sdfghjk fdghjkl dfghjk, thjkm, dfghjnm "
-            icon={<Calendar size={18} />}
+            title="Address"
+            data={clientAddress(client)}
+            icon={<MapPin size={18} />}
           />
         </div>
       </div>
     </div>
   );
 };
-export default SimplePatientDetails ;
+export default SimplePatientDetails;
 
 type CardProps = {
   title: string;

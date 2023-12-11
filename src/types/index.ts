@@ -39,8 +39,3 @@ export type TypeAPIEnum = {
   description: number;
   isDeleted?: boolean;
 };
-
-export type TypeFacilityToken = {
-  facilityId: number;
-  facilityName: string;
-};
