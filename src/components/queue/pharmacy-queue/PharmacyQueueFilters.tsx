@@ -40,10 +40,7 @@ const PharmacyQueueFilters = () => {
           <div
             className={`${myVar} md:block col-span-10 md:col-span-5 lg:col-span-3 xl:col-span-2 w-full`}
           >
-            <DateInput
-              onChange={() => {}}
-              label="Date of Prescription"
-            ></DateInput>
+            <DateInput onChange={() => {}} label="Date of Prescription" />
           </div>
           <div
             className={`${myVar} md:block col-span-10 md:col-span-5 lg:col-span-3 xl:col-span-2 w-full`}

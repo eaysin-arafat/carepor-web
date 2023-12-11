@@ -25,29 +25,29 @@ const ModuleSidebarRoutes = [
     title: "Encounter (OPD)",
     icon: "/assets/svg/sidebar/opd.svg",
     link: "#",
-    children: [
-      {
-        id: 1,
-        title: "HTS",
+    // children: [
+    //   {
+    //     id: 1,
+    //     title: "HTS",
 
-        link: "#",
-        icon: "",
-      },
-      {
-        id: 2,
-        title: "HTS",
+    //     link: "#",
+    //     icon: "",
+    //   },
+    //   {
+    //     id: 2,
+    //     title: "HTS",
 
-        link: "#",
-        icon: "",
-      },
-      {
-        id: 3,
-        title: "HTS",
+    //     link: "#",
+    //     icon: "",
+    //   },
+    //   {
+    //     id: 3,
+    //     title: "HTS",
 
-        link: "#",
-        icon: "",
-      },
-    ],
+    //     link: "#",
+    //     icon: "",
+    //   },
+    // ],
   },
   {
     id: 5,
@@ -68,29 +68,29 @@ const ModuleSidebarRoutes = [
 
     link: "#",
     icon: "/assets/svg/sidebar/tv.svg",
-    children: [
-      {
-        id: 1,
-        title: "PEP",
+    // children: [
+    //   {
+    //     id: 1,
+    //     title: "PEP",
 
-        link: "#",
-        icon: "",
-      },
-      {
-        id: 1,
-        title: "PrEP",
+    //     link: "#",
+    //     icon: "",
+    //   },
+    //   {
+    //     id: 1,
+    //     title: "PrEP",
 
-        link: "#",
-        icon: "",
-      },
-      {
-        id: 1,
-        title: "TB Service",
+    //     link: "#",
+    //     icon: "",
+    //   },
+    //   {
+    //     id: 1,
+    //     title: "TB Service",
 
-        link: "#",
-        icon: "",
-      },
-    ],
+    //     link: "#",
+    //     icon: "",
+    //   },
+    // ],
   },
   {
     id: 8,

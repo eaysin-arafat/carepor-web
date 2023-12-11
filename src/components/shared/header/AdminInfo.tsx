@@ -28,7 +28,7 @@ function AdminInfo() {
   return (
     <div className="flex items-center gap-2">
       <p
-        className={`border-r pr-2 text-primaryColor dark:text-white font-medium ${
+        className={`border-r pr-2 text-textColor font-medium ${
           w1230 ? "font-[11px]" : "font-[15px]"
         }`}
       >
@@ -37,7 +37,7 @@ function AdminInfo() {
       <Dropdown
         arrowIcon={false}
         inline
-        className="min-w-[300px] w-[300px] z-50"
+        className="min-w-[300px] w-[300px] z-50 bg-whiteBgColor"
         label={
           <img
             src="assets/img/menu-avatar.png"
@@ -47,33 +47,37 @@ function AdminInfo() {
         }
       >
         <Dropdown.Header>
-          <div className="text-center dark:border-gray-600">
-            <Title type="h3" title="System Administrator" />
-            <p className="dark:text-gray-500">CarePro Admin</p>
+          <div className="text-center border-textColor">
+            <Title
+              type="h3"
+              className="text-textColor"
+              title="System Administrator"
+            />
+            <p className="text-textColor">CarePro Admin</p>
           </div>
         </Dropdown.Header>
         <Dropdown.Item
-          className="border-b py-3"
+          className="border-b py-3 text-textColor"
           as={Link}
           to="/facility-settings"
         >
           <CiSettings size={28} className="w-[30px]" /> Facility Setting
         </Dropdown.Item>
         <Dropdown.Item
-          className="border-b py-3"
+          className="border-b py-3 text-textColor"
           as={Link}
           to={URLUserAccountEdit()}
         >
           <FiEdit size={20} className="w-[30px]" /> Edit Profile
         </Dropdown.Item>
         <Dropdown.Item
-          className="border-b py-3"
+          className="border-b py-3 text-textColor"
           as={Link}
           to="/change-password"
         >
           <BsLock size={22} className="w-[30px]" /> Change Password
         </Dropdown.Item>
-        <Dropdown.Item className="py-3" onClick={handleLogout}>
+        <Dropdown.Item className="py-3 text-textColor" onClick={handleLogout}>
           <IoExitOutline size={25} className="w-[30px]" /> Sign Out
         </Dropdown.Item>
       </Dropdown>

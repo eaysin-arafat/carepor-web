@@ -1,4 +1,5 @@
 import { cn } from "@/utilities/cn";
+import { IoIosArrowForward } from "react-icons/io";
 import { MdOutlineEdit } from "react-icons/md";
 
 type Props = {
@@ -41,7 +42,7 @@ const Card = ({
         {title && (
           <h2
             className={cn(
-              " heading_2 text-2xl px-4 py-3 flex items-center gap-2 rounded-t ",
+              " heading_2 text-2xl text-textColor px-4 py-3 flex items-center gap-2 rounded-t ",
               titleClass
             )}
           >
@@ -54,14 +55,8 @@ const Card = ({
         )}
         {view && (
           <>
-            <button className="text-gray-500 text-base font-semibold px-4 py-3 font-poppins flex items-center gap-1">
-              {view}{" "}
-              <img
-                src="assets/icons/arrow-right.svg"
-                alt=""
-                className="
-            "
-              />
+            <button className="text-textColor  text-base font-semibold px-4 py-3 font-poppins flex items-center gap-1">
+              {view} <IoIosArrowForward />
             </button>
           </>
         )}
