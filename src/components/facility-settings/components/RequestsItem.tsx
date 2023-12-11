@@ -1,17 +1,15 @@
 import TableBody from "@/components/shared/table/TableBody";
 import useFacilityData from "@/hooks/useFacilityData";
 import { TypeFacilityAccess } from "@/types/facility";
-import { useDispatch } from "react-redux";
 import useRequestItem from "./useRequestItem";
 
 type Props = {
   request: TypeFacilityAccess;
   requestType: "login" | "recovery" | "permission";
+  index: number;
 };
 
-function RequestsItems({ request, requestType }: Props) {
-  const dispatch = useDispatch();
-
+function RequestsItems({ request, requestType, index }: Props) {
   const {
     handleLoginAccept,
     handleLoginRecovery,
@@ -40,7 +38,7 @@ function RequestsItems({ request, requestType }: Props) {
   return (
     <>
       <TableBody
-        index={1}
+        index={index}
         actionWidth="w-[180px]"
         isAction
         btnOutlineHandler={

@@ -62,6 +62,10 @@ const facilityAccessApi = API.injectEndpoints({
         url: `/facility-access-with-module-access/key/${key}`,
         method: "GET",
       }),
+      //@ts-ignore
+      providesTags: (result, error, key) => [
+        { type: "FacilityAccessPermission", requestId: key },
+      ],
     }),
 
     /**

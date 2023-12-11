@@ -20,7 +20,7 @@ function ResetPasswordModal() {
   return (
     <Modal
       title="Change Password"
-      titleClass="!px-8"
+      titleClass=""
       editModalId={facilitySettingsModalType.resetPasswordModal}
     >
       <div className="border border-lightGrayColor p-5 m-3 ">

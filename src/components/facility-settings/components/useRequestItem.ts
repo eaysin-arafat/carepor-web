@@ -1,9 +1,3 @@
-// import {
-//   useApprovedFacilityAccessMutation,
-//   useRejectFacilityAccessMutation,
-//   useRevokeLoginMutation,
-// } from "@/features/facility/facility-access-api";
-// import { today } from "@/lib/helpers/date-helpers";
 import { facilitySettingsModalType } from "@/constants/modal-types";
 import { RtkStatusEnum } from "@/enum/rtk";
 import {
@@ -22,7 +16,7 @@ import { useDispatch } from "react-redux";
 
 const useRequestItem = ({ data }) => {
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+
   const user = data?.userAccount;
   const isApproved = data?.isApproved;
   const forgotPassword = data?.forgotPassword;

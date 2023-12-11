@@ -19,14 +19,17 @@ function ModulePermissionModal({}: Props) {
     modulesData,
     handleSelectAll,
     handleUnselectAll,
+    isSelectedAll,
+    userFullName,
+    facilityName,
+    cellPhone,
+    contactAddress,
   } = useModulePermission();
-
-  console.log(modulesData);
 
   return (
     <Modal
-      title="Change Password"
-      titleClass="!px-8"
+      title="Module Permission"
+      titleClass=""
       className="max-w-[1050px]"
       editModalId={facilitySettingsModalType.moduleAccessPermissionModal}
     >
@@ -34,18 +37,20 @@ function ModulePermissionModal({}: Props) {
       <div className="bg-lightBlueColor rounded-lg p-5">
         <div className="grid grid-cols-3 gap-1 ">
           <div className="col-span-3 md:col-span-1 ">
-            <h2 className="py-1 text-xl font-semibold">Ananda Kumar Saha</h2>
-            <h3 className="py-1  font-semibold">Facility Name</h3>
+            <h2 className="py-1 text-xl font-semibold">{userFullName}</h2>
+            <h3 onClick={handleUnselectAll} className="py-1  font-semibold">
+              {facilityName}
+            </h3>
           </div>
           <div className="md:col-span-2 col-span-3">
             <div className="grid grid-cols-3">
               <div className="col-span-1">
                 <h3 className="py-1 font-semibold">Cellphone</h3>
-                <h4 className="py-1">+260 01XXXXXXXXXXX</h4>
+                <h4 className="py-1">{cellPhone}</h4>
               </div>
               <div className="col-span-2py-1">
                 <h3 className="py-1 font-semibold">Address</h3>
-                <h4 className="py-1">XXXXXX 01XXXXXXXXXXX</h4>
+                <h4 className="py-1">{contactAddress}</h4>
               </div>
             </div>
           </div>
@@ -57,10 +62,18 @@ function ModulePermissionModal({}: Props) {
           <div className="border border-lightGrayColor p-5 mt-3 rounded-lg">
             <div className="">
               <h2 className="font-semibold text-lg">List of Modules :</h2>
-              <div className="my-2 text-xl">
+              <div className="my-2 text-xl grid">
                 <Checkbox
+                  checked={isSelectedAll}
+                  onChange={() => {
+                    if (isSelectedAll) {
+                      handleUnselectAll();
+                    } else {
+                      handleSelectAll();
+                    }
+                  }}
                   name={"selectAll"}
-                  label={"Select All"}
+                  label={isSelectedAll ? "Unselect all" : "Select all"}
                   className="font-semibold "
                 />
               </div>
@@ -68,13 +81,15 @@ function ModulePermissionModal({}: Props) {
               <div className="grid grid-cols-3 gap-2">
                 {modulesData?.map((item) => {
                   return (
-                    <Checkbox
-                      onChange={() => handleCheckboxChange(item.id)}
-                      checked={item?.checked}
-                      name={item.id}
-                      label={item.name}
-                      className=""
-                    />
+                    <div>
+                      <Checkbox
+                        onChange={() => handleCheckboxChange(item.id)}
+                        checked={item?.checked}
+                        name={item.id}
+                        label={item.name}
+                        className=""
+                      />
+                    </div>
                   );
                 })}
               </div>
