@@ -1,3 +1,5 @@
+import { Client } from "@/interface/clients";
+
 export type FormSectionType = {
   children: JSX.Element;
   titleText?: string;
@@ -38,4 +40,18 @@ export type TypeAPIEnum = {
   oid: number;
   description: number;
   isDeleted?: boolean;
+};
+
+export type TypeOpdVisit = {
+  oid: string;
+  opdVisitDate: string;
+  clientId: string;
+  client: Client;
+  dateCreated: string;
+  isDeleted: false;
+  isSynced: false;
+};
+export type TypeOpdVisitFrom = {
+  clientId: string;
+  type: string;
 };

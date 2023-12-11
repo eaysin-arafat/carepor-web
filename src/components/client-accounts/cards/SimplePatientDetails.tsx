@@ -24,7 +24,7 @@ const SimplePatientDetails = ({ className }: Props) => {
         )}
       >
         <div className="col-span-2 flex items-center">
-          <h1 className="text-xl font-medium font-poppins text-secondaryColor w-[80%]">
+          <h1 className="text-xl font-medium font-poppins text-secondaryColor capitalize w-[80%]">
             {client?.firstName && client?.surname
               ? client.firstName + " " + client.surname
               : ""}

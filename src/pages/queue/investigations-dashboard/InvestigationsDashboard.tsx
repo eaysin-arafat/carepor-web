@@ -7,10 +7,28 @@ import Table from "@/components/shared/table/Table";
 import TableBody from "@/components/shared/table/TableBody";
 import TableHeader from "@/components/shared/table/TableHeader";
 import useWindowWidth from "@/hooks/useWindow";
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function InvestigationsDashboard() {
   const w1100 = useWindowWidth(1100);
+
+  //
+  const navigation = useNavigate();
+  // const { Investigation } = EnumEncounterType;
+  const [baseData] = [""]; //useBaseData(Investigation);
+
+  // Request state for page and item
+  const [pageNo, setPageNo] = useState(1);
+  const [itemPerPage, setItemPerPage] = useState(5);
+  // Request for investigation data
+  // const { data, isLoading, isError, isSuccess } = useReadInvestigationByEncounterQuery(
+  //   { facilityId: baseData?.createdIn, pageNo, itemPerPage },
+  //   {
+  //     skip: !baseData?.createdIn,
+  //   }
+  // );
+
   const [state, setState] = React.useState(1);
 
   const Test2 = ({ aa }: { aa: string }) => {
@@ -30,35 +48,10 @@ function InvestigationsDashboard() {
       <div className="mt-5 bg-whiteBgColor pb-5 rounded-xl shadow-light">
         <Table isRounded>
           <TableHeader
-            className="bg-tableHeadColor text-textColor"
+            className="bg-tableHeadColor text-textColor py-2"
             isAction
             actionWidth="min-w-[270px]"
-            title={[
-              {
-                title: "Patient Name",
-                w: "20%",
-              },
-              {
-                title: "Priority",
-                w: "20%",
-              },
-              {
-                title: "Order Date",
-                w: "20%",
-              },
-              {
-                title: "Test",
-                w: "20%",
-              },
-              {
-                title: "Order Number",
-                w: "20%",
-              },
-              {
-                title: "Sample Date Collection",
-                w: "20%",
-              },
-            ]}
+            title={investigationDashboardHeader}
           />
           {data.map((item, index) => (
             <TableBody
@@ -71,10 +64,10 @@ function InvestigationsDashboard() {
               }}
               item={[
                 { title: item.name, w: "20%" },
-                { title: <Test2 aa={item?.priority} key="test" />, w: "20%" },
                 { title: item.orderDate, w: "20%" },
-                { title: item.test, w: "20%" },
                 { title: item.orderNumber, w: "20%" },
+                { title: item.test, w: "20%" },
+                { title: "high", w: "20%" },
                 { title: item.sample, w: "20%" },
               ]}
             />
@@ -82,7 +75,7 @@ function InvestigationsDashboard() {
         </Table>
         <div className="flex justify-end mx-5">
           <CustomPagination
-            activePage={1}
+            activePage={3}
             itemsCountPerPage={state}
             setActivePage={setState}
             totalItemsCount={100}
@@ -94,6 +87,34 @@ function InvestigationsDashboard() {
 }
 
 export default InvestigationsDashboard;
+const investigationDashboardHeader = [
+  {
+    title: "Patient Name",
+    w: "20%",
+  },
+  {
+    title: "Order Date",
+    w: "20%",
+  },
+  {
+    title: "Order Number",
+    w: "20%",
+  },
+  {
+    title: "Test",
+    w: "20%",
+  },
+  {
+    title: "Priority",
+    w: "20%",
+  },
+
+  {
+    title: "Sample Collection Date",
+    w: "20%",
+  },
+];
+
 const data = [
   {
     id: 1,
