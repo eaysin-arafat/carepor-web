@@ -35,6 +35,7 @@ export default {
         tableHeadColor: "var(--tableHead)",
         tableRow: "var(--tableRow)",
         overlayColor: "var(--overlay)",
+        buttonBg: "var(--btnBg)",
       },
       boxShadow: {
         light: "0 8px 16px 0 rgba(0, 0, 0, 0.05)",
