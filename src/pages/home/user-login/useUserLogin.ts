@@ -75,7 +75,7 @@ function useUserLogin() {
         //@ts-ignore
         setCredentialError(error.data);
       } else {
-        setCredentialError("Invalid username or password!");
+        setCredentialError("There was an error!");
       }
       // show alert
       // toast.dismiss();

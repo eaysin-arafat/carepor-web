@@ -24,7 +24,7 @@ function InvestigationsDashboard() {
 
   return (
     <div className={`${w1100 && "mt-12"}`}>
-      <InvestigationQueueFilters />
+      <InvestigationQueueFilters title="Investigation Queue" />
 
       <br />
       <div className="mt-5 bg-whiteBgColor pb-5 rounded-xl shadow-light">

@@ -51,14 +51,18 @@ const text_Style =
 
 const servicePointsArray = [
   {
+<<<<<<< HEAD
     imgSrc: "assets/svg/service-point/OPD.svg",
+=======
+    imgSrc: "/assets/svg/service-point/OPD.svg",
+>>>>>>> d9be0c6ec2e6baf6aa7e4941771b842ed019aceb
     title: "Me (OPD)",
     link: "#",
   },
   {
     imgSrc: "assets/svg/service-point/Vital.svg",
     title: "Vital",
-    link: "#",
+    link: "/vitals",
   },
   {
     imgSrc: "assets/svg/service-point/PEP.svg",
@@ -169,53 +173,53 @@ const servicePointsArray = [
 // export default ServicePoints;
 
 // const servicePointsArray = [
-//   { imgSrc: "assets/svg/service-point/OPD.svg", title: "Me (OPD)" },
-//   { imgSrc: "assets/svg/service-point/Vital.svg", title: "Vital" },
-//   { imgSrc: "assets/svg/service-point/PEP.svg", title: "PEP" },
-//   { imgSrc: "assets/svg/service-point/PREP.svg", title: "PrEP" },
+//   { imgSrc: "/assets/svg/service-point/OPD.svg", title: "Me (OPD)" },
+//   { imgSrc: "/assets/svg/service-point/Vital.svg", title: "Vital" },
+//   { imgSrc: "/assets/svg/service-point/PEP.svg", title: "PEP" },
+//   { imgSrc: "/assets/svg/service-point/PREP.svg", title: "PrEP" },
 //   {
-//     imgSrc: "assets/svg/service-point/TB Service.svg",
+//     imgSrc: "/assets/svg/service-point/TB Service.svg",
 //     title: "TB Service",
 //   },
 //   {
-//     imgSrc: "assets/svg/service-point/Pain Scaling.svg",
+//     imgSrc: "/assets/svg/service-point/Pain Scaling.svg",
 //     title: "Pain Scaling",
 //   },
 //   {
-//     imgSrc: "assets/svg/service-point/Investigation.svg",
+//     imgSrc: "/assets/svg/service-point/Investigation.svg",
 //     title: "Investigation",
 //   },
-//   { imgSrc: "assets/svg/service-point/Surgery.svg", title: "Surgery" },
+//   { imgSrc: "/assets/svg/service-point/Surgery.svg", title: "Surgery" },
 //   {
-//     imgSrc: "assets/svg/service-point/Referrals.svg",
+//     imgSrc: "/assets/svg/service-point/Referrals.svg",
 //     title: "Referrals",
 //   },
-//   { imgSrc: "assets/svg/service-point/Covax.svg", title: "Covax" },
-//   { imgSrc: "assets/svg/service-point/Covid.svg", title: "Covid" },
+//   { imgSrc: "/assets/svg/service-point/Covax.svg", title: "Covax" },
+//   { imgSrc: "/assets/svg/service-point/Covid.svg", title: "Covid" },
 //   {
-//     imgSrc: "assets/svg/service-point/Birth Records.svg",
+//     imgSrc: "/assets/svg/service-point/Birth Records.svg",
 //     title: "Birth Records",
 //   },
 //   {
-//     imgSrc: "assets/svg/service-point/Death Record.svg",
+//     imgSrc: "/assets/svg/service-point/Death Record.svg",
 //     title: "Death Record",
 //   },
 //   {
-//     imgSrc: "assets/svg/service-point/Pharmasy.svg",
+//     imgSrc: "/assets/svg/service-point/Pharmasy.svg",
 //     title: "Pharmacy",
 //   },
-//   { imgSrc: "assets/svg/service-point/ART.svg", title: "ART" },
+//   { imgSrc: "/assets/svg/service-point/ART.svg", title: "ART" },
 //   {
-//     imgSrc: "assets/svg/service-point/Antenatal.svg",
+//     imgSrc: "/assets/svg/service-point/Antenatal.svg",
 //     title: "Antenatal",
 //   },
-//   { imgSrc: "assets/svg/service-point/Labour.svg", title: "Labour" },
+//   { imgSrc: "/assets/svg/service-point/Labour.svg", title: "Labour" },
 //   {
-//     imgSrc: "assets/svg/service-point/Postnatal.svg",
+//     imgSrc: "/assets/svg/service-point/Postnatal.svg",
 //     title: "Postnatal",
 //   },
 //   {
-//     imgSrc: "assets/svg/service-point/Family Plan.svg",
+//     imgSrc: "/assets/svg/service-point/Family Plan.svg",
 //     title: "Family Plan",
 //   },
 // ];

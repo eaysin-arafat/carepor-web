@@ -2,8 +2,8 @@ import Container from "@/components/core/container/Container";
 import { Client } from "@/interface/clients";
 import {
   URLAdmissionDischarge,
+  URLAdmissions,
   URLClientDetails,
-  URLCreateAdmission,
   URLServicePoint,
 } from "@/routers/client";
 import { cn } from "@/utilities/cn";
@@ -114,7 +114,7 @@ const PatientCard = ({ client, className }: PatientCardProps) => {
                 </Link>
                 {!client.isAdmitted && (
                   <Link
-                    to={URLCreateAdmission({ clientId: client?.oid })}
+                    to={URLAdmissions({ clientId: client?.oid })}
                     className={cn("main_btn btn_sm text-center text-sm")}
                   >
                     Admit Patient

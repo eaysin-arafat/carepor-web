@@ -24,3 +24,11 @@ export const firmModalTypes = Object.freeze({
   addFirm: "addFirm",
   editFirm: "editFirm",
 });
+export const vitalModalTypes = Object.freeze({
+  addVital: "addVital",
+});
+export const admissionModalTypes = Object.freeze({
+  addAdmission: "addAdmission",
+  admissionDischarge: "admissionDischarge",
+  admissionDetails: "admissionDetails",
+});

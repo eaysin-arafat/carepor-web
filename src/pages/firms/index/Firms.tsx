@@ -5,7 +5,7 @@ import TableBody from "@/components/shared/table/TableBody";
 import TableHeader from "@/components/shared/table/TableHeader";
 import { firmModalTypes } from "@/constants/modal-types";
 import useWindowWidth from "@/hooks/useWindow";
-import { URLWards } from "@/routers/FacilitySettings";
+import { URLWards } from "@/routers/facility-settings";
 import { cn } from "@/utilities/cn";
 import { Plus } from "react-feather";
 import { BiLeftArrowAlt } from "react-icons/bi";

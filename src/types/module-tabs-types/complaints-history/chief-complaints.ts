@@ -1,4 +1,4 @@
-import { TypeAPIObject } from "@/types";
+import { TypeAPIEnum, TypeAPIObject } from "@/types";
 
 // *** Static enums reference from enumerators
 // EnumHIVTestResult
@@ -7,13 +7,35 @@ import { TypeAPIObject } from "@/types";
 // EnumTBScreening
 
 // ENUM TYPE
-// ----------------
+// PEP,
+export type TypeExposureTypeEnum = TypeAPIEnum;
+// PrEP, ANC (all),,
+export type TypeKeyPopulationsEnum = TypeAPIEnum;
+// PrEP, ANC (all),
+export type TypeQuestionsEnum = TypeAPIEnum;
 
 // DATA TYPE
+// PEP,
+export type TypeExposures = Omit<TypeAPIObject, "interactionId"> & {
+  oid: string;
+  exposureTypeId: string;
+  chiefComplaintId: string;
+};
+// PeEP, ANC (all),
+export type TypeKeyPopulationDemographics = TypeAPIObject & {
+  keyPopulationId: string;
+};
+// PeEP, ANC (all), >> Questions > answer
+export type TypeKeyHIVRiskScreenings = TypeAPIObject & {
+  answer: string;
+  questionId: string;
+};
+
+// ***
 export type TypeChiefComplaints = TypeAPIObject & {
   chiefComplaints: string;
   historyOfChiefComplaint: string;
-  hivStatus: 2;
+  hivStatus: string | number;
   lastHIVTestDate: string;
   testingLocation: string;
   isChildGivenARV: false;
@@ -28,3 +50,35 @@ export type TypeChiefComplaints = TypeAPIObject & {
   natResult?: string;
   tbScreenings?: string;
 };
+
+/**
+ InteractionId
+
+ChiefComplaints
+HistoryOfChiefComplaint
+HistorySummary
+ExaminationSummary
+HIVStatus
+LastHIVTestDate
+TestingLocation
+PotentialHIVExposureDate
+RecencyType
+RecencyTestDate
+ChildExposureStatus
+IsChildGivenARV
+IsMotherGivenARV
+NATTestDate
+NATResult
+TBScreenings
+
+ClientId
+EncounterId
+CreatedIn
+DateCreated
+CreatedBy
+ModifiedIn
+DateModified
+ModifiedBy
+IsDeleted
+IsSynced
+ */

@@ -122,11 +122,15 @@ function AdmissionSearch({}: Props) {
               <p className={text_Style}>TB Service</p>
             </div>
             <div className="border-2 p-5 h-36 w-36">
-              <img src="assets/svg/TBService.svg" alt="" className="asd" />
+              <img
+                src="/assets/svg/TBService.svg"
+                alt=""
+                className="asd"
+              />
               <p>TB Service</p>
             </div>
             <div className="border-2 p-5 h-36 w-36">
-              <img src="assets/svg/TBService.svg" alt="" />
+              <img src="/assets/svg/TBService.svg" alt="" />
               <p>TB Service</p>
             </div>
             <div className="border-2 p-5 h-36 w-36">

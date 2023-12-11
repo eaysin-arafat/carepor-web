@@ -1,6 +1,7 @@
 import PrivateGuard from "@/components/shared/guard/PrivateGuard";
 import UserLayout from "@/layout/UserLayout";
 import ChangePassword from "@/pages/user-accounts/change-password/ChangePassword";
+import UserDashboard from "@/pages/user-accounts/dashboard/UserDashboard";
 import UserAccountDetails from "@/pages/user-accounts/details/UserAccountDetils";
 import EditUserAccount from "@/pages/user-accounts/edit/UserAccountEdit";
 
@@ -11,6 +12,7 @@ export const URLUserAccountDetails = (id: string): string =>
   `/user-accounts/details/${id}`;
 export const URLForgotPassword = (): string => "/forgot-password";
 export const URLChangePassword = (): string => "/change-password";
+export const URLUserDashboard = (): string => "/user-dashboard";
 
 // routers for user accounts pages
 const UserAccountsRouter = [
@@ -35,6 +37,10 @@ const UserAccountsRouter = [
           {
             path: URLUserAccountDetails(":id"),
             element: <UserAccountDetails />,
+          },
+          {
+            path: URLUserDashboard(),
+            element: <UserDashboard />,
           },
         ],
       },

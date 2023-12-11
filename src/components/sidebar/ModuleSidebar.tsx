@@ -3,17 +3,22 @@ import { Accordion } from "flowbite-react";
 import { useState } from "react";
 import { FaChartPie } from "react-icons/fa6";
 import { IoChevronDown } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 import DropdownList from "./DropdownList";
+import Icons from "./Icons/Icons";
 import css from "./Styles.module.css";
 import ModuleSidebarRoutes from "./routeArray/ModuleSidebarRoutes";
 
 function ModuleSidebar() {
   const [search, setSearch] = useState("");
+  const [iconColor, setIconColor] = useState("var(--secondary)");
+  const navigate = useNavigate();
   const filteredData = ModuleSidebarRoutes.filter((item) => {
     return search.toLocaleLowerCase() === ""
       ? item
       : item.title.toLocaleLowerCase().includes(search.toLocaleLowerCase());
   });
+
   return (
     <RootLayout>
       <div className="w-full">
@@ -49,11 +54,7 @@ function ModuleSidebar() {
                       <div className="flex justify-between items-center w-full">
                         <div className="flex items-center gap-3">
                           {item.icon ? (
-                            <img
-                              src={item.icon}
-                              alt=""
-                              className="h-[23px] w-[23px]"
-                            />
+                            <Icons label={item.title} color={iconColor} />
                           ) : (
                             <FaChartPie size={23} />
                           )}
@@ -64,17 +65,15 @@ function ModuleSidebar() {
                     </Accordion.Title>
                   ) : (
                     <Accordion.Title
-                      onClick={() => !item.children && alert("okay")}
+                      onClick={() => !item.children && navigate(item?.link)}
+                      // onClick={() => !item.children && alert("okay")}
+                      // onMouseOver={() => setIconColor("white")}
                       className="p-3 border-none outline-none rounded-none"
                     >
                       <div className="flex justify-between items-center w-full">
                         <div className="flex items-center gap-3">
                           {item.icon ? (
-                            <img
-                              src={item.icon}
-                              alt=""
-                              className=" w-[23px] h-[23px]"
-                            />
+                            <Icons label={item.title} color={iconColor} />
                           ) : (
                             <FaChartPie size={23} />
                           )}

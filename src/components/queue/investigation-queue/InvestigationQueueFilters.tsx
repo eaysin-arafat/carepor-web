@@ -1,10 +1,16 @@
 import useWindowWidth from "@/hooks/useWindow";
+import { cn } from "@/utilities/cn";
 import React from "react";
 import DateInput from "../../core/form-elements/DatePicker";
 import Search from "../../core/form-elements/Search";
 import Select from "../../core/form-elements/Select";
 
-const InvestigationQueueFilters = () => {
+type Props = {
+  title?: string;
+  className?: string;
+};
+
+const InvestigationQueueFilters = ({ title, className }: Props) => {
   const [allFilters, setAllFilters] = React.useState(false);
   const w1100 = useWindowWidth(1100);
 
@@ -16,13 +22,18 @@ const InvestigationQueueFilters = () => {
   return (
     <div>
       <div
-        className={`bg-whiteBgColor border border-borderColor p-5 pb-8 rounded-md  ${
-          w1100 && "mt-12"
-        }`}
+        className={cn(
+          `bg-whiteBgColor border border-borderColor p-5 pb-8 rounded-md  ${
+            w1100 && "mt-2"
+          }`,
+          className
+        )}
       >
-        <h1 className="text-3xl font-medium text-black dark:text-white mb-4">
-          Investigation Queue
-        </h1>
+        {title && (
+          <h1 className="text-3xl font-medium text-black dark:text-white mb-4">
+            {title}
+          </h1>
+        )}
         <div className={`grid grid-cols-10 gap-3 justify-between`}>
           <div className="col-span-10 md:col-span-5 lg:col-span-2 w-full grid grid-cols-4 justify-between">
             <div className="col-span-3 md:col-span-4">

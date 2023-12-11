@@ -15,10 +15,10 @@ export type TypeContraceptiveHistories = TypeAPIObject & {
   motorScale: string | number;
   glasgowComaScore: string;
   result: string;
-  rightPupilsLightReactionSize: string;
-  rightPupilsLightReactionReaction: string;
-  leftPupilsLightReactionSize: string;
-  leftPupilsLightReactionReaction: string;
+  rightPupilsLightReactionSize?: string;
+  rightPupilsLightReactionReaction?: string;
+  leftPupilsLightReactionSize?: string;
+  leftPupilsLightReactionReaction?: string;
 };
 
 /**

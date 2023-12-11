@@ -27,6 +27,7 @@
   --text: #374151;
   --textColor: #374151;
   --tableHead: #e8f4ff;
+  --tableRow: #f3f8ff;
 }
 
 .dark {
@@ -46,6 +47,27 @@
   --text: #f3f4f6;
   --textColor: #f3f4f6;
   --tableHead: #181a20;
+  --tableRow: #000;
+}
+
+.gray {
+  --body: #424242;
+  --primary: #1890ff;
+  --primaryHover: #007aec;
+  --activeColor: #1f2937;
+  --lightBlue: #5f5f60;
+  --secondary: #ffffff;
+  --grayColor: #a1a1b0;
+  --lightGray: #20232b;
+  --blackColor: #6b7280;
+  --white: #424242;
+  --whiteBg: #7e7e7e;
+  --danger: red;
+  --border: #ebeaed2d;
+  --text: #f3f4f6;
+  --textColor: #f3f4f6;
+  --tableHead: #181a20;
+  --tableRow: #000;
 }
 
 p,
@@ -63,26 +85,38 @@ div {
 span {
   display: inline-block;
 }
-/* .background_image::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: var(--primary);
-  z-index: 9;
-  height: 100%;
-  opacity: 0.8;
-} */
+
+._sidebar_1dh2t_5 div button {
+  background-color: var(--body);
+}
+
+._sidebar_1dh2t_5 div button:hover {
+  background-color: var(--activeColor);
+  color: white !important;
+}
+._sidebar_1dh2t_5 div button:hover h2 div div {
+  color: white !important;
+}
 
 @layer utilities {
   .grid-cols-dynamic {
     grid-template-columns: repeat(auto-fill, minmax(max-content, 1fr));
   }
 }
+/* Modal css  */
+body.modal-open {
+  overflow: hidden;
+}
 
 @layer components {
+  .modal-container {
+    @apply fixed top-0 left-0 w-full h-full bg-opacity-40 bg-black z-10 flex items-center justify-center;
+  }
+
+  .modal {
+    @apply bg-whiteBgColor text-textColor w-[95%] max-w-screen-sm rounded-lg mx-auto;
+  }
+
   .heading_1 {
     @apply text-center font-bold text-2xl md:text-4xl leading-[1.625] tracking-tighter text-secondaryColor;
   }
@@ -108,7 +142,7 @@ span {
   }
 
   .custom-input {
-    @apply w-full rounded-[6px] text-blackColor dark:text-gray-400 bg-whiteColor dark:bg-[#000] box-border flex flex-row items-center justify-start py-[12px] px-4 border-[2px] border-solid border-borderColor dark:border-gray-800 focus:border-borderColor focus:shadow-none outline-none focus:outline-none focus:ring-0;
+    @apply w-full rounded-[6px] text-blackColor dark:text-gray-400 bg-whiteColor dark:bg-[#000] box-border flex flex-row items-center justify-start py-[8px] xs:py-[12px] px-4 border-[2px] border-solid border-borderColor dark:border-[#6B7280] focus:border-borderColor focus:shadow-none outline-none focus:outline-none focus:ring-0;
   }
 
   .input_label {

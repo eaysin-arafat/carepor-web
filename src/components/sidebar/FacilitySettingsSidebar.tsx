@@ -1,6 +1,6 @@
+import Diagnosis from "@/assets/icons/Diagnosis";
 import RootLayout from "@/layout/RootLayout";
 import { Accordion } from "flowbite-react";
-import { FaChartPie } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import FacilitySettingsRoutes from "./routeArray/FacilitySettingsSidebarRoutes";
 
@@ -28,7 +28,8 @@ function FacilitySettingsSidebar() {
                         className=" w-[23px] h-[23px]"
                       />
                     ) : (
-                      <FaChartPie size={23} />
+                      // <FaChartPie size={23} />
+                      <Diagnosis color="var(--secondary)" size={23} />
                     )}
                     {item.title}
                   </div>
