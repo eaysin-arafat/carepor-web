@@ -31,6 +31,11 @@ export class DateFunc {
     const now = new Date();
     return givenDate > now;
   }
+  static toDay() {
+    const date = new Date().toISOString();
+
+    return date;
+  }
 
   static isOverYears(inputDate: string, years: number) {
     const currentDate = new Date().getTime();

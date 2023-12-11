@@ -24,6 +24,7 @@ function Departments() {
     isLoading,
     navigate,
     status,
+    isSuccess,
   } = useDepartments();
 
   return (
@@ -68,6 +69,15 @@ function Departments() {
                 },
               ]}
             />
+
+            {/* EMPTY DATA MESSAGE */}
+            {isSuccess &&
+              status === "fulfilled" &&
+              departments?.length === 0 && (
+                <div className="flex justify-center items-center h-40">
+                  <p className="text-xl text-gray-500">No Wards Found</p>
+                </div>
+              )}
 
             {/* LOADING SPINNER */}
             {(isLoading || status === "pending") && (

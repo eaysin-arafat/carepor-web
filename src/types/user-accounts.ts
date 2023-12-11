@@ -57,3 +57,25 @@ export interface ErrorsType {
   cellphone?: string;
   username?: string;
 }
+
+export type TypeUser = {
+  oid?: string;
+  firstName?: string;
+  surname?: string;
+  dob?: string;
+  sex?: number;
+  designation?: string;
+  nrc?: string;
+  noNRC?: boolean;
+  contactAddress?: string;
+  countryCode?: string;
+  cellphone?: string;
+  username?: string;
+  password?: string;
+  userType?: number;
+  isAccountActive?: string;
+  facilityAccesses?: any[];
+  dateCreated?: string;
+  isDeleted?: boolean;
+  isSynced?: boolean;
+};

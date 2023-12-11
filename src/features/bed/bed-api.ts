@@ -1,4 +1,19 @@
 import { API } from "../API/API";
+import { Ward } from "../ward/ward-api";
+
+export type BedType = {
+  oid: number;
+  description: string;
+  wardId: number;
+  ward: Ward;
+  departmentId: number;
+  firmId: number;
+  createdIn: number;
+  dateCreated: string;
+  createdBy: string;
+  isDeleted: boolean;
+  isSynced: boolean;
+};
 
 const bedApi = API.injectEndpoints({
   endpoints: (builder) => ({
@@ -8,6 +23,7 @@ const bedApi = API.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags: ["Beds"],
     }),
     readBeds: builder.query({
       query: () => "beds",
@@ -20,13 +36,15 @@ const bedApi = API.injectEndpoints({
     }),
     updateBed: builder.mutation({
       query: (body) => ({
-        url: `bed`,
+        url: `bed/${body?.oid}`,
         method: "PUT",
         body,
       }),
+      invalidatesTags: ["Beds"],
     }),
-    readBedByWard: builder.query({
+    readBedByWard: builder.query<BedType[], string>({
       query: (wardId) => `bed/bed-by-ward/${wardId}`,
+      providesTags: ["Beds"],
     }),
     readBedByWardForDropdown: builder.query({
       query: (wardId) => `bed/bed-by-ward-for-dropdown/${wardId}`,

@@ -7,7 +7,7 @@ import { firmModalTypes } from "@/constants/modal-types";
 import useWindowWidth from "@/hooks/useWindow";
 import { URLWards } from "@/routers/facility-settings";
 import { cn } from "@/utilities/cn";
-import { Plus } from "react-feather";
+import { Loader, Plus } from "react-feather";
 import { BiLeftArrowAlt } from "react-icons/bi";
 import CreateFirm from "../create/Create";
 import EditFirm from "../edit/Edit";
@@ -23,6 +23,9 @@ function Firms() {
     handleAddFirm,
     handleEditFirm,
     navigate,
+    status,
+    isSuccess,
+    isLoading,
   } = useFirm();
 
   return (
@@ -79,6 +82,21 @@ function Firms() {
                 },
               ]}
             />
+            {/* EMPTY DATA MESSAGE */}
+            {isSuccess && status === "fulfilled" && firms?.length === 0 && (
+              <div className="flex justify-center items-center h-40">
+                <p className="text-xl text-gray-500">No Firms Found</p>
+              </div>
+            )}
+
+            {/* LOADING SPINNER */}
+            {(isLoading || status === "pending") && (
+              <div className="flex justify-center py-4">
+                <Loader size={40} />
+              </div>
+            )}
+
+            {/* TABLE DATA */}
             {firms?.map((item, index) => (
               <TableBody
                 index={index}
@@ -94,8 +112,8 @@ function Firms() {
                 }
                 item={[
                   { title: (index + 1).toString(), w: "20%" },
-                  { title: item.description, w: "35%" },
                   { title: item.department?.description, w: "35%" },
+                  { title: item?.description, w: "35%" },
                 ]}
               />
             ))}
