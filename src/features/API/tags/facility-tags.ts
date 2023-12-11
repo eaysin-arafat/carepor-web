@@ -1,3 +1,3 @@
 // Facility Tags
 
-export const facilityTags = ["FacilityAccess"];
+export const facilityTags = ["FacilityAccess", "Departments", "Firms"];
