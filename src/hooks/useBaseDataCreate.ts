@@ -18,7 +18,7 @@ function useBaseDataCreate(encounterType) {
   // hooks
   useEffect(() => {
     const facilityData: TypeFacilityToken =
-      cookieManager.parseCookie("facility_token");
+      cookieManager.parseCookie("facility");
     const opdVisitSession: TypeOpdVisit =
       cookieManager.parseCookie("opdVisitSession");
     const client: Client = cookieManager.parseCookie("client");

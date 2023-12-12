@@ -42,8 +42,16 @@ const PatientCard = ({ client, className }: PatientCardProps) => {
 
   useEffect(() => {
     if (status === RtkStatusEnum.fulfilled && opdVisit?.oid) {
-      cookieManager.saveCookie("client", JSON.stringify(client), {});
-      cookieManager.saveCookie("opdVisitSession", JSON.stringify(opdVisit), {});
+      cookieManager.saveCookie(
+        "client",
+        JSON.stringify({ oid: client?.oid }),
+        {}
+      );
+      cookieManager.saveCookie(
+        "encounter",
+        JSON.stringify({ oid: opdVisit?.oid }),
+        {}
+      );
       if (originalArgs.type == "servicePoint") {
         navigate(URLServicePoint());
       }

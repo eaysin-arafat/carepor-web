@@ -22,7 +22,7 @@ const useBaseModel = ({
   dateModified = new Date().toISOString(),
   modifiedIn,
 }: BaseModel) => {
-  const cookie = cookieManager.parseCookie<FacilityToken>("facility_token");
+  const cookie = cookieManager.parseCookie<FacilityToken>("facility");
   const { user } =
     useSelector((state: RootState) => state.authentication) || {};
 
