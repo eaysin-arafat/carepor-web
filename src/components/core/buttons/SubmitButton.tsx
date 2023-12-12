@@ -25,7 +25,7 @@ const SubmitButton = (props: SubmitButtonProps) => {
   return (
     <button
       className={cn(
-        `btn text-whiteColor bg-primaryColor hover:bg-primaryHoverColor h-fit`,
+        `btn text-white bg-buttonBg hover:bg-primaryHoverColor h-fit`,
         className
       )}
       type={buttonType}

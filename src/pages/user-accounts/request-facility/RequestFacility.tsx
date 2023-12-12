@@ -1,6 +1,5 @@
 import Select from "@/components/core/form-elements/Select";
 
-import OutlineButton from "@/components/core/buttons/OutlineButton";
 import SubmitButton from "@/components/core/buttons/SubmitButton";
 import RenderSelectOptions from "@/components/core/form-elements/RenderSelectOptions";
 import FormWrapper from "@/components/core/form-layouts/FormWrapper";
@@ -75,8 +74,9 @@ const RequestFacility = () => {
             />
           </div>
 
-          <div className="mt-5">
-            <OutlineButton onClick={handleCancelRequest} title="Cancel" />
+          <div className="mt-5 text-center font-medium">
+            {/* <OutlineButton onClick={handleCancelRequest} title="Cancel" /> */}
+            <button onClick={handleCancelRequest}>Cancel</button>
           </div>
         </form>
       </FormWrapper>
