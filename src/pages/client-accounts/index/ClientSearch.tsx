@@ -97,8 +97,8 @@ const ClientSearch = () => {
             {/* Patient Card */}
             <div className="mt-14">
               {searchClients.length > 0 &&
-                searchClients.map((client: Client) => {
-                  return <PatientCard client={client} />;
+                searchClients.map((client: Client, index) => {
+                  return <PatientCard client={client} key={index} />;
                 })}
 
               {/* No Patient Found Card */}

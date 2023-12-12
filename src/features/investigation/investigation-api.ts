@@ -1,3 +1,7 @@
+import {
+  TypeInvestigationDashboard,
+  TypeInvestigationDashboardArgs,
+} from "@/types/module-types/investigation";
 import { API } from "../API/API";
 
 const investigationApi = API.injectEndpoints({
@@ -74,9 +78,21 @@ const investigationApi = API.injectEndpoints({
       }),
       invalidatesTags: ["InvestigationDashboard"], // "InvestigationByClientId"
     }),
-    readInvestigationsForDashboard: builder.query({
-      query: ({ facilityId, pageNo = 1, itemPerPage = 10 }) => ({
-        url: `/investigation/investigation-dashboard/${facilityId}?page=${pageNo}&pageSize=${itemPerPage}`,
+    readInvestigationsForDashboard: builder.query<
+      TypeInvestigationDashboard,
+      TypeInvestigationDashboardArgs
+    >({
+      query: ({
+        facilityId,
+        pageNo = 1,
+        itemPerPage = 10,
+        PatientName = "",
+        investigationDateSearch = "",
+      }) => ({
+        url: `/investigation/investigation-dashboard/${facilityId}?page=${pageNo}&pageSize=${itemPerPage}&PatientName=${PatientName.replace(
+          / /g,
+          "%20"
+        )}&investigationDateSearch=${investigationDateSearch}`,
         method: "GET",
       }),
       providesTags: ["InvestigationDashboard"],
@@ -93,6 +109,7 @@ export const {
   useReadInvestigationByClientQuery,
   useReadInvestigationByEncounterQuery,
   useReadInvestigationQuery,
+  useReadInvestigationsForDashboardQuery,
 } = investigationApi;
 
 // export endpoints

@@ -1,9 +1,11 @@
 import Checkbox from "@/components/core/form-elements/Checkbox";
+import { cn } from "@/utilities/cn";
 import { Edit, Eye, Trash } from "react-feather";
 
 type Title = {
   title: string | number | JSX.Element;
   w: string;
+  dataClass?: string;
 };
 
 type Props = {
@@ -62,7 +64,10 @@ function TableBody({
       </p>
       {item.map((data, i) => (
         <p
-          className="p-2 text-textColor dark:text-white text-xs text-justify"
+          className={cn(
+            "p-2 text-textColor dark:text-white text-xs text-justify",
+            data?.dataClass ? data?.dataClass : ""
+          )}
           style={{ width: data.w }}
           key={i}
         >

@@ -1,6 +1,5 @@
 import ClientDetailsCard from "@/components/core/card/ClientDetailsCard";
 import CustomPagination from "@/components/core/custom-pagination/CustomPagination";
-import InvestigationQueueFilters from "@/components/queue/investigation-queue/InvestigationQueueFilters";
 import DataSummaryList from "@/components/shared/data-summary/DataSummaryList";
 import Table from "@/components/shared/table/Table";
 import TableBody from "@/components/shared/table/TableBody";
@@ -8,6 +7,7 @@ import TableHeader from "@/components/shared/table/TableHeader";
 import { investigationModalTypes } from "@/constants/modal-types";
 import { openAddModal } from "@/features/modal/modal-slice";
 import useWindowWidth from "@/hooks/useWindow";
+import InvestigationQueueFilters from "@/pages/queue/investigations-dashboard/InvestigationQueueFilters";
 import { cn } from "@/utilities/cn";
 import React from "react";
 import { FiPlusCircle } from "react-icons/fi";

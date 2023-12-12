@@ -1,9 +1,9 @@
 import useWindowWidth from "@/hooks/useWindow";
 import { cn } from "@/utilities/cn";
-import React from "react";
-import DateInput from "../../core/form-elements/DatePicker";
-import Search from "../../core/form-elements/Search";
-import Select from "../../core/form-elements/Select";
+import React, { useState } from "react";
+import DateInput from "../../../components/core/form-elements/DatePicker";
+import Search from "../../../components/core/form-elements/Search";
+import Select from "../../../components/core/form-elements/Select";
 
 type Props = {
   title?: string;
@@ -19,11 +19,17 @@ const InvestigationQueueFilters = ({ title, className }: Props) => {
   };
   const isFiltersHidden = `${allFilters === false ? "hidden" : ""}`;
 
+  // states
+  // const [name, setName] = useState("");
+  const [date, setDate] = useState(null);
+  // const [priority, setPriority] = useState("");
+  // const [department, setDepartmenty] = useState("");
+
   return (
     <div>
       <div
         className={cn(
-          `bg-whiteBgColor border border-borderColor p-5 pb-8 rounded-md  ${
+          `bg-whiteBgColor border border-borderColor p-5 pb-4 rounded-md  ${
             w1100 && "mt-2"
           }`,
           className
@@ -39,7 +45,7 @@ const InvestigationQueueFilters = ({ title, className }: Props) => {
             <div className="col-span-3 md:col-span-4">
               <Search label="Client Name" placeholder="Search..." />
             </div>
-            <div className="text-end md:hidden">
+            <div className="text-end md:hiddenSkip">
               <button
                 className="text-primaryColor me-2 p-2 font-semibold h-fit w-fit mt-8 "
                 onClick={filtersHandler}
@@ -51,15 +57,23 @@ const InvestigationQueueFilters = ({ title, className }: Props) => {
           <div
             className={`${isFiltersHidden} md:block col-span-10 md:col-span-5 lg:col-span-2 w-full`}
           >
-            <DateInput onChange={() => {}} label="Order Date"></DateInput>
+            <DateInput
+              isClearable
+              onChange={(d) => {
+                setDate(d.toISOString());
+              }}
+              selected={date ? new Date(date) : null}
+              label="Order Date"
+              max={new Date()}
+            />
           </div>
           <div
             className={`${isFiltersHidden} md:block col-span-10 md:col-span-5 lg:col-span-2 w-full`}
           >
             <Select label="Priority">
-              <option value="urgent">Urgent</option>
-              <option value="regular">Regular</option>
-              <option value="emergency">Emergency</option>
+              <option value="1">Regular</option>
+              <option value="2">Urgent</option>
+              <option value="3">Emergency</option>
             </Select>
           </div>
           <div
