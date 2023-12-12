@@ -88,7 +88,7 @@ function FormWrapper({
                 {title && (
                   <div
                     className={cn(
-                      "heading_2 text-2xl md:text-4xl text-center mt-5 font-normal text-secondaryColor",
+                      "heading_2 text-2xl md:text-3xl text-center mt-5 font-normal text-secondaryColor",
                       titleClass
                     )}
                   >

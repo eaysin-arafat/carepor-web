@@ -10,7 +10,7 @@ type Props = {
   disabled?: boolean;
   className?: string;
   placeholder?: string;
-  children?: any;
+  children?: JSX.Element;
 };
 
 function Select({
@@ -30,10 +30,7 @@ function Select({
   return (
     <div className="flex flex-col w-full items-start justify-start gap-[6px]">
       <div className="flex">
-        <div className="input_label ">
-          {" "}
-          {label}
-        </div>
+        <div className="input_label "> {label}</div>
         {required && <span className="-mt-[6px] mx-1 text-dangerColor">*</span>}
       </div>
       <select
@@ -46,7 +43,7 @@ function Select({
         disabled={disabled}
         placeholder={`${placeholder ? placeholder : "Enter" + " " + label}`}
       >
-        <option value="" className="text-black">
+        <option value="" className="text-textColor">
           {selectShow}
         </option>
         {children}
