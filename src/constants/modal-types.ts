@@ -38,6 +38,12 @@ export const bedModalTypes = Object.freeze({
 export const vitalModalTypes = Object.freeze({
   addVital: "addVital",
 });
+export const investigationModalTypes = Object.freeze({
+  addInvestigation: "addInvestigation",
+});
+export const surgeryModalTypes = Object.freeze({
+  addSurgery: "addSurgery",
+});
 
 export const admissionModalTypes = Object.freeze({
   addAdmission: "addAdmission",

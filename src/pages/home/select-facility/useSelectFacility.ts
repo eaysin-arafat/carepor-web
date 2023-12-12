@@ -4,6 +4,7 @@ import { useReadFacilityByKeyQuery } from "@/features/facility/facility-api";
 import { useGetUserAccessByUserNameMutation } from "@/features/user-accounts/user-accounts-api";
 import useManageFacility from "@/hooks/useManageFacility";
 import { URLClientSearch } from "@/routers/client";
+import { TypeFacilityToken } from "@/types/facility";
 import { FormSubmitEventType } from "@/types/htmlEvents";
 import Alert from "@/utilities/alert";
 import { cookieManager } from "@/utilities/cookie-manager";
@@ -85,7 +86,6 @@ const useSelectFacility = () => {
 
   console.log({ approvedFacility, isPermitted });
 
-  console.log(data);
   const handleRequestSubmit = (e: FormSubmitEventType) => {
     e.preventDefault();
 
@@ -97,10 +97,11 @@ const useSelectFacility = () => {
       return false;
     }
 
-    const cookieData = JSON.stringify({
+    const facilityToken: TypeFacilityToken = {
       facilityId: facilityByKey?.oid,
       facilityName: facilityByKey?.description,
-    });
+    };
+    const cookieData = JSON.stringify(facilityToken);
 
     if (data?.userAccount.userType == 1) {
       cookieManager.saveCookie("facility_token", cookieData, {

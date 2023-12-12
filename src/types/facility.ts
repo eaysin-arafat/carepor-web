@@ -15,3 +15,7 @@ export type TypeFacilityAccess = Omit<TypeAPIObject, "interactionId"> & {
   facility?: {};
   moduleAccesses?: [];
 };
+export type TypeFacilityToken = {
+  facilityId: number;
+  facilityName: string;
+};

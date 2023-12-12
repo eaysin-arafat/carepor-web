@@ -22,13 +22,13 @@ const useAdmissionFilter = () => {
     setAllFilters((prev) => !prev);
   };
 
-  const myVar = `${allFilters === false ? "hidden" : ""}`;
+  //   const myVar = `${allFilters === false ? "hidden" : ""}`;
+  const isFiltersHidden = `${allFilters === false ? "hidden" : ""}`;
 
   return {
     allFilters,
     filtersHandler,
-    myVar,
-
+    isFiltersHidden,
     departments,
     wards,
   };

@@ -64,7 +64,7 @@ const facilityAccessApi = API.injectEndpoints({
       }),
       //@ts-ignore
       providesTags: (result, error, key) => [
-        { type: "FacilityAccessPermission", requestId: key },
+        { type: "FacilityAccessId", facilityAccessId: key },
       ],
     }),
 

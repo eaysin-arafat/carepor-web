@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import maritalStatusAndSpouseValidation from "../marital-status-And-spouse/maritalStatusAndSpouseValidation";
 import placeOfBirthReligiousValidation from "../place-of-birth-religious/placeOfBirthReligiousValidation";
+import getQueryParams from "@/utilities/get-query-params";
+import { URLDashboard } from "@/routers/module-link";
 
 const useSubmitClientAccountEdit = ({
   contactInfo,
@@ -23,6 +25,8 @@ const useSubmitClientAccountEdit = ({
 }) => {
   const [clientUpdate, { status, isError, isSuccess, error }] =
     useClientUpdateMutation();
+
+  const backTo = getQueryParams("back");
 
   // @ts-ignore
   const { user } = useSelector((state) => state.authentication);
@@ -111,7 +115,12 @@ const useSubmitClientAccountEdit = ({
     if (isSuccess && status === "fulfilled") {
       toast.dismiss();
       toast.success("Client Account Update successful");
-      navigate(URLClientDetails({ id: editClient.oid }));
+
+      if (backTo === "dashboard") {
+        navigate(URLDashboard());
+      } else {
+        navigate(URLClientDetails({ id: editClient.oid }));
+      }
     }
   }, [isSuccess]);
 

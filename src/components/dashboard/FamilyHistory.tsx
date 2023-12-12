@@ -1,11 +1,16 @@
 import { relationshipsEnums } from "@/enum/clients";
-import useClientDetails from "@/pages/client-accounts/details/useClientDetails";
+import { Client } from "@/interface/clients";
+import { cookieManager } from "@/utilities/cookie-manager";
 import React from "react";
 import Card from "../core/card/Card";
 import DataRow from "../core/table/DataRow";
+import useClientData from "./useClientData";
 
 const FamilyHistory: React.FC = () => {
-  const { clientObj, handleClientEdit, getCountryName } = useClientDetails();
+  const client: Client | null = cookieManager.parseCookie("client") || null;
+  const { clientObj, handleClientEdit, getCountryName } = useClientData({
+    client,
+  });
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">

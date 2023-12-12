@@ -1,3 +1,4 @@
+import { TypeOpdVisit, TypeOpdVisitFrom } from "@/types";
 import { API } from "../API/API";
 
 const opdVisitApi = API.injectEndpoints({
@@ -7,11 +8,18 @@ const opdVisitApi = API.injectEndpoints({
      * @param body
      * @returns OPDVisit
      */
-    createOPDVisit: builder.mutation({
-      query: (body) => ({
+    createOPDVisit: builder.mutation<TypeOpdVisit, TypeOpdVisitFrom>({
+      query: ({ clientId }) => ({
         url: "/opd-visit",
         method: "POST",
-        body,
+        body: {
+          // Oid: uuid(),
+          // OPDVisitDate: new Date().toISOString(),
+          ClientId: clientId,
+          // IsDeleted: false,
+          // IsSynced: false,
+          // DateCreated: new Date().toISOString(),
+        },
       }),
     }),
 

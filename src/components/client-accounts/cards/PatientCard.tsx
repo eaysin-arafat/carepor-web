@@ -1,4 +1,6 @@
 import Container from "@/components/core/container/Container";
+import { RtkStatusEnum } from "@/enum/rtk";
+import { useCreateOPDVisitMutation } from "@/features/opd-visit/opd-visit-api";
 import { Client } from "@/interface/clients";
 import {
   URLAdmissionDischarge,
@@ -6,8 +8,12 @@ import {
   URLClientDetails,
   URLServicePoint,
 } from "@/routers/client";
+import { clientAddress } from "@/utilities";
 import { cn } from "@/utilities/cn";
+import { cookieManager } from "@/utilities/cookie-manager";
 import { format } from "date-fns";
+import { useEffect } from "react";
+import toast from "react-hot-toast";
 import { FaCalendarAlt } from "react-icons/fa";
 import { FaRegAddressCard } from "react-icons/fa6";
 import { LuMapPin } from "react-icons/lu";
@@ -26,6 +32,31 @@ type PatientCardProps = {
 
 const PatientCard = ({ client, className }: PatientCardProps) => {
   const navigate = useNavigate();
+
+  const [createOPDVisit, { data: opdVisit, status, error, originalArgs }] =
+    useCreateOPDVisitMutation();
+
+  const handleAttendToPatient = () => {
+    createOPDVisit({ clientId: client?.oid, type: "servicePoint" });
+  };
+
+  useEffect(() => {
+    if (status === RtkStatusEnum.fulfilled && opdVisit?.oid) {
+      cookieManager.saveCookie("client", JSON.stringify(client), {});
+      cookieManager.saveCookie("opdVisitSession", JSON.stringify(opdVisit), {});
+      if (originalArgs.type == "servicePoint") {
+        navigate(URLServicePoint());
+      }
+      if (originalArgs.type == "serviceQueue") {
+        // navigate()
+      }
+    }
+    if (status === RtkStatusEnum.rejected) {
+      toast.error("Rejected");
+      console.log(error);
+    }
+  }, [status]);
+
   return (
     <div>
       <Container className="my-5">
@@ -37,7 +68,7 @@ const PatientCard = ({ client, className }: PatientCardProps) => {
         >
           <div className="grid grid-cols-9 gap-5 p-5">
             <div className="col-span-2 hidden lg:flex items-center justify-center min-2/12 border-r">
-              <p className="text-2xl font-medium text-secondaryColor ">
+              <p className="text-2xl font-medium text-secondaryColor capitalize">
                 {client?.firstName} {client?.surname}
               </p>
             </div>
@@ -91,14 +122,15 @@ const PatientCard = ({ client, className }: PatientCardProps) => {
                       <LuMapPin className="text-grayColor" />
                     </span>
                     <span className="text-grayColor text-xs">
-                      {client?.householdNumber &&
+                      {clientAddress(client)}
+                      {/* {client?.householdNumber &&
                         "H#" + client?.householdNumber + ","}
                       &nbsp;
                       {client?.road && "R#" + client?.road + ","}&nbsp;
                       {client?.area && client?.area + ","}
                       &nbsp;
                       {client?.townName && client?.townName}{" "}
-                      {client?.landmarks && `(${client?.landmarks})`}
+                      {client?.landmarks && `(${client?.landmarks})`} */}
                     </span>
                   </div>
                 </div>
@@ -138,7 +170,7 @@ const PatientCard = ({ client, className }: PatientCardProps) => {
                 </button>
                 <button
                   className={cn("main_btn btn_sm text-sm")}
-                  onClick={() => navigate(URLServicePoint())}
+                  onClick={handleAttendToPatient}
                 >
                   Attend to Patient
                 </button>

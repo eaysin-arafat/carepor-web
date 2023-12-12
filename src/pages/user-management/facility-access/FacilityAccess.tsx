@@ -4,14 +4,15 @@ import LoginRequest from "@/components/facility-settings/login-request/LoginRequ
 import UserPermission from "@/components/facility-settings/permission/Permission";
 import RecoveryRequest from "@/components/facility-settings/recovery-request/RecoveryRequest";
 import { useReadFacilityAccessByFacilityIDQuery } from "@/features/facility-access/facility-access-api";
-import { TypeFacilityToken } from "@/types";
+import { FacilityToken } from "@/types/coreTypes";
+
 import { cn } from "@/utilities/cn";
 import { cookieManager } from "@/utilities/cookie-manager";
 import { useState } from "react";
 
 function FacilityAccess() {
   const [tab, setTab] = useState("login");
-  const facility = cookieManager.parseCookie<TypeFacilityToken | null>(
+  const facility = cookieManager.parseCookie<FacilityToken | null>(
     "facility_token"
   );
   // Read data from the database

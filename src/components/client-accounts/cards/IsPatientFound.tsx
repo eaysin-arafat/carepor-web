@@ -19,7 +19,7 @@ const IsPatientFound = ({ title, buttonTitle }: Props) => {
           <div className="flex justify-center">
             <Link
               to={URLClientCreate()}
-              className=" text-lg btn w-fit py-3 flex gap-2 px-8 text-whiteColor bg-primaryColor hover:bg-primaryHoverColor h-fit"
+              className=" text-lg btn w-fit py-3 flex gap-2 px-8 text-white bg-primaryColor hover:bg-primaryHoverColor h-fit"
             >
               <BsPlus className="h-7 w-7 font-bold" />
               {buttonTitle}

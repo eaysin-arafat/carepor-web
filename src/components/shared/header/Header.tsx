@@ -20,9 +20,9 @@ function Header() {
           />
           {!w1100 && (
             <p className="text-xl">
-              <span className="text-[#15ac12]">Smart</span>
-              <span className="text-primaryColor">Care</span>{" "}
-              <b className="text-primaryColor">PRO</b>
+              <span className="text-[var(--logoColor2)]">Smart</span>
+              <span className="text-[var(--logoColor)]">Care</span>&nbsp;
+              <b className="text-[var(--logoColor)]">PRO</b>
             </p>
           )}
         </div>

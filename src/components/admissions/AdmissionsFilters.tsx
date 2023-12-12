@@ -14,7 +14,8 @@ const AdmissionsFilters = ({
   ward,
 }) => {
   const w1100 = useWindowWidth(1100);
-  const { departments, filtersHandler, myVar, wards } = useAdmissionFilter();
+  const { departments, filtersHandler, isFiltersHidden, wards } =
+    useAdmissionFilter();
 
   console.log("admissionDate", admissionDate);
 
@@ -56,7 +57,7 @@ const AdmissionsFilters = ({
             </div>
           </div>
           <div
-            className={`${myVar} md:block col-span-8 md:col-span-4 lg:col-span-2 w-full`}
+            className={`${isFiltersHidden} md:block col-span-8 md:col-span-4 lg:col-span-2 w-full`}
           >
             <Select
               label="Department"
@@ -68,7 +69,7 @@ const AdmissionsFilters = ({
             </Select>
           </div>
           <div
-            className={`${myVar} md:block col-span-8 md:col-span-4 lg:col-span-2 w-full`}
+            className={`${isFiltersHidden} md:block col-span-8 md:col-span-4 lg:col-span-2 w-full`}
           >
             <Select
               label="Ward"
@@ -80,7 +81,7 @@ const AdmissionsFilters = ({
             </Select>
           </div>
           <div
-            className={`${myVar} md:block col-span-8 md:col-span-4 lg:col-span-2 w-full`}
+            className={`${isFiltersHidden} md:block col-span-8 md:col-span-4 lg:col-span-2 w-full`}
           >
             <DateInput
               selected={dischargeDate ? new Date(dischargeDate) : null}

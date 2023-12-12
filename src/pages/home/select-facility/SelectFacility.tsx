@@ -1,4 +1,3 @@
-import OutlineButton from "@/components/core/buttons/OutlineButton";
 import SubmitButton from "@/components/core/buttons/SubmitButton";
 import RenderSelectOptions from "@/components/core/form-elements/RenderSelectOptions";
 import Select from "@/components/core/form-elements/Select";
@@ -8,9 +7,6 @@ import { Link } from "react-router-dom";
 import useSelectFacility from "./useSelectFacility";
 
 const SelectFacility = () => {
-  // const { data } = useReadProvincesQuery(undefined);
-  // console.log(data);
-
   const {
     districtOptions,
     facilitiesOptions,
@@ -78,7 +74,8 @@ const SelectFacility = () => {
             <SubmitButton buttonType="submit" title="Enter" />
           </div>
           <div className="text-center mt-2">
-            <OutlineButton title="Logout" onClick={handleLogout} />
+            {/* <OutlineButton title="Logout" onClick={handleLogout} /> */}
+            <button onClick={handleLogout}>Logout</button>
           </div>
         </form>
       </FormWrapper>

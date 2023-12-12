@@ -44,7 +44,7 @@ function Select({
         disabled={disabled}
         placeholder={`${placeholder ? placeholder : "Enter" + " " + label}`}
       >
-        <option value="" className="text-black">
+        <option value="" className="text-textColor">
           {selectShow}
         </option>
         {children}

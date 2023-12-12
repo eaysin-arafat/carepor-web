@@ -7,6 +7,7 @@ import LinkButton from "@/components/core/buttons/LinkButton";
 import NextButton from "@/components/core/buttons/NextButton";
 import SubmitButton from "@/components/core/buttons/SubmitButton";
 import { URLClientSearch } from "@/routers/client";
+import { URLDashboard } from "@/routers/module-link";
 import EducationAndEmployment from "../education-employment/EducationAndEmployment";
 import PlaceOfBirthAndReligious from "../place-of-birth-religious/PlaceOfBirthAndReligious";
 // import { FormSubmitEventType } from "@/types/htmlEvents";
@@ -51,6 +52,8 @@ function ClientForm({ clientManager, isEditForm }) {
 
     //NRC already exists
     alreadyExists,
+    // Back page
+    backTo,
   } = clientManager;
 
   // form step state and handler
@@ -123,7 +126,7 @@ function ClientForm({ clientManager, isEditForm }) {
         <div className="flex flex-wrap gap-5 mt-5 justify-between">
           <LinkButton
             title="Cancel"
-            link={URLClientSearch()}
+            link={backTo == "dashboard" ? URLDashboard() : URLClientSearch()}
             className="order-last xs:order-first w-40"
           />
           <div className="flex gap-5 justify-end">

@@ -1,3 +1,5 @@
+import { Client } from "@/interface/clients";
+
 export type FormSectionType = {
   children: JSX.Element;
   titleText?: string;
@@ -40,7 +42,16 @@ export type TypeAPIEnum = {
   isDeleted?: boolean;
 };
 
-export type TypeFacilityToken = {
-  facilityId: number;
-  facilityName: string;
+export type TypeOpdVisit = {
+  oid: string;
+  opdVisitDate: string;
+  clientId: string;
+  client: Client;
+  dateCreated: string;
+  isDeleted: false;
+  isSynced: false;
+};
+export type TypeOpdVisitFrom = {
+  clientId: string;
+  type: string;
 };
