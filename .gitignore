@@ -12,6 +12,7 @@ next.txt
 
 # ignore .zip files
 *.zip
+*.rar
 
 
 

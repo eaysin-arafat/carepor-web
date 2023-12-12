@@ -1,3 +1,5 @@
+import React from "react";
+
 type Props = {
   value?: string | number;
   onChange?: (e: React.ChangeEvent) => void;
@@ -10,7 +12,7 @@ type Props = {
   disabled?: boolean;
   className?: string;
   placeholder?: string;
-  children?: JSX.Element;
+  children?: React.ReactNode;
 };
 
 function Select({
