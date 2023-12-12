@@ -21,7 +21,7 @@ function HeaderList() {
           title="Select Client"
           className={`block ${
             w1230 ? "px-5 py-2" : "px-6 py-3"
-          } rounded-full flex items-center gap-1 text-[14px] bg-primaryColor text-whiteColor`}
+          } rounded-full flex items-center gap-1 text-[14px] bg-buttonBg text-white`}
           to="/client-search"
         >
           <BiSearch size={18} />

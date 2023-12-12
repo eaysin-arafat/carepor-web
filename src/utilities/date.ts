@@ -1,3 +1,5 @@
+import { format } from "date-fns";
+
 export class DateFunc {
   static formatDate(dateString: string) {
     // Convert the input date string to a Date object
@@ -31,6 +33,11 @@ export class DateFunc {
     const now = new Date();
     return givenDate > now;
   }
+  static toDay() {
+    const date = new Date().toISOString();
+
+    return date;
+  }
 
   static isOverYears(inputDate: string, years: number) {
     const currentDate = new Date().getTime();
@@ -51,10 +58,15 @@ export class DateFunc {
 
     return differenceMillisecond <= twentyFourHoursMillisecond;
   }
+
+  // format human readable date
+  static toFormatted = (dateString: string) => {
+    return format(new Date(dateString), "dd-MMM-yyyy ");
+  };
 }
 
 export const getAgeMessage = (dateString: string) => {
-  var DOB = new Date(dateString);
+  const DOB = new Date(dateString);
   const now = new Date();
 
   // if date is error select

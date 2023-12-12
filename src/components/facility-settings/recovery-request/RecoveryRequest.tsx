@@ -1,65 +1,44 @@
 import Input from "@/components/core/form-elements/Input";
-import Select from "@/components/core/form-elements/Select";
 import Table from "@/components/core/table/Table";
-import TableBody from "@/components/shared/table/TableBody";
 import TableHeader from "@/components/shared/table/TableHeader";
+import { TypeFacilityAccess } from "@/types/facility";
+import RequestsItems, { headerData } from "../components/RequestsItem";
+import ResetPasswordModal from "../components/reset-password/ResetPasswordModal";
+import useRequestSearch from "../useRequestSearch";
 
-function RecoveryRequest() {
+type Props = {
+  recoveryRequests: TypeFacilityAccess[];
+};
+function RecoveryRequest({ recoveryRequests }: Props) {
+  const { filteredRequests, handleSearchChange, search } =
+    useRequestSearch(recoveryRequests);
+
   return (
     <div>
-      <div className="flex gap-5">
-        <Input label="Search" />
-        <Select label="Facility">
-          <option value="">Hello</option>
-        </Select>
-        <Select label="Designation">
-          <option value="">Designation</option>
-        </Select>
+      {/* Modal */}
+      <ResetPasswordModal />
+      <div className="flex items-center gap-5">
+        <Input
+          placeholder="Search for name or cellphone"
+          value={search}
+          type="search"
+          onChange={handleSearchChange}
+        />
       </div>
       <div className="mt-5">
         <Table className="min-w-[1000px]">
           <TableHeader
-            className="bg-primaryHoverColor"
+            className="bg-tableHeadColor"
             actionWidth="w-[200px]"
             isAction
-            title={[
-              {
-                title: "User Name",
-                w: "20%",
-              },
-              {
-                title: "Designation",
-                w: "10%",
-              },
-              {
-                title: "Facility",
-                w: "30%",
-              },
-              {
-                title: "Cell Phone",
-                w: "20%",
-              },
-              {
-                title: "Contact Address",
-                w: "20%",
-              },
-            ]}
+            title={headerData}
           />
-          {data.map((item, index) => (
-            <TableBody
+          {filteredRequests.map((item, index) => (
+            <RequestsItems
               index={index}
-              actionWidth="w-[200px]"
-              isAction
-              btn={{
-                btnOutline: "Reset Password",
-              }}
-              item={[
-                { title: item.name, w: "20%" },
-                { title: item.des, w: "10%" },
-                { title: item.facility, w: "30%" },
-                { title: item.number, w: "20%" },
-                { title: item.address, w: "20%" },
-              ]}
+              request={item}
+              key={index}
+              requestType="recovery"
             />
           ))}
         </Table>
@@ -69,62 +48,3 @@ function RecoveryRequest() {
 }
 
 export default RecoveryRequest;
-
-const data = [
-  {
-    id: 1,
-    name: "John Smith",
-    des: "Admin",
-    facility: "Bauleni Mini Hospital",
-    number: "+260 555555555",
-    address: "5285258258",
-  },
-  {
-    id: 1,
-    name: "John Smith",
-    des: "Admin",
-    facility: "Bauleni Mini Hospital",
-    number: "+260 555555555",
-    address: "5285258258",
-  },
-  {
-    id: 1,
-    name: "John Smith",
-    des: "Admin",
-    facility: "Bauleni Mini Hospital",
-    number: "+260 555555555",
-    address: "5285258258",
-  },
-  {
-    id: 1,
-    name: "John Smith",
-    des: "Admin",
-    facility: "Bauleni Mini Hospital",
-    number: "+260 555555555",
-    address: "5285258258",
-  },
-  {
-    id: 1,
-    name: "John Smith",
-    des: "Admin",
-    facility: "Bauleni Mini Hospital",
-    number: "+260 555555555",
-    address: "5285258258",
-  },
-  {
-    id: 1,
-    name: "John Smith",
-    des: "Admin",
-    facility: "Bauleni Mini Hospital",
-    number: "+260 555555555",
-    address: "5285258258",
-  },
-  {
-    id: 1,
-    name: "John Smith",
-    des: "Admin",
-    facility: "Bauleni Mini Hospital",
-    number: "+260 555555555",
-    address: "5285258258",
-  },
-];

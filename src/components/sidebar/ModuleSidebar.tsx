@@ -1,6 +1,6 @@
 import RootLayout from "@/layout/RootLayout";
 import { Accordion } from "flowbite-react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { FaChartPie } from "react-icons/fa6";
 import { IoChevronDown } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
@@ -9,15 +9,27 @@ import Icons from "./Icons/Icons";
 import css from "./Styles.module.css";
 import ModuleSidebarRoutes from "./routeArray/ModuleSidebarRoutes";
 
+type SidebarItem = {
+  id?: number;
+  title?: string;
+  link?: string;
+  icon?: React.ReactNode | null;
+  children: React.ReactNode[] | null;
+};
+
 function ModuleSidebar() {
   const [search, setSearch] = useState("");
   const [iconColor, setIconColor] = useState("var(--secondary)");
   const navigate = useNavigate();
-  const filteredData = ModuleSidebarRoutes.filter((item) => {
+
+  const filteredData = ModuleSidebarRoutes.filter((item: SidebarItem) => {
     return search.toLocaleLowerCase() === ""
       ? item
       : item.title.toLocaleLowerCase().includes(search.toLocaleLowerCase());
   });
+
+  // only solve build problems
+  console.log(setIconColor);
 
   return (
     <RootLayout>

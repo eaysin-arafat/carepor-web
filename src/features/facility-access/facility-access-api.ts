@@ -1,3 +1,4 @@
+import { TypeFacilityAccess } from "@/types/facility";
 import { API } from "../API/API";
 
 const facilityAccessApi = API.injectEndpoints({
@@ -61,6 +62,10 @@ const facilityAccessApi = API.injectEndpoints({
         url: `/facility-access-with-module-access/key/${key}`,
         method: "GET",
       }),
+      //@ts-ignore
+      providesTags: (result, error, key) => [
+        { type: "FacilityAccessId", facilityAccessId: key },
+      ],
     }),
 
     /**
@@ -83,10 +88,12 @@ const facilityAccessApi = API.injectEndpoints({
      * @returns FacilityAccess
      */
     revokeLoginByUserAccountID: builder.mutation({
-      query: ({ userAccountId }) => ({
-        url: `/facility-access-revoke-login/${userAccountId}`,
+      query: ({ key, body }) => ({
+        url: `/facility-access-revoke-login/${key}`,
         method: "PUT",
+        body,
       }),
+      invalidatesTags: ["FacilityAccess"],
     }),
 
     /**
@@ -95,10 +102,12 @@ const facilityAccessApi = API.injectEndpoints({
      * @returns FacilityAccess
      */
     approveFacilityAccess: builder.mutation({
-      query: ({ key }) => ({
+      query: ({ key, body }) => ({
         url: `/approve-facility-access/${key}`,
         method: "PUT",
+        body,
       }),
+      invalidatesTags: ["FacilityAccess"],
     }),
 
     /**
@@ -106,11 +115,14 @@ const facilityAccessApi = API.injectEndpoints({
      * @param key
      * @returns FacilityAccess
      */
+
     loginRecoveryFacilityAccess: builder.mutation({
-      query: ({ key }) => ({
-        url: `/login-recovery-facility-access/${key}`,
-        method: "PUT",
+      query: ({ body }) => ({
+        url: `/login-recovery-facility-access`,
+        method: "POST",
+        body,
       }),
+      invalidatesTags: ["FacilityAccess"],
     }),
 
     /**
@@ -119,10 +131,12 @@ const facilityAccessApi = API.injectEndpoints({
      * @returns FacilityAccess
      */
     rejectFacilityAccess: builder.mutation({
-      query: ({ key }) => ({
+      query: ({ key, body }) => ({
         url: `/reject-facility-access/${key}`,
         method: "PUT",
+        body,
       }),
+      invalidatesTags: ["FacilityAccess"],
     }),
 
     /**
@@ -130,11 +144,14 @@ const facilityAccessApi = API.injectEndpoints({
      * @param facilityId
      * @returns FacilityAccess
      */
-    readFacilityAccessByFacilityID: builder.query({
-      query: (facilityId) => ({
-        url: `/facility-access/facility-access-by-facility/${facilityId}`,
-      }),
-    }),
+    readFacilityAccessByFacilityID: builder.query<TypeFacilityAccess[], number>(
+      {
+        query: (facilityId) => ({
+          url: `/facility-access/facility-access-by-facility/${facilityId}`,
+        }),
+        providesTags: ["FacilityAccess"],
+      }
+    ),
 
     /**
      * @description This endpoint is used to make facility access admin

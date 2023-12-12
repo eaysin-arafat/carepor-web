@@ -1,4 +1,16 @@
 import { API } from "../API/API";
+import { FirmType } from "../firm/firm-api";
+
+export type Ward = {
+  oid: number;
+  description: string;
+  firmId: number;
+  firm: FirmType;
+  departmentId: 0;
+  dateCreated: string;
+  isDeleted: boolean;
+  isSynced: boolean;
+};
 
 const wardApi = API.injectEndpoints({
   endpoints: (builder) => ({
@@ -8,6 +20,7 @@ const wardApi = API.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags: ["Wards"],
     }),
     ReadWards: builder.query({
       query: () => "wards",
@@ -18,15 +31,17 @@ const wardApi = API.injectEndpoints({
     ReadWardByKey: builder.query({
       query: (key) => `ward/key/${key}`,
     }),
-    ReadWardByFirm: builder.query({
+    ReadWardByFirm: builder.query<Ward[], string>({
       query: (firmId) => `ward/ward-by-firm/${firmId}`,
+      providesTags: ["Wards"],
     }),
     UpdateWard: builder.mutation({
       query: (body) => ({
-        url: `ward`,
+        url: `ward/${body?.oid}`,
         method: "PUT",
         body,
       }),
+      invalidatesTags: ["Wards"],
     }),
     DeleteWard: builder.mutation({
       query: (key) => ({

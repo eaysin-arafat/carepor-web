@@ -2,6 +2,12 @@ import SimplePatientDetails from "@/components/client-accounts/cards/SimplePatie
 import Container from "@/components/core/container/Container";
 import { Link } from "react-router-dom";
 
+type ServicePoint = {
+  imgSrc: string;
+  title: string;
+  link: string;
+};
+
 const ServicePoints = () => {
   return (
     <div className="mx-3">
@@ -16,23 +22,25 @@ const ServicePoints = () => {
           <div className="max-w-[1072px] mx-auto my-10 ">
             <h2 className="heading_2 mb-7">Select Service for the Patient</h2>
             <div className="grid grid-cols-2 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 justify-items-center sm:justify-between gap-9 ">
-              {servicePointsArray.map((servicePoint: any, index: number) => (
-                <div
-                  key={index}
-                  className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-5 justify-between "
-                >
-                  <Link to={servicePoint?.link}>
-                    <div className={parantDiv_Style}>
-                      <img
-                        src={servicePoint?.imgSrc}
-                        alt=""
-                        className={image_Style}
-                      />
-                      <p className={text_Style}>{servicePoint?.title}</p>
-                    </div>
-                  </Link>
-                </div>
-              ))}
+              {servicePointsArray.map(
+                (servicePoint: ServicePoint, index: number) => (
+                  <div
+                    key={index}
+                    className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-5 justify-between "
+                  >
+                    <Link to={servicePoint?.link}>
+                      <div className={parantDiv_Style}>
+                        <img
+                          src={servicePoint?.imgSrc}
+                          alt=""
+                          className={image_Style}
+                        />
+                        <p className={text_Style}>{servicePoint?.title}</p>
+                      </div>
+                    </Link>
+                  </div>
+                )
+              )}
             </div>
           </div>
         </div>
@@ -49,7 +57,7 @@ const image_Style = "group-hover:svg_white transition-all duration-300";
 const text_Style =
   "group-hover:text-whiteColor text-black dark:text-primaryColor transition-all duration-300 font-medium text-center";
 
-const servicePointsArray = [
+const servicePointsArray: ServicePoint[] = [
   {
     imgSrc: "assets/svg/service-point/OPD.svg",
     title: "Me (OPD)",

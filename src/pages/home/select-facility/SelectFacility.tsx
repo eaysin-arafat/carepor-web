@@ -8,9 +8,6 @@ import { Link } from "react-router-dom";
 import useSelectFacility from "./useSelectFacility";
 
 const SelectFacility = () => {
-  // const { data } = useReadProvincesQuery(undefined);
-  // console.log(data);
-
   const {
     districtOptions,
     facilitiesOptions,
@@ -69,7 +66,7 @@ const SelectFacility = () => {
           <div className="text-right mt-3">
             <Link
               to={URLRequestFacility()}
-              className="text-grayColor hover:text-primaryColor text-xs"
+              className="text-textColor hover:text-primaryColor text-xs"
             >
               Send Facility Access Request
             </Link>

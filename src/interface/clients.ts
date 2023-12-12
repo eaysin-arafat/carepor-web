@@ -14,17 +14,31 @@ export interface Client {
   fathersNRC: string;
   fatherNAPSANumber: string;
   isFatherDeceased: boolean;
+  mothersFirstName: string;
+  mothersSurname: string;
+  fathersFirstName: string;
+  fathersSurname: string;
+  guardiansFirstName: string;
+  guardiansSurname: number;
+  motherNationality: number;
+  fatherNationality: number;
+  guardianNationality: number;
+  guardianRelationship: number;
   mothersNRC?: string;
   motherNAPSANumber: string;
   isMotherDeceased: boolean;
   guardiansNRC: string;
   guardianNAPSANumber: string;
   maritalStatus: number;
+  spousesLegalName: string;
+  spousesSurname: string;
   cellphoneCountryCode: string;
   cellphone: string;
   otherCellphoneCountryCode: string;
   otherCellphone: string;
   noCellphone: boolean;
+  email: string;
+  landline: string;
   landlineCountryCode: string;
   householdNumber: string;
   road: string;
@@ -48,4 +62,5 @@ export interface Client {
   createdBy: string;
   isDeleted: boolean;
   isSynced: boolean;
+  motherProfileId: string;
 }

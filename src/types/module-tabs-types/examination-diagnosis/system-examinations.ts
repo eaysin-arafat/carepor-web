@@ -1,8 +1,9 @@
-import { TypeAPIEnum, TypeAPIObject } from "@/types";
+import { TypeAPIObject } from "@/types";
 
 // ENUM TYPE
 // PhysicalSystem enum
-export type TypePhysicalSystemsEnum = TypeAPIEnum;
+// Already  on system extension
+// export type TypePhysicalSystemsEnum = TypeAPIEnum;
 
 // DATA TYPE
 // Submit Array type Data

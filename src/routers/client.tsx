@@ -1,7 +1,7 @@
 import PrivateGuard from "@/components/shared/guard/PrivateGuard";
 import UserLayout from "@/layout/UserLayout";
 import AdmissionDischarge from "@/pages/admissions/discharge/AdmissionDischarge";
-import AdmissionsIndex from "@/pages/admissions/index/Index";
+import AdmissionsIndex from "@/pages/admissions/index/Admission";
 import CreateClientAccount from "@/pages/client-accounts/create/CreateClientAccount";
 import ClientDetails from "@/pages/client-accounts/details/ClientsDetils";
 import ClientAccountEdit from "@/pages/client-accounts/edit/ClientAccountEdit";
@@ -10,20 +10,30 @@ import AssignServiceQueue from "@/pages/service-point/AssignServiceQueue";
 import ServicePoints from "@/pages/service-point/ServicePoints";
 import EditAdmission from "../pages/admissions/edit/Edit";
 import AdmissionDetails from "./../pages/admissions/details/AdmissionDetails";
-import AdmissionSearch from "./../pages/admissions/index/AdmissionSearch";
 
 // route paths for client pages
 export const URLClientSearch = (): string => "/client-search";
 export const URLServicePoint = (): string => "/service-points";
 export const URLAssignServiceQueue = (): string => "/assign-service-queue";
-export const URLAdmissionSearch = (): string => "/admission-search";
 export const URLClientDetails = ({ id }: { id: string }): string =>
   `/client-details/${id}`;
 export const URLLinkWithMother = ({ id }: { id: string }): string =>
   `/link-with-mother/${id}`;
 export const URLClientCreate = (): string => "/client-create";
-export const URLClientEdit = ({ id }: { id: string }): string =>
-  `/client-edit/${id}`;
+export const URLClientEdit = ({
+  id,
+  query,
+}: {
+  id: string;
+  query?: string;
+}): string => {
+  if (query) {
+    return `/client-edit/${id + query}`;
+  } else {
+    return `/client-edit/${id}`;
+  }
+};
+
 export const URLAdmissions = ({
   clientId = ":clientId",
 }: {
@@ -57,10 +67,6 @@ const ClientRouter = [
           {
             path: URLClientSearch(),
             element: <ClientSearch />,
-          },
-          {
-            path: URLAdmissionSearch(),
-            element: <AdmissionSearch />,
           },
           {
             path: URLAdmissionDetails({ clientId: ":clientId" }),

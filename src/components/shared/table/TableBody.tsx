@@ -2,7 +2,7 @@ import Checkbox from "@/components/core/form-elements/Checkbox";
 import { Edit, Eye, Trash } from "react-feather";
 
 type Title = {
-  title: string | JSX.Element;
+  title: string | number | JSX.Element;
   w: string;
 };
 
