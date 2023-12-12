@@ -22,7 +22,7 @@ const wardApi = API.injectEndpoints({
       }),
       invalidatesTags: ["Wards"],
     }),
-    ReadWards: builder.query({
+    ReadWards: builder.query<Ward[], null>({
       query: () => "wards",
     }),
     ReadWardsByFacilityId: builder.query({

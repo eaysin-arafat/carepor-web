@@ -1,6 +1,6 @@
 type Props = {
   value?: string | number;
-  onChange?: (e: React.ChangeEvent) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   // onChange?: any;
   name?: string;
   label: string;
@@ -10,7 +10,7 @@ type Props = {
   disabled?: boolean;
   className?: string;
   placeholder?: string;
-  children?: any;
+  children?: React.ReactNode;
 };
 
 function Select({
@@ -30,10 +30,7 @@ function Select({
   return (
     <div className="flex flex-col w-full items-start justify-start gap-[6px]">
       <div className="flex">
-        <div className="input_label ">
-          {" "}
-          {label}
-        </div>
+        <div className="input_label "> {label}</div>
         {required && <span className="-mt-[6px] mx-1 text-dangerColor">*</span>}
       </div>
       <select
@@ -42,6 +39,7 @@ function Select({
         } ${className}`}
         value={value}
         name={name}
+        // @ts-ignore
         onChange={onChange}
         disabled={disabled}
         placeholder={`${placeholder ? placeholder : "Enter" + " " + label}`}
