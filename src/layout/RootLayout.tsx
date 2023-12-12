@@ -31,7 +31,7 @@ function RootLayout({ children }: RootLayoutProps) {
   return (
     <div>
       <div
-        className={cn("h-[8vh]  z-50 bg-whiteBgColor sticky top-0", {
+        className={cn("max-h-[8vh]  z-50 bg-whiteBgColor sticky top-0", {
           "h-[10vh]": w1100,
         })}
       >

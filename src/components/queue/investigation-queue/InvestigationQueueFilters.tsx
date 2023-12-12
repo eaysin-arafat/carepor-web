@@ -17,7 +17,7 @@ const InvestigationQueueFilters = ({ title, className }: Props) => {
   const filtersHandler = () => {
     setAllFilters((prev) => !prev);
   };
-  const myVar = `${allFilters === false ? "hidden" : ""}`;
+  const isFiltersHidden = `${allFilters === false ? "hidden" : ""}`;
 
   return (
     <div>
@@ -49,12 +49,12 @@ const InvestigationQueueFilters = ({ title, className }: Props) => {
             </div>
           </div>
           <div
-            className={`${myVar} md:block col-span-10 md:col-span-5 lg:col-span-2 w-full`}
+            className={`${isFiltersHidden} md:block col-span-10 md:col-span-5 lg:col-span-2 w-full`}
           >
             <DateInput onChange={() => {}} label="Order Date"></DateInput>
           </div>
           <div
-            className={`${myVar} md:block col-span-10 md:col-span-5 lg:col-span-2 w-full`}
+            className={`${isFiltersHidden} md:block col-span-10 md:col-span-5 lg:col-span-2 w-full`}
           >
             <Select label="Priority">
               <option value="urgent">Urgent</option>
@@ -63,12 +63,12 @@ const InvestigationQueueFilters = ({ title, className }: Props) => {
             </Select>
           </div>
           <div
-            className={`${myVar} md:block col-span-10 md:col-span-5 lg:col-span-2 w-full`}
+            className={`${isFiltersHidden} md:block col-span-10 md:col-span-5 lg:col-span-2 w-full`}
           >
             <Select label="Test Name"></Select>
           </div>
           <div
-            className={`${myVar} md:block col-span-10 md:col-span-5 lg:col-span-2 w-full`}
+            className={`${isFiltersHidden} md:block col-span-10 md:col-span-5 lg:col-span-2 w-full`}
           >
             <Select label="Department"></Select>
           </div>

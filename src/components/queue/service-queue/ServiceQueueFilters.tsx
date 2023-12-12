@@ -1,24 +1,27 @@
+import { cn } from "@/utilities/cn";
 import React from "react";
 import Search from "../../core/form-elements/Search";
 import Select from "../../core/form-elements/Select";
-import { cn } from "@/utilities/cn";
 
 type Props = {
   withoutTitle?: boolean;
   className?: string;
 };
-const ServiceQueueFilters = ({ withoutTitle , className }: Props) => {
+const ServiceQueueFilters = ({ withoutTitle, className }: Props) => {
   const [allFilters, setAllFilters] = React.useState(false);
 
   const filtersHandler = () => {
     setAllFilters((prev) => !prev);
   };
-  const myVar = `${allFilters === false ? "hidden" : ""}`;
+  const isFiltersHidden = `${allFilters === false ? "hidden" : ""}`;
 
   return (
     <div>
       <div
-        className={cn(`bg-whiteBgColor border border-borderColor p-5 pb-8 rounded-md ` , className )}
+        className={cn(
+          `bg-whiteBgColor border border-borderColor p-5 pb-8 rounded-md `,
+          className
+        )}
       >
         {!withoutTitle && (
           <h1 className="text-3xl font-medium text-black dark:text-white mb-4">
@@ -44,7 +47,7 @@ const ServiceQueueFilters = ({ withoutTitle , className }: Props) => {
             </div>
           </div>
           <div
-            className={`${myVar} md:block col-span-8 md:col-span-4 lg:col-span-2 w-full`}
+            className={`${isFiltersHidden} md:block col-span-8 md:col-span-4 lg:col-span-2 w-full`}
           >
             <Select label="Urgency">
               <option value="urgent">Urgent</option>
@@ -53,7 +56,7 @@ const ServiceQueueFilters = ({ withoutTitle , className }: Props) => {
             </Select>
           </div>
           <div
-            className={`${myVar} md:block col-span-8 md:col-span-4 lg:col-span-2 w-full`}
+            className={`${isFiltersHidden} md:block col-span-8 md:col-span-4 lg:col-span-2 w-full`}
           >
             <Select label="Provider"></Select>
           </div>

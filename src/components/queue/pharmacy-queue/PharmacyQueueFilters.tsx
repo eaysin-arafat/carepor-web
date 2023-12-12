@@ -11,7 +11,7 @@ const PharmacyQueueFilters = () => {
   const filtersHandler = () => {
     setAllFilters((prev) => !prev);
   };
-  const myVar = `${allFilters === false ? "hidden" : ""}`;
+  const isFiltersHidden = `${allFilters === false ? "hidden" : ""}`;
 
   return (
     <div>
@@ -38,12 +38,12 @@ const PharmacyQueueFilters = () => {
             </div>
           </div>
           <div
-            className={`${myVar} md:block col-span-10 md:col-span-5 lg:col-span-3 xl:col-span-2 w-full`}
+            className={`${isFiltersHidden} md:block col-span-10 md:col-span-5 lg:col-span-3 xl:col-span-2 w-full`}
           >
             <DateInput onChange={() => {}} label="Date of Prescription" />
           </div>
           <div
-            className={`${myVar} md:block col-span-10 md:col-span-5 lg:col-span-3 xl:col-span-2 w-full`}
+            className={`${isFiltersHidden} md:block col-span-10 md:col-span-5 lg:col-span-3 xl:col-span-2 w-full`}
           >
             <Select label="Urgency">
               <option value="urgent">Urgent</option>
@@ -52,12 +52,12 @@ const PharmacyQueueFilters = () => {
             </Select>
           </div>
           <div
-            className={`${myVar} md:block col-span-10 md:col-span-5 lg:col-span-3 xl:col-span-2 w-full`}
+            className={`${isFiltersHidden} md:block col-span-10 md:col-span-5 lg:col-span-3 xl:col-span-2 w-full`}
           >
             <Select label="Queue Type"></Select>
           </div>
           <div
-            className={`${myVar} md:block col-span-10 md:col-span-5 lg:col-span-3  xl:col-span-2 w-full`}
+            className={`${isFiltersHidden} md:block col-span-10 md:col-span-5 lg:col-span-3  xl:col-span-2 w-full`}
           >
             <Select label="Provider"></Select>
           </div>
