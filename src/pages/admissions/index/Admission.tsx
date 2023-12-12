@@ -26,13 +26,26 @@ const AdmissionsIndex = () => {
     setState,
     state,
     tableHeader,
+    handleAdmissionDateFilter,
+    handleDischargeDateFilter,
+    handleDepartmentFilter,
+    handleWardFilter,
+    admissionDate,
+    dischargeDate,
+    department,
+    handleAdmissionDateChange,
+    handleDepartmentChange,
+    handleDischargeDateChange,
+    handleWardChange,
+    ward,
+    client
   } = useAdmission();
 
   return (
     <div className="mx-2">
       <Container className="max-w-[1400px]">
         <div>
-          <SimplePatientDetails className=" shadow-none mt-5" />
+          <SimplePatientDetails className=" shadow-none mt-5" client={client} />
           <div className="grid grid-cols-7 gap-5 mt-5 bg-whiteBgColor p-5 rounded-lg ">
             <div className="col-span-7">
               <div className="flex justify-between items-center">
@@ -52,7 +65,16 @@ const AdmissionsIndex = () => {
                   </button>
                 </div>
               </div>
-              <AdmissionsFilters />
+              <AdmissionsFilters
+                admissionDate={admissionDate}
+                dischargeDate={dischargeDate}
+                department={department}
+                handleAdmissionDateChange={handleAdmissionDateChange}
+                handleDepartmentChange={handleDepartmentChange}
+                handleDischargeDateChange={handleDischargeDateChange}
+                handleWardChange={handleWardChange}
+                ward={ward}
+              />
               <div className="">
                 <div className="mt-2 bg-whiteBgColor pb-5 rounded-xl ">
                   <Table isRounded>
@@ -62,53 +84,61 @@ const AdmissionsIndex = () => {
                       actionWidth="min-w-[220px]"
                       title={tableHeader}
                     />
-                    {admissionList?.map((item, index) => (
-                      <TableBody
-                        index={index}
-                        isAction
-                        actionWidth="min-w-[220px]"
-                        btnOutlineHandler={() => handleAdmissionDischarge(item)}
-                        viewResultHandler={() => handleAdmissionDetails(item)}
-                        btn={{
-                          viewResult: "View Details ",
-                          ...(!item?.ipdDischargeDate && {
-                            btnOutline: "Discharge",
-                          }),
-                        }}
-                        item={[
-                          {
-                            title: item?.ipdAdmissionDate
-                              ? DateFunc.toFormatted(item?.ipdAdmissionDate)
-                              : "",
-                            w: "20%",
-                          },
-                          {
-                            title:
-                              item?.bed?.ward?.firm?.department?.description,
-                            w: "20%",
-                          },
-                          {
-                            title: item?.bed?.ward?.firm?.description,
-                            w: "20%",
-                          },
-                          { title: item?.bed?.ward?.description, w: "20%" },
-                          { title: item?.bed?.description, w: "20%" },
-                          {
-                            title: item?.ipdDischargeDate
-                              ? DateFunc.toFormatted(item?.ipdDischargeDate)
-                              : "",
-                            w: "20%",
-                          },
-                        ]}
-                      />
-                    ))}
+                    {admissionList
+                      ?.slice()
+                      ?.filter(handleAdmissionDateFilter)
+                      ?.filter(handleDischargeDateFilter)
+                      ?.filter(handleDepartmentFilter)
+                      ?.filter(handleWardFilter)
+                      ?.map((item, index) => (
+                        <TableBody
+                          index={index}
+                          isAction
+                          actionWidth="min-w-[220px]"
+                          btnOutlineHandler={() =>
+                            handleAdmissionDischarge(item)
+                          }
+                          viewResultHandler={() => handleAdmissionDetails(item)}
+                          btn={{
+                            viewResult: "View Details ",
+                            ...(!item?.ipdDischargeDate && {
+                              btnOutline: "Discharge",
+                            }),
+                          }}
+                          item={[
+                            {
+                              title: item?.ipdAdmissionDate
+                                ? DateFunc.toFormatted(item?.ipdAdmissionDate)
+                                : "",
+                              w: "20%",
+                            },
+                            {
+                              title:
+                                item?.bed?.ward?.firm?.department?.description,
+                              w: "20%",
+                            },
+                            {
+                              title: item?.bed?.ward?.firm?.description,
+                              w: "20%",
+                            },
+                            { title: item?.bed?.ward?.description, w: "20%" },
+                            { title: item?.bed?.description, w: "20%" },
+                            {
+                              title: item?.ipdDischargeDate
+                                ? DateFunc.toFormatted(item?.ipdDischargeDate)
+                                : "",
+                              w: "20%",
+                            },
+                          ]}
+                        />
+                      ))}
                   </Table>
                   <div className="flex justify-end mx-5">
                     <CustomPagination
                       activePage={state}
                       setActivePage={setState}
                       itemsCountPerPage={5}
-                      totalItemsCount={admissionList?.length}
+                      totalItemsCount={admissionList?.length || 1}
                     />
                   </div>
                 </div>

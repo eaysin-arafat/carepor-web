@@ -1,5 +1,25 @@
-export const clientAdmissionValidator = (admissionData) => {
-  const errors = {};
+export type ClientAdmissionType = {
+  admissionNote?: string;
+  bedID?: string;
+  departmentID?: string;
+  firmID?: string;
+  wardID?: string;
+  admissionDate?: string;
+};
+
+export type ClientAdmissionErrorType = {
+  admissionNote?: string;
+  bedID?: string;
+  departmentID?: string;
+  firmID?: string;
+  wardID?: string;
+  admissionDate?: string;
+};
+
+export const clientAdmissionValidator = (
+  admissionData: ClientAdmissionType
+) => {
+  const errors: ClientAdmissionErrorType = {};
 
   if (!admissionData.admissionNote) {
     errors.admissionNote = "Required";

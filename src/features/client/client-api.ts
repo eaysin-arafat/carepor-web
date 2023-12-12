@@ -1,3 +1,4 @@
+import { Client } from "@/interface/clients";
 import { API } from "../API/API";
 
 const clientApi = API.injectEndpoints({
@@ -31,7 +32,7 @@ const clientApi = API.injectEndpoints({
      * @param key
      * @returns Client
      */
-    readClientByKey: builder.query({
+    readClientByKey: builder.query<Client, string>({
       query: (key) => ({
         url: `/client/key/${key}`,
         method: "GET",

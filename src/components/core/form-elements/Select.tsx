@@ -2,7 +2,7 @@ import React from "react";
 
 type Props = {
   value?: string | number;
-  onChange?: (e: React.ChangeEvent) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   // onChange?: any;
   name?: string;
   label: string;
@@ -43,6 +43,7 @@ function Select({
         } ${className}`}
         value={value}
         name={name}
+        // @ts-ignore
         onChange={onChange}
         disabled={disabled}
         placeholder={`${placeholder ? placeholder : "Enter" + " " + label}`}

@@ -31,6 +31,7 @@ const medicalEncounterApi = API.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags: ["Encounters", "Admissions"],
     }),
 
     /**
@@ -90,6 +91,7 @@ const medicalEncounterApi = API.injectEndpoints({
         url: `encounters/addmissions-by-client/${clientId}`,
         method: "GET",
       }),
+      providesTags: ["Admissions"],
     }),
 
     /**
@@ -99,11 +101,12 @@ const medicalEncounterApi = API.injectEndpoints({
      * @returns Encounter
      */
     updateEncounter: builder.mutation({
-      query: ({ key, ...body }) => ({
+      query: ({ key, body }) => ({
         url: `encounter/${key}`,
         method: "PUT",
         body,
       }),
+      invalidatesTags: ["Admissions"],
     }),
 
     /**
@@ -113,11 +116,12 @@ const medicalEncounterApi = API.injectEndpoints({
      * @returns Encounter
      */
     updateAdmission: builder.mutation({
-      query: ({ key, ...body }) => ({
+      query: ({ key, body }) => ({
         url: `encounter/admission/${key}`,
         method: "PUT",
         body,
       }),
+      invalidatesTags: ["Admissions"],
     }),
 
     /**

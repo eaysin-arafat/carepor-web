@@ -35,7 +35,7 @@ const AdmissionDetailsCard = ({ data }: { data: Encounter }) => {
             <DataRow
               title="Discharge Date "
               data={
-                data?.ipdAdmissionDate
+                data?.ipdDischargeDate
                   ? DateFunc.toFormatted(data?.ipdDischargeDate)
                   : ""
               }

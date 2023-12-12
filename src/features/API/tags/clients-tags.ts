@@ -1,2 +1,2 @@
 // Clients Tags
-export const clientsTags = [];
+export const clientsTags = ["Encounters", "Admissions"];
