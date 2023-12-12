@@ -13,7 +13,7 @@ import React from "react";
 import { FiPlusCircle } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import InvestigationCreate from "../create/InvestigationCreate";
-import InvestigationCreateForm from "@/components/investigations/InvestigationCreateForm";
+// import InvestigationCreateForm from "@/components/investigations/InvestigationCreateForm";
 
 const Investigation = () => {
   const [state, setState] = React.useState(1);
