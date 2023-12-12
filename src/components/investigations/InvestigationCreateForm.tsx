@@ -49,7 +49,7 @@ const InvestigationCreateForm = () => {
           <div className="col-span-4">
             <Select label="Test" required></Select>
           </div>
-          <div className="col-span-4 md:col-span-2 grid grid-cols-2 gap-2">
+          <div className="col-span-4 md:col-span-2 grid md:grid-cols-2 gap-2">
             <DateInput onChange={() => {}} label="Order Date" required />
             <Select label="Order Priority" required></Select>
           </div>
