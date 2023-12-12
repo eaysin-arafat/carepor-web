@@ -139,6 +139,7 @@ const AdmissionsIndex = () => {
                       setActivePage={setState}
                       itemsCountPerPage={5}
                       totalItemsCount={admissionList?.length || 1}
+                      setItemPerPage={() => {}}
                     />
                   </div>
                 </div>

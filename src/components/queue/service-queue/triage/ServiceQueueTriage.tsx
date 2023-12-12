@@ -103,6 +103,7 @@ function ServiceQueueTriage() {
             itemsCountPerPage={state}
             setActivePage={setState}
             totalItemsCount={100}
+            setItemPerPage={() => {}}
           />
         </div>
       </div>

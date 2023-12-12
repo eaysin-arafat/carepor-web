@@ -51,7 +51,16 @@ const Investigation = () => {
               </button>
             </div>
             <div className=" bg-whiteBgColor pb-5 rounded-xl shadow-light">
-              <InvestigationQueueFilters className="border-none bg-transparent" />
+              <InvestigationQueueFilters
+                priority={0}
+                setPriority={() => {}}
+                setTest={() => {}}
+                test={0}
+                department={0}
+                setDepartment={() => {}}
+                title="Title"
+                className="border-none bg-transparent"
+              />
               <Table isRounded>
                 <TableHeader
                   className="bg-tableHeadColor text-textColor"
@@ -111,6 +120,7 @@ const Investigation = () => {
                   itemsCountPerPage={state}
                   setActivePage={setState}
                   totalItemsCount={100}
+                  setItemPerPage={() => {}}
                 />
               </div>
             </div>

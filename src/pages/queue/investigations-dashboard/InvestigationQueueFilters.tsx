@@ -11,11 +11,11 @@ type Props = {
   title?: string;
   className?: string;
   priority: string | number;
-  setPriority: React.Dispatch<React.SetStateAction<string>>;
+  setPriority: React.Dispatch<React.SetStateAction<number>>;
   test: string | number;
-  setTest: React.Dispatch<React.SetStateAction<string>>;
-  department: string;
-  setDepartment?: React.Dispatch<React.SetStateAction<string>>;
+  setTest: React.Dispatch<React.SetStateAction<number>>;
+  department?: string | number;
+  setDepartment?: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const InvestigationQueueFilters = ({
@@ -24,9 +24,9 @@ const InvestigationQueueFilters = ({
   // priority,
   setPriority,
   setTest,
-  test,
-  setDepartment,
-}: Props) => {
+}: // test,
+// setDepartment,
+Props) => {
   const [allFilters, setAllFilters] = React.useState(false);
   const w1100 = useWindowWidth(1100);
   const filtersHandler = () => {
@@ -87,7 +87,7 @@ const InvestigationQueueFilters = ({
             <Select
               // value={priority}
               selectShow="All"
-              onChange={(e: OnchangeEventType) => setPriority(e.target.value)}
+              onChange={(e: OnchangeEventType) => setPriority(+e.target.value)}
               label="Priority"
             >
               <option value="1">Regular</option>
@@ -100,7 +100,7 @@ const InvestigationQueueFilters = ({
           >
             <Select
               selectShow="All"
-              onChange={(e: OnchangeEventType) => setDepartment(e.target.value)}
+              onChange={(e: OnchangeEventType) => setTest(+e.target.value)}
               label="Test Name"
             >
               {Array.isArray(tests) &&

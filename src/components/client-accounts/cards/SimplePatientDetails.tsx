@@ -9,7 +9,7 @@ import { MdOutlinePerson2, MdOutlinePhone } from "react-icons/md";
 interface Props {
   className?: string;
   withoutAction?: boolean;
-  client: Client;
+  client?: Client;
 }
 
 const gender = {

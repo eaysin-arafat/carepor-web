@@ -1,15 +1,15 @@
+import { OnchangeEventType } from "@/types/htmlEvents";
 import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import ReactPagination from "react-js-pagination";
 import Select from "../form-elements/Select";
-import { OnchangeEventType } from "@/types/htmlEvents";
 
 type Props = {
   activePage: number;
-  setActivePage: (page: number) => void;
-  itemsCountPerPage: number;
+  setActivePage: React.Dispatch<React.SetStateAction<number>>;
+  itemsCountPerPage?: number;
   totalItemsCount: number;
-  setItemPerPage: (perPage: number) => void;
+  setItemPerPage: React.Dispatch<React.SetStateAction<number>>;
 };
 
 /**
@@ -35,6 +35,7 @@ function CustomPagination({
     setActivePage(pageNo);
   };
   let showInPage = [10, 20, 50, 100];
+
   return (
     <div className="flex mt-5 items-center gap-3 ">
       <div className="flex items-center gap-2">

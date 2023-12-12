@@ -8,6 +8,7 @@ import { useReadInvestigationsForDashboardQuery } from "@/features/investigation
 import useBaseDataCreate from "@/hooks/useBaseDataCreate";
 import useWindowWidth from "@/hooks/useWindow";
 import InvestigationQueueFilters from "@/pages/queue/investigations-dashboard/InvestigationQueueFilters";
+import { TypeInvestigation } from "@/types/module-types/investigation";
 import { DateFunc } from "@/utilities/date";
 import { useState } from "react";
 
@@ -20,18 +21,19 @@ function InvestigationsDashboard() {
   // Request state for page and item
   const [pageNo, setPageNo] = useState(1);
   const [itemPerPage, setItemPerPage] = useState(10);
-  const [dateSearch, setDateSearch] = useState("");
-  const [patientName, setPatientName] = useState("");
+  // const [dateSearch, setDateSearch] = useState("");
+  // const [patientName, setPatientName] = useState("");
+  const dateSearch = "";
+  const patientName = "";
   // states
-  const [name, setName] = useState("");
-  const [date, setDate] = useState(null);
 
-  const [priority, setPriority] = useState("");
-  const [test, setTest] = useState("");
-  const [department, setDepartment] = useState("");
+  // filter states
+  const [priority, setPriority] = useState(0);
+  const [test, setTest] = useState(0);
+  const [department, setDepartment] = useState(0);
 
   // Request for investigation data
-  const { data: invstigationDashBoard, refetch } =
+  const { data: instigationDashBoard, refetch } =
     useReadInvestigationsForDashboardQuery(
       {
         facilityId: baseData?.createdIn,
@@ -47,16 +49,16 @@ function InvestigationsDashboard() {
     );
 
   const { investigations = [], resultRecievedTotalItems } =
-    invstigationDashBoard || {};
+    instigationDashBoard || {};
 
-  const priortyFilter = (data) => {
+  const priortyFilter = (data: TypeInvestigation) => {
     return !priority ? true : data?.piority == priority;
   };
-  const testNameFilter = (data) => {
-    return true;
+  const testNameFilter = (data: TypeInvestigation) => {
+    return !test ? true : data?.testId == test;
   };
-  const departmentFilter = (data) => {
-    return !department ? true : data?.testId == department;
+  const departmentFilter = (data: TypeInvestigation) => {
+    return data;
   };
 
   const filterInvestigation =
@@ -140,7 +142,7 @@ function InvestigationsDashboard() {
             itemsCountPerPage={itemPerPage}
             setItemPerPage={setItemPerPage}
             setActivePage={setPageNo}
-            totalItemsCount={resultRecievedTotalItems}
+            totalItemsCount={resultRecievedTotalItems} 
           />
         </div>
       </div>
@@ -149,22 +151,6 @@ function InvestigationsDashboard() {
 }
 
 export default InvestigationsDashboard;
-
-const priortyColor = (p: number): string => {
-  let classString =
-    "relative mx-auto before:rounded-full before:ml-[-12px] pl-[12px] before:mt-[3px] before:absolute  before:h-2 before:w-2 ";
-  let color = "";
-  if (p == 1) {
-    color = "before:bg-green-500";
-  }
-  if (p == 2) {
-    color = "before:bg-blue-500";
-  }
-  if (p == 3) {
-    color = "before:bg-red-500";
-  }
-  return classString + color;
-};
 
 const PriortyColor = ({ p }: { p: number }) => {
   let color = "";

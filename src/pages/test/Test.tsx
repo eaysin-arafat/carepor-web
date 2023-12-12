@@ -172,6 +172,7 @@ function Test() {
               itemsCountPerPage={state}
               setActivePage={setState}
               totalItemsCount={1000}
+              setItemPerPage={() => {}}
             />
           </div>
         </div>
