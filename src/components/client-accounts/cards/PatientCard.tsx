@@ -21,8 +21,8 @@ import { MdOutlinePerson2, MdOutlinePhone } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 
 const gender = {
-  1: "male",
-  2: "female",
+  1: "Male",
+  2: "Female",
 };
 
 type PatientCardProps = {

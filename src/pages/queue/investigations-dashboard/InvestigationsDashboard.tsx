@@ -19,45 +19,69 @@ function InvestigationsDashboard() {
 
   // Request state for page and item
   const [pageNo, setPageNo] = useState(1);
-  // const [itemPerPage, setItemPerPage] = useState(10);
-  const itemPerPage = 10;
-  const dateSearc = "";
-  const patientName = "";
-  // const [dateSearc, setDateSearce] = useState("");
-  // const [patientName, setPatientName] = useState("");
-  // Request for investigation data
-  const {
-    data: invstigationDashBoard,
+  const [itemPerPage, setItemPerPage] = useState(10);
+  const [dateSearch, setDateSearch] = useState("");
+  const [patientName, setPatientName] = useState("");
+  // states
+  const [name, setName] = useState("");
+  const [date, setDate] = useState(null);
 
-    // isLoading,
-    // isError,
-    // isSuccess,
-  } = useReadInvestigationsForDashboardQuery(
-    {
-      facilityId: baseData?.createdIn,
-      pageNo,
-      itemPerPage,
-      investigationDateSearch: dateSearc,
-      PatientName: patientName,
-    },
-    {
-      skip: !baseData?.createdIn,
-    }
-  );
+  const [priority, setPriority] = useState("");
+  const [test, setTest] = useState("");
+  const [department, setDepartment] = useState("");
+
+  // Request for investigation data
+  const { data: invstigationDashBoard, refetch } =
+    useReadInvestigationsForDashboardQuery(
+      {
+        facilityId: baseData?.createdIn,
+        pageNo,
+        itemPerPage,
+        investigationDateSearch: dateSearch,
+        PatientName: patientName,
+      },
+      {
+        skip: !baseData?.createdIn,
+        refetchOnMountOrArgChange: false,
+      }
+    );
 
   const { investigations = [], resultRecievedTotalItems } =
     invstigationDashBoard || {};
 
-  const priortyColor = (p: number): string => {
-    return p == 2 ? "text-red-500" : p == 3 ? "text-green-500" : "";
+  const priortyFilter = (data) => {
+    return !priority ? true : data?.piority == priority;
+  };
+  const testNameFilter = (data) => {
+    return true;
+  };
+  const departmentFilter = (data) => {
+    return !department ? true : data?.testId == department;
   };
 
+  const filterInvestigation =
+    investigations
+      ?.filter(priortyFilter)
+      .filter(testNameFilter)
+      .filter(departmentFilter) || [];
+
+  console.log(investigations);
   return (
     <div className={`${w1100 && "mt-12"}`}>
-      <InvestigationQueueFilters title="Investigation Queue" />
+      <InvestigationQueueFilters
+        priority={priority}
+        setPriority={setPriority}
+        test={test}
+        setTest={setTest}
+        department={department}
+        setDepartment={setDepartment}
+        title="Investigation Queue"
+      />
 
       <br />
-      <div className="mt-5 bg-whiteBgColor pb-5 rounded-xl shadow-light">
+      <div onClick={refetch}>refetch</div>
+      <br />
+      <div className="mt-5 bg-whiteBgColor pb-5 rounded-xl shadow-light ">
         <Table isRounded>
           <TableHeader
             className="bg-tableHeadColor text-textColor py-2"
@@ -66,7 +90,7 @@ function InvestigationsDashboard() {
             title={investigationDashboardHeader}
           />
 
-          {investigations?.map((item, index) => {
+          {filterInvestigation?.map((item, index) => {
             const {} = item;
             return (
               <TableBody
@@ -84,6 +108,13 @@ function InvestigationsDashboard() {
                     w: "20%",
                   },
                   {
+                    title: (
+                      <PriortyColor key={index + "piority"} p={item?.piority} />
+                    ),
+                    w: "20%",
+                    // dataClass: priortyColor(item?.piority),
+                  },
+                  {
                     title: item.orderDate
                       ? DateFunc.formatDate(item.orderDate)
                       : "",
@@ -91,11 +122,7 @@ function InvestigationsDashboard() {
                   },
                   { title: item?.orderNumber, w: "20%" },
                   { title: item?.test?.title, w: "20%" },
-                  {
-                    title: EnumPiority[item?.piority],
-                    w: "20%",
-                    dataClass: priortyColor(item?.piority),
-                  },
+
                   {
                     title: item?.sampleCollectionDate
                       ? DateFunc.formatDate(item?.sampleCollectionDate)
@@ -111,6 +138,7 @@ function InvestigationsDashboard() {
           <CustomPagination
             activePage={pageNo}
             itemsCountPerPage={itemPerPage}
+            setItemPerPage={setItemPerPage}
             setActivePage={setPageNo}
             totalItemsCount={resultRecievedTotalItems}
           />
@@ -122,9 +150,52 @@ function InvestigationsDashboard() {
 
 export default InvestigationsDashboard;
 
+const priortyColor = (p: number): string => {
+  let classString =
+    "relative mx-auto before:rounded-full before:ml-[-12px] pl-[12px] before:mt-[3px] before:absolute  before:h-2 before:w-2 ";
+  let color = "";
+  if (p == 1) {
+    color = "before:bg-green-500";
+  }
+  if (p == 2) {
+    color = "before:bg-blue-500";
+  }
+  if (p == 3) {
+    color = "before:bg-red-500";
+  }
+  return classString + color;
+};
+
+const PriortyColor = ({ p }: { p: number }) => {
+  let color = "";
+  if (p == 1) {
+    color = "before:bg-green-500";
+  }
+  if (p == 2) {
+    color = "before:bg-blue-500";
+  }
+  if (p == 3) {
+    color = "before:bg-red-500";
+  }
+  return (
+    <span
+      className={
+        "relative mx-auto before:rounded-full before:ml-[-12px] ml-[12px] before:mt-[3px] before:absolute  before:h-2 before:w-2 " +
+        color
+      }
+    >
+      {EnumPiority[p]}
+    </span>
+  );
+};
+
 const investigationDashboardHeader = [
   {
     title: "Patient Name",
+    w: "20%",
+  },
+  {
+    title: "Priority",
     w: "20%",
   },
   {
@@ -137,10 +208,6 @@ const investigationDashboardHeader = [
   },
   {
     title: "Test",
-    w: "20%",
-  },
-  {
-    title: "Priority",
     w: "20%",
   },
 

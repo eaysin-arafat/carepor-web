@@ -13,6 +13,7 @@ type Props = {
   className?: string;
   placeholder?: string;
   children?: React.ReactNode;
+  isHideSelect?: boolean;
 };
 
 function Select({
@@ -23,6 +24,7 @@ function Select({
   required,
   errMsg,
   selectShow = "--Select--",
+  isHideSelect,
   disabled,
   className,
   placeholder,
@@ -45,9 +47,12 @@ function Select({
         disabled={disabled}
         placeholder={`${placeholder ? placeholder : "Enter" + " " + label}`}
       >
-        <option value="" className="text-textColor">
-          {selectShow}
-        </option>
+        {!isHideSelect && (
+          <option value="" className="text-textColor">
+            {selectShow}
+          </option>
+        )}
+
         {children}
       </select>
       {errMsg && (
