@@ -10,6 +10,7 @@ type Props = {
   index: number;
   item: Title[];
   isAction?: boolean;
+  isDropdown?: JSX.Element;
   length?: number;
   actionWidth?: string;
   btn?: {
@@ -42,6 +43,7 @@ function TableBody({
   item,
   index,
   isAction,
+  isDropdown,
   btn,
   actionWidth,
   btnHandler,
@@ -115,6 +117,15 @@ function TableBody({
               className="border rounded-full hover:bg-primaryColor hover:text-white border-primaryColor text-primaryColor flex items-center justify-center  px-3 text-[13px] pt-[5px] pb-[3px]"
             >
               {btn.viewResult}
+            </button>
+          )}
+
+          {isDropdown && (
+            <button
+              onClick={viewResultHandler}
+              className="border rounded-full hover:bg-primaryColor hover:text-white border-primaryColor text-primaryColor flex items-center justify-center  px-3 text-[13px] pt-[5px] pb-[3px]"
+            >
+              {isDropdown}
             </button>
           )}
         </p>

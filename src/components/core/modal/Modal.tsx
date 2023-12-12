@@ -64,7 +64,7 @@ const Modal: React.FC<ModalProps> = ({
               } px-5 py-2.5 `}
             >
               {title && (
-                <h2 className={`text-xl sm:text-2xl font-semibold text-secondaryColor`}>
+                <h2 className={`text-xl sm:text-[22px] font-medium text-secondaryColor`}>
                   {title}
                 </h2>
               )}

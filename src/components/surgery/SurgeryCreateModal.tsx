@@ -1,9 +1,9 @@
-import { investigationModalTypes } from "@/constants/modal-types";
+import { surgeryModalTypes } from "@/constants/modal-types";
 // import { closeAddModal } from "@/features/modal/modal-slice";
 // import { useDispatch } from "react-redux";
 import Modal from "../core/modal/Modal";
 
-const InvestigationCreateModal = () => {
+const SurgeryCreateModal = () => {
   //   const dispatch = useDispatch();
   //   const closeModal = () => {
   //     dispatch(closeAddModal());
@@ -11,14 +11,11 @@ const InvestigationCreateModal = () => {
 
   return (
     <div>
-      <Modal
-        addModalId={investigationModalTypes.addInvestigation}
-        title="Investigation"
-      >
+      <Modal addModalId={surgeryModalTypes.addSurgery} title="Surgery">
         InvestigationCreateModal
       </Modal>
     </div>
   );
 };
 
-export default InvestigationCreateModal;
+export default SurgeryCreateModal;

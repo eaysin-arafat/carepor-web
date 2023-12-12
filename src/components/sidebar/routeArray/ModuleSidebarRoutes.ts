@@ -117,10 +117,10 @@ const ModuleSidebarRoutes = [
     id: 11,
     title: "Admissions",
 
-    link: "/admissions",
+    link: "#",
     icon: "/assets/svg/sidebar/admissions.svg",
   },
-  {
+  {                   
     id: 12,
     title: "Investigation",
 
@@ -131,7 +131,7 @@ const ModuleSidebarRoutes = [
     id: 13,
     title: "Surgery",
 
-    link: "#",
+    link: "/surgery",
     icon: "/assets/svg/sidebar/surgery.svg",
   },
   {
