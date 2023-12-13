@@ -12,6 +12,7 @@ export default {
     fontFamily: {
       poppins: ["Poppins", "sans-serif"],
     },
+
     extend: {
       screens: {
         xs: "480px",
