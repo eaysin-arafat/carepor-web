@@ -18,6 +18,8 @@ import { useReadClientByNRCQuery } from "@/features/client/client-api";
 import { useReadDistrictsQuery } from "@/features/district/district-api";
 import { useReadHomeLanguagesQuery } from "@/features/home-language/home-language-api";
 import { useReadProvincesQuery } from "@/features/province/province-api";
+
+import useGetQueryParams from "@/hooks/useGetQueryParams";
 import {
   ClientContactInfoErrorType,
   ClientEducationAndEmploymentErrorType,
@@ -32,7 +34,6 @@ import { useEffect, useState } from "react";
 import useClientFormStep from "./useClientFormStep";
 import useSetEditFormData from "./useSetEditFormData";
 import useSubmitClientAccountEdit from "./useSubmitClientAccountEdit";
-import getQueryParams from "@/utilities/get-query-params";
 
 const nrcValidateForSearchReq = (value: string) => {
   const nrcReqPattern = /^\d{6}\/\d{2}\/[\d_]{1}$/;
@@ -60,7 +61,7 @@ const useClientAccount = (
   const { handleStepNext, stateCount } = formStepState;
 
   // back page
-  const backTo = getQueryParams("back");
+  const backTo = useGetQueryParams("back");
 
   // form data states
   const [personalInfo, setPersonalInfo] = useState(personalInfoState);
@@ -339,7 +340,7 @@ const useClientAccount = (
     // NRC prev
     alreadyExists,
     // Handle cancel edit
-    backTo
+    backTo,
   };
 };
 
