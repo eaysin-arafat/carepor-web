@@ -18,18 +18,24 @@ type SidebarItem = {
 };
 
 function ModuleSidebar() {
+  // * Local State
   const [search, setSearch] = useState("");
   const [iconColor, setIconColor] = useState("var(--secondary)");
+
+  // * Hookes
   const navigate = useNavigate();
 
-  const filteredData = ModuleSidebarRoutes.filter((item: SidebarItem) => {
+  // * Filter Menu Without Adding any Route
+  const withoutAddRoute = ModuleSidebarRoutes.filter(
+    (item) => item.link !== "#"
+  );
+
+  // * Add Search Functionality
+  const filteredData = withoutAddRoute.filter((item: SidebarItem) => {
     return search.toLocaleLowerCase() === ""
       ? item
       : item.title.toLocaleLowerCase().includes(search.toLocaleLowerCase());
   });
-
-  // only solve build problems
-  console.log(setIconColor);
 
   return (
     <ModuleLayout>
