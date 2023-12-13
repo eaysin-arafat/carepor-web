@@ -3,7 +3,6 @@ import { RtkStatusEnum } from "@/enum/rtk";
 import { useCreateOPDVisitMutation } from "@/features/opd-visit/opd-visit-api";
 import { Client } from "@/interface/clients";
 import {
-  URLAdmissionDischarge,
   URLAdmissions,
   URLClientDetails,
   URLServicePoint,
@@ -144,29 +143,18 @@ const PatientCard = ({ client, className }: PatientCardProps) => {
                 >
                   Edit Profile
                 </Link>
-                {!client.isAdmitted && (
-                  <Link
-                    to={URLAdmissions({ clientId: client?.oid })}
-                    className={cn("main_btn btn_sm text-center text-sm")}
-                  >
-                    Admit Patient
-                  </Link>
-                )}
-                {client?.isAdmitted && (
-                  <>
-                    <button className={cn("main_btn btn_sm  text-sm")}>
-                      Admission Details
-                    </button>
-                    <Link
-                      to={URLAdmissionDischarge({ clientId: client?.oid })}
-                      className={cn("main_btn btn_sm text-center text-sm")}
-                    >
-                      Discharge
-                    </Link>
-                  </>
-                )}
+
+                <Link
+                  to={URLAdmissions({ clientId: client?.oid })}
+                  className={cn("main_btn btn_sm text-center text-sm")}
+                >
+                  Admission
+                </Link>
                 <button className={cn("main_btn btn_sm text-sm")}>
                   Service Queue
+                </button>
+                <button className={cn("main_btn btn_sm text-sm")}>
+                  Historical visit
                 </button>
                 <button
                   className={cn("main_btn btn_sm text-sm")}

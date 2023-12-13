@@ -45,7 +45,7 @@ const useAdmission = () => {
   );
 
   // local state
-  const [state, setState] = React.useState(1);
+  const [currentPage, setCurrentPage] = React.useState(1);
   const [department, setDepartment] = React.useState("");
   const [ward, setWard] = React.useState("");
   const [admissionDate, setAdmissionDate] = React.useState("");
@@ -57,7 +57,12 @@ const useAdmission = () => {
   const { clientId } = useParams();
 
   // api hooks
-  const { data: admissionList } = useReadAdmissionListByClientQuery(clientId, {
+  const {
+    data: admissionList,
+    isLoading,
+    isSuccess,
+    status,
+  } = useReadAdmissionListByClientQuery(clientId, {
     skip: !clientId,
     refetchOnMountOrArgChange: true,
   });
@@ -83,6 +88,11 @@ const useAdmission = () => {
   const handleWardChange = (wardId: string) => {
     setWard(wardId);
   };
+
+  // handle pagination
+  const itemsPerPage = 10;
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
 
   // filter handlers
   const handleAdmissionDateFilter = (item: Encounter) => {
@@ -152,21 +162,26 @@ const useAdmission = () => {
     );
   };
 
+  // filtered  data
+  const filteredData = admissionList
+    ?.slice()
+    ?.filter(handleAdmissionDateFilter)
+    ?.filter(handleDischargeDateFilter)
+    ?.filter(handleDepartmentFilter)
+    ?.filter(handleWardFilter);
+
+  // paginated data
+  const paginatedData = filteredData?.slice(startIndex, endIndex);
+
   return {
     admissionList,
     handleAdmissionModal,
     handleAdmissionDetails,
     handleAdmissionDischarge,
     navigate,
-    state,
-    setState,
     addModal,
     editModal,
     tableHeader,
-    handleAdmissionDateFilter,
-    handleDischargeDateFilter,
-    handleDepartmentFilter,
-    handleWardFilter,
     handleAdmissionDateChange,
     handleDischargeDateChange,
     handleDepartmentChange,
@@ -176,6 +191,14 @@ const useAdmission = () => {
     admissionDate,
     dischargeDate,
     client,
+    isLoading,
+    isSuccess,
+    status,
+    currentPage,
+    setCurrentPage,
+    itemsPerPage,
+    filteredData,
+    paginatedData,
   };
 };
 

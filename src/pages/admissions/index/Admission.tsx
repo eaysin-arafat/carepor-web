@@ -7,6 +7,7 @@ import TableBody from "@/components/shared/table/TableBody";
 import TableHeader from "@/components/shared/table/TableHeader";
 import { admissionModalTypes } from "@/constants/modal-types";
 import { DateFunc } from "@/utilities/date";
+import { Loader } from "react-feather";
 import { FiPlusCircle } from "react-icons/fi";
 import { IoArrowBack } from "react-icons/io5";
 import AdmissionCreateModal from "../create/Create";
@@ -23,13 +24,10 @@ const AdmissionsIndex = () => {
     handleAdmissionDischarge,
     handleAdmissionModal,
     navigate,
-    setState,
-    state,
+    currentPage,
+    setCurrentPage,
+    itemsPerPage,
     tableHeader,
-    handleAdmissionDateFilter,
-    handleDischargeDateFilter,
-    handleDepartmentFilter,
-    handleWardFilter,
     admissionDate,
     dischargeDate,
     department,
@@ -38,7 +36,12 @@ const AdmissionsIndex = () => {
     handleDischargeDateChange,
     handleWardChange,
     ward,
-    client
+    client,
+    isLoading,
+    isSuccess,
+    status,
+    filteredData,
+    paginatedData,
   } = useAdmission();
 
   return (
@@ -84,61 +87,73 @@ const AdmissionsIndex = () => {
                       actionWidth="min-w-[220px]"
                       title={tableHeader}
                     />
-                    {admissionList
-                      ?.slice()
-                      ?.filter(handleAdmissionDateFilter)
-                      ?.filter(handleDischargeDateFilter)
-                      ?.filter(handleDepartmentFilter)
-                      ?.filter(handleWardFilter)
-                      ?.map((item, index) => (
-                        <TableBody
-                          index={index}
-                          isAction
-                          actionWidth="min-w-[220px]"
-                          btnOutlineHandler={() =>
-                            handleAdmissionDischarge(item)
-                          }
-                          viewResultHandler={() => handleAdmissionDetails(item)}
-                          btn={{
-                            viewResult: "View Details ",
-                            ...(!item?.ipdDischargeDate && {
-                              btnOutline: "Discharge",
-                            }),
-                          }}
-                          item={[
-                            {
-                              title: item?.ipdAdmissionDate
-                                ? DateFunc.toFormatted(item?.ipdAdmissionDate)
-                                : "",
-                              w: "20%",
-                            },
-                            {
-                              title:
-                                item?.bed?.ward?.firm?.department?.description,
-                              w: "20%",
-                            },
-                            {
-                              title: item?.bed?.ward?.firm?.description,
-                              w: "20%",
-                            },
-                            { title: item?.bed?.ward?.description, w: "20%" },
-                            { title: item?.bed?.description, w: "20%" },
-                            {
-                              title: item?.ipdDischargeDate
-                                ? DateFunc.toFormatted(item?.ipdDischargeDate)
-                                : "",
-                              w: "20%",
-                            },
-                          ]}
-                        />
-                      ))}
+
+                    {/* EMPTY DATA MESSAGE */}
+                    {isSuccess &&
+                      status === "fulfilled" &&
+                      admissionList?.length === 0 && (
+                        <div className="flex justify-center items-center h-40">
+                          <p className="text-xl text-gray-500">
+                            No Admission Found
+                          </p>
+                        </div>
+                      )}
+
+                    {/* LOADING SPINNER */}
+                    {(isLoading || status === "pending") && (
+                      <div className="flex justify-center py-4">
+                        <Loader size={40} />
+                      </div>
+                    )}
+
+                    {/* TABLE DATA */}
+                    {paginatedData?.map((item, index) => (
+                      <TableBody
+                        index={index}
+                        isAction
+                        actionWidth="min-w-[220px]"
+                        btnOutlineHandler={() => handleAdmissionDischarge(item)}
+                        viewResultHandler={() => handleAdmissionDetails(item)}
+                        btn={{
+                          viewResult: "View Details ",
+                          ...(!item?.ipdDischargeDate && {
+                            btnOutline: "Discharge",
+                          }),
+                        }}
+                        item={[
+                          {
+                            title: item?.ipdAdmissionDate
+                              ? DateFunc.toFormatted(item?.ipdAdmissionDate)
+                              : "",
+                            w: "20%",
+                          },
+                          {
+                            title:
+                              item?.bed?.ward?.firm?.department?.description,
+                            w: "20%",
+                          },
+                          {
+                            title: item?.bed?.ward?.firm?.description,
+                            w: "20%",
+                          },
+                          { title: item?.bed?.ward?.description, w: "20%" },
+                          { title: item?.bed?.description, w: "20%" },
+                          {
+                            title: item?.ipdDischargeDate
+                              ? DateFunc.toFormatted(item?.ipdDischargeDate)
+                              : "",
+                            w: "20%",
+                          },
+                        ]}
+                      />
+                    ))}
                   </Table>
                   <div className="flex justify-end mx-5">
                     <CustomPagination
-                      activePage={state}
-                      setActivePage={setState}
-                      itemsCountPerPage={5}
-                      totalItemsCount={admissionList?.length || 1}
+                      activePage={currentPage}
+                      setActivePage={setCurrentPage}
+                      itemsCountPerPage={itemsPerPage}
+                      totalItemsCount={filteredData?.length || 1}
                     />
                   </div>
                 </div>

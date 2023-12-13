@@ -11,6 +11,7 @@ import {
   ClientAdmissionErrorType,
   clientAdmissionValidator,
 } from "@/validation-models/client-admission-validator";
+import dayjs from "dayjs";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
@@ -93,6 +94,9 @@ const useCreate = () => {
     const data = {
       ...baseModel,
       ...admissionData,
+      admissionDate: new Date(
+        dayjs(admissionData.admissionDate).format("YYYY-MM-DD")
+      ).toISOString(),
       clientID: clientId,
     };
 
