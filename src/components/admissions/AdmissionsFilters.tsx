@@ -1,16 +1,39 @@
 import useWindowWidth from "@/hooks/useWindow";
-import React from "react";
 import DateInput from "../core/form-elements/DatePicker";
 import Select from "../core/form-elements/Select";
+import useAdmissionFilter from "./useAdmissionFilter";
 
-const AdmissionsFilters = () => {
-  const [allFilters, setAllFilters] = React.useState(false);
+const AdmissionsFilters = ({
+  admissionDate,
+  dischargeDate,
+  department,
+  handleAdmissionDateChange,
+  handleDepartmentChange,
+  handleDischargeDateChange,
+  handleWardChange,
+  ward,
+}) => {
   const w1100 = useWindowWidth(1100);
+  const { departments, filtersHandler, isFiltersHidden, wards } =
+    useAdmissionFilter();
 
-  const filtersHandler = () => {
-    setAllFilters((prev) => !prev);
+  console.log("admissionDate", admissionDate);
+
+  const renderDepartmentOptions = () => {
+    return departments.map((department) => (
+      <option key={department.oid} value={department.oid}>
+        {department.description}
+      </option>
+    ));
   };
-  const isFiltersHidden = `${allFilters === false ? "hidden" : ""}`;
+
+  const renderWardOptions = () => {
+    return wards.map((ward) => (
+      <option key={ward.oid} value={ward.oid}>
+        {ward.description}
+      </option>
+    ));
+  };
 
   return (
     <div>
@@ -18,7 +41,11 @@ const AdmissionsFilters = () => {
         <div className={`grid grid-cols-8 gap-3 justify-between`}>
           <div className="col-span-8 md:col-span-4 lg:col-span-2 w-full grid grid-cols-4 justify-between">
             <div className="col-span-3 md:col-span-4">
-              <DateInput onChange={() => {}} label="Admission Date"></DateInput>
+              <DateInput
+                selected={admissionDate ? new Date(admissionDate) : null}
+                onChange={handleAdmissionDateChange}
+                label="Admission Date"
+              />
             </div>
             <div className="text-end md:hidden">
               <button
@@ -32,21 +59,35 @@ const AdmissionsFilters = () => {
           <div
             className={`${isFiltersHidden} md:block col-span-8 md:col-span-4 lg:col-span-2 w-full`}
           >
-            <Select label="Department">
-              <option value="urgent">Urgent</option>
-              <option value="regular">Regular</option>
-              <option value="emergency">Emergency</option>
+            <Select
+              label="Department"
+              value={department}
+              name="department"
+              onChange={(e) => handleDepartmentChange(e.target.value)}
+            >
+              {departments && renderDepartmentOptions()}
             </Select>
           </div>
           <div
             className={`${isFiltersHidden} md:block col-span-8 md:col-span-4 lg:col-span-2 w-full`}
           >
-            <Select label="Ward"></Select>
+            <Select
+              label="Ward"
+              name="ward"
+              value={ward}
+              onChange={(e) => handleWardChange(e.target.value)}
+            >
+              {wards && renderWardOptions()}
+            </Select>
           </div>
           <div
             className={`${isFiltersHidden} md:block col-span-8 md:col-span-4 lg:col-span-2 w-full`}
           >
-            <Select label="Discharge Date"></Select>
+            <DateInput
+              selected={dischargeDate ? new Date(dischargeDate) : null}
+              onChange={handleDischargeDateChange}
+              label="Discharge Date"
+            />
           </div>
         </div>
       </div>

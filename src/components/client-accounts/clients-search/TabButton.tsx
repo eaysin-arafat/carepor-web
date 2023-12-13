@@ -1,7 +1,10 @@
 import { cn } from "@/utilities/cn";
 
+// const defaultButtonCss =
+//   " w-[138px] text-white bg-primaryColor hover:bg-primaryHoverColor  hover:text-white bg-whiteColor border-2 !border-primaryColor py-1.5 rounded-full transition-all ease-in-out duration-500 min-w-[84px]";
+
 const defaultButtonCss =
-  " w-[138px] text-textColor bg-black hover:bg-primaryHoverColor  hover:text-white bg-whiteColor border-2 !border-primaryColor py-1.5 rounded-full transition-all ease-in-out duration-500 min-w-[84px]";
+  " w-[138px] py-2.5 rounded-full border border-primaryColor hover:bg-primaryHoverColor hover:text-white min-w-[84px]";
 
 const TabButton = ({ handleSearchTabChange, search }) => {
   return (

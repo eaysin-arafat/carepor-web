@@ -30,6 +30,8 @@
   --tableHead: #e8f4ff;
   --tableRow: #f3f8ff;
   --overlay: #007aecbb;
+  --logoColor: #1890ff;
+  --logoColor2: #15ac12;
 }
 
 .dark {
@@ -52,6 +54,8 @@
   --tableHead: #2b2c30;
   --tableRow: #000;
   --overlay: #20232b;
+  --logoColor: #1890ff;
+  --logoColor2: #15ac12;
 }
 
 .gray {
@@ -74,6 +78,8 @@
   --tableHead: #5f5f60;
   --tableRow: #6c6c6c;
   --overlay: #333333;
+  --logoColor: #a1a1b0;
+  --logoColor2: #a1a1b0;
 }
 
 p,
@@ -94,6 +100,11 @@ div {
 
 input {
   color: var(--text) !important;
+}
+
+input[type="checkbox"] {
+  color: var(--primary) !important;
+  border: 1px solid var(--primary) !important;
 }
 
 span {
@@ -268,7 +279,11 @@ body {
 }
 
 .default_option {
-  color: #6b6e75 !important;
+  color: var(--text) !important;
+}
+
+select {
+  color: var(--text) !important;
 }
 
 select option {

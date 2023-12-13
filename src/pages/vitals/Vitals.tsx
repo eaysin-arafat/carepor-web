@@ -38,7 +38,7 @@ function Vitals() {
                 <button className="transparent_btn py-1 px-4 sm:px-7 text-sm sm:text-base bg-whiteBgColor border-primaryColor hover:text-whiteColor hover:bg-primaryColor ">
                   Last 5 Encounters
                 </button>
-                <button 
+                <button
                   onClick={handleAddVitalModal}
                   className="main_btn py-2 px-5 gap-1 inline-flex md:hidden"
                 >
