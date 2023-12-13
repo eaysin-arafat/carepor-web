@@ -48,7 +48,7 @@ const PatientCard = ({ client, className }: PatientCardProps) => {
         {}
       );
       cookieManager.saveCookie(
-        "encounter",
+        "opdVisitSession",
         JSON.stringify({ oid: opdVisit?.oid }),
         {}
       );
@@ -131,14 +131,6 @@ const PatientCard = ({ client, className }: PatientCardProps) => {
                     </span>
                     <span className="text-grayColor text-xs">
                       {clientAddress(client)}
-                      {/* {client?.householdNumber &&
-                        "H#" + client?.householdNumber + ","}
-                      &nbsp;
-                      {client?.road && "R#" + client?.road + ","}&nbsp;
-                      {client?.area && client?.area + ","}
-                      &nbsp;
-                      {client?.townName && client?.townName}{" "}
-                      {client?.landmarks && `(${client?.landmarks})`} */}
                     </span>
                   </div>
                 </div>

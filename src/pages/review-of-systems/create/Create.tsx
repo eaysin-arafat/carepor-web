@@ -20,7 +20,7 @@ const CreateReviewOfSystems = ({ toggler }) => {
                 <SubmitButton
                   title="Add System"
                   icon={<PlusCircle size={14} />}
-                  className="py-1.5 text-base w-[fit-content] whitespace-nowrap gap-2"
+                  className="py-1.5 text-base w-[fit-content] whitespace-nowrap  gap-2"
                 />
               </div>
             </div>

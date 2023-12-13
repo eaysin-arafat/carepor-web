@@ -1,10 +1,12 @@
+import SubmitButton from "@/components/core/buttons/SubmitButton";
+import Input from "@/components/core/form-elements/Input";
 import { useReadTestsQuery } from "@/features/investigation/investigation-enum-api";
 import useWindowWidth from "@/hooks/useWindow";
 import { OnchangeEventType } from "@/types/htmlEvents";
 import { cn } from "@/utilities/cn";
+import { datePickerToString } from "@/utilities/date";
 import React from "react";
 import DateInput from "../../../components/core/form-elements/DatePicker";
-import Search from "../../../components/core/form-elements/Search";
 import Select from "../../../components/core/form-elements/Select";
 
 type Props = {
@@ -16,6 +18,11 @@ type Props = {
   setTest: React.Dispatch<React.SetStateAction<number>>;
   department?: string | number;
   setDepartment?: React.Dispatch<React.SetStateAction<number>>;
+  setDate?: React.Dispatch<React.SetStateAction<Date | null>>;
+  date?: Date | null;
+  handleSearch?: () => void;
+  name?: string;
+  setName?: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const InvestigationQueueFilters = ({
@@ -24,6 +31,10 @@ const InvestigationQueueFilters = ({
   // priority,
   setPriority,
   setTest,
+  setDate,
+  date,
+  name,
+  setName,
 }: // test,
 // setDepartment,
 Props) => {
@@ -36,6 +47,9 @@ Props) => {
 
   // test enum
   const { data: tests } = useReadTestsQuery(undefined);
+
+
+ 
 
   return (
     <div>
@@ -55,11 +69,17 @@ Props) => {
         <div className={`grid grid-cols-10 gap-3 justify-between`}>
           <div className="col-span-10 md:col-span-5 lg:col-span-2 w-full grid grid-cols-4 justify-between">
             <div className="col-span-3 md:col-span-4">
-              <Search
+              <Input
+                type="search"
+                label="Client Name"
+                onChange={(e)=> setName(e.target.value)}
+                placeholder="Client Name"
+              />
+              {/* <Search
                 type="search"
                 label="Client Name"
                 placeholder="Search..."
-              />
+              /> */}
             </div>
             <div className="text-end md:hidden">
               <button
@@ -75,11 +95,20 @@ Props) => {
           >
             <DateInput
               isClearable
-              onChange={() => {}}
-              // selected={date}
+              onChange={setDate}
+              selected={date}
+              // placeholderText="Order Date"
               label="Order Date"
               max={new Date()}
             />
+          </div>
+          <div
+            className={`${isFiltersHidden} md:block col-span-10 md:col-span-5 lg:col-span-2 w-full `}
+          >
+            {" "}
+            <div className="flex items-end h-full">
+              <SubmitButton title="Search" />
+            </div>
           </div>
           <div
             className={`${isFiltersHidden} md:block col-span-10 md:col-span-5 lg:col-span-2 w-full`}
@@ -114,15 +143,17 @@ Props) => {
                   ))}
             </Select>
           </div>
-          <div
-            className={`${isFiltersHidden} md:block col-span-10 md:col-span-5 lg:col-span-2 w-full`}
-          >
-            <Select selectShow="All" disabled label="Department">
-              <option value="1">Department</option>
-              <option value="2">Department</option>
-              <option value="3">Department</option>
-            </Select>
-          </div>
+          {false && (
+            <div
+              className={`${isFiltersHidden} md:block col-span-10 md:col-span-5 lg:col-span-2 w-full`}
+            >
+              <Select selectShow="All" disabled label="Department">
+                <option value="1">Department</option>
+                <option value="2">Department</option>
+                <option value="3">Department</option>
+              </Select>
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -58,7 +58,7 @@ const Investigation = () => {
                 test={0}
                 department={0}
                 setDepartment={() => {}}
-                title="Title"
+                title=""
                 className="border-none bg-transparent"
               />
               <Table isRounded>

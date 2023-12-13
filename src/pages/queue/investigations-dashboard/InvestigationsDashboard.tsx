@@ -21,16 +21,10 @@ function InvestigationsDashboard() {
   // Request state for page and item
   const [pageNo, setPageNo] = useState(1);
   const [itemPerPage, setItemPerPage] = useState(10);
-  // const [dateSearch, setDateSearch] = useState("");
-  // const [patientName, setPatientName] = useState("");
-  const dateSearch = "";
-  const patientName = "";
-  // states
+  const [dateSearch, setDateSearch] = useState("");
+  const [patientName, setPatientName] = useState("");
 
-  // filter states
-  const [priority, setPriority] = useState(0);
-  const [test, setTest] = useState(0);
-  const [department, setDepartment] = useState(0);
+  // states
 
   // Request for investigation data
   const { data: instigationDashBoard, refetch } =
@@ -51,6 +45,11 @@ function InvestigationsDashboard() {
   const { investigations = [], resultRecievedTotalItems } =
     instigationDashBoard || {};
 
+  // filter states
+  const [priority, setPriority] = useState(0);
+  const [test, setTest] = useState(0);
+  const [department, setDepartment] = useState(0);
+
   const priortyFilter = (data: TypeInvestigation) => {
     return !priority ? true : data?.piority == priority;
   };
@@ -61,15 +60,29 @@ function InvestigationsDashboard() {
     return data;
   };
 
+  console.log(dateSearch);
+
   const filterInvestigation =
     investigations
       ?.filter(priortyFilter)
       .filter(testNameFilter)
       .filter(departmentFilter) || [];
 
-  console.log(investigations);
+  // Search State for order date or name
+  const [date, setDate] = useState(null);
+  const [name, setName] = useState("");
+  const handleSearch = (): void => {
+    setPatientName(name);
+    if (date) {
+      setDateSearch(new Date(date).toISOString());
+    } else {
+      setDateSearch("");
+    }
+    refetch();
+  };
+
   return (
-    <div className={`${w1100 && "mt-12"}`}>
+    <div className={`${w1100 && "mt-12 "}`}>
       <InvestigationQueueFilters
         priority={priority}
         setPriority={setPriority}
@@ -78,11 +91,15 @@ function InvestigationsDashboard() {
         department={department}
         setDepartment={setDepartment}
         title="Investigation Queue"
+        date={date}
+        setDate={setDate}
+        handleSearch={handleSearch}
+        name={name}
+        setName={setName}
       />
 
-      <br />
-      <div onClick={refetch}>refetch</div>
-      <br />
+      <div onClick={handleSearch}>Test refetch</div>
+
       <div className="mt-5 bg-whiteBgColor pb-5 rounded-xl shadow-light ">
         <Table isRounded>
           <TableHeader
@@ -142,7 +159,7 @@ function InvestigationsDashboard() {
             itemsCountPerPage={itemPerPage}
             setItemPerPage={setItemPerPage}
             setActivePage={setPageNo}
-            totalItemsCount={resultRecievedTotalItems} 
+            totalItemsCount={resultRecievedTotalItems}
           />
         </div>
       </div>

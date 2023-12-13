@@ -92,13 +92,24 @@ const investigationApi = API.injectEndpoints({
         url: `/investigation/investigation-dashboard/${facilityId}?page=${pageNo}&pageSize=${itemPerPage}&PatientName=${PatientName.replace(
           / /g,
           "%20"
-        )}&investigationDateSearch=${investigationDateSearch}`,
+        )}&investigationDateSearch=${dateStringformatter(
+          investigationDateSearch
+        )}`,
         method: "GET",
       }),
       providesTags: ["InvestigationDashboard"],
     }),
   }),
 });
+
+const dateStringformatter = (dataString: string): string => {
+  if (!dataString) return "";
+  let date = new Date(dataString);
+  const day = date.getDate().toString().padStart(2, "0");
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const year = date.getFullYear();
+  return `${day}%2F${month}%2F${year}`;
+};
 
 // export hooks
 export const {

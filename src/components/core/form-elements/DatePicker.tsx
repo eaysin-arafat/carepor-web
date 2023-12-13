@@ -16,6 +16,7 @@ interface DateInputProps {
   max?: Date | null;
   notOnKeyDown?: boolean;
   isClearable?: boolean;
+  placeholderText?: string;
 }
 
 const DateInput: React.FC<DateInputProps> = ({
@@ -32,6 +33,7 @@ const DateInput: React.FC<DateInputProps> = ({
   max = null,
   notOnKeyDown,
   isClearable = false,
+  placeholderText = "dd/mm/yyyy",
 }) => {
   const handleOnKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (!notOnKeyDown) {
@@ -58,7 +60,7 @@ const DateInput: React.FC<DateInputProps> = ({
         dropdownMode="select"
         onChange={onChange}
         dateFormat={"dd/MM/yyyy"}
-        placeholderText="dd/mm/yyyy"
+        placeholderText={placeholderText}
         onKeyDown={handleOnKeyDown}
         wrapperClassName="w-full"
         className={`custom-input w-[100%] ${className}`}
