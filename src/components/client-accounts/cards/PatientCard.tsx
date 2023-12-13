@@ -21,8 +21,8 @@ import { MdOutlinePerson2, MdOutlinePhone } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 
 const gender = {
-  1: "male",
-  2: "female",
+  1: "Male",
+  2: "Female",
 };
 
 type PatientCardProps = {
@@ -42,8 +42,16 @@ const PatientCard = ({ client, className }: PatientCardProps) => {
 
   useEffect(() => {
     if (status === RtkStatusEnum.fulfilled && opdVisit?.oid) {
-      cookieManager.saveCookie("client", JSON.stringify(client), {});
-      cookieManager.saveCookie("opdVisitSession", JSON.stringify(opdVisit), {});
+      cookieManager.saveCookie(
+        "client",
+        JSON.stringify({ oid: client?.oid }),
+        {}
+      );
+      cookieManager.saveCookie(
+        "opdVisitSession",
+        JSON.stringify({ oid: opdVisit?.oid }),
+        {}
+      );
       if (originalArgs.type == "servicePoint") {
         navigate(URLServicePoint());
       }
@@ -123,14 +131,6 @@ const PatientCard = ({ client, className }: PatientCardProps) => {
                     </span>
                     <span className="text-grayColor text-xs">
                       {clientAddress(client)}
-                      {/* {client?.householdNumber &&
-                        "H#" + client?.householdNumber + ","}
-                      &nbsp;
-                      {client?.road && "R#" + client?.road + ","}&nbsp;
-                      {client?.area && client?.area + ","}
-                      &nbsp;
-                      {client?.townName && client?.townName}{" "}
-                      {client?.landmarks && `(${client?.landmarks})`} */}
                     </span>
                   </div>
                 </div>

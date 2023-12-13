@@ -7,7 +7,7 @@ import React from "react";
 const useAdmissionFilter = () => {
   const [allFilters, setAllFilters] = React.useState(false);
 
-  const facility = cookieManager.parseCookie<FacilityToken>("facility_token");
+  const facility = cookieManager.parseCookie<FacilityToken>("facility");
 
   // api hooks
   const { data: departments } = useReadDepartmentsQuery(facility?.facilityId, {

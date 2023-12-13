@@ -1,18 +1,22 @@
+import { OnchangeEventType } from "@/types/htmlEvents";
 import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import ReactPagination from "react-js-pagination";
+import Select from "../form-elements/Select";
 
 type Props = {
   activePage: number;
-  setActivePage: (page: number) => void;
-  itemsCountPerPage: number;
+  setActivePage: React.Dispatch<React.SetStateAction<number>>;
+  itemsCountPerPage?: number;
   totalItemsCount: number;
+  setItemPerPage: React.Dispatch<React.SetStateAction<number>>;
 };
 
 /**
  *
  * @param activePage Number
  * @param setActivePage Function
+ * @param setItemPerPage Function
  * @param totalItemCount Number
  * @param itemsCountPerPage Number
  * @param totalItemsCount Function
@@ -24,13 +28,32 @@ function CustomPagination({
   setActivePage = () => {},
   itemsCountPerPage = 5,
   totalItemsCount = 10,
+  setItemPerPage = () => {},
 }: Props) {
   const handlePageChange = (pageNo: number) => {
     // console.log(getPageNo);
     setActivePage(pageNo);
   };
+  let showInPage = [10, 20, 50, 100];
+
   return (
-    <div className="flex mt-5">
+    <div className="flex mt-5 items-center gap-3 ">
+      <div className="flex items-center gap-2">
+        <span className="text-[14px] p-1 ">Show </span>
+        <Select
+          isHideSelect
+          className="p-1  col-span-1 text-[14px] text-center w-20"
+          label=""
+          onChange={(e: OnchangeEventType) => setItemPerPage(+e.target.value)}
+        >
+          {showInPage.map((key) => (
+            <option key={key} value={key}>
+              {key}
+            </option>
+          ))}
+        </Select>
+      </div>
+
       <ReactPagination
         activePage={activePage}
         itemsCountPerPage={itemsCountPerPage}

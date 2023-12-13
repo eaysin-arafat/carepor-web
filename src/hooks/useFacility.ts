@@ -5,7 +5,7 @@ const useFacility = () => {
   const [facility, setFacility] = React.useState(null);
 
   React.useEffect(() => {
-    const facility = cookieManager.parseCookie("facility_token");
+    const facility = cookieManager.parseCookie("facility");
     setFacility(facility);
   }, []);
 

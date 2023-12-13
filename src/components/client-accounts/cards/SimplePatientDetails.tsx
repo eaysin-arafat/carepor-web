@@ -1,5 +1,9 @@
+import { useReadClientByKeyQuery } from "@/features/client/client-api";
 import { Client } from "@/interface/clients";
+import { TypeClientCookie } from "@/types";
+import { clientAddress } from "@/utilities";
 import { cn } from "@/utilities/cn";
+import { cookieManager } from "@/utilities/cookie-manager";
 import { DateFunc } from "@/utilities/date";
 import { Calendar } from "react-feather";
 import { FaRegAddressCard } from "react-icons/fa";
@@ -9,7 +13,7 @@ import { MdOutlinePerson2, MdOutlinePhone } from "react-icons/md";
 interface Props {
   className?: string;
   withoutAction?: boolean;
-  client: Client;
+  client?: Client;
 }
 
 const gender = {
@@ -17,22 +21,17 @@ const gender = {
   2: "Female",
 };
 
-const SimplePatientDetails = ({ className, client }: Props) => {
-  let address = "";
-  if (client?.householdNumber) {
-    address += "H#" + client?.householdNumber + ", ";
-  }
-  if (client?.road) {
-    address += "R#" + client?.road + ", ";
-  }
-  if (client?.area) {
-    address += client?.area + ", ";
-  }
-  if (client?.townName) {
-    address += client?.townName + ", ";
-  }
-  if (client?.landmarks) {
-    address += client?.landmarks;
+const SimplePatientDetails = ({ className, client: clientData }: Props) => {
+  const clientCookie: TypeClientCookie | null =
+    cookieManager.parseCookie("client");
+  const { data } = useReadClientByKeyQuery(clientCookie?.oid, {
+    skip: !clientCookie?.oid && Object.keys(clientData)?.length > 0,
+    refetchOnMountOrArgChange: true,
+  });
+
+  let client = clientData;
+  if (!client) {
+    client = data;
   }
 
   return (
@@ -78,7 +77,7 @@ const SimplePatientDetails = ({ className, client }: Props) => {
           <div className="col-span-2">
             <Item
               title="Address"
-              data={address}
+              data={clientAddress(client)}
               icon={<LuMapPin size={18} />}
             />
           </div>

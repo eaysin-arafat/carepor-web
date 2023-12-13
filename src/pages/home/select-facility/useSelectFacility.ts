@@ -104,12 +104,12 @@ const useSelectFacility = () => {
     const cookieData = JSON.stringify(facilityToken);
 
     if (data?.userAccount.userType == 1) {
-      cookieManager.saveCookie("facility_token", cookieData, {
+      cookieManager.saveCookie("facility", cookieData, {
         expires: 1,
       });
       navigate(URLClientSearch());
     } else if (isPermitted) {
-      cookieManager.saveCookie("facility_token", cookieData, {
+      cookieManager.saveCookie("facility", cookieData, {
         expires: 1,
       });
       navigate(URLClientSearch());

@@ -1,6 +1,5 @@
 import ClientDetailsCard from "@/components/core/card/ClientDetailsCard";
 import CustomPagination from "@/components/core/custom-pagination/CustomPagination";
-import InvestigationQueueFilters from "@/components/queue/investigation-queue/InvestigationQueueFilters";
 import DataSummaryList from "@/components/shared/data-summary/DataSummaryList";
 import CollapsibleTableBody from "@/components/shared/table/ColapsableTableBody";
 import Table from "@/components/shared/table/Table";
@@ -9,6 +8,7 @@ import TableHeader from "@/components/shared/table/TableHeader";
 import { investigationModalTypes } from "@/constants/modal-types";
 import { openAddModal } from "@/features/modal/modal-slice";
 import useWindowWidth from "@/hooks/useWindow";
+import InvestigationQueueFilters from "@/pages/queue/investigations-dashboard/InvestigationQueueFilters";
 import { cn } from "@/utilities/cn";
 import React from "react";
 import { FiPlusCircle } from "react-icons/fi";
@@ -65,7 +65,16 @@ const Investigation = () => {
               </button>
             </div>
             <div className=" bg-whiteBgColor pb-5 rounded-xl shadow-light">
-              <InvestigationQueueFilters className="border-none bg-transparent" />
+              <InvestigationQueueFilters
+                priority={0}
+                setPriority={() => {}}
+                setTest={() => {}}
+                test={0}
+                department={0}
+                setDepartment={() => {}}
+                title=""
+                className="border-none bg-transparent"
+              />
               <Table isRounded>
                 <TableHeader
                   className="bg-tableHeadColor text-textColor"
@@ -156,6 +165,7 @@ const Investigation = () => {
                   itemsCountPerPage={state}
                   setActivePage={setState}
                   totalItemsCount={100}
+                  setItemPerPage={() => {}}
                 />
               </div>
             </div>

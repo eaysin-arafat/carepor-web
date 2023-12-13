@@ -55,3 +55,7 @@ export type TypeOpdVisitFrom = {
   clientId: string;
   type: string;
 };
+
+export type TypeClientCookie = {
+  oid: string;
+};

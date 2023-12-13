@@ -45,21 +45,27 @@ function Password({
       <div className="relative w-full">
         <input
           type={showPassword ? type : "password"}
-          className={`custom-input text-base min-h-[52px] ${disabled && "disabled_bg"} ${className}`}
+          className={`custom-input text-base min-h-[52px] ${
+            disabled && "disabled_bg"
+          } ${className}`}
           value={value}
           name={name}
           onChange={onChange}
           disabled={disabled}
           pattern={pattern}
           max={max || "250"}
-          placeholder={`${placeholder ? placeholder : "Must be 8 characters"}`}
+          placeholder={`${placeholder ? placeholder : "Minimum 8 characters"}`}
         />
         <button
           type="button"
           onClick={togglePasswordVisibility}
           className="absolute right-5 top-1/2 text-base transform -translate-y-1/2 cursor-pointer dark:text-gray-500"
         >
-          {showPassword ? <FiEyeOff className="text-xl text-primaryColor" /> : <FiEye className="text-xl text-primaryColor" />}
+          {showPassword ? (
+            <FiEyeOff className="text-xl text-primaryColor" />
+          ) : (
+            <FiEye className="text-xl text-primaryColor" />
+          )}
         </button>
       </div>
 

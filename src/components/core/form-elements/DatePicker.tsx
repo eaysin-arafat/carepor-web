@@ -15,6 +15,8 @@ interface DateInputProps {
   min?: Date | null;
   max?: Date | null;
   notOnKeyDown?: boolean;
+  isClearable?: boolean;
+  placeholderText?: string;
 }
 
 const DateInput: React.FC<DateInputProps> = ({
@@ -30,6 +32,8 @@ const DateInput: React.FC<DateInputProps> = ({
   min = null,
   max = null,
   notOnKeyDown,
+  isClearable = false,
+  placeholderText = "dd/mm/yyyy",
 }) => {
   const handleOnKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (!notOnKeyDown) {
@@ -40,10 +44,7 @@ const DateInput: React.FC<DateInputProps> = ({
   return (
     <div className="flex  flex-col w-full items-start justify-start gap-[6px]">
       <div className="flex w-full">
-        <div className="input_label ">
-          {" "}
-          {label}
-        </div>
+        <div className="input_label "> {label}</div>
         {required && <span className="-mt-[6px] mx-1 text-dangerColor">*</span>}
       </div>
       <ReactDatePicker
@@ -54,11 +55,12 @@ const DateInput: React.FC<DateInputProps> = ({
         minDate={min}
         maxDate={max}
         name={name}
+        isClearable={isClearable}
         disabled={disabled}
         dropdownMode="select"
         onChange={onChange}
         dateFormat={"dd/MM/yyyy"}
-        placeholderText="dd/mm/yyyy"
+        placeholderText={placeholderText}
         onKeyDown={handleOnKeyDown}
         wrapperClassName="w-full"
         className={`custom-input w-[100%] ${className}`}

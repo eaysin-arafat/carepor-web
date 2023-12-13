@@ -127,3 +127,21 @@ export const getAgeMessage = (dateString: string) => {
     };
   }
 };
+
+export const datePickerToString = (picker: Date | null) => {
+  if (!picker) {
+    return undefined;
+  } else {
+    const currentDate = new Date().toISOString();
+    const currentSub = currentDate.substring(10);
+    //
+    const pickerDate = new Date(picker);
+    const day = pickerDate.getDate().toString().padStart(2, "0");
+    const month = (pickerDate.getMonth() + 1).toString().padStart(2, "0");
+    const year = pickerDate.getFullYear();
+    const pickedCustom = `${year}-${month}-${day}`;
+    //
+    const returnDate = pickedCustom + currentSub;
+    return returnDate;
+  }
+};

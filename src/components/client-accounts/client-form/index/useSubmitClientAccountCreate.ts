@@ -38,7 +38,7 @@ const useSubmitClientAccountCreate = ({
   const { user } = useSelector((state: RootState) => state.authentication);
   const dispatch = useDispatch();
 
-  const facility = cookieManager.parseCookie("facility_token");
+  const facility = cookieManager.parseCookie("facility");
 
   const [
     clientRegistration,
