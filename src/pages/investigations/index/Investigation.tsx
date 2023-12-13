@@ -13,6 +13,7 @@ import { FiPlusCircle } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import InvestigationAddResultModal from "../create/InvestigationAddResultModal";
 import InvestigationCreate from "../create/InvestigationCreate";
+import InvestigationViewOrderModal from "../create/InvestigationViewOrderModal";
 // import InvestigationCreateForm from "@/components/investigations/InvestigationCreateForm";
 
 const Investigation = () => {
@@ -38,11 +39,21 @@ const Investigation = () => {
     );
   };
 
+  const handleViewOrder = () => {
+    dispatch(
+      openAddModal({
+        modalId: investigationModalTypes.investigationViewOrder,
+        data: null,
+      })
+    );
+  };
+
   return (
     <>
       {/* Modal Components  */}
       <InvestigationCreate />
       <InvestigationAddResultModal />
+      <InvestigationViewOrderModal />
 
       <div className={cn("", { "mt-12": w1100 })}>
         {/* <InvestigationCreateForm/> */}
@@ -115,6 +126,7 @@ const Investigation = () => {
                               colorKey={2}
                               isAction
                               btnOutlineHandler={handleAddResult}
+                              viewResultHandler={handleViewOrder}
                               actionWidth="min-w-[220px]"
                               btn={{
                                 viewResult: "View Order",
@@ -138,6 +150,7 @@ const Investigation = () => {
                         isAction
                         actionWidth="min-w-[220px]"
                         btnOutlineHandler={handleAddResult}
+                        viewResultHandler={handleViewOrder}
                         btn={{
                           viewResult: "View Order",
                           btnOutline: "Add Result",
