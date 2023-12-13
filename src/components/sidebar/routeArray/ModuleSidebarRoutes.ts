@@ -127,11 +127,11 @@ const ModuleSidebarRoutes: SidebarItem[] = [
     id: 11,
     title: "Admissions",
 
-    link: "/admissions",
+    link: "#",
     icon: "/assets/svg/sidebar/admissions.svg",
     children: null,
   },
-  {                   
+  {
     id: 12,
     title: "Investigation",
     link: "/investigation",
