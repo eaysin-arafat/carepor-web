@@ -1,9 +1,9 @@
-import { clientsTags } from "./clients-tags.js";
-import { facilityTags } from "./facility-tags.js";
-import { mainModuleTags } from "./modules-tags.js";
-import { modulesTab } from "./tab-items-tags.js";
-import { queuePagesTags } from "./queue-page-tags.js";
-import { userTags } from "./user-accounts.js";
+import { clientsTags } from "./clients-tags";
+import { facilityTags } from "./facility-tags";
+import { mainModuleTags } from "./modules-tags";
+import { modulesTab } from "./tab-items-tags";
+import { queuePagesTags } from "./queue-page-tags";
+import { userTags } from "./user-accounts";
 
 const apiTags = [
   ...userTags,

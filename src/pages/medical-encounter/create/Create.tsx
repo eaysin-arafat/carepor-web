@@ -9,6 +9,7 @@ import ModuleStepping from "@/components/shared/multi-step/ModuleStepping";
 import PastRecordList from "@/components/shared/past-record-list/PastRecordList";
 import { medicalEncounterModalTypes } from "@/constants/modal-types";
 import { closeAddModal, openAddModal } from "@/features/modal/modal-slice";
+import useWindowWidth from "@/hooks/useWindow";
 import CreateAllergy from "@/pages/allergies/create/Create";
 import CreateChiefComplaints from "@/pages/chief-complaints/create/Create";
 import CreatePastMedicalHistory from "@/pages/past-medical-histories/create/Create";
@@ -128,8 +129,8 @@ const StepButton = ({
 
 const Stepping = () => {
   return (
-    <div className="text-center box_shadow_2 text-[#03045E] font-semibold font-poppins">
-      <div className="flex justify-evenly items-center">
+    <div className="text-center text-[#03045E] font-semibold font-poppins overflow-x-auto">
+      <div className="flex justify-evenly items-center w-[750px]">
         <StepButton isComplete text="Complaint" />
         <div>
           <ChevronRight size={18} />
@@ -211,6 +212,10 @@ console.log(
 const CreateMedicalEncounter = () => {
   const [openModal, setOpenModal] = React.useState(false);
 
+  // * Responsive Hokes
+  const w1300 = useWindowWidth(1300);
+  const w1000 = useWindowWidth(1000);
+
   const { addModal } = useSelector((state: RootState) => state.modal);
 
   const dispatch = useDispatch();
@@ -271,132 +276,49 @@ const CreateMedicalEncounter = () => {
     <div>
       <Header />
       <FormSubHeader />
-      <ClientDetailsCard />
-      <div className="grid grid-cols-12 gap-4 mt-3 px-5">
-        <PastRecordList
-          title="Latest Encounter"
-          isSubTitleShow
-          subTitle="12-Dec-2023"
-          isPastEncounter
-        />
-        <div className="col-span-6">
-          <ModuleStepping />
-          <div className="box_shadow_2 mt-5 flex flex-col gap-4 px-4 py-4 rounded">
-            {/* <Accordion title="Present Complaints" modalHandler={toggleModal}>
-              <div className="space-y-4">
-                <Textarea label="Presenting Complaint" />
-                <Textarea label="Presenting Complaint" />
-              </div>
-            </Accordion>
-            <Accordion
-              title="Serostatus and Disclosure"
-              modalHandler={toggleModal}
-            >
-              <div className="">
-                <SelectContainer isOne />
-              </div>
-            </Accordion>
-            <Accordion title="TB Symptoms" modalHandler={toggleModal}>
-              <div className="">
-                <SelectContainer isOne={false} />
-              </div>
-            </Accordion>
-            <Accordion
-              title="Constitutional Symptoms "
-              modalHandler={toggleModal}
-            >
-              <div className="">
-                <SelectContainer>
-                  <select className="py-1 rounded w-2/5 inline-block mb-5">
-                    <option value="1">Constitutional Symptoms</option>
-                    <option value="2">Constitutional Symptoms</option>
-                  </select>
-                </SelectContainer>
-              </div>
-            </Accordion>
-            <Accordion title="Review of Systems" modalHandler={toggleModal}>
-              <div className="">
-                <div className="flex gap-2">
-                  <Select label="Review of Systems" className="py-1 rounded" />
-                  <Input label="Review of Systems" className="py-1 rounded" />
-                  <div className="flex items-end">
-                    <SubmitButton
-                      title="Add System"
-                      icon={<PlusCircle size={14} />}
-                      className="py-1 text-base w-[fit-content] whitespace-nowrap gap-2"
-                    />
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-4 py-4">
-                  <ReviewOfSystemCardItem />
-                  <ReviewOfSystemCardItem />
-                  <ReviewOfSystemCardItem />
-                  <ReviewOfSystemCardItem />
-                </div>
-              </div>
-            </Accordion>
-            <Accordion title="Past Medical History" modalHandler={toggleModal}>
-              <div className="space-y-4">
-                <Textarea label="Drug History" />
-                <Textarea label="Admission History" />
-                <Textarea label="Surgical History" />
-              </div>
-            </Accordion>
-            <Accordion title="Allergies" modalHandler={toggleModal}>
-              <div>
-                <div className="grid grid-cols-2 gap-4">
-                  <Select
-                    label="Family Medical History"
-                    className="py-1 rounded"
-                  />
-                  <Select
-                    label="Family Medical History"
-                    className="py-1 rounded"
-                  />
-                  <Select
-                    label="Family Medical History"
-                    className="py-1 rounded"
-                  />
-                  <Select
-                    label="Family Medical History"
-                    className="py-1 rounded"
-                  />
-                  <div className="col-span-2">
-                    <Textarea
-                      label="Family Medical History"
-                      className="py-1 rounded"
-                    />
-                  </div>
-                </div>
-                <div className="my-5">
-                  <SubmitButton
-                    title="Add Allergy"
-                    icon={<PlusCircle size={14} />}
-                    className="py-1 text-base w-[fit-content] whitespace-nowrap gap-2"
-                  />
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <AllergiesCardItem />
-                  <AllergiesCardItem />
-                  <AllergiesCardItem />
-                  <AllergiesCardItem />
-                </div>
-              </div>
-            </Accordion> */}
-            {/* <Accordion
-              title="Family & Social History"
-              modalHandler={toggleModal}
-            >
-              <div className="space-y-4">
-                <Textarea label="Family Medical History" />
-                <Textarea label="Family Medical History" />
-              </div>
-            </Accordion> */}
+      <div className="px-5">
+        <ClientDetailsCard />
+      </div>
 
+      {w1300 && (
+        <div className="mx-5 mt-5">
+          <PastRecordList
+            title="Latest Encounter"
+            isSubTitleShow
+            subTitle="12-Dec-2023"
+            isPastEncounter
+            isAccordion
+          />
+        </div>
+      )}
+
+      {w1000 && (
+        <div className="mx-5 mt-5">
+          <DataSummaryList isResponsive />
+        </div>
+      )}
+
+      <div
+        className={`grid ${
+          w1300 ? (w1000 ? "grid-cols-6" : "grid-cols-9") : "grid-cols-12"
+        } gap-4 mt-3 px-5`}
+      >
+        {!w1300 && (
+          <PastRecordList
+            title="Latest Encounter"
+            isSubTitleShow
+            subTitle="12-Dec-2023"
+            isPastEncounter
+          />
+        )}
+        <div className="col-span-6 mb-5">
+          <ModuleStepping />
+          <div className="shadow-md border border-borderColor mt-5 flex flex-col gap-4 px-4 py-4 rounded">
             {/* Presenting complaints */}
             <FormHeading
               title="Present Complaints"
               modalHandler={handleChiefComplaints}
+              isEdit
             />
             {addModal?.modalId ===
               medicalEncounterModalTypes.addPresentingComplaint && (
@@ -417,6 +339,7 @@ const CreateMedicalEncounter = () => {
             <FormHeading
               title="Review of Systems"
               modalHandler={handleReviewOfSystems}
+              isEdit
             />
             {addModal?.modalId ===
               medicalEncounterModalTypes.addReviewOfSystem && (
@@ -445,12 +368,15 @@ const CreateMedicalEncounter = () => {
             <FormHeading
               title="Family & Social History"
               modalHandler={toggleModal}
+              isEdit
             />
           </div>
         </div>
-        <div className="col-span-3">
-          <DataSummaryList />
-        </div>
+        {!w1000 && (
+          <div className="col-span-3">
+            <DataSummaryList />
+          </div>
+        )}
       </div>
     </div>
   );
