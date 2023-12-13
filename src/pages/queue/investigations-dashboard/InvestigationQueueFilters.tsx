@@ -4,7 +4,6 @@ import { useReadTestsQuery } from "@/features/investigation/investigation-enum-a
 import useWindowWidth from "@/hooks/useWindow";
 import { OnchangeEventType } from "@/types/htmlEvents";
 import { cn } from "@/utilities/cn";
-import { datePickerToString } from "@/utilities/date";
 import React from "react";
 import DateInput from "../../../components/core/form-elements/DatePicker";
 import Select from "../../../components/core/form-elements/Select";
@@ -33,7 +32,7 @@ const InvestigationQueueFilters = ({
   setTest,
   setDate,
   date,
-  name,
+  // name,
   setName,
 }: // test,
 // setDepartment,
@@ -47,9 +46,6 @@ Props) => {
 
   // test enum
   const { data: tests } = useReadTestsQuery(undefined);
-
-
- 
 
   return (
     <div>
@@ -72,7 +68,7 @@ Props) => {
               <Input
                 type="search"
                 label="Client Name"
-                onChange={(e)=> setName(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
                 placeholder="Client Name"
               />
               {/* <Search
