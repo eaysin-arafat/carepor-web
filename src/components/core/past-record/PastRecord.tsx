@@ -2,32 +2,12 @@ import { ChevronRight } from "react-feather";
 
 const PastRecord = () => {
   return (
-    <div className="border my-2.5 p-2.5 text-sm rounded animate__animated animate__fadeInLeft">
+    <div className="border my-2.5 p-2.5 text-sm bg-lightBlueColor rounded animate__animated animate__fadeInLeft">
       <div className="flex flex-col gap-1">
-        <p className="flex gap-2">
-          <span className="inline-block font-semibold font-poppins">
-            Encounter Date :
-          </span>
-          <span className="inline-block">29-Nov-2023</span>
-        </p>
-        <p className="flex gap-2">
-          <span className="inline-block font-semibold font-poppins">
-            Chief Complaints :
-          </span>{" "}
-          <span className="inline-block">heart is not working well</span>
-        </p>
-        <p className="flex gap-2">
-          <span className="inline-block font-semibold font-poppins">
-            Facility :
-          </span>{" "}
-          <span className="inline-block">Bauleni Mini Hospital</span>
-        </p>
-        <p className="flex gap-2">
-          <span className="inline-block font-semibold font-poppins">
-            Clinician :
-          </span>
-          <span className="inline-block">John Wick</span>
-        </p>
+        <List title="Encounter Date" value="29-Nov-2023" />
+        <List title="Chief Complaints" value="Test" />
+        <List title="Facility" value="Bauleni Mini Hospital" />
+        <List title="Clinician" value="MD ACHEM" />
       </div>
       <div className="flex w-full justify-end mt-4">
         <button className="flex gap-2 items-center ">
@@ -44,3 +24,18 @@ const PastRecord = () => {
 };
 
 export default PastRecord;
+
+type Props = {
+  title: string;
+  value: string;
+};
+const List = ({ title, value }: Props) => {
+  return (
+    <p className="flex gap-2 mb-2">
+      <span className="inline-block font-semibold font-poppins w-[130px]">
+        {title}
+      </span>
+      <span className="inline-block">:&nbsp; {value}</span>
+    </p>
+  );
+};
