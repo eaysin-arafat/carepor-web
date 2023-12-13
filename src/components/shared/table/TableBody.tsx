@@ -10,6 +10,7 @@ type Title = {
 
 type Props = {
   index: number;
+  className?: string;
   item: Title[];
   isAction?: boolean;
   isDropdown?: JSX.Element;
@@ -49,6 +50,7 @@ function TableBody({
   isDropdown,
   btn,
   actionWidth,
+  className = " " ,
   btnHandler,
   btnOutlineHandler,
   viewResultHandler,
@@ -57,15 +59,15 @@ function TableBody({
   return (
     <div
       key={index}
-      className={`flex justify-between ${
+      className={cn(`flex justify-between ${
         length === index + 1 && "rounded-b-lg"
       } items-center ${
         colorKey || index % 2
           ? colorKey
-            ? "bg-lightGrayColor"
+            ? "bg-tableRow"
             : "bg-tableRow"
           : "bg-whiteBgColor"
-      }`}
+      } ` , className )}
     >
       <p className="p-2">
         <Checkbox className="h-[15px] w-[15px]" />
@@ -87,7 +89,7 @@ function TableBody({
           className={`p-2 text-textColor  flex gap-1.5 text-xs sticky right-0 z-50 ${actionWidth}  ${
             colorKey || index % 2
               ? colorKey
-                ? "bg-lightGrayColor"
+                ? "bg-tableRow"
                 : "bg-tableRow"
               : "bg-whiteBgColor"
           }`}

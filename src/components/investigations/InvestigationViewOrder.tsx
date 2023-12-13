@@ -10,7 +10,7 @@ const InvestigationViewOrder = () => {
   };
   return (
     <>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto mt-5">
         <Table className="min-w-[1100px] text-xs">
           <Table.Head>
             <Table.HeadCell className="min-w-[200px]">Test Name</Table.HeadCell>
