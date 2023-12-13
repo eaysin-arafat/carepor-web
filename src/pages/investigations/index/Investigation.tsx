@@ -6,13 +6,12 @@ import TableHeader from "@/components/shared/table/TableHeader";
 import { investigationModalTypes } from "@/constants/modal-types";
 import { openAddModal } from "@/features/modal/modal-slice";
 import useWindowWidth from "@/hooks/useWindow";
-import InvestigationQueueFilters from "@/pages/queue/investigations-dashboard/InvestigationQueueFilters";
 import { cn } from "@/utilities/cn";
 import React from "react";
-import { FiPlusCircle } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import InvestigationAddResultModal from "../create/InvestigationAddResultModal";
 import InvestigationCreate from "../create/InvestigationCreate";
+import InvestigationFilter from "./InvestigationFilter";
 // import InvestigationCreateForm from "@/components/investigations/InvestigationCreateForm";
 
 const Investigation = () => {
@@ -20,14 +19,14 @@ const Investigation = () => {
   const w1100 = useWindowWidth(1100);
   const dispatch = useDispatch();
 
-  const handleInvestigation = () => {
-    dispatch(
-      openAddModal({
-        modalId: investigationModalTypes.addInvestigation,
-        data: null,
-      })
-    );
-  };
+  // const handleInvestigation = () => {
+  //   dispatch(
+  //     openAddModal({
+  //       modalId: investigationModalTypes.addInvestigation,
+  //       data: null,
+  //     })
+  //   );
+  // };
 
   const handleAddResult = () => {
     dispatch(
@@ -49,20 +48,19 @@ const Investigation = () => {
         <div>
           <div>
             <div className="flex justify-between items-center md:mb-2">
-              <h2 className="text-xl md:text-2xl text-secondaryColor font-medium">
-                Investigations
-              </h2>
-              <button
+              <h1 className="text-xl md:text-2xl text-secondaryColor font-semibold">
+                Investigation
+              </h1>
+              {/* <button
                 onClick={handleInvestigation}
                 className="flex gap-2 main_btn px-3 sm:px-4 text-[14px] sm:text-base py-2.5"
               >
-                {" "}
                 <FiPlusCircle className="text-xl sm:text-2xl " /> Add
                 Investigation
-              </button>
+              </button> */}
             </div>
             <div className=" bg-whiteBgColor pb-5 rounded-xl shadow-light">
-              <InvestigationQueueFilters
+              <InvestigationFilter
                 priority={0}
                 setPriority={() => {}}
                 setTest={() => {}}
