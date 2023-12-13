@@ -39,7 +39,7 @@ function RequestsItems({ request, requestType, index }: Props) {
     <>
       <TableBody
         index={index}
-        actionWidth="w-[180px]"
+        actionWidth="w-[220px]"
         isAction
         btnOutlineHandler={
           requestType === "permission"

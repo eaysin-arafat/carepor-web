@@ -53,7 +53,7 @@ function CountryCode({
       onChange={handleFilter}
       placeholder={placeholder}
       required={required}
-      selectShow="Country Code"
+      selectShow="Country"
     >
       {renderCodeOptions(countries)}
     </Select>

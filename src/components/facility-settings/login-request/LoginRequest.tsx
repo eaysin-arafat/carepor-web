@@ -28,7 +28,7 @@ function LoginRequest({ loginRequests }: Props) {
         <Table className="min-w-[1000px]">
           <TableHeader
             className="bg-tableHeadColor"
-            actionWidth="w-[180px]"
+            actionWidth="w-[220px]"
             isAction
             title={headerData}
           />

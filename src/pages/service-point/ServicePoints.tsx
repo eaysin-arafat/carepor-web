@@ -11,15 +11,15 @@ type ServicePoint = {
 const ServicePoints = () => {
   return (
     <div className="mx-3">
-      <Container className="max-w-[1345px] bg-whiteBgColor my-8 rounded-lg px-5 shadow-light">
+      <Container className="max-w-[1345px] bg-whiteBgColor my-8 rounded-lg px-5 lg:px-20 shadow-light">
         <div className="py-8 pb-1">
-          <div className="border rounded-lg border-primaryColor xl:mx-8">
+          <div className="border rounded-lg border-primaryColor ">
             <SimplePatientDetails
               withoutAction
               className="bg-whiteBgColor shadow-none sm:!border !border-primaryColor"
             />
           </div>
-          <div className="max-w-[1072px] mx-auto my-10 ">
+          <div className="max-w-[1345px] mx-auto my-10 ">
             <h2 className="heading_2 mb-7">Select Service for the Patient</h2>
             <div className="grid grid-cols-2 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 justify-items-center sm:justify-between gap-9 ">
               {servicePointsArray.map(

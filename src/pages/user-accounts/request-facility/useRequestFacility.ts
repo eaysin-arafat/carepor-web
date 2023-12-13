@@ -3,7 +3,7 @@ import { setIsRegisteredFalse } from "@/features/authentication/authentication-s
 import { useCreateFacilityAccessMutation } from "@/features/facility-access/facility-access-api";
 import { useGetUserAccessByUserNameMutation } from "@/features/user-accounts/user-accounts-api";
 import useManageFacility from "@/hooks/useManageFacility";
-import { URLSelectFacility } from "@/routers/facility";
+import { URLUserLogin } from "@/routers/public";
 import { FormSubmitEventType } from "@/types/htmlEvents";
 import Alert from "@/utilities/alert";
 import { useEffect } from "react";
@@ -108,7 +108,7 @@ const useRequestFacility = () => {
   }, [isError, isSuccess]);
 
   const handleCancelRequest = (): void => {
-    navigate(URLSelectFacility());
+    navigate(URLUserLogin());
   };
 
   useEffect(() => {

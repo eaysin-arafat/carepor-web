@@ -10,13 +10,17 @@ import {
 import { clientAddress } from "@/utilities";
 import { cn } from "@/utilities/cn";
 import { cookieManager } from "@/utilities/cookie-manager";
+import { getSingleYear } from "@/utilities/date";
 import { format } from "date-fns";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
-import { FaCalendarAlt } from "react-icons/fa";
 import { FaRegAddressCard } from "react-icons/fa6";
 import { LuMapPin } from "react-icons/lu";
-import { MdOutlinePerson2, MdOutlinePhone } from "react-icons/md";
+import {
+  MdOutlineCalendarMonth,
+  MdOutlinePerson2,
+  MdOutlinePhone,
+} from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 
 const gender = {
@@ -90,10 +94,10 @@ const PatientCard = ({ client, className }: PatientCardProps) => {
                   title="Date of Birth"
                   value={
                     client.dob
-                      ? format(new Date(client.dob), "dd-MMM-yyyy")
+                      ? format(new Date(client.dob), "dd-MMM-yyyy") + " (" + getSingleYear(client.dob) + ")"
                       : ""
                   }
-                  icon={<FaCalendarAlt className="" />}
+                  icon={<MdOutlineCalendarMonth className="" />}
                 />
                 <Card
                   title="Sex"
