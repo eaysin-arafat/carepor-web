@@ -1,5 +1,3 @@
-import ClientDetailsCard from "@/components/core/card/ClientDetailsCard";
-import DataSummaryList from "@/components/shared/data-summary/DataSummaryList";
 import VitalsCreateForm from "@/components/vitals/VitalsCreateForm";
 import { vitalModalTypes } from "@/constants/modal-types";
 import { openAddModal } from "@/features/modal/modal-slice";
@@ -28,10 +26,9 @@ function Vitals() {
     <div className={`${w1100 ? "mt-12" : ""}`}>
       <VitalsCreateForm />
 
-      <ClientDetailsCard className="shadow-none rounded-none" />
-      <div className="mt-5 font-poppins">
-        <div className="grid grid-cols-4 gap-5">
-          <div className="col-span-4 lg:col-span-3">
+      <div className=" font-poppins">
+        <div className="">
+          <div className="">
             <div className="md:flex justify-between items-center">
               <h2 className="heading_2">Vitals & Anthropometry</h2>
               <div className="flex gap-4 mt-3">
@@ -103,10 +100,6 @@ function Vitals() {
                 </button>
               </div>
             </div>
-          </div>
-
-          <div className="col-span-4 lg:col-span-1">
-            <DataSummaryList />
           </div>
         </div>
       </div>
