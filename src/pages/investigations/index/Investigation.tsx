@@ -11,6 +11,7 @@ import InvestigationCreate from "../create/InvestigationCreate";
 import InvestigationViewOrderModal from "../create/InvestigationViewOrderModal";
 import InvestigationFilter from "./InvestigationFilter";
 import useInvestigation from "./useInvestigation";
+import InvestigationViewResultModal from "../create/InvestigationViewResultModal";
 // import InvestigationCreateForm from "@/components/investigations/InvestigationCreateForm";
 
 const Investigation = () => {
@@ -40,7 +41,7 @@ const Investigation = () => {
       <InvestigationCreate />
       <InvestigationAddResultModal />
       <InvestigationViewOrderModal />
-      <InvestigationViewOrderModal />
+      <InvestigationViewResultModal />
 
       <div className={cn("", { "mt-12": w1100 })}>
         {/* <InvestigationCreateForm/> */}
