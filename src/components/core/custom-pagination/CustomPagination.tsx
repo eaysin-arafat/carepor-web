@@ -47,7 +47,6 @@ function CustomPagination({
           value={itemsCountPerPage}
           className="p-1  col-span-1 text-[14px] text-center w-20"
           label=""
-          value={itemsCountPerPage}
           onChange={(e: OnchangeEventType) => setItemPerPage(+e.target.value)}
         >
           {showInPage.map((key) => (
