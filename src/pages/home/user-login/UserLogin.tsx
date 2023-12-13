@@ -60,6 +60,7 @@ function UserLogin() {
             name="password"
             onChange={handleInputChange}
             label="password"
+            placeholder="Enter Your Password"
           />
           <div className="grid grid-cols-2 items-center ">
             <div className="flex justify-end items-center">

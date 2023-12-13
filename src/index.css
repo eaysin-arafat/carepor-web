@@ -19,6 +19,7 @@
   --lightBlue: #e3effb;
   --secondary: #1e0e62;
   --grayColor: #a1a1b0;
+  --darkGray: #84848f;
   --lightGray: #f3f4f6;
   --blackColor: #000000;
   --white: #ffffff;
@@ -32,6 +33,7 @@
   --overlay: #007aecbb;
   --logoColor: #1890ff;
   --logoColor2: #15ac12;
+  --logoColor2Hover: #109c0d;
 }
 
 .dark {
@@ -43,6 +45,7 @@
   --lightBlue: #181a20;
   --secondary: #ffffff;
   --grayColor: #a1a1b0;
+  --darkGray: #ababac;
   --lightGray: #20232b;
   --blackColor: #6b7280;
   --white: #fff;
@@ -56,6 +59,7 @@
   --overlay: #20232b;
   --logoColor: #1890ff;
   --logoColor2: #15ac12;
+  --logoColor2Hover: #109c0d;
 }
 
 .gray {
@@ -68,6 +72,7 @@
   --secondary: #ffffff;
   --grayColor: #a1a1b0;
   --lightGray: #20232b;
+  --darkGray: #dddddd;
   --blackColor: #6b7280;
   --white: #424242;
   --whiteBg: #7e7e7e;
@@ -80,6 +85,7 @@
   --overlay: #333333;
   --logoColor: #a1a1b0;
   --logoColor2: #a1a1b0;
+  --logoColor2Hover: #9292a3;
 }
 
 p,

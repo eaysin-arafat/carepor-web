@@ -41,6 +41,7 @@ export const vitalModalTypes = Object.freeze({
 export const investigationModalTypes = Object.freeze({
   addInvestigation: "addInvestigation",
   addInvestigationResult: "addInvestigationResult",
+  investigationViewOrder: "investigationViewOrder",
 });
 export const surgeryModalTypes = Object.freeze({
   addSurgery: "addSurgery",
