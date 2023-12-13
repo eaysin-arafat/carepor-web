@@ -58,7 +58,7 @@ const ClientSearch = () => {
                 className="w-full flex justify-center gap-5 mt-5"
                 onSubmit={handleSearchClick}
               >
-                <div className="w-full max-w-[620px] pb-9">
+                <div className="w-full max-w-[610px] pb-9">
                   {search === "nrc" && (
                     <NrcSearch handleNrcChange={handleNrcChange} nrc={nrc} />
                   )}
@@ -85,7 +85,7 @@ const ClientSearch = () => {
                 <div className="absolute -bottom-6">
                   <button
                     type="submit"
-                    className="main_btn text-lg w-40 flex justify-center items-center font gap-2 py-3"
+                    className="main_btn !bg-logoColor2 hover:!bg-logoColor2Hover text-lg w-40 flex justify-center items-center font gap-2 py-3"
                   >
                     <img src="/assets/icons/search.svg" alt="search" />
                     Search

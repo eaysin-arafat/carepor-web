@@ -94,27 +94,27 @@ const PatientCard = ({ client, className }: PatientCardProps) => {
                       ? format(new Date(client.dob), "dd-MMM-yyyy")
                       : ""
                   }
-                  icon={<FaCalendarAlt className="text-grayColor" />}
+                  icon={<FaCalendarAlt className="" />}
                 />
                 <Card
                   title="Sex"
                   value={gender[client.sex]}
-                  icon={<MdOutlinePerson2 className="text-grayColor" />}
+                  icon={<MdOutlinePerson2 className="" />}
                 />
                 <Card
                   title="Cellphone"
                   value={client.cellphoneCountryCode + " " + client.cellphone}
-                  icon={<MdOutlinePhone className="text-grayColor" />}
+                  icon={<MdOutlinePhone className="" />}
                 />
                 <Card
                   title="NUPN"
                   value={client.nupn}
-                  icon={<FaRegAddressCard className="text-grayColor" />}
+                  icon={<FaRegAddressCard className="" />}
                 />
                 <Card
                   title="NRC"
                   value={client.nrc}
-                  icon={<FaRegAddressCard className="text-grayColor" />}
+                  icon={<FaRegAddressCard className="" />}
                 />
                 {/* <Card
                   title="Address"
@@ -125,11 +125,11 @@ const PatientCard = ({ client, className }: PatientCardProps) => {
                   <span className="text-xs font-semibold text-secondaryColor">
                     Address
                   </span>
-                  <div className="flex items-center flex-row gap-2 mt-2">
+                  <div className="flex items-center flex-row gap-1 mt-2">
                     <span>
-                      <LuMapPin className="text-grayColor" />
+                      <LuMapPin className="text-darkGrayColor" />
                     </span>
-                    <span className="text-grayColor text-xs">
+                    <span className="text-darkGrayColor text-xs">
                       {clientAddress(client)}
                     </span>
                   </div>
@@ -195,9 +195,9 @@ const Card = ({ title, value, icon, className }: CardProps) => {
   return (
     <div className={cn("me-5 mb-5", className)}>
       <span className="text-xs font-semibold text-secondaryColor">{title}</span>
-      <div className="flex flex-row items-center gap-2 mt-2">
-        <span>{icon}</span>
-        <span className="text-grayColor text-xs ">{value}</span>
+      <div className="flex flex-row items-center gap-1 mt-2">
+        <span className="text-darkGrayColor">{icon}</span>
+        <span className="text-darkGrayColor text-xs ">{value}</span>
       </div>
     </div>
   );
