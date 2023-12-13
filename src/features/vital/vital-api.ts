@@ -1,5 +1,29 @@
 import { API } from "../API/API";
 
+export type Vital = {
+  oid: string;
+  weight: number;
+  height: number;
+  bmi: string;
+  systolic: number;
+  systolicIfUnrecordable: number;
+  diastolic: number;
+  diastolicIfUnrecordable: number;
+  temperature: number;
+  pulseRate: number;
+  respiratoryRate: number;
+  muacScore: string;
+  vitalsDate: string;
+  clientId: string;
+  encounterId: string;
+  encounterType: number;
+  createdIn: number;
+  dateCreated: string;
+  createdBy: string;
+  isDeleted: boolean;
+  isSynced: boolean;
+};
+
 const vitalApi = API.injectEndpoints({
   endpoints: (builder) => ({
     /**
@@ -43,7 +67,7 @@ const vitalApi = API.injectEndpoints({
      * @param clientId
      * @returns Vital
      */
-    readVitalByClient: builder.query({
+    readVitalByClient: builder.query<Vital[], string>({
       query: (clientId) => ({
         url: `/vital/vital-by-client/${clientId}`,
         method: "GET",

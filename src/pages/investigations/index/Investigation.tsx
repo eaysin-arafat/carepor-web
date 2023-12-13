@@ -1,6 +1,5 @@
-import ClientDetailsCard from "@/components/core/card/ClientDetailsCard";
 import CustomPagination from "@/components/core/custom-pagination/CustomPagination";
-import DataSummaryList from "@/components/shared/data-summary/DataSummaryList";
+import CollapsibleTableBody from "@/components/shared/table/ColapsableTableBody";
 import Table from "@/components/shared/table/Table";
 import TableBody from "@/components/shared/table/TableBody";
 import TableHeader from "@/components/shared/table/TableHeader";
@@ -12,6 +11,7 @@ import { cn } from "@/utilities/cn";
 import React from "react";
 import { FiPlusCircle } from "react-icons/fi";
 import { useDispatch } from "react-redux";
+import InvestigationAddResultModal from "../create/InvestigationAddResultModal";
 import InvestigationCreate from "../create/InvestigationCreate";
 // import InvestigationCreateForm from "@/components/investigations/InvestigationCreateForm";
 
@@ -20,7 +20,7 @@ const Investigation = () => {
   const w1100 = useWindowWidth(1100);
   const dispatch = useDispatch();
 
-  const handleAdmissionDetails = () => {
+  const handleInvestigation = () => {
     dispatch(
       openAddModal({
         modalId: investigationModalTypes.addInvestigation,
@@ -29,20 +29,31 @@ const Investigation = () => {
     );
   };
 
+  const handleAddResult = () => {
+    dispatch(
+      openAddModal({
+        modalId: investigationModalTypes.addInvestigationResult,
+        data: null,
+      })
+    );
+  };
+
   return (
     <>
+      {/* Modal Components  */}
       <InvestigationCreate />
+      <InvestigationAddResultModal />
+
       <div className={cn("", { "mt-12": w1100 })}>
         {/* <InvestigationCreateForm/> */}
-        <ClientDetailsCard className="shadow-none" />
-        <div className="grid grid-cols-4 gap-5 mt-5">
-          <div className="col-span-4 lg:col-span-3">
+        <div>
+          <div>
             <div className="flex justify-between items-center md:mb-2">
               <h2 className="text-xl md:text-2xl text-secondaryColor font-medium">
                 Investigations
               </h2>
               <button
-                onClick={handleAdmissionDetails}
+                onClick={handleInvestigation}
                 className="flex gap-2 main_btn px-3 sm:px-4 text-[14px] sm:text-base py-2.5"
               >
                 {" "}
@@ -65,7 +76,7 @@ const Investigation = () => {
                 <TableHeader
                   className="bg-tableHeadColor text-textColor"
                   isAction
-                  actionWidth="min-w-[270px]"
+                  actionWidth="min-w-[220px]"
                   title={[
                     {
                       title: "Patient Name",
@@ -94,26 +105,57 @@ const Investigation = () => {
                   ]}
                 />
                 {data.map((item, index) => (
-                  <TableBody
-                    index={index}
-                    isAction
-                    actionWidth="min-w-[270px]"
-                    btn={{
-                      viewResult: "View Order",
-                      btnOutline: "Add Result",
-                    }}
-                    item={[
-                      { title: item.name, w: "20%" },
-                      // { title: <Test2 aa={item?.priority} key="test" />, w: "20%" },
-                      { title: item.orderDate, w: "20%" },
-                      { title: item.orderDate, w: "20%" },
-                      { title: item.test, w: "20%" },
-                      { title: item.orderNumber, w: "20%" },
-                      { title: item.sample, w: "20%" },
-                    ]}
-                  />
+                  <>
+                    {item.collapsible ? (
+                      <CollapsibleTableBody addResult>
+                        {item?.collapsible.map((subItem, i) => (
+                          <>
+                            <TableBody
+                              index={i}
+                              colorKey={2}
+                              isAction
+                              btnOutlineHandler={handleAddResult}
+                              actionWidth="min-w-[220px]"
+                              btn={{
+                                viewResult: "View Order",
+                                btnOutline: "Add Result",
+                              }}
+                              item={[
+                                { title: subItem.name, w: "20%" },
+                                { title: subItem.orderDate, w: "20%" },
+                                { title: subItem.orderDate, w: "20%" },
+                                { title: subItem.test, w: "20%" },
+                                { title: subItem.orderNumber, w: "20%" },
+                                { title: subItem.sample, w: "20%" },
+                              ]}
+                            />
+                          </>
+                        ))}
+                      </CollapsibleTableBody>
+                    ) : (
+                      <TableBody
+                        index={index}
+                        isAction
+                        actionWidth="min-w-[220px]"
+                        btnOutlineHandler={handleAddResult}
+                        btn={{
+                          viewResult: "View Order",
+                          btnOutline: "Add Result",
+                        }}
+                        item={[
+                          { title: item.name, w: "20%" },
+                          { title: item.orderDate, w: "20%" },
+                          { title: item.orderDate, w: "20%" },
+                          { title: item.test, w: "20%" },
+                          { title: item.orderNumber, w: "20%" },
+                          { title: item.sample, w: "20%" },
+                        ]}
+                      />
+                    )}
+                  </>
                 ))}
               </Table>
+
               <div className="flex justify-end mx-5">
                 <CustomPagination
                   activePage={1}
@@ -124,9 +166,6 @@ const Investigation = () => {
                 />
               </div>
             </div>
-          </div>
-          <div className="col-span-4 lg:col-span-1">
-            <DataSummaryList />
           </div>
         </div>
       </div>
@@ -148,7 +187,7 @@ const data = [
     sample: "25 Nov, 2023",
   },
   {
-    id: 1,
+    id: 2,
     name: "Amir Hamza",
     age: "23",
     orderDate: "25 Nov, 2023",
@@ -158,7 +197,49 @@ const data = [
     sample: "25 Nov, 2023",
   },
   {
-    id: 1,
+    id: 3,
+    name: "Amir Hamza",
+    age: "23",
+    orderDate: "25 Nov, 2023",
+    priority: "Regular",
+    test: "test",
+    orderNumber: "1",
+    sample: "25 Nov, 2023",
+    collapsible: [
+      {
+        id: 1,
+        name: "Ananda Kumar",
+        age: "23",
+        orderDate: "25 Nov, 2023",
+        priority: "Regular",
+        test: "test",
+        orderNumber: "1",
+        sample: "25 Nov, 2023",
+      },
+      {
+        id: 1,
+        name: "Achem",
+        age: "23",
+        orderDate: "25 Nov, 2023",
+        priority: "Regular",
+        test: "test",
+        orderNumber: "1",
+        sample: "25 Nov, 2023",
+      },
+      {
+        id: 1,
+        name: "Anamul",
+        age: "23",
+        orderDate: "25 Nov, 2023",
+        priority: "Regular",
+        test: "test",
+        orderNumber: "1",
+        sample: "25 Nov, 2023",
+      },
+    ],
+  },
+  {
+    id: 4,
     name: "Amir Hamza",
     age: "23",
     orderDate: "25 Nov, 2023",
@@ -168,7 +249,7 @@ const data = [
     sample: "25 Nov, 2023",
   },
   {
-    id: 1,
+    id: 5,
     name: "Amir Hamza",
     age: "23",
     orderDate: "25 Nov, 2023",
@@ -178,7 +259,7 @@ const data = [
     sample: "25 Nov, 2023",
   },
   {
-    id: 1,
+    id: 6,
     name: "Amir Hamza",
     age: "23",
     orderDate: "25 Nov, 2023",
@@ -188,7 +269,7 @@ const data = [
     sample: "25 Nov, 2023",
   },
   {
-    id: 1,
+    id: 7,
     name: "Amir Hamza",
     age: "23",
     orderDate: "25 Nov, 2023",
@@ -198,7 +279,7 @@ const data = [
     sample: "25 Nov, 2023",
   },
   {
-    id: 1,
+    id: 8,
     name: "Amir Hamza",
     age: "23",
     orderDate: "25 Nov, 2023",
@@ -208,7 +289,7 @@ const data = [
     sample: "25 Nov, 2023",
   },
   {
-    id: 1,
+    id: 9,
     name: "Amir Hamza",
     age: "23",
     orderDate: "25 Nov, 2023",
@@ -218,17 +299,7 @@ const data = [
     sample: "25 Nov, 2023",
   },
   {
-    id: 1,
-    name: "Amir Hamza",
-    age: "23",
-    orderDate: "25 Nov, 2023",
-    priority: "Regular",
-    test: "test",
-    orderNumber: "1",
-    sample: "25 Nov, 2023",
-  },
-  {
-    id: 1,
+    id: 10,
     name: "Amir Hamza",
     age: "23",
     orderDate: "25 Nov, 2023",

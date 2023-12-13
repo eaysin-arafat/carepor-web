@@ -26,6 +26,7 @@ type Props = {
   btnHandler?: () => void;
   btnOutlineHandler?: () => void;
   viewResultHandler?: () => void;
+  colorKey?: number;
 };
 
 /**
@@ -51,13 +52,20 @@ function TableBody({
   btnHandler,
   btnOutlineHandler,
   viewResultHandler,
+  colorKey,
 }: Props) {
   return (
     <div
       key={index}
       className={`flex justify-between ${
         length === index + 1 && "rounded-b-lg"
-      } items-center ${index % 2 ? "bg-tableRow" : "bg-whiteBgColor"}`}
+      } items-center ${
+        colorKey || index % 2
+          ? colorKey
+            ? "bg-lightGrayColor"
+            : "bg-tableRow"
+          : "bg-whiteBgColor"
+      }`}
     >
       <p className="p-2">
         <Checkbox className="h-[15px] w-[15px]" />
@@ -77,7 +85,11 @@ function TableBody({
       {isAction && (
         <p
           className={`p-2 text-textColor  flex gap-1.5 text-xs sticky right-0 z-50 ${actionWidth}  ${
-            index % 2 ? "bg-tableRow" : "bg-whiteBgColor"
+            colorKey || index % 2
+              ? colorKey
+                ? "bg-lightGrayColor"
+                : "bg-tableRow"
+              : "bg-whiteBgColor"
           }`}
         >
           {btn?.show && (

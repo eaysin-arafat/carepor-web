@@ -35,7 +35,8 @@ function CustomPagination({
     // console.log(getPageNo);
     setActivePage(pageNo);
   };
-  let showInPage = [10, 20, 50, 100];
+
+  const showInPage = [10, 20, 50, 100];
 
   return (
     <div className="flex mt-5 items-center gap-3 ">
@@ -46,6 +47,7 @@ function CustomPagination({
           value={itemsCountPerPage}
           className="p-1  col-span-1 text-[14px] text-center w-20"
           label=""
+          value={itemsCountPerPage}
           onChange={(e: OnchangeEventType) => setItemPerPage(+e.target.value)}
         >
           {showInPage.map((key) => (
