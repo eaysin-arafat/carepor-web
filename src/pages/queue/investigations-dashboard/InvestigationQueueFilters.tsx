@@ -32,8 +32,9 @@ const InvestigationQueueFilters = ({
   setTest,
   setDate,
   date,
-  // name,
+  name,
   setName,
+  handleSearch,
 }: // test,
 // setDepartment,
 Props) => {
@@ -68,14 +69,10 @@ Props) => {
               <Input
                 type="search"
                 label="Client Name"
+                value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Client Name"
               />
-              {/* <Search
-                type="search"
-                label="Client Name"
-                placeholder="Search..."
-              /> */}
             </div>
             <div className="text-end md:hidden">
               <button
@@ -103,7 +100,7 @@ Props) => {
           >
             {" "}
             <div className="flex items-end h-full">
-              <SubmitButton title="Search" />
+              <SubmitButton onClick={handleSearch} title="Search" />
             </div>
           </div>
           <div

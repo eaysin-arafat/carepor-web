@@ -20,7 +20,7 @@ function InvestigationsDashboard() {
 
   // Request state for page and item
   const [pageNo, setPageNo] = useState(1);
-  const [itemPerPage, setItemPerPage] = useState(10);
+  const [itemPerPage, setItemPerPage] = useState(20);
   const [dateSearch, setDateSearch] = useState("");
   const [patientName, setPatientName] = useState("");
 
@@ -42,8 +42,11 @@ function InvestigationsDashboard() {
       }
     );
 
-  const { investigations = [], resultRecievedTotalItems } =
-    instigationDashBoard || {};
+  const {
+    investigations = [],
+    // resultRecievedTotalItems,
+    totalItems,
+  } = instigationDashBoard || {};
 
   // filter states
   const [priority, setPriority] = useState(0);
@@ -71,6 +74,7 @@ function InvestigationsDashboard() {
   // Search State for order date or name
   const [date, setDate] = useState(null);
   const [name, setName] = useState("");
+
   const handleSearch = (): void => {
     setPatientName(name);
     if (date) {
@@ -159,7 +163,7 @@ function InvestigationsDashboard() {
             itemsCountPerPage={itemPerPage}
             setItemPerPage={setItemPerPage}
             setActivePage={setPageNo}
-            totalItemsCount={resultRecievedTotalItems}
+            totalItemsCount={totalItems}
           />
         </div>
       </div>
