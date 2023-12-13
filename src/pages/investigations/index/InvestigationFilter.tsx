@@ -21,9 +21,11 @@ type Props = {
   handleSearch?: () => void;
   name?: string;
   setName?: React.Dispatch<React.SetStateAction<string>>;
+  handleInvestigationForm: () => void;
 };
 
 const InvestigationFilter = ({
+  handleInvestigationForm,
   title,
   className,
   // priority,
@@ -107,7 +109,7 @@ Props) => {
           <div className="md:block col-span-10 md:col-span-8 lg:col-span-2 w-full">
             <div className="h-full flex items-center w-full justify-end">
               <button
-                onClick={null}
+                onClick={handleInvestigationForm}
                 className="flex gap-2 main_btn px-4 sm:px-4 text-[14px] sm:text-base py-2.5"
               >
                 <FiPlusCircle className="text-xl sm:text-2xl " /> Add
