@@ -42,6 +42,7 @@ const AdmissionsIndex = () => {
     status,
     filteredData,
     paginatedData,
+    handleItemsPerPage,
   } = useAdmission();
 
   return (
@@ -154,6 +155,7 @@ const AdmissionsIndex = () => {
                       setActivePage={setCurrentPage}
                       itemsCountPerPage={itemsPerPage}
                       totalItemsCount={filteredData?.length || 1}
+                      setItemPerPage={handleItemsPerPage}
                     />
                   </div>
                 </div>

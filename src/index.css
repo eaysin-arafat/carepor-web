@@ -133,6 +133,12 @@ body.modal-open {
   overflow: hidden;
 }
 
+@layer utilities {
+  .modal_8xl {
+    max-width: 90rem;
+  }
+}
+
 @layer components {
   .modal-container {
     @apply fixed top-0 left-0 w-full h-full bg-opacity-40 bg-black z-10 flex items-center justify-center;
@@ -172,7 +178,7 @@ body.modal-open {
 
   .input_label {
     /* @apply text-blackColor dark:text-[#F2F3F5] leading-[125%] capitalize text-xs md:text-[14px] lg:text-base; */
-    @apply text-textColor leading-[125%] capitalize;
+    @apply text-textColor leading-[125%] capitalize text-xs md:text-[14px];
   }
 
   .input_cellphone {
@@ -185,11 +191,11 @@ body.modal-open {
 
   .main_btn {
     /* @apply rounded-full bg-primaryColor hover:bg-primaryHoverColor text-whiteColor flex flex-row items-center justify-center py-3 sm:py-[14px] px-8 text-sm sm:text-[18px] cursor-pointer transition-all ease-out capitalize; */
-    @apply rounded-full bg-buttonBg hover:bg-primaryHoverColor text-white flex flex-row items-center justify-center py-3 sm:py-[14px] px-8 text-[18px] cursor-pointer transition-all ease-out capitalize;
+    @apply rounded-full bg-buttonBg hover:bg-primaryHoverColor text-white flex flex-row items-center justify-center py-3 sm:py-[12px] px-8 text-sm sm:text-[18px] cursor-pointer transition-all ease-out capitalize;
   }
 
   .transparent_btn {
-    @apply rounded-full text-black dark:text-white border-2 flex flex-row items-center justify-center py-[14px] px-12 text-[18px] cursor-pointer transition-all ease-out capitalize;
+    @apply rounded-full hover:bg-lightGrayColor text-black dark:text-white border-2 flex flex-row items-center justify-center py-2.5 sm:py-[12px] px-4 sm:px-8 text-sm sm:text-[18px] cursor-pointer transition-all ease-out capitalize;
   }
   .go_back {
     @apply flex gap-2 items-center text-[22px] font-medium py-2 rounded-lg text-black dark:text-white;

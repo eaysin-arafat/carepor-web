@@ -1,11 +1,7 @@
 import { useReadCountriesQuery } from "@/features/country/country-api";
+import { ApiEnumsType } from "@/types/enums-types";
 
-type SelectOptionType = {
-  oid: string | number;
-  description: string;
-};
-
-export const renderOptions = (options: SelectOptionType[] = []) => {
+export const renderOptions = (options: ApiEnumsType[]) => {
   return (
     Array.isArray(options) &&
     options.map((item) => (
@@ -17,7 +13,7 @@ export const renderOptions = (options: SelectOptionType[] = []) => {
 };
 
 type Props = {
-  options: SelectOptionType[];
+  options: ApiEnumsType[];
 };
 
 // default
@@ -41,7 +37,14 @@ export default RenderSelectOptions;
 export const RenderCountryOptions = () => {
   const { data: countries } = useReadCountriesQuery(undefined);
 
-  return renderOptions(countries);
+  return (
+    Array.isArray(countries) &&
+    countries.map((item) => (
+      <option key={item?.oid} value={item?.oid}>
+        {item?.description}
+      </option>
+    ))
+  );
 };
 
 // // default Home Language select options

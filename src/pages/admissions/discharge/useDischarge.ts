@@ -36,7 +36,7 @@ const useDischarge = () => {
   // hooks and variables
   const dispatch = useDispatch();
   const { clientId } = useParams();
-  const facility = cookieManager.parseCookie<FacilityToken>("facility_token");
+  const facility = cookieManager.parseCookie<FacilityToken>("facility");
 
   // api hooks
   // const [clientDischarge, { isLoading, isSuccess, isError, error, status }] =

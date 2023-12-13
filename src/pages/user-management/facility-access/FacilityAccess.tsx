@@ -13,7 +13,7 @@ import { useState } from "react";
 function FacilityAccess() {
   const [tab, setTab] = useState("login");
   const facility = cookieManager.parseCookie<FacilityToken | null>(
-    "facility_token"
+    "facility"
   );
   // Read data from the database
   const {

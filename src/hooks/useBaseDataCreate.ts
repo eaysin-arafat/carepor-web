@@ -17,14 +17,13 @@ function useBaseDataCreate(encounterType) {
 
   // hooks
   useEffect(() => {
-    const facilityData: TypeFacilityToken =
-      cookieManager.parseCookie("facility_token");
+    const facility: TypeFacilityToken = cookieManager.parseCookie("facility");
     const opdVisitSession: TypeOpdVisit =
       cookieManager.parseCookie("opdVisitSession");
     const client: Client = cookieManager.parseCookie("client");
 
     setOpdSession(opdVisitSession);
-    setSelectFacility(facilityData);
+    setSelectFacility(facility);
     setSelectClientId(client?.oid);
   }, []);
 

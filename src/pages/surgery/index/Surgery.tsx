@@ -1,8 +1,6 @@
-import ClientDetailsCard from "@/components/core/card/ClientDetailsCard";
 import CustomPagination from "@/components/core/custom-pagination/CustomPagination";
 import DateInput from "@/components/core/form-elements/DatePicker";
 import Select from "@/components/core/form-elements/Select";
-import DataSummaryList from "@/components/shared/data-summary/DataSummaryList";
 import Table from "@/components/shared/table/Table";
 import TableBody from "@/components/shared/table/TableBody";
 import TableHeader from "@/components/shared/table/TableHeader";
@@ -33,9 +31,8 @@ const SurgeryIndex = () => {
     <>
       <SurgeryCreateModal />
       <div className={cn("", { "mt-12": w1100 })}>
-        <ClientDetailsCard className="shadow-none" />
-        <div className="grid grid-cols-4 gap-5 mt-5">
-          <div className="col-span-4 lg:col-span-3">
+        <div>
+          <div>
             <div className="flex justify-between items-center md:mb-2">
               <h2 className="text-xl md:text-2xl text-secondaryColor font-medium">
                 Surgery
@@ -114,12 +111,10 @@ const SurgeryIndex = () => {
                   itemsCountPerPage={state}
                   setActivePage={setState}
                   totalItemsCount={100}
+                  setItemPerPage={() => {}}
                 />
               </div>
             </div>
-          </div>
-          <div className="col-span-4 lg:col-span-1">
-            <DataSummaryList />
           </div>
         </div>
       </div>

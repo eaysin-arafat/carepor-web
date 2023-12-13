@@ -78,6 +78,7 @@ function PharmacyQueue() {
               itemsCountPerPage={state}
               setActivePage={setState}
               totalItemsCount={100}
+              setItemPerPage={() => {}}
             />
           </div>
         </div>

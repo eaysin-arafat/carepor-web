@@ -5,8 +5,8 @@ import { useReadDistrictByKeyQuery } from "@/features/district/district-api";
 import { useReadEducationLevelsQuery } from "@/features/education-level/education-level-api";
 import { useReadHomeLanguagesQuery } from "@/features/home-language/home-language-api";
 import { useReadOccupationsQuery } from "@/features/occupation/occupation-api";
+import { Client } from "@/interface/clients";
 import { URLClientEdit } from "@/routers/client";
-import { ClientObjectType } from "@/types/clientTypes";
 import { DateFunc } from "@/utilities/date";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -32,7 +32,7 @@ const useClientDetails = () => {
     refetchOnMountOrArgChange: true,
   });
 
-  const clientObj: ClientObjectType = clientsData;
+  const clientObj: Client = clientsData;
 
   const { data: district } = useReadDistrictByKeyQuery(clientObj?.districtId, {
     skip: !clientObj?.districtId,
@@ -44,13 +44,13 @@ const useClientDetails = () => {
     return countriesDescription;
   };
 
-  const getHomeLanguagesName = (id) => {
+  const getHomeLanguagesName = (id: string | number) => {
     const homeLanguages = Array.isArray(homeLanguage) ? homeLanguage : [];
     const homeLanguagesDescription =
       homeLanguages?.find((data) => data.oid == id)?.description || "";
     return homeLanguagesDescription;
   };
-  const getEducationLevelName = (id) => {
+  const getEducationLevelName = (id: string | number) => {
     const educationLevelData = Array.isArray(educationLevel)
       ? educationLevel
       : [];
@@ -58,7 +58,7 @@ const useClientDetails = () => {
       educationLevelData?.find((data) => data.oid == id)?.description || "";
     return educationLevelDescription;
   };
-  const getOccupationsName = (id) => {
+  const getOccupationsName = (id: string | number) => {
     const occupationsData = Array.isArray(occupations) ? occupations : [];
     const occupationDescription =
       occupationsData?.find((data) => data.oid == id)?.description || "";

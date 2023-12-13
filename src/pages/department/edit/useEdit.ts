@@ -20,7 +20,7 @@ const useEdit = () => {
   const dispatch = useDispatch();
 
   // cookie data
-  const facility = cookieManager.parseCookie<FacilityToken>("facility_token");
+  const facility = cookieManager.parseCookie<FacilityToken>("facility");
 
   // api hooks
   const [updateDepartment, { isLoading, isError, status, isSuccess, error }] =

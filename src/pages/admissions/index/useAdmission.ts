@@ -50,6 +50,7 @@ const useAdmission = () => {
   const [ward, setWard] = React.useState("");
   const [admissionDate, setAdmissionDate] = React.useState("");
   const [dischargeDate, setDischargeDate] = React.useState("");
+  const [itemsPerPage, setItemsPerPage] = React.useState(10);
 
   // hooks
   const dispatch = useDispatch();
@@ -90,9 +91,12 @@ const useAdmission = () => {
   };
 
   // handle pagination
-  const itemsPerPage = 10;
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
+
+  const handleItemsPerPage = (item: number) => {
+    setItemsPerPage(item);
+  };
 
   // filter handlers
   const handleAdmissionDateFilter = (item: Encounter) => {
@@ -199,6 +203,7 @@ const useAdmission = () => {
     itemsPerPage,
     filteredData,
     paginatedData,
+    handleItemsPerPage,
   };
 };
 

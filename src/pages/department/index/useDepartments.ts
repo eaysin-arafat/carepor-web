@@ -22,7 +22,7 @@ const useDepartments = () => {
     (state: RootState) => state.modal
   );
 
-  const facility = cookieManager.parseCookie<FacilityToken>("facility_token");
+  const facility = cookieManager.parseCookie<FacilityToken>("facility");
 
   const {
     data: departments,

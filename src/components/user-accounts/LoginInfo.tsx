@@ -20,7 +20,6 @@ function LoginInfo({
   isUsernameValid,
   username,
 }: Props) {
-  console.log(username);
   return (
     <>
       <FormSection titleText="Login Information">
@@ -43,7 +42,7 @@ function LoginInfo({
             <Password
               required
               label="Password"
-              placeholder="Password"
+              placeholder="Minimum 8 characters"
               value={loginInfo.password}
               onChange={handleChange}
               name="password"
@@ -52,7 +51,7 @@ function LoginInfo({
             <Password
               required
               label="Confirm Password"
-              placeholder="Password"
+              placeholder="Minimum 8 characters"
               value={loginInfo.confirmPassword}
               onChange={handleChange}
               name="confirmPassword"

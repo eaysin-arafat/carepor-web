@@ -1,9 +1,11 @@
 import Checkbox from "@/components/core/form-elements/Checkbox";
+import { cn } from "@/utilities/cn";
 import { Edit, Eye, Trash } from "react-feather";
 
 type Title = {
   title: string | number | JSX.Element;
   w: string;
+  dataClass?: string;
 };
 
 type Props = {
@@ -24,6 +26,7 @@ type Props = {
   btnHandler?: () => void;
   btnOutlineHandler?: () => void;
   viewResultHandler?: () => void;
+  colorKey?: number;
 };
 
 /**
@@ -49,20 +52,30 @@ function TableBody({
   btnHandler,
   btnOutlineHandler,
   viewResultHandler,
+  colorKey,
 }: Props) {
   return (
     <div
       key={index}
       className={`flex justify-between ${
         length === index + 1 && "rounded-b-lg"
-      } items-center ${index % 2 ? "bg-tableRow" : "bg-whiteBgColor"}`}
+      } items-center ${
+        colorKey || index % 2
+          ? colorKey
+            ? "bg-lightGrayColor"
+            : "bg-tableRow"
+          : "bg-whiteBgColor"
+      }`}
     >
       <p className="p-2">
         <Checkbox className="h-[15px] w-[15px]" />
       </p>
       {item.map((data, i) => (
         <p
-          className="p-2 text-textColor dark:text-white text-xs text-justify"
+          className={cn(
+            "p-2 text-textColor dark:text-white text-xs text-justify",
+            data?.dataClass ? data?.dataClass : ""
+          )}
           style={{ width: data.w }}
           key={i}
         >
@@ -72,7 +85,11 @@ function TableBody({
       {isAction && (
         <p
           className={`p-2 text-textColor  flex gap-1.5 text-xs sticky right-0 z-50 ${actionWidth}  ${
-            index % 2 ? "bg-tableRow" : "bg-whiteBgColor"
+            colorKey || index % 2
+              ? colorKey
+                ? "bg-lightGrayColor"
+                : "bg-tableRow"
+              : "bg-whiteBgColor"
           }`}
         >
           {btn?.show && (
