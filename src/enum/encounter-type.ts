@@ -45,5 +45,5 @@ const EncounterTypeEnum = {
   Prescriptions: 44,
   Dispensations: 45,
 };
-export const EnumEncounterType = EncounterTypeEnum;
-export default EncounterTypeEnum;
+export const EnumEncounterType = Object.freeze(EncounterTypeEnum);
+export default Object.freeze(EncounterTypeEnum);
