@@ -1,6 +1,4 @@
-import ClientDetailsCard from "@/components/core/card/ClientDetailsCard";
 import CustomPagination from "@/components/core/custom-pagination/CustomPagination";
-import DataSummaryList from "@/components/shared/data-summary/DataSummaryList";
 import CollapsibleTableBody from "@/components/shared/table/ColapsableTableBody";
 import Table from "@/components/shared/table/Table";
 import TableBody from "@/components/shared/table/TableBody";
@@ -48,9 +46,8 @@ const Investigation = () => {
 
       <div className={cn("", { "mt-12": w1100 })}>
         {/* <InvestigationCreateForm/> */}
-        <ClientDetailsCard className="shadow-none" />
-        <div className="grid grid-cols-4 gap-5 mt-5">
-          <div className="col-span-4 lg:col-span-3">
+        <div>
+          <div>
             <div className="flex justify-between items-center md:mb-2">
               <h2 className="text-xl md:text-2xl text-secondaryColor font-medium">
                 Investigations
@@ -169,9 +166,6 @@ const Investigation = () => {
                 />
               </div>
             </div>
-          </div>
-          <div className="col-span-4 lg:col-span-1">
-            <DataSummaryList />
           </div>
         </div>
       </div>

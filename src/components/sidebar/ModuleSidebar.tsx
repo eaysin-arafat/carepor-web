@@ -1,4 +1,4 @@
-import RootLayout from "@/layout/RootLayout";
+import ModuleLayout from "@/layout/ModuleLayout";
 import { Accordion } from "flowbite-react";
 import React, { useState } from "react";
 import { FaChartPie } from "react-icons/fa6";
@@ -32,7 +32,7 @@ function ModuleSidebar() {
   console.log(setIconColor);
 
   return (
-    <RootLayout>
+    <ModuleLayout>
       <div className="w-full">
         <div className="text-left p-3">
           <input
@@ -108,7 +108,7 @@ function ModuleSidebar() {
           )}
         </div>
       </div>
-    </RootLayout>
+    </ModuleLayout>
   );
 }
 
