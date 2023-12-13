@@ -273,10 +273,15 @@ const CreateMedicalEncounter = () => {
       <FormSubHeader />
       <ClientDetailsCard />
       <div className="grid grid-cols-12 gap-4 mt-3 px-5">
-        <PastRecordList />
-        <div className="col-span-7">
+        <PastRecordList
+          title="Latest Encounter"
+          isSubTitleShow
+          subTitle="12-Dec-2023"
+          isPastEncounter
+        />
+        <div className="col-span-6">
           <ModuleStepping />
-          <div className="box_shadow_2 mt-5 flex flex-col gap-4 px-4 py-3">
+          <div className="box_shadow_2 mt-5 flex flex-col gap-4 px-4 py-4 rounded">
             {/* <Accordion title="Present Complaints" modalHandler={toggleModal}>
               <div className="space-y-4">
                 <Textarea label="Presenting Complaint" />
@@ -443,7 +448,9 @@ const CreateMedicalEncounter = () => {
             />
           </div>
         </div>
-        <DataSummaryList />
+        <div className="col-span-3">
+          <DataSummaryList />
+        </div>
       </div>
     </div>
   );

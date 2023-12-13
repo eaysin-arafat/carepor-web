@@ -14,7 +14,7 @@ const CellPhoneSearch = ({
 }: CellPhoneSearchProps) => {
   return (
     <div className="w-full">
-      <div className="custom-input items-center m-0 p-0 mt-[6px] h-[52px] grid grid-cols-6 border-borderColor focus:border-gray-300">
+      <div className="custom-input rounded-full items-center m-0 p-0 mt-[6px] h-[52px] grid grid-cols-6 border-borderColor focus:border-gray-300">
         <div className="col-span-2">
           <CountryCode
             label=" "

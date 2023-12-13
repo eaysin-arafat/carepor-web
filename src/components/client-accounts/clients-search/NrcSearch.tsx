@@ -9,7 +9,7 @@ const NrcSearch = ({ handleNrcChange, nrc }) => {
         name="nrc"
         state={nrc}
         onChange={handleNrcChange}
-        className=""
+        className="rounded-full"
       />
     </div>
   );
