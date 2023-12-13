@@ -6,7 +6,10 @@ import Medication from "@/assets/icons/Medication";
 import DataSummaryItem from "./DataSummaryItem";
 import PastRecordList from "../past-record-list/PastRecordList";
 
-const DataSummaryList = () => {
+type Props = {
+  isResponsive?: boolean;
+};
+const DataSummaryList = ({ isResponsive }: Props) => {
   return (
     // <div className="w-full">
     //   <div className="bg-whiteBgColor rounded-lg shadow-light pb-4">
@@ -37,7 +40,10 @@ const DataSummaryList = () => {
     //     </div>
     //   </div>
     // </div>
-    <PastRecordList title="Recent Data Summary" />
+    <PastRecordList
+      title="Recent Data Summary"
+      isAccordion={isResponsive && true}
+    />
   );
 };
 

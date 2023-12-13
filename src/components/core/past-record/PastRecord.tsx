@@ -19,11 +19,11 @@ const PastRecord = ({ isLinked, title, link, linkTitle }: PropsMain) => {
   return (
     <div className="border my-2.5 p-2.5 text-sm bg-lightBlueColor rounded animate__animated animate__fadeInLeft">
       <div className="flex w-full justify-between items-center mb-2 border-b  pb-1">
-        <b>{title || "Text missing"}</b>
+        <b className="text-xs">{title || "Text missing"}</b>
         {isLinked && (
-          <button className="flex gap-2 items-center ">
+          <button className="flex gap-1 items-center ">
             <span className="inline-block text-[#1890FF] text-xs">
-              {linkTitle ? linkTitle : "View Full Encounter"}
+              {linkTitle ? linkTitle : "View All"}
             </span>
             <span className="inline-block">
               <ChevronRight size={14} color="#1890FF" />
