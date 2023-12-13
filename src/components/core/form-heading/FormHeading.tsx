@@ -20,19 +20,19 @@ const FormHeading = ({
   const w400 = useWindowWidth(400);
 
   return (
-    <div className="border bg-lightBlueColor rounded-md mb-0 overflow-hidden shadow-sm transition-shadow ease-in-out duration-300">
+    <div className="border border-borderColor bg-lightBlueColor rounded-md mb-0 overflow-hidden shadow-sm transition-shadow ease-in-out duration-300">
       <div className="flex items-center justify-between py-2 px-3">
         <h2
           className={`${
             w650 ? (w400 ? "text-xs" : "text-sm") : "text-1xl"
-          }  font-medium font-poppins text-[#1E0E62]`}
+          }  font-medium font-poppins text-secondaryColor`}
         >
           {title}
         </h2>
         <div className="flex gap-2">
           <button
             className={cn(
-              "flex items-center text-base border p-1 px-3 rounded bg-primaryColor  gap-1 cursor-pointer ",
+              "flex items-center text-base border border-borderColor p-1 px-3 rounded bg-primaryColor  gap-1 cursor-pointer ",
               { "bg-gray-400 cursor-not-allowed": !isEdit },
               { "p-1": w580 }
             )}
@@ -51,7 +51,7 @@ const FormHeading = ({
 
           <button
             className={cn(
-              "flex items-center text-base border p-1 px-3 rounded bg-primaryColor  gap-1 cursor-pointer",
+              "flex items-center text-base border border-borderColor p-1 px-3 rounded bg-primaryColor  gap-1 cursor-pointer",
               { "p-1": w580 }
             )}
             onClick={modalHandler}

@@ -1,15 +1,8 @@
 import PastRecord from "@/components/core/past-record/PastRecord";
-import {
-  ArrowDown,
-  ChevronDown,
-  ChevronRight,
-  ChevronUp,
-  PlusCircle,
-} from "react-feather";
-import { PiHardDrive } from "react-icons/pi";
-import { AiFillAlert, AiFillThunderbolt } from "react-icons/ai";
 import { useState } from "react";
-import { BiDownArrow, BiDownArrowAlt } from "react-icons/bi";
+import { ChevronDown, ChevronUp, PlusCircle } from "react-feather";
+import { AiFillAlert, AiFillThunderbolt } from "react-icons/ai";
+import { PiHardDrive } from "react-icons/pi";
 
 type Props = {
   title: string;
@@ -28,7 +21,7 @@ const PastRecordList = ({
   const [height, setHeight] = useState(isAccordion ? false : true);
   return (
     <div className="col-span-3">
-      <div className="box_shadow_2 rounded">
+      <div className="border border-borderColor shadow-md rounded">
         <button
           onClick={() => isAccordion && setHeight(!height)}
           className="flex w-full px-3 items-center justify-between bg-lightBlueColor text-[#03045E] font-poppins py-2.5 border-b border-b-[#1890FF80]"

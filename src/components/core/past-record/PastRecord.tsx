@@ -17,8 +17,8 @@ type PropsMain = {
  */
 const PastRecord = ({ isLinked, title, link, linkTitle }: PropsMain) => {
   return (
-    <div className="border my-2.5 p-2.5 text-sm bg-lightBlueColor rounded animate__animated animate__fadeInLeft">
-      <div className="flex w-full justify-between items-center mb-2 border-b  pb-1">
+    <div className="border border-borderColor my-2.5 p-2.5 text-sm bg-lightBlueColor rounded animate__animated animate__fadeInLeft">
+      <div className="flex w-full justify-between items-center mb-2 border-b border-b-borderColor pb-1">
         <b className="text-xs">{title || "Text missing"}</b>
         {isLinked && (
           <button className="flex gap-1 items-center ">

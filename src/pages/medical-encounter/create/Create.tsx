@@ -16,10 +16,8 @@ import CreatePastMedicalHistory from "@/pages/past-medical-histories/create/Crea
 import CreateReviewOfSystems from "@/pages/review-of-systems/create/Create";
 import CreateTbConstitutionalSymptom from "@/pages/tb-constitutional-symptoms/create/Create";
 import { cn } from "@/utilities/cn";
-import { Accordion } from "flowbite-react";
 import React from "react";
 import { ArrowLeft, Check, ChevronRight, Edit2, Trash2 } from "react-feather";
-import { BiDownArrow } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 
 const CreateSubHeader = () => {
@@ -131,7 +129,7 @@ const StepButton = ({
 
 const Stepping = () => {
   return (
-    <div className="text-center box_shadow_2 text-[#03045E] font-semibold font-poppins overflow-x-auto">
+    <div className="text-center text-[#03045E] font-semibold font-poppins overflow-x-auto">
       <div className="flex justify-evenly items-center w-[750px]">
         <StepButton isComplete text="Complaint" />
         <div>
@@ -278,7 +276,9 @@ const CreateMedicalEncounter = () => {
     <div>
       <Header />
       <FormSubHeader />
-      <ClientDetailsCard />
+      <div className="px-5">
+        <ClientDetailsCard />
+      </div>
 
       {w1300 && (
         <div className="mx-5 mt-5">
@@ -313,7 +313,7 @@ const CreateMedicalEncounter = () => {
         )}
         <div className="col-span-6 mb-5">
           <ModuleStepping />
-          <div className="box_shadow_2 mt-5 flex flex-col gap-4 px-4 py-4 rounded">
+          <div className="shadow-md border border-borderColor mt-5 flex flex-col gap-4 px-4 py-4 rounded">
             {/* Presenting complaints */}
             <FormHeading
               title="Present Complaints"
@@ -374,7 +374,7 @@ const CreateMedicalEncounter = () => {
         </div>
         {!w1000 && (
           <div className="col-span-3">
-            <DataSummaryList isAccordion />
+            <DataSummaryList />
           </div>
         )}
       </div>

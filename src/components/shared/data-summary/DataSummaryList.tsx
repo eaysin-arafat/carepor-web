@@ -1,9 +1,9 @@
-import Diagnosis from "@/assets/icons/Diagnosis";
-import HTSStatus from "@/assets/icons/HTSStatus";
-import HeartBit from "@/assets/icons/HeartBit";
-import LabOrder from "@/assets/icons/Laborder";
-import Medication from "@/assets/icons/Medication";
-import DataSummaryItem from "./DataSummaryItem";
+// import Diagnosis from "@/assets/icons/Diagnosis";
+// import HTSStatus from "@/assets/icons/HTSStatus";
+// import HeartBit from "@/assets/icons/HeartBit";
+// import LabOrder from "@/assets/icons/Laborder";
+// import Medication from "@/assets/icons/Medication";
+// import DataSummaryItem from "./DataSummaryItem";
 import PastRecordList from "../past-record-list/PastRecordList";
 
 type Props = {
