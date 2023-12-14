@@ -1,9 +1,10 @@
 import {
   URLDashboard,
-  URLVitals,
   URLHts,
-  URLSurgery,
   URLInvestigation,
+  URLOPD,
+  URLSurgery,
+  URLVitals,
 } from "@/routers/module-link";
 
 type SidebarItem = {
@@ -46,7 +47,7 @@ const useModuleSidebarRoutes = ({ clientId }: Props): SidebarItem[] => {
       id: 4,
       title: "Encounter (OPD)",
       icon: "/assets/svg/sidebar/opd.svg",
-      link: "#",
+      link: URLOPD(),
       children: null,
       // children: [
       //   {

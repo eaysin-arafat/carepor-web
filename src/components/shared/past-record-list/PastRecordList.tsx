@@ -20,7 +20,7 @@ const PastRecordList = ({
 }: Props) => {
   const [height, setHeight] = useState(isAccordion ? false : true);
   return (
-    <div className="col-span-3">
+    <div className="">
       <div className="border border-borderColor shadow-md rounded">
         <button
           onClick={() => isAccordion && setHeight(!height)}

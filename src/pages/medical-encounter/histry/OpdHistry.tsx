@@ -1,10 +1,13 @@
 import CustomPagination from "@/components/core/custom-pagination/CustomPagination";
+import Select from "@/components/core/form-elements/Select";
 import Table from "@/components/shared/table/Table";
 import TableBody from "@/components/shared/table/TableBody";
 import TableHeader from "@/components/shared/table/TableHeader";
+import { URLOpdCreate } from "@/routers/formRoute";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
-function Test() {
+function OpdHistry() {
   const [state, setState] = useState(1);
 
   const data = [
@@ -102,10 +105,26 @@ function Test() {
 
   return (
     <div>
+      <h1 className="text-xl text-textColor mb-5">
+        History of Medical Encounter
+      </h1>
+      <div className="grid grid-cols-5 gap-5 mb-3">
+        <Select label="Encounter Date"></Select>
+        <Select label="Facility"></Select>
+        <Select label="Clinician"></Select>
+        <Select label="Cheif Complaints"></Select>
+        <div className="flex items-end justify-end w-full">
+          <Link
+            to={URLOpdCreate()}
+            className="px-2 py-3 bg-buttonBg w-full rounded-full text-center text-white"
+          >
+            Add Encounter
+          </Link>
+        </div>
+      </div>
       <div
         style={{
           width: "100%",
-          height: "90vh",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -146,7 +165,7 @@ function Test() {
                   delete: true,
                 }}
                 item={[
-                  { title: item.age, w: "100%" },
+                  { title: item.age, w: "100" },
                   { title: item.age, w: "200" },
                   { title: item.age, w: "300" },
                   { title: item.age, w: "100" },
@@ -170,4 +189,4 @@ function Test() {
   );
 }
 
-export default Test;
+export default OpdHistry;
