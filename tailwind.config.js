@@ -25,6 +25,7 @@ export default {
         lightBlueColor: "var(--lightBlue)",
         secondaryColor: "var(--secondary)",
         grayColor: "var(--grayColor)",
+        darkGrayColor: "var(--darkGray)",
         lightGrayColor: "var(--lightGray)",
         blackColor: "var(--blackColor)",
         whiteColor: "var(--white)",
@@ -37,6 +38,8 @@ export default {
         tableRow: "var(--tableRow)",
         overlayColor: "var(--overlay)",
         buttonBg: "var(--btnBg)",
+        logoColor2: "var(--logoColor2)",
+        logoColor2Hover: "var(--logoColor2Hover)",
       },
       boxShadow: {
         light: "0 8px 16px 0 rgba(0, 0, 0, 0.05)",

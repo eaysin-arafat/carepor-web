@@ -1,4 +1,3 @@
-import Checkbox from "@/components/core/form-elements/Checkbox";
 import { cn } from "@/utilities/cn";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 
@@ -27,14 +26,14 @@ function TableHeader({ isAction, title, className, actionWidth }: Props) {
   return (
     <div
       className={cn(
-        "flex justify-between bg-tableHeadColor text-textColor items-center",
+        "flex justify-between bg-tableHeadColor text-textColor items-center px-3",
         className
       )}
       // style={{ gridTemplateColumns: `repeat(${title.length + action}, 1fr)` }}
     >
-      <p className="p-2">
+      {/* <p className="p-2">
         <Checkbox className="h-[15px] w-[15px]" />
-      </p>
+      </p> */}
       {title.map((item, index) => (
         <p
           className="p-2 text-textColor text-xs font-bold flex items-center gap-1"
@@ -57,7 +56,7 @@ function TableHeader({ isAction, title, className, actionWidth }: Props) {
 
       {isAction && (
         <p
-          className={` ${actionWidth} p-2 text-textColor bg-tableHeadColor text-xs font-bold sticky right-0 z-50 `}
+          className={` ${actionWidth} p-2 text-textColor bg-tableHeadColor text-xs font-bold sticky right-0 z-10 `}
         >
           Action
         </p>

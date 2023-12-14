@@ -3,7 +3,6 @@ import { RtkStatusEnum } from "@/enum/rtk";
 import { useCreateOPDVisitMutation } from "@/features/opd-visit/opd-visit-api";
 import { Client } from "@/interface/clients";
 import {
-  URLAdmissionDischarge,
   URLAdmissions,
   URLClientDetails,
   URLServicePoint,
@@ -11,13 +10,17 @@ import {
 import { clientAddress } from "@/utilities";
 import { cn } from "@/utilities/cn";
 import { cookieManager } from "@/utilities/cookie-manager";
+import { getSingleYear } from "@/utilities/date";
 import { format } from "date-fns";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
-import { FaCalendarAlt } from "react-icons/fa";
 import { FaRegAddressCard } from "react-icons/fa6";
 import { LuMapPin } from "react-icons/lu";
-import { MdOutlinePerson2, MdOutlinePhone } from "react-icons/md";
+import {
+  MdOutlineCalendarMonth,
+  MdOutlinePerson2,
+  MdOutlinePhone,
+} from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 
 const gender = {
@@ -91,30 +94,30 @@ const PatientCard = ({ client, className }: PatientCardProps) => {
                   title="Date of Birth"
                   value={
                     client.dob
-                      ? format(new Date(client.dob), "dd-MMM-yyyy")
+                      ? format(new Date(client.dob), "dd-MMM-yyyy") + " (" + getSingleYear(client.dob) + ")"
                       : ""
                   }
-                  icon={<FaCalendarAlt className="text-grayColor" />}
+                  icon={<MdOutlineCalendarMonth className="" />}
                 />
                 <Card
                   title="Sex"
                   value={gender[client.sex]}
-                  icon={<MdOutlinePerson2 className="text-grayColor" />}
+                  icon={<MdOutlinePerson2 className="" />}
                 />
                 <Card
                   title="Cellphone"
                   value={client.cellphoneCountryCode + " " + client.cellphone}
-                  icon={<MdOutlinePhone className="text-grayColor" />}
+                  icon={<MdOutlinePhone className="" />}
                 />
                 <Card
                   title="NUPN"
                   value={client.nupn}
-                  icon={<FaRegAddressCard className="text-grayColor" />}
+                  icon={<FaRegAddressCard className="" />}
                 />
                 <Card
                   title="NRC"
                   value={client.nrc}
-                  icon={<FaRegAddressCard className="text-grayColor" />}
+                  icon={<FaRegAddressCard className="" />}
                 />
                 {/* <Card
                   title="Address"
@@ -125,11 +128,11 @@ const PatientCard = ({ client, className }: PatientCardProps) => {
                   <span className="text-xs font-semibold text-secondaryColor">
                     Address
                   </span>
-                  <div className="flex items-center flex-row gap-2 mt-2">
+                  <div className="flex items-center flex-row gap-1 mt-2">
                     <span>
-                      <LuMapPin className="text-grayColor" />
+                      <LuMapPin className="text-darkGrayColor" />
                     </span>
-                    <span className="text-grayColor text-xs">
+                    <span className="text-darkGrayColor text-xs">
                       {clientAddress(client)}
                     </span>
                   </div>
@@ -144,29 +147,18 @@ const PatientCard = ({ client, className }: PatientCardProps) => {
                 >
                   Edit Profile
                 </Link>
-                {!client.isAdmitted && (
-                  <Link
-                    to={URLAdmissions({ clientId: client?.oid })}
-                    className={cn("main_btn btn_sm text-center text-sm")}
-                  >
-                    Admit Patient
-                  </Link>
-                )}
-                {client?.isAdmitted && (
-                  <>
-                    <button className={cn("main_btn btn_sm  text-sm")}>
-                      Admission Details
-                    </button>
-                    <Link
-                      to={URLAdmissionDischarge({ clientId: client?.oid })}
-                      className={cn("main_btn btn_sm text-center text-sm")}
-                    >
-                      Discharge
-                    </Link>
-                  </>
-                )}
+
+                <Link
+                  to={URLAdmissions({ clientId: client?.oid })}
+                  className={cn("main_btn btn_sm text-center text-sm")}
+                >
+                  Admission
+                </Link>
                 <button className={cn("main_btn btn_sm text-sm")}>
                   Service Queue
+                </button>
+                <button className={cn("main_btn btn_sm text-sm")}>
+                  Historical visit
                 </button>
                 <button
                   className={cn("main_btn btn_sm text-sm")}
@@ -195,9 +187,9 @@ const Card = ({ title, value, icon, className }: CardProps) => {
   return (
     <div className={cn("me-5 mb-5", className)}>
       <span className="text-xs font-semibold text-secondaryColor">{title}</span>
-      <div className="flex flex-row items-center gap-2 mt-2">
-        <span>{icon}</span>
-        <span className="text-grayColor text-xs ">{value}</span>
+      <div className="flex flex-row items-center gap-1 mt-2">
+        <span className="text-darkGrayColor">{icon}</span>
+        <span className="text-darkGrayColor text-xs ">{value}</span>
       </div>
     </div>
   );

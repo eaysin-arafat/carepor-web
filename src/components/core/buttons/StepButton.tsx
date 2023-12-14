@@ -20,7 +20,7 @@ const StepButton = ({
       <span
         className={cn("inline-block capitalize", {
           "text-[#1890FF]": isActive,
-          "text-black": !isActive,
+          "text-secondaryColor": !isActive,
         })}
       >
         {text}

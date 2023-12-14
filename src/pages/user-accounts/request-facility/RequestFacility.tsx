@@ -76,7 +76,7 @@ const RequestFacility = () => {
 
           <div className="mt-5 text-center font-medium">
             {/* <OutlineButton onClick={handleCancelRequest} title="Cancel" /> */}
-            <button onClick={handleCancelRequest}>Cancel</button>
+            <button onClick={handleCancelRequest} className="text-sm sm:text-lg">Cancel</button>
           </div>
         </form>
       </FormWrapper>

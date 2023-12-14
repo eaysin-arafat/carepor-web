@@ -1,6 +1,8 @@
 import { useClientUpdateMutation } from "@/features/client/client-api";
 import useFacility from "@/hooks/useFacility";
+import useGetQueryParams from "@/hooks/useGetQueryParams";
 import { URLClientDetails } from "@/routers/client";
+import { URLDashboard } from "@/routers/module-link";
 import { FormEvent, useEffect } from "react";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
@@ -8,8 +10,6 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import maritalStatusAndSpouseValidation from "../marital-status-And-spouse/maritalStatusAndSpouseValidation";
 import placeOfBirthReligiousValidation from "../place-of-birth-religious/placeOfBirthReligiousValidation";
-import getQueryParams from "@/utilities/get-query-params";
-import { URLDashboard } from "@/routers/module-link";
 
 const useSubmitClientAccountEdit = ({
   contactInfo,
@@ -26,7 +26,7 @@ const useSubmitClientAccountEdit = ({
   const [clientUpdate, { status, isError, isSuccess, error }] =
     useClientUpdateMutation();
 
-  const backTo = getQueryParams("back");
+  const backTo = useGetQueryParams("back");
 
   // @ts-ignore
   const { user } = useSelector((state) => state.authentication);

@@ -21,7 +21,7 @@ function BodyBackground({ children, noBackground }: Props) {
       </div>
       <div className="relative z-10 ">{children}</div>
       {!noBackground && (
-        <div className="fixed inset-0 bg-overlayColor opacity-80 h-[100%]"></div>
+        <div className="fixed inset-0 md:bg-overlayColor opacity-80 h-[100%]"></div>
       )}
     </div>
   );

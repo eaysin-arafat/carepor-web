@@ -1,6 +1,8 @@
 import { LoginDataType } from "@/types";
 import { API } from "../API/API";
 import { login, logout } from "../authentication/authentication-slice";
+// import { UserAccount } from "@/interface/user-accounts";
+import { TypeUser } from "@/types/user-accounts";
 
 let countryCodeEncode = (countryCode: string): string =>
   countryCode.replace(/\+/g, "%2B");
@@ -40,7 +42,7 @@ const userAccountsApi = API.injectEndpoints({
      * @description This endpoint is used to read user accounts
      * @returns UserAccount[]
      */
-    readUserAccounts: builder.query({
+    readUserAccounts: builder.query<TypeUser[], undefined>({
       query: () => ({
         url: "/user-accounts",
         method: "GET",

@@ -2,20 +2,27 @@ import PrivateGuard from "@/components/shared/guard/PrivateGuard";
 import ModuleSidebar from "@/components/sidebar/ModuleSidebar";
 import Dashboard from "@/pages/dashboard/Dashboard";
 import Investigation from "@/pages/investigations/index/Investigation";
-import Vitals from "@/pages/vitals/Vitals";
+import SurgeryIndex from "@/pages/surgery/index/Surgery";
+import Vitals from "@/pages/vitals/index/Vitals";
+import {
+  URLDashboard,
+  URLHts,
+  URLInvestigation,
+  URLSurgery,
+  URLVitals,
+} from "./module-link";
 
 // routes for public
 //! Will change later Dashboard URL
-export const URLDashboard = (): string => "/dashboard";
-export const URLUserAccountCreate = (): string => "/user-accounts/create";
+// export const URLDashboard = (): string => "/dashboard";
+// export const URLUserAccountCreate = (): string => "/user-accounts/create";
 
-export const URLUserRecoveryRequest = (): string => "/recovery-request";
-import SurgeryIndex from "@/pages/surgery/index/Surgery";
+// export const URLUserRecoveryRequest = (): string => "/recovery-request";
 
-// routes for public
+// // routes for public
 
-export const URLInvestigation = (): string => "/investigation";
-export const URLSurgery = (): string => "/surgery";
+// export const URLInvestigation = (): string => "/investigation";
+// export const URLSurgery = (): string => "/surgery";
 
 const ModuleRoute = [
   {
@@ -25,7 +32,7 @@ const ModuleRoute = [
         element: <ModuleSidebar />,
         children: [
           {
-            path: "/vitals",
+            path: URLVitals(),
             element: <Vitals />,
           },
           {
@@ -39,6 +46,10 @@ const ModuleRoute = [
           {
             path: URLSurgery(),
             element: <SurgeryIndex />,
+          },
+          {
+            path: URLHts(),
+            element: "",
           },
         ],
       },
