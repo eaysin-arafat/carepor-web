@@ -6,14 +6,13 @@ import { bloodPressureStatus } from "@/utilities/blood-pressure-status";
 import { cn } from "@/utilities/cn";
 import VitalsCreateForm from "../create/Create";
 import useVitals from "./useVitals";
-import { useNavigate } from "react-router-dom";
-import { URLVitalsDetails } from "@/routers/module-link";
+import VitalsDetails from "../details/VitalsDetails";
 
 function Vitals() {
-  const navigate = useNavigate()
   const {
     addModal,
     handleAddVitalModal,
+    handleViewVitalModal,
     handleEncounterFilter,
     w1100,
     vitals,
@@ -36,10 +35,9 @@ function Vitals() {
               </div>
             </div>
             <div className="bg-whiteBgColor flex p-5 mt-5 rounded-lg text-xs md:text-sm justify-between">
-              <ul className=" w-[250px] flex flex-col gap-1.5">
+              <ul className=" w-[250px] flex flex-col gap-1.5 py-2">
                 <li className="mb-3 font-medium">Vitals</li>
-                <li className="mb-7"></li>
-                {/* <li className="mb-3">Vital Time</li> */}
+                <li className="mb-3">Vital Time</li>
                 <li className="mb-3">Height</li>
                 <li className="mb-3">Weight</li>
                 <li className="mb-3">BMI</li>
@@ -59,28 +57,17 @@ function Vitals() {
                       return (
                         <ul
                           key={vital?.oid}
-                          className={`min-w-[140px] flex flex-col gap-1.5 rounded p-2 text-grayColor text-black text-center ${
+                          className={`min-w-[140px] flex flex-col gap-1.5 rounded p-2 text-grayColor text-black text-center group ${
                             index % 2 === 0 ? "bg-slate-100" : ""
                           }`}
                         >
-                          <li className="mb-3 font-medium text-textColor flex flex-col justify-center">
-                            <div className="mb-2">
-                              {format(
-                                new Date(vital?.vitalsDate),
-                                "dd-MMM-yyyy"
-                              )}
-                            </div>
-                            <div className="flex justify-center items-center gap-2">
-                              {format(new Date(vital?.vitalsDate), "hh:mm a")}
-                              <button onClick={()=> navigate(URLVitalsDetails())}><FiEye className="text-primaryColor" /></button>
-                            </div>
+                          <li className="mb-3 font-medium text-textColor">
+                            {format(new Date(vital?.vitalsDate), "dd-MMM-yyyy")}
                           </li>
-                          {/* <li className="mb-3 font-medium text-textColor">
+                          <li className="mb-3 text-textColor">
                             {format(new Date(vital?.vitalsDate), "hh:mm a")}
-                          </li> */}
-                          <li className="mb-3 text-black">
-                            {vital?.height}
                           </li>
+                          <li className="mb-3 text-black">{vital?.height}</li>
                           <li className="mb-3 text-black">{vital?.weight}</li>
                           <li className="mb-3 text-black">{vital?.bmi}</li>
                           <li className="mb-3 text-black">
@@ -92,10 +79,24 @@ function Vitals() {
                             })}
                           >
                             {vital?.systolic != -1 && vital?.diastolic != -1 ? (
-                              `${vital?.systolic}/${vital?.diastolic} - ${bloodPressure}`
+                              `${vital?.systolic}/${vital?.diastolic} `
                             ) : (
                               <span className="text-black">Unrecordable</span>
                             )}
+                            {/* {vital?.systolic != -1 && vital?.diastolic != -1 ? (
+                              `${vital?.systolic}/${vital?.diastolic} - ${bloodPressure}`
+                            ) : (
+                              <span className="text-black">Unrecordable</span>
+                            )} */}
+                          </li>
+                          <li className="mb-3 text-black flex justify-center  opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button
+                              onClick={handleViewVitalModal}
+                              className="flex gap-1 items-center border border-primaryColor hover:bg-lightBlueColor px-2 py-1 rounded text-primaryColor"
+                            >
+                              <FiEye className="text-primaryColor" />
+                              Details
+                            </button>
                           </li>
                         </ul>
                       );
@@ -117,6 +118,10 @@ function Vitals() {
         {/* CREATE VITAL MODAL */}
         {addModal?.isOpen && addModal?.modalId === vitalModalTypes.addVital && (
           <VitalsCreateForm />
+        )}
+        {/* VIEW VITAL MODAL */}
+        {addModal?.isOpen && addModal?.modalId === vitalModalTypes.viewVital && (
+          <VitalsDetails />
         )}
       </div>
     </div>

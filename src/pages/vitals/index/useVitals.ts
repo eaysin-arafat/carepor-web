@@ -29,6 +29,15 @@ const useVitals = () => {
       })
     );
   };
+  
+  const handleViewVitalModal = () => {
+    dispatch(
+      openAddModal({
+        modalId: vitalModalTypes.viewVital,
+        data: null,
+      })
+    );
+  };
 
   const handleEncounterFilter = (vital: Vital) => {
     return vital.encounterType === EnumEncounterType.Vital;
@@ -36,6 +45,7 @@ const useVitals = () => {
 
   return {
     handleAddVitalModal,
+    handleViewVitalModal,
     handleEncounterFilter,
     w1100,
     addModal,
