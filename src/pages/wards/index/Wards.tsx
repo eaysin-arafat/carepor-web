@@ -72,22 +72,22 @@ function Wards() {
                 {
                   title: "#",
                   w: "10%",
-                  sortIcon: false,
+                  // sortIcon: false,
                 },
                 {
                   title: "Department",
                   w: "30%",
-                  sortIcon: true,
+                  // sortIcon: true,
                 },
                 {
                   title: "Firm",
                   w: "30%",
-                  sortIcon: true,
+                  // sortIcon: true,
                 },
                 {
                   title: "Ward",
                   w: "30%",
-                  sortIcon: true,
+                  // sortIcon: true,
                 },
               ]}
             />

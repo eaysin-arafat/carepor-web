@@ -29,7 +29,7 @@ const InvestigationHeader = (props: Props) => {
         },
         {
           title: "Test Name",
-          w: "12%",
+          w: "14%",
         },
         {
           title: "Order Number",
