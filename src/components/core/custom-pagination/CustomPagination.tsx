@@ -6,6 +6,7 @@ import Select from "../form-elements/Select";
 
 type Props = {
   activePage: number;
+
   setActivePage: React.Dispatch<React.SetStateAction<number>>;
   itemsCountPerPage?: number;
   totalItemsCount: number;
@@ -38,14 +39,14 @@ function CustomPagination({
   const showInPage = [10, 20, 50, 100];
 
   return (
-    <div className="flex mt-5 items-center gap-3 ">
+    <div className=" flex flex-col sm:flex-row mt-5 items-end gap-3 ">
       <div className="flex items-center gap-2">
         <span className="text-[14px] p-1 ">Show </span>
         <Select
           isHideSelect
-          className="p-1  col-span-1 text-[14px] text-center w-20"
-          label=""
           value={itemsCountPerPage}
+          className="p-1 -mt-[5px] py-[2px] border col-span-1 text-[14px] text-center w-20"
+          label=""
           onChange={(e: OnchangeEventType) => setItemPerPage(+e.target.value)}
         >
           {showInPage.map((key) => (

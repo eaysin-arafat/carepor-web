@@ -4,7 +4,11 @@ import AdminInfo from "./AdminInfo";
 import HeaderList from "./HeaderList";
 import MobileHeader from "./MobileHeader";
 
-function Header() {
+type Props = {
+  isSidebarOff?: boolean;
+};
+
+function Header({ isSidebarOff }: Props) {
   // * Hooks
   const w1230 = useWindowWidth(1230);
   const w1100 = useWindowWidth(1100);
@@ -36,7 +40,7 @@ function Header() {
           <AdminInfo />
         </div>
       </div>
-      {w1100 && <MobileHeader />}
+      {w1100 && <MobileHeader offSidebar={isSidebarOff ? false : true} />}
     </>
   );
 }

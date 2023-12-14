@@ -26,7 +26,10 @@ function RecoveryRequest() {
         appTitle
         titleClass="text-center"
         title="Login Recovery Request"
+
       >
+        <>
+        <p className="text-secondaryColor text-center mt-5">Please provide either Username or Cellphone to recover your Login.</p>
         <form onSubmit={handleSubmit} className="mt-8">
           <div className="grid gap-5">
             <Input
@@ -69,6 +72,7 @@ function RecoveryRequest() {
             />
           </div>
         </form>
+        </>
       </FormWrapper>
     </>
   );

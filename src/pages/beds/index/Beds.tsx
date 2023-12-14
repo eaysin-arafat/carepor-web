@@ -63,7 +63,7 @@ function Beds() {
         <div className="mt-5">
           <Table className="min-w-[1000px]">
             <TableHeader
-              className="bg-primaryHoverColor"
+              className=""
               actionWidth="w-[100px]"
               isAction
               title={[

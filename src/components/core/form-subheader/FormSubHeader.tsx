@@ -1,13 +1,15 @@
 import { ArrowLeft } from "react-feather";
+import { useNavigate } from "react-router-dom";
 
 const FormSubHeader = () => {
+  const navigation = useNavigate();
   return (
-    <div className="grid grid-cols-3 items-center w-full px-5 py-4">
-      <button>
+    <div className="flex justify-between items-center w-full px-5 py-4">
+      <button onClick={() => navigation(-1)}>
         <ArrowLeft size={24} />
       </button>
-      <h1 className="text-[#1E0E62] text-xl font-medium text-center">
-        Create New Medical Encounter
+      <h1 className="text-secondaryColor text-xl font-medium text-center">
+        Title Not Found
       </h1>
       <div></div>
     </div>

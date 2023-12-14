@@ -100,17 +100,6 @@ function Test() {
     },
   ];
 
-  const Test2 = ({ tt }: { tt: string }) => {
-    return (
-      <div>
-        <p>{tt}</p>
-        <span>Test</span>
-      </div>
-    );
-  };
-
-  console.log(Test2);
-
   return (
     <div>
       <div

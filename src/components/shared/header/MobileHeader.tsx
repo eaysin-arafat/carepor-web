@@ -6,7 +6,10 @@ import { FaBars } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import HeaderList from "./HeaderList";
 
-function MobileHeader() {
+type Props = {
+  offSidebar?: boolean;
+};
+function MobileHeader({ offSidebar }: Props) {
   const w1100 = useWindowWidth(1100);
   const dispatch = useDispatch();
 
@@ -18,20 +21,22 @@ function MobileHeader() {
       <div>
         <HeaderList />
       </div>
-      <div>
-        {w1100 && (
-          <button
-            className="flex items-center"
-            onClick={() => dispatch(sidebarState({ sidebar: !sidebar }))}
-          >
-            {sidebar ? (
-              <FaBars color="#000" size={25} />
-            ) : (
-              <FaTimes color="#000" size={25} />
-            )}
-          </button>
-        )}
-      </div>
+      {offSidebar && (
+        <div>
+          {w1100 && (
+            <button
+              className="flex items-center"
+              onClick={() => dispatch(sidebarState({ sidebar: !sidebar }))}
+            >
+              {sidebar ? (
+                <FaBars color="#000" size={25} />
+              ) : (
+                <FaTimes color="#000" size={25} />
+              )}
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 }

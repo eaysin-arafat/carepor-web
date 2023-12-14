@@ -61,26 +61,26 @@ function Firms() {
           </button>
         </div>
         <div className="mt-5">
-          <Table className="min-w-[1000px]">
+          <Table className="min-w-[700px]">
             <TableHeader
-              className="bg-primaryHoverColor"
-              actionWidth="w-[180px]"
+              className=""
+              actionWidth="w-[150px]"
               isAction
               title={[
                 {
                   title: "#",
-                  w: "20%",
-                  sortIcon: false,
+                  w: "10%",
+                  // sortIcon: false,
                 },
                 {
                   title: "Department",
-                  w: "35%",
-                  sortIcon: true,
+                  w: "20%",
+                  // sortIcon: true,
                 },
                 {
                   title: "Firm",
-                  w: "35%",
-                  sortIcon: true,
+                  w: "50%",
+                  // sortIcon: true,
                 },
               ]}
             />
@@ -105,7 +105,7 @@ function Firms() {
               ?.map((item, index) => (
                 <TableBody
                   index={index}
-                  actionWidth="w-[160px]"
+                  actionWidth="w-[150px]"
                   isAction
                   btn={{
                     viewResult: "Wards",
@@ -116,9 +116,9 @@ function Firms() {
                     navigate(URLWards(item?.oid?.toString()))
                   }
                   item={[
-                    { title: (index + 1).toString(), w: "20%" },
-                    { title: item.department?.description, w: "35%" },
-                    { title: item?.description, w: "35%" },
+                    { title: (index + 1).toString(), w: "10%" },
+                    { title: item.department?.description, w: "20%" },
+                    { title: item?.description, w: "50%" },
                   ]}
                 />
               ))}
