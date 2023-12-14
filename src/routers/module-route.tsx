@@ -15,7 +15,9 @@ import {
   URLOPD,
   URLSurgery,
   URLVitals,
+  URLVitalsDetails,
 } from "./module-link";
+import VitalsDetails from "@/pages/vitals/details/VitalsDetails";
 
 const ModuleRoute = [
   {
@@ -27,6 +29,10 @@ const ModuleRoute = [
           {
             path: URLVitals(),
             element: <Vitals />,
+          },
+          {
+            path: URLVitalsDetails(),
+            element: <VitalsDetails />,
           },
           {
             path: URLHts(),

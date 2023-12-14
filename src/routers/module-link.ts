@@ -6,6 +6,7 @@ export const URLUserRecoveryRequest = (): string => "/recovery-request";
 export const URLInvestigation = (): string => "/investigation";
 export const URLSurgery = (): string => "/surgery";
 export const URLVitals = (): string => "/vitals";
+export const URLVitalsDetails = (): string => "/vitals/details";
 export const URLHts = (): string => "/hts";
 export const URLOPD = (): string => "/medical-encounter";
 export const URLIPDHistory = (): string => "/medical-encounter/ipd/history";

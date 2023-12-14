@@ -1,13 +1,16 @@
 import { vitalModalTypes } from "@/constants/modal-types";
 import { format } from "date-fns";
-import { FiPlusCircle } from "react-icons/fi";
+import { FiEye, FiPlusCircle } from "react-icons/fi";
 // import React from "react";
 import { bloodPressureStatus } from "@/utilities/blood-pressure-status";
 import { cn } from "@/utilities/cn";
 import VitalsCreateForm from "../create/Create";
 import useVitals from "./useVitals";
+import { useNavigate } from "react-router-dom";
+import { URLVitalsDetails } from "@/routers/module-link";
 
 function Vitals() {
+  const navigate = useNavigate()
   const {
     addModal,
     handleAddVitalModal,
@@ -24,12 +27,9 @@ function Vitals() {
             <div className="md:flex justify-between items-center">
               <h2 className="heading_2">Vitals & Anthropometry</h2>
               <div className="flex gap-4 mt-3">
-                <button className="transparent_btn py-1 px-4 sm:px-7 text-sm sm:text-base bg-whiteBgColor border-primaryColor hover:text-whiteColor hover:bg-primaryColor ">
-                  Last 5 Encounters
-                </button>
                 <button
                   onClick={handleAddVitalModal}
-                  className="main_btn py-2 px-5 gap-1 inline-flex md:hidden"
+                  className="main_btn py-2 px-5 gap-1 inline-flex"
                 >
                   <FiPlusCircle className="" /> Add Vital
                 </button>
@@ -38,7 +38,8 @@ function Vitals() {
             <div className="bg-whiteBgColor flex p-5 mt-5 rounded-lg text-xs md:text-sm justify-between">
               <ul className=" w-[250px] flex flex-col gap-1.5">
                 <li className="mb-3 font-medium">Vitals</li>
-                <li className="mb-3">Vital Time</li>
+                <li className="mb-7"></li>
+                {/* <li className="mb-3">Vital Time</li> */}
                 <li className="mb-3">Height</li>
                 <li className="mb-3">Weight</li>
                 <li className="mb-3">BMI</li>
@@ -62,13 +63,22 @@ function Vitals() {
                             index % 2 === 0 ? "bg-slate-100" : ""
                           }`}
                         >
-                          <li className="mb-3 font-medium text-textColor">
-                            {format(new Date(vital?.vitalsDate), "dd-MMM-yyyy")}
+                          <li className="mb-3 font-medium text-textColor flex flex-col justify-center">
+                            <div className="mb-2">
+                              {format(
+                                new Date(vital?.vitalsDate),
+                                "dd-MMM-yyyy"
+                              )}
+                            </div>
+                            <div className="flex justify-center items-center gap-2">
+                              {format(new Date(vital?.vitalsDate), "hh:mm a")}
+                              <button onClick={()=> navigate(URLVitalsDetails())}><FiEye className="text-primaryColor" /></button>
+                            </div>
                           </li>
-                          <li className="mb-3 font-medium text-textColor">
+                          {/* <li className="mb-3 font-medium text-textColor">
                             {format(new Date(vital?.vitalsDate), "hh:mm a")}
-                          </li>
-                          <li className="mb-3 text-black border-b">
+                          </li> */}
+                          <li className="mb-3 text-black">
                             {vital?.height}
                           </li>
                           <li className="mb-3 text-black">{vital?.weight}</li>
@@ -92,14 +102,14 @@ function Vitals() {
                     })}
                 </div>
               </div>
-              <div className="md:w-[260px] 2xl:w-[200px] hidden md:block">
+              {/* <div className="md:w-[260px] 2xl:w-[200px] hidden md:block">
                 <button
                   onClick={handleAddVitalModal}
                   className="main_btn py-2 px-3 gap-1 inline-flex"
                 >
                   <FiPlusCircle className="" /> Add Vital
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
