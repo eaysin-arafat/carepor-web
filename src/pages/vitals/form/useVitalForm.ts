@@ -10,7 +10,7 @@ import {
   respiratoryRateMessage,
   systolicBpMessage,
   temperatureMessage,
-} from "@/library/vital-helpers";
+} from "@/library/vital";
 import React from "react";
 
 const useVitalForm = ({
