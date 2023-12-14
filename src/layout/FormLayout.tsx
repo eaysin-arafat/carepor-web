@@ -22,17 +22,7 @@ const FormLayout = ({ children, latestData }: Props) => {
       </div>
 
       {w1300 && (
-        <div className="mx-5 mt-5">
-          {/* <PastRecordList
-            title="Latest Encounter"
-            isSubTitleShow
-            subTitle="12-Dec-2023"
-            isPastEncounter
-            isAccordion
-          /> */}
-
-          {latestData || "Latest Data Required"}
-        </div>
+        <div className="mx-5 mt-5">{latestData || "Latest Data Required"}</div>
       )}
 
       {w1000 && (

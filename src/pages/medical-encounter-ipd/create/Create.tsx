@@ -1,9 +1,10 @@
 import { RootState } from "@/app/store";
 import FormHeading from "@/components/core/form-heading/FormHeading";
 import IpdComplaintsHistory from "@/components/medical-encounter-ipd/IpdComplaintsHistory";
-import ModuleStepping from "@/components/shared/multi-step/ModuleStepping";
+import PastRecordList from "@/components/shared/past-record-list/PastRecordList";
 import { ipdModalTypes } from "@/constants/modal-types";
 import { closeAddModal, openAddModal } from "@/features/modal/modal-slice";
+import FormLayout from "@/layout/FormLayout";
 import { useDispatch, useSelector } from "react-redux";
 
 const IPDCreate = () => {
@@ -23,27 +24,37 @@ const IPDCreate = () => {
   };
 
   return (
-    <div>
-      <ModuleStepping />
-      <FormHeading
-        title="Presenting Complaints"
-        modalHandler={handleChiefComplaints}
-        isEdit
-      />
-      {addModal?.modalId === ipdModalTypes.ipdCreateModal && (
-        <IpdComplaintsHistory toggler={closeModal} />
-      )}
-      <FormHeading
-        title="Presenting Complaints"
-        // modalHandler={handleChiefComplaints}
-        isEdit={false}
-      />
-      <FormHeading
-        title="Presenting Complaints"
-        // modalHandler={handleChiefComplaints}
-        isEdit
-      />
-    </div>
+    <FormLayout
+      latestData={
+        <PastRecordList
+          title="Latest Encounter"
+          isSubTitleShow
+          subTitle="12-Dec-2023"
+          isPastEncounter
+        />
+      }
+    >
+      <div>
+        <FormHeading
+          title="Presenting Complaints"
+          modalHandler={handleChiefComplaints}
+          isEdit
+        />
+        {addModal?.modalId === ipdModalTypes.ipdCreateModal && (
+          <IpdComplaintsHistory toggler={closeModal} />
+        )}
+        <FormHeading
+          title="Presenting Complaints"
+          // modalHandler={handleChiefComplaints}
+          isEdit={false}
+        />
+        <FormHeading
+          title="Presenting Complaints"
+          // modalHandler={handleChiefComplaints}
+          isEdit
+        />
+      </div>
+    </FormLayout>
   );
 };
 
