@@ -1,15 +1,12 @@
 import { RootState } from "@/app/store";
 import HTSStatus from "@/assets/icons/HTSStatus";
-import ClientDetailsCard from "@/components/core/card/ClientDetailsCard";
 import FormHeading from "@/components/core/form-heading/FormHeading";
-import FormSubHeader from "@/components/core/form-subheader/FormSubHeader";
-import DataSummaryList from "@/components/shared/data-summary/DataSummaryList";
-import Header from "@/components/shared/header/Header";
 import ModuleStepping from "@/components/shared/multi-step/ModuleStepping";
 import PastRecordList from "@/components/shared/past-record-list/PastRecordList";
 import { medicalEncounterModalTypes } from "@/constants/modal-types";
 import { closeAddModal, openAddModal } from "@/features/modal/modal-slice";
 import useWindowWidth from "@/hooks/useWindow";
+import FormLayout from "@/layout/FormLayout";
 import CreateAllergy from "@/pages/allergies/create/Create";
 import CreateChiefComplaints from "@/pages/chief-complaints/create/Create";
 import CreatePastMedicalHistory from "@/pages/past-medical-histories/create/Create";
@@ -274,43 +271,16 @@ const CreateMedicalEncounter = () => {
   };
   return (
     <div>
-      <Header />
-      <FormSubHeader />
-      <div className="px-5">
-        <ClientDetailsCard />
-      </div>
-
-      {w1300 && (
-        <div className="mx-5 mt-5">
+      <FormLayout
+        latestData={
           <PastRecordList
             title="Latest Encounter"
             isSubTitleShow
             subTitle="12-Dec-2023"
             isPastEncounter
-            isAccordion
           />
-        </div>
-      )}
-
-      {w1000 && (
-        <div className="mx-5 mt-5">
-          <DataSummaryList isResponsive />
-        </div>
-      )}
-
-      <div
-        className={`grid ${
-          w1300 ? (w1000 ? "grid-cols-6" : "grid-cols-9") : "grid-cols-12"
-        } gap-4 mt-3 px-5`}
+        }
       >
-        {!w1300 && (
-          <PastRecordList
-            title="Latest Encounter"
-            isSubTitleShow
-            subTitle="12-Dec-2023"
-            isPastEncounter
-          />
-        )}
         <div className="col-span-6 mb-5">
           <ModuleStepping />
           <div className="shadow-md border border-borderColor mt-5 flex flex-col gap-4 px-4 py-4 rounded">
@@ -372,12 +342,7 @@ const CreateMedicalEncounter = () => {
             />
           </div>
         </div>
-        {!w1000 && (
-          <div className="col-span-3">
-            <DataSummaryList />
-          </div>
-        )}
-      </div>
+      </FormLayout>
     </div>
   );
 };
