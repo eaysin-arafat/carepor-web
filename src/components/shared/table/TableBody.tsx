@@ -1,4 +1,3 @@
-import Checkbox from "@/components/core/form-elements/Checkbox";
 import { cn } from "@/utilities/cn";
 import { Edit, Eye, Trash } from "react-feather";
 
@@ -50,7 +49,7 @@ function TableBody({
   isDropdown,
   btn,
   actionWidth,
-  className = " " ,
+  className = " ",
   btnHandler,
   btnOutlineHandler,
   viewResultHandler,
@@ -59,19 +58,22 @@ function TableBody({
   return (
     <div
       key={index}
-      className={cn(`flex justify-between ${
-        length === index + 1 && "rounded-b-lg"
-      } items-center ${
-        colorKey || index % 2
-          ? colorKey
-            ? "bg-tableRow"
-            : "bg-tableRow"
-          : "bg-whiteBgColor"
-      } ` , className )}
+      className={cn(
+        `flex justify-between px-3 ${
+          length === index + 1 && "rounded-b-lg"
+        } items-center ${
+          colorKey || index % 2
+            ? colorKey
+              ? "bg-tableRow"
+              : "bg-tableRow"
+            : "bg-whiteBgColor"
+        } `,
+        className
+      )}
     >
-      <p className="p-2">
+      {/* <p className="p-2">
         <Checkbox className="h-[15px] w-[15px]" />
-      </p>
+      </p> */}
       {item.map((data, i) => (
         <p
           className={cn(

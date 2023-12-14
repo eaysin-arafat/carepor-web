@@ -1,4 +1,4 @@
-import { Plus, PlusCircle } from "react-feather";
+import { Plus } from "react-feather";
 
 const FormHeading = ({
   title = "Present Complaints",

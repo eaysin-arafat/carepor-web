@@ -1,17 +1,22 @@
 import CustomPagination from "@/components/core/custom-pagination/CustomPagination";
 import Table from "@/components/shared/table/Table";
 import TableBody from "@/components/shared/table/TableBody";
-import TableHeader from "@/components/shared/table/TableHeader";
+import { EnumPiority } from "@/enum/enumerators";
 import useWindowWidth from "@/hooks/useWindow";
+import {
+  withCompositeInvestigation,
+  withoutCompositeInvestigation,
+} from "@/types/module-types/investigation";
 import { cn } from "@/utilities/cn";
 import { DateFunc } from "@/utilities/date";
 import React from "react";
 import InvestigationAddResultModal from "../create/InvestigationAddResultModal";
 import InvestigationCreate from "../create/InvestigationCreate";
 import InvestigationViewOrderModal from "../create/InvestigationViewOrderModal";
-import InvestigationFilter from "./InvestigationFilter";
-import useInvestigation from "./useInvestigation";
 import InvestigationViewResultModal from "../create/InvestigationViewResultModal";
+import InvestigationFilter from "./InvestigationFilter";
+import InvestigationHeader from "./InvestigationHeader";
+import useInvestigation from "./useInvestigation";
 // import InvestigationCreateForm from "@/components/investigations/InvestigationCreateForm";
 
 const Investigation = () => {
@@ -72,55 +77,22 @@ const Investigation = () => {
                 className="border-none bg-transparent"
               />
               <Table>
-                <TableHeader
-                  className="bg-tableHeadColor text-textColor"
-                  isAction
-                  actionWidth="min-w-[220px]"
-                  title={[
-                    {
-                      title: "Patient Name",
-                      w: "20%",
-                    },
-                    {
-                      title: "Priority",
-                      w: "20%",
-                    },
-                    {
-                      title: "Order Date",
-                      w: "20%",
-                    },
-                    {
-                      title: "Test",
-                      w: "20%",
-                    },
-                    {
-                      title: "Order Number",
-                      w: "20%",
-                    },
-                    {
-                      title: "Sample Date Collection",
-                      w: "20%",
-                    },
-                  ]}
-                />
+                <InvestigationHeader />
+
                 {Array.isArray(investigations) &&
                   investigations?.map((item, index) => {
-                    console.log(item);
-
                     const investigationsWithComposite =
                       item?.investigationWithComposite;
                     const investigationsWithOutComposite =
                       item?.investigationWithOutComposite;
 
                     // Composite Name Grouping
-                    const compositTestGroup =
+                    const compositeTestGroup =
                       (Array.isArray(investigationsWithComposite) &&
                         transformArrayToObjectCompositeName(
                           investigationsWithComposite
                         )) ||
                       [];
-
-                    console.log(compositTestGroup?.length && compositTestGroup);
 
                     return (
                       <>
@@ -132,19 +104,17 @@ const Investigation = () => {
                         >
                           {/* investigationsWithOutComposite */}
                           {Array.isArray(investigationsWithOutComposite) &&
-                            false &&
+                            // false &&
                             investigationsWithOutComposite?.map(
-                              (item, woc_index) => {
-                                console.log({ woc: item });
-
+                              (composite, woc_index) => {
                                 return (
                                   <>
                                     <TableBody
                                       key={woc_index + "woc"}
-                                      index={1}
+                                      index={woc_index}
                                       isAction
-                                      colorKey={1}
-                                      className="border-t"
+                                      // colorKey={1}
+                                      className="border-b"
                                       actionWidth="min-w-[220px]"
                                       btnOutlineHandler={handleAddResult}
                                       viewResultHandler={handleViewResult}
@@ -152,53 +122,52 @@ const Investigation = () => {
                                         viewResult: "View Result",
                                         btnOutline: "Edit Result",
                                       }}
-                                      item={[
-                                        { title: "item.name", w: "20%" },
-                                        { title: "item.orderDate", w: "20%" },
-                                        { title: "item.orderDate", w: "20%" },
-                                        { title: "item.test", w: "20%" },
-                                        { title: "item.orderNumber", w: "20%" },
-                                        { title: "item.sample", w: "20%" },
-                                      ]}
+                                      item={showTableData(composite)}
                                     />
                                   </>
                                 );
                               }
                             )}
-                          {/*  */}{" "}
-                          {Array.isArray(investigationsWithComposite) &&
-                            investigationsWithComposite?.map(
-                              (item, wc_index) => {
-                                console.log({ wc: item });
+                          {/*  */}
+                          {Object.keys(compositeTestGroup).map(
+                            (compositeNameKey, com_index) => {
+                              const compositeItems =
+                                compositeTestGroup[compositeNameKey];
 
-                                return (
-                                  <>
-                                    <TableBody
-                                      key={wc_index + "wc"}
-                                      index={1}
-                                      isAction
-                                      colorKey={1}
-                                      className="border-t"
-                                      actionWidth="min-w-[220px]"
-                                      btnOutlineHandler={handleAddResult}
-                                      viewResultHandler={handleViewResult}
-                                      btn={{
-                                        viewResult: "View Result",
-                                        btnOutline: "Edit Result",
-                                      }}
-                                      item={[
-                                        { title: "item.name", w: "20%" },
-                                        { title: "item.orderDate", w: "20%" },
-                                        { title: "item.orderDate", w: "20%" },
-                                        { title: "item.test", w: "20%" },
-                                        { title: "item.orderNumber", w: "20%" },
-                                        { title: "item.sample", w: "20%" },
-                                      ]}
-                                    />
-                                  </>
-                                );
-                              }
-                            )}
+                              return (
+                                <>
+                                  <div className="bg-tableRow px-5 text-sm pt-3 pb-2 font-medium">
+                                    {compositeNameKey}
+                                  </div>
+                                  {Array.isArray(compositeItems) &&
+                                    compositeItems?.map(
+                                      (
+                                        composite: withCompositeInvestigation,
+                                        item_index
+                                      ) => {
+                                        return (
+                                          <TableBody
+                                            key={com_index + "com"}
+                                            index={item_index}
+                                            isAction
+                                            // colorKey={1}
+                                            className="border-b"
+                                            actionWidth="min-w-[220px]"
+                                            btnOutlineHandler={handleAddResult}
+                                            viewResultHandler={handleViewResult}
+                                            btn={{
+                                              viewResult: "View Result",
+                                              btnOutline: "Edit Result",
+                                            }}
+                                            item={showTableData(composite)}
+                                          />
+                                        );
+                                      }
+                                    )}
+                                </>
+                              );
+                            }
+                          )}
                         </SectionWrapper>
                       </>
                     );
@@ -224,6 +193,46 @@ const Investigation = () => {
 
 export default Investigation;
 
+const showTableData = (
+  composite: withCompositeInvestigation | withoutCompositeInvestigation
+) => {
+  return [
+    {
+      title: DateFunc.formatDate(composite?.orderDate),
+      w: "12%",
+    },
+
+    {
+      title: EnumPiority[composite?.piority],
+      w: "12%",
+    },
+    {
+      title: composite?.createdIn,
+      w: "12%",
+    },
+    {
+      title: composite?.createdBy,
+      w: "12%",
+    },
+    {
+      title: composite?.test?.title,
+      w: "12%",
+    },
+    {
+      title: composite?.orderNumber,
+      w: "12%",
+    },
+    {
+      title: "Test Result*",
+      w: "12%",
+    },
+    {
+      title: "Test Unit*",
+      w: "12%",
+    },
+  ];
+};
+
 type WrapperProps = {
   children?: React.ReactNode;
   handleAddResult?: () => void;
@@ -238,9 +247,9 @@ const SectionWrapper = ({
   dateString,
 }: WrapperProps) => {
   return (
-    <div className="mt-3">
-      <div className="bg-tableRow flex justify-between border-b gap-2 py-2 relative">
-        <h2 className="ps-5 font-semibold">
+    <div className="mb-5 ">
+      <div className="bg-tableRow flex justify-between border-y-2  gap-2 py-2 relative">
+        <h2 className="ps-5 font-semibold underline">
           Date : {DateFunc.formatDate(dateString)}
         </h2>
         <div className="min-w-[220px] bg-tableRow flex gap-2 sticky right-0 px-2">
@@ -508,7 +517,7 @@ const transformArrayToObjectCompositeName = (data) => {
                               index={1}
                               isAction
                               colorKey={1}
-                              className="border-t"
+                              className="border-b"
                               actionWidth="min-w-[220px]"
                               btnOutlineHandler={handleAddResult}
                               viewResultHandler={handleViewResult}

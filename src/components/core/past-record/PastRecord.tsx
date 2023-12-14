@@ -16,6 +16,8 @@ type PropsMain = {
  * @returns
  */
 const PastRecord = ({ isLinked, title, link, linkTitle }: PropsMain) => {
+  console.log(link);
+
   return (
     <div className="border my-2.5 p-2.5 text-sm bg-lightBlueColor rounded animate__animated animate__fadeInLeft">
       <div className="flex w-full justify-between items-center mb-2 border-b  pb-1">
