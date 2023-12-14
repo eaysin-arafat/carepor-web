@@ -1,9 +1,10 @@
 import { cn } from "@/utilities/cn";
+import React from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { MdOutlineEdit } from "react-icons/md";
 
 type Props = {
-  children?: any;
+  children?: React.ReactNode;
   title?: string;
   className?: string;
   image?: string;
