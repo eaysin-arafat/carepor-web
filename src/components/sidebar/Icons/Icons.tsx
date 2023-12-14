@@ -23,6 +23,9 @@ function  Icons({ label, color }: Props) {
   if (label === "Encounter (OPD)") {
     return <FaNotesMedical color={color} size={size} />;
   }
+  if (label === "Medical Encounter (IPD)") {
+    return <FaNotesMedical color={color} size={size} />;
+  }
   if (label === "PEP") {
     return <PepIcon color={color} size={size} />;
   }

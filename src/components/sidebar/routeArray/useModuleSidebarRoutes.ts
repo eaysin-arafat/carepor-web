@@ -1,6 +1,7 @@
 import {
   URLDashboard,
   URLHts,
+  URLIPDHistory,
   URLInvestigation,
   URLOPD,
   URLSurgery,
@@ -119,6 +120,13 @@ const useModuleSidebarRoutes = ({ clientId }: Props): SidebarItem[] => {
     },
     {
       id: 8,
+      title: "Medical Encounter (IPD)",
+      link: URLIPDHistory(),
+      icon: "/assets/svg/sidebar/opd.svg",
+      children: null,
+    },
+    {
+      id: 9,
       title: "VMMC Service",
       link: "#",
       icon: "/assets/svg/sidebar/vmmc.svg",
