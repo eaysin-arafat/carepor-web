@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { MdArrowBackIos } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 interface RootLayoutProps {
   children?: React.ReactNode;
@@ -18,6 +18,9 @@ interface RootLayoutProps {
 function ModuleLayout({ children }: RootLayoutProps) {
   const dispatch = useDispatch();
   const w1100 = useWindowWidth(1100);
+  const path = useLocation();
+  const pathName = path.pathname !== "/dashboard";
+  console.log(pathName);
 
   const sidebarVal = w1100 ? true : false;
 
@@ -85,14 +88,22 @@ function ModuleLayout({ children }: RootLayoutProps) {
             )}
           >
             <div className="">
-              <ClientDetailsCard className="shadow-none rounded-none" />
-              <div className="grid grid-cols-4 gap-5 mt-5">
-                <div className="col-span-4 lg:col-span-3">
+              {pathName && (
+                <ClientDetailsCard className="shadow-none rounded-none" />
+              )}
+              <div
+                className={`grid ${
+                  !pathName ? "grid-cols-1" : "grid-cols-4"
+                } gap-5 mt-5`}
+              >
+                <div className={cn("col-span-4 lg:col-span-3")}>
                   <Outlet />
                 </div>
-                <div className="col-span-4 lg:col-span-1">
-                  <DataSummaryList />
-                </div>
+                {pathName && (
+                  <div className="col-span-4 lg:col-span-1">
+                    <DataSummaryList />
+                  </div>
+                )}
               </div>
             </div>
           </div>
