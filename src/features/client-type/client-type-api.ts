@@ -1,5 +1,18 @@
 import { API } from "../API/API";
 
+export interface ClientType {
+  oid: number;
+  description: string;
+  createdIn: number;
+  dateCreated: string;
+  createdBy: string;
+  modifiedIn: number;
+  dateModified: string;
+  modifiedBy: string;
+  isDeleted: boolean;
+  isSynced: boolean;
+}
+
 const clientTypeApi = API.injectEndpoints({
   endpoints: (builder) => ({
     /**
@@ -19,11 +32,12 @@ const clientTypeApi = API.injectEndpoints({
      * @description This endpoint is used to read client types
      * @returns ClientType[]
      */
-    readClientTypes: builder.query({
+    readClientTypes: builder.query<ClientType[], null>({
       query: () => ({
         url: "/client-types",
         method: "GET",
       }),
+      providesTags: ["ClientTypes"],
     }),
 
     /**

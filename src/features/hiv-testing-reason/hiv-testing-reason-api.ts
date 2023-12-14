@@ -1,5 +1,18 @@
 import { API } from "../API/API";
 
+export interface HIVTestingReason {
+  oid: number;
+  description: number;
+  createdIn: number;
+  dateCreated: string;
+  createdBy: string;
+  modifiedIn: number;
+  dateModified: string;
+  modifiedBy: string;
+  isDeleted: boolean;
+  isSynced: boolean;
+}
+
 const hivTestingReasonApi = API.injectEndpoints({
   endpoints: (builder) => ({
     /**
@@ -19,11 +32,12 @@ const hivTestingReasonApi = API.injectEndpoints({
      * @description This endpoint is used to read hiv testing reasons
      * @returns HIVTestingReason[]
      */
-    readHIVTestingReasons: builder.query({
+    readHIVTestingReasons: builder.query<HIVTestingReason[], null>({
       query: () => ({
         url: "hiv-testing-reasons",
         method: "GET",
       }),
+      providesTags: ["HIVTestingReasons"],
     }),
 
     /**

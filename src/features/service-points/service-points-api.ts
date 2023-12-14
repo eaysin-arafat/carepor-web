@@ -1,5 +1,18 @@
 import { API } from "../API/API";
 
+export interface ServicePoint {
+  oid: number;
+  description: string;
+  createdIn: number;
+  dateCreated: string;
+  createdBy: string;
+  modifiedIn: number;
+  dateModified: string;
+  modifiedBy: string;
+  isDeleted: boolean;
+  isSynced: boolean;
+}
+
 const servicePointsApi = API.injectEndpoints({
   endpoints: (builder) => ({
     /**
@@ -19,11 +32,12 @@ const servicePointsApi = API.injectEndpoints({
      * @description This endpoint is used to read service points
      * @returns ServicePoint[]
      */
-    readServicePoints: builder.query({
+    readServicePoints: builder.query<ServicePoint[], null>({
       query: () => ({
         url: "/service-points",
         method: "GET",
       }),
+      providesTags: ["ServicePoints"],
     }),
 
     /**

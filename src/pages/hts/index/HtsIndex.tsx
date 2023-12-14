@@ -1,16 +1,12 @@
-import { htsModalTypes } from "@/constants/modal-types";
-import { openAddModal } from "@/features/modal/modal-slice";
-import { useReadVitalByClientQuery } from "@/features/vital/vital-api";
-import useWindowWidth from "@/hooks/useWindow";
-import { Client } from "@/interface/clients";
-import { cookieManager } from "@/utilities/cookie-manager";
-import { FiPlusCircle } from "react-icons/fi";
-// import React from "react";
 import CustomPagination from "@/components/core/custom-pagination/CustomPagination";
 import Table from "@/components/shared/table/Table";
 import TableBody from "@/components/shared/table/TableBody";
 import TableHeader from "@/components/shared/table/TableHeader";
+import { htsModalTypes } from "@/constants/modal-types";
+import { openAddModal } from "@/features/modal/modal-slice";
+import useWindowWidth from "@/hooks/useWindow";
 import React from "react";
+import { FiPlusCircle } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import HtsCreateForm from "../create/HtsCreateForm";
 
@@ -18,15 +14,6 @@ function HtsIndex() {
   const [state, setState] = React.useState(1);
   const dispatch = useDispatch();
   const w1100 = useWindowWidth(1100);
-
-  const client = cookieManager.parseCookie<Client>("client");
-
-  const { data: vitals } = useReadVitalByClientQuery(client?.oid, {
-    skip: !client?.oid,
-    refetchOnMountOrArgChange: true,
-  });
-
-  console.log("vitals", vitals);
 
   const handleAddHtsModal = () => {
     dispatch(
