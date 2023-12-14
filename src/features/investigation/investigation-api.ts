@@ -1,4 +1,5 @@
 import {
+  TypeInvestigationByClient,
   TypeInvestigationDashboard,
   TypeInvestigationDashboardArgs,
 } from "@/types/module-types/investigation";
@@ -6,7 +7,10 @@ import { API } from "../API/API";
 
 const investigationApi = API.injectEndpoints({
   endpoints: (builder) => ({
-    readInvestigationByClient: builder.query({
+    readInvestigationByClient: builder.query<
+      TypeInvestigationByClient[],
+      string
+    >({
       query: (clientId) => {
         return {
           url: `/investigation-by-client/key/${clientId}`,

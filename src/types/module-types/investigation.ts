@@ -54,20 +54,20 @@ export type TypeInvestigations = TypeAPIObject & {
 //  read api data
 
 export type TypeInvestigation = TypeAPIObject & {
-  orderDate: string;
-  orderNumber: string;
+  orderDate?: string;
+  orderNumber?: string;
   quantity: number;
   sampleQuantity: number;
-  piority: number;
+  piority?: number;
   additionalComment: string;
   isResultReceived: boolean;
   clinicianId: string;
   testId: number;
-  test: TypeTestsEnum;
-  clientId: string;
-  client: Client;
-  sampleCollectionDate: string;
-  results: TypeTestResults[];
+  test?: TypeTestsEnum;
+  clientId?: string;
+  client?: Client;
+  sampleCollectionDate?: string;
+  results?: TypeTestResults[];
 };
 
 export type TypeInvestigationDashboard = {
@@ -84,4 +84,28 @@ export type TypeInvestigationDashboardArgs = {
   itemPerPage: number;
   PatientName: string;
   investigationDateSearch: string;
+};
+
+export type withoutCompositeInvestigation = Omit<
+  TypeInvestigation,
+  "interactionId" | "testId" | "clinicianId"
+> & {
+  interactionID: string;
+  testResult: string;
+  clinicianID: string;
+  testID: number;
+};
+export type withCompositeInvestigation = withoutCompositeInvestigation & {
+  compositeName: string;
+};
+export type TypeInvestigationByClient = {
+  investigation: TypeInvestigation[];
+  investigationWithOutComposite: withoutCompositeInvestigation[];
+  investigationWithComposite: withCompositeInvestigation[];
+  encounterID: string;
+  clientID: string;
+  dateCreated: string;
+  encounterDate: string;
+  createdIn: number;
+  createdBy: string;
 };

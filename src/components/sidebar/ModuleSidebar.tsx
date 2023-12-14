@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import DropdownList from "./DropdownList";
 import Icons from "./Icons/Icons";
 import css from "./Styles.module.css";
-import ModuleSidebarRoutes from "./routeArray/ModuleSidebarRoutes";
+import useModuleSidebarRoutes from "./routeArray/useModuleSidebarRoutes";
 
 type SidebarItem = {
   id?: number;
@@ -18,15 +18,19 @@ type SidebarItem = {
 };
 
 function ModuleSidebar() {
+  const moduleSidebarRoutes = useModuleSidebarRoutes({
+    clientId: "clientId:moduleSidebarRoutes",
+  });
   // * Local State
   const [search, setSearch] = useState("");
-  const [iconColor, setIconColor] = useState("var(--secondary)");
+  // const [iconColor, setIconColor] = useState("var(--secondary)");
+  const iconColor = "var(--secondary)";
 
   // * Hookes
   const navigate = useNavigate();
 
   // * Filter Menu Without Adding any Route
-  const withoutAddRoute = ModuleSidebarRoutes.filter(
+  const withoutAddRoute = moduleSidebarRoutes.filter(
     (item) => item.link !== "#"
   );
 
