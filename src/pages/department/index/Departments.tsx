@@ -62,12 +62,12 @@ function Departments() {
                 {
                   title: "#",
                   w: "10%",
-                  sortIcon: false,
+                  // sortIcon: false,
                 },
                 {
                   title: "Department",
                   w: "90%",
-                  sortIcon: true,
+                  // sortIcon: true,
                 },
               ]}
             />

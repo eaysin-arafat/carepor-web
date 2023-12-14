@@ -11,7 +11,6 @@ type Props = {
 };
 function MobileHeader({ offSidebar }: Props) {
   const w1100 = useWindowWidth(1100);
-
   const dispatch = useDispatch();
 
   // * Redux

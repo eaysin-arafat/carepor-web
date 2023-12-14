@@ -70,17 +70,17 @@ function Firms() {
                 {
                   title: "#",
                   w: "10%",
-                  sortIcon: false,
+                  // sortIcon: false,
                 },
                 {
                   title: "Department",
                   w: "20%",
-                  sortIcon: true,
+                  // sortIcon: true,
                 },
                 {
                   title: "Firm",
                   w: "50%",
-                  sortIcon: true,
+                  // sortIcon: true,
                 },
               ]}
             />

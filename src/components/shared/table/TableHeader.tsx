@@ -26,7 +26,7 @@ function TableHeader({ isAction, title, className, actionWidth }: Props) {
   return (
     <div
       className={cn(
-        "flex justify-between bg-tableHeadColor text-textColor items-center px-3",
+        "flex justify-between bg-tableHeadColor text-textColor items-center px-3 py-1.5",
         className
       )}
       // style={{ gridTemplateColumns: `repeat(${title.length + action}, 1fr)` }}
