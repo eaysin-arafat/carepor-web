@@ -29,7 +29,7 @@ function UserPermission({ activeUsers }: Props) {
         <Table className="min-w-[1000px]">
           <TableHeader
             className="bg-tableHeadColor"
-            actionWidth="w-[280px]"
+            actionWidth="w-[220px]"
             isAction
             title={headerData}
           />

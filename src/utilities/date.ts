@@ -145,3 +145,37 @@ export const datePickerToString = (picker: Date | null) => {
     return returnDate;
   }
 };
+
+export const getSingleYear = (inputDate: string) => {
+  const currentDate = new Date();
+  const inputDateTime = new Date(inputDate);
+
+  // Calculate the time difference in milliseconds
+  const timeDifference = currentDate.getTime() - inputDateTime.getTime();
+
+  // Convert milliseconds to days, weeks, months, and years
+  const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+  // const weeksDifference = Math.floor(daysDifference / 7);
+
+  // Calculate the difference in months and years
+  const currentYear = currentDate.getFullYear();
+  const inputYear = inputDateTime.getFullYear();
+  const yearsDifference = currentYear - inputYear;
+  const currentMonth = currentDate.getMonth();
+  const inputMonth = inputDateTime.getMonth();
+  const monthsDifference =
+    (currentYear - inputYear) * 12 + (currentMonth - inputMonth);
+
+  // Format the result based on the time difference
+  if (daysDifference < 30) {
+    return `${daysDifference}D`;
+  }
+  // else if (weeksDifference <= 4) {
+  //   return `${weeksDifference}W`;
+  // }
+  else if (monthsDifference <= 12) {
+    return `${monthsDifference}M`;
+  } else {
+    return `${yearsDifference}Y`;
+  }
+};

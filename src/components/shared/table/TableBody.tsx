@@ -88,7 +88,7 @@ function TableBody({
       ))}
       {isAction && (
         <p
-          className={`p-2 text-textColor  flex gap-1.5 text-xs sticky right-0 z-50 ${actionWidth}  ${
+          className={`p-2 text-textColor  flex gap-1.5 text-xs sticky right-0 z-10 ${actionWidth}  ${
             colorKey || index % 2
               ? colorKey
                 ? "bg-tableRow"

@@ -63,15 +63,15 @@ function Wards() {
           </button>
         </div>
         <div className="mt-5">
-          <Table className="min-w-[1000px]">
+          <Table className="min-w-[800px]">
             <TableHeader
-              className="bg-primaryHoverColor"
+              className=""
               actionWidth="w-[180px]"
               isAction
               title={[
                 {
                   title: "#",
-                  w: "20%",
+                  w: "10%",
                   sortIcon: false,
                 },
                 {
@@ -86,7 +86,7 @@ function Wards() {
                 },
                 {
                   title: "Ward",
-                  w: "20%",
+                  w: "30%",
                   sortIcon: true,
                 },
               ]}
@@ -113,7 +113,7 @@ function Wards() {
               ?.map((item: Ward, index) => (
                 <TableBody
                   index={index}
-                  actionWidth="w-[160px]"
+                  actionWidth="w-[180px]"
                   isAction
                   btn={{
                     btnOutline: "Edit",
@@ -124,10 +124,10 @@ function Wards() {
                     navigate(URLBeds(item?.oid?.toString()))
                   }
                   item={[
-                    { title: (index + 1).toString(), w: "20%" },
+                    { title: (index + 1).toString(), w: "10%" },
                     { title: item?.firm?.department?.description, w: "30%" },
                     { title: item?.firm?.description, w: "30%" },
-                    { title: item?.description, w: "20%" },
+                    { title: item?.description, w: "30%" },
                   ]}
                 />
               ))}

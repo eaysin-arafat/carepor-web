@@ -53,20 +53,20 @@ function Departments() {
           </button>
         </div>
         <div className="mt-5">
-          <Table className="min-w-[1000px]">
+          <Table className="min-w-[700px]">
             <TableHeader
-              className="bg-primaryHoverColor"
+              className=""
               actionWidth="w-[190px]"
               isAction
               title={[
                 {
                   title: "#",
-                  w: "20%",
+                  w: "10%",
                   sortIcon: false,
                 },
                 {
                   title: "Department",
-                  w: "77%",
+                  w: "90%",
                   sortIcon: true,
                 },
               ]}
@@ -107,8 +107,8 @@ function Departments() {
                     navigate(URLFirms(item?.oid?.toString()))
                   }
                   item={[
-                    { title: (index + 1).toString(), w: "20%" },
-                    { title: item.description, w: "70%" },
+                    { title: (index + 1).toString(), w: "10%" },
+                    { title: item.description, w: "90%" },
                   ]}
                 />
               ))}
