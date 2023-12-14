@@ -40,10 +40,10 @@ const ClientDetailsCard = ({ className, withoutAction }: Props) => {
               inline
               className="min-w-[300px] w-[300px] bg-white dark:bg-[#181A20] !border-2 !border-[#14AC10] dark:!border-[#14AC10] rounded-lg max-h-[400px] md:min-h-[400px] overflow-y-auto"
               label={
-                <button className="gap-1 flex items-center bg-[#14AC10] px-4 py-2 rounded-full text-white">
-                  Actions{" "}
+                <p className="gap-1 flex items-center bg-[#14AC10] px-4 py-2 rounded-full text-white">
+                  Actions
                   <MdOutlineKeyboardArrowDown className="text-2xl font-bold" />
-                </button>
+                </p>
               }
             >
               <Dropdown.Header className="bg-[#14AC10] rounded-t -mt-1 sticky top-0">

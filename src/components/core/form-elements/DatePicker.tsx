@@ -17,6 +17,7 @@ interface DateInputProps {
   notOnKeyDown?: boolean;
   isClearable?: boolean;
   placeholderText?: string;
+  timeOnly?: boolean;
 }
 
 const DateInput: React.FC<DateInputProps> = ({
@@ -34,6 +35,7 @@ const DateInput: React.FC<DateInputProps> = ({
   notOnKeyDown,
   isClearable = false,
   placeholderText = "dd/mm/yyyy",
+  timeOnly = false,
 }) => {
   const handleOnKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (!notOnKeyDown) {
@@ -50,20 +52,29 @@ const DateInput: React.FC<DateInputProps> = ({
       <ReactDatePicker
         selected={selected || null}
         closeOnScroll={true}
-        showYearDropdown
-        showMonthDropdown
         minDate={min}
         maxDate={max}
         name={name}
         isClearable={isClearable}
         disabled={disabled}
-        dropdownMode="select"
         onChange={onChange}
-        dateFormat={"dd/MM/yyyy"}
         placeholderText={placeholderText}
         onKeyDown={handleOnKeyDown}
         wrapperClassName="w-full"
         className={`custom-input w-[100%] ${className}`}
+        {...(timeOnly && {
+          showTimeSelect: true,
+          showTimeSelectOnly: true,
+          timeIntervals: 1,
+          timeCaption: "Time",
+          dateFormat: "h:mm aa",
+        })}
+        {...(!timeOnly && {
+          showYearDropdown: true,
+          showMonthDropdown: true,
+          dropdownMode: "select",
+          dateFormat: "dd/MM/yyyy",
+        })}
       />
       {errMsg && (
         <span className="text-dangerColor leading-[125%] font-normal ">

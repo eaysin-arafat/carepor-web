@@ -18,9 +18,9 @@ const DefaultModal = ({
         className={cn(className)}
       >
         <Modal.Header className="py-2.5">
-          <h1 className=" text-secondaryColor font-poppins text-xl font-medium">
+          <p className=" text-secondaryColor font-poppins text-xl font-medium">
             {title}
-          </h1>
+          </p>
         </Modal.Header>
         <Modal.Body className="space-y-6 pt-3">{children}</Modal.Body>
       </Modal>

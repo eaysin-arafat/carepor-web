@@ -8,7 +8,6 @@ import HeaderList from "./HeaderList";
 
 function MobileHeader() {
   const w1100 = useWindowWidth(1100);
-
   const dispatch = useDispatch();
 
   // * Redux

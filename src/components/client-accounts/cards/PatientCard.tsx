@@ -43,13 +43,20 @@ const PatientCard = ({ client, className }: PatientCardProps) => {
     if (status === RtkStatusEnum.fulfilled && opdVisit?.oid) {
       cookieManager.saveCookie(
         "client",
-        JSON.stringify({ oid: client?.oid }),
-        {}
+        JSON.stringify({
+          oid: client?.oid,
+          dob: client?.dob,
+          sex: client?.sex,
+        }),
+        {
+          expires: 1,
+        }
       );
+
       cookieManager.saveCookie(
         "opdVisitSession",
         JSON.stringify({ oid: opdVisit?.oid }),
-        {}
+        { expires: 1 }
       );
       if (originalArgs.type == "servicePoint") {
         navigate(URLServicePoint());
