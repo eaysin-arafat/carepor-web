@@ -42,7 +42,7 @@ const DateInput: React.FC<DateInputProps> = ({
   };
 
   return (
-    <div className="flex  flex-col w-full items-start justify-start gap-[6px]">
+    <div className="flex  flex-col w-full items-start justify-start gap-[6px] !z-50">
       <div className="flex w-full">
         <div className="input_label "> {label}</div>
         {required && <span className="-mt-[6px] mx-1 text-dangerColor">*</span>}
@@ -63,7 +63,7 @@ const DateInput: React.FC<DateInputProps> = ({
         placeholderText={placeholderText}
         onKeyDown={handleOnKeyDown}
         wrapperClassName="w-full"
-        className={`custom-input w-[100%] ${className}`}
+        className={`custom-input w-[100%] !z-50 ${className}`}
       />
       {errMsg && (
         <span className="text-dangerColor leading-[125%] font-normal ">

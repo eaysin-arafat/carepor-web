@@ -59,3 +59,7 @@ export const facilitySettingsModalType = Object.freeze({
   resetPasswordModal: "resetPasswordModal",
   moduleAccessPermissionModal: "moduleAccessPermissionModal",
 });
+
+export const htsModalTypes = Object.freeze({
+  htsCreateModal: "htsCreateModal",
+});

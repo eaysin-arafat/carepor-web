@@ -1,28 +1,21 @@
 import PrivateGuard from "@/components/shared/guard/PrivateGuard";
 import ModuleSidebar from "@/components/sidebar/ModuleSidebar";
 import Dashboard from "@/pages/dashboard/Dashboard";
+import HtsIndex from "@/pages/hts/index/HtsIndex";
 import Investigation from "@/pages/investigations/index/Investigation";
+import IPDHistry from "@/pages/medical-encounter-ipd/histry/IPDHistry";
+import OpdHistry from "@/pages/medical-encounter/histry/OpdHistry";
 import SurgeryIndex from "@/pages/surgery/index/Surgery";
 import Vitals from "@/pages/vitals/index/Vitals";
 import {
   URLDashboard,
   URLHts,
+  URLIPDHistory,
   URLInvestigation,
+  URLOPD,
   URLSurgery,
   URLVitals,
 } from "./module-link";
-
-// routes for public
-//! Will change later Dashboard URL
-// export const URLDashboard = (): string => "/dashboard";
-// export const URLUserAccountCreate = (): string => "/user-accounts/create";
-
-// export const URLUserRecoveryRequest = (): string => "/recovery-request";
-
-// // routes for public
-
-// export const URLInvestigation = (): string => "/investigation";
-// export const URLSurgery = (): string => "/surgery";
 
 const ModuleRoute = [
   {
@@ -34,6 +27,10 @@ const ModuleRoute = [
           {
             path: URLVitals(),
             element: <Vitals />,
+          },
+          {
+            path: URLHts(),
+            element: <HtsIndex />,
           },
           {
             path: URLDashboard(),
@@ -51,6 +48,18 @@ const ModuleRoute = [
             path: URLHts(),
             element: "",
           },
+          {
+            path: URLOPD(),
+            element: <OpdHistry />,
+          },
+          {
+            path: URLIPDHistory(),
+            element: <IPDHistry />,
+          },
+          // {
+          //   path: URLIPD(),
+          //   element: <IPDCreate />,
+          // },
         ],
       },
     ],

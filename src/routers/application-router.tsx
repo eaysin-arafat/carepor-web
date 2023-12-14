@@ -7,6 +7,7 @@ import RequestFacility from "@/pages/user-accounts/request-facility/RequestFacil
 import clientRouter from "./client";
 import facilityRouter from "./facility";
 import FacilitySettings from "./facility-settings";
+import FormRouter from "./formRoute";
 import ModuleRoute from "./module-route";
 import publicRoutes from "./public";
 import QueueRoutes from "./queue-routes";
@@ -23,6 +24,7 @@ const Routes = [
   ...FacilitySettings,
   ...ModuleRoute,
   ...QueueRoutes,
+  ...FormRouter,
   {
     path: URLRequestFacility(),
     element: <RequestFacility />,

@@ -1,9 +1,11 @@
 import {
   URLDashboard,
-  URLVitals,
   URLHts,
-  URLSurgery,
+  URLIPDHistory,
   URLInvestigation,
+  URLOPD,
+  URLSurgery,
+  URLVitals,
 } from "@/routers/module-link";
 
 type SidebarItem = {
@@ -46,7 +48,7 @@ const useModuleSidebarRoutes = ({ clientId }: Props): SidebarItem[] => {
       id: 4,
       title: "Encounter (OPD)",
       icon: "/assets/svg/sidebar/opd.svg",
-      link: "#",
+      link: URLOPD(),
       children: null,
       // children: [
       //   {
@@ -118,6 +120,13 @@ const useModuleSidebarRoutes = ({ clientId }: Props): SidebarItem[] => {
     },
     {
       id: 8,
+      title: "Medical Encounter (IPD)",
+      link: URLIPDHistory(),
+      icon: "/assets/svg/sidebar/opd.svg",
+      children: null,
+    },
+    {
+      id: 9,
       title: "VMMC Service",
       link: "#",
       icon: "/assets/svg/sidebar/vmmc.svg",

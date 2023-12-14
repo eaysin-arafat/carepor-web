@@ -53,7 +53,7 @@ const ClientDetailsCard = ({ className, withoutAction }: Props) => {
         >
           <div className="w-[50%] lg:w-40">
             <div className="flex  md:items-center  h-full">
-              <h1 className="text-xl font-medium font-poppins capitalize text-secondaryColor">
+              <h1 className="text-xl md:text-2xl font-medium font-poppins capitalize text-secondaryColor">
                 {client?.firstName && client?.surname
                   ? client.firstName + " " + client.surname
                   : ""}
@@ -150,9 +150,9 @@ type CardProps = {
 const Item = ({ title, data, icon }: CardProps) => {
   return (
     <div className="flex flex-col font-poppins my-[6px]">
-      <div className=" md:text-base test-xs  mb-1 font-semibold text-secondaryColor">
+      <h2 className=" text-xs md:text-base test-xs  mb-1 font-semibold text-secondaryColor  ">
         {title}
-      </div>
+      </h2>
       <div className="flex gap-x-2 items-center">
         <span className="text-secondaryColor">{icon}</span>
         <span className="dark:text-grayColor text-secondaryColor text-xs ">

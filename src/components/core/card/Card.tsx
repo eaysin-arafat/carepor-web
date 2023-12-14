@@ -61,15 +61,15 @@ const Card = ({
           </>
         )}
         {edit && (
-          <>
+          <div className="">
             <button
               onClick={editHandler}
-              className="text-primaryColor text-base font-normal px-1 pt-3 me-4 font-poppins flex items-center gap-1"
+              className="text-primaryColor text-base font-normal px-1 pt-3 me-4 font-poppins flex items-center gap-1 absolute right-8"
             >
               <MdOutlineEdit />
               Edit
             </button>
-          </>
+          </div>
         )}
       </div>
       <div className={`${!isImage && "p-4"}`}>{children}</div>
