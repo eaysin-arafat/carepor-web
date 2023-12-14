@@ -57,7 +57,7 @@ function TableHeader({ isAction, title, className, actionWidth }: Props) {
 
       {isAction && (
         <p
-          className={` ${actionWidth} p-2 text-textColor bg-tableHeadColor text-xs font-bold sticky right-0 z-10 `}
+          className={` ${actionWidth} p-2 text-textColor bg-tableHeadColor text-xs font-bold sticky right-0 `}
         >
           Action
         </p>

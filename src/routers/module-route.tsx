@@ -1,6 +1,7 @@
 import PrivateGuard from "@/components/shared/guard/PrivateGuard";
 import ModuleSidebar from "@/components/sidebar/ModuleSidebar";
 import Dashboard from "@/pages/dashboard/Dashboard";
+import HtsIndex from "@/pages/hts/index/HtsIndex";
 import Investigation from "@/pages/investigations/index/Investigation";
 import SurgeryIndex from "@/pages/surgery/index/Surgery";
 import Vitals from "@/pages/vitals/index/Vitals";
@@ -16,6 +17,7 @@ export const URLUserRecoveryRequest = (): string => "/recovery-request";
 
 export const URLInvestigation = (): string => "/investigation";
 export const URLSurgery = (): string => "/surgery";
+export const URLHts = (): string => "/hts";
 
 const ModuleRoute = [
   {
@@ -27,6 +29,10 @@ const ModuleRoute = [
           {
             path: "/vitals",
             element: <Vitals />,
+          },
+          {
+            path: URLHts(),
+            element: <HtsIndex />,
           },
           {
             path: URLDashboard(),

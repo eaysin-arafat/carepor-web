@@ -10,6 +10,7 @@ const AdmissionDetailsCard = ({ data }: { data: Encounter }) => {
         <Card
           className="bg-whiteColor shadow-none border border-lightGrayColor md:px-5"
           titleClass="text-secondaryColor"
+          edit
         >
           <div className="">
             <DataRow

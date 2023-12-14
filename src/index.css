@@ -61,6 +61,7 @@
   --logoColor: #1890ff;
   --logoColor2: #15ac12;
   --logoColor2Hover: #109c0d;
+  --placeholder: #7c7c83;
 }
 
 .gray {
@@ -87,6 +88,7 @@
   --logoColor: #a1a1b0;
   --logoColor2: #a1a1b0;
   --logoColor2Hover: #9292a3;
+  --placeholder: #929294;
 }
 
 p,

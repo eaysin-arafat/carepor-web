@@ -80,7 +80,6 @@ const ClientDetails = ({}: Props) => {
                     }
                   />
                 </div>
-                <></>
               </Card>
 
               <Card
@@ -90,6 +89,7 @@ const ClientDetails = ({}: Props) => {
                 edit
                 editHandler={() => handleClientEdit(1)}
               >
+                <div className="md:grid md:grid-cols-2">
                 <DataRow
                   title="Cellphone Number"
                   data={
@@ -138,6 +138,7 @@ const ClientDetails = ({}: Props) => {
                   title="Landmarks & Direction"
                   data={clientObj?.landmarks}
                 />
+                </div>
               </Card>
 
               <Card
@@ -231,7 +232,7 @@ const ClientDetails = ({}: Props) => {
                   }
                 />
                 <DataRow
-                  title="Spouse Legal Name"
+                  title="Spouse"
                   data={clientObj?.spousesLegalName}
                 />
                 <DataRow title="Last Name" data={clientObj?.spousesSurname} />

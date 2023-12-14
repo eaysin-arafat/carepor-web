@@ -91,12 +91,12 @@ const servicePointsArray: ServicePoint[] = [
   {
     imgSrc: "assets/svg/service-point/Investigation.svg",
     title: "Investigation",
-    link: "#",
+    link: "/investigation",
   },
   {
     imgSrc: "assets/svg/service-point/Surgery.svg",
     title: "Surgery",
-    link: "#",
+    link: "/surgery",
   },
   {
     imgSrc: "assets/svg/service-point/Referrals.svg",
