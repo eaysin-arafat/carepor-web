@@ -63,6 +63,7 @@ export const facilitySettingsModalType = Object.freeze({
 
 export const htsModalTypes = Object.freeze({
   htsCreateModal: "htsCreateModal",
+  htsViewModal: "htsViewModal",
 });
 
 export const ipdModalTypes = Object.freeze({

@@ -1,3 +1,4 @@
+import { RootState } from "@/app/store";
 import CustomPagination from "@/components/core/custom-pagination/CustomPagination";
 import Table from "@/components/shared/table/Table";
 import TableBody from "@/components/shared/table/TableBody";
@@ -7,10 +8,12 @@ import { openAddModal } from "@/features/modal/modal-slice";
 import useWindowWidth from "@/hooks/useWindow";
 import React from "react";
 import { FiPlusCircle } from "react-icons/fi";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import HtsCreateForm from "../create/HtsCreateForm";
+import HtsDetails from "../details/HtsDetails";
 
 function HtsIndex() {
+  const { addModal } = useSelector((state: RootState) => state.modal);
   const [state, setState] = React.useState(1);
   const dispatch = useDispatch();
   const w1100 = useWindowWidth(1100);
@@ -24,9 +27,21 @@ function HtsIndex() {
     );
   };
 
+  const handleViewHtsModal = () => {
+    dispatch(
+      openAddModal({
+        modalId: htsModalTypes.htsViewModal,
+        data: null,
+      })
+    );
+  };
+
   return (
     <div className={`${w1100 ? "mt-12" : ""}`}>
       <HtsCreateForm />
+      {addModal?.isOpen && addModal?.modalId === htsModalTypes.htsViewModal && (
+        <HtsDetails />
+      )}
 
       <div className=" font-poppins">
         <div className="">
@@ -47,34 +62,34 @@ function HtsIndex() {
                 <TableHeader
                   className="bg-tableHeadColor text-textColor"
                   isAction
-                  actionWidth="min-w-[100px]"
+                  actionWidth="min-w-[180px]"
                   title={[
                     {
-                      title: "Source of Client",
+                      title: "Visit Type",
                       w: "10%",
                     },
                     {
-                      title: "Reason for testing",
+                      title: "Service Point",
                       w: "10%",
-                    },
-                    {
-                      title: "Last Tested Date",
-                      w: "15%",
                     },
                     {
                       title: "Last Test Result",
                       w: "15%",
                     },
                     {
-                      title: "Consent Obtained",
-                      w: "10%",
-                    },
-                    {
-                      title: "Reason for not testing",
+                      title: "Consent",
                       w: "15%",
                     },
                     {
-                      title: "Others",
+                      title: "Determine",
+                      w: "10%",
+                    },
+                    {
+                      title: "HIV Type",
+                      w: "15%",
+                    },
+                    {
+                      title: "Retest Date",
                       w: "20%",
                     },
                   ]}
@@ -83,10 +98,12 @@ function HtsIndex() {
                   <TableBody
                     index={index}
                     isAction
-                    actionWidth="min-w-[100px]"
+                    actionWidth="min-w-[180px]"
                     viewResultHandler={handleAddHtsModal}
+                    btnOutlineHandler={handleViewHtsModal}
                     btn={{
                       viewResult: "Edit",
+                      btnOutline: "View Details",
                     }}
                     item={[
                       { title: item.name, w: "10%" },

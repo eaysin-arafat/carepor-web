@@ -5,7 +5,7 @@ import { closeAddModal } from "@/features/modal/modal-slice";
 import { MdOutlineEdit } from "react-icons/md";
 import { useDispatch } from "react-redux";
 
-const VitalsDetails = () => {
+const HtsDetails = () => {
   const dispatch = useDispatch();
   const editHandler = () => {
     alert("hello");
@@ -17,7 +17,7 @@ const VitalsDetails = () => {
 
   const titleClass = "xs:min-w-[200px] md:min-w-[250px] max-w-[300px]";
   return (
-    <DefaultModal title="Vital Details" toggler={closeModal}>
+    <DefaultModal title="Hts Details" toggler={closeModal}>
       <Card className="bg-whiteBgColor !shadow-light border border-borderColor">
         <div className="md:flex justify-between gap-5 mb-4 relative">
           <h2>
@@ -40,44 +40,81 @@ const VitalsDetails = () => {
           </button>
         </div>
         <div className="">
-          <DataRow title="Weight (kg)" data="Data" titleClass={titleClass} />
-          <DataRow title="Height (cm)" data="Data" titleClass={titleClass} />
-          <DataRow title="BMI Score" data="Data" titleClass={titleClass} />
           <DataRow
-            title="Temperature (c)"
+            title="Source of Client"
             data="Data"
             titleClass={titleClass}
           />
-          <DataRow title="Systolic" data="Data" titleClass={titleClass} />
-          <DataRow title="Diastolic" data="Data" titleClass={titleClass} />
+          <DataRow title="Service Point" data="Data" titleClass={titleClass} />
+          <DataRow title="Visit Type" data="Data" titleClass={titleClass} />
+          <DataRow title="Testing Reason" data="Data" titleClass={titleClass} />
+          <DataRow title="Last Test Date" data="Data" titleClass={titleClass} />
           <DataRow
-            title="Pulse Rate (bpm)"
-            data="Data"
-            titleClass={titleClass}
-          />
-          <DataRow
-            title="Respiratory Rate (bpm)"
+            title="Last Test Result"
             data="Data"
             titleClass={titleClass}
           />
           <DataRow
-            title="Oxygen Saturation (%)"
-            data="Data"
-            titleClass={titleClass}
-          />
-          <DataRow title="MUAC" data="Data" titleClass={titleClass} />
-          <DataRow title="MUAC Score" data="Data" titleClass={titleClass} />
-          <DataRow
-            title="Abdominal Circumference (cm)"
+            title="Partner's HIV Status"
             data="Data"
             titleClass={titleClass}
           />
           <DataRow
-            title="Head Circumference (cm)"
+            title="Consent Obtained"
             data="Data"
             titleClass={titleClass}
           />
-          <DataRow title="HC Score" data="Data" titleClass={titleClass} />
+          <DataRow
+            title="Patient Counselled"
+            data="Data"
+            titleClass={titleClass}
+          />
+          <DataRow title="Test Serial No" data="Data" titleClass={titleClass} />
+
+          <div className="text-secondaryColor text-xl font-medium border-y py-2 mt-4">
+            Test & Results
+          </div>
+          <DataRow
+            title="Determine Test Result"
+            data="Data"
+            titleClass={titleClass}
+          />
+          <DataRow
+            title="Bioline Test Result"
+            data="Data"
+            titleClass={titleClass}
+          />
+          <DataRow title="HIV Type" data="Data" titleClass={titleClass} />
+          <DataRow
+            title="DNA PCR Collected"
+            data="Data"
+            titleClass={titleClass}
+          />
+          <DataRow
+            title="Sample Collection Date"
+            data="Data"
+            titleClass={titleClass}
+          />
+          <DataRow
+            title="Client Received Results"
+            data="Data"
+            titleClass={titleClass}
+          />
+          <DataRow
+            title="Consent to Receive SMS Alerts?"
+            data="Consent to Receive SMS Alerts"
+            titleClass={titleClass}
+          />
+
+          <div className="text-secondaryColor text-xl font-medium border-y py-2 mt-4">
+            Post Test Assessment
+          </div>
+          <DataRow
+            title="Client Risk Assesment"
+            data="Data"
+            titleClass={titleClass}
+          />
+          <DataRow title="Retest Date" data="Data" titleClass={titleClass} />
         </div>
       </Card>
       <div className="flex justify-center mt-4">
@@ -92,4 +129,4 @@ const VitalsDetails = () => {
   );
 };
 
-export default VitalsDetails;
+export default HtsDetails;

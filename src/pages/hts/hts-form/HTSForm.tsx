@@ -1,5 +1,7 @@
 import DateInput from "@/components/core/form-elements/DatePicker";
 import Input from "@/components/core/form-elements/Input";
+import MultipleSelect from "@/components/core/form-elements/MultipleSelect";
+import Search from "@/components/core/form-elements/Search";
 import Select from "@/components/core/form-elements/Select";
 import Textarea from "@/components/core/form-elements/textarea";
 import { useReadClientTypesQuery } from "@/features/client-type/client-type-api";
@@ -213,6 +215,24 @@ const HTSForm = () => {
             <option value="1">Yes</option>
             <option value="2">No</option>
           </Select>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-5 border border-borderColor rounded-lg mt-8 shadow-light">
+        <h2 className="col-span-full text-xl font-semibold">
+          Post Test Assessment
+        </h2>
+        <div className="col-span-full">
+          <Search />
+        </div>
+        <div className="col-span-full">
+          <Select label="Post Test Assessment"></Select>
+        </div>
+        <div className="col-span-full">
+          <DateInput label="Retest Date" onChange={() => {}} />
+        </div>
+        <div className="col-span-full">
+          <MultipleSelect />
         </div>
       </div>
     </>
