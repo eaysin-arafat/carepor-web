@@ -5,7 +5,7 @@ type Props = {
   counter?: boolean;
   count?: string;
   title: string;
-  value: string;
+  value: string | number;
   handler: (e: React.ChangeEvent) => void;
   name: string;
   classNmae: string;

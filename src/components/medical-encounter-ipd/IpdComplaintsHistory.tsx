@@ -22,12 +22,12 @@ const IpdComplaintsHistory = ({ toggler }) => {
             <div>
               <div className="space-y-4">
                 <Textarea
-                  label="Presenting Complaint"
-                  placeholder="Enter Present Complaints"
+                  label="History"
+                  required
                 />
                 <Textarea
-                  label="History of Presenting Complaint"
-                  placeholder="Enter Present Complaints"
+                  label="Examination"
+                  required
                 />
               </div>
             </div>

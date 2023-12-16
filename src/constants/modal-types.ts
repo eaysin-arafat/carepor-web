@@ -69,3 +69,11 @@ export const htsModalTypes = Object.freeze({
 export const ipdModalTypes = Object.freeze({
   ipdCreateModal: "ipdCreateModal",
 });
+
+export const examinationNDiagnosisModalTypes = Object.freeze({
+  diagnosisCreateModal: "diagnosisCreateModal",
+});
+
+export const planModalTypes = Object.freeze({
+  planCreateModal: "planCreateModal",
+});

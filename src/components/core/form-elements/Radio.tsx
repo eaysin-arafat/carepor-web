@@ -36,7 +36,7 @@ function Radio({
           checked={checked}
           id={name}
           onChange={onChange}
-          className={`border-gray-300 rounded h-4 w-4 ${className}`}
+          className={`border-gray-300 rounded-full h-4 w-4 ${className}`}
           value={value}
         />
         {label}
