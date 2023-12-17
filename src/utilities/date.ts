@@ -58,6 +58,15 @@ export class DateFunc {
 
     return differenceMillisecond <= twentyFourHoursMillisecond;
   }
+  static isBetween24Hours(inputDate: string) {
+    const currentDate = new Date().getTime();
+    const inputDateObj = new Date(inputDate).getTime();
+
+    const differenceMillisecond = currentDate - inputDateObj;
+    const twentyFourHoursMillisecond = 24 * 60 * 60 * 1000;
+
+    return differenceMillisecond <= twentyFourHoursMillisecond;
+  }
 
   // format human readable date
   static toFormatted = (dateString: string) => {
@@ -128,7 +137,7 @@ export const getAgeMessage = (dateString: string) => {
   }
 };
 
-export const datePickerToString = (picker: Date | null) => {
+export const datePickerToString = (picker: Date | null | string) => {
   if (!picker) {
     return undefined;
   } else {
@@ -177,5 +186,57 @@ export const getSingleYear = (inputDate: string) => {
     return `${monthsDifference}M`;
   } else {
     return `${yearsDifference}Y`;
+  }
+};
+
+// get date string to specifics day month year hours
+export const getDateTimeDetails = (dateString: string | Date) => {
+  const date = new Date(dateString);
+  const day = date?.getDate();
+  const month = date?.getMonth() + 1;
+  const newMonth = date?.getMonth() + 1;
+  const year = date?.getFullYear();
+
+  const hour = date?.getHours();
+  const minute = date?.getMinutes();
+  const second = date?.getSeconds();
+  const millisecond = date.getMilliseconds();
+
+  const dayMonthYear = `${day < 10 ? "0" + day : day}/${
+    month < 10 ? "0" + month : month
+  }/${year}`;
+  const monthDayYear = `${month < 10 ? "0" + month : month}/${
+    day < 10 ? "0" + day : day
+  }/${year}`;
+  const hourMinuteSecond = dateString
+    ? `${hour < 10 ? "0" + hour : hour}:${
+        minute < 10 ? "0" + minute : minute
+      }:${second < 10 ? "0" + second : second}`
+    : "00:00:00";
+  const hourMinute = `${hour < 10 ? "0" + hour : hour}:${
+    minute < 10 ? "0" + minute : minute
+  }`;
+  const getActualMonth = `${day < 10 ? "0" + day : day}/${
+    newMonth < 10 ? "0" + newMonth : newMonth
+  }/${year}`;
+
+  if (dateString) {
+    return {
+      dateObj: date,
+      day,
+      month,
+      year,
+      hour,
+      minute,
+      second,
+      millisecond,
+      dayMonthYear,
+      hourMinute,
+      hourMinuteSecond,
+      monthDayYear,
+      getActualMonth,
+    };
+  } else {
+    return null; //<SkeletonList width={500} />;
   }
 };

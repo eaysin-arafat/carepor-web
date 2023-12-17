@@ -5,8 +5,8 @@ import Header from "@/components/shared/header/Header";
 import useWindowWidth from "@/hooks/useWindow";
 
 type Props = {
-  children: JSX.Element;
-  latestData: JSX.Element;
+  children?: JSX.Element;
+  latestData?: JSX.Element;
 };
 const FormLayout = ({ children, latestData }: Props) => {
   // * Responsive Hokes

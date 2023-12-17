@@ -89,13 +89,13 @@ function useManageFacility(oldFacility?: string) {
   const filteredFacility =
     (Array.isArray(facilities) &&
       facilities.filter(
-        (facility) => facility.districtId == facilityState?.district
+        (facility) => facility.districtId == +facilityState?.district
       )) ||
     [];
 
   React.useEffect(() => {
     if (oldFacility) {
-      const lastAttachedFacilityId: number | string | undefined = oldFacility;
+      const lastAttachedFacilityId: number | undefined = +oldFacility;
       const facilityObj = Array.isArray(facilities)
         ? facilities.find((data) => data?.oid == lastAttachedFacilityId)
         : null;

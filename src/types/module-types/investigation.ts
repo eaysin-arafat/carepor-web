@@ -1,4 +1,3 @@
-import { Client } from "@/interface/clients";
 import { TypeAPIEnum, TypeAPIObject } from "..";
 
 // ENUM TYPE
@@ -18,14 +17,18 @@ export type TypeMeasuringUnitsEnum = TypeAPIEnum & {
   maximumRange: number;
   testId: number;
 };
-export type TypeTestSubtypesEnum = TypeAPIEnum;
+export type TypeTestSubtypesEnum = TypeAPIEnum & {
+  testType: TypeAPIEnum;
+  testTypeId: number | string;
+};
 
-export type TypeTestsEnum = Omit<TypeAPIEnum, "description"> & {
+export type TypeTestsEnum = TypeAPIEnum & {
   title: string;
   lonic: string;
-  testSubtype: object;
+  testSubtype: TypeTestSubtypesEnum;
   resultType: number;
   subtypeId: number;
+  testType: TypeAPIEnum;
 };
 
 // DATA TYPE
@@ -39,6 +42,7 @@ export type TypeTestResults = TypeAPIObject & {
   measuringUnitId: number;
   investigationId: string;
 };
+
 // form data
 export type TypeInvestigations = TypeAPIObject & {
   orderDate: string;
@@ -47,7 +51,7 @@ export type TypeInvestigations = TypeAPIObject & {
   sampleQuantity: string;
   piority: string;
   additionalComment: string;
-  isResultReceived: true;
+  isResultReceived: boolean;
   testId: number;
 };
 
@@ -56,18 +60,49 @@ export type TypeInvestigations = TypeAPIObject & {
 export type TypeInvestigation = TypeAPIObject & {
   orderDate?: string;
   orderNumber?: string;
-  quantity: number;
-  sampleQuantity: number;
-  piority?: number;
-  additionalComment: string;
-  isResultReceived: boolean;
-  clinicianId: string;
-  testId: number;
+  quantity?: string | number;
+  sampleQuantity: string | number;
+  piority?: string | number;
+  additionalComment?: string;
+  isResultReceived?: string | boolean;
+  clinicianId?: string;
+  testId?: string | number;
   test?: TypeTestsEnum;
   clientId?: string;
-  client?: Client;
+  // client?: Client;
+
   sampleCollectionDate?: string;
-  results?: TypeTestResults[];
+  // results?: TypeTestResults[];
+  // custom
+  testName: string;
+  client: {
+    surname: string;
+    firstName: string;
+  };
+};
+
+export type TypeInvestigationForm = {
+  orderDate?: string;
+  orderNumber?: string;
+  quantity?: string;
+  sampleQuantity?: string;
+  piority?: string;
+  additionalComment?: string;
+  isResultReceived?: string;
+  clinicianId?: string;
+  testId?: string;
+  testType?: string;
+  clientId?: string;
+  subTestType?: string;
+  sampleCollectionDate?: string;
+  imagingTestDetails?: string;
+  addButton?: boolean | string;
+  testID?: string;
+  testName?: string;
+  testTypeId?: string;
+  subtypeId?: string;
+  interactionID?: string;
+  testSubtypeId?: string;
 };
 
 export type TypeInvestigationDashboard = {
@@ -96,12 +131,16 @@ export type withoutCompositeInvestigation = Omit<
   testID: number;
 };
 export type withCompositeInvestigation = withoutCompositeInvestigation & {
-  compositeName: string;
+  compositeName?: string;
+  testNameDetails?: string;
+  imagingTestDetails: string;
 };
+
 export type TypeInvestigationByClient = {
-  investigation: TypeInvestigation[];
-  investigationWithOutComposite: withoutCompositeInvestigation[];
-  investigationWithComposite: withCompositeInvestigation[];
+  investigation?: TypeInvestigation[] | null;
+  investigationWithOutComposite?: withoutCompositeInvestigation[] | null;
+  investigationWithComposite?: withCompositeInvestigation[] | null;
+  mergeInvestigations?: withCompositeInvestigation[] | null;
   encounterID: string;
   clientID: string;
   dateCreated: string;

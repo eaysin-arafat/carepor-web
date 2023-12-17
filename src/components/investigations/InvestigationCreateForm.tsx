@@ -1,7 +1,7 @@
 import { cn } from "@/utilities/cn";
 import { useState } from "react";
-import InvestigationCompositeTest from "./InvestigationCompositeTest";
-import InvestigationSingleTest from "./InvestigationSingleTest";
+import AddSingleInvestigation from "./AddSingleInvestigation";
+import AddCompositeInvestigation from "./AddCompositeInvestigation";
 
 const InvestigationCreateForm = () => {
   const [toggle, setToggle] = useState("single");
@@ -36,8 +36,8 @@ const InvestigationCreateForm = () => {
           Composite Test
         </button>
       </div>
-      {toggle === "single" && <InvestigationSingleTest />}
-      {toggle === "composite" && <InvestigationCompositeTest />}
+      {toggle === "single" && <AddSingleInvestigation />}
+      {toggle === "composite" && <AddCompositeInvestigation />}
     </div>
   );
 };

@@ -73,10 +73,12 @@ const investigationApi = API.injectEndpoints({
 // export hooks
 export const {
   useReadTestsQuery,
+  useReadTestSubTypeQuery,
   useReadCompositeTestsQuery,
   useReadMeasuringUnitsQuery,
   useReadResultOptionsQuery,
   useReadTestItemsQuery,
+  useReadTestTypeQuery,
 } = investigationApi;
 
 // export endpoints

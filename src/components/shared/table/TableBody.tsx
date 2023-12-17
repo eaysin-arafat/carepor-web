@@ -77,7 +77,7 @@ function TableBody({
       {item.map((data, i) => (
         <p
           className={cn(
-            "p-2 text-textColor dark:text-white text-xs text-justify",
+            "p-2 text-textColor dark:text-white  text-xs text-justify",
             data?.dataClass ? data?.dataClass : ""
           )}
           style={{ width: data.w }}
@@ -88,7 +88,7 @@ function TableBody({
       ))}
       {isAction && (
         <p
-          className={`p-2 text-textColor  flex gap-1.5 text-xs sticky right-0  ${actionWidth}  ${
+          className={`p-2 text-textColor  flex justify-end gap-1.5 text-xs sticky right-0  ${actionWidth}  ${
             colorKey || index % 2
               ? colorKey
                 ? "bg-tableRow"
