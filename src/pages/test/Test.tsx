@@ -105,7 +105,6 @@ function Test() {
       <div
         style={{
           width: "100%",
-          height: "90vh",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -146,7 +145,7 @@ function Test() {
                   delete: true,
                 }}
                 item={[
-                  { title: item.age, w: "100%" },
+                  { title: item.age, w: "100" },
                   { title: item.age, w: "200" },
                   { title: item.age, w: "300" },
                   { title: item.age, w: "100" },

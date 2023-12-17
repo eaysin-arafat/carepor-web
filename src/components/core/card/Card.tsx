@@ -37,7 +37,7 @@ const Card = ({
   return (
     <div
       className={cn(
-        "bg-borderColor dark:bg-whiteBgColor rounded-lg shadow-md ",
+        "bg-whiteBgColor rounded-lg shadow-md ",
         className
       )}
     >

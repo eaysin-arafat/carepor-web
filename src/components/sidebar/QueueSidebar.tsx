@@ -1,4 +1,5 @@
 import RootLayout from "@/layout/RootLayout";
+import { cn } from "@/utilities/cn";
 import { Accordion } from "flowbite-react";
 import { FaChartPie } from "react-icons/fa6";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -6,9 +7,7 @@ import QueueRoutes from "./routeArray/QueueSidebarRoutes";
 
 function QueueSidebar() {
   const navigate = useNavigate();
-  const path = useLocation();
-
-  console.log("QueueSidebar", path?.pathname);
+  const { pathname } = useLocation();
 
   return (
     <RootLayout>
@@ -24,12 +23,12 @@ function QueueSidebar() {
             >
               <Accordion.Title
                 onClick={() => navigate(item.link)}
-                className="p-3 border-none outline-none hover:bg-primaryColor hover:text-white bg-whiteBgColor rounded-none"
-                style={{
-                  backgroundColor:
-                    path?.pathname === item?.link && "var(--activeColor)",
-                  color: "red",
-                }}
+                className={cn(
+                  "p-3 border-none outline-none dark:bg-whiteBgColor !bg-whiteBgColor rounded-none",
+                  {
+                    "!bg-activeColor !text-white": pathname === item?.link,
+                  }
+                )}
               >
                 <div className="flex justify-between items-center w-full">
                   <div className="flex items-center gap-3">

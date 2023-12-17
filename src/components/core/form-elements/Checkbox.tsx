@@ -35,7 +35,7 @@ function Checkbox({
           checked={checked}
           id={name}
           onChange={onChange}
-          className={`bg-whiteBgColor border-gray-300 active:outline-none active:shadow-none rounded-sm h-5 w-5 focus:border-borderColor focus:shadow-none outline-none focus:outline-none focus:ring-0 ${className}`}
+          className={`bg-whiteBgColor border-gray-300 active:outline-none active:shadow-none rounded-sm h-4 w-4 focus:border-borderColor focus:shadow-none outline-none focus:outline-none focus:ring-0 ${className}`}
         />
         <p className="text-sm dark:text-gray-500">{label}</p>
         {required && <span className="-mt-[6px] text-dangerColor">*</span>}

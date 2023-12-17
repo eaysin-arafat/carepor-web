@@ -42,10 +42,12 @@ export const vitalModalTypes = Object.freeze({
 });
 export const investigationModalTypes = Object.freeze({
   addInvestigation: "addInvestigation",
+  editInvestigation: "editInvestigation",
   addInvestigationResult: "addInvestigationResult",
   investigationViewOrder: "investigationViewOrder",
   investigationViewResult: "investigationViewResult",
   investigationEditResult: "investigationEditResult",
+  sampleCollection: "sampleCollection",
 });
 export const surgeryModalTypes = Object.freeze({
   addSurgery: "addSurgery",
@@ -77,10 +79,50 @@ export const ipdModalTypes = Object.freeze({
   editIpdTreatmentPlan: "editIpdTreatmentPlan",
 });
 
+export const gynObsModalTypes = Object.freeze({
+  gynObsCreateModal: "gynObsCreateModal",
+});
+
+export const complaintsModalTypes = Object.freeze({
+  presentingComplaints: "presentingComplaints",
+  tBConstitutionalSymptoms: "tBConstitutionalSymptoms",
+  reviewOfSystems: "reviewOfSystems",
+  pastMedicalHistory: "pastMedicalHistory",
+  chronicNonChronic: "chronicNonChronic",
+  allergies: "allergies",
+  familySocialHistory: "familySocialHistory",
+});
+
 export const examinationNDiagnosisModalTypes = Object.freeze({
   diagnosisCreateModal: "diagnosisCreateModal",
+  generalAssessment: "generalAssessment",
+  systemExamination: "systemExamination",
+  glasgowComaScale: "glasgowComaScale",
 });
 
 export const planModalTypes = Object.freeze({
   planCreateModal: "planCreateModal",
+});
+
+export const paediatricModalTypes = Object.freeze({
+  birthHistoryModal: "birthHistoryModal",
+  immunizationModal: "immunizationModal",
+  feedingHistoryModal: "feedingHistoryModal",
+  developmentHistoryModal: "developmentHistoryModal",
+});
+
+export const covidModalTypes = Object.freeze({
+  covidCreateModal: "covidCreateModal",
+  covidViewModal: "covidViewModal",
+});
+export const painRecordsModalTypes = Object.freeze({
+  painRecordCreate: "painRecordCreate",
+});
+
+export const referralModalTypes = Object.freeze({
+  referralCreate: "referralCreate",
+});
+
+export const birthRecordModalTypes = Object.freeze({
+  birthRecordCreate: "birthRecordCreate",
 });

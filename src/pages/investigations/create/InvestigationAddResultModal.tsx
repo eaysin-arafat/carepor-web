@@ -5,7 +5,11 @@ import { investigationModalTypes } from "@/constants/modal-types";
 import { closeAddModal } from "@/features/modal/modal-slice";
 import { useDispatch, useSelector } from "react-redux";
 
-const InvestigationAddResultModal = () => {
+type Props = {
+  addType: "module" | "queue";
+};
+
+const InvestigationAddResultModal = ({ addType }: Props) => {
   const { addModal } = useSelector((store: RootState) => store.modal);
   const dispatch = useDispatch();
 
@@ -22,7 +26,7 @@ const InvestigationAddResultModal = () => {
           toggler={closeModal}
           size="7xl"
         >
-          <InvestigationAddResult />
+          <InvestigationAddResult addType={addType} />
         </DefaultModal>
       )}
     </div>

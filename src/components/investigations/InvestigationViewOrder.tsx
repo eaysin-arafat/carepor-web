@@ -1,46 +1,19 @@
 import { RootState } from "@/app/store";
-import { EnumPiority } from "@/enum/enumerators";
-import { useReadInvestigationByEncounterQuery } from "@/features/investigation/investigation-api";
+import { TypeMergeInvestigations } from "@/features/investigation/investigation-api";
 import { closeAddModal } from "@/features/modal/modal-slice";
-import { useReadUserAccountsQuery } from "@/features/user-accounts/user-accounts-api";
-import { renderTestName } from "@/pages/investigations/index/Investigation";
-import {
-  TypeInvestigationByClient,
-  withCompositeInvestigation,
-} from "@/types/module-types/investigation";
+import useClinician from "@/hooks/useClinician";
+import { PriorityColor } from "@/pages/queue/investigations-dashboard/InvestigationsDashboard";
 import { DateFunc } from "@/utilities/date";
-import findUserData from "@/utilities/find-user-data";
 import { Table } from "flowbite-react";
-import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import TableLoader from "../core/loader/TableLoader";
 
 const InvestigationViewOrder = () => {
   const { data } = useSelector((state: RootState) => state.modal.addModal);
-  const rootInvestigationsObj: TypeInvestigationByClient = data;
+  const mergedInvestigation: TypeMergeInvestigations[] =
+    data?.mergeInvestigations || [];
+  const { getUserFullName } = useClinician();
+
   const dispatch = useDispatch();
-  const { data: users } = useReadUserAccountsQuery(undefined);
-  // RTK Request
-  const {
-    data: encounterInvestigations,
-    isLoading,
-    isError,
-    isSuccess,
-  } = useReadInvestigationByEncounterQuery(rootInvestigationsObj?.encounterID, {
-    skip: !rootInvestigationsObj?.encounterID,
-  });
-
-  // const encounterInvestigations = rootInvestigationsObj.investigation;
-  const investigationsWithComposite =
-    rootInvestigationsObj?.investigationWithComposite;
-  const investigationsWithOutComposite =
-    rootInvestigationsObj?.investigationWithOutComposite;
-
-  // Composite Name Grouping
-  const compositeTestGroup =
-    (Array.isArray(investigationsWithComposite) &&
-      transformArrayToObjectCompositeName(investigationsWithComposite)) ||
-    [];
 
   const closeModal = () => {
     dispatch(closeAddModal());
@@ -80,18 +53,8 @@ const InvestigationViewOrder = () => {
             </Table.HeadCell>
           </Table.Head>
           <Table.Body className="divide-y">
-            {isLoading && !isError && (
-              <Table.Cell colSpan={9}>
-                {/* <CardLoader /> */}
-                <TableLoader />
-              </Table.Cell>
-            )}
-
-            {/* Show all items in one  */}
-            {isSuccess &&
-              !isLoading &&
-              Array.isArray(encounterInvestigations) &&
-              encounterInvestigations?.map((composite, item_index) => {
+            {Array.isArray(mergedInvestigation) &&
+              mergedInvestigation?.map((investigation, item_index) => {
                 return (
                   <Table.Row
                     key={item_index}
@@ -101,105 +64,31 @@ const InvestigationViewOrder = () => {
                         : "bg-lightBlueColor text-textColor"
                     }
                   >
+                    <Table.Cell>{investigation?.testNameDetails}</Table.Cell>
                     <Table.Cell>
-                      {renderTestName(
-                        composite?.test?.title,
-                        //@ts-ignore
-                        composite?.test?.testSubtype?.description,
-                        //@ts-ignore
-                        composite?.test?.testSubtype?.testType?.description
+                      {DateFunc.formatDate(investigation?.orderDate)}
+                    </Table.Cell>
+                    <Table.Cell>{investigation?.orderNumber}</Table.Cell>
+                    <Table.Cell>
+                      {getUserFullName(
+                        investigation?.clinicianId || investigation?.clinicianID
                       )}
                     </Table.Cell>
                     <Table.Cell>
-                      {DateFunc.formatDate(composite?.orderDate)}
+                      {
+                        <PriorityColor
+                          p={investigation?.piority}
+                          key={item_index + "p"}
+                        />
+                      }
                     </Table.Cell>
-                    <Table.Cell>{composite?.orderNumber}</Table.Cell>
-                    <Table.Cell>{EnumPiority[composite?.piority]}</Table.Cell>
-                    <Table.Cell>{composite?.quantity}</Table.Cell>
-                    <Table.Cell>
-                      {findUserData(composite?.createdBy, users)?.name}
-                    </Table.Cell>
-                    <Table.Cell>{composite?.sampleQuantity}</Table.Cell>
-                    <Table.Cell>{composite?.additionalComment}</Table.Cell>
-                    <Table.Cell>{composite?.imagingTestDetails}</Table.Cell>
+                    <Table.Cell>{investigation?.quantity}</Table.Cell>
+                    <Table.Cell>{investigation?.sampleQuantity}</Table.Cell>
+                    <Table.Cell>{investigation?.additionalComment}</Table.Cell>
+                    <Table.Cell>{investigation?.imagingTestDetails}</Table.Cell>
                   </Table.Row>
                 );
               })}
-            {/* Hide  */}
-            {false &&
-              Array.isArray(investigationsWithOutComposite) &&
-              investigationsWithOutComposite?.map(
-                (withOutComposite, item_index) => {
-                  return (
-                    <Table.Row
-                      key={item_index}
-                      className={
-                        item_index % 2 === 0
-                          ? ""
-                          : "bg-lightBlueColor text-textColor"
-                      }
-                    >
-                      <Table.Cell>Sliver</Table.Cell>
-                      <Table.Cell>{withOutComposite?.orderDate}</Table.Cell>
-                      <Table.Cell>Laptop</Table.Cell>
-                      <Table.Cell>$2999</Table.Cell>
-                      <Table.Cell>$2999</Table.Cell>
-                      <Table.Cell>$2999</Table.Cell>
-                      <Table.Cell>$2999</Table.Cell>
-                      <Table.Cell>$2999</Table.Cell>
-                      <Table.Cell>$2999</Table.Cell>
-                    </Table.Row>
-                  );
-                }
-              )}
-
-            {/* Hide  */}
-            {false &&
-              Object.keys(compositeTestGroup).map(
-                (compositeNameKey, com_index) => {
-                  const compositeItems = compositeTestGroup[compositeNameKey];
-                  return (
-                    <Fragment key={com_index}>
-                      <Table.Row
-                        key={"item_index"}
-                        className="px-1 h-1 font-semibold  bg-lightBlueColor   text-textColor w-full"
-                      >
-                        <Table.Cell colSpan={9} width={"100%"}>
-                          {compositeNameKey}
-                        </Table.Cell>
-                      </Table.Row>
-                      {Array.isArray(compositeItems) &&
-                        compositeItems?.map(
-                          (
-                            composite: withCompositeInvestigation,
-                            item_index
-                          ) => {
-                            return (
-                              <Table.Row
-                                key={item_index}
-                                className={
-                                  item_index % 2 === 0
-                                    ? ""
-                                    : "bg-lightBlueColor text-textColor"
-                                }
-                              >
-                                <Table.Cell>Amir Hamza</Table.Cell>
-                                <Table.Cell>{composite.orderDate}</Table.Cell>
-                                <Table.Cell>Laptop</Table.Cell>
-                                <Table.Cell>$2999</Table.Cell>
-                                <Table.Cell>$2999</Table.Cell>
-                                <Table.Cell>$2999</Table.Cell>
-                                <Table.Cell>$2999</Table.Cell>
-                                <Table.Cell>$2999</Table.Cell>
-                                <Table.Cell>$2999</Table.Cell>
-                              </Table.Row>
-                            );
-                          }
-                        )}
-                    </Fragment>
-                  );
-                }
-              )}
           </Table.Body>
         </Table>
         <div className="flex justify-center mt-5">
@@ -213,17 +102,3 @@ const InvestigationViewOrder = () => {
 };
 
 export default InvestigationViewOrder;
-
-const transformArrayToObjectCompositeName = (
-  data: withCompositeInvestigation[]
-) => {
-  return data?.reduce((acc, cur) => {
-    const key = `${cur?.compositeName}`;
-    if (!acc[key]) {
-      acc[key] = [cur];
-    } else {
-      acc[key].push(cur);
-    }
-    return acc;
-  }, {});
-};

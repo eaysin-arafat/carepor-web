@@ -7,7 +7,7 @@ type Props = {
   name?: string;
   label: string;
   required?: boolean;
-  errMsg?: string;
+  errMsg?: number | string;
   selectShow?: string;
   disabled?: boolean;
   className?: string;

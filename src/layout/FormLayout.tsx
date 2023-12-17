@@ -5,8 +5,8 @@ import Header from "@/components/shared/header/Header";
 import useWindowWidth from "@/hooks/useWindow";
 
 type Props = {
-  children: JSX.Element;
-  latestData: JSX.Element;
+  children?: JSX.Element;
+  latestData?: JSX.Element;
 };
 const FormLayout = ({ children, latestData }: Props) => {
   // * Responsive Hokes
@@ -38,12 +38,6 @@ const FormLayout = ({ children, latestData }: Props) => {
       >
         {!w1300 && (
           <div className="col-span-3">
-            {/* <PastRecordList
-              title="Latest Encounter"
-              isSubTitleShow
-              subTitle="12-Dec-2023"
-              isPastEncounter
-            /> */}
             {latestData || "Latest Data Required"}
           </div>
         )}

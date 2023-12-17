@@ -42,6 +42,7 @@ const useSelectFacility = () => {
   // // initial state
   const [isPermitted, setIsPermitted] = useState(false);
   const [approvedFacility, setApprovedFacility] = useState(null);
+  console.log(approvedFacility);
 
   // Error Message State
   // const [error, setError] = useState({});
@@ -68,7 +69,6 @@ const useSelectFacility = () => {
               item?.isApproved === true
             );
           });
-        console.log(data?.userAccount?.facilityAccesses);
 
         if (findApproved) {
           setIsPermitted(true);
@@ -83,8 +83,6 @@ const useSelectFacility = () => {
       setApprovedFacility(null);
     }
   }, [facilityState?.facility]);
-
-  console.log({ approvedFacility, isPermitted });
 
   const handleRequestSubmit = (e: FormSubmitEventType) => {
     e.preventDefault();

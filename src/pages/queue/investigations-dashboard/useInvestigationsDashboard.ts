@@ -1,12 +1,17 @@
+import { investigationModalTypes } from "@/constants/modal-types";
 import { EnumEncounterType } from "@/enum/encounter-type";
 import { useReadInvestigationsForDashboardQuery } from "@/features/investigation/investigation-api";
+import { openAddModal } from "@/features/modal/modal-slice";
 import useBaseDataCreate from "@/hooks/useBaseDataCreate";
 import { TypeInvestigation } from "@/types/module-types/investigation";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 const useInvestigationsDashboard = () => {
   const { Investigation } = EnumEncounterType;
   const [baseData] = useBaseDataCreate(Investigation);
+
+  const dispatch = useDispatch();
 
   // Request state for page and item
   const [pageNo, setPageNo] = useState(1);
@@ -15,20 +20,25 @@ const useInvestigationsDashboard = () => {
   const [patientName, setPatientName] = useState("");
 
   // Request for investigation data
-  const { data: instigationDashBoard, refetch } =
-    useReadInvestigationsForDashboardQuery(
-      {
-        facilityId: baseData?.createdIn,
-        pageNo,
-        itemPerPage,
-        investigationDateSearch: dateSearch,
-        PatientName: patientName,
-      },
-      {
-        skip: !baseData?.createdIn,
-        refetchOnMountOrArgChange: false,
-      }
-    );
+  const {
+    data: instigationDashBoard,
+    refetch,
+    isLoading,
+    isSuccess,
+    isError,
+  } = useReadInvestigationsForDashboardQuery(
+    {
+      facilityId: baseData?.createdIn,
+      pageNo,
+      itemPerPage,
+      investigationDateSearch: dateSearch,
+      PatientName: patientName,
+    },
+    {
+      skip: !baseData?.createdIn,
+      refetchOnMountOrArgChange: false,
+    }
+  );
   // Response data
   const {
     investigations = [],
@@ -71,6 +81,31 @@ const useInvestigationsDashboard = () => {
     refetch();
   };
 
+  const handleViewResult = (data) => {
+    dispatch(
+      openAddModal({
+        data,
+        modalId: investigationModalTypes.investigationViewResult,
+      })
+    );
+  };
+  const handleSampleCollectionModal = (data) => {
+    dispatch(
+      openAddModal({
+        data,
+        modalId: investigationModalTypes.sampleCollection,
+      })
+    );
+  };
+  const handleAddResult = (data) => {
+    dispatch(
+      openAddModal({
+        data,
+        modalId: investigationModalTypes.addInvestigationResult,
+      })
+    );
+  };
+
   return {
     priority,
     setPriority,
@@ -89,6 +124,14 @@ const useInvestigationsDashboard = () => {
     setPageNo,
     totalItems,
     filterInvestigation,
+    // Modal handlers
+    handleViewResult,
+    handleSampleCollectionModal,
+    isLoading,
+    isSuccess,
+    isError,
+    investigations,
+    handleAddResult,
   };
 };
 

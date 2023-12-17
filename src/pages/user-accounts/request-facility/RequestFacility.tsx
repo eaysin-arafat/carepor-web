@@ -1,7 +1,9 @@
 import Select from "@/components/core/form-elements/Select";
 
 import SubmitButton from "@/components/core/buttons/SubmitButton";
-import RenderSelectOptions from "@/components/core/form-elements/RenderSelectOptions";
+import RenderSelectOptions, {
+  renderOptions,
+} from "@/components/core/form-elements/RenderSelectOptions";
 import FormWrapper from "@/components/core/form-layouts/FormWrapper";
 import { Navigate } from "react-router-dom";
 import useRequestFacility from "./useRequestFacility";
@@ -63,7 +65,8 @@ const RequestFacility = () => {
               label="Facility"
               required
             >
-              <RenderSelectOptions options={facilitiesOptions} />
+              {renderOptions(facilitiesOptions)}
+              {/* <RenderSelectOptions options={facilitiesOptions} /> */}
             </Select>
           </div>
           <div className="mt-5">
@@ -76,7 +79,12 @@ const RequestFacility = () => {
 
           <div className="mt-5 text-center font-medium">
             {/* <OutlineButton onClick={handleCancelRequest} title="Cancel" /> */}
-            <button onClick={handleCancelRequest} className="text-sm sm:text-lg">Cancel</button>
+            <button
+              onClick={handleCancelRequest}
+              className="text-sm sm:text-lg"
+            >
+              Cancel
+            </button>
           </div>
         </form>
       </FormWrapper>

@@ -1,7 +1,7 @@
 import { useReadCountriesQuery } from "@/features/country/country-api";
 import { ApiEnumsType } from "@/types/enums-types";
 
-export const renderOptions = (options: ApiEnumsType[]) => {
+export const renderOptions = (options: ApiEnumsType[] | any[]) => {
   return (
     Array.isArray(options) &&
     options.map((item) => (
@@ -12,8 +12,20 @@ export const renderOptions = (options: ApiEnumsType[]) => {
   );
 };
 
+export const renderObjEnumOptions = (obj: { [key: number]: string }) => {
+  const array = Object.keys(obj).map((d) => ({
+    oid: d,
+    description: obj[d],
+  }));
+  return array.map((item) => (
+    <option key={item?.oid} value={item?.oid}>
+      {item?.description}
+    </option>
+  ));
+};
+
 type Props = {
-  options: ApiEnumsType[];
+  options?: any[];
 };
 
 // default
@@ -23,7 +35,7 @@ type Props = {
  * @Type SelectOptionType[{oid:optionId, description:description}]
  * @returns
  */
-function RenderSelectOptions({ options }: Props) {
+function RenderSelectOptions({ options = [] }: Props) {
   return <>{renderOptions(options)}</>;
 }
 
