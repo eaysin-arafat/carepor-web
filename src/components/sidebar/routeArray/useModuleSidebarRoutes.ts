@@ -1,4 +1,5 @@
 import {
+  URLBirthRecord,
   URLDashboard,
   URLHts,
   URLIPDHistory,
@@ -195,7 +196,7 @@ const useModuleSidebarRoutes = ({ clientId }: Props): SidebarItem[] => {
     {
       id: 17,
       title: "Birth Record",
-      link: "#",
+      link: URLBirthRecord(),
       icon: "/assets/svg/sidebar/birthrecord.svg",
       children: null,
     },

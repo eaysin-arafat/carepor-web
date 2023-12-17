@@ -1,5 +1,6 @@
 import PrivateGuard from "@/components/shared/guard/PrivateGuard";
 import ModuleSidebar from "@/components/sidebar/ModuleSidebar";
+import BirthRecordHistory from "@/pages/birth-record/history/History";
 import Dashboard from "@/pages/dashboard/Dashboard";
 import HtsIndex from "@/pages/hts/index/HtsIndex";
 import Investigation from "@/pages/investigations/index/Investigation";
@@ -11,6 +12,7 @@ import SurgeryIndex from "@/pages/surgery/index/Surgery";
 import VitalsDetails from "@/pages/vitals/details/VitalsDetails";
 import Vitals from "@/pages/vitals/index/Vitals";
 import {
+  URLBirthRecord,
   URLDashboard,
   URLHts,
   URLIPDHistory,
@@ -73,6 +75,10 @@ const ModuleRoute = [
           {
             path: URLReferral(),
             element: <ReferralsHistory />,
+          },
+          {
+            path: URLBirthRecord(),
+            element: <BirthRecordHistory />,
           },
         ],
       },
