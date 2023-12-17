@@ -1,48 +1,118 @@
+import { useAppSelector } from "@/app/store";
 import DateInput from "@/components/core/form-elements/DatePicker";
 import Input from "@/components/core/form-elements/Input";
-import MultipleSelect from "@/components/core/form-elements/MultipleSelect";
-import Search from "@/components/core/form-elements/Search";
+import MultipleSelect, {
+  Option,
+} from "@/components/core/form-elements/MultipleSelect";
 import Select from "@/components/core/form-elements/Select";
 import Textarea from "@/components/core/form-elements/textarea";
-import { useReadClientTypesQuery } from "@/features/client-type/client-type-api";
-import { useReadHIVNotTestingReasonsQuery } from "@/features/hiv-not-testing-reasons/hiv-not-testing-reason-api";
-import { useReadHIVTestingReasonsQuery } from "@/features/hiv-testing-reason/hiv-testing-reason-api";
-import { useReadServicePointsQuery } from "@/features/service-points/service-points-api";
-import { useReadVisitTypesQuery } from "@/features/visit-type/visit-type-api";
+import { clientTypeApiEndpoints } from "@/features/client-type/client-type-api";
+import { hivRiskFactorApiEndpoints } from "@/features/hiv-risk-factor/hiv-risk-factor-api";
+import { hivTestingReasonApiEndpoints } from "@/features/hiv-testing-reason/hiv-testing-reason-api";
+import { servicePointsApiEndpoints } from "@/features/service-points/service-points-api";
+import { visitTypeApiEndpoints } from "@/features/visit-type/visit-type-api";
+import { useMemo } from "react";
+import { HtsData, HtsErrorMessages } from "../create/useHtsCreate";
 
-const HTSForm = () => {
+interface HTSFormProps {
+  htsData: HtsData;
+  errorMessages: HtsErrorMessages;
+  handleHtsDataChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleDateChange: (date: Date | null, fieldName: string) => void;
+  selectedOptions: Option[];
+  setSelectedOptions: (options: Option[]) => void;
+}
+
+const HTSForm = ({
+  htsData,
+  errorMessages,
+  handleHtsDataChange,
+  handleDateChange,
+  selectedOptions,
+  setSelectedOptions,
+}: HTSFormProps) => {
   // todo: need optimization here for api calling
+
+  const selectClientTypes = useMemo(
+    () => clientTypeApiEndpoints.readClientTypes.select(null),
+    []
+  );
+
   const {
     data: clientTypes,
     isLoading: typesLoading,
     status: typesStatus,
-  } = useReadClientTypesQuery(null);
+  } = useAppSelector(selectClientTypes);
 
+  // const {
+  //   data: clientTypes,
+  //   isLoading: typesLoading,
+  //   status: typesStatus,
+  // } = useReadClientTypesQuery(null);
+
+  const selectVisitTypes = useMemo(
+    () => visitTypeApiEndpoints.readVisitTypes.select(null),
+    []
+  );
   const {
     data: visitTypes,
     isSuccess: visitSuccess,
     status: visitStatus,
-  } = useReadVisitTypesQuery(null);
+  } = useAppSelector(selectVisitTypes);
+
+  const selectServicePoints = useMemo(
+    () => servicePointsApiEndpoints.readServicePoints.select(null),
+    []
+  );
 
   const {
     data: servicePoints,
     isSuccess: servicePointsSuccess,
     status: servicePointsStatus,
-  } = useReadServicePointsQuery(null);
+  } = useAppSelector(selectServicePoints);
+
+  const selectHivTestingReasons = useMemo(
+    () => hivTestingReasonApiEndpoints.readHIVTestingReasons.select(null),
+    []
+  );
 
   const {
     data: hivTestingReasons,
     isSuccess: testingReasonSuccess,
     status: testingReasonStatus,
-  } = useReadHIVTestingReasonsQuery(null);
+  } = useAppSelector(selectHivTestingReasons);
+
+  // const {
+  //   data: hivTestingReasons,
+  //   isSuccess: testingReasonSuccess,
+  //   status: testingReasonStatus,
+  // } = useReadHIVTestingReasonsQuery(null);
+
+  const selectHivNotTestingReasons = useMemo(
+    () => hivTestingReasonApiEndpoints.readHIVTestingReasons.select(null),
+    []
+  );
 
   const {
     data: hivNotTestingReasons,
     isSuccess: hivNotTestingSuccess,
     status: hivNotTestingStatus,
-  } = useReadHIVNotTestingReasonsQuery(null);
+  } = useAppSelector(selectHivNotTestingReasons);
 
-  console.log("hivNotTestingReasons", hivNotTestingReasons);
+  // const {
+  //   data: hivNotTestingReasons,
+  //   isSuccess: hivNotTestingSuccess,
+  //   status: hivNotTestingStatus,
+  // } = useReadHIVNotTestingReasonsQuery(null);
+
+  const selectHivRiskFactors = useMemo(
+    () => hivRiskFactorApiEndpoints.readHIVRiskFactors.select(null),
+    []
+  );
+
+  const { data: hivRiskFactors } = useAppSelector(selectHivRiskFactors);
+
+  // const { data: hivRiskFactors } = useReadHIVRiskFactorsQuery(null);
 
   // render client types options
   const clientTypesOptions = clientTypes?.map((clientType) => (
@@ -90,40 +160,88 @@ const HTSForm = () => {
           Pretest Assessment
         </h2>
         <div className="">
-          <Select required label="Client Type" name="">
+          <Select
+            required
+            label="Client Type"
+            name="clientTypeId"
+            errMsg={errorMessages.clientTypeId}
+            value={htsData?.clientTypeId}
+            onChange={handleHtsDataChange}
+          >
             {!typesLoading && typesStatus === "fulfilled" && clientTypesOptions}
           </Select>
         </div>
         <div className="">
-          <Select required label="Visit Type" name="">
+          <Select
+            required
+            label="Visit Type"
+            name="visitTypeId"
+            errMsg={errorMessages.visitTypeId}
+            value={htsData?.visitTypeId}
+            onChange={handleHtsDataChange}
+          >
             {visitSuccess && visitStatus === "fulfilled" && visitTypesOptions}
           </Select>
         </div>
         <div className="">
-          <Select required label="Service Point" name="">
+          <Select
+            required
+            label="Service Point"
+            name="servicePointId"
+            errMsg={errorMessages.servicePointId}
+            value={htsData?.servicePointId}
+            onChange={handleHtsDataChange}
+          >
             {servicePointsSuccess &&
               servicePointsStatus === "fulfilled" &&
               servicePointsOptions}
           </Select>
         </div>
         <div className="">
-          <Select required label="Source of Client" name="">
+          <Select
+            required
+            label="Source of Client"
+            name="clientSource"
+            value={htsData?.clientSource}
+            onChange={handleHtsDataChange}
+          >
             <option value="1">Urban</option>
             <option value="2">Rural</option>
           </Select>
         </div>
         <div className="">
-          <Select required label="Reason for Testing" name="">
+          <Select
+            required
+            label="Reason for Testing"
+            name="hivTestingReasonId"
+            errMsg={errorMessages.hivTestingReasonId}
+            value={htsData?.hivTestingReasonId}
+            onChange={handleHtsDataChange}
+          >
             {testingReasonSuccess &&
               testingReasonStatus === "fulfilled" &&
               hivTestingReasonsOptions}
           </Select>
         </div>
         <div className="">
-          <DateInput label="Last Tested Date" onChange={() => {}} />
+          <DateInput
+            label="Last Tested Date"
+            name="lastTested"
+            errMsg={errorMessages.lastTested}
+            selected={
+              htsData?.lastTested ? new Date(htsData?.lastTested) : null
+            }
+            onChange={(date) => handleDateChange(date, "lastTested")}
+          />
         </div>
         <div className="">
-          <Select label="Last Test Result" name="">
+          <Select
+            label="Last Test Result"
+            name="lastTestResult"
+            errMsg={errorMessages.lastTestResult}
+            value={htsData?.lastTestResult}
+            onChange={handleHtsDataChange}
+          >
             <option value="1">Positive</option>
             <option value="2">Negative</option>
             <option value="3">Indeterminant</option>
@@ -132,10 +250,26 @@ const HTSForm = () => {
           </Select>
         </div>
         <div className="">
-          <DateInput label="Partner's Last Tested Date" onChange={() => {}} />
+          <DateInput
+            label="Partner's Last Tested Date"
+            name="partnerLastTestDate"
+            errMsg={errorMessages.partnerLastTestDate}
+            selected={
+              htsData?.partnerLastTestDate
+                ? new Date(htsData?.partnerLastTestDate)
+                : null
+            }
+            onChange={(date) => handleDateChange(date, "partnerLastTestDate")}
+          />
         </div>
         <div className="">
-          <Select label="Partner's HIV Status" name="">
+          <Select
+            label="Partner's HIV Status"
+            name="partnerHIVStatus"
+            errMsg={errorMessages.partnerHIVStatus}
+            value={htsData?.partnerHIVStatus}
+            onChange={handleHtsDataChange}
+          >
             <option value="1">Positive</option>
             <option value="2">Negative</option>
             <option value="3">Indeterminant</option>
@@ -145,75 +279,157 @@ const HTSForm = () => {
           </Select>
         </div>
         <div className="">
-          <Select required label="Patient Counselled" name="">
-            <option value="1">Yes</option>
-            <option value="2">No</option>
+          <Select
+            required
+            label="Patient Counselled"
+            name="hasCounselled"
+            errMsg={errorMessages.hasCounselled}
+            value={htsData?.hasCounselled}
+            onChange={handleHtsDataChange}
+          >
+            <option value="true">Yes</option>
+            <option value="false">No</option>
           </Select>
         </div>
         <div className="">
-          <Select required label="Consent Obtained" name="">
-            <option value="1">Yes</option>
-            <option value="2">No</option>
+          <Select
+            required
+            label="Consent Obtained"
+            name="hasConsented"
+            errMsg={errorMessages.hasConsented}
+            value={htsData?.hasConsented}
+            onChange={handleHtsDataChange}
+          >
+            <option value="true">Yes</option>
+            <option value="false">No</option>
           </Select>
         </div>
         <div className="">
-          <Select required label="Reason for Not Testing" name="">
+          <Select
+            required
+            label="Reason for Not Testing"
+            name="hivNotTestingReasonId"
+            errMsg={errorMessages.hivNotTestingReasonId}
+            value={htsData?.hivNotTestingReasonId}
+            onChange={handleHtsDataChange}
+          >
             {hivNotTestingSuccess &&
               hivNotTestingStatus === "fulfilled" &&
               hivNotTestingReasonsOptions}
           </Select>
         </div>
         <div className="col-span-full">
-          <Textarea label="Other Reasons" name="comment" />
+          <Textarea
+            label="Other Reasons"
+            name="notTestingReason"
+            errMsg={errorMessages.notTestingReason}
+            value={htsData?.notTestingReason}
+            onChange={handleHtsDataChange}
+          />
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-5 border border-borderColor rounded-lg mt-8 shadow-light">
         <h2 className="col-span-full text-xl font-semibold">Test & Results</h2>
         <div className="">
-          <Input label="Test No" name="weight" />
+          <Input
+            label="Test No"
+            name="testNo"
+            errMsg={errorMessages.testNo}
+            value={htsData?.testNo}
+            onChange={handleHtsDataChange}
+          />
         </div>
         <div className="">
-          <Select required label="Determine" name="">
+          <Select
+            required
+            label="Determine"
+            name="determineTestResult"
+            errMsg={errorMessages.determineTestResult}
+            value={htsData?.determineTestResult}
+            onChange={handleHtsDataChange}
+          >
             <option value="1">Reactive</option>
             <option value="2">Non Reactive</option>
           </Select>
         </div>
         <div className="">
-          <Select required label="Bioline" name="">
+          <Select
+            required
+            label="Bioline"
+            name="biolineTestResult"
+            errMsg={errorMessages.biolineTestResult}
+            value={htsData?.biolineTestResult}
+            onChange={handleHtsDataChange}
+          >
             <option value="1">Reactive</option>
             <option value="2">Non Reactive</option>
           </Select>
         </div>
         <div className="">
-          <Select required label="HIV Type" name="">
+          <Select
+            required
+            label="HIV Type"
+            name="hivType"
+            errMsg={errorMessages.hivType}
+            value={htsData?.hivType}
+            onChange={handleHtsDataChange}
+          >
             <option value="1">HIV-1</option>
             <option value="2">HIV-2</option>
             <option value="3">HIV-1 & HIV-2</option>
           </Select>
         </div>
         <div className="">
-          <Select required label="DNA PCR Sample Collected" name="">
-            <option value="1">Yes</option>
-            <option value="2">No</option>
+          <Select
+            required
+            label="DNA PCR Sample Collected"
+            name="isDNAPCRSampleCollected"
+            errMsg={errorMessages.isDNAPCRSampleCollected}
+            value={htsData?.isDNAPCRSampleCollected}
+            onChange={handleHtsDataChange}
+          >
+            <option value="true">Yes</option>
+            <option value="false">No</option>
           </Select>
         </div>
         <div className="">
           <DateInput
             label="DNA PCR Sample Collection Date"
-            onChange={() => {}}
+            name="sampleCollectionDate"
+            errMsg={errorMessages.sampleCollectionDate}
+            selected={
+              htsData?.sampleCollectionDate
+                ? new Date(htsData?.sampleCollectionDate)
+                : null
+            }
+            onChange={(date) => handleDateChange(date, "sampleCollectionDate")}
           />
         </div>
         <div className="">
-          <Select required label="Client Received Results" name="">
-            <option value="1">Yes</option>
-            <option value="2">No</option>
+          <Select
+            required
+            label="Client Received Results"
+            name="isResultReceived"
+            errMsg={errorMessages.isResultReceived}
+            value={htsData?.isResultReceived}
+            onChange={handleHtsDataChange}
+          >
+            <option value="true">Yes</option>
+            <option value="false">No</option>
           </Select>
         </div>
         <div className="">
-          <Select required label="Consent to Receive SMS Alerts" name="">
-            <option value="1">Yes</option>
-            <option value="2">No</option>
+          <Select
+            required
+            label="Consent to Receive SMS Alerts"
+            name="consentForSMS"
+            errMsg={errorMessages.consentForSMS}
+            value={htsData?.consentForSMS}
+            onChange={handleHtsDataChange}
+          >
+            <option value="true">Yes</option>
+            <option value="false">No</option>
           </Select>
         </div>
       </div>
@@ -223,16 +439,22 @@ const HTSForm = () => {
           Post Test Assessment
         </h2>
         <div className="col-span-full">
-          <Search />
+          <MultipleSelect
+            options={hivRiskFactors?.slice() || []}
+            selectedOptions={selectedOptions}
+            setSelectedOptions={setSelectedOptions}
+          />
         </div>
         <div className="col-span-full">
-          <Select label="Post Test Assessment"></Select>
-        </div>
-        <div className="col-span-full">
-          <DateInput label="Retest Date" onChange={() => {}} />
-        </div>
-        <div className="col-span-full">
-          <MultipleSelect />
+          <DateInput
+            label="Retest Date"
+            name="retestDate"
+            errMsg={errorMessages.retestDate}
+            selected={
+              htsData?.retestDate ? new Date(htsData?.retestDate) : null
+            }
+            onChange={(date) => handleDateChange(date, "retestDate")}
+          />
         </div>
       </div>
     </>

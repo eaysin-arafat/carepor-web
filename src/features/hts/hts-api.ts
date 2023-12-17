@@ -1,5 +1,34 @@
 import { API } from "../API/API";
 
+export interface HTS {
+  interactionId: string;
+  clientSource: number;
+  lastTested: string;
+  lastTestResult: number;
+  partnerHIVStatus: number;
+  partnerLastTestDate: string;
+  hasCounselled: number;
+  hasConsented: boolean;
+  testNo: number;
+  determineTestResult: number;
+  isDNAPCRSampleCollected: boolean;
+  isResultReceived: boolean;
+  consentForSMS: boolean;
+  clientTypeId: number;
+  visitTypeId: number;
+  servicePointId: number;
+  hivTestingReasonId: number;
+  clientId: string;
+  encounterId: string;
+  encounterType: number;
+  createdIn: number;
+  dateCreated: string;
+  createdBy: string;
+  dateModified: string;
+  isDeleted: boolean;
+  isSynced: boolean;
+}
+
 const htsApi = API.injectEndpoints({
   endpoints: (builder) => ({
     /**
@@ -13,6 +42,7 @@ const htsApi = API.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags: ["HTSes"],
     }),
 
     /**
@@ -20,11 +50,12 @@ const htsApi = API.injectEndpoints({
      * @param clientId
      * @returns HTS[]
      */
-    readHTS: builder.query({
+    readHTS: builder.query<HTS[], string>({
       query: (clientId) => ({
-        url: `/hts/readhts/${clientId}`,
+        url: `/readhts/${clientId}`,
         method: "GET",
       }),
+      providesTags: ["HTSes"],
     }),
 
     /**

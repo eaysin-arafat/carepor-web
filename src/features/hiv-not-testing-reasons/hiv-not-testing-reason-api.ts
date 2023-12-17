@@ -37,6 +37,7 @@ const hivNotTestingReasonApi = API.injectEndpoints({
         url: "hiv-not-testing-reasons",
         method: "GET",
       }),
+      keepUnusedDataFor: 60 * 60 * 24, // 24 hours
       providesTags: ["HIVNotTestingReasons"],
     }),
 

@@ -5,8 +5,9 @@ import { FiEye, FiPlusCircle } from "react-icons/fi";
 import { bloodPressureStatus } from "@/utilities/blood-pressure-status";
 import { cn } from "@/utilities/cn";
 import VitalsCreateForm from "../create/Create";
-import useVitals from "./useVitals";
 import VitalsDetails from "../details/VitalsDetails";
+import EditVital from "../edit/Edit";
+import useVitals from "./useVitals";
 
 function Vitals() {
   const {
@@ -16,7 +17,11 @@ function Vitals() {
     handleEncounterFilter,
     w1100,
     vitals,
+    viewModal,
+    editModal,
   } = useVitals();
+
+  console.log("vitals", vitals);
 
   return (
     <div className={`${w1100 ? "mt-12" : ""}`}>
@@ -43,6 +48,8 @@ function Vitals() {
                 <li className="mb-3">BMI</li>
                 <li className="mb-3">Temperature (c)</li>
                 <li className="mb-3">Blood Pressure (mmHg)</li>
+                <li className="mb-3">Pulse Rate (Bpm)</li>
+                <li className="mb-3">Respiratory Rate (Bpm)</li>
               </ul>
               <div className=" overflow-x-auto w-full">
                 <div className="flex gap-3">
@@ -83,15 +90,17 @@ function Vitals() {
                             ) : (
                               <span className="text-black">Unrecordable</span>
                             )}
-                            {/* {vital?.systolic != -1 && vital?.diastolic != -1 ? (
-                              `${vital?.systolic}/${vital?.diastolic} - ${bloodPressure}`
-                            ) : (
-                              <span className="text-black">Unrecordable</span>
-                            )} */}
                           </li>
+                          <li className="mb-3 text-black">
+                            {vital?.pulseRate}
+                          </li>
+                          <li className="mb-3 text-black">
+                            {vital?.respiratoryRate}
+                          </li>
+
                           <li className="mb-3 text-black flex justify-center  opacity-0 group-hover:opacity-100 transition-opacity">
                             <button
-                              onClick={handleViewVitalModal}
+                              onClick={() => handleViewVitalModal(vital)}
                               className="flex gap-1 items-center border border-primaryColor hover:bg-lightBlueColor px-2 py-1 rounded text-primaryColor"
                             >
                               <FiEye className="text-primaryColor" />
@@ -120,9 +129,12 @@ function Vitals() {
           <VitalsCreateForm />
         )}
         {/* VIEW VITAL MODAL */}
-        {addModal?.isOpen && addModal?.modalId === vitalModalTypes.viewVital && (
-          <VitalsDetails />
-        )}
+        {viewModal?.isOpen &&
+          viewModal?.modalId === vitalModalTypes.viewVital && <VitalsDetails />}
+
+        {/* EDIT VITAL MODAL */}
+        {editModal?.isOpen &&
+          editModal?.modalId === vitalModalTypes.editVital && <EditVital />}
       </div>
     </div>
   );
