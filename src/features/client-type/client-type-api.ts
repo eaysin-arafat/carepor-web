@@ -37,6 +37,7 @@ const clientTypeApi = API.injectEndpoints({
         url: "/client-types",
         method: "GET",
       }),
+      keepUnusedDataFor: 60 * 60 * 24,
       providesTags: ["ClientTypes"],
     }),
 

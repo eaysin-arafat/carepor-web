@@ -1,8 +1,8 @@
-import DefaultModal from "../../../components/core/modal/DefaultModal";
+import DefaultModal from "@/components/core/modal/DefaultModal";
 import VitalForm from "../form/VitalForm";
-import useCreate from "./useCreate";
+import useEdit from "./useEdit";
 
-const VitalsCreateForm = () => {
+const EditVital = () => {
   const {
     closeModal,
     errorMessages,
@@ -15,7 +15,7 @@ const VitalsCreateForm = () => {
     isLoading,
     vitalData,
     status,
-  } = useCreate();
+  } = useEdit();
 
   return (
     <DefaultModal title="Patient Information" size="7xl" toggler={closeModal}>
@@ -51,4 +51,4 @@ const VitalsCreateForm = () => {
   );
 };
 
-export default VitalsCreateForm;
+export default EditVital;

@@ -11,6 +11,12 @@ const initialState = {
     modalId: null,
     data: null,
   },
+
+  viewModal: {
+    isOpen: false,
+    modalId: null,
+    data: null,
+  },
 };
 
 const modalSlice = createSlice({
@@ -37,10 +43,26 @@ const modalSlice = createSlice({
       state.editModal.modalId = null;
       state.editModal.data = null;
     },
+    openViewModal(state, action) {
+      state.viewModal.isOpen = true;
+      state.viewModal.modalId = action.payload.modalId;
+      state.viewModal.data = action.payload.data;
+    },
+    closeViewModal(state) {
+      state.viewModal.isOpen = false;
+      state.viewModal.modalId = null;
+      state.viewModal.data = null;
+    },
   },
 });
 
-export const { closeAddModal, closeEditModal, openAddModal, openEditModal } =
-  modalSlice.actions;
+export const {
+  closeAddModal,
+  closeEditModal,
+  openAddModal,
+  openEditModal,
+  closeViewModal,
+  openViewModal,
+} = modalSlice.actions;
 
 export default modalSlice;

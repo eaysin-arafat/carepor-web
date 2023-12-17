@@ -37,6 +37,7 @@ const servicePointsApi = API.injectEndpoints({
         url: "/service-points",
         method: "GET",
       }),
+      keepUnusedDataFor: 60 * 60 * 24, // 24 hours
       providesTags: ["ServicePoints"],
     }),
 

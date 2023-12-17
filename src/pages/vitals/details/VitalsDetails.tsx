@@ -1,20 +1,29 @@
+import { RootState } from "@/app/store";
 import Card from "@/components/core/card/Card";
 import DefaultModal from "@/components/core/modal/DefaultModal";
 import DataRow from "@/components/core/table/DataRow";
-import { closeAddModal } from "@/features/modal/modal-slice";
+import { vitalModalTypes } from "@/constants/modal-types";
+import { closeViewModal, openEditModal } from "@/features/modal/modal-slice";
 import { MdOutlineEdit } from "react-icons/md";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const VitalsDetails = () => {
+  const { viewModal } = useSelector((state: RootState) => state.modal);
   const dispatch = useDispatch();
-  const editHandler = () => {
-    alert("hello");
-  };
 
   const closeModal = () => {
-    dispatch(closeAddModal());
+    dispatch(closeViewModal());
   };
 
+  const editHandler = () => {
+    closeModal();
+    dispatch(
+      openEditModal({
+        modalId: vitalModalTypes.editVital,
+        data: viewModal?.data,
+      })
+    );
+  };
   const titleClass = "xs:min-w-[200px] md:min-w-[250px] max-w-[300px]";
   return (
     <DefaultModal title="Vital Details" toggler={closeModal}>
@@ -35,49 +44,80 @@ const VitalsDetails = () => {
             onClick={editHandler}
             className="absolute right-0 top-0 flex gap-1 items-center text-primaryColor"
           >
-            {" "}
             <MdOutlineEdit /> Edit
           </button>
         </div>
         <div className="">
-          <DataRow title="Weight (kg)" data="Data" titleClass={titleClass} />
-          <DataRow title="Height (cm)" data="Data" titleClass={titleClass} />
-          <DataRow title="BMI Score" data="Data" titleClass={titleClass} />
           <DataRow
-            title="Temperature (c)"
-            data="Data"
+            title="Weight (kg)"
+            data={viewModal?.data?.weight}
             titleClass={titleClass}
           />
-          <DataRow title="Systolic" data="Data" titleClass={titleClass} />
-          <DataRow title="Diastolic" data="Data" titleClass={titleClass} />
+          <DataRow
+            title="Height (cm)"
+            data={viewModal?.data?.height}
+            titleClass={titleClass}
+          />
+          <DataRow
+            title="BMI Score"
+            data={viewModal?.data?.bmi}
+            titleClass={titleClass}
+          />
+          <DataRow
+            title="Temperature (c)"
+            data={viewModal?.data?.temperature}
+            titleClass={titleClass}
+          />
+          <DataRow
+            title="Systolic"
+            data={viewModal?.data?.systolic}
+            titleClass={titleClass}
+          />
+          <DataRow
+            title="Diastolic"
+            data={viewModal?.data?.diastolic}
+            titleClass={titleClass}
+          />
           <DataRow
             title="Pulse Rate (bpm)"
-            data="Data"
+            data={viewModal?.data?.pulseRate}
             titleClass={titleClass}
           />
           <DataRow
             title="Respiratory Rate (bpm)"
-            data="Data"
+            data={viewModal?.data?.respiratoryRate}
             titleClass={titleClass}
           />
           <DataRow
             title="Oxygen Saturation (%)"
-            data="Data"
+            data={viewModal?.data?.oxygenSaturation}
             titleClass={titleClass}
           />
-          <DataRow title="MUAC" data="Data" titleClass={titleClass} />
-          <DataRow title="MUAC Score" data="Data" titleClass={titleClass} />
+          <DataRow
+            title="MUAC"
+            data={viewModal?.data?.muac}
+            titleClass={titleClass}
+          />
+          <DataRow
+            title="MUAC Score"
+            data={viewModal?.data?.muacScore}
+            titleClass={titleClass}
+          />
           <DataRow
             title="Abdominal Circumference (cm)"
-            data="Data"
+            data={viewModal?.data?.abdominalCircumference}
             titleClass={titleClass}
           />
           <DataRow
             title="Head Circumference (cm)"
-            data="Data"
+            data={viewModal?.data?.headCircumference}
             titleClass={titleClass}
           />
-          <DataRow title="HC Score" data="Data" titleClass={titleClass} />
+          <DataRow
+            title="HC Score"
+            data={viewModal?.data?.hcScore}
+            titleClass={titleClass}
+          />
         </div>
       </Card>
       <div className="flex justify-center mt-4">

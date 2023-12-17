@@ -37,6 +37,7 @@ export const bedModalTypes = Object.freeze({
 
 export const vitalModalTypes = Object.freeze({
   addVital: "addVital",
+  editVital: "editVital",
   viewVital: "viewVital",
 });
 export const investigationModalTypes = Object.freeze({
@@ -64,6 +65,7 @@ export const facilitySettingsModalType = Object.freeze({
 export const htsModalTypes = Object.freeze({
   htsCreateModal: "htsCreateModal",
   htsViewModal: "htsViewModal",
+  htsEditModal: "htsEditModal",
 });
 
 export const ipdModalTypes = Object.freeze({

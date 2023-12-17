@@ -1,5 +1,18 @@
 import { API } from "../API/API";
 
+export interface HIVRiskFactor {
+  oid: number;
+  description: string;
+  createdIn: number;
+  dateCreated: string;
+  createdBy: string;
+  modifiedIn: string;
+  dateModified: string;
+  modifiedBy: string;
+  isDeleted: boolean;
+  isSynced: boolean;
+}
+
 const hivRiskFactorApi = API.injectEndpoints({
   endpoints: (builder) => ({
     /**
@@ -19,7 +32,7 @@ const hivRiskFactorApi = API.injectEndpoints({
      * @description This endpoint is used to read hiv risk factors
      * @returns HIVRiskFactor[]
      */
-    readHIVRiskFactors: builder.query({
+    readHIVRiskFactors: builder.query<HIVRiskFactor[], null>({
       query: () => ({
         url: "hiv-risk-factors",
         method: "GET",
