@@ -79,3 +79,7 @@ export const examinationNDiagnosisModalTypes = Object.freeze({
 export const planModalTypes = Object.freeze({
   planCreateModal: "planCreateModal",
 });
+
+export const painRecordsModalTypes = Object.freeze({
+  painRecordCreate: "painRecordCreate",
+});

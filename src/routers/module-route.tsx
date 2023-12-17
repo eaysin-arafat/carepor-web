@@ -5,7 +5,9 @@ import HtsIndex from "@/pages/hts/index/HtsIndex";
 import Investigation from "@/pages/investigations/index/Investigation";
 import IPDHistry from "@/pages/medical-encounter-ipd/histry/IPDHistry";
 import OpdHistry from "@/pages/medical-encounter/histry/OpdHistry";
+import PainRecordsHistory from "@/pages/pain-records/history/History";
 import SurgeryIndex from "@/pages/surgery/index/Surgery";
+import VitalsDetails from "@/pages/vitals/details/VitalsDetails";
 import Vitals from "@/pages/vitals/index/Vitals";
 import {
   URLDashboard,
@@ -13,11 +15,11 @@ import {
   URLIPDHistory,
   URLInvestigation,
   URLOPD,
+  URLPainRecords,
   URLSurgery,
   URLVitals,
   URLVitalsDetails,
 } from "./module-link";
-import VitalsDetails from "@/pages/vitals/details/VitalsDetails";
 
 const ModuleRoute = [
   {
@@ -62,10 +64,10 @@ const ModuleRoute = [
             path: URLIPDHistory(),
             element: <IPDHistry />,
           },
-          // {
-          //   path: URLIPD(),
-          //   element: <IPDCreate />,
-          // },
+          {
+            path: URLPainRecords(),
+            element: <PainRecordsHistory />,
+          },
         ],
       },
     ],

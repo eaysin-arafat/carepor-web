@@ -1,11 +1,23 @@
+import { RootState } from "@/app/store";
 import CustomPagination from "@/components/core/custom-pagination/CustomPagination";
+import Select from "@/components/core/form-elements/Select";
 import Table from "@/components/shared/table/Table";
 import TableBody from "@/components/shared/table/TableBody";
 import TableHeader from "@/components/shared/table/TableHeader";
+import { painRecordsModalTypes } from "@/constants/modal-types";
+import { closeAddModal, openAddModal } from "@/features/modal/modal-slice";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import PainRecordsCreate from "../create/Create";
 
-function Test() {
+function PainRecordsHistory() {
   const [state, setState] = useState(1);
+
+  // * Redux
+  const { addModal } = useSelector((state: RootState) => state.modal);
+
+  // * Hokes
+  const dispatch = useDispatch();
 
   const data = [
     {
@@ -100,8 +112,47 @@ function Test() {
     },
   ];
 
+  const closeModal = () => {
+    dispatch(closeAddModal());
+  };
+
   return (
     <div>
+      {addModal?.modalId === painRecordsModalTypes.painRecordCreate && (
+        <PainRecordsCreate toggler={closeModal} />
+      )}
+      <h1 className="mb-5 text-xl">Pain Scaling Tool</h1>
+      <div className="grid grid-cols-5 gap-5 mb-3 items-end">
+        <div>
+          <Select label="Encounter Date"></Select>
+        </div>
+        <div>
+          <Select label="Facility"></Select>
+        </div>
+        <div>
+          <Select label="Clinician"></Select>
+        </div>
+        <div>
+          <Select label="Cheif Complaints"></Select>
+        </div>
+        <div>
+          <div className="flex items-end justify-end w-full">
+            <button
+              className="px-2 py-3 bg-buttonBg w-full rounded-full text-center text-white"
+              onClick={() => {
+                dispatch(
+                  openAddModal({
+                    modalId: painRecordsModalTypes.painRecordCreate,
+                    data: null,
+                  })
+                );
+              }}
+            >
+              Add Encounter
+            </button>
+          </div>
+        </div>
+      </div>
       <div
         style={{
           width: "100%",
@@ -142,7 +193,9 @@ function Test() {
                 index={index}
                 isAction
                 btn={{
+                  edit: true,
                   delete: true,
+                  show: true,
                 }}
                 item={[
                   { title: item.age, w: "100" },
@@ -169,4 +222,4 @@ function Test() {
   );
 }
 
-export default Test;
+export default PainRecordsHistory;

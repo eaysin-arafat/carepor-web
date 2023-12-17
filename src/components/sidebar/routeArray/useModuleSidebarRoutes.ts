@@ -4,6 +4,7 @@ import {
   URLIPDHistory,
   URLInvestigation,
   URLOPD,
+  URLPainRecords,
   URLSurgery,
   URLVitals,
 } from "@/routers/module-link";
@@ -142,7 +143,7 @@ const useModuleSidebarRoutes = ({ clientId }: Props): SidebarItem[] => {
     {
       id: 10,
       title: "Pain Scaling Tool",
-      link: "#",
+      link: URLPainRecords(),
       icon: "/assets/svg/sidebar/pain.svg",
       children: null,
     },
