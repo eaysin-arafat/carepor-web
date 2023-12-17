@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Accordion } from "flowbite-react";
 import { FaChartPie } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 function DropdownList({ item }) {
+  const navigate = useNavigate();
   return (
     <Accordion
       className="border-none rounded-[1px] overflow-auto"
@@ -10,7 +12,10 @@ function DropdownList({ item }) {
     >
       {item.map((list: any, index: number) => (
         <Accordion.Panel className="border-none rounded-none" key={index}>
-          <Accordion.Title className="p-3 border-none outline-none hover:bg-primaryColor active:text-white focus:bg-primaryColor hover:text-white active:bg-primaryColor rounded-none">
+          <Accordion.Title
+            onClick={() => navigate(list?.link)}
+            className="p-3 border-none outline-none hover:bg-primaryColor active:text-white focus:bg-primaryColor hover:text-white active:bg-primaryColor rounded-none"
+          >
             <div className="flex items-center gap-2">
               {list.icon ? (
                 <img src={item.icon} alt="" className="h-[30px] w-[30px]" />

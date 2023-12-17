@@ -1,5 +1,18 @@
 import { API } from "../API/API";
 
+export interface VisitType {
+  oid: number;
+  description: string;
+  createdIn: number;
+  dateCreated: string;
+  createdBy: string;
+  modifiedIn: number;
+  dateModified: string;
+  modifiedBy: string;
+  isDeleted: boolean;
+  isSynced: boolean;
+}
+
 const visitTypeApi = API.injectEndpoints({
   endpoints: (builder) => ({
     /**
@@ -19,11 +32,13 @@ const visitTypeApi = API.injectEndpoints({
      * @description This endpoint is used to read visit types
      * @returns VisitType[]
      */
-    readVisitTypes: builder.query({
+    readVisitTypes: builder.query<VisitType[], null>({
       query: () => ({
         url: "/visit-types",
         method: "GET",
       }),
+      keepUnusedDataFor: 60 * 60 * 24, // 24 hours
+      providesTags: ["VisitTypes"],
     }),
 
     /**

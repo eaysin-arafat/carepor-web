@@ -29,14 +29,14 @@ function Radio({
       <div className="flex">
         {required && <span className="-mt-[6px] mx-1 text-dangerColor">*</span>}
       </div>
-      <label className="flex justify-center items-center gap-2">
+      <label className="flex justify-center text-textColor items-center gap-2">
         <input
           type="radio"
           name={name}
           checked={checked}
           id={name}
           onChange={onChange}
-          className={`border-gray-300 rounded h-4 w-4 ${className}`}
+          className={`border-gray-300 rounded-full h-4 w-4 ${className}`}
           value={value}
         />
         {label}
