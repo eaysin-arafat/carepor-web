@@ -19,7 +19,7 @@ const facilityApi = API.injectEndpoints({
      * @description This endpoint is used to read facilities
      * @returns Facility[]
      */
-    readFacilities: builder.query({
+    readFacilities: builder.query<TypeFacility[], undefined>({
       query: () => ({
         url: "/facilities",
         method: "GET",
@@ -158,3 +158,27 @@ export const { endpoints: facilityEndpoints } = facilityApi;
 
 // export api
 export default facilityApi;
+
+export type TypeFacility = {
+  oid: number;
+  description: string;
+  facilityMasterCode: string;
+  hmisCode: string;
+  longitude: string;
+  latitude: string;
+  location: number;
+  facilityType: number;
+  ownership: number;
+  isPrivateFacility: boolean;
+  isLive: boolean;
+  isDFZ: boolean;
+  districtId: number;
+  createdIn: number;
+  dateCreated: string;
+  createdBy: string;
+  modifiedIn: number;
+  dateModified: string;
+  modifiedBy: string;
+  isDeleted: boolean;
+  isSynced: boolean;
+};

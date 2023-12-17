@@ -37,14 +37,17 @@ export const bedModalTypes = Object.freeze({
 
 export const vitalModalTypes = Object.freeze({
   addVital: "addVital",
+  editVital: "editVital",
   viewVital: "viewVital",
 });
 export const investigationModalTypes = Object.freeze({
   addInvestigation: "addInvestigation",
+  editInvestigation: "editInvestigation",
   addInvestigationResult: "addInvestigationResult",
   investigationViewOrder: "investigationViewOrder",
   investigationViewResult: "investigationViewResult",
   investigationEditResult: "investigationEditResult",
+  sampleCollection: "sampleCollection",
 });
 export const surgeryModalTypes = Object.freeze({
   addSurgery: "addSurgery",
@@ -64,6 +67,7 @@ export const facilitySettingsModalType = Object.freeze({
 export const htsModalTypes = Object.freeze({
   htsCreateModal: "htsCreateModal",
   htsViewModal: "htsViewModal",
+  htsEditModal: "htsEditModal",
 });
 
 export const ipdModalTypes = Object.freeze({
@@ -105,4 +109,15 @@ export const paediatricModalTypes = Object.freeze({
 export const covidModalTypes = Object.freeze({
   covidCreateModal: "covidCreateModal",
   covidViewModal: "covidViewModal",
+});
+export const painRecordsModalTypes = Object.freeze({
+  painRecordCreate: "painRecordCreate",
+});
+
+export const referralModalTypes = Object.freeze({
+  referralCreate: "referralCreate",
+});
+
+export const birthRecordModalTypes = Object.freeze({
+  birthRecordCreate: "birthRecordCreate",
 });

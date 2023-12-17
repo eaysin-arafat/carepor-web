@@ -7,7 +7,7 @@ import { DateFunc } from "@/utilities/date";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-function useEditBaseData(encounterType: string) {
+function useEditBaseData(encounterType: number) {
   const { user } = useSelector((state: RootState) => state.authentication);
 
   const [opdSession, setOpdSession] = useState<TypeOpdVisit | null>(null);

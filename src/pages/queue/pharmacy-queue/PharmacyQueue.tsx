@@ -11,16 +11,14 @@ function PharmacyQueue() {
   const w1100 = useWindowWidth(1100);
   const [state, setState] = React.useState(1);
 
-  const Test2 = ({ aa }: { aa: string }) => {
-    return (
-      <div className="flex gap-1 items-center">
-        <span className="h-2 w-2 bg-green-500 rounded-full"></span>
-        <p>{aa}</p>
-      </div>
-    );
-  };
-
-  console.log(Test2);
+  // const Test2 = ({ aa }: { aa: string }) => {
+  //   return (
+  //     <div className="flex gap-1 items-center">
+  //       <span className="h-2 w-2 bg-green-500 rounded-full"></span>
+  //       <p>{aa}</p>
+  //     </div>
+  //   );
+  // };
 
   return (
     <div className={`${w1100 && "mt-12"}`}>

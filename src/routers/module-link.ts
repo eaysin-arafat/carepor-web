@@ -14,3 +14,6 @@ export const URLIPDHistory = (): string => "/medical-encounter/ipd/history";
 export const URLIPD = (): string => "/medical-encounter/ipd";
 export const URLCovax = (): string => "/covax";
 export const URLCovid = (): string => "/covid";
+export const URLPainRecords = (): string => "/pain-records";
+export const URLReferral = (): string => "/referral";
+export const URLBirthRecord = (): string => "/birth-record";

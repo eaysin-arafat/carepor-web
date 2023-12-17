@@ -37,6 +37,7 @@ const visitTypeApi = API.injectEndpoints({
         url: "/visit-types",
         method: "GET",
       }),
+      keepUnusedDataFor: 60 * 60 * 24, // 24 hours
       providesTags: ["VisitTypes"],
     }),
 

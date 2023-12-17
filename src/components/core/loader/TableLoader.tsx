@@ -4,7 +4,7 @@ type Props = {};
 
 function TableLoader({}: Props) {
   return (
-    <div className="mt-2 mx-4 mb-5">
+    <div className="mt-2 mb-5">
       <LineSkeleton className="rounded" />
       <LineSkeleton className="rounded" />
       <LineSkeleton className="rounded" />

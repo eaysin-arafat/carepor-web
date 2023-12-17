@@ -239,6 +239,7 @@ export const EnumPiority = {
   2: "Urgent",
   3: "Emergency",
 };
+export type TypePiority = keyof typeof EnumPiority;
 
 export const EnumOrigin = {
   1: "FromWithin12km",

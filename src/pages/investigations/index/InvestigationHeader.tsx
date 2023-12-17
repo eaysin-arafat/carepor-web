@@ -9,7 +9,7 @@ const InvestigationHeader = (props: Props) => {
     <TableHeader
       className="bg-tableHeadColor text-textColor"
       isAction
-      actionWidth="min-w-[220px]"
+      actionWidth="min-w-[120px]"
       title={[
         {
           title: "Order Date",
@@ -29,7 +29,7 @@ const InvestigationHeader = (props: Props) => {
         },
         {
           title: "Test Name",
-          w: "14%",
+          w: "16%",
         },
         {
           title: "Order Number",

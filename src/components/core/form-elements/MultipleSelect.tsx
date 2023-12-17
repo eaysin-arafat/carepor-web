@@ -1,39 +1,30 @@
 import { useEffect, useRef, useState } from "react";
 
-const MultipleSelect = () => {
-  const options = [
-    {
-      oid: 1,
-      description: "Penicillin",
-      isDeleted: false,
-    },
-    {
-      oid: 2,
-      description: "NSAIDs",
-      isDeleted: false,
-    },
-    {
-      oid: 3,
-      description: "Sulfa Containing drugs",
-      isDeleted: false,
-    },
-    {
-      oid: 4,
-      description: "Chemotherapy",
-      isDeleted: false,
-    },
-  ];
+export interface Option {
+  oid: number;
+  description: string;
+}
 
-  const [selectedOptions, setSelectedOptions] = useState([]);
+export interface MultipleSelectProps {
+  options: Option[];
+  selectedOptions: Option[];
+  setSelectedOptions: (options: Option[]) => void;
+}
+
+const MultipleSelect = ({
+  options,
+  selectedOptions,
+  setSelectedOptions,
+}: MultipleSelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const dropdownRef = useRef(null);
 
-  const filteredOptions = options.filter((option) =>
+  const filteredOptions = options.filter((option: Option) =>
     option.description.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const handleOptionToggle = (option) => {
+  const handleOptionToggle = (option: Option) => {
     const optionIndex = selectedOptions.findIndex(
       (item) => item.oid === option.oid
     );
@@ -57,7 +48,7 @@ const MultipleSelect = () => {
   };
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         closeDropdown();
       }
@@ -72,7 +63,7 @@ const MultipleSelect = () => {
 
   return (
     <div
-      className="relative inline-block text-left w-full z-50"
+      className="relative inline-block text-left w-full z-10"
       ref={dropdownRef}
     >
       <button
@@ -87,7 +78,7 @@ const MultipleSelect = () => {
 
       {isOpen && (
         <div
-          className="absolute left-0 mt-1 w-full space-y-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+          className="absolute left-0 mt-1 w-full space-y-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none max-h-52 overflow-y-auto"
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="options-menu"
