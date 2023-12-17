@@ -69,7 +69,12 @@ export const htsModalTypes = Object.freeze({
 });
 
 export const ipdModalTypes = Object.freeze({
-  ipdCreateModal: "ipdCreateModal",
+  createIpdChiefComplaint: "createIpdChiefComplaint",
+  editIpdChiefComplaint: "editIpdChiefComplaint",
+  createIpdExamination: "createIpdExamination",
+  editIpdExamination: "editIpdExamination",
+  createIpdTreatmentPlan: "createIpdTreatmentPlan",
+  editIpdTreatmentPlan: "editIpdTreatmentPlan",
 });
 
 export const examinationNDiagnosisModalTypes = Object.freeze({

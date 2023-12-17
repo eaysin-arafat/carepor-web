@@ -1,23 +1,28 @@
 import { cn } from "@/utilities/cn";
-import { Edit2 } from "react-feather";
 import { FaRegTrashAlt } from "react-icons/fa";
 
 type Props = {
   children: React.ReactNode;
   noHeading?: boolean;
   className?: string;
+  handleDelete?: () => void;
 };
-const PastRecordWrapper = ({ children, noHeading, className = " " }: Props) => {
+const PastRecordWrapper = ({
+  children,
+  noHeading,
+  className = " ",
+  handleDelete,
+}: Props) => {
   return (
     <div
       className={cn(
-        "md:flex w-full justify-between items-center bg-lightBlueColor text-[12px] py-3 px-5 border rounded ",
+        "md:flex w-full justify-between items-center bg-lightBlueColor text-[12px] py-2 px-5 border rounded ",
         className
       )}
     >
       <div className="flex flex-col gap-1">
         {!noHeading && (
-          <div className={cn("flex flex-wrap gap-2 xs:gap-4 mb-3 ")}>
+          <div className={cn("flex flex-wrap gap-2 xs:gap-4 mb-1 ")}>
             <p>
               <span className="font-semibold">Encounter Date : </span>
               28-Nov-2023
@@ -37,17 +42,18 @@ const PastRecordWrapper = ({ children, noHeading, className = " " }: Props) => {
         <button
           type="button"
           className="flex items-center gap-1 p-1 text-dangerColor"
+          onClick={handleDelete}
         >
           <span>
             <FaRegTrashAlt size={14} className="text-dangerColor" />
           </span>
         </button>
-        <button type="button" className="flex items-center gap-1 ">
+        {/* <button type="button" className="flex items-center gap-1 ">
           <span>
             <Edit2 size={14} className=" text-primaryColor" />
           </span>
           <span className=" text-primaryColor">Edit</span>
-        </button>
+        </button> */}
       </div>
     </div>
   );

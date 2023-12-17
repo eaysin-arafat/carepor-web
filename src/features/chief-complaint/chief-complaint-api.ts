@@ -1,5 +1,31 @@
 import { API } from "../API/API";
 
+export interface ChiefComplaint {
+  interactionId: string;
+  chiefComplaints: string;
+  historyOfChiefComplaint: string;
+  hivStatus: number;
+  recencyType: number;
+  recencyTestDate: string;
+  isChildGivenARV: boolean;
+  isMotherGivenARV: boolean;
+  natResult: number;
+  tbScreenings: number;
+  clientId: string;
+  // exposures: [];
+  // keyPopulationDemographics: [];
+  // hIVRiskScreenings: [];
+  encounterId: string;
+  encounterType: number;
+  createdIn: number;
+  dateCreated: string;
+  createdBy: string;
+  isDeleted: boolean;
+  isSynced: boolean;
+  historySummary?: string;
+  examinationSummary?: string;
+}
+
 const chiefComplaintApi = API.injectEndpoints({
   endpoints: (builder) => ({
     /**
@@ -13,6 +39,7 @@ const chiefComplaintApi = API.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags: ["ChiefComplaints"],
     }),
 
     /**
@@ -45,11 +72,12 @@ const chiefComplaintApi = API.injectEndpoints({
      * @returns ChiefComplaint
      */
     updateChiefComplaint: builder.mutation({
-      query: ({ key, ...body }) => ({
+      query: ({ key, body }) => ({
         url: `/chief-complaint/${key}`,
         method: "PUT",
         body,
       }),
+      invalidatesTags: ["ChiefComplaints"],
     }),
 
     /**
@@ -57,11 +85,12 @@ const chiefComplaintApi = API.injectEndpoints({
      * @param clientId
      * @returns ChiefComplaint
      */
-    readChiefComplaintByClient: builder.query({
+    readChiefComplaintByClient: builder.query<ChiefComplaint[], string>({
       query: (clientId) => ({
         url: `/chief-complaint/by-Client/${clientId}`,
         method: "GET",
       }),
+      providesTags: ["ChiefComplaints"],
     }),
 
     /**

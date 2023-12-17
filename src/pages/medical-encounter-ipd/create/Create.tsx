@@ -1,29 +1,78 @@
 import { RootState } from "@/app/store";
 import FormHeading from "@/components/core/form-heading/FormHeading";
-import IpdComplaintsHistory from "@/components/medical-encounter-ipd/IpdComplaintsHistory";
 import PastRecordList from "@/components/shared/past-record-list/PastRecordList";
 import {
   examinationNDiagnosisModalTypes,
   ipdModalTypes,
   planModalTypes,
 } from "@/constants/modal-types";
-import { closeAddModal, openAddModal } from "@/features/modal/modal-slice";
+import { EnumEncounterType } from "@/enum/encounter-type";
+import { useReadChiefComplaintByClientQuery } from "@/features/chief-complaint/chief-complaint-api";
+import { useReadDiagnosesByClientQuery } from "@/features/diagnosis/diagnosis-api";
+import {
+  closeAddModal,
+  closeEditModal,
+  openAddModal,
+  openEditModal,
+} from "@/features/modal/modal-slice";
+import useClient from "@/hooks/useClient";
 import FormLayout from "@/layout/FormLayout";
+import CreateChiefComplaints from "@/pages/chief-complaints/create/Create";
+import EditChiefComplaints from "@/pages/chief-complaints/edit/Edit";
+import CreateDiagnosis from "@/pages/diagnosis/create/Create";
+import { filterBy24Hours, filterByEncounter } from "@/utilities/transformation";
 import { useDispatch, useSelector } from "react-redux";
-import DiagnosisModal from "../diagnosis/DiagnosisModal";
 import TreatmentPlanModal from "../plan/TreatmentPlanModal";
+import DiagnosisModal from "../diagnosis/DiagnosisModal";
 
 const IPDCreate = () => {
-  const { addModal } = useSelector((state: RootState) => state.modal);
+  const { addModal, editModal } = useSelector(
+    (state: RootState) => state.modal
+  );
+
   const dispatch = useDispatch();
+  const client = useClient();
+
+  // api hooks
+  const { data: chiefComplaints } = useReadChiefComplaintByClientQuery(
+    client?.oid,
+    {
+      skip: !client?.oid,
+      refetchOnMountOrArgChange: true,
+    }
+  );
+
+  const {
+    data: diagnoses,
+    isLoading,
+    isError,
+    isSuccess,
+    error,
+  } = useReadDiagnosesByClientQuery(client?.oid, {
+    skip: !client?.oid,
+    refetchOnMountOrArgChange: true,
+  });
+
+  console.log("diagnoses", diagnoses);
+
   const handleChiefComplaints = () => {
     dispatch(
       openAddModal({
-        modalId: ipdModalTypes.ipdCreateModal,
+        modalId: ipdModalTypes.createIpdChiefComplaint,
         data: null,
       })
     );
   };
+
+  const handleEditChiefComplaints = () => {
+    dispatch(
+      openEditModal({
+        modalId: ipdModalTypes.editIpdChiefComplaint,
+        data: null,
+      })
+    );
+  };
+
   const handleIpdExamination = () => {
     dispatch(
       openAddModal({
@@ -45,6 +94,26 @@ const IPDCreate = () => {
     dispatch(closeAddModal());
   };
 
+  const closeEdit = () => {
+    dispatch(closeEditModal());
+  };
+
+  // CHIEF COMPLAINTS
+  const ipdChiefComplaints = filterByEncounter(
+    chiefComplaints?.slice(),
+    EnumEncounterType.MedicalEncounterIPD
+  );
+  const ipdEditData = filterBy24Hours(ipdChiefComplaints?.slice());
+
+  // EXAMINATION AND DIAGNOSIS
+  const examinationAndDiagnosis = filterByEncounter(
+    diagnoses?.slice(),
+    EnumEncounterType.MedicalEncounterIPD
+  );
+  const editExaminationAndDiagnosis = filterBy24Hours(
+    examinationAndDiagnosis?.slice()
+  );
+
   return (
     <FormLayout
       latestData={
@@ -57,14 +126,33 @@ const IPDCreate = () => {
       }
     >
       <div>
+        {/* ChIEF COMPLAINTS */}
         <FormHeading
           title="Presenting Complaints"
           modalHandler={handleChiefComplaints}
-          isEdit
+          isEdit={ipdEditData?.length > 0}
+          editHandler={handleEditChiefComplaints}
         />
-        {addModal?.modalId === ipdModalTypes.ipdCreateModal && (
-          <IpdComplaintsHistory toggler={closeModal} />
-        )}
+
+        {/* Add Modal */}
+        {addModal?.isOpen &&
+          addModal?.modalId === ipdModalTypes.createIpdChiefComplaint && (
+            <CreateChiefComplaints
+              toggler={closeModal}
+              encounterType={EnumEncounterType.MedicalEncounterIPD}
+            />
+          )}
+
+        {/* EDIT MODAL */}
+        {editModal?.isOpen &&
+          editModal?.modalId === ipdModalTypes.editIpdChiefComplaint && (
+            <EditChiefComplaints
+              encounterType={EnumEncounterType.MedicalEncounterIPD}
+              toggler={closeEdit}
+            />
+          )}
+
+        {/* EXAMINATION AND DIAGNOSIS */}
         <FormHeading
           title="Examination & Diagnosis"
           modalHandler={handleIpdExamination}
@@ -72,9 +160,19 @@ const IPDCreate = () => {
         />
         {addModal?.modalId ===
           examinationNDiagnosisModalTypes.diagnosisCreateModal && (
-          <DiagnosisModal toggler={closeModal} />
+          // <DiagnosisModal toggler={closeModal} />
+          <CreateDiagnosis
+            toggler={closeModal}
+            encounterType={EnumEncounterType.MedicalEncounterIPD}
+          />
         )}
-        <FormHeading title="Treatment Plan" modalHandler={handleIpdPlan} isEdit />
+
+        {/* TREATMENT PLAN */}
+        <FormHeading
+          title="Treatment Plan"
+          modalHandler={handleIpdPlan}
+          isEdit
+        />
         {addModal?.modalId === planModalTypes.planCreateModal && (
           <TreatmentPlanModal toggler={closeModal} />
         )}

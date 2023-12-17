@@ -1,5 +1,7 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { Loader } from "react-feather";
 import { FiSearch } from "react-icons/fi";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 interface Option {
   value: number;
@@ -17,29 +19,25 @@ interface CustomSearchableProps {
   selectedValue?: Option | null;
   setSelectedValue?: (data: Option | null) => void;
   options?: Option[];
+  hasMore?: boolean;
+  fetchMoreData?: () => void;
 }
 
-function SearchableSelect({
+const IcdSelectableSearch = ({
   errMsg,
-  setError,
   required,
-  name,
   label,
   selectedValue,
   setSelectedValue,
   options = [],
-}: CustomSearchableProps) {
+  hasMore,
+  fetchMoreData,
+}: CustomSearchableProps) => {
   const searchRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [showDropdown, setShowDropdown] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-
-  useEffect(() => {
-    // if (setError && name) {
-    //   setError((prev) => ({ ...prev, [name]: "" }));
-    // }
-  }, [selectedValue, setError, name]);
 
   const filterData =
     Array.isArray(options) && options
@@ -54,12 +52,6 @@ function SearchableSelect({
     if (setSelectedValue) {
       setSelectedValue(data);
     }
-    setSearchValue("");
-    setShowDropdown(false);
-  };
-
-  const handleResetValue = () => {
-    setSelectedValue(null);
     setSearchValue("");
     setShowDropdown(false);
   };
@@ -148,33 +140,36 @@ function SearchableSelect({
                 </div>
                 <div className="relative ">
                   <div className="absolute z-[9999] bg-white w-full border px-[1px] mx-[-1px]">
-                    <div className="max-h-[250px] overflow-y-scroll">
-                      <ul className="">
-                        {/* {
-                          <li
-                            onClick={handleResetValue}
-                            className="options border-t cursor-pointer text-black hover:bg-blue-500 hover:text-white px-[15px] py-[8px] "
-                          >
-                            {Array.isArray(options) && options.length === 0
-                              ? "No options"
-                              : filterData.length === 0
-                              ? "No match found"
-                              : "--Select--"}
-                          </li>
-                        } */}
-
-                        {filterData.map((data) => {
-                          return (
-                            <li
-                              key={data.value}
-                              onClick={() => handleSetValue(data)}
-                              className="options border-t cursor-pointer text-black hover:bg-blue-500 hover:text-white px-[15px] py-[8px] "
-                            >
-                              {data?.label}
-                            </li>
-                          );
-                        })}
-                      </ul>
+                    <div
+                      id="scroll_div"
+                      className="overflow-y-scroll"
+                      style={{ height: 200 }}
+                    >
+                      <InfiniteScroll
+                        dataLength={filterData?.length}
+                        next={fetchMoreData}
+                        hasMore={hasMore}
+                        scrollableTarget="scroll_div"
+                        loader={
+                          <div className="flex h-10 justify-center items-center">
+                            <Loader size={20} className="animate-spin" />
+                          </div>
+                        }
+                      >
+                        <ul>
+                          {filterData?.map((data) => {
+                            return (
+                              <li
+                                key={data.value}
+                                onClick={() => handleSetValue(data)}
+                                className="options border-t cursor-pointer text-black hover:bg-blue-500 hover:text-white px-[15px] py-[8px] "
+                              >
+                                {data?.label}
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </InfiniteScroll>
                     </div>
                   </div>
                 </div>
@@ -190,57 +185,6 @@ function SearchableSelect({
       </div>
     </>
   );
-}
+};
 
-export default SearchableSelect;
-
-// const options = [
-//   {
-//     value: 1,
-//     label: "Afghanistan",
-//   },
-//   {
-//     value: 2,
-//     label: "Algeria",
-//   },
-//   {
-//     value: 3,
-//     label: "Argentina",
-//   },
-//   {
-//     value: 4,
-//     label: "Australia",
-//   },
-//   {
-//     value: 5,
-//     label: "Bangladesh",
-//   },
-//   {
-//     value: 6,
-//     label: "Belgium",
-//   },
-//   {
-//     value: 7,
-//     label: "Bhutan",
-//   },
-//   {
-//     value: 8,
-//     label: "Brazil",
-//   },
-//   {
-//     value: 9,
-//     label: "Canada",
-//   },
-//   {
-//     value: 10,
-//     label: "China",
-//   },
-//   {
-//     value: 11,
-//     label: "Denmark",
-//   },
-//   {
-//     value: 12,
-//     label: "Ethiopia",
-//   },
-// ];
+export default IcdSelectableSearch;
