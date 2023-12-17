@@ -67,13 +67,11 @@ const investigationApi = API.injectEndpoints({
         //@ts-ignore
         const testData = getTestData(res?.test);
         //@ts-ignore
-        delete res?.test;
+        // delete res?.test;
         return {
           //@ts-ignore
           ...res,
           ...testData,
-          userAccount: {},
-          client: {},
         };
       },
       providesTags: ["InvestigationById"],
@@ -82,6 +80,19 @@ const investigationApi = API.injectEndpoints({
       query: (body) => ({
         url: "/result",
         method: "POST",
+        body,
+      }),
+      invalidatesTags: [
+        "InvestigationDashboard",
+        "InvestigationByEncounter",
+        "InvestigationByClientId",
+        "InvestigationById", //
+      ],
+    }),
+    updateInvestigationResult: builder.mutation({
+      query: ({ key, body }) => ({
+        url: "/result/" + key,
+        method: "PUT",
         body,
       }),
       invalidatesTags: [
@@ -144,6 +155,7 @@ export const {
   useReadInvestigationQuery,
   useReadInvestigationsForDashboardQuery,
   useUpdateInvestigationMutation,
+  useUpdateInvestigationResultMutation,
 } = investigationApi;
 
 // export endpoints
@@ -291,6 +303,9 @@ export type TypeResult = {
   createdBy: string;
   isDeleted: false;
   isSynced: false;
+  results: any;
+  resultOptionId: string;
+  measuringUnitId: string;
 };
 
 export type TypeMergeInvestigations = {

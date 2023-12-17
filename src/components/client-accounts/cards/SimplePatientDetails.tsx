@@ -25,7 +25,8 @@ const SimplePatientDetails = ({ className, client: clientData }: Props) => {
   const clientCookie: TypeClientCookie | null =
     cookieManager.parseCookie("client");
   const { data } = useReadClientByKeyQuery(clientCookie?.oid, {
-    skip: !clientCookie?.oid && Object.keys(clientData)?.length > 0,
+    // skip: !clientCookie?.oid && Object.keys(clientData)?.length > 0,
+    skip: !clientCookie?.oid || !clientData?.oid == false,
     refetchOnMountOrArgChange: true,
   });
 
@@ -52,7 +53,14 @@ const SimplePatientDetails = ({ className, client: clientData }: Props) => {
         <div className="w-[122px]">
           <Item
             title="Date of Birth"
-            data={client?.dob ? DateFunc.toFormatted(client?.dob)  + " (" + getSingleYear(client.dob) + ")" : ""}
+            data={
+              client?.dob
+                ? DateFunc.toFormatted(client?.dob) +
+                  " (" +
+                  getSingleYear(client.dob) +
+                  ")"
+                : ""
+            }
             icon={<Calendar size={18} />}
           />
         </div>
@@ -64,25 +72,25 @@ const SimplePatientDetails = ({ className, client: clientData }: Props) => {
           />
         </div>
         <div className="w-[130px]">
-        <Item
-          title="Cellphone"
-          data={client?.cellphoneCountryCode + " " + client?.cellphone}
-          icon={<MdOutlinePhone size={18} />}
-        />
+          <Item
+            title="Cellphone"
+            data={client?.cellphoneCountryCode + " " + client?.cellphone}
+            icon={<MdOutlinePhone size={18} />}
+          />
         </div>
         <div className="w-[170px]">
-        <Item
-          title="NUPN"
-          data={client?.nupn}
-          icon={<FaRegAddressCard size={18} />}
-        />
+          <Item
+            title="NUPN"
+            data={client?.nupn}
+            icon={<FaRegAddressCard size={18} />}
+          />
         </div>
         <div className="w-[80px]">
-        <Item
-          title="NRC"
-          data={client?.nrc}
-          icon={<FaRegAddressCard size={18} />}
-        />
+          <Item
+            title="NRC"
+            data={client?.nrc}
+            icon={<FaRegAddressCard size={18} />}
+          />
         </div>
         <div className="min-w-[200px]">
           <Item
@@ -107,7 +115,9 @@ type CardProps = {
 const Item = ({ title, data, icon }: CardProps) => {
   return (
     <div className="flex flex-col font-poppins my-[6px]">
-      <div className="text-xs font-semibold text-secondaryColor mb-2">{title}</div>
+      <div className="text-xs font-semibold text-secondaryColor mb-2">
+        {title}
+      </div>
       <div className="flex gap-x-2 items-start mt-1.5">
         <span className="text-secondaryColor">{icon}</span>
         <span className="dark:text-grayColor text-secondaryColor text-xs whitespace-nowrap">
