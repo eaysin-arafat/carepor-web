@@ -6,7 +6,8 @@ import { useState } from "react";
 import { ChevronDown, ChevronUp } from "react-feather";
 
 function BirthRecordCreate({ toggler }) {
-  const [accordion, setAccordion] = useState(true);
+  const [accordion, setAccordion] = useState(false);
+
   return (
     <DefaultOpenModal title="Birth Record" isShow={true} toggler={toggler}>
       <form>
