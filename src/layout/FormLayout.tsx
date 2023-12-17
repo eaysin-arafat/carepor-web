@@ -38,12 +38,6 @@ const FormLayout = ({ children, latestData }: Props) => {
       >
         {!w1300 && (
           <div className="col-span-3">
-            {/* <PastRecordList
-              title="Latest Encounter"
-              isSubTitleShow
-              subTitle="12-Dec-2023"
-              isPastEncounter
-            /> */}
             {latestData || "Latest Data Required"}
           </div>
         )}

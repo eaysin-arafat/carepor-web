@@ -1,9 +1,10 @@
 import ModuleLayout from "@/layout/ModuleLayout";
+import { cn } from "@/utilities/cn";
 import { Accordion } from "flowbite-react";
 import React, { useState } from "react";
 import { FaChartPie } from "react-icons/fa6";
 import { IoChevronDown } from "react-icons/io5";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import DropdownList from "./DropdownList";
 import Icons from "./Icons/Icons";
 import css from "./Styles.module.css";
@@ -28,6 +29,9 @@ function ModuleSidebar() {
 
   // * Hookes
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  console.log("QueueSidebar", pathname);
 
   // * Filter Menu Without Adding any Route
   const withoutAddRoute = moduleSidebarRoutes.filter(
@@ -88,9 +92,14 @@ function ModuleSidebar() {
                   ) : (
                     <Accordion.Title
                       onClick={() => !item.children && navigate(item?.link)}
-                      // onClick={() => !item.children && alert("okay")}
                       // onMouseOver={() => setIconColor("white")}
-                      className="p-3 border-none outline-none rounded-none"
+                      className={cn(
+                        "p-3 border-none outline-none dark:bg-whiteBgColor rounded-none",
+                        {
+                          "!bg-activeColor !text-white":
+                            pathname === item?.link,
+                        }
+                      )}
                     >
                       <div className="flex justify-between items-center w-full">
                         <div className="flex items-center gap-3">

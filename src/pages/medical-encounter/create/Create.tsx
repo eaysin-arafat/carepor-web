@@ -5,7 +5,6 @@ import ModuleStepping from "@/components/shared/multi-step/ModuleStepping";
 import PastRecordList from "@/components/shared/past-record-list/PastRecordList";
 import { medicalEncounterModalTypes } from "@/constants/modal-types";
 import { closeAddModal, openAddModal } from "@/features/modal/modal-slice";
-import useWindowWidth from "@/hooks/useWindow";
 import FormLayout from "@/layout/FormLayout";
 import CreateAllergy from "@/pages/allergies/create/Create";
 import CreateChiefComplaints from "@/pages/chief-complaints/create/Create";
@@ -210,8 +209,6 @@ const CreateMedicalEncounter = () => {
   const [openModal, setOpenModal] = React.useState(false);
 
   // * Responsive Hokes
-  const w1300 = useWindowWidth(1300);
-  const w1000 = useWindowWidth(1000);
 
   const { addModal } = useSelector((state: RootState) => state.modal);
 
@@ -269,6 +266,7 @@ const CreateMedicalEncounter = () => {
       })
     );
   };
+
   return (
     <div>
       <FormLayout
@@ -300,6 +298,7 @@ const CreateMedicalEncounter = () => {
               title="TB & Constitutional Symptoms"
               modalHandler={handleTbConstitutionalSymptom}
             />
+
             {addModal?.modalId ===
               medicalEncounterModalTypes.addTbConstitutionalSymptom && (
               <CreateTbConstitutionalSymptom toggler={closeModal} />
@@ -311,6 +310,7 @@ const CreateMedicalEncounter = () => {
               modalHandler={handleReviewOfSystems}
               isEdit
             />
+
             {addModal?.modalId ===
               medicalEncounterModalTypes.addReviewOfSystem && (
               <CreateReviewOfSystems toggler={closeModal} />

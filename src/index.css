@@ -94,12 +94,10 @@
 p,
 span,
 h1,
-h2,
 h3,
 h4,
 h5,
-h6,
-div {
+h6 {
   color: var(--textColor);
 }
 
@@ -121,8 +119,10 @@ span {
   display: inline-block;
 }
 
+/*  Sidebar Default Css  */
+
 ._sidebar_1dh2t_5 div button {
-  background-color: var(--body);
+  background-color: var(--whiteBg);
 }
 
 ._sidebar_1dh2t_5 div button:hover {
