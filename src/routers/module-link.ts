@@ -12,3 +12,4 @@ export const URLOPD = (): string => "/medical-encounter";
 export const URLIPDHistory = (): string => "/medical-encounter/ipd/history";
 export const URLIPD = (): string => "/medical-encounter/ipd";
 export const URLPainRecords = (): string => "/pain-records";
+export const URLReferral = (): string => "/referral";

@@ -5,6 +5,7 @@ import {
   URLInvestigation,
   URLOPD,
   URLPainRecords,
+  URLReferral,
   URLSurgery,
   URLVitals,
 } from "@/routers/module-link";
@@ -173,7 +174,7 @@ const useModuleSidebarRoutes = ({ clientId }: Props): SidebarItem[] => {
     {
       id: 14,
       title: "Referrals",
-      link: "#",
+      link: URLReferral(),
       icon: "/assets/svg/sidebar/referrals.svg",
       children: null,
     },

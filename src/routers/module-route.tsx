@@ -6,6 +6,7 @@ import Investigation from "@/pages/investigations/index/Investigation";
 import IPDHistry from "@/pages/medical-encounter-ipd/histry/IPDHistry";
 import OpdHistry from "@/pages/medical-encounter/histry/OpdHistry";
 import PainRecordsHistory from "@/pages/pain-records/history/History";
+import ReferralsHistory from "@/pages/referrals/history/History";
 import SurgeryIndex from "@/pages/surgery/index/Surgery";
 import VitalsDetails from "@/pages/vitals/details/VitalsDetails";
 import Vitals from "@/pages/vitals/index/Vitals";
@@ -16,6 +17,7 @@ import {
   URLInvestigation,
   URLOPD,
   URLPainRecords,
+  URLReferral,
   URLSurgery,
   URLVitals,
   URLVitalsDetails,
@@ -67,6 +69,10 @@ const ModuleRoute = [
           {
             path: URLPainRecords(),
             element: <PainRecordsHistory />,
+          },
+          {
+            path: URLReferral(),
+            element: <ReferralsHistory />,
           },
         ],
       },

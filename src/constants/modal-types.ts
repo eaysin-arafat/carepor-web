@@ -83,3 +83,7 @@ export const planModalTypes = Object.freeze({
 export const painRecordsModalTypes = Object.freeze({
   painRecordCreate: "painRecordCreate",
 });
+
+export const referralModalTypes = Object.freeze({
+  referralCreate: "referralCreate",
+});
