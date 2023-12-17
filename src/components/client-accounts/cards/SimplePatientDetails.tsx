@@ -77,7 +77,7 @@ const SimplePatientDetails = ({ className, client: clientData }: Props) => {
           icon={<FaRegAddressCard size={18} />}
         />
         </div>
-        <div className="w-[80px]">
+        <div className="w-[120px]">
         <Item
           title="NRC"
           data={client?.nrc}

@@ -16,7 +16,7 @@ const ServicePoints = () => {
   });
   return (
     <div className="mx-3">
-      <Container className="max-w-[1345px] bg-whiteBgColor my-8 rounded-lg px-5 lg:px-20 shadow-light">
+      <Container className="max-w-[1350px] bg-whiteBgColor my-8 rounded-lg px-5 lg:px-10 shadow-light">
         <div className="py-8 pb-1">
           <div className="border rounded-lg border-primaryColor ">
             <SimplePatientDetails

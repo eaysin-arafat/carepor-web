@@ -9,5 +9,8 @@ export const URLVitals = (): string => "/vitals";
 export const URLVitalsDetails = (): string => "/vitals/details";
 export const URLHts = (): string => "/hts";
 export const URLOPD = (): string => "/medical-encounter";
+export const URLOPDCreate = (): string => "/medical-encounter/create";
 export const URLIPDHistory = (): string => "/medical-encounter/ipd/history";
 export const URLIPD = (): string => "/medical-encounter/ipd";
+export const URLCovax = (): string => "/covax";
+export const URLCovid = (): string => "/covid";
