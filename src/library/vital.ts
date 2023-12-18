@@ -451,7 +451,7 @@ export const msgBasedOnBmi = (bmi: number) => {
 const fiveToNineteenFinalMsg = (bmiObj: BmiForBoysGirlItem, bmi: number) => {
   const rangeValue = bmiObj?.range_value || [];
 
-  if (bmiObj[bmi]) {
+  if (bmi && bmiObj[bmi]) {
     return bmiObj[bmi];
   }
 
@@ -517,7 +517,7 @@ export const bmiMsgBasedOnLengthAndWeight = (
 const underFiveFinalMsg = (bmiObj: BMIForUnder5YearsItem, bmi: number) => {
   const rangeValue = bmiObj?.range_value || [];
 
-  if (bmiObj[bmi]) {
+  if (bmi && bmiObj[bmi]) {
     return bmiObj[bmi];
   }
 

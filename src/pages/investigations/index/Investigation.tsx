@@ -11,6 +11,7 @@ import useWindowWidth from "@/hooks/useWindow";
 import { cn } from "@/utilities/cn";
 import dayjs from "dayjs";
 import { useState } from "react";
+import { FiPlusCircle } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import InvestigationAddResultModal from "../create/InvestigationAddResultModal";
 import InvestigationCreate from "../create/InvestigationCreate";
@@ -117,6 +118,13 @@ const Investigation = () => {
               <h1 className="text-xl md:text-2xl text-secondaryColor font-semibold">
                 Investigation
               </h1>
+              <button
+                onClick={handleInvestigationForm}
+                className="flex gap-2 main_btn px-4 sm:px-4 text-[14px] sm:text-base py-2.5 whitespace-nowrap"
+              >
+                <FiPlusCircle className="text-xl sm:text-2xl " /> Add
+                <div className="hidden md:block">Investigation</div>
+              </button>
             </div>
             <div className=" bg-whiteBgColor pb-5 rounded-xl shadow-light">
               <InvestigationFilter

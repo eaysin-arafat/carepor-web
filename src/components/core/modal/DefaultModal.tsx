@@ -14,7 +14,7 @@ const DefaultModal = ({
         show={true}
         onClose={toggler}
         size={size}
-        style={{ zIndex: "99999" }}
+        style={{ zIndex: "999" }}
         className={cn(className)}
       >
         <Modal.Header className="py-2.5">

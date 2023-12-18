@@ -6,7 +6,6 @@ import useWindowWidth from "@/hooks/useWindow";
 import { OnchangeEventType } from "@/types/htmlEvents";
 import { cn } from "@/utilities/cn";
 import React from "react";
-import { FiPlusCircle } from "react-icons/fi";
 import DateInput from "../../../components/core/form-elements/DatePicker";
 import Select from "../../../components/core/form-elements/Select";
 
@@ -28,7 +27,7 @@ type Props = {
 };
 
 const InvestigationFilter = ({
-  handleInvestigationForm,
+  // handleInvestigationForm,
   title,
   className,
   priority,
@@ -61,9 +60,9 @@ const InvestigationFilter = ({
             {title}
           </h1>
         )}
-        <div className="grid grid-cols-8 gap-3">
+        <div className="grid grid-cols-6 gap-3">
           <div
-            className={`${"isFiltersHidden"} md:block col-span-10 md:col-span-5 lg:col-span-2 w-full`}
+            className={`${"isFiltersHidden"} md:block col-span-6 md:col-span-2 w-full`}
           >
             <DateInput
               isClearable
@@ -75,7 +74,7 @@ const InvestigationFilter = ({
           </div>
 
           <div
-            className={`${"isFiltersHidden"} md:block col-span-10 md:col-span-5 lg:col-span-2 w-full`}
+            className={`${"isFiltersHidden"} md:block col-span-6 md:col-span-2 w-full`}
           >
             <Select
               value={priority}
@@ -88,9 +87,7 @@ const InvestigationFilter = ({
               <option value="3">Emergency</option>
             </Select>
           </div>
-          <div
-            className={` md:block col-span-1 md:col-span-5 lg:col-span-2 w-full`}
-          >
+          <div className={` md:block col-span-6 md:col-span-2 w-full`}>
             <CustomSearchable
               placeholder="Test name"
               selectedValue={test}
@@ -101,34 +98,18 @@ const InvestigationFilter = ({
                 value: t.oid,
               }))}
             />
-            {/* <Select
-              value={test}
-              selectShow="All"
-              onChange={(e: OnchangeEventType) => setTest(+e.target.value)}
-              label="Test Name"
-            >
-              {Array.isArray(tests) &&
-                tests
-                  ?.slice()
-                  .sort(sortByString)
-                  ?.map((item) => (
-                    <option key={item?.oid} value={item?.oid}>
-                      {item?.title}
-                    </option>
-                  ))}
-            </Select> */}
           </div>
-          <div className="md:block col-span-10 md:col-span-8 lg:col-span-2 w-full">
+          {/* <div className="md:block col-span-10 md:col-span-8 lg:col-span-2 w-full">
             <div className="h-full flex items-center w-full justify-end">
               <button
                 onClick={handleInvestigationForm}
-                className="flex gap-2 main_btn px-4 sm:px-4 text-[14px] sm:text-base py-2.5"
+                className="flex gap-2 main_btn px-4 sm:px-4 text-[14px] sm:text-base py-2.5 whitespace-nowrap"
               >
                 <FiPlusCircle className="text-xl sm:text-2xl " /> Add
                 Investigation
               </button>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
