@@ -393,18 +393,18 @@ const InvestigationAddResult = ({}: Props) => {
 
             {/* INVESTIGATION TABLE */}
             {!currentInvestigation && (
-              <div className="mt-4 max-h-[650px] overflow-auto  ">
+              <div className="mt-4 max-h-[650px] overflow-auto relative ">
                 {/* <InvestigationTable /> */}
                 {/* rebuild */}
                 <div className="">
-                  <Table className=" " isRounded>
+                  <Table className="min-w-[500px]" isRounded>
                     {/* 	Test Type	Sub Type	Test	Priority */}
                     <TableHeader
                       isAction
                       className=""
-                      actionWidth="w-[132px] text-center"
+                      actionWidth="w-[170px] "
                       title={[
-                        { title: "Order Date", w: "18%" },
+                        { title: "Order Date", w: "150px" },
                         // { title: "Test Type", w: "20%" },
                         // { title: "Sub Type", w: "20%" },
                         { title: "Test", w: "64%" },
@@ -441,7 +441,7 @@ const InvestigationAddResult = ({}: Props) => {
                               item={[
                                 {
                                   title: DateFunc.formatDate(data?.orderDate),
-                                  w: "18%",
+                                  w: "150px",
                                 },
                                 // { title: data?.testType, w: "18%" },
                                 // { title: data?.testSubtype, w: "18%" },
@@ -458,7 +458,7 @@ const InvestigationAddResult = ({}: Props) => {
                                 },
                               ]}
                               index={1}
-                              actionWidth="w-[132px]"
+                              actionWidth="w-[170px]"
                             />
                           );
                         })}
@@ -620,7 +620,7 @@ const InvestigationAddResult = ({}: Props) => {
                         ? handleUpdateResultToCart
                         : handleAddResultToCart
                     }
-                    className="transparent_btn py-2 px-8"
+                    className="main_btn py-2 px-8"
                   >
                     {previousData ? "Update Cart" : "Add To Cart"}
                   </button>

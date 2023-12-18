@@ -41,7 +41,9 @@ function AdminInfo() {
         label={
           <img
             src="https://i.ibb.co/thBM8t0/avatar.jpg"
-            className={`${w1230 ? "w-[50px]" : "w-[50px]"} cursor-pointer`}
+            className={`${
+              w1230 ? "w-[50px]" : "w-[50px]"
+            } rounded-full cursor-pointer`}
             alt=""
           />
         }

@@ -11,7 +11,7 @@ function FacilitySettingsSidebar() {
 
   return (
     <RootLayout>
-      <div>
+      <div className="sidebar">
         <Accordion
           className="border-none rounded-[1px] overflow-auto"
           style={{ borderRadius: "0px" }}

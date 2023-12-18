@@ -44,24 +44,30 @@ const InvestigationViewResultModal = () => {
           toggler={closeModal}
           size="4xl"
         >
-          <Card className="bg-whiteBgColor shadow-none mt-3 ">
-            <div className=" border border-borderColor p-3 rounded-lg">
-              <div className="grid grid-cols-1 font-semibold  md:grid-cols-1">
-                <div className="p-1">
-                  Order Date: {DateFunc.formatDate(investigation?.dateCreated)}
-                </div>
-                <div className="p-1">
-                  Facility: {getFacilityName(investigation?.createdIn)}
-                </div>
-                <div className="p-1">
-                  Clinician:{" "}
+          <div className=" border border-borderColor bg-lightBlueColor p-3 m-4 rounded-lg">
+            <div className="md:flex justify-between font-semibold text-sm md:grid-cols-1">
+              <div className="p-1 flex">
+                Order Date : &nbsp;
+                <p className="font-normal">
+                  {DateFunc.formatDate(investigation?.dateCreated)}
+                </p>
+              </div>
+              <div className="p-1 flex">
+                Facility : &nbsp;
+                <p className="font-normal">
+                  {getFacilityName(investigation?.createdIn)}
+                </p>
+              </div>
+              <div className="p-1 flex">
+                Clinician : &nbsp;
+                <p className="font-normal">
                   {getClinicianFullName(
                     investigation?.clinicianID || investigation?.clinicianId
                   )}
-                </div>
+                </p>
               </div>
             </div>
-          </Card>
+          </div>
 
           {/* *** */}
           {/* If Result is not over 24 hours then editable */}
@@ -122,7 +128,7 @@ const DataCard = ({
         <DataRow title={"Test"} data={investigation?.testNameDetails} />
         <DataRow title={"Result"} data={investigation?.testResult} />
         <DataRow title={"Unit"} data={investigation?.unitTest} />
-        <div>{JSON.stringify(data)}</div>
+        {/* <div>{JSON.stringify(data)}</div> */}
         <DataRow
           title={"Reference Range"}
           data={

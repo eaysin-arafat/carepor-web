@@ -352,46 +352,6 @@ const InvestigationEdit = ({}: Props) => {
             </button>
           </div>
         </div>
-        {/* <div className="md:w-[40%] border border-borderColor px-4 rounded-lg">
-          <h2 className="text-center text-xl font-medium my-4">
-            Investigations Cart
-          </h2>
-          <h3 className="font-semibold text-base inline-flex items-center gap-1">
-            <BsCalendar />
-            Date :{" "}
-            <span className="font-normal text-grayColor">
-              {DateFunc.formatDate(DateFunc.toDay())}
-            </span>
-          </h3>
-          <div className="h-[550px] overflow-x-auto">
-            {investigations?.map((item) => {
-              return (
-                <InvestigationCartCard
-                  dataArray={createDataArray({ item, getTestName })}
-                  handleDelete={() => handleDeleteInvestigation(item.testId)}
-                  handleEdit={() => handleSetEditData(item)}
-                />
-              );
-            })}
-          </div>
-          <div className="mb-5 mt-2 flex justify-end gap-5">
-            <button
-              type="button"
-              onClick={() => setInvestigations([])}
-              className="transparent_btn "
-              disabled={investigations?.length == 0}
-            >
-              Clear Carts
-            </button>
-            <button
-              disabled={investigations?.length == 0 || isLoading}
-              type="submit"
-              className="main_btn py-2 sm:py-3 disabled:bg-slate-400"
-            >
-              Save
-            </button>
-          </div>
-        </div> */}
       </div>
     </form>
   );

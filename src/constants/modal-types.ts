@@ -119,6 +119,7 @@ export const covidModalTypes = Object.freeze({
 export const covaxModalTypes = Object.freeze({
   covaxCreateModal: "covaxCreateModal",
   vaccinateCreateModal: "vaccinateCreateModal",
+  adverseEffectCreate: "adverseEffectCreate",
 });
 export const painRecordsModalTypes = Object.freeze({
   painRecordCreate: "painRecordCreate",
