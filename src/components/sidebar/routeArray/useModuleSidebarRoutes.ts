@@ -1,9 +1,12 @@
 import {
+  URLBirthRecord,
   URLDashboard,
   URLHts,
   URLIPDHistory,
   URLInvestigation,
   URLOPD,
+  URLPainRecords,
+  URLReferral,
   URLSurgery,
   URLVitals,
 } from "@/routers/module-link";
@@ -142,7 +145,7 @@ const useModuleSidebarRoutes = ({ clientId }: Props): SidebarItem[] => {
     {
       id: 10,
       title: "Pain Scaling Tool",
-      link: "#",
+      link: URLPainRecords(),
       icon: "/assets/svg/sidebar/pain.svg",
       children: null,
     },
@@ -172,7 +175,7 @@ const useModuleSidebarRoutes = ({ clientId }: Props): SidebarItem[] => {
     {
       id: 14,
       title: "Referrals",
-      link: "#",
+      link: URLReferral(),
       icon: "/assets/svg/sidebar/referrals.svg",
       children: null,
     },
@@ -193,7 +196,7 @@ const useModuleSidebarRoutes = ({ clientId }: Props): SidebarItem[] => {
     {
       id: 17,
       title: "Birth Record",
-      link: "#",
+      link: URLBirthRecord(),
       icon: "/assets/svg/sidebar/birthrecord.svg",
       children: null,
     },

@@ -1,12 +1,24 @@
-import { isDateInFuture } from "@/lib/helpers/date-helpers";
+import dayjs from "dayjs";
 
-export const vitalsCreateValidator = (vital) => {
-  let error = {};
+export interface VitalsCreate {
+  vitalsDate?: string;
+  weight?: string;
+  height?: string;
+  temperature?: string;
+  systolic?: string;
+  diastolic?: string;
+  systolicIfUnrecordable?: string;
+  diastolicIfUnrecordable?: string;
+}
+
+export const vitalsCreateValidator = (vital: VitalsCreate) => {
+  const error: VitalsCreate = {};
 
   // Patient Information
-  if (vital?.lastTested) {
-    if (isDateInFuture(vital?.lastTested))
-      error.lastTested = "Cannot be in future";
+  if (!vital?.vitalsDate) error.vitalsDate = "Required";
+  else if (vital?.vitalsDate) {
+    if (dayjs(vital?.vitalsDate).isAfter(dayjs()))
+      error.vitalsDate = "Cannot be in future";
   }
 
   // partner's last test date and last test result

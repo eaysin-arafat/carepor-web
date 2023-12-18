@@ -1,28 +1,28 @@
 import RequestError from "@/components/core/error/RequestError";
+import { SearchableInputType } from "@/components/core/form-elements/custom-searchable";
 import TableLoader from "@/components/core/loader/TableLoader";
 import NotFound from "@/components/core/not-found/NotFound";
 import Table from "@/components/shared/table/Table";
+import { investigationModalTypes } from "@/constants/modal-types";
 import { useReadInvestigationByClientQuery } from "@/features/investigation/investigation-api";
+import { openAddModal } from "@/features/modal/modal-slice";
 import useBaseDataCreate from "@/hooks/useBaseDataCreate";
 import useWindowWidth from "@/hooks/useWindow";
 import { cn } from "@/utilities/cn";
-// import { useDispatch } from "react-redux";
-import InvestigationAddResultModal from "../create/InvestigationAddResultModal";
-import InvestigationCreate from "../create/InvestigationCreate";
-import InvestigationViewOrderModal from "../create/InvestigationViewOrderModal";
-import InvestigationViewResultModal from "../create/InvestigationViewResultModal";
-// import InvestigationFilter from "./InvestigationFilter";
-import { SearchableInputType } from "@/components/core/form-elements/custom-searchable";
 import dayjs from "dayjs";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import InvestigationAddResultModal from "../create/InvestigationAddResultModal";
+import InvestigationCreate from "../create/InvestigationCreate";
 import InvestigationEdit from "../create/InvestigationEdit";
+import InvestigationViewOrderModal from "../create/InvestigationViewOrderModal";
+import InvestigationViewResultModal from "../create/InvestigationViewResultModal";
 import InvestigationFilter from "./InvestigationFilter";
 import InvestigationHeader from "./InvestigationHeader";
 import InvestigationTable from "./InvestigationTable";
 
 const Investigation = () => {
-  // const [state, setState] = React.useState(1);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const w1100 = useWindowWidth(1100);
   const [baseData] = useBaseDataCreate();
   const { clientId } = baseData;
@@ -91,6 +91,14 @@ const Investigation = () => {
   // Pazinations locally
   // const [activePage, setActivePage] = useState(1);
   // const [itemsPerPage, setItemsPerPage] = useState(5);
+  const handleInvestigationForm = () => {
+    dispatch(
+      openAddModal({
+        modalId: investigationModalTypes.addInvestigation,
+        data: null,
+      })
+    );
+  };
 
   return (
     <>
@@ -102,7 +110,7 @@ const Investigation = () => {
       <InvestigationEdit />
 
       <div className={cn("", { "mt-12": w1100 })}>
-        {/* <InvestigationCreateForm/> */}
+        {/* <InvestigationCreateForm /> */}
         <div>
           <div>
             <div className="flex justify-between items-center md:mb-2">
@@ -112,7 +120,7 @@ const Investigation = () => {
             </div>
             <div className=" bg-whiteBgColor pb-5 rounded-xl shadow-light">
               <InvestigationFilter
-                handleInvestigationForm={() => {}}
+                handleInvestigationForm={handleInvestigationForm}
                 priority={priority}
                 setPriority={setPriority}
                 setTest={setTest}

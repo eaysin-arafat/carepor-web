@@ -1,9 +1,10 @@
 import { cn } from "@/utilities/cn";
+import React from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { MdOutlineEdit } from "react-icons/md";
 
 type Props = {
-  children?: any;
+  children?: React.ReactNode;
   title?: string;
   className?: string;
   image?: string;
@@ -15,6 +16,7 @@ type Props = {
   titleBorder?: string;
   edit?: boolean;
   editHandler?: React.MouseEventHandler<HTMLButtonElement>;
+  viewHandler?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 const Card = ({
@@ -29,6 +31,7 @@ const Card = ({
   view,
   titleBorder = " ",
   edit,
+  viewHandler,
   editHandler,
 }: Props) => {
   return (
@@ -55,21 +58,19 @@ const Card = ({
         )}
         {view && (
           <>
-            <button className="text-textColor  text-base font-semibold px-4 py-3 font-poppins flex items-center gap-1">
+            <button onClick={viewHandler} className="text-textColor  text-base font-semibold px-4 py-3 font-poppins flex items-center gap-1">
               {view} <IoIosArrowForward />
             </button>
           </>
         )}
         {edit && (
-          <div className="">
             <button
               onClick={editHandler}
-              className="text-primaryColor text-base font-normal px-1 pt-3 me-4 font-poppins flex items-center gap-1 absolute right-8"
+              className="text-primaryColor text-base font-normal px-1 pt-3 me-4 font-poppins flex items-center gap-1 right-8"
             >
               <MdOutlineEdit />
               Edit
             </button>
-          </div>
         )}
       </div>
       <div className={`${!isImage && "p-4"}`}>{children}</div>

@@ -37,6 +37,7 @@ const vitalApi = API.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags: ["Vitals"],
     }),
 
     /**
@@ -72,6 +73,7 @@ const vitalApi = API.injectEndpoints({
         url: `/vital/vital-by-client/${clientId}`,
         method: "GET",
       }),
+      providesTags: ["Vitals"],
     }),
 
     /**

@@ -20,7 +20,7 @@ const FormHeading = ({
   const w400 = useWindowWidth(400);
 
   return (
-    <div className="border border-borderColor bg-lightBlueColor rounded-md mb-0 overflow-hidden shadow-sm transition-shadow ease-in-out duration-300">
+    <div className="border border-borderColor bg-lightBlueColor rounded-md mb-3 overflow-hidden shadow-sm transition-shadow ease-in-out duration-300">
       <div className="flex items-center justify-between py-2 px-3">
         <h2
           className={`${

@@ -13,7 +13,7 @@ const DataRow: React.FC<Props> = ({ title, data, titleClass, dataClass }) => {
     <div className="flex items-start justify-end xs:justify-start">
       <div
         className={cn(
-          "xs:min-w-[145px] max-w-[145px] flex justify-between mr-5 items-start text-textColor text-sm py-2",
+          "min-w-[50%] xs:min-w-[145px] max-w-[145px] flex justify-between mr-5 items-start text-textColor text-sm py-2",
           titleClass
         )}
       >
@@ -26,7 +26,7 @@ const DataRow: React.FC<Props> = ({ title, data, titleClass, dataClass }) => {
           dataClass
         )}
       >
-        <div className="text-lg ">{data}</div>
+        <div className="text-base ">{data}</div>
       </div>
     </div>
   );
