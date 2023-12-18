@@ -1,3 +1,4 @@
+import { ProvinceType } from "@/types/coreTypes";
 import { API } from "../API/API";
 
 const provinceApi = API.injectEndpoints({
@@ -19,7 +20,7 @@ const provinceApi = API.injectEndpoints({
      * @description This endpoint is used to read provinces
      * @returns Province[]
      */
-    readProvinces: builder.query({
+    readProvinces: builder.query<ProvinceType, undefined>({
       query: () => ({
         url: "/provinces",
         method: "GET",

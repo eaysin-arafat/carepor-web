@@ -74,7 +74,6 @@ const Investigation = () => {
   };
 
   const handleTotalFilter = (data) => {
-    // console.log(data?.mergeInvestigations);
     const mergeInvestigations = data?.mergeInvestigations
       .filter(filterByPriority)
       .filter(filterByTestId)

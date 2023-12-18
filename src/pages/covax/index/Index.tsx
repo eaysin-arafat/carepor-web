@@ -1,9 +1,6 @@
-import MultiSelect from "@/components/core/form-elements/MultiSelect";
-import { Option } from "@/components/core/form-elements/MultipleSelect";
 import DataRow from "@/components/core/table/DataRow";
 import { covaxModalTypes } from "@/constants/modal-types";
 import { openAddModal } from "@/features/modal/modal-slice";
-import React from "react";
 import { PlusCircle } from "react-feather";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import { useDispatch } from "react-redux";
@@ -12,7 +9,6 @@ import CovaxCreate from "../create/CovaxCreate";
 import VaccinateCreate from "../create/VaccinateCreate";
 
 const CovaxIndex = () => {
-  const [selectedOptions, setSelectedOptions] = React.useState<Option[]>([]);
   const dispatch = useDispatch();
   const handleAddCovid = () => {
     dispatch(
@@ -186,91 +182,8 @@ const CovaxIndex = () => {
           />
         </div>
       </div>
-      <div className="mt-5">
-        <MultiSelect
-          options={demoOptions?.slice() || []}
-          selectedOptions={selectedOptions}
-          setSelectedOptions={setSelectedOptions}
-        />
-      </div>
-      <div className="mt-10"></div>
     </div>
   );
 };
 
 export default CovaxIndex;
-
-const demoOptions = [
-  {
-    oid: 1,
-    description: "Indeterminate HIV test",
-    createdIn: -1,
-    dateCreated: "2023-10-01T00:00:00",
-    createdBy: "00000000-0000-0000-0000-000000000000",
-    modifiedIn: -1,
-    dateModified: "2023-10-01T00:00:00",
-    modifiedBy: "00000000-0000-0000-0000-000000000000",
-    isDeleted: false,
-    isSynced: false,
-  },
-  {
-    oid: 2,
-    description: "HIV negative pregnant mother",
-    createdIn: -1,
-    dateCreated: "2023-10-01T00:00:00",
-    createdBy: "00000000-0000-0000-0000-000000000000",
-    modifiedIn: -1,
-    dateModified: "2023-10-01T00:00:00",
-    modifiedBy: "00000000-0000-0000-0000-000000000000",
-    isDeleted: false,
-    isSynced: false,
-  },
-  {
-    oid: 3,
-    description: "Breastfeeding mother",
-    createdIn: -1,
-    dateCreated: "2023-10-01T00:00:00",
-    createdBy: "00000000-0000-0000-0000-000000000000",
-    modifiedIn: -1,
-    dateModified: "2023-10-01T00:00:00",
-    modifiedBy: "00000000-0000-0000-0000-000000000000",
-    isDeleted: false,
-    isSynced: false,
-  },
-  {
-    oid: 4,
-    description: "HIV negative with STIs",
-    createdIn: -1,
-    dateCreated: "2023-10-01T00:00:00",
-    createdBy: "00000000-0000-0000-0000-000000000000",
-    modifiedIn: -1,
-    dateModified: "2023-10-01T00:00:00",
-    modifiedBy: "00000000-0000-0000-0000-000000000000",
-    isDeleted: false,
-    isSynced: false,
-  },
-  {
-    oid: 5,
-    description: "HIV negative with TB",
-    createdIn: -1,
-    dateCreated: "2023-10-01T00:00:00",
-    createdBy: "00000000-0000-0000-0000-000000000000",
-    modifiedIn: -1,
-    dateModified: "2023-10-01T00:00:00",
-    modifiedBy: "00000000-0000-0000-0000-000000000000",
-    isDeleted: false,
-    isSynced: false,
-  },
-  {
-    oid: 6,
-    description: "Discordant sexual partner",
-    createdIn: -1,
-    dateCreated: "2023-10-01T00:00:00",
-    createdBy: "00000000-0000-0000-0000-000000000000",
-    modifiedIn: -1,
-    dateModified: "2023-10-01T00:00:00",
-    modifiedBy: "00000000-0000-0000-0000-000000000000",
-    isDeleted: false,
-    isSynced: false,
-  },
-];

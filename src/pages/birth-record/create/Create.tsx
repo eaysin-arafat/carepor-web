@@ -1,105 +1,274 @@
 import CancelAndAddButton from "@/components/core/buttons/CancelAndAddButton";
 import Input from "@/components/core/form-elements/Input";
+import {
+  RenderCountryCode,
+  renderObjEnumOptions,
+} from "@/components/core/form-elements/RenderSelectOptions";
 import Select from "@/components/core/form-elements/Select";
 import DefaultOpenModal from "@/components/core/modal/DefaultOpenModal";
+import {
+  EnumBoolYesNo,
+  EnumInformantRelationship,
+  EnumOrigin,
+} from "@/enum/enumerators";
+import { useReadCountriesQuery } from "@/features/country/country-api";
+import { OnchangeEventType } from "@/types/htmlEvents";
 import { useState } from "react";
-import { ChevronDown, ChevronUp } from "react-feather";
+import ReferenceNotes from "./ReferenceNotes";
 
 function BirthRecordCreate({ toggler }) {
   const [accordion, setAccordion] = useState(false);
+  // const dispatcher = useDispatch();
+  // const { BirthRecords } = EnumEncounterType;
+  // const [baseDataCreate] = useBaseDataCreate(BirthRecords);
+  // const [baseDataEdit] = useEditBaseData(BirthRecords);
+
+  // Country Enums
+  const { data: countries } = useReadCountriesQuery(undefined);
+
+  // Initial State
+  const initialState = {
+    isBirthRecordGiven: "",
+    isUnderFiveCardGiven: "",
+    underFiveCardNumber: "",
+    origin: "",
+    informantFirstName: "",
+    informantSurname: "",
+    informantNickname: "",
+    informantRelationship: "",
+    informantOtherRelationship: "",
+    informantCity: "",
+    informantStreetNo: "",
+    informantPOBox: "",
+    informantLandmark: "",
+    informantLandlineCountryCode: "",
+    informantLandline: "",
+    informantCellphoneCountryCode: "",
+    informantCellphone: "",
+  };
+
+  // const { input, setInput, handleInputChange } = {}; // useInput(initialState);
+
+  const [formState, setFormState] = useState(initialState);
+  const [inputError, setInputError] = useState(initialState);
+  const handleInputChange = (e: OnchangeEventType) => {
+    const { name, value } = e.target;
+
+    setFormState((prev) => ({ ...prev, [name]: value }));
+    setInputError && setInputError((prev) => ({ ...prev, [name]: "" }));
+  };
+
+  // const { getBirthRecordLoading } = useSelector((state) => state.birthRecord);
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+
+  //   const { isValid, errors: validationError } = birthRecordValidator({
+  //     ...input,
+  //   });
+
+  //   // If from data is on valid set form error
+  //   if (!isValid) {
+  //     setInputError(validationError);
+  //     return false;
+  //   }
+  //   // dispatcher(addBirthRecord({ ...input, ...baseData })).then((res) => {
+  //   //   if (res.meta.requestStatus === "fulfilled") {
+  //   //     toast.dismiss();
+  //   //     toast.success("Add Successful");
+  //   //     setInput(initialState);
+  //   //     modalCloser("birth_record_add_modal");
+  //   //     setDataReloader((prev) => prev + 1);
+  //   //   } else {
+  //   //     if (res.meta.requestStatus === "rejected") {
+  //   //       toast.dismiss();
+  //   //       toast.error("Add Failed");
+  //   //     }
+  //   //   }
+  //   // });
+  // };
+
+  // useEffect(() => {
+  //   setInputError({});
+  // }, [input]);
+
+  // useEffect(() => {
+  //   if (input.isUnderFiveCardGiven === "true") {
+  //     setInput({ ...input });
+  //   } else {
+  //     setInput({ ...input, underFiveCardNumber: "" });
+  //   }
+
+  //   if (input.informantRelationship === "13") {
+  //     setInput({ ...input });
+  //   } else {
+  //     setInput({ ...input, informantOtherRelationship: "" });
+  //   }
+  // }, [input.informantRelationship, input.isUnderFiveCardGiven]);
 
   return (
     <DefaultOpenModal title="Birth Record" isShow={true} toggler={toggler}>
       <form>
-        <div className="bg-lightBlueColor p-5 rounded mt-2 shadow mb-4">
-          <h1 className="text-md font-medium mb-2">Particulars :</h1>
-          <div className="flex gap-5">
-            <Select label="Is Birth Record Given?"></Select>
-            <Select label="Origin"></Select>
-          </div>
-          <div className="flex gap-5 mt-5">
-            <Select label="Is Under Five Card Given?"></Select>
-            <Input label="Under Five Card Number" />
-          </div>
-        </div>
-
-        <div className="border border-borderColor mt-5 rounded">
-          <button
-            type="button"
-            onClick={() => setAccordion(!accordion)}
-            className="py-4 px-5 flex justify-between w-full bg-lightBlueColor"
+        <h1 className="text-md font-medium mb-2">Particulars :</h1>
+        <div className="flex gap-5">
+          <Select
+            label="Is Birth Record Given?"
+            required
+            onChange={handleInputChange}
+            name="isBirthRecordGiven"
+            value={formState.isBirthRecordGiven}
+            errMsg={inputError?.isBirthRecordGiven}
           >
-            Reference Notes
-            {!accordion && <ChevronDown />}
-            {accordion && <ChevronUp />}
-          </button>
-          {accordion && (
-            <div className="border-t border-t-bodyColor p-3">
-              <div className="mb-5">
-                <b>Note 1 : </b>
-                <p>
-                  The Informant should be the father or Mother of the child and
-                  only if neither is able to give necessary information is one
-                  of the following to give notice the occupier of the house or
-                  the person in charge of the hospital or institution where the
-                  child was born a person present at birth or the person now
-                  having charge of the child.
-                </p>
-              </div>
-              <div className="mb-5">
-                <b>Note 2 : </b>
-                <p>
-                  In terms of section 15 of the Act, the Registrar shall not
-                  enter in the Births Register the name of any person as father
-                  of an illegitimate child except at the joint request of the
-                  mother and the person acknowledging himself in writing in the
-                  presence of the Registrar to be the father of the child.
-                </p>
-              </div>
-              <div className="mb-5">
-                <b>Note 3 : </b>
-                <p>
-                  If you are a member of the National Pension Scheme Authority
-                  please quote your Social Security Number as this will assist
-                  the Fund in the payment of benefits.
-                </p>
-              </div>
-            </div>
-          )}
+            {renderObjEnumOptions(EnumBoolYesNo)}
+          </Select>
+
+          <Select
+            label="Origin"
+            required
+            onChange={handleInputChange}
+            name="origin"
+            value={formState.origin}
+            errMsg={inputError?.origin}
+          >
+            {renderObjEnumOptions(EnumOrigin)}
+          </Select>
+        </div>
+        <div className="flex gap-5 mt-5">
+          <Select
+            label="Is Under Five Card Given?"
+            required
+            onChange={handleInputChange}
+            name="isUnderFiveCardGiven"
+            value={formState.isUnderFiveCardGiven}
+            errMsg={inputError?.isUnderFiveCardGiven}
+          >
+            {renderObjEnumOptions(EnumBoolYesNo)}
+          </Select>
+          <Input
+            label="Under Five Card Number"
+            disabled={formState.isUnderFiveCardGiven == "true" ? false : true}
+            onChange={handleInputChange}
+            name="underFiveCardNumber"
+            value={inputError?.underFiveCardNumber}
+          />
+        </div>
+        {/* Reference Notes accordion */}
+        <ReferenceNotes accordion={accordion} setAccordion={setAccordion} />
+
+        <h1 className="text-md font-medium mb-2 mt-5">Informant Details :</h1>
+        <div className="flex gap-5">
+          {/* Name Inputs */}
+          <Input
+            label="First Name"
+            required
+            onChange={handleInputChange}
+            name="informantFirstName"
+            value={formState.informantFirstName}
+            errMsg={inputError?.informantFirstName}
+          />
+
+          <Input
+            label="Surname"
+            required
+            onChange={handleInputChange}
+            name="informantSurname"
+            value={formState.informantSurname}
+            errMsg={inputError?.informantSurname}
+          />
+          <Input
+            label="Nickname"
+            onChange={handleInputChange}
+            name="informantNickname"
+            value={formState.informantNickname}
+          />
         </div>
 
-        <div className="bg-lightBlueColor p-5 rounded mt-5 shadow mb-4">
-          <h1 className="text-md font-medium mb-2">Informant Details :</h1>
-          <div className="flex gap-5">
-            <Input label="First Name" />
-            <Input label="Surname" />
-            <Input label="Nickname" />
-          </div>
+        <div className="flex gap-5 mt-5">
+          {/* Cellphone Number */}
+          <Select
+            label="Code"
+            onChange={handleInputChange}
+            name="informantCellphoneCountryCode"
+            value={formState.informantCellphoneCountryCode}
+          >
+            <RenderCountryCode countries={countries} />
+          </Select>
+          <Input
+            label="Cellphone Number"
+            onChange={handleInputChange}
+            name="informantCellphone"
+            value={formState.informantCellphone}
+          />
+        </div>
 
-          <div className="flex gap-5 mt-5">
-            <Select label="Code" />
-            <Input label="Cellphone Number" />
-          </div>
+        <div className="flex gap-5 mt-5">
+          {/* Landline Number */}
+          <Select
+            label="Code"
+            onChange={handleInputChange}
+            name="informantLandlineCountryCode"
+            value={formState.informantLandlineCountryCode}
+          >
+            <RenderCountryCode countries={countries} />
+          </Select>
+          <Input
+            label="Landline Number"
+            onChange={handleInputChange}
+            name="informantLandline"
+            value={formState.informantLandline}
+          />
+        </div>
 
-          <div className="flex gap-5 mt-5">
-            <Select label="Code" />
-            <Input label="Landline Number" />
-          </div>
+        <div className="flex gap-5 mt-5">
+          {/* Relationship to Child */}
+          <Select
+            label="Relationship to Child"
+            required
+            onChange={handleInputChange}
+            name="informantRelationship"
+            value={formState.informantRelationship}
+            errMsg={inputError?.informantRelationship}
+          >
+            {renderObjEnumOptions(EnumInformantRelationship)}
+          </Select>
+          {/* Other Relationship */}
+          <Input
+            label="Other Relationship"
+            disabled={formState.informantRelationship === "13" ? false : true}
+            onChange={handleInputChange}
+            name="informantOtherRelationship"
+            value={formState.informantOtherRelationship}
+          />
+        </div>
 
-          <div className="flex gap-5 mt-5">
-            <Select label="Relationship to Child" />
-            <Input label="Other Relationship" />
-          </div>
+        <div className="flex gap-5 mt-5">
+          <Input
+            label="City/Town/Village"
+            onChange={handleInputChange}
+            name="informantCity"
+            value={formState.informantCity}
+          />
+          <Input
+            label="Cmpd Street No."
+            onChange={handleInputChange}
+            name="informantStreetNo"
+            value={formState.informantStreetNo}
+          />
+        </div>
 
-          <div className="flex gap-5 mt-5">
-            <Input label="City/Town/Village" />
-            <Input label="Cmpd Street No." />
-          </div>
-
-          <div className="flex gap-5 mt-5">
-            <Input label="PO Box,Pvt bag" />
-            <Input label="Landmark" />
-          </div>
+        <div className="flex gap-5 mt-5">
+          <Input
+            label="PO Box, Pvt Bag"
+            onChange={handleInputChange}
+            name="informantPOBox"
+            value={formState.informantPOBox}
+          />
+          <Input
+            label="Landmark"
+            onChange={handleInputChange}
+            name="informantLandmark"
+            value={formState.informantLandmark}
+          />
         </div>
 
         {/* BUTTONS */}

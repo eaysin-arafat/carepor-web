@@ -202,12 +202,3 @@ function CustomSearchable({
 }
 
 export default CustomSearchable;
-
-// data model
-// const options = [
-//   {
-//     value: 1,
-//     label: "Afghanistan",
-//   },
-
-// ];

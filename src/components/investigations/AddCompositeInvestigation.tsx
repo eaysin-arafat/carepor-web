@@ -2,20 +2,20 @@ import { EnumEncounterType } from "@/enum/encounter-type";
 import { EnumPiority } from "@/enum/enumerators";
 import { useCreateCompositeInvestigationMutation } from "@/features/investigation/investigation-api";
 import { useReadCompositeTestsQuery } from "@/features/investigation/investigation-enum-api";
+import { closeAddModal } from "@/features/modal/modal-slice";
 import useBaseDataCreate from "@/hooks/useBaseDataCreate";
 import { OnchangeEventType } from "@/types/htmlEvents";
 import { TypeInvestigationForm } from "@/types/module-types/investigation";
 import { datePickerToString } from "@/utilities/date";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 import DateInput from "../core/form-elements/DatePicker";
 import Input from "../core/form-elements/Input";
 import { renderObjEnumOptions } from "../core/form-elements/RenderSelectOptions";
 import Select from "../core/form-elements/Select";
 import Textarea from "../core/form-elements/textarea";
 import { compositeTestValidator } from "./investigation-validations";
-import { useDispatch } from "react-redux";
-import { closeAddModal } from "@/features/modal/modal-slice";
 
 const AddCompositeInvestigation = () => {
   const { Investigation } = EnumEncounterType;
@@ -196,7 +196,6 @@ const AddCompositeInvestigation = () => {
           </div>
 
           <div className="mb-5 flex justify-end gap-5">
-            <button className="transparent_btn">Add To Cart</button>
             <button className="main_btn py-3">Save</button>
           </div>
         </div>

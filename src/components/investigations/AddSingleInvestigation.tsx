@@ -61,7 +61,7 @@ const AddSingleInvestigation = ({}) => {
   // search input value
   const [testObj, setTestObj] = useState(null);
   // input date value
-  const [orderDate, setOrderDate] = useState(null);
+  const [orderDate, setOrderDate] = useState(new Date());
 
   //OTHERS INPUTS STATES AND HANDLER
   const [formData, setFormData] = useState(initialState);
@@ -297,6 +297,7 @@ const AddSingleInvestigation = ({}) => {
               {/* <Select label="Test" required></Select> */}
               <CustomSearchable
                 options={testSelectOptions}
+                placeholder="Test"
                 name="testId"
                 setSelectedValue={setTestObj}
                 selectedValue={testObj}

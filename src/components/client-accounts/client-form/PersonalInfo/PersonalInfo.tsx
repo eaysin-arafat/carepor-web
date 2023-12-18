@@ -4,7 +4,7 @@ import {
   ClientPersonalInfoErrorType,
   ClientPersonalInfoType,
 } from "@/types/clientTypes";
-import { getAgeMessage } from "@/utilities/date";
+import { DateFunc, getAgeMessage } from "@/utilities/date";
 import Checkbox from "../../../core/form-elements/Checkbox";
 import DatePicker from "../../../core/form-elements/CustomDatePicker";
 import CustomNrc from "../../../core/form-elements/CustomNrc";
@@ -149,7 +149,11 @@ function ClientPersonalInfo({
               name="underFiveCardNumber"
               value={personalInfo.underFiveCardNumber}
               onChange={handlePersonalInfoChange}
-              disabled={false} // will update disable as client not age more than 5 years old
+              disabled={
+                personalInfo?.dob
+                  ? DateFunc.isOverYears(personalInfo?.dob, 5)
+                  : false
+              } //disable as client not age more than 5 years old
             />
           </div>
           <div className="col-span-6 md:col-span-2">
