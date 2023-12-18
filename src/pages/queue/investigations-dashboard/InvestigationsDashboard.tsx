@@ -13,6 +13,7 @@ import { DateFunc } from "@/utilities/date";
 import SampleCollectedModal from "./SampleCollectedModal";
 import useInvestigationsDashboard from "./useInvestigationsDashboard";
 import InvestigationAddResultModal from "@/pages/investigations/create/InvestigationAddResultModal";
+import useClinician from "@/hooks/useClinician";
 
 function InvestigationsDashboard() {
   const w1100 = useWindowWidth(1100);
@@ -42,6 +43,8 @@ function InvestigationsDashboard() {
     isError,
     handleAddResult,
   } = useInvestigationsDashboard();
+
+  const kk = useClinician();
 
   return (
     <>

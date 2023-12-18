@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from "react";
+import { BiCross } from "react-icons/bi";
 import { FiSearch } from "react-icons/fi";
 import inputCss from "./input.module.css";
+import { BsCrosshair2 } from "react-icons/bs";
+import { FaCircleXmark } from "react-icons/fa6";
 
 export type SearchableInputType = {
   value: string | number;
@@ -68,6 +71,11 @@ function CustomSearchable({
     inputRef.current.focus();
   };
 
+  const handleClear = () => {
+    setSelectedValue(null);
+    setShowDropdown(false);
+  };
+
   useEffect(() => {
     if (inputRef && showDropdown) {
       inputRef.current.focus();
@@ -98,9 +106,12 @@ function CustomSearchable({
   return (
     <>
       <div>
+        <div className="input_label mb-[6px]">{placeholder}</div>{" "}
         <div ref={searchRef} className="w-full">
-          <div>{placeholder}</div>{" "}
-          <div className={inputCss.new_input_wrapper}>
+          <div
+            style={{ borderColor: "var(--border)" }}
+            className={inputCss.new_input_wrapper}
+          >
             <div className="w-full">
               <div
                 onClick={handleDropdownOpen}
@@ -118,10 +129,18 @@ function CustomSearchable({
                   >
                     {selectedValue?.label ? selectedValue?.label : "Search"}
                   </span>
-                  <span className="px-[15px] py-[10px]">
-                    {" "}
-                    <FiSearch width={30} />{" "}
-                  </span>
+                  {!selectedValue?.label && (
+                    <span className="px-[15px] py-[10px]">
+                      {" "}
+                      <FiSearch width={30} />{" "}
+                    </span>
+                  )}
+                  {selectedValue?.label && (
+                    <span onClick={handleClear} className="px-[15px] py-[10px]">
+                      {" "}
+                      <FaCircleXmark width={30} />{" "}
+                    </span>
+                  )}
                 </div>
               </div>
 

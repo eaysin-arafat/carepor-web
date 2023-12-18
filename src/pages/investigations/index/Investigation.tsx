@@ -12,7 +12,11 @@ import InvestigationCreate from "../create/InvestigationCreate";
 import InvestigationViewOrderModal from "../create/InvestigationViewOrderModal";
 import InvestigationViewResultModal from "../create/InvestigationViewResultModal";
 // import InvestigationFilter from "./InvestigationFilter";
+import { SearchableInputType } from "@/components/core/form-elements/custom-searchable";
+import dayjs from "dayjs";
+import { useState } from "react";
 import InvestigationEdit from "../create/InvestigationEdit";
+import InvestigationFilter from "./InvestigationFilter";
 import InvestigationHeader from "./InvestigationHeader";
 import InvestigationTable from "./InvestigationTable";
 
@@ -33,14 +37,60 @@ const Investigation = () => {
     skip: !clientId,
   });
 
-  // const handleInvestigationForm = () => {
-  //   dispatch(
-  //     openAddModal({
-  //       modalId: investigationModalTypes.addInvestigation,
-  //       data: null,
-  //     })
-  //   );
-  // };
+  // filter states
+  const [priority, setPriority] = useState(undefined);
+  const [test, setTest] = useState<SearchableInputType>({
+    label: "",
+    value: "",
+  });
+  const [orderDate, setOrderDate] = useState(undefined);
+  console.log(priority);
+
+  const filterByPriority = (data) => {
+    console.log(data);
+
+    if (test?.value) {
+      return test?.value == data?.testId;
+    } else {
+      return true;
+    }
+  };
+  const filterByTestId = (data) => {
+    if (priority) {
+      return priority == data?.piority;
+    } else {
+      return true;
+    }
+  };
+  const handleOrderDateFilter = (data) => {
+    if (orderDate && data?.orderDate) {
+      return dayjs(new Date(dayjs(orderDate).format("YYYY-MM-DD"))).isSame(
+        dayjs(new Date(dayjs(data?.orderDate).format("YYYY-MM-DD")))
+      );
+    } else {
+      return true;
+    }
+  };
+
+  const handleTotalFilter = (data) => {
+    // console.log(data?.mergeInvestigations);
+    const mergeInvestigations = data?.mergeInvestigations
+      .filter(filterByPriority)
+      .filter(filterByTestId)
+      .filter(handleOrderDateFilter);
+
+    return {
+      ...data,
+      mergeInvestigations,
+    };
+  };
+  const filteredInvestigation = investigations
+    ?.map(handleTotalFilter)
+    .filter((d) => d.mergeInvestigations?.length > 0);
+
+  // Pazinations locally
+  // const [activePage, setActivePage] = useState(1);
+  // const [itemsPerPage, setItemsPerPage] = useState(5);
 
   return (
     <>
@@ -61,17 +111,19 @@ const Investigation = () => {
               </h1>
             </div>
             <div className=" bg-whiteBgColor pb-5 rounded-xl shadow-light">
-              {/* <InvestigationFilter
-                handleInvestigationForm={handleInvestigationForm}
-                priority={0}
-                setPriority={() => {}}
-                setTest={() => {}}
-                test={0}
+              <InvestigationFilter
+                handleInvestigationForm={() => {}}
+                priority={priority}
+                setPriority={setPriority}
+                setTest={setTest}
+                test={test}
+                setDate={setOrderDate}
+                date={orderDate}
                 department={0}
                 setDepartment={() => {}}
                 title=""
                 className="border-none bg-transparent"
-              /> */}
+              />
               <Table>
                 <InvestigationHeader />
                 {isLoading && !isError && (
@@ -90,21 +142,23 @@ const Investigation = () => {
                   isSuccess &&
                   Array.isArray(investigations) &&
                   investigations.length > 0 && (
-                    <InvestigationTable investigations={investigations} />
+                    <InvestigationTable
+                      investigations={filteredInvestigation}
+                    />
                   )}
               </Table>
 
               {/*Pagination not full functional on api */}
               {/* Not back response as page size // all data in response when page size  */}
-              {/* <div className="flex justify-end mx-5">
-                <CustomPagination
-                  activePage={1}
-                  itemsCountPerPage={state}
-                  setActivePage={setState}
+              <div className="flex justify-end mx-5">
+                {/* <CustomPagination
+                  activePage={activePage}
+                  itemsCountPerPage={itemsPerPage}
+                  setActivePage={setActivePage}
                   totalItemsCount={100}
-                  setItemPerPage={() => {}}
-                />
-              </div> */}
+                  setItemPerPage={setItemsPerPage}
+                /> */}
+              </div>
             </div>
           </div>
         </div>
