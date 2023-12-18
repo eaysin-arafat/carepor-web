@@ -1,15 +1,17 @@
 import { closeAddModal } from "@/features/modal/modal-slice";
+import React from "react";
 import { useDispatch } from "react-redux";
 import CancelAndAddButton from "../core/buttons/CancelAndAddButton";
 import Card from "../core/card/Card";
 import DateInput from "../core/form-elements/DatePicker";
 import Input from "../core/form-elements/Input";
-import MultipleSelect from "../core/form-elements/MultipleSelect";
+import MultipleSelect, { Option } from "../core/form-elements/MultipleSelect";
 import Select from "../core/form-elements/Select";
 import Textarea from "../core/form-elements/textarea";
 
 const CovidForm = () => {
   const dispatch = useDispatch();
+  const [selectedOptions, setSelectedOptions] = React.useState<Option[]>([]);
   const closeModal = () => {
     dispatch(closeAddModal());
   };
@@ -38,7 +40,11 @@ const CovidForm = () => {
           titleClass="text-xl text-secondary"
         >
           <div className="grid  gap-5">
-            <MultipleSelect />
+            <MultipleSelect
+              options={demoOptions?.slice() || []}
+              selectedOptions={selectedOptions}
+              setSelectedOptions={setSelectedOptions}
+            />
             <Textarea label="Other Symptom Screen" />
           </div>
         </Card>
@@ -49,7 +55,11 @@ const CovidForm = () => {
           titleClass="text-xl text-secondary"
         >
           <div className="grid  gap-5">
-            <MultipleSelect />
+            <MultipleSelect
+              options={demoOptions?.slice() || []}
+              selectedOptions={selectedOptions}
+              setSelectedOptions={setSelectedOptions}
+            />
             <Textarea label="Other Exposure Risk" />
           </div>
         </Card>
@@ -142,7 +152,11 @@ const CovidForm = () => {
           titleClass="text-xl text-secondary"
         >
           <div className="grid  gap-5">
-            <MultipleSelect />
+            <MultipleSelect
+              options={demoOptions?.slice() || []}
+              selectedOptions={selectedOptions}
+              setSelectedOptions={setSelectedOptions}
+            />
             <Textarea
               label="Other Comorbidities Conditions"
               name="otherComorbiditiesConditions"
@@ -154,7 +168,7 @@ const CovidForm = () => {
           </div>
         </Card>
       </div>
-      <div className="flex justify-end mt-5">
+      <div className="flex justify-center mt-8">
         <CancelAndAddButton toggler={closeModal} />
       </div>
     </form>
@@ -162,3 +176,77 @@ const CovidForm = () => {
 };
 
 export default CovidForm;
+const demoOptions = [
+  {
+    oid: 1,
+    description: "Indeterminate HIV test",
+    createdIn: -1,
+    dateCreated: "2023-10-01T00:00:00",
+    createdBy: "00000000-0000-0000-0000-000000000000",
+    modifiedIn: -1,
+    dateModified: "2023-10-01T00:00:00",
+    modifiedBy: "00000000-0000-0000-0000-000000000000",
+    isDeleted: false,
+    isSynced: false,
+  },
+  {
+    oid: 2,
+    description: "HIV negative pregnant mother",
+    createdIn: -1,
+    dateCreated: "2023-10-01T00:00:00",
+    createdBy: "00000000-0000-0000-0000-000000000000",
+    modifiedIn: -1,
+    dateModified: "2023-10-01T00:00:00",
+    modifiedBy: "00000000-0000-0000-0000-000000000000",
+    isDeleted: false,
+    isSynced: false,
+  },
+  {
+    oid: 3,
+    description: "Breastfeeding mother",
+    createdIn: -1,
+    dateCreated: "2023-10-01T00:00:00",
+    createdBy: "00000000-0000-0000-0000-000000000000",
+    modifiedIn: -1,
+    dateModified: "2023-10-01T00:00:00",
+    modifiedBy: "00000000-0000-0000-0000-000000000000",
+    isDeleted: false,
+    isSynced: false,
+  },
+  {
+    oid: 4,
+    description: "HIV negative with STIs",
+    createdIn: -1,
+    dateCreated: "2023-10-01T00:00:00",
+    createdBy: "00000000-0000-0000-0000-000000000000",
+    modifiedIn: -1,
+    dateModified: "2023-10-01T00:00:00",
+    modifiedBy: "00000000-0000-0000-0000-000000000000",
+    isDeleted: false,
+    isSynced: false,
+  },
+  {
+    oid: 5,
+    description: "HIV negative with TB",
+    createdIn: -1,
+    dateCreated: "2023-10-01T00:00:00",
+    createdBy: "00000000-0000-0000-0000-000000000000",
+    modifiedIn: -1,
+    dateModified: "2023-10-01T00:00:00",
+    modifiedBy: "00000000-0000-0000-0000-000000000000",
+    isDeleted: false,
+    isSynced: false,
+  },
+  {
+    oid: 6,
+    description: "Discordant sexual partner",
+    createdIn: -1,
+    dateCreated: "2023-10-01T00:00:00",
+    createdBy: "00000000-0000-0000-0000-000000000000",
+    modifiedIn: -1,
+    dateModified: "2023-10-01T00:00:00",
+    modifiedBy: "00000000-0000-0000-0000-000000000000",
+    isDeleted: false,
+    isSynced: false,
+  }
+];

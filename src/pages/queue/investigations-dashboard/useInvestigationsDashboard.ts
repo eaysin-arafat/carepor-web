@@ -1,3 +1,4 @@
+import { SearchableInputType } from "@/components/core/form-elements/custom-searchable";
 import { investigationModalTypes } from "@/constants/modal-types";
 import { EnumEncounterType } from "@/enum/encounter-type";
 import { useReadInvestigationsForDashboardQuery } from "@/features/investigation/investigation-api";
@@ -48,13 +49,16 @@ const useInvestigationsDashboard = () => {
 
   // Filter states & conditions
   const [priority, setPriority] = useState(0);
-  const [test, setTest] = useState(0);
+  const [test, setTest] = useState<SearchableInputType>({
+    label: "",
+    value: "",
+  });
   const [department, setDepartment] = useState(0);
   const priortyFilter = (data: TypeInvestigation) => {
     return !priority ? true : data?.piority == priority;
   };
   const testNameFilter = (data: TypeInvestigation) => {
-    return !test ? true : data?.testId == test;
+    return !test?.value ? true : data?.testId == test?.value;
   };
   const departmentFilter = (data: TypeInvestigation) => {
     return data;

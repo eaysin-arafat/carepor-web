@@ -1,5 +1,8 @@
 import SubmitButton from "@/components/core/buttons/SubmitButton";
 import Input from "@/components/core/form-elements/Input";
+import CustomSearchable, {
+  SearchableInputType,
+} from "@/components/core/form-elements/custom-searchable";
 import { useReadTestsQuery } from "@/features/investigation/investigation-enum-api";
 import useWindowWidth from "@/hooks/useWindow";
 import { OnchangeEventType } from "@/types/htmlEvents";
@@ -13,8 +16,8 @@ type Props = {
   className?: string;
   priority: string | number;
   setPriority: React.Dispatch<React.SetStateAction<number>>;
-  test: string | number;
-  setTest: React.Dispatch<React.SetStateAction<number>>;
+  test: SearchableInputType;
+  setTest: React.Dispatch<React.SetStateAction<SearchableInputType>>;
   department?: string | number;
   setDepartment?: React.Dispatch<React.SetStateAction<number>>;
   setDate?: React.Dispatch<React.SetStateAction<Date | null>>;
@@ -29,6 +32,7 @@ const InvestigationQueueFilters = ({
   className,
   // priority,
   setPriority,
+  test,
   setTest,
   setDate,
   date,
@@ -47,6 +51,7 @@ Props) => {
 
   // test enum
   const { data: tests } = useReadTestsQuery(undefined);
+  const sortedTest = tests?.slice().sort(sortByString) || [];
 
   return (
     <div>
@@ -120,7 +125,17 @@ Props) => {
           <div
             className={`${isFiltersHidden} md:block col-span-10 md:col-span-5 lg:col-span-2 w-full`}
           >
-            <Select
+            <CustomSearchable
+              placeholder="Test name"
+              selectedValue={test}
+              setSelectedValue={setTest}
+              className="border-none"
+              options={sortedTest?.map((t) => ({
+                label: `${t.title}`,
+                value: t.oid,
+              }))}
+            />
+            {/* <Select
               selectShow="All"
               onChange={(e: OnchangeEventType) => setTest(+e.target.value)}
               label="Test Name"
@@ -134,7 +149,7 @@ Props) => {
                       {item?.title}
                     </option>
                   ))}
-            </Select>
+            </Select> */}
           </div>
           {false && (
             <div

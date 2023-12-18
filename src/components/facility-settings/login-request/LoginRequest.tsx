@@ -70,7 +70,7 @@ export default LoginRequest;
                 },
                 { title: item?.userAccount?.designation, w: "15%" },
                 {
-                  title: useFacilityData(item?.facilityId)?.facilityName,
+                  // title: getFacilityName(item?.facilityId),
                   w: "25%",
                 },
                 {

@@ -4,27 +4,24 @@ import DefaultModal from "@/components/core/modal/DefaultModal";
 import DataRow from "@/components/core/table/DataRow";
 import { investigationModalTypes } from "@/constants/modal-types";
 import { EnumIsResultNormal } from "@/enum/enumerators";
-import { useReadFacilitiesQuery } from "@/features/facility/facility-api";
 import { TypeMergeInvestigations } from "@/features/investigation/investigation-api";
 import { closeAddModal } from "@/features/modal/modal-slice";
-import { useReadUserAccountsQuery } from "@/features/user-accounts/user-accounts-api";
+import useClinician from "@/hooks/useClinician";
+import useFindFacility from "@/hooks/useFindFacility";
 import { DateFunc } from "@/utilities/date";
-import findUserData from "@/utilities/find-user-data";
-import findFacility from "@/utilities/find-user-data copy";
 import { useState } from "react";
 import { MdOutlineEdit } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import ResultUpdate from "./ResultUpdate";
 
 const InvestigationViewResultModal = () => {
-  const { data: users } = useReadUserAccountsQuery(undefined);
-  const { data: facilites } = useReadFacilitiesQuery(undefined);
-  const { data, modalId } = useSelector(
-    (store: RootState) => store.modal.addModal
-  );
+  const { addModal } = useSelector((store: RootState) => store.modal);
+  const { data, modalId } = addModal;
   const investigation: TypeMergeInvestigations = data;
 
   const dispatch = useDispatch();
+  const { getClinicianFullName } = useClinician();
+  const { getFacilityName } = useFindFacility();
 
   const closeModal = () => {
     dispatch(closeAddModal());
@@ -54,20 +51,13 @@ const InvestigationViewResultModal = () => {
                   Order Date: {DateFunc.formatDate(investigation?.dateCreated)}
                 </div>
                 <div className="p-1">
-                  Facility:{" "}
-                  {
-                    findFacility(investigation?.createdIn, facilites)
-                      .facilityName
-                  }
+                  Facility: {getFacilityName(investigation?.createdIn)}
                 </div>
                 <div className="p-1">
                   Clinician:{" "}
-                  {
-                    findUserData(
-                      investigation?.clinicianID || investigation?.clinicianId,
-                      users
-                    ).username
-                  }
+                  {getClinicianFullName(
+                    investigation?.clinicianID || investigation?.clinicianId
+                  )}
                 </div>
               </div>
             </div>
@@ -132,6 +122,7 @@ const DataCard = ({
         <DataRow title={"Test"} data={investigation?.testNameDetails} />
         <DataRow title={"Result"} data={investigation?.testResult} />
         <DataRow title={"Unit"} data={investigation?.unitTest} />
+        <div>{JSON.stringify(data)}</div>
         <DataRow
           title={"Reference Range"}
           data={

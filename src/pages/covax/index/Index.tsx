@@ -1,173 +1,172 @@
 import DataRow from "@/components/core/table/DataRow";
+import { covaxModalTypes } from "@/constants/modal-types";
+import { openAddModal } from "@/features/modal/modal-slice";
+import { PlusCircle } from "react-feather";
 import { MdOutlineModeEditOutline } from "react-icons/md";
+import { useDispatch } from "react-redux";
+import CovaxCreate from "../create/CovaxCreate";
 
 const CovaxIndex = () => {
-  return <div>
-    <div className="mt-2 border border-borderColor p-4 rounded-lg">
-          <div className="md:flex justify-between relative">
-            <p className="text-sm">
-              <span className="font-semibold">Date : &nbsp; </span>30-Nov-2023
-            </p>
-            <p className="text-xs">
-              <span className="font-semibold">Facility : &nbsp; </span>Bauleni
-              Mini Hospital
-            </p>
-            <p className="text-xs me-20">
-              <span className="font-semibold">Clinician : &nbsp; </span>System
-              Admin
-            </p>
-            <div className="md:flex justify-end  absolute right-0 top-2 md:top-0 ">
+  const dispatch = useDispatch();
+  const handleAddCovid = () => {
+    dispatch(
+      openAddModal({
+        modalId: covaxModalTypes.covaxCreateModal,
+        data: null,
+      })
+    );
+  };
+  
+  const handleAddVaccinate = () => {
+    dispatch(
+      openAddModal({
+        modalId: covaxModalTypes.vaccinateCreateModal,
+        data: null,
+      })
+    );
+  };
+
+  return (
+    <div>
+      {/* Covax Modal*/}
+      <CovaxCreate />
+
+      <button onClick={handleAddCovid} className="main_btn px-5 gap-2">
+        <PlusCircle className="" /> New Record
+      </button>
+      <div className="mt-2 bg-whiteBgColor border border-borderColor p-4 rounded-lg">
+        <div className="md:flex justify-between relative">
+          <p className="text-sm">
+            <span className="font-semibold">Date : &nbsp; </span>30-Nov-2023
+          </p>
+          <p className="text-sm">
+            <span className="font-semibold">Facility : &nbsp; </span>Bauleni
+            Mini Hospital
+          </p>
+          <p className="text-sm me-20">
+            <span className="font-semibold">Clinician : &nbsp; </span>System
+            Admin
+          </p>
+          <div className="md:flex justify-end  absolute right-0 top-2 md:top-0 ">
+            <button className="flex items-center gap-1 text-sm text-primaryColor">
+              {" "}
+              <MdOutlineModeEditOutline /> Edit
+            </button>
+          </div>
+        </div>
+        <div className="mt-5">
+          <div className="grid md:grid-cols-2 ">
+          <DataRow
+            title="Covax Number"
+            data="Data"
+            titleClass="xs:min-w-[180px] sm:min-w-[270px]"
+          />
+          <DataRow
+            title="Was Client Offered COVAX?"
+            data="Data"
+            titleClass="xs:min-w-[180px] sm:min-w-[270px]"
+          />
+          <DataRow
+            title="Does Client Get Vaccinated Today"
+            data="Data"
+            titleClass="xs:min-w-[180px] sm:min-w-[270px]"
+          />
+          <DataRow
+            title="Reason Client Doesn't Want To Get Vaccination"
+            data="Data"
+            titleClass="xs:min-w-[180px] sm:min-w-[270px]"
+          />
+          <DataRow
+            title="Other Reason"
+            data="Data"
+            titleClass="xs:min-w-[180px] sm:min-w-[270px]"
+          />
+          <DataRow
+            title="Comorbidities"
+            data="Data"
+            titleClass="xs:min-w-[180px] sm:min-w-[270px]"
+          />
+          <DataRow
+            title="Other Comorbidities"
+            data="Data"
+            titleClass="xs:min-w-[180px] sm:min-w-[270px]"
+          /></div>
+          <button onClick={handleAddVaccinate} className="bg-primaryColor py-3 px-5 rounded-lg text-whiteColor hover:bg-primaryHoverColor mt-4">
+            Vaccinate
+          </button>
+        </div>
+      </div>
+      <div className="grid md:grid-cols-2 gap-3 mt-5">
+        {/* Vaccine  */}
+        <div className="mt-2 bg-whiteBgColor border border-borderColor p-4 rounded-lg">
+          <div className="flex justify-between">
+            <h2 className="text-xl font-medium text-secondaryColor">
+              COVAX Dose 2
+            </h2>
+            <div className="flex gap-3">
+              <button className="flex gap-1 items-center text-sm text-primaryColor">
+                {" "}
+                <PlusCircle className="h-4 w-4" /> Add
+              </button>
               <button className="flex items-center gap-1 text-sm text-primaryColor">
                 {" "}
                 <MdOutlineModeEditOutline /> Edit
               </button>
             </div>
           </div>
-          <div className="mt-5">
-            <DataRow
-              title="Source of Alert"
-              data="Data"
-              titleClass="xs:min-w-[180px] sm:min-w-[250px]"
-            />
-            <DataRow
-              title="Date of Notification"
-              data="Data"
-              titleClass="xs:min-w-[180px] sm:min-w-[250px]"
-            />
-
-            <div className="border-y border-borderColor py-2 font-medium text-secondaryColor mt-4 mb-1">
-              Covid Symptoms
-            </div>
-            <DataRow
-              title="Symptom Screen"
-              data="Data"
-              titleClass="xs:min-w-[180px] sm:min-w-[250px]"
-            />
-            <DataRow
-              title="Other Symptom Screen"
-              data="Data"
-              titleClass="xs:min-w-[180px] sm:min-w-[250px]"
-            />
-
-            <div className="border-y border-borderColor py-2 font-medium text-secondaryColor mt-4 mb-1">
-              Exposure Risk
-            </div>
-            <DataRow
-              title="Exposure Risk"
-              data="Data"
-              titleClass="xs:min-w-[180px] sm:min-w-[250px]"
-            />
-            <DataRow
-              title="Other Exposure Risk"
-              data="Data"
-              titleClass="xs:min-w-[180px] sm:min-w-[250px]"
-            />
-
-            <div className="border-y border-borderColor py-2 font-medium text-secondaryColor mt-4 mb-1">
-              Case Report
-            </div>
-            <DataRow
-              title="ICU Admission"
-              data="Data"
-              titleClass="xs:min-w-[180px] sm:min-w-[250px]"
-            />
-            <DataRow
-              title="Date of ICU Admission"
-              data="Data"
-              titleClass="xs:min-w-[180px] sm:min-w-[250px]"
-            />
-            <DataRow
-              title="On Oxygen?"
-              data="Data"
-              titleClass="xs:min-w-[180px] sm:min-w-[250px]"
-            />
-            <DataRow
-              title="Oxygen Saturation"
-              data="Data"
-              titleClass="xs:min-w-[180px] sm:min-w-[250px]"
-            />
-            <DataRow
-              title="Received Ventilatory Support"
-              data="Data"
-              titleClass="xs:min-w-[180px] sm:min-w-[250px]"
-            />
-            <DataRow
-              title="Received BP Support"
-              data="Data"
-              titleClass="xs:min-w-[180px] sm:min-w-[250px]"
-            />
-            <DataRow
-              title="Date First Positive"
-              data="Data"
-              titleClass="xs:min-w-[180px] sm:min-w-[250px]"
-            />
-            <DataRow
-              title="Recent International Travel"
-              data="Data"
-              titleClass="xs:min-w-[180px] sm:min-w-[250px]"
-            />
-            <DataRow
-              title="Recent International Travel Destination Name"
-              data="Data"
-              titleClass="xs:min-w-[180px] sm:min-w-[250px]"
-            />
-            <DataRow
-              title="Health Care Worker"
-              data="Data"
-              titleClass="xs:min-w-[180px] sm:min-w-[250px]"
-            />
-            <DataRow
-              title="Covid Exposure"
-              data="Data"
-              titleClass="xs:min-w-[180px] sm:min-w-[250px]"
-            />
-            <DataRow
-              title="Mental Status on Admission"
-              data="Data"
-              titleClass="xs:min-w-[180px] sm:min-w-[250px]"
-            />
-
-            <div className="border-y border-borderColor py-2 font-medium text-secondaryColor mt-4 mb-1">
-              Clinical Assessment
-            </div>
-            <DataRow
-              title="Pneumonia"
-              data="Data"
-              titleClass="xs:min-w-[180px] sm:min-w-[250px]"
-            />
-            <DataRow
-              title="ARDS"
-              data="Data"
-              titleClass="xs:min-w-[180px] sm:min-w-[250px]"
-            />
-            <DataRow
-              title="Patient Hospitalized?"
-              data="Data"
-              titleClass="xs:min-w-[180px] sm:min-w-[250px]"
-            />
-            <DataRow
-              title="Date of Hospitalised"
-              data="Data"
-              titleClass="xs:min-w-[180px] sm:min-w-[250px]"
-            />
-            <DataRow
-              title="Co-morbid Conditions"
-              data="Data"
-              titleClass="xs:min-w-[180px] sm:min-w-[250px]"
-            />
-            <DataRow
-              title="Other Co-morbid Conditions"
-              data="Data"
-              titleClass="xs:min-w-[180px] sm:min-w-[250px]"
-            />
-            <DataRow
-              title="Other Respiratory Illness"
-              data="Data"
-              titleClass="xs:min-w-[180px] sm:min-w-[250px]"
-            />
-          </div>
+          <DataRow
+            title="Dose"
+            data="Data"
+            titleClass="xs:min-w-[130px] sm:min-w-[150px]"
+          />
+          <DataRow
+            title="Date of vaccination"
+            data="Data"
+            titleClass="xs:min-w-[130px] sm:min-w-[150px]"
+          />
+          <DataRow
+            title="Batch Number"
+            data="Data"
+            titleClass="xs:min-w-[130px] sm:min-w-[150px]"
+          />
         </div>
-  </div>;
+
+        {/* Adverse Event  */}
+        <div className="mt-2 bg-whiteBgColor border border-borderColor p-4 rounded-lg">
+          <div className="flex justify-between">
+            <h2 className="text-xl font-medium text-secondaryColor">
+              Adverse Event
+            </h2>
+            <div className="flex gap-3">
+              <button className="flex items-center gap-1 text-sm text-primaryColor">
+                {" "}
+                <PlusCircle className="h-4 w-4" /> Add
+              </button>
+              <button className="flex items-center gap-1 text-sm text-primaryColor">
+                {" "}
+                <MdOutlineModeEditOutline /> Edit
+              </button>
+            </div>
+          </div>
+          <DataRow
+            title="Dose"
+            data="Data"
+            titleClass="xs:min-w-[130px] sm:min-w-[150px]"
+          />
+          <DataRow
+            title="Date of vaccination"
+            data="Data"
+            titleClass="xs:min-w-[130px] sm:min-w-[150px]"
+          />
+          <DataRow
+            title="Batch Number"
+            data="Data"
+            titleClass="xs:min-w-[130px] sm:min-w-[150px]"
+          />
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default CovaxIndex;
