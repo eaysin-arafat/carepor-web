@@ -164,7 +164,12 @@ const useCreate = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { error, isValid } = vitalsCreateValidator(vitalData);
+    const { error, isValid } = vitalsCreateValidator({
+      ...vitalData,
+      systolicIfUnrecordable: vitalData?.diastolicIfUnrecordable,
+    });
+
+    console.log(error, isValid);
 
     if (!isValid) return setErrorMessages(error);
 
@@ -172,7 +177,7 @@ const useCreate = () => {
       ...vitalData,
       ...baseModel,
       diastolicIfUnrecordable: vitalData.diastolicIfUnrecordable || 0,
-      systolicIfUnrecordable: vitalData.systolicIfUnrecordable || 0,
+      systolicIfUnrecordable: vitalData.diastolicIfUnrecordable || 0,
       lastTested: vitalData?.vitalsDate,
       encounterId: cookieManager.parseCookie<{ oid: string }>("opdVisitSession")
         .oid,

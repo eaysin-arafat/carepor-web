@@ -2,8 +2,16 @@ import { vitalModalTypes } from "@/constants/modal-types";
 import { format } from "date-fns";
 import { FiEye, FiPlusCircle } from "react-icons/fi";
 // import React from "react";
+import useClientAge from "@/hooks/useClientAge";
+import {
+  msgBasedOnBmi,
+  pulseRateMessage,
+  respiratoryRateMessage,
+  temperatureMessage,
+} from "@/library/vital";
 import { bloodPressureStatus } from "@/utilities/blood-pressure-status";
 import { cn } from "@/utilities/cn";
+import { Loader } from "react-feather";
 import VitalsCreateForm from "../create/Create";
 import VitalsDetails from "../details/VitalsDetails";
 import EditVital from "../edit/Edit";
@@ -19,7 +27,11 @@ function Vitals() {
     vitals,
     viewModal,
     editModal,
+    isLoading,
+    status,
   } = useVitals();
+
+  const { ageInMonths } = useClientAge();
 
   console.log("vitals", vitals);
 
@@ -53,12 +65,33 @@ function Vitals() {
               </ul>
               <div className=" overflow-x-auto w-full">
                 <div className="flex gap-3">
+                  {/* HANDLE LOADING STATE */}
+                  {isLoading && status === "pending" && (
+                    <div className="flex justify-center items-center w-full h-[400px]">
+                      <Loader size={50} className="animate-spin" />
+                    </div>
+                  )}
                   {vitals
                     ?.filter(handleEncounterFilter)
                     ?.map((vital, index) => {
+                      // messages based on data
                       const bloodPressure = bloodPressureStatus(
                         vital?.systolic,
                         vital?.diastolic
+                      );
+                      const bmiMsg = msgBasedOnBmi(+vital?.bmi);
+                      const temperatureMsg = temperatureMessage(
+                        vital?.temperature
+                      );
+
+                      const pulseRateMsg = pulseRateMessage(
+                        vital?.pulseRate,
+                        ageInMonths
+                      );
+
+                      const respiratoryRateMsg = respiratoryRateMessage(
+                        vital?.respiratoryRate,
+                        ageInMonths
                       );
 
                       return (
@@ -69,20 +102,40 @@ function Vitals() {
                           }`}
                         >
                           <li className="mb-3 font-medium text-textColor">
-                            {format(new Date(vital?.vitalsDate), "dd-MMM-yyyy")}
+                            {format(
+                              new Date(vital?.vitalsDate),
+                              "dd-MMM-yyyy"
+                            ) || "--"}
                           </li>
                           <li className="mb-3 text-textColor">
-                            {format(new Date(vital?.vitalsDate), "hh:mm a")}
+                            {format(new Date(vital?.vitalsDate), "hh:mm a") ||
+                              "--"}
                           </li>
-                          <li className="mb-3 text-black">{vital?.height}</li>
-                          <li className="mb-3 text-black">{vital?.weight}</li>
-                          <li className="mb-3 text-black">{vital?.bmi}</li>
                           <li className="mb-3 text-black">
-                            {vital?.temperature}
+                            {vital?.height || "--"}
+                          </li>
+                          <li className="mb-3 text-black">
+                            {vital?.weight || "--"}
                           </li>
                           <li
-                            className={cn("mb-3 text-black", {
-                              "text-red-600": !bloodPressure.includes("Normal"),
+                            className={cn("mb-3 text-green-600", {
+                              "text-red-600": !bmiMsg?.includes("Normal"),
+                            })}
+                          >
+                            {vital?.bmi || "__"}
+                          </li>
+                          <li
+                            className={cn("mb-3 text-green-600", {
+                              "text-red-600":
+                                !temperatureMsg?.includes("Normal"),
+                            })}
+                          >
+                            {vital?.temperature || "__"}
+                          </li>
+                          <li
+                            className={cn("mb-3 text-green-600", {
+                              "text-red-600":
+                                !bloodPressure?.includes("Normal"),
                             })}
                           >
                             {vital?.systolic != -1 && vital?.diastolic != -1 ? (
@@ -91,11 +144,20 @@ function Vitals() {
                               <span className="text-black">Unrecordable</span>
                             )}
                           </li>
-                          <li className="mb-3 text-black">
-                            {vital?.pulseRate}
+                          <li
+                            className={cn("mb-3 text-green-600", {
+                              "text-red-600": !pulseRateMsg?.includes("Normal"),
+                            })}
+                          >
+                            {vital?.pulseRate || "__"}
                           </li>
-                          <li className="mb-3 text-black">
-                            {vital?.respiratoryRate}
+                          <li
+                            className={cn("mb-3 text-green-600", {
+                              "text-red-600":
+                                !respiratoryRateMsg?.includes("Normal"),
+                            })}
+                          >
+                            {vital?.respiratoryRate || "__"}
                           </li>
 
                           <li className="mb-3 text-black flex justify-center  opacity-0 group-hover:opacity-100 transition-opacity">
