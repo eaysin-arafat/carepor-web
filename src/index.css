@@ -122,15 +122,20 @@ span {
 
 /*  Sidebar Default Css  */
 
-._sidebar_1dh2t_5 div button {
+.sidebar div button {
   background-color: var(--whiteBg);
 }
 
-._sidebar_1dh2t_5 div button:hover {
+.sidebar div button {
+  color: var(--textColor);
+}
+
+.sidebar div button:hover {
   background-color: var(--activeColor);
   color: white !important;
+  background-color: var(--activeColor) !important;
 }
-._sidebar_1dh2t_5 div button:hover h2 div div {
+.sidebar div button:hover h2 div div {
   color: white !important;
 }
 
