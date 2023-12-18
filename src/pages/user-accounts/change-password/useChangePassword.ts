@@ -52,11 +52,11 @@ function useChangePassword() {
     const { errors: validationError, isValid } =
       changePasswordValidator(fromData);
 
-    console.log({ validationError });
+    // console.log({ validationError });
 
     if (!isValid) return setErrors(validationError);
 
-    console.log({ ...fromData, username: user?.username });
+    // console.log({ ...fromData, username: user?.username });
 
     updatePassword({ ...fromData, username: user?.username });
   };

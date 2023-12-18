@@ -1,6 +1,10 @@
 import { LoginDataType } from "@/types";
 import { API } from "../API/API";
-import { login, logout } from "../authentication/authentication-slice";
+import {
+  login,
+  logout,
+  updateUser,
+} from "../authentication/authentication-slice";
 // import { UserAccount } from "@/interface/user-accounts";
 import { TypeUser } from "@/types/user-accounts";
 
@@ -122,6 +126,19 @@ const userAccountsApi = API.injectEndpoints({
         body,
       }),
       invalidatesTags: ["UserAccount"],
+
+      async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
+        try {
+          const res = await queryFulfilled;
+          if (res?.meta?.response?.status == 204) {
+            dispatch(updateUser({ user: _arg.body }));
+          }
+          // console.log(_arg);
+          // console.log(res);
+        } catch (e) {
+          console.log(e);
+        }
+      },
 
       // async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
       //   try {

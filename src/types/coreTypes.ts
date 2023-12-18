@@ -11,9 +11,13 @@ export type facilityStateErrorType = {
 };
 
 export type ProvinceType = {
-  readonly oid: string;
-  readonly description: string;
-  readonly provinceCode: string;
+  oid: string;
+  description: string;
+  provinceCode: string;
+  dateCreated: string;
+  dateModified: string;
+  isDeleted: false;
+  isSynced: false;
 };
 
 export type DistrictType = {

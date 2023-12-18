@@ -18,7 +18,7 @@ function Departments() {
     alert("Edit Department");
   };
   return (
-    <div className="m-5 ">
+    <div className="">
       <h1 className="text-2xl mb-1">Departments</h1>
       <div className=" border p-5 border-borderColor bg-whiteBgColor rounded-md">
         <div

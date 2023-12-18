@@ -13,6 +13,7 @@ const HtsCreateForm = () => {
     isLoading,
     selectedOptions,
     setSelectedOptions,
+    status,
   } = useHtsCreate();
 
   return (

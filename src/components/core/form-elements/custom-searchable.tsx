@@ -1,9 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { BiCross } from "react-icons/bi";
+import { FaCircleXmark } from "react-icons/fa6";
 import { FiSearch } from "react-icons/fi";
 import inputCss from "./input.module.css";
-import { BsCrosshair2 } from "react-icons/bs";
-import { FaCircleXmark } from "react-icons/fa6";
 
 export type SearchableInputType = {
   value: string | number;
@@ -204,12 +202,3 @@ function CustomSearchable({
 }
 
 export default CustomSearchable;
-
-// data model
-// const options = [
-//   {
-//     value: 1,
-//     label: "Afghanistan",
-//   },
-
-// ];

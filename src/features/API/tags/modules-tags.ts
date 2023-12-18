@@ -7,6 +7,7 @@ const ServicePoints = ["ServicePoints"];
 const hivTestingReasons = ["HIVTestingReasons"];
 const hivNotTestingReasons = ["HIVNotTestingReasons"];
 const hts = ["HTSes"];
+const birthRecord = ["ClientBirthRecord"];
 const chiefComplaints = ["ChiefComplaints"];
 const treatmentPlan = ["TreatmentPlans"];
 
@@ -20,6 +21,7 @@ export const mainModuleTags = [
   ...hivTestingReasons,
   ...hivNotTestingReasons,
   ...hts,
+  ...birthRecord,
   ...chiefComplaints,
   ...treatmentPlan,
 ];
