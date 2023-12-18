@@ -1,18 +1,12 @@
 import TableBody from "@/components/shared/table/TableBody";
 import {
-  TypeFacility,
-  useReadFacilitiesQuery,
-} from "@/features/facility/facility-api";
-import {
   TypeMergeInvestigations,
   TypeMergeInvestigationsClient,
 } from "@/features/investigation/investigation-api";
-import { useReadUserAccountsQuery } from "@/features/user-accounts/user-accounts-api";
+import useClinician from "@/hooks/useClinician";
+import useFindFacility from "@/hooks/useFindFacility";
 import { PriorityColor } from "@/pages/queue/investigations-dashboard/InvestigationsDashboard";
-import { TypeUser } from "@/types/user-accounts";
 import { DateFunc } from "@/utilities/date";
-import findUserData from "@/utilities/find-user-data";
-import findFacility from "@/utilities/find-user-data copy";
 import React, { Fragment } from "react";
 import useInvestigationTable from "./useInvestigationTable";
 
@@ -21,10 +15,8 @@ type Props = {
 };
 
 function InvestigationTable({ investigations }: Props) {
-  const { data: users } = useReadUserAccountsQuery(undefined);
-  const { data: facilities } = useReadFacilitiesQuery(undefined);
-
-  console.log(facilities);
+  const { getFacilityName } = useFindFacility();
+  const { getClinicianFullName } = useClinician();
 
   const {
     handleAddResult,
@@ -67,8 +59,6 @@ function InvestigationTable({ investigations }: Props) {
                               investigation: TypeMergeInvestigations,
                               item_index
                             ) => {
-                              console.log({ sss: investigation });
-
                               return (
                                 <TableBody
                                   key={item_index + "com"}
@@ -95,8 +85,8 @@ function InvestigationTable({ investigations }: Props) {
                                   }}
                                   item={showTableData({
                                     investigation,
-                                    users,
-                                    facilities: facilities,
+                                    getClinicianFullName,
+                                    getFacilityName,
                                   })}
                                 />
                               );
@@ -125,15 +115,13 @@ export default InvestigationTable;
  */
 const showTableData = ({
   investigation,
-  users = [],
-  facilities = [],
+  getClinicianFullName,
+  getFacilityName,
 }: {
   investigation: TypeMergeInvestigations;
-  users: TypeUser[];
-  facilities: TypeFacility[];
+  getClinicianFullName: (userId: string) => string;
+  getFacilityName: (facilityId: number) => string;
 }) => {
-  console.log(investigation);
-
   return [
     {
       title: DateFunc.formatDate(investigation?.orderDate),
@@ -151,10 +139,10 @@ const showTableData = ({
     },
     {
       w: "12%",
-      title: findFacility(investigation?.createdIn, facilities).facilityName,
+      title: getFacilityName(investigation?.createdIn),
     },
     {
-      title: findUserData(investigation?.createdBy, users)?.name,
+      title: getClinicianFullName(investigation?.createdBy),
       w: "12%",
     },
     {
