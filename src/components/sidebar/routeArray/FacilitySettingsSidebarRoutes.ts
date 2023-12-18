@@ -3,13 +3,13 @@ const FacilitySettingsRoutes = [
     id: 1,
     title: "User Management",
     link: "/facility-settings",
-    icon: "",
+    icon: "facility",
   },
   {
     id: 2,
     title: "Department",
     link: "/department",
-    icon: "",
+    icon: "department",
   },
   // {
   //   id: 3,
