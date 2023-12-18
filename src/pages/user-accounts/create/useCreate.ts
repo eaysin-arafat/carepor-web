@@ -90,7 +90,7 @@ function useUserRegistration() {
     }
   );
 
-  console.log(contactInfo.countryCode);
+  // console.log(contactInfo.countryCode);
 
   /// check username api hook
   const { data: usernameData } = useCheckUserNameQuery(username, {
@@ -240,7 +240,7 @@ function useUserRegistration() {
     if (stateCount === 2) {
       const { error: contactInfoValidationError, isValid } =
         contactInfoValidator(contactInfo);
-      console.log(contactInfoValidationError);
+      // console.log(contactInfoValidationError);
 
       if (!isValid) {
         setErrors(contactInfoValidationError);

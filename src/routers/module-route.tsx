@@ -1,6 +1,6 @@
 import PrivateGuard from "@/components/shared/guard/PrivateGuard";
 import ModuleSidebar from "@/components/sidebar/ModuleSidebar";
-import BirthRecordHistory from "@/pages/birth-record/history/History";
+import BirthRecordHistory from "@/pages/birth-record/history/BirthRecordHistory";
 import CovaxIndex from "@/pages/covax/index/Index";
 import CovidIndex from "@/pages/covid/index/Index";
 import Dashboard from "@/pages/dashboard/Dashboard";

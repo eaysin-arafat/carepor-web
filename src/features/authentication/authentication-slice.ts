@@ -58,10 +58,13 @@ export const authenticationSlice = createSlice({
       state.token = null;
       state.isRegistered = false;
     },
+    updateUser: (state, action) => {
+      state.user = action.payload.user;
+    },
   },
 });
 
-export const { login, logout, setIsRegisteredFalse } =
+export const { login, logout, updateUser, setIsRegisteredFalse } =
   authenticationSlice.actions;
 
 export default authenticationSlice.reducer;

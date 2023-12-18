@@ -45,12 +45,12 @@ export const headCircumferenceMessage = (
   let headCircumferenceObj: HcfaUpto13Item;
 
   if (gender == "male") {
-    headCircumferenceObj = hcfaBoysUpto13[ageWeeks];
+    headCircumferenceObj = hcfaBoysUpto13?.[ageWeeks];
     return generateMessage(headCircumferenceObj, headCircumference);
   }
 
   if (gender == "female") {
-    headCircumferenceObj = hcfaGirlsUpto13[ageWeeks];
+    headCircumferenceObj = hcfaGirlsUpto13?.[ageWeeks];
     return generateMessage(headCircumferenceObj, headCircumference);
   }
 };
@@ -59,20 +59,20 @@ const generateMessage = (
   headCircumferenceObj: HcfaUpto13Item,
   headCircumference: number
 ): string => {
-  if (headCircumferenceObj && headCircumferenceObj[headCircumference]) {
-    return headCircumferenceObj[headCircumference] as string;
+  if (headCircumferenceObj && headCircumferenceObj?.[headCircumference]) {
+    return headCircumferenceObj?.[headCircumference] as string;
   }
 
   if (headCircumferenceObj && Object.keys(headCircumferenceObj)?.length > 0) {
     let count = 1;
     const rangeValue = headCircumferenceObj?.range_value || [];
-    while (count < rangeValue.length) {
+    while (count < rangeValue?.length) {
       if (
-        headCircumference > +rangeValue[count - 1] &&
-        headCircumference < +rangeValue[count]
+        headCircumference > +rangeValue?.[count - 1] &&
+        headCircumference < +rangeValue?.[count]
       ) {
         return headCircumferenceObj[
-          rangeValue[count - 1] + "-" + rangeValue[count]
+          rangeValue?.[count - 1] + "-" + rangeValue?.[count]
         ] as string;
       }
       count++;
@@ -156,7 +156,7 @@ const finalRespiratoryRateMsg = (
   respiratoryRateObj: RespiratoryRateItem,
   respiratoryRate: number
 ) => {
-  const [low, high] = respiratoryRateObj.normal_range || [];
+  const [low, high] = respiratoryRateObj?.normal_range || [];
 
   if (respiratoryRate < low) {
     return `Low Respiratory rate <${low} b/m`;
@@ -178,32 +178,32 @@ export const respiratoryRateMessage = (
   let respiratoryObj: RespiratoryRateItem;
 
   if (ageMonth >= 12 * 12) {
-    respiratoryObj = respiratoryRateData[">12"];
+    respiratoryObj = respiratoryRateData?.[">12"];
     return finalRespiratoryRateMsg(respiratoryObj, respiratoryRate);
   }
 
   if (ageMonth >= 6 * 12 && ageMonth < 12 * 12) {
-    respiratoryObj = respiratoryRateData["6-11"];
+    respiratoryObj = respiratoryRateData?.["6-11"];
     return finalRespiratoryRateMsg(respiratoryObj, respiratoryRate);
   }
 
   if (ageMonth >= 3 * 12 && ageMonth < 6 * 12) {
-    respiratoryObj = respiratoryRateData["3-5"];
+    respiratoryObj = respiratoryRateData?.["3-5"];
     return finalRespiratoryRateMsg(respiratoryObj, respiratoryRate);
   }
 
   if (ageMonth > 1 * 12 && ageMonth < 3 * 12) {
-    respiratoryObj = respiratoryRateData["1-2"];
+    respiratoryObj = respiratoryRateData?.["1-2"];
     return finalRespiratoryRateMsg(respiratoryObj, respiratoryRate);
   }
 
   if (ageMonth > 1 && ageMonth <= 12) {
-    respiratoryObj = respiratoryRateData["1-12m"];
+    respiratoryObj = respiratoryRateData?.["1-12m"];
     return finalRespiratoryRateMsg(respiratoryObj, respiratoryRate);
   }
 
   if (ageMonth >= 0 && ageMonth <= 1) {
-    respiratoryObj = respiratoryRateData["0-1m"];
+    respiratoryObj = respiratoryRateData?.["0-1m"];
     return finalRespiratoryRateMsg(respiratoryObj, respiratoryRate);
   }
 };
@@ -218,10 +218,10 @@ export const respiratoryRateMessage = (
  */
 
 const finalDiastolicMsg = (diastolic: DiastolicBpItem, diastolicBp: number) => {
-  const [low, high] = diastolic.normal_range || [];
+  const [low, high] = diastolic?.normal_range || [];
 
-  if (diastolic.high && diastolicBp > diastolic.high) {
-    return `Diastolic BP>${diastolic.high} mmHg seek emergency care`;
+  if (diastolic?.high && diastolicBp > diastolic?.high) {
+    return `Diastolic BP>${diastolic?.high} mmHg seek emergency care`;
   }
 
   if (diastolicBp < low) {
@@ -241,42 +241,42 @@ export const diastolicBpMessage = (diastolicBp: number, ageMonth: number) => {
   let diastolicObj: DiastolicBpItem;
 
   if (ageMonth > 17 * 12) {
-    diastolicObj = diastolicBpData[">17"];
+    diastolicObj = diastolicBpData?.[">17"];
     return finalDiastolicMsg(diastolicObj, diastolicBp);
   }
 
   if (ageMonth > 11 * 12 && ageMonth <= 17 * 12) {
-    diastolicObj = diastolicBpData["12-17"];
+    diastolicObj = diastolicBpData?.["12-17"];
     return finalDiastolicMsg(diastolicObj, diastolicBp);
   }
 
   if (ageMonth > 9 * 12 && ageMonth <= 11 * 12) {
-    diastolicObj = diastolicBpData["10-11"];
+    diastolicObj = diastolicBpData?.["10-11"];
     return finalDiastolicMsg(diastolicObj, diastolicBp);
   }
 
   if (ageMonth > 5 * 12 && ageMonth <= 9 * 12) {
-    diastolicObj = diastolicBpData["6-9"];
+    diastolicObj = diastolicBpData?.["6-9"];
     return finalDiastolicMsg(diastolicObj, diastolicBp);
   }
 
   if (ageMonth > 2 * 12 && ageMonth <= 5 * 12) {
-    diastolicObj = diastolicBpData["3-5"];
+    diastolicObj = diastolicBpData?.["3-5"];
     return finalDiastolicMsg(diastolicObj, diastolicBp);
   }
 
   if (ageMonth > 1 * 12 && ageMonth <= 2 * 12) {
-    diastolicObj = diastolicBpData["1-2"];
+    diastolicObj = diastolicBpData?.["1-2"];
     return finalDiastolicMsg(diastolicObj, diastolicBp);
   }
 
   if (ageMonth > 1 && ageMonth <= 12) {
-    diastolicObj = diastolicBpData["1-12m"];
+    diastolicObj = diastolicBpData?.["1-12m"];
     return finalDiastolicMsg(diastolicObj, diastolicBp);
   }
 
   if (ageMonth >= 0 && ageMonth <= 1) {
-    diastolicObj = diastolicBpData["0-1m"];
+    diastolicObj = diastolicBpData?.["0-1m"];
     return finalDiastolicMsg(diastolicObj, diastolicBp);
   }
 };
@@ -290,10 +290,10 @@ export const diastolicBpMessage = (diastolicBp: number, ageMonth: number) => {
  * @param systolicBp
  */
 const finalSystolicMsg = (systolic: SystolicBpItem, systolicBp: number) => {
-  const [low, high] = systolic.normal_range || [];
+  const [low, high] = systolic?.normal_range || [];
 
-  if (systolic.high && systolicBp > systolic.high) {
-    return `systolic>${systolic.high} mmHg seek emergency care`;
+  if (systolic?.high && systolicBp > systolic?.high) {
+    return `systolic>${systolic?.high} mmHg seek emergency care`;
   }
 
   if (systolicBp < low) {
@@ -313,38 +313,38 @@ export const systolicBpMessage = (systolicBp: number, ageMonth: number) => {
   let systolicObj: SystolicBpItem;
 
   if (ageMonth > 17 * 12) {
-    systolicObj = systolicBpData[">17"];
+    systolicObj = systolicBpData?.[">17"];
     return finalSystolicMsg(systolicObj, systolicBp);
   }
 
   if (ageMonth > 11 * 12 && ageMonth <= 17 * 12) {
-    systolicObj = systolicBpData["12-17"];
+    systolicObj = systolicBpData?.["12-17"];
     return finalSystolicMsg(systolicObj, systolicBp);
   }
 
   if (ageMonth > 9 * 12 && ageMonth <= 11 * 12) {
-    systolicObj = systolicBpData["10-11"];
+    systolicObj = systolicBpData?.["10-11"];
     return finalSystolicMsg(systolicObj, systolicBp);
   }
 
   if (ageMonth > 5 * 12 && ageMonth <= 9 * 12) {
-    systolicObj = systolicBpData["6-9"];
+    systolicObj = systolicBpData?.["6-9"];
     return finalSystolicMsg(systolicObj, systolicBp);
   }
   if (ageMonth > 2 * 12 && ageMonth <= 5 * 12) {
-    systolicObj = systolicBpData["3-5"];
+    systolicObj = systolicBpData?.["3-5"];
     return finalSystolicMsg(systolicObj, systolicBp);
   }
   if (ageMonth > 1 * 12 && ageMonth <= 2 * 12) {
-    systolicObj = systolicBpData["1-2"];
+    systolicObj = systolicBpData?.["1-2"];
     return finalSystolicMsg(systolicObj, systolicBp);
   }
   if (ageMonth > 1 && ageMonth <= 12) {
-    systolicObj = systolicBpData["1-12m"];
+    systolicObj = systolicBpData?.["1-12m"];
     return finalSystolicMsg(systolicObj, systolicBp);
   }
   if (ageMonth >= 0 && ageMonth <= 1) {
-    systolicObj = systolicBpData["0-1m"];
+    systolicObj = systolicBpData?.["0-1m"];
     return finalSystolicMsg(systolicObj, systolicBp);
   }
 };
@@ -360,7 +360,7 @@ export const systolicBpMessage = (systolicBp: number, ageMonth: number) => {
  */
 
 const finalPulseRateMsg = (pulseRateObj: PulseRateItem, pulseRate: number) => {
-  const [low, high] = pulseRateObj.normal_range || [];
+  const [low, high] = pulseRateObj?.normal_range || [];
 
   if (pulseRate < low) {
     return `Low Pulse rate <${low} b/m`;
@@ -379,42 +379,42 @@ export const pulseRateMessage = (pulseRate: number, ageMonth: number) => {
   let pulseRateObj: PulseRateItem;
 
   if (ageMonth >= 15 * 12) {
-    pulseRateObj = pulseRateData[">15"];
+    pulseRateObj = pulseRateData?.[">15"];
     return finalPulseRateMsg(pulseRateObj, pulseRate);
   }
 
   if (ageMonth >= 11 * 12 && ageMonth < 15 * 12) {
-    pulseRateObj = pulseRateData["11-14"];
+    pulseRateObj = pulseRateData?.["11-14"];
     return finalPulseRateMsg(pulseRateObj, pulseRate);
   }
 
   if (ageMonth >= 6 * 12 && ageMonth < 11 * 12) {
-    pulseRateObj = pulseRateData["6-10"];
+    pulseRateObj = pulseRateData?.["6-10"];
     return finalPulseRateMsg(pulseRateObj, pulseRate);
   }
 
   if (ageMonth >= 4 * 12 && ageMonth < 6 * 12) {
-    pulseRateObj = pulseRateData["3-5"];
+    pulseRateObj = pulseRateData?.["3-5"];
     return finalPulseRateMsg(pulseRateObj, pulseRate);
   }
 
   if (ageMonth > 1 * 12 && ageMonth < 4 * 12) {
-    pulseRateObj = pulseRateData["1-3"];
+    pulseRateObj = pulseRateData?.["1-3"];
     return finalPulseRateMsg(pulseRateObj, pulseRate);
   }
 
   if (ageMonth > 5 && ageMonth <= 12) {
-    pulseRateObj = pulseRateData["6-12m"];
+    pulseRateObj = pulseRateData?.["6-12m"];
     return finalPulseRateMsg(pulseRateObj, pulseRate);
   }
 
   if (ageMonth > 1 && ageMonth <= 5) {
-    pulseRateObj = pulseRateData["1-5m"];
+    pulseRateObj = pulseRateData?.["1-5m"];
     return finalPulseRateMsg(pulseRateObj, pulseRate);
   }
 
   if (ageMonth >= 0 && ageMonth <= 1) {
-    pulseRateObj = pulseRateData["0-1m"];
+    pulseRateObj = pulseRateData?.["0-1m"];
     return finalPulseRateMsg(pulseRateObj, pulseRate);
   }
 };
@@ -451,14 +451,14 @@ export const msgBasedOnBmi = (bmi: number) => {
 const fiveToNineteenFinalMsg = (bmiObj: BmiForBoysGirlItem, bmi: number) => {
   const rangeValue = bmiObj?.range_value || [];
 
-  if (bmi && bmiObj[bmi]) {
-    return bmiObj[bmi];
+  if (bmi && bmiObj?.[bmi]) {
+    return bmiObj?.[bmi];
   }
 
   let count = 1;
-  while (count < rangeValue.length) {
-    if (bmi > +rangeValue[count - 1] && bmi < +rangeValue[count]) {
-      return bmiObj[rangeValue[count - 1] + "-" + rangeValue[count]];
+  while (count < rangeValue?.length) {
+    if (bmi > +rangeValue?.[count - 1] && bmi < +rangeValue?.[count]) {
+      return bmiObj?.[rangeValue?.[count - 1] + "-" + rangeValue?.[count]];
     }
     count++;
   }
@@ -481,13 +481,13 @@ export const bmiMessage = (
 
   //5 to 19 years male
   if (ageMonth > 5 * 12 && ageMonth <= 19 * 12 && gender === "male") {
-    const boysBmiObj = bmi_data_boys_5_19_years[ageMonth];
+    const boysBmiObj = bmi_data_boys_5_19_years?.[ageMonth];
     return fiveToNineteenFinalMsg(boysBmiObj, bmi);
   }
 
   // 5 to 19 years for female
   if (ageMonth > 5 * 12 && ageMonth <= 19 * 12 && gender === "female") {
-    const girlsBmiObj = bmi_data_girls_5_19_years[ageMonth];
+    const girlsBmiObj = bmi_data_girls_5_19_years?.[ageMonth];
     return fiveToNineteenFinalMsg(girlsBmiObj, bmi);
   }
 
@@ -503,12 +503,12 @@ export const bmiMsgBasedOnLengthAndWeight = (
   let bmiObj: BMIForUnder5YearsItem;
 
   if (gender == "male") {
-    bmiObj = bmi_data_boys_under_5_years[length];
+    bmiObj = bmi_data_boys_under_5_years?.[length];
     return underFiveFinalMsg(bmiObj, +weight);
   }
 
   if (gender == "female") {
-    bmiObj = bmi_data_girls_under_5_years[length];
+    bmiObj = bmi_data_girls_under_5_years?.[length];
     return underFiveFinalMsg(bmiObj, +weight);
   }
 };
@@ -517,14 +517,14 @@ export const bmiMsgBasedOnLengthAndWeight = (
 const underFiveFinalMsg = (bmiObj: BMIForUnder5YearsItem, bmi: number) => {
   const rangeValue = bmiObj?.range_value || [];
 
-  if (bmi && bmiObj[bmi]) {
-    return bmiObj[bmi];
+  if (bmi && bmiObj?.[bmi]) {
+    return bmiObj?.[bmi];
   }
 
   let count = 1;
-  while (count < rangeValue.length) {
-    if (bmi > +rangeValue[count - 1] && bmi < +rangeValue[count]) {
-      return bmiObj[rangeValue[count - 1] + "-" + rangeValue[count]];
+  while (count < rangeValue?.length) {
+    if (bmi > +rangeValue?.[count - 1] && bmi < +rangeValue?.[count]) {
+      return bmiObj?.[rangeValue?.[count - 1] + "-" + rangeValue?.[count]];
     }
     count++;
   }

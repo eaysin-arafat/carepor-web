@@ -6,9 +6,19 @@ type Props = {
   data: string | number;
   titleClass?: string;
   dataClass?: string;
+  isHideOnEmptyData?: boolean;
 };
 
-const DataRow: React.FC<Props> = ({ title, data, titleClass, dataClass }) => {
+const DataRow: React.FC<Props> = ({
+  title,
+  data,
+  titleClass,
+  dataClass,
+  isHideOnEmptyData,
+}) => {
+  if (isHideOnEmptyData && !data) {
+    return false;
+  }
   return (
     <div className="flex items-start justify-end xs:justify-start">
       <div

@@ -4,6 +4,7 @@ import useBaseModel from "@/hooks/useBaseModel";
 import { Client } from "@/interface/clients";
 import { cookieManager } from "@/utilities/cookie-manager";
 import { vitalsCreateValidator } from "@/validation-models/vitals-create";
+import dayjs from "dayjs";
 import React, { useCallback, useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
@@ -55,7 +56,7 @@ export type VitalErrorType = {
 };
 
 const initialVitalData = {
-  lastTested: null,
+  lastTested: new Date(dayjs().format("YYYY-MM-DD")).toISOString(),
   weight: "",
   height: "",
   bmi: "",
@@ -74,7 +75,7 @@ const initialVitalData = {
   hcScore: "",
   randomBloodSugar: "",
   comment: "",
-  vitalsDate: null,
+  vitalsDate: new Date(dayjs().format("YYYY-MM-DD")).toISOString(),
 };
 
 const initialVitalErrors = {

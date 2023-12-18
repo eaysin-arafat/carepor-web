@@ -8,12 +8,11 @@ import { TypeAPIEnum, TypeAPIObject } from "@/types";
 export type TypeEnum = TypeAPIEnum;
 
 // DATA TYPE
-export type TypeVitals = TypeAPIObject & {
+export type TypeBirthRecord = TypeAPIObject & {
   isBirthRecordGiven: string | boolean;
   origin: string | number;
   informantFirstName: string;
   informantSurname: string;
-
   underFiveCardNumber?: string;
   isUnderFiveCardGiven?: string | boolean;
   informantNickname?: string;

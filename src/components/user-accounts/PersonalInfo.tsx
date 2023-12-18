@@ -46,7 +46,7 @@ function PersonalInfo({
     }
   }, []);
 
-  console.log("nrcRef", nrcRef);
+  // console.log("nrcRef", nrcRef);
 
   return (
     <>

@@ -39,6 +39,8 @@ function useEditUserAccounts() {
 
   // test with promises
 
+  console.log(user);
+
   //  nrc state
   const [nrc, setNrc] = useState(user?.nrc || "");
   const [noNRC, setNoNRC] = useState(false);
