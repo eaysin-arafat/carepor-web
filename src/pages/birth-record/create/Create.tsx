@@ -11,14 +11,16 @@ function BirthRecordCreate({ toggler }) {
   return (
     <DefaultOpenModal title="Birth Record" isShow={true} toggler={toggler}>
       <form>
-        <h1 className="text-md font-medium mb-2">Particulars :</h1>
-        <div className="flex gap-5">
-          <Select label="Is Birth Record Given?"></Select>
-          <Select label="Origin"></Select>
-        </div>
-        <div className="flex gap-5 mt-5">
-          <Select label="Is Under Five Card Given?"></Select>
-          <Input label="Under Five Card Number" />
+        <div className="bg-lightBlueColor p-5 rounded mt-2 shadow mb-4">
+          <h1 className="text-md font-medium mb-2">Particulars :</h1>
+          <div className="flex gap-5">
+            <Select label="Is Birth Record Given?"></Select>
+            <Select label="Origin"></Select>
+          </div>
+          <div className="flex gap-5 mt-5">
+            <Select label="Is Under Five Card Given?"></Select>
+            <Input label="Under Five Card Number" />
+          </div>
         </div>
 
         <div className="border border-borderColor mt-5 rounded">
@@ -66,40 +68,39 @@ function BirthRecordCreate({ toggler }) {
           )}
         </div>
 
-        <h1 className="text-md font-medium mb-2 mt-5">Informant Details :</h1>
-        <div className="flex gap-5">
-          <Input label="First Name" />
-          <Input label="Surname" />
-          <Input label="Nickname" />
-        </div>
+        <div className="bg-lightBlueColor p-5 rounded mt-5 shadow mb-4">
+          <h1 className="text-md font-medium mb-2">Informant Details :</h1>
+          <div className="flex gap-5">
+            <Input label="First Name" />
+            <Input label="Surname" />
+            <Input label="Nickname" />
+          </div>
 
-        <div className="flex gap-5 mt-5">
-          <Select label="Code" />
-          <Input label="Cellphone Number" />
-        </div>
+          <div className="flex gap-5 mt-5">
+            <Select label="Code" />
+            <Input label="Cellphone Number" />
+          </div>
 
-        <div className="flex gap-5 mt-5">
-          <Select label="Code" />
-          <Input label="Landline Number" />
-        </div>
+          <div className="flex gap-5 mt-5">
+            <Select label="Code" />
+            <Input label="Landline Number" />
+          </div>
 
-        <div className="flex gap-5 mt-5">
-          <Select label="Relationship to Child" />
-          <Input label="Other Relationship" />
-        </div>
+          <div className="flex gap-5 mt-5">
+            <Select label="Relationship to Child" />
+            <Input label="Other Relationship" />
+          </div>
 
-        <div className="flex gap-5 mt-5">
-          <Input label="City/Town/Village" />
-          <Input label="Cmpd Street No." />
-        </div>
+          <div className="flex gap-5 mt-5">
+            <Input label="City/Town/Village" />
+            <Input label="Cmpd Street No." />
+          </div>
 
-        <div className="flex gap-5 mt-5">
-          <Input label="PO Box,Pvt bag" />
-          <Input label="Landmark" />
+          <div className="flex gap-5 mt-5">
+            <Input label="PO Box,Pvt bag" />
+            <Input label="Landmark" />
+          </div>
         </div>
-
-        {/* DIVIDER */}
-        <hr className="my-5" />
 
         {/* BUTTONS */}
         <CancelAndAddButton toggler={toggler} />

@@ -30,7 +30,10 @@ function HeaderList() {
         </Link>
       </li>
       <li>
-        <Link to={URLUserDashboard()} className="gap-1 flex items-center">
+        <Link
+          to={URLUserDashboard()}
+          className="gap-1 flex items-center text-textColor"
+        >
           <FaChartPie size={w1230 ? 15 : 19} />{" "}
           {!w1100 && (
             <p className={`mt-1 ${w1230 && "font-[11px]"}`}>Dashboard</p>
@@ -43,7 +46,7 @@ function HeaderList() {
           inline
           className="min-w-[300px] w-[300px]"
           label={
-            <button className="gap-1 flex items-center">
+            <button className="gap-1 flex items-center text-textColor">
               <LiaFileMedicalAltSolid size={19} />{" "}
               {!w1100 && (
                 <>
@@ -83,7 +86,7 @@ function HeaderList() {
           inline
           className="min-w-[300px] w-[300px]"
           label={
-            <button className="gap-1 flex items-center">
+            <button className="gap-1 flex items-center text-textColor">
               <FaRegFilePdf size={w1230 ? 15 : 19} />{" "}
               {!w1100 && (
                 <>

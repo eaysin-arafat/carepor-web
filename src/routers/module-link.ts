@@ -17,3 +17,4 @@ export const URLCovid = (): string => "/covid";
 export const URLPainRecords = (): string => "/pain-records";
 export const URLReferral = (): string => "/referral";
 export const URLBirthRecord = (): string => "/birth-record";
+export const URLDeathRecord = (): string => "/death-record/create";

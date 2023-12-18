@@ -12,12 +12,12 @@ export const FormFooterLink = ({
   link,
 }: FormFooterLinkType) => {
   return (
-    <div className="border-t border-gray-200 mt-8 mb[-10px] max-w-[380px] w-full mx-auto">
+    <div className="border-t border-gray-200 mt-1 mb[-10px] max-w-[380px] w-full mx-auto">
       <div className=" text-base">
-        <div className="pt-6 -mb-2 flex justify-center gap-2">
+        <div className="pt-3 -mb-2 flex justify-center gap-2">
           <div className="text-textColor">{question}</div>
           <div className="leading-[26px] text-dodgerblue">
-            <Link to={link} className="text-primaryColor">
+            <Link to={link} className="text-logoColor">
               {btnText}
             </Link>
           </div>

@@ -8,9 +8,9 @@ const CancelAndAddButton = ({
   disableBoth,
 }: CancelAndAddButtonProps) => {
   return (
-    <div className="flex justify-end gap-4">
+    <div className="flex justify-center gap-4">
       <button
-        className="flex gap-2 items-center  border border-lightGrayColor hover:bg-lightGrayColor px-7 rounded-full text-lg"
+        className="flex gap-2 items-center  border border-lightGrayColor bg-grayColor text-white hover:text-black hover:bg-lightGrayColor px-7 rounded-full text-lg"
         type="button"
         onClick={toggler}
         disabled={disableBoth}
