@@ -10,10 +10,14 @@ export interface MultipleSelectProps {
   options: Option[];
   selectedOptions: Option[];
   setSelectedOptions: (options: Option[]) => void;
+  isSearchable?: boolean;
+  isSelectable?: boolean;
 }
 
 const MultiSelect = ({
   options,
+  isSearchable,
+  isSelectable,
   selectedOptions,
   setSelectedOptions,
 }: MultipleSelectProps) => {
@@ -40,28 +44,6 @@ const MultiSelect = ({
     }
   };
 
-  // const handleDropdownToggle = () => {
-  //   setIsOpen(!isOpen);
-  // };
-
-  // const closeDropdown = () => {
-  //   setIsOpen(false);
-  // };
-
-  // useEffect(() => {
-  //   const handleClickOutside = (event: MouseEvent) => {
-  //     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-  //       closeDropdown();
-  //     }
-  //   };
-
-  //   document.addEventListener("click", handleClickOutside);
-
-  //   return () => {
-  //     document.removeEventListener("click", handleClickOutside);
-  //   };
-  // }, []);
-
   return (
     <div
       className="relative inline-block text-left w-full z-10"
@@ -69,20 +51,24 @@ const MultiSelect = ({
     >
       <div className="bg-whiteBgColor rounded-lg p-2">
         <div className="grid gap-2 mb-2">
-          <select
-            name=""
-            id=""
-            className="custom-input border border-borderColor "
-          >
-            <option value="">Please Select</option>
-          </select>
-          <input
-            type="text"
-            placeholder="Search..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="custom-input border border-borderColor"
-          />
+          {isSelectable && (
+            <select
+              name=""
+              id=""
+              className="custom-input border border-borderColor "
+            >
+              <option value="">Please Select</option>
+            </select>
+          )}
+          {isSearchable && (
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="custom-input border border-borderColor"
+            />
+          )}
         </div>
         <div className=" grid md:grid-cols-2">
           {filteredOptions.map((option) => (
