@@ -58,7 +58,7 @@ function FormWrapper({
           <div className="bg-transparent pt-[88px]">
             <div
               className={cn(
-                `p-5 md:p-10 md:bg-whiteBgColor rounded-[47px] md:box_shadow mx-auto `,
+                `p-5 md:p-10 md:bg-whiteBgColor rounded-[47px] md:box_shadow mx-auto`,
                 className
               )}
             >
@@ -70,8 +70,8 @@ function FormWrapper({
               {!isAppNameHide && (
                 <p className="text-center text-[25px] xs:text-[30px] md:text-[45px] mt-4 md:mt-6 font-poppins">
                   <span className="text-[#15ac12]">Smart</span>
-                  <span className="text-primaryColor">Care</span>{" "}
-                  <span className="text-primaryColor font-bold">PRO</span>
+                  <span className="text-logoColor">Care</span>{" "}
+                  <span className="text-logoColor font-bold">PRO</span>
                 </p>
               )}
 
@@ -136,11 +136,6 @@ function FormWrapper({
             </div>
           </div>
           {emergencyAccess && <EmergencyAccess />}
-          {/* {loginForm && (
-            <p className="max-w-[380px] md:max-w-full mx-auto text-center mt-10 leading-7 text-black md:text-white dark:text-white text-[16px] font-normal ">
-              Powered by the institute of health measurement Southerner Africs
-            </p>
-          )} */}
         </div>
       </div>
     </BodyBackground>

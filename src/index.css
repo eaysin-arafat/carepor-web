@@ -134,6 +134,13 @@ span {
   color: white !important;
 }
 
+/* Dropdown */
+.dropdown li[role="menuitem"] a:hover,
+.dropdown li[role="menuitem"] button:hover {
+  background-color: var(--overlay);
+  color: #fff;
+}
+
 @layer utilities {
   .grid-cols-dynamic {
     grid-template-columns: repeat(auto-fill, minmax(max-content, 1fr));

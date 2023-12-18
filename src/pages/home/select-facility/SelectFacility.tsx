@@ -75,7 +75,10 @@ const SelectFacility = () => {
           </div>
           <div className="text-center mt-2">
             {/* <OutlineButton title="Logout" onClick={handleLogout} /> */}
-            <button onClick={handleLogout} className="text-sm sm:text-lg">
+            <button
+              onClick={handleLogout}
+              className="text-md text-textColor sm:text-lg"
+            >
               Logout
             </button>
           </div>

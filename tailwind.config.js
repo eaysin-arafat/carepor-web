@@ -40,6 +40,7 @@ export default {
         buttonBg: "var(--btnBg)",
         logoColor2: "var(--logoColor2)",
         logoColor2Hover: "var(--logoColor2Hover)",
+        logoColor: "var(--logoColor)",
       },
       boxShadow: {
         light: "0 8px 16px 0 rgba(0, 0, 0, 0.05)",
