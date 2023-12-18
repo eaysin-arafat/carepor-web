@@ -12,7 +12,7 @@ import EditDepartment from "../edit/Edit";
 import useDepartments from "./useDepartments";
 
 function Departments() {
-  const w500 = useWindowWidth(500);
+  const w800 = useWindowWidth(800);
 
   const {
     addModal,
@@ -30,15 +30,19 @@ function Departments() {
   } = useDepartments();
 
   return (
-    <div className="m-5 ">
+    <div className="">
       <h1 className="text-2xl mb-1">Departments</h1>
       <div className=" border p-5 border-borderColor bg-whiteBgColor rounded-md">
         <div
           className={cn("grid grid-cols-4 gap-5 justify-between items-end", {
-            "grid-cols-2 gap-2": w500,
+            "grid-cols-2 gap-2": w800,
           })}
         >
-          <div className="col-span-3">
+          <div
+            className={cn("col-span-3", {
+              "col-span-1": w800,
+            })}
+          >
             <Input
               label="Search"
               value={search}
@@ -46,10 +50,13 @@ function Departments() {
             />
           </div>
           <button
-            className="bg-primaryColor  flex items-center gap-2 justify-center text-sm py-3.5 text-white rounded-md px-1"
+            className={cn(
+              "bg-primaryColor flex items-center gap-2 justify-center text-sm py-3 text-white rounded-md px-1",
+              { "text-[14px]": w800 }
+            )}
             onClick={handleAddDepartment}
           >
-            <Plus /> Add Departments
+            <Plus size={15} /> Add Departments
           </button>
         </div>
         <div className="mt-5">
