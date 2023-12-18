@@ -44,7 +44,11 @@ const Diagnosis = () => {
             </div>
           )}
           {data?.map((item, index) => (
-            <DiagnosisPastRecord key={index} data={item} />
+            <DiagnosisPastRecord
+              key={index}
+              data={item}
+              handleEdit={() => {}}
+            />
           ))}
         </PastRecordContainers>
 

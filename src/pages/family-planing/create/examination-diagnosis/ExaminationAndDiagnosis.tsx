@@ -1,22 +1,21 @@
-import FormHeading from '@/components/core/form-heading/FormHeading';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/app/store';
-import { useDispatch } from 'react-redux';
+import { RootState } from "@/app/store";
+import FormHeading from "@/components/core/form-heading/FormHeading";
+import { familyPlanningModalTypes } from "@/constants/modal-types";
 import {
   closeAddModal,
   closeEditModal,
   openAddModal,
   openEditModal,
-} from '@/features/modal/modal-slice';
-import { familyPlanningModalTypes } from '@/constants/modal-types';
-import CreateGeneralAssessment from './components/CreateGeneralAssessment';
-import EditGeneralAssessment from './components/EditGeneralAssessment';
-import CreateSystemExamination from './components/CreateSystemExamination';
-import EditSystemExamination from './components/EditSystemExamination';
-import CreateQuickExamination from './components/CreateQuickExamination';
-import EditQuickExamination from './components/EditQuickExamination';
-import CreateGuidedExamination from './components/CreateGuidedExamination';
-import EditGuidedExamination from './components/EditGuidedExamination';
+} from "@/features/modal/modal-slice";
+import { useDispatch, useSelector } from "react-redux";
+import CreateGeneralAssessment from "./components/CreateGeneralAssessment";
+import CreateGuidedExamination from "./components/CreateGuidedExamination";
+import CreateQuickExamination from "./components/CreateQuickExamination";
+import CreateSystemExamination from "./components/CreateSystemExamination";
+import EditGeneralAssessment from "./components/EditGeneralAssessment";
+import EditGuidedExamination from "./components/EditGuidedExamination";
+import EditQuickExamination from "./components/EditQuickExamination";
+import EditSystemExamination from "./components/EditSystemExamination";
 
 const ExaminationAndDiagnosis = () => {
   // * Responsive Hokes

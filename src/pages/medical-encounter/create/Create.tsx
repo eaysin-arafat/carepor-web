@@ -4,6 +4,7 @@ import FormHeading from "@/components/core/form-heading/FormHeading";
 import ModuleStepping from "@/components/shared/multi-step/ModuleStepping";
 import PastRecordList from "@/components/shared/past-record-list/PastRecordList";
 import { medicalEncounterModalTypes } from "@/constants/modal-types";
+import { EnumEncounterType } from "@/enum/encounter-type";
 import { closeAddModal, openAddModal } from "@/features/modal/modal-slice";
 import FormLayout from "@/layout/FormLayout";
 import CreateAllergy from "@/pages/allergies/create/Create";
@@ -290,7 +291,10 @@ const CreateMedicalEncounter = () => {
             />
             {addModal?.modalId ===
               medicalEncounterModalTypes.addPresentingComplaint && (
-              <CreateChiefComplaints toggler={closeModal} />
+              <CreateChiefComplaints
+                toggler={closeModal}
+                encounterType={EnumEncounterType.MedicalEncounter}
+              />
             )}
 
             {/* TB constitutional symptoms */}

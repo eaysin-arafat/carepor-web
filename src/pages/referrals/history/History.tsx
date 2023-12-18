@@ -22,14 +22,7 @@ function ReferralsHistory() {
   const dispatch = useDispatch();
   const client = useClient();
 
-  const {
-    data: referrals,
-    isSuccess,
-    isLoading,
-    isError,
-    error,
-    status,
-  } = useReadReferralByClientQuery(client?.oid, {
+  const { data: referrals } = useReadReferralByClientQuery(client?.oid, {
     skip: !client?.oid,
     refetchOnMountOrArgChange: true,
   });

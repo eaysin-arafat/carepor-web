@@ -125,7 +125,7 @@ const CovidCreate = () => {
       // isARDS: false,
       // isPatientHospitalized: false,
     };
-    console.log("covidData", covidData);
+    console.log("covidData", payload);
   };
   return (
     <div>

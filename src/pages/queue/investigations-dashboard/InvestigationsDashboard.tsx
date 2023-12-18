@@ -7,13 +7,12 @@ import TableBody from "@/components/shared/table/TableBody";
 import TableHeader from "@/components/shared/table/TableHeader";
 import { EnumPiority } from "@/enum/enumerators";
 import useWindowWidth from "@/hooks/useWindow";
+import InvestigationAddResultModal from "@/pages/investigations/create/InvestigationAddResultModal";
 import InvestigationViewResultModal from "@/pages/investigations/create/InvestigationViewResultModal";
 import InvestigationQueueFilters from "@/pages/queue/investigations-dashboard/InvestigationQueueFilters";
 import { DateFunc } from "@/utilities/date";
 import SampleCollectedModal from "./SampleCollectedModal";
 import useInvestigationsDashboard from "./useInvestigationsDashboard";
-import InvestigationAddResultModal from "@/pages/investigations/create/InvestigationAddResultModal";
-import useClinician from "@/hooks/useClinician";
 
 function InvestigationsDashboard() {
   const w1100 = useWindowWidth(1100);
@@ -43,8 +42,6 @@ function InvestigationsDashboard() {
     isError,
     handleAddResult,
   } = useInvestigationsDashboard();
-
-  const kk = useClinician();
 
   return (
     <>

@@ -1,15 +1,15 @@
-import CancelAndAddButton from '@/components/core/buttons/CancelAndAddButton';
-import Card, { CardBody } from '@/components/core/card/Card';
-import Select from '@/components/core/form-elements/Select';
-import DefaultOpenModal from '@/components/core/modal/DefaultOpenModal';
-import PastRecordContainers from '@/components/past-record-containers/PastRecordContainers';
-import { useReadChiefComplaintByClientQuery } from '@/features/chief-complaint/chief-complaint-api';
-import PastEncounters from '@/pages/chief-complaints/create/PastEncounters';
-import { Loader } from 'react-feather';
+import CancelAndAddButton from "@/components/core/buttons/CancelAndAddButton";
+import Card, { CardBody } from "@/components/core/card/Card";
+import Select from "@/components/core/form-elements/Select";
+import DefaultOpenModal from "@/components/core/modal/DefaultOpenModal";
+import PastRecordContainers from "@/components/past-record-containers/PastRecordContainers";
+import { useReadChiefComplaintByClientQuery } from "@/features/chief-complaint/chief-complaint-api";
+import PastEncounters from "@/pages/chief-complaints/create/PastEncounters";
+import { Loader } from "react-feather";
 
 const CreateFPlan = ({ toggler }) => {
   const { data, isLoading, status } = useReadChiefComplaintByClientQuery(
-    'a1497272-3783-46f6-922a-08dbd06dc4d8'
+    "a1497272-3783-46f6-922a-08dbd06dc4d8"
   );
 
   return (
@@ -23,7 +23,7 @@ const CreateFPlan = ({ toggler }) => {
               <Select label="Does client have signs and symptoms suggestive of sexual violence?">
                 <option value="1">Yes</option>
                 <option value="2">No</option>
-              </Select>{' '}
+              </Select>{" "}
               <div className="mb-4 text-semibold">
                 State the issues and concerns the client has:
               </div>
@@ -44,13 +44,13 @@ const CreateFPlan = ({ toggler }) => {
                   <option value="9">
                     Nausea, vomiting, dizziness, and diarrhea
                   </option>
-                </Select>{' '}
+                </Select>{" "}
                 <Select label="Family Planning Sub-Class"></Select>
-              </div>{' '}
+              </div>{" "}
               <Select label="Are you certain client is not pregnant?">
                 <option value="1">Yes</option>
                 <option value="2">No</option>
-              </Select>{' '}
+              </Select>{" "}
               <div className="flex flex-col md:flex-row md:justify-between gap-3">
                 <Select label="Reason of not Pregnant">
                   <option value="1">
@@ -78,17 +78,17 @@ const CreateFPlan = ({ toggler }) => {
                   <option value="8">
                     Reasonably certain a woman is not pregnant
                   </option>
-                </Select>{' '}
+                </Select>{" "}
                 <Select label="FP Method Plan">
                   <option value="1">Stop using method</option>
                   <option value="2">Continue with method</option>
                   <option value="3">Switch method</option>
                 </Select>
-              </div>{' '}
+              </div>{" "}
               <Select label="Does client give consent to receive FP?">
                 <option value="1">Yes</option>
                 <option value="2">No</option>
-              </Select>{' '}
+              </Select>{" "}
               <div className="flex flex-col md:flex-row md:justify-between gap-3">
                 <Select label="FP Method Plan Request">
                   <option value="1">
@@ -125,7 +125,7 @@ const CreateFPlan = ({ toggler }) => {
                   <option value="18">Male Sterilization</option>
                   <option value="19">Withdrawal</option>
                   <option value="20">None</option>
-                </Select>{' '}
+                </Select>{" "}
                 <Select label="Select Plan">
                   <option value="1">
                     A condition for which there is no restriction for the use of
@@ -144,7 +144,7 @@ const CreateFPlan = ({ toggler }) => {
                     the contraceptive method is used
                   </option>
                 </Select>
-              </div>{' '}
+              </div>{" "}
               <div className="flex flex-col md:flex-row md:justify-between gap-3">
                 <Select label="Classify FP Method">
                   <option value="1">
@@ -163,20 +163,20 @@ const CreateFPlan = ({ toggler }) => {
                     A condition which represents an unacceptable health risk if
                     the contraceptive method is used
                   </option>
-                </Select>{' '}
+                </Select>{" "}
                 <Select label="Plans">
                   <option value="1">Accept</option>
                   <option value="2">Caution</option>
                   <option value="3">Delay</option>
                   <option value="4">Special</option>
                 </Select>
-              </div>{' '}
+              </div>{" "}
               <div className="flex flex-col md:flex-row md:justify-between gap-3">
                 <Select label="FP Provided Place">
                   <option value="1">Provided on site</option>
                   <option value="2">Referral</option>
                   <option value="3">Home/self-administered</option>
-                </Select>{' '}
+                </Select>{" "}
                 <Select label="Reason for Not Plan">
                   <option value="1">Chooses not to use</option>
                   <option value="2">Out of stock – Method</option>
@@ -188,12 +188,12 @@ const CreateFPlan = ({ toggler }) => {
                   </option>
                   <option value="5">Client requires referral</option>
                 </Select>
-              </div>{' '}
+              </div>{" "}
               <div className="flex flex-col md:flex-row md:justify-between gap-3">
                 <Select label="Client Receive Preferred Options">
                   <option value="1">Yes</option>
                   <option value="2">No</option>
-                </Select>{' '}
+                </Select>{" "}
                 <Select label="Backup Method Used">
                   <option value="1">Male condom</option>
                   <option value="2">Female condom</option>
@@ -202,54 +202,54 @@ const CreateFPlan = ({ toggler }) => {
                     Emergency contraceptive pills (ECPs)
                   </option>
                 </Select>
-              </div>{' '}
+              </div>{" "}
               <div className="flex flex-col md:flex-row md:justify-between gap-3">
                 <Select label="Client Not Receive Preffered Option">
                   <option value="1">Out of stock – Method</option>
                   <option value="2">Out of stock – Equipment /supplies</option>
                   <option value="3">Health worker skill mismatch</option>
                   <option value="4">Client requires referral</option>
-                </Select>{' '}
+                </Select>{" "}
                 <Select label="Is HIV Testing Need">
                   <option value="1">Soft</option>
                   <option value="2">Firm</option>
                   <option value="3">Other</option>
                 </Select>
-              </div>{' '}
+              </div>{" "}
               <div className="flex flex-col md:flex-row md:justify-between gap-3">
                 <Select label=" Is STI">
                   <option value="1">Yes</option>
                   <option value="2">No</option>
-                </Select>{' '}
+                </Select>{" "}
                 <Select label="Is Cervical Cancer">
                   <option value="1">Yes</option>
                   <option value="2">No</option>
                 </Select>
-              </div>{' '}
+              </div>{" "}
               <div className="flex flex-col md:flex-row md:justify-between gap-3">
                 <Select label="Is Breast Cancer">
                   <option value="1">Yes</option>
                   <option value="2">No</option>
-                </Select>{' '}
+                </Select>{" "}
                 <Select label="Is Prostate Cancer">
                   <option value="1">Yes</option>
                   <option value="2">No</option>
                 </Select>
-              </div>{' '}
+              </div>{" "}
             </div>
           </CardBody>
-        </Card>{' '}
+        </Card>{" "}
         <hr className="my-6" />
         {/* PAST RECORD CONTAINERS */}
         <PastRecordContainers>
-          {(isLoading || status === 'pending') && (
+          {(isLoading || status === "pending") && (
             <div className="flex w-full justify-center items-center">
               <Loader size={40} className="animate-spin" />
             </div>
           )}
 
           {data?.map((item, index) => (
-            <PastEncounters key={index} data={item} />
+            <PastEncounters key={index} data={item} handleEdit={() => {}} />
           ))}
         </PastRecordContainers>
         {/* BUTTONS */}

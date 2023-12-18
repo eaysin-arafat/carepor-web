@@ -114,7 +114,7 @@ const HTSForm = ({
 
   // const { data: hivRiskFactors } = useReadHIVRiskFactorsQuery(null);
 
-  console.log("has concented", htsData?.hasConsented);
+  console.log("has concented", htsData?.hasConsented === "true");
 
   // render client types options
   const clientTypesOptions = clientTypes?.map((clientType) => (
@@ -316,6 +316,7 @@ const HTSForm = ({
             errMsg={errorMessages.hivNotTestingReasonId}
             value={htsData?.hivNotTestingReasonId}
             onChange={handleHtsDataChange}
+            disabled={htsData?.hasConsented?.toString() === "true"}
           >
             {hivNotTestingSuccess &&
               hivNotTestingStatus === "fulfilled" &&
@@ -329,11 +330,12 @@ const HTSForm = ({
             errMsg={errorMessages.notTestingReason}
             value={htsData?.notTestingReason}
             onChange={handleHtsDataChange}
+            disabled={htsData?.hasConsented?.toString() === "true"}
           />
         </div>
       </div>
 
-      {(htsData?.hasConsented === "true" || htsData?.hasConsented) && (
+      {htsData?.hasConsented?.toString() === "true" && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-5 border border-borderColor rounded-lg mt-8 shadow-light">
           <h2 className="col-span-full text-xl font-semibold">
             Test & Results

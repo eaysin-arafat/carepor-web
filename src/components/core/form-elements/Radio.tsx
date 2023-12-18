@@ -2,9 +2,9 @@ import { ChangeEvent } from "react";
 
 type Props = {
   value?: string | number;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   name?: string;
-  label: string;
+  label?: string;
   required?: boolean;
   errMsg?: string;
   disabled?: boolean;
