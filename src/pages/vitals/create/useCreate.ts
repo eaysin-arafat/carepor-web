@@ -4,6 +4,7 @@ import useBaseModel from "@/hooks/useBaseModel";
 import { Client } from "@/interface/clients";
 import { cookieManager } from "@/utilities/cookie-manager";
 import { vitalsCreateValidator } from "@/validation-models/vitals-create";
+import dayjs from "dayjs";
 import React, { useCallback, useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
@@ -55,7 +56,7 @@ export type VitalErrorType = {
 };
 
 const initialVitalData = {
-  lastTested: null,
+  lastTested: new Date(dayjs().format("YYYY-MM-DD")).toISOString(),
   weight: "",
   height: "",
   bmi: "",
@@ -74,7 +75,7 @@ const initialVitalData = {
   hcScore: "",
   randomBloodSugar: "",
   comment: "",
-  vitalsDate: null,
+  vitalsDate: new Date(dayjs().format("YYYY-MM-DD")).toISOString(),
 };
 
 const initialVitalErrors = {
@@ -164,7 +165,12 @@ const useCreate = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { error, isValid } = vitalsCreateValidator(vitalData);
+    const { error, isValid } = vitalsCreateValidator({
+      ...vitalData,
+      systolicIfUnrecordable: vitalData?.diastolicIfUnrecordable,
+    });
+
+    console.log(error, isValid);
 
     if (!isValid) return setErrorMessages(error);
 
@@ -172,7 +178,7 @@ const useCreate = () => {
       ...vitalData,
       ...baseModel,
       diastolicIfUnrecordable: vitalData.diastolicIfUnrecordable || 0,
-      systolicIfUnrecordable: vitalData.systolicIfUnrecordable || 0,
+      systolicIfUnrecordable: vitalData.diastolicIfUnrecordable || 0,
       lastTested: vitalData?.vitalsDate,
       encounterId: cookieManager.parseCookie<{ oid: string }>("opdVisitSession")
         .oid,

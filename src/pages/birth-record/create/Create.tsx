@@ -271,9 +271,6 @@ function BirthRecordCreate({ toggler }) {
           />
         </div>
 
-        {/* DIVIDER */}
-        <hr className="my-5" />
-
         {/* BUTTONS */}
         <CancelAndAddButton toggler={toggler} />
       </form>

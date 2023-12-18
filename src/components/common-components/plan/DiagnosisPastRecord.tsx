@@ -1,14 +1,14 @@
 import PastRecordData from "../../shared/past-record/PastRecordData";
 import PastRecordWrapper from "../../shared/past-record/PastRecordWrpper";
 
-const TreatmentPastRecord = ({ data }) => {
+const TreatmentPastRecord = ({ data, handleEdit }) => {
   return (
-    <PastRecordWrapper>
-      <PastRecordData title="Chief complaints" data={data?.chiefComplaints} />
-      <PastRecordData
-        title="History of Chief complaints"
-        data={data?.historyOfChiefComplaint}
-      />
+    <PastRecordWrapper
+      isDeleteAble={false}
+      isEditAble={true}
+      handleEdit={handleEdit}
+    >
+      <PastRecordData title="Treatment Plan" data={data?.treatmentPlans} />
     </PastRecordWrapper>
   );
 };

@@ -114,6 +114,8 @@ const HTSForm = ({
 
   // const { data: hivRiskFactors } = useReadHIVRiskFactorsQuery(null);
 
+  console.log("has concented", htsData?.hasConsented);
+
   // render client types options
   const clientTypesOptions = clientTypes?.map((clientType) => (
     <option key={clientType.oid} value={clientType.oid}>
@@ -264,11 +266,13 @@ const HTSForm = ({
         </div>
         <div className="">
           <Select
+            required={!!htsData?.partnerLastTestDate}
             label="Partner's HIV Status"
             name="partnerHIVStatus"
             errMsg={errorMessages.partnerHIVStatus}
             value={htsData?.partnerHIVStatus}
             onChange={handleHtsDataChange}
+            disabled={!htsData?.partnerLastTestDate}
           >
             <option value="1">Positive</option>
             <option value="2">Negative</option>
@@ -329,111 +333,116 @@ const HTSForm = ({
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-5 border border-borderColor rounded-lg mt-8 shadow-light">
-        <h2 className="col-span-full text-xl font-semibold">Test & Results</h2>
-        <div className="">
-          <Input
-            label="Test No"
-            name="testNo"
-            errMsg={errorMessages.testNo}
-            value={htsData?.testNo}
-            onChange={handleHtsDataChange}
-          />
+      {(htsData?.hasConsented === "true" || htsData?.hasConsented) && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-5 border border-borderColor rounded-lg mt-8 shadow-light">
+          <h2 className="col-span-full text-xl font-semibold">
+            Test & Results
+          </h2>
+          <div className="">
+            <Input
+              label="Test No"
+              name="testNo"
+              errMsg={errorMessages.testNo}
+              value={htsData?.testNo}
+              onChange={handleHtsDataChange}
+            />
+          </div>
+          <div className="">
+            <Select
+              required
+              label="Determine"
+              name="determineTestResult"
+              errMsg={errorMessages.determineTestResult}
+              value={htsData?.determineTestResult}
+              onChange={handleHtsDataChange}
+            >
+              <option value="1">Reactive</option>
+              <option value="2">Non Reactive</option>
+            </Select>
+          </div>
+          <div className="">
+            <Select
+              required
+              label="Bioline"
+              name="biolineTestResult"
+              errMsg={errorMessages.biolineTestResult}
+              value={htsData?.biolineTestResult}
+              onChange={handleHtsDataChange}
+            >
+              <option value="1">Reactive</option>
+              <option value="2">Non Reactive</option>
+            </Select>
+          </div>
+          <div className="">
+            <Select
+              required
+              label="HIV Type"
+              name="hivType"
+              errMsg={errorMessages.hivType}
+              value={htsData?.hivType}
+              onChange={handleHtsDataChange}
+            >
+              <option value="1">HIV-1</option>
+              <option value="2">HIV-2</option>
+              <option value="3">HIV-1 & HIV-2</option>
+            </Select>
+          </div>
+          <div className="">
+            <Select
+              required
+              label="DNA PCR Sample Collected"
+              name="isDNAPCRSampleCollected"
+              errMsg={errorMessages.isDNAPCRSampleCollected}
+              value={htsData?.isDNAPCRSampleCollected}
+              onChange={handleHtsDataChange}
+            >
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </Select>
+          </div>
+          <div className="">
+            <DateInput
+              label="DNA PCR Sample Collection Date"
+              name="sampleCollectionDate"
+              errMsg={errorMessages.sampleCollectionDate}
+              selected={
+                htsData?.sampleCollectionDate
+                  ? new Date(htsData?.sampleCollectionDate)
+                  : null
+              }
+              onChange={(date) =>
+                handleDateChange(date, "sampleCollectionDate")
+              }
+            />
+          </div>
+          <div className="">
+            <Select
+              required
+              label="Client Received Results"
+              name="isResultReceived"
+              errMsg={errorMessages.isResultReceived}
+              value={htsData?.isResultReceived}
+              onChange={handleHtsDataChange}
+            >
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </Select>
+          </div>
+          <div className="">
+            <Select
+              required
+              label="Consent to Receive SMS Alerts"
+              name="consentForSMS"
+              errMsg={errorMessages.consentForSMS}
+              value={htsData?.consentForSMS}
+              onChange={handleHtsDataChange}
+            >
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </Select>
+          </div>
         </div>
-        <div className="">
-          <Select
-            required
-            label="Determine"
-            name="determineTestResult"
-            errMsg={errorMessages.determineTestResult}
-            value={htsData?.determineTestResult}
-            onChange={handleHtsDataChange}
-          >
-            <option value="1">Reactive</option>
-            <option value="2">Non Reactive</option>
-          </Select>
-        </div>
-        <div className="">
-          <Select
-            required
-            label="Bioline"
-            name="biolineTestResult"
-            errMsg={errorMessages.biolineTestResult}
-            value={htsData?.biolineTestResult}
-            onChange={handleHtsDataChange}
-          >
-            <option value="1">Reactive</option>
-            <option value="2">Non Reactive</option>
-          </Select>
-        </div>
-        <div className="">
-          <Select
-            required
-            label="HIV Type"
-            name="hivType"
-            errMsg={errorMessages.hivType}
-            value={htsData?.hivType}
-            onChange={handleHtsDataChange}
-          >
-            <option value="1">HIV-1</option>
-            <option value="2">HIV-2</option>
-            <option value="3">HIV-1 & HIV-2</option>
-          </Select>
-        </div>
-        <div className="">
-          <Select
-            required
-            label="DNA PCR Sample Collected"
-            name="isDNAPCRSampleCollected"
-            errMsg={errorMessages.isDNAPCRSampleCollected}
-            value={htsData?.isDNAPCRSampleCollected}
-            onChange={handleHtsDataChange}
-          >
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-          </Select>
-        </div>
-        <div className="">
-          <DateInput
-            label="DNA PCR Sample Collection Date"
-            name="sampleCollectionDate"
-            errMsg={errorMessages.sampleCollectionDate}
-            selected={
-              htsData?.sampleCollectionDate
-                ? new Date(htsData?.sampleCollectionDate)
-                : null
-            }
-            onChange={(date) => handleDateChange(date, "sampleCollectionDate")}
-          />
-        </div>
-        <div className="">
-          <Select
-            required
-            label="Client Received Results"
-            name="isResultReceived"
-            errMsg={errorMessages.isResultReceived}
-            value={htsData?.isResultReceived}
-            onChange={handleHtsDataChange}
-          >
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-          </Select>
-        </div>
-        <div className="">
-          <Select
-            required
-            label="Consent to Receive SMS Alerts"
-            name="consentForSMS"
-            errMsg={errorMessages.consentForSMS}
-            value={htsData?.consentForSMS}
-            onChange={handleHtsDataChange}
-          >
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-          </Select>
-        </div>
-      </div>
-
+      )}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-5 border border-borderColor rounded-lg mt-8 shadow-light">
         <h2 className="col-span-full text-xl font-semibold">
           Post Test Assessment

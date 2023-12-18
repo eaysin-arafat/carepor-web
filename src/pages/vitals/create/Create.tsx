@@ -29,7 +29,7 @@ const VitalsCreateForm = () => {
           handleHeadCircumferenceChange={handleHeadCircumferenceChange}
           handleMuacChange={handleMuacChange}
         />
-        <div className="px-5 flex gap-5 justify-center md:justify-end my-5">
+        <div className="px-5 flex gap-5 justify-center md:justify-center mt-5">
           {/* <CancelAndAddButton /> */}
           <button
             onClick={closeModal}

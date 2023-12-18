@@ -33,6 +33,9 @@ const modalSlice = createSlice({
       state.editModal.modalId = action.payload.modalId;
       state.editModal.data = action.payload.data;
     },
+    updateEditModalData(state, action) {
+      state.editModal.data = action.payload.data;
+    },
     closeAddModal(state) {
       state.addModal.isOpen = false;
       state.addModal.modalId = null;
@@ -63,6 +66,7 @@ export const {
   openEditModal,
   closeViewModal,
   openViewModal,
+  updateEditModalData,
 } = modalSlice.actions;
 
 export default modalSlice;

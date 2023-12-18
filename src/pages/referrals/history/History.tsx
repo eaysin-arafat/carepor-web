@@ -6,6 +6,8 @@ import TableBody from "@/components/shared/table/TableBody";
 import TableHeader from "@/components/shared/table/TableHeader";
 import { referralModalTypes } from "@/constants/modal-types";
 import { closeAddModal, openAddModal } from "@/features/modal/modal-slice";
+import { useReadReferralByClientQuery } from "@/features/referrals/referrals-api";
+import useClient from "@/hooks/useClient";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReferralsCreate from "../create/Create";
@@ -18,6 +20,21 @@ function ReferralsHistory() {
 
   // * Hokes
   const dispatch = useDispatch();
+  const client = useClient();
+
+  const {
+    data: referrals,
+    isSuccess,
+    isLoading,
+    isError,
+    error,
+    status,
+  } = useReadReferralByClientQuery(client?.oid, {
+    skip: !client?.oid,
+    refetchOnMountOrArgChange: true,
+  });
+
+  console.log("referrals", referrals);
 
   const data = [
     {

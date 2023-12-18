@@ -4,16 +4,21 @@ import DataRow from "@/components/core/table/DataRow";
 import { BiArrowBack } from "react-icons/bi";
 // import { Link } from "react-router-dom";
 import LinkButton from "@/components/core/buttons/LinkButton";
+import { clientModalTypes } from "@/constants/modal-types";
 import { relationshipsEnums, religionsEnums } from "@/enum/clients";
-import { URLClientSearch, URLLinkWithMother } from "@/routers/client";
+import { openAddModal } from "@/features/modal/modal-slice";
+import { URLClientSearch } from "@/routers/client";
 import { cn } from "@/utilities/cn";
 import { DateFunc } from "@/utilities/date";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import useClientDetails from "./useClientDetails";
+import LinkWithMother from "../create/LinkWithMother";
 
 type Props = {};
 
 const ClientDetails = ({}: Props) => {
+  const dispatch = useDispatch();
   const {
     clientObj,
     handleClientEdit,
@@ -30,8 +35,19 @@ const ClientDetails = ({}: Props) => {
     isLinked,
   } = useClientDetails();
 
+  const handleAddResult = () => {
+    dispatch(
+      openAddModal({
+        modalId: clientModalTypes.linkWithMother,
+        data: null,
+      })
+    );
+  };
+
   return (
     <div className="mt-5">
+      <LinkWithMother/>
+      
       <Container className="max-w-[1024px] mb-10">
         <div className="mx-3">
           <Link to={URLClientSearch()} className="go_back">
@@ -90,54 +106,55 @@ const ClientDetails = ({}: Props) => {
                 editHandler={() => handleClientEdit(1)}
               >
                 <div className="md:grid md:grid-cols-2">
-                <DataRow
-                  title="Cellphone Number"
-                  data={
-                    clientObj?.cellphone &&
-                    clientObj?.cellphone != "00000000000"
-                      ? clientObj?.cellphoneCountryCode +
-                        " " +
-                        clientObj?.cellphone
-                      : ""
-                  }
-                />
-                <DataRow
-                  title="Other Cellphone Number"
-                  data={
-                    clientObj?.otherCellphone &&
-                    clientObj?.otherCellphone != "00000000000"
-                      ? clientObj?.otherCellphoneCountryCode +
-                        " " +
-                        clientObj?.otherCellphone
-                      : ""
-                  }
-                />
-                <DataRow
-                  title="Landline Number"
-                  data={
-                    clientObj?.landline && clientObj?.landline != "00000000000"
-                      ? clientObj?.landlineCountryCode +
-                        " " +
-                        clientObj?.landline
-                      : ""
-                  }
-                />
-                <DataRow title="Email" data={clientObj?.email} />
-                <DataRow
-                  title="Country of Origin"
-                  data={clientObj?.isZambianBorn ? "Zambia" : "Others"}
-                />
-                <DataRow
-                  title="House Number"
-                  data={clientObj?.householdNumber}
-                />
-                <DataRow title="Road" data={clientObj?.road} />
-                <DataRow title="Area" data={clientObj?.area} />
-                <DataRow title="Town" data={clientObj?.townName} />
-                <DataRow
-                  title="Landmarks & Direction"
-                  data={clientObj?.landmarks}
-                />
+                  <DataRow
+                    title="Cellphone Number"
+                    data={
+                      clientObj?.cellphone &&
+                      clientObj?.cellphone != "00000000000"
+                        ? clientObj?.cellphoneCountryCode +
+                          " " +
+                          clientObj?.cellphone
+                        : ""
+                    }
+                  />
+                  <DataRow
+                    title="Other Cellphone Number"
+                    data={
+                      clientObj?.otherCellphone &&
+                      clientObj?.otherCellphone != "00000000000"
+                        ? clientObj?.otherCellphoneCountryCode +
+                          " " +
+                          clientObj?.otherCellphone
+                        : ""
+                    }
+                  />
+                  <DataRow
+                    title="Landline Number"
+                    data={
+                      clientObj?.landline &&
+                      clientObj?.landline != "00000000000"
+                        ? clientObj?.landlineCountryCode +
+                          " " +
+                          clientObj?.landline
+                        : ""
+                    }
+                  />
+                  <DataRow title="Email" data={clientObj?.email} />
+                  <DataRow
+                    title="Country of Origin"
+                    data={clientObj?.isZambianBorn ? "Zambia" : "Others"}
+                  />
+                  <DataRow
+                    title="House Number"
+                    data={clientObj?.householdNumber}
+                  />
+                  <DataRow title="Road" data={clientObj?.road} />
+                  <DataRow title="Area" data={clientObj?.area} />
+                  <DataRow title="Town" data={clientObj?.townName} />
+                  <DataRow
+                    title="Landmarks & Direction"
+                    data={clientObj?.landmarks}
+                  />
                 </div>
               </Card>
 
@@ -231,10 +248,7 @@ const ClientDetails = ({}: Props) => {
                     religionsEnums[clientObj?.maritalStatus]
                   }
                 />
-                <DataRow
-                  title="Spouse"
-                  data={clientObj?.spousesLegalName}
-                />
+                <DataRow title="Spouse" data={clientObj?.spousesLegalName} />
                 <DataRow title="Last Name" data={clientObj?.spousesSurname} />
               </Card>
 
@@ -284,35 +298,27 @@ const ClientDetails = ({}: Props) => {
                 />
               </Card>
               <div className="mt-5 flex justify-center w-full">
-                <div
-                  className={cn(
-                    `grid grid-cols-1 md:grid-cols-${
-                      isOverFive ? "1" : "2"
-                    } gap-4 `
-                  )}
-                >
+                <div className={cn(` flex gap-3 justify-center`)}>
                   <LinkButton
                     link={URLClientSearch()}
                     title="Finish"
-                    className="w-[220px] px-3 md:px-4 md:py-3 py-2 text-md md:text-lg !bg-whiteBgColor dark:text-white"
+                    className="w-32 md:w-[220px] px-3 md:px-4 py-3 text-md md:text-lg bg-whiteBgColor "
                   />
                   {!isOverFive && !isLinked && (
-                    <LinkButton
-                      link={URLLinkWithMother({
-                        id: clientObj.oid,
-                      })}
-                      title="Link With Mother"
-                      className="w-[220px] px-3 md:px-4 md:py-3 py-2 text-md md:text-lg "
-                    />
+                    <button onClick={() => {}} className={buttonStyle}>
+                      Link With Mother
+                    </button>
                   )}
+                  <button onClick={handleAddResult} className={buttonStyle}>
+                    Link With Mother
+                  </button>
                   {!isOverFive && isLinked && (
-                    <LinkButton
-                      link={URLLinkWithMother({
-                        id: clientObj.oid,
-                      })}
-                      title="Unlink With Mother"
-                      className="w-[220px] px-3 md:px-4 md:py-3 py-2 text-md md:text-lg !bg-dangerColor text-whiteColor dark:text-white"
-                    />
+                    <button
+                      onClick={() => {}}
+                      className={`${buttonStyle} bg-dangerColor hover:bg-red-600 text-whiteColor`}
+                    >
+                      Unlink With Mother
+                    </button>
                   )}
                 </div>
               </div>
@@ -325,3 +331,6 @@ const ClientDetails = ({}: Props) => {
 };
 
 export default ClientDetails;
+
+const buttonStyle =
+  "px-3 md:px-6 py-3 text-md md:text-lg bg-whiteBgColor border border-borderColor hover:bg-borderColor rounded-full whitespace-nowrap";

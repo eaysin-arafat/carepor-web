@@ -8,6 +8,8 @@ const hivTestingReasons = ["HIVTestingReasons"];
 const hivNotTestingReasons = ["HIVNotTestingReasons"];
 const hts = ["HTSes"];
 const birthRecord = ["ClientBirthRecord"];
+const chiefComplaints = ["ChiefComplaints"];
+const treatmentPlan = ["TreatmentPlans"];
 
 // Export tags
 export const mainModuleTags = [
@@ -20,4 +22,6 @@ export const mainModuleTags = [
   ...hivNotTestingReasons,
   ...hts,
   ...birthRecord,
+  ...chiefComplaints,
+  ...treatmentPlan,
 ];

@@ -26,7 +26,7 @@ function AdminInfo() {
   };
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center dropdown gap-2">
       <p
         className={`border-r pr-2 text-textColor font-medium ${
           w1230 ? "font-[11px]" : "font-[15px]"
@@ -40,8 +40,10 @@ function AdminInfo() {
         className="min-w-[300px] w-[300px] z-50 bg-whiteBgColor"
         label={
           <img
-            src="assets/img/menu-avatar.png"
-            className={`${w1230 ? "w-[50px]" : "w-[60px]"} cursor-pointer`}
+            src="https://i.ibb.co/thBM8t0/avatar.jpg"
+            className={`${
+              w1230 ? "w-[50px]" : "w-[50px]"
+            } rounded-full cursor-pointer`}
             alt=""
           />
         }

@@ -11,7 +11,7 @@ function QueueSidebar() {
 
   return (
     <RootLayout>
-      <div className="">
+      <div className="sidebar">
         <Accordion
           className="border-none rounded-[1px] overflow-auto"
           style={{ borderRadius: "0px" }}
