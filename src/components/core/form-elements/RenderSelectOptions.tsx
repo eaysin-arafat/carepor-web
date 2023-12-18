@@ -59,14 +59,18 @@ export const RenderCountryOptions = () => {
   );
 };
 
-// // default Home Language select options
-// /**
-//  * @
-//  * @param no prams
-//  * @returns select options for homeLanguage
-//  */
-// export const RenderLanguageOptions = () => {
-//   const { data: homeLanguageEnum } = useReadHomeLanguagesQuery(undefined);
-
-//   return renderOptions(homeLanguageEnum);
-// };
+/**
+ * @default countries select options
+ * @param no params required
+ * @returns select options for countries
+ */
+export const RenderCountryCode = ({ countries }) => {
+  return (
+    Array.isArray(countries) &&
+    countries?.map((country) => (
+      <option key={country.oid} value={country.countryCode}>
+        {country.isoCodeAlpha2} ({country.countryCode})
+      </option>
+    ))
+  );
+};

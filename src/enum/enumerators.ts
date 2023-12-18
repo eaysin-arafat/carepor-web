@@ -242,28 +242,34 @@ export const EnumPiority = {
 export type TypePiority = keyof typeof EnumPiority;
 
 export const EnumOrigin = {
-  1: "FromWithin12km",
-  2: "FromMoreThenWithin12km",
-  3: "FromWithinDistrict",
-  4: "FromOutSideDistrict",
-  5: "FromOutSideZambia",
+  1: "From Within 12 km",
+  2: "From More Then Within 12 km",
+  3: "From Within District",
+  4: "From OutSide District",
+  5: "From Out Side Zambia",
   6: "Unknown",
+};
+
+// check
+export const EnumBoolYesNo = {
+  true: "Yes",
+  false: "No",
 };
 
 export const EnumInformantRelationship = {
   1: "Spouse",
-  2: "OwnChild",
-  3: "StepChild",
-  4: "AdoptedChild",
-  5: "GrandChild",
-  6: "BrotherSister",
+  2: "Own Child",
+  3: "Step Child",
+  4: "Adopted Child",
+  5: "Grand Child",
+  6: "Brother Sister",
   7: "Cousin",
-  8: "NieceNephew",
-  9: "BrotherSisterInLaw",
-  10: "ParentInLaw",
-  11: "MaidnannyHouseServant",
+  8: "Niece Nephew",
+  9: "Brother Sister In Law",
+  10: "Parent In Law",
+  11: "Maidnanny House Servant",
   12: "Guardian",
-  13: "OtherRelationship",
+  13: "Other Relationship",
 };
 
 export const EnumGuardianRelationship = {

@@ -38,7 +38,11 @@ const CovidForm = () => {
           titleClass="text-xl text-secondary"
         >
           <div className="grid  gap-5">
-            <MultipleSelect />
+            <MultipleSelect
+              options={[]}
+              selectedOptions={[]}
+              setSelectedOptions={() => {}}
+            />
             <Textarea label="Other Symptom Screen" />
           </div>
         </Card>
@@ -49,7 +53,11 @@ const CovidForm = () => {
           titleClass="text-xl text-secondary"
         >
           <div className="grid  gap-5">
-            <MultipleSelect />
+            <MultipleSelect
+              options={[]}
+              selectedOptions={[]}
+              setSelectedOptions={() => {}}
+            />
             <Textarea label="Other Exposure Risk" />
           </div>
         </Card>
@@ -142,7 +150,11 @@ const CovidForm = () => {
           titleClass="text-xl text-secondary"
         >
           <div className="grid  gap-5">
-            <MultipleSelect />
+            <MultipleSelect
+              options={[]}
+              selectedOptions={[]}
+              setSelectedOptions={() => {}}
+            />
             <Textarea
               label="Other Comorbidities Conditions"
               name="otherComorbiditiesConditions"

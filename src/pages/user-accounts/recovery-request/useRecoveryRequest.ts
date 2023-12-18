@@ -63,7 +63,7 @@ function usePasswordRecovery() {
 
     const { errors, isValid } = passwordRecoveryRequestValidator(recoverInfo);
 
-    console.log(errors);
+    // console.log(errors);
 
     if (!isValid) return setErrors(errors);
 
