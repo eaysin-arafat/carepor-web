@@ -74,14 +74,42 @@ export const ipdModalTypes = Object.freeze({
   ipdCreateModal: "ipdCreateModal",
 });
 
+export const gynObsModalTypes = Object.freeze({
+  gynObsCreateModal: "gynObsCreateModal",
+});
+
+export const complaintsModalTypes = Object.freeze({
+  presentingComplaints: "presentingComplaints",
+  tBConstitutionalSymptoms: "tBConstitutionalSymptoms",
+  reviewOfSystems: "reviewOfSystems",
+  pastMedicalHistory: "pastMedicalHistory",
+  chronicNonChronic: "chronicNonChronic",
+  allergies: "allergies",
+  familySocialHistory: "familySocialHistory",
+});
+
 export const examinationNDiagnosisModalTypes = Object.freeze({
   diagnosisCreateModal: "diagnosisCreateModal",
+  generalAssessment: "generalAssessment",
+  systemExamination: "systemExamination",
+  glasgowComaScale: "glasgowComaScale",
 });
 
 export const planModalTypes = Object.freeze({
   planCreateModal: "planCreateModal",
 });
 
+export const paediatricModalTypes = Object.freeze({
+  birthHistoryModal: "birthHistoryModal",
+  immunizationModal: "immunizationModal",
+  feedingHistoryModal: "feedingHistoryModal",
+  developmentHistoryModal: "developmentHistoryModal",
+});
+
+export const covidModalTypes = Object.freeze({
+  covidCreateModal: "covidCreateModal",
+  covidViewModal: "covidViewModal",
+});
 export const painRecordsModalTypes = Object.freeze({
   painRecordCreate: "painRecordCreate",
 });

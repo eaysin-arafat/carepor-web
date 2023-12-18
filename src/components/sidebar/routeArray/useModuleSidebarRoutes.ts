@@ -182,14 +182,14 @@ const useModuleSidebarRoutes = ({ clientId }: Props): SidebarItem[] => {
     {
       id: 15,
       title: "Covax",
-      link: "#",
+      link: "/covax",
       icon: "/assets/svg/sidebar/covax.svg",
       children: null,
     },
     {
       id: 16,
       title: "Covid",
-      link: "#",
+      link: "/covid",
       icon: "/assets/svg/sidebar/covid.svg",
       children: null,
     },

@@ -2,17 +2,19 @@ import { Encounter } from "@/features/medical-encounter/medical-encounter-api";
 import { DateFunc } from "@/utilities/date";
 import Card from "../core/card/Card";
 import DataRow from "../core/table/DataRow";
+import { MdOutlineModeEditOutline } from "react-icons/md";
 
 const AdmissionDetailsCard = ({ data }: { data: Encounter }) => {
   return (
     <div>
       <div className="mx-3 my-5">
         <Card
-          className="bg-whiteColor shadow-none border border-lightGrayColor md:px-5"
+          className="bg-whiteColor shadow-none border border-lightGrayColor md:px-5 relative"
           titleClass="text-secondaryColor"
-          edit
+          // edit
         >
-          <div className="">
+          <button className="absolute top-5 right-5 flex items-center gap-1 text-primaryColor "> <MdOutlineModeEditOutline /> Edit</button>
+          <div className="mt-7 sm:mt-0">
             <DataRow
               title="Admission Date "
               data={

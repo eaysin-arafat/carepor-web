@@ -1,11 +1,13 @@
 import PrivateGuard from "@/components/shared/guard/PrivateGuard";
 import ModuleSidebar from "@/components/sidebar/ModuleSidebar";
 import BirthRecordHistory from "@/pages/birth-record/history/History";
+import CovaxIndex from "@/pages/covax/index/Index";
+import CovidIndex from "@/pages/covid/index/Index";
 import Dashboard from "@/pages/dashboard/Dashboard";
 import HtsIndex from "@/pages/hts/index/HtsIndex";
 import Investigation from "@/pages/investigations/index/Investigation";
 import IPDHistry from "@/pages/medical-encounter-ipd/histry/IPDHistry";
-import OpdHistry from "@/pages/medical-encounter/histry/OpdHistry";
+import OPDHistory from "@/pages/medical-encounter-opd/history/OpdHistory";
 import PainRecordsHistory from "@/pages/pain-records/history/History";
 import ReferralsHistory from "@/pages/referrals/history/History";
 import SurgeryIndex from "@/pages/surgery/index/Surgery";
@@ -13,6 +15,8 @@ import VitalsDetails from "@/pages/vitals/details/VitalsDetails";
 import Vitals from "@/pages/vitals/index/Vitals";
 import {
   URLBirthRecord,
+  URLCovax,
+  URLCovid,
   URLDashboard,
   URLHts,
   URLIPDHistory,
@@ -60,13 +64,25 @@ const ModuleRoute = [
             path: URLHts(),
             element: "",
           },
+          // {
+          //   path: "/medical-encounters",
+          //   element: <OpdHistry />,
+          // },
           {
             path: URLOPD(),
-            element: <OpdHistry />,
+            element: <OPDHistory />,
           },
           {
             path: URLIPDHistory(),
             element: <IPDHistry />,
+          },
+          {
+            path: URLCovax(),
+            element: <CovaxIndex />,
+          },
+          {
+            path: URLCovid(),
+            element: <CovidIndex />,
           },
           {
             path: URLPainRecords(),
