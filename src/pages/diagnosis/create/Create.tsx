@@ -1,4 +1,3 @@
-import { useAppSelector } from "@/app/store";
 import DiagnosisPastRecord from "@/components/common-components/examination-diagnosis/DiagnosisPastRecord";
 import CancelAndAddButton from "@/components/core/buttons/CancelAndAddButton";
 import IcdSelectableSearch from "@/components/core/form-elements/IcdSelectableSearch";
@@ -7,20 +6,10 @@ import DefaultModal from "@/components/core/modal/DefaultModal";
 import PastRecordContainers from "@/components/past-record-containers/PastRecordContainers";
 import PastRecordData from "@/components/shared/past-record/PastRecordData";
 import PastRecordWrapper from "@/components/shared/past-record/PastRecordWrpper";
-import {
-  diagnosisApiEndpoints,
-  useLoadICDDiagnosisQuery,
-  useLoadNTGLevel1DiagnosisQuery,
-  useLoadNTGLevel2DiagnosisQuery,
-  useLoadNTGLevel3DiagnosisQuery,
-} from "@/features/diagnosis/diagnosis-api";
-import useClient from "@/hooks/useClient";
 import { cn } from "@/utilities/cn";
-import { filterByEncounter } from "@/utilities/transformation";
-import React, { useMemo, useState } from "react";
 import { Loader } from "react-feather";
 import { BsPlusCircle } from "react-icons/bs";
-import { v4 as uuid } from "uuid";
+import useCreate from "./useCreate";
 
 interface Props {
   toggler: () => void;
@@ -28,138 +17,36 @@ interface Props {
 }
 
 const CreateDiagnosis = ({ toggler, encounterType }: Props) => {
-  const [selectedLevelOneDiagnosis, setSelectedLevelOneDiagnosis] =
-    useState(null);
-  const [selectedLevelTwoDiagnosis, setSelectedLevelTwoDiagnosis] =
-    useState(null);
-  const [selectedLevelThreeDiagnosis, setSelectedLevelThreeDiagnosis] =
-    useState(null);
-  const [selectedIcdDiagnosis, setSelectedIcdDiagnosis] = useState(null);
-  const [ntgDiagnosisList, setNtgDiagnosisList] = useState([]);
-  const [icdDiagnosisList, setIcdDiagnosisList] = useState([]);
-  const [diagnosisSwitcher, setDiagnosisSwitcher] = useState(1);
-  const [searchValue, setSearchValue] = useState("");
-
-  /// ICD Options
-  const [icdOption, setIcdOption] = useState([]);
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
-
-  const client = useClient();
-
-  const selectDiagnosis = useMemo(
-    () => diagnosisApiEndpoints.readDiagnosesByClient.select(client?.oid),
-    [client?.oid]
-  );
-
   const {
-    data: diagnoses,
+    diagnosisSwitcher,
+    fetchMoreData,
+    filteredDiagnoses,
+    filteredLevelThree,
+    filteredLevelTwo,
+    handleAddDiagnosis,
+    handleIcdDelete,
+    handleNtgDelete,
+    hasMore,
+    icdDiagnosisList,
+    icdOption,
+    ntgDiagnosisList,
+    options,
+    selectedIcdDiagnosis,
+    selectedLevelOneDiagnosis,
+    selectedLevelThreeDiagnosis,
+    selectedLevelTwoDiagnosis,
+    setDiagnosisSwitcher,
+    setSelectedIcdDiagnosis,
+    setSelectedLevelOneDiagnosis,
+    setSelectedLevelThreeDiagnosis,
+    setSelectedLevelTwoDiagnosis,
     isLoading,
-    status,
-  } = useAppSelector(selectDiagnosis);
-
-  const { data: levelOneDiagnosis } = useLoadNTGLevel1DiagnosisQuery(null);
-  const { data: levelTwoDiagnosis } = useLoadNTGLevel2DiagnosisQuery(null);
-  const { data: levelThreeDiagnosis } = useLoadNTGLevel3DiagnosisQuery(null);
-  const {
-    data: icdDiagnoses,
-    isSuccess,
-    status: icdStatus,
-  } = useLoadICDDiagnosisQuery(null);
-
-  console.log("icdDiagnoses", icdDiagnoses);
-
-  const handleAddDiagnosis = () => {
-    setSelectedLevelOneDiagnosis(null);
-    setSelectedLevelTwoDiagnosis(null);
-    setSelectedLevelThreeDiagnosis(null);
-
-    if (diagnosisSwitcher === 1) {
-      return setNtgDiagnosisList((prev) => [
-        ...prev,
-        {
-          id: uuid(),
-          ...selectedLevelThreeDiagnosis,
-        },
-      ]);
-    }
-
-    return setIcdDiagnosisList((prev) => [
-      ...prev,
-      {
-        id: uuid(),
-        ...selectedIcdDiagnosis,
-      },
-    ]);
-  };
-
-  const handleNtgDelete = (id: string) => {
-    setNtgDiagnosisList((prev) => prev.filter((item) => item?.id !== id));
-  };
-
-  const handleIcdDelete = (id: string) => {
-    setIcdDiagnosisList((prev) => prev.filter((item) => item?.id !== id));
-  };
-
-  const options = levelOneDiagnosis?.map((item) => ({
-    value: item.oid,
-    label: item.description,
-  }));
-
-  const filteredDiagnoses = filterByEncounter(
-    diagnoses?.slice(),
-    encounterType
-  );
-  const filteredLevelTwo = levelTwoDiagnosis
-    ?.filter((item) => item?.ntgLevelOneId === selectedLevelOneDiagnosis?.value)
-    ?.map((item) => ({
-      value: item.oid,
-      label: item.description,
-    }));
-
-  const filteredLevelThree = levelThreeDiagnosis
-    ?.filter((item) => item?.ntgLevelTwoId === selectedLevelTwoDiagnosis?.value)
-    ?.map((item) => ({
-      value: item.oid,
-      label: item.description,
-    }));
-
-  const filteredIcdDiagnoses = icdDiagnoses?.filter((item) => {
-    if (!searchValue) return true;
-
-    return item?.label
-      ?.toLocaleLowerCase()
-      .includes(searchValue?.toLocaleLowerCase());
-  });
-
-  const itemsPerPage = 35;
-  const totalPages = Math.ceil(filteredIcdDiagnoses?.length / itemsPerPage);
-
-  const fetchMoreData = () => {
-    console.log("fetchMoreData");
-
-    if (page >= totalPages) {
-      setHasMore(false);
-      return;
-    }
-    setPage((prev) => prev + 1);
-    setHasMore(true);
-  };
-
-  React.useEffect(() => {
-    if (isSuccess && icdStatus === "fulfilled") {
-      setIcdOption(filteredIcdDiagnoses?.slice(0, itemsPerPage));
-    }
-  }, [isSuccess, icdStatus]);
-
-  React.useEffect(() => {
-    const start = (page - 1) * itemsPerPage;
-    const end = start + itemsPerPage;
-    setIcdOption((prev) => [
-      ...prev,
-      ...(filteredIcdDiagnoses?.slice(start, end) || []),
-    ]);
-  }, [page]);
+    icdStatus,
+    handleSearchChange,
+    searchValue,
+    icdDiagnoses,
+    filteredIcdDiagnoses,
+  } = useCreate({ encounterType });
 
   return (
     <DefaultModal size="7xl" toggler={toggler}>
@@ -244,14 +131,12 @@ const CreateDiagnosis = ({ toggler, encounterType }: Props) => {
                   required
                   label="ICD 11"
                   placeholder=""
-                  options={icdOption}
                   selectedValue={selectedIcdDiagnosis}
                   setSelectedValue={setSelectedIcdDiagnosis}
+                  options={searchValue ? filteredIcdDiagnoses : icdOption}
                   hasMore={hasMore}
                   fetchMoreData={fetchMoreData}
-                  searchValue={searchValue}
-                  setSearchValue={setSearchValue}
-                  dataLength={filteredIcdDiagnoses?.length}
+                  handleSearchChange={handleSearchChange}
                 />
               </div>
             </div>
@@ -293,7 +178,7 @@ const CreateDiagnosis = ({ toggler, encounterType }: Props) => {
 
         {/* PAST RECORD CONTAINERS */}
         <PastRecordContainers>
-          {(isLoading || status === "pending") && (
+          {(isLoading || icdStatus === "pending") && (
             <div className="flex w-full justify-center items-center">
               <Loader size={40} className="animate-spin" />
             </div>

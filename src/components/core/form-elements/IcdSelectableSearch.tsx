@@ -1,7 +1,6 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { Loader } from "react-feather";
 import { FiSearch } from "react-icons/fi";
-import InfiniteScroll from "react-infinite-scroll-component";
 
 interface Option {
   value: number;
@@ -21,6 +20,7 @@ interface CustomSearchableProps {
   options?: Option[];
   hasMore?: boolean;
   fetchMoreData?: () => void;
+  handleSearchChange?: (value: string) => void;
 }
 
 const IcdSelectableSearch = ({
@@ -32,27 +32,20 @@ const IcdSelectableSearch = ({
   options = [],
   hasMore,
   fetchMoreData,
+  handleSearchChange,
 }: CustomSearchableProps) => {
   const searchRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const spinnerRef = useRef<HTMLLIElement>(null);
 
   const [showDropdown, setShowDropdown] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
-
-  const filterData =
-    Array.isArray(options) && options
-      ? options.filter((data) =>
-          data?.label
-            ?.toLocaleLowerCase()
-            .includes(searchValue.toLocaleLowerCase())
-        )
-      : [];
+  const [isIntersecting, setIsIntersecting] = useState(false);
 
   const handleSetValue = (data: Option) => {
     if (setSelectedValue) {
       setSelectedValue(data);
     }
-    setSearchValue("");
+    // setSearchValue("");
     setShowDropdown(false);
   };
 
@@ -80,13 +73,36 @@ const IcdSelectableSearch = ({
     };
   }, [searchRef]);
 
+  // useEffect(() => {
+  //   if (setSelectedValue) {
+  //     if (!options?.length) {
+  //       setSelectedValue(null);
+  //     }
+  //   }
+  // }, [options, setSelectedValue]);
+
   useEffect(() => {
-    if (setSelectedValue) {
-      if (!options?.length) {
-        setSelectedValue(null);
-      }
+    if (spinnerRef && spinnerRef.current) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const [entry] = entries;
+          setIsIntersecting(entry.isIntersecting);
+        }
+        // { threshold: 1 }
+      );
+      observer.observe(spinnerRef.current);
+
+      return () => {
+        observer.disconnect();
+      };
     }
-  }, [options, setSelectedValue]);
+  }, [spinnerRef]);
+
+  useEffect(() => {
+    if (isIntersecting && hasMore) {
+      fetchMoreData && fetchMoreData();
+    }
+  }, [isIntersecting, hasMore, fetchMoreData]);
 
   return (
     <>
@@ -127,9 +143,9 @@ const IcdSelectableSearch = ({
                 <div className="search">
                   <i className="uil uil-search"></i>
                   <input
-                    value={searchValue}
+                    // value={searchValue}
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                      setSearchValue(e.target.value)
+                      handleSearchChange(e.target.value)
                     }
                     spellCheck={false}
                     type="text"
@@ -142,34 +158,31 @@ const IcdSelectableSearch = ({
                   <div className="absolute z-[9999] bg-white w-full border px-[1px] mx-[-1px]">
                     <div
                       id="scroll_div"
-                      className="overflow-y-scroll"
-                      style={{ height: 200 }}
+                      className="max-h-[250px] overflow-y-scroll"
+                      // style={{ height: 200 }}
                     >
-                      <InfiniteScroll
-                        dataLength={filterData?.length}
-                        next={fetchMoreData}
-                        hasMore={hasMore}
-                        scrollableTarget="scroll_div"
-                        loader={
-                          <div className="flex h-10 justify-center items-center">
-                            <Loader size={20} className="animate-spin" />
-                          </div>
-                        }
-                      >
-                        <ul>
-                          {filterData?.map((data) => {
-                            return (
-                              <li
-                                key={data.value}
-                                onClick={() => handleSetValue(data)}
-                                className="options border-t cursor-pointer text-black hover:bg-blue-500 hover:text-white px-[15px] py-[8px] "
-                              >
-                                {data?.label}
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      </InfiniteScroll>
+                      <ul>
+                        {options?.map((data) => {
+                          return (
+                            <li
+                              key={data.value}
+                              onClick={() => handleSetValue(data)}
+                              className="options border-t cursor-pointer text-black hover:bg-blue-500 hover:text-white px-[15px] py-[8px] "
+                            >
+                              {data?.label}
+                            </li>
+                          );
+                        })}
+
+                        {hasMore && (
+                          <li
+                            className="flex justify-center items-center"
+                            ref={spinnerRef}
+                          >
+                            <Loader size={10} className="animate-spin" />
+                          </li>
+                        )}
+                      </ul>
                     </div>
                   </div>
                 </div>

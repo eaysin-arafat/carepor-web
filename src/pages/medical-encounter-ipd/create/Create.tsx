@@ -15,15 +15,16 @@ import {
   openAddModal,
   openEditModal,
 } from "@/features/modal/modal-slice";
+import { useReadTreatmentPlanByClientQuery } from "@/features/treatment-plan/treatment-plan-api";
 import useClient from "@/hooks/useClient";
 import FormLayout from "@/layout/FormLayout";
 import CreateChiefComplaints from "@/pages/chief-complaints/create/Create";
 import EditChiefComplaints from "@/pages/chief-complaints/edit/Edit";
 import CreateDiagnosis from "@/pages/diagnosis/create/Create";
+import CreateTreatmentPlan from "@/pages/treatment-plans/create/Create";
+import EditTreatmentPlan from "@/pages/treatment-plans/edit/Edit";
 import { filterBy24Hours, filterByEncounter } from "@/utilities/transformation";
 import { useDispatch, useSelector } from "react-redux";
-import TreatmentPlanModal from "../plan/TreatmentPlanModal";
-import DiagnosisModal from "../diagnosis/DiagnosisModal";
 
 const IPDCreate = () => {
   const { addModal, editModal } = useSelector(
@@ -42,18 +43,20 @@ const IPDCreate = () => {
     }
   );
 
-  const {
-    data: diagnoses,
-    isLoading,
-    isError,
-    isSuccess,
-    error,
-  } = useReadDiagnosesByClientQuery(client?.oid, {
+  const { data: diagnoses } = useReadDiagnosesByClientQuery(client?.oid, {
     skip: !client?.oid,
     refetchOnMountOrArgChange: true,
   });
 
-  console.log("diagnoses", diagnoses);
+  const { data: treatmentPlans } = useReadTreatmentPlanByClientQuery(
+    client?.oid,
+    {
+      skip: !client?.oid,
+      refetchOnMountOrArgChange: true,
+    }
+  );
+
+  console.log("treatmentPlans", treatmentPlans);
 
   const handleChiefComplaints = () => {
     dispatch(
@@ -90,6 +93,15 @@ const IPDCreate = () => {
     );
   };
 
+  const handleTreatmentEdit = () => {
+    dispatch(
+      openEditModal({
+        modalId: ipdModalTypes.editIpdTreatmentPlan,
+        data: null,
+      })
+    );
+  };
+
   const closeModal = () => {
     dispatch(closeAddModal());
   };
@@ -105,14 +117,12 @@ const IPDCreate = () => {
   );
   const ipdEditData = filterBy24Hours(ipdChiefComplaints?.slice());
 
-  // EXAMINATION AND DIAGNOSIS
-  const examinationAndDiagnosis = filterByEncounter(
-    diagnoses?.slice(),
+  // TREATMENT PLAN
+  const treatmentPlan = filterByEncounter(
+    treatmentPlans?.slice(),
     EnumEncounterType.MedicalEncounterIPD
   );
-  const editExaminationAndDiagnosis = filterBy24Hours(
-    examinationAndDiagnosis?.slice()
-  );
+  const editAbleTreatmentPlan = filterBy24Hours(treatmentPlan?.slice());
 
   return (
     <FormLayout
@@ -171,11 +181,24 @@ const IPDCreate = () => {
         <FormHeading
           title="Treatment Plan"
           modalHandler={handleIpdPlan}
-          isEdit
+          isEdit={editAbleTreatmentPlan?.length > 0}
+          editHandler={handleTreatmentEdit}
         />
         {addModal?.modalId === planModalTypes.planCreateModal && (
-          <TreatmentPlanModal toggler={closeModal} />
+          <CreateTreatmentPlan
+            toggler={closeModal}
+            encounterType={EnumEncounterType.MedicalEncounterIPD}
+          />
         )}
+
+        {/* UPDATE TREATMENT PLAN */}
+        {editModal?.isOpen &&
+          editModal?.modalId === ipdModalTypes.editIpdTreatmentPlan && (
+            <EditTreatmentPlan
+              toggler={closeEdit}
+              encounterType={EnumEncounterType.MedicalEncounterIPD}
+            />
+          )}
       </div>
     </FormLayout>
   );

@@ -1,4 +1,5 @@
 import { cn } from "@/utilities/cn";
+import { Edit2 } from "react-feather";
 import { FaRegTrashAlt } from "react-icons/fa";
 
 type Props = {
@@ -6,12 +7,18 @@ type Props = {
   noHeading?: boolean;
   className?: string;
   handleDelete?: () => void;
+  handleEdit?: () => void;
+  isEditAble?: boolean;
+  isDeleteAble?: boolean;
 };
 const PastRecordWrapper = ({
   children,
   noHeading,
   className = " ",
   handleDelete,
+  isEditAble,
+  handleEdit,
+  isDeleteAble,
 }: Props) => {
   return (
     <div
@@ -39,21 +46,32 @@ const PastRecordWrapper = ({
         <div className="flex gap-5 flex-wrap">{children}</div>
       </div>
       <div className="flex gap-2 justify-end mt-2 sm:mt-0">
-        <button
-          type="button"
-          className="flex items-center gap-1 p-1 text-dangerColor"
-          onClick={handleDelete}
-        >
-          <span>
-            <FaRegTrashAlt size={14} className="text-dangerColor" />
-          </span>
-        </button>
-        {/* <button type="button" className="flex items-center gap-1 ">
-          <span>
-            <Edit2 size={14} className=" text-primaryColor" />
-          </span>
-          <span className=" text-primaryColor">Edit</span>
-        </button> */}
+        {/* DELETE BUTTON */}
+        {isDeleteAble && (
+          <button
+            type="button"
+            className="flex items-center gap-1 p-1 text-dangerColor"
+            onClick={handleDelete}
+          >
+            <span>
+              <FaRegTrashAlt size={14} className="text-dangerColor" /> Delete
+            </span>
+          </button>
+        )}
+
+        {/* EDIT BUTTON */}
+        {isEditAble && (
+          <button
+            type="button"
+            className="flex items-center gap-1 p-1 text-primaryColor"
+            onClick={handleEdit}
+          >
+            <span>
+              <Edit2 size={14} className=" text-primaryColor" />
+            </span>
+            <span>Edit</span>
+          </button>
+        )}
       </div>
     </div>
   );
