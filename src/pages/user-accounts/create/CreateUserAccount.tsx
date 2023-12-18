@@ -6,10 +6,13 @@ import MultiStepping from "@/components/shared/multi-step/MultiStepping";
 import ContactInfo from "@/components/user-accounts/ContactInfo";
 import LoginInfo from "@/components/user-accounts/LoginInfo";
 import PersonalInfo from "@/components/user-accounts/PersonalInfo";
+import useWindowWidth from "@/hooks/useWindow";
 import { URLUserLogin } from "@/routers/public";
+import { cn } from "@/utilities/cn";
 import useUserRegistration from "./useCreate";
 
 function CreateUserAccount() {
+  const w700 = useWindowWidth(700);
   const {
     contactInfo,
     countries,
@@ -40,9 +43,7 @@ function CreateUserAccount() {
 
   return (
     <div className=" px-2">
-      <h2 className="heading_2 text-center mt-8">
-        User Profile Registration
-      </h2>
+      <h2 className="heading_2 text-center mt-8">User Profile Registration</h2>
       <p className="text-center mt-2 pb-2">
         Fields marked by <span className="text-dangerColor">*</span> are
         mandatory
@@ -92,7 +93,9 @@ function CreateUserAccount() {
                 <LinkButton
                   title="Cancel"
                   link={URLUserLogin()}
-                  className="order-last xs:order-first"
+                  className={cn(" order-last xs:order-first w-40", {
+                    "w-24": w700,
+                  })}
                 />
                 <div className="flex gap-5 justify-end">
                   <BackButton
@@ -100,7 +103,7 @@ function CreateUserAccount() {
                     title="Back"
                     type="button"
                     onClick={handleBack}
-                    className="w-40"
+                    className={cn("w-40", { "w-24": w700 })}
                   />
                   {stateCount === 3 && (
                     <NextButton title="Submit" type="submit" className="" />
@@ -111,7 +114,7 @@ function CreateUserAccount() {
                       title="Next"
                       type="button"
                       onClick={handleNext}
-                      className="w-40"
+                      className={cn("w-40", { "w-24": w700 })}
                     />
                   )}
                 </div>

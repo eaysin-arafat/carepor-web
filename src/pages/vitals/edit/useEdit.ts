@@ -74,7 +74,15 @@ const useEdit = () => {
   const { editModal } = useSelector((state: RootState) => state.modal);
 
   const [vitalData, setVitalData] = useState<VitalDataType>(
-    editModal?.data || initialVitalData
+    editModal?.data
+      ? {
+          ...editModal?.data,
+          systolic:
+            editModal?.data?.systolic === -1 ? "" : editModal?.data?.systolic,
+          diastolic:
+            editModal?.data?.diastolic === -1 ? "" : editModal?.data?.diastolic,
+        }
+      : initialVitalData
   );
 
   const [errorMessages, setErrorMessages] =
@@ -125,7 +133,10 @@ const useEdit = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { error, isValid } = vitalsCreateValidator(vitalData);
+    const { error, isValid } = vitalsCreateValidator({
+      ...vitalData,
+      systolicIfUnrecordable: vitalData?.diastolicIfUnrecordable,
+    });
 
     if (!isValid) return setErrorMessages(error);
 
@@ -133,7 +144,7 @@ const useEdit = () => {
       ...vitalData,
       ...baseModel,
       diastolicIfUnrecordable: vitalData.diastolicIfUnrecordable || 0,
-      systolicIfUnrecordable: vitalData.systolicIfUnrecordable || 0,
+      systolicIfUnrecordable: vitalData.diastolicIfUnrecordable || 0,
       lastTested: vitalData?.vitalsDate,
       encounterId: cookieManager.parseCookie<{ oid: string }>("opdVisitSession")
         .oid,
@@ -141,7 +152,7 @@ const useEdit = () => {
       clientId: cookieManager.parseCookie<Client>("client")?.oid,
     };
 
-    updateVital(data);
+    updateVital({ key: editModal?.data?.oid, body: data });
   };
 
   // handle side effects

@@ -1,6 +1,7 @@
+import { hivTypes } from "@/pages/hts/constants";
 import { Edit2 } from "react-feather";
 
-const PastEncounters = ({ data }) => {
+const PastEncounters = ({ data, handleEdit }) => {
   return (
     <div className="flex w-full justify-between items-center bg-[#E8F4FF] text-[12px] py-3 px-5 border rounded">
       <div className="flex flex-col gap-1">
@@ -12,17 +13,21 @@ const PastEncounters = ({ data }) => {
         </div>
         <div className="flex gap-2">
           <p className="font-semibold whitespace-nowrap">Chief complaints : </p>
-          {data?.chiefComplaints}
+          {data?.historySummary}
           <p className="font-semibold whitespace-nowrap">
             History of Chief complaints :
           </p>
-          {data?.historyOfChiefComplaint}
+          {data?.examinationSummary}
           <p className="font-semibold whitespace-nowrap">HIV Status : </p>
-          {data?.hivStatus}
+          {hivTypes[data?.hivStatus]}
         </div>
       </div>
       <div>
-        <button className="flex items-center gap-2">
+        <button
+          className="flex items-center gap-2"
+          onClick={handleEdit}
+          type="button"
+        >
           <span>
             <Edit2 size={14} />
           </span>

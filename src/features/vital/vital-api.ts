@@ -107,11 +107,12 @@ const vitalApi = API.injectEndpoints({
      * @returns Vital
      */
     updateVital: builder.mutation({
-      query: ({ key, ...body }) => ({
+      query: ({ key, body }) => ({
         url: `/vital/${key}`,
         method: "PUT",
         body,
       }),
+      invalidatesTags: ["Vitals"],
     }),
 
     /**

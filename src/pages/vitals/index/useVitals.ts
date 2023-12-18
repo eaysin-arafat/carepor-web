@@ -18,7 +18,11 @@ const useVitals = () => {
 
   const client = cookieManager.parseCookie<Client>("client");
 
-  const { data: vitals } = useReadVitalByClientQuery(client?.oid, {
+  const {
+    data: vitals,
+    isLoading,
+    status,
+  } = useReadVitalByClientQuery(client?.oid, {
     skip: !client?.oid,
     refetchOnMountOrArgChange: true,
   });
@@ -54,6 +58,8 @@ const useVitals = () => {
     vitals,
     viewModal,
     editModal,
+    isLoading,
+    status,
   };
 };
 

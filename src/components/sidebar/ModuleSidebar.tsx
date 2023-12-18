@@ -47,7 +47,7 @@ function ModuleSidebar() {
 
   return (
     <ModuleLayout>
-      <div className="w-full">
+      <div className="w-full sidebar">
         <div className="text-left p-3">
           <input
             type="search"

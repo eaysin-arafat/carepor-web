@@ -37,7 +37,7 @@ const FormHeading = ({
               { "p-1": w580 }
             )}
             onClick={editHandler}
-            disabled
+            disabled={!isEdit}
           >
             <Edit size={15} color="#fff" />
             {!w580 && (

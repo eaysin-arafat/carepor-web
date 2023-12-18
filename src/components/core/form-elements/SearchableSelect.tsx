@@ -1,5 +1,5 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react";
-import { FiSearch } from "react-icons/fi";
+import { ChevronDown } from "react-feather";
 
 interface Option {
   value: number;
@@ -12,7 +12,7 @@ interface CustomSearchableProps {
   required?: boolean;
   errMsg?: string;
   label?: string;
-  setError?: {};
+  setError?: () => void;
   name?: string;
   selectedValue?: Option | null;
   setSelectedValue?: (data: Option | null) => void;
@@ -76,7 +76,7 @@ function SearchableSelect({
   }, [inputRef, showDropdown]);
 
   useEffect(() => {
-    let outClickHandler = (e: MouseEvent) => {
+    const outClickHandler = (e: MouseEvent) => {
       if (!searchRef?.current?.contains(e.target as Node)) {
         setShowDropdown(false);
       }
@@ -98,7 +98,7 @@ function SearchableSelect({
 
   return (
     <>
-      <div>
+      <div className="w-full">
         <div ref={searchRef} className="w-full">
           <div className="flex">
             <div className="input_label mb-2"> {label}</div>
@@ -126,7 +126,7 @@ function SearchableSelect({
                   </span>
                   <span className="px-[15px] py-[10px]">
                     {" "}
-                    <FiSearch width={30} />{" "}
+                    <ChevronDown width={30} />{" "}
                   </span>
                 </div>
               </div>
@@ -150,7 +150,7 @@ function SearchableSelect({
                   <div className="absolute z-[9999] bg-white w-full border px-[1px] mx-[-1px]">
                     <div className="max-h-[250px] overflow-y-scroll">
                       <ul className="">
-                        {
+                        {/* {
                           <li
                             onClick={handleResetValue}
                             className="options border-t cursor-pointer text-black hover:bg-blue-500 hover:text-white px-[15px] py-[8px] "
@@ -161,7 +161,7 @@ function SearchableSelect({
                               ? "No match found"
                               : "--Select--"}
                           </li>
-                        }
+                        } */}
 
                         {filterData.map((data) => {
                           return (

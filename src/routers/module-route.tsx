@@ -4,6 +4,7 @@ import BirthRecordHistory from "@/pages/birth-record/history/History";
 import CovaxIndex from "@/pages/covax/index/Index";
 import CovidIndex from "@/pages/covid/index/Index";
 import Dashboard from "@/pages/dashboard/Dashboard";
+import DeathRecordHistory from "@/pages/death-record/history/History";
 import HtsIndex from "@/pages/hts/index/HtsIndex";
 import Investigation from "@/pages/investigations/index/Investigation";
 import IPDHistry from "@/pages/medical-encounter-ipd/histry/IPDHistry";
@@ -18,6 +19,7 @@ import {
   URLCovax,
   URLCovid,
   URLDashboard,
+  URLDeathRecord,
   URLHts,
   URLIPDHistory,
   URLInvestigation,
@@ -95,6 +97,10 @@ const ModuleRoute = [
           {
             path: URLBirthRecord(),
             element: <BirthRecordHistory />,
+          },
+          {
+            path: URLDeathRecord(),
+            element: <DeathRecordHistory />,
           },
         ],
       },
