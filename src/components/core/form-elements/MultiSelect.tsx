@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { RxCross2 } from "react-icons/rx";
 
 export interface Option {
   oid: number;
@@ -83,7 +84,7 @@ const MultiSelect = ({
             className="custom-input border border-borderColor"
           />
         </div>
-        <div className=" grid grid-cols-2">
+        <div className=" grid md:grid-cols-2">
           {filteredOptions.map((option) => (
             <div
               key={option.oid}
@@ -107,33 +108,30 @@ const MultiSelect = ({
       </div>
 
       {selectedOptions.length > 0 && (
-        <div className="bg-lightBlueColor border border-borderColor p-2 mt-5 rounded-lg">
+        <div className="bg-lightBlueColor border border-borderColor p-4 mt-5 rounded-lg grid xs:grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4">
           {selectedOptions.map((option) => (
             <div
               key={option.oid}
-              className="px-4 py-2 cursor-pointer hover:bg-blue-200 w-fit"
-              // onClick={() => handleOptionToggle(option)}
+              className="bg-lightBlueColor border border-primaryColor rounded-lg py-1 px-2 flex justify-between gap-2 "
             >
-              <div className="flex items-center">
-                <input
-                  onClick={() => handleOptionToggle(option)}
-                  type="checkbox"
-                  className="w-5 h-5 mr-2 text-blue-500 border-gray-300 focus:ring-blue-400"
-                  checked={selectedOptions.some(
-                    (item) => item.oid === option.oid
-                  )}
-                  onChange={() => {}}
-                />
-                <span className="text-gray-700">{option.description}</span>
-              </div>
+              <h2 title={option.description} className="whitespace-nowrap">
+                {option.description.length > 17
+                  ? option.description.substring(0, 17) + "..."
+                  : option.description}
+              </h2>
+              <button onClick={() => handleOptionToggle(option)}>
+                <RxCross2 className="text-dangerColor rounded hover:bg-red-200 text-[20px] p-0.5" />
+              </button>
             </div>
           ))}
         </div>
       )}
-      <div className="bg-lightBlueColor mt-5 ">
+      {/* <div className="bg-lightBlueColor border border-primaryColor rounded-lg py-1 px-2 mt-5 flex gap-1  w-fit">
         <h2>Hello</h2>
-        <button></button>
-      </div>
+        <button onClick={() => handleOptionToggle(option)}>
+          <RxCross2 />
+        </button>
+      </div> */}
     </div>
   );
 };
