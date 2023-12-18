@@ -1,12 +1,12 @@
 import { useAppSelector } from "@/app/store";
 import DateInput from "@/components/core/form-elements/DatePicker";
 import Input from "@/components/core/form-elements/Input";
-import MultipleSelect, {
-  Option,
-} from "@/components/core/form-elements/MultipleSelect";
+import MultiSelect from "@/components/core/form-elements/MultiSelect";
+import { Option } from "@/components/core/form-elements/MultipleSelect";
 import Select from "@/components/core/form-elements/Select";
 import Textarea from "@/components/core/form-elements/textarea";
 import { clientTypeApiEndpoints } from "@/features/client-type/client-type-api";
+import { hivNotTestingReasonApiEndpoints } from "@/features/hiv-not-testing-reasons/hiv-not-testing-reason-api";
 import { hivRiskFactorApiEndpoints } from "@/features/hiv-risk-factor/hiv-risk-factor-api";
 import { hivTestingReasonApiEndpoints } from "@/features/hiv-testing-reason/hiv-testing-reason-api";
 import { servicePointsApiEndpoints } from "@/features/service-points/service-points-api";
@@ -89,7 +89,7 @@ const HTSForm = ({
   // } = useReadHIVTestingReasonsQuery(null);
 
   const selectHivNotTestingReasons = useMemo(
-    () => hivTestingReasonApiEndpoints.readHIVTestingReasons.select(null),
+    () => hivNotTestingReasonApiEndpoints.readHIVNotTestingReasons.select(null),
     []
   );
 
@@ -364,12 +364,13 @@ const HTSForm = ({
           </div>
           <div className="">
             <Select
-              required
+              required={htsData?.determineTestResult === "1"}
               label="Bioline"
               name="biolineTestResult"
               errMsg={errorMessages.biolineTestResult}
               value={htsData?.biolineTestResult}
               onChange={handleHtsDataChange}
+              disabled={htsData?.determineTestResult !== "1"}
             >
               <option value="1">Reactive</option>
               <option value="2">Non Reactive</option>
@@ -377,12 +378,19 @@ const HTSForm = ({
           </div>
           <div className="">
             <Select
-              required
+              required={
+                htsData?.determineTestResult === "1" &&
+                htsData?.biolineTestResult === "1"
+              }
               label="HIV Type"
               name="hivType"
               errMsg={errorMessages.hivType}
               value={htsData?.hivType}
               onChange={handleHtsDataChange}
+              disabled={
+                htsData?.determineTestResult !== "1" ||
+                htsData?.biolineTestResult !== "1"
+              }
             >
               <option value="1">HIV-1</option>
               <option value="2">HIV-2</option>
@@ -445,29 +453,34 @@ const HTSForm = ({
           </div>
         </div>
       )}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-5 border border-borderColor rounded-lg mt-8 shadow-light">
-        <h2 className="col-span-full text-xl font-semibold">
-          Post Test Assessment
-        </h2>
-        <div className="col-span-full">
-          <MultipleSelect
-            options={hivRiskFactors?.slice() || []}
-            selectedOptions={selectedOptions}
-            setSelectedOptions={setSelectedOptions}
-          />
+
+      {(htsData?.biolineTestResult == "2" ||
+        htsData?.determineTestResult == "2") && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-5 border border-borderColor rounded-lg mt-8 shadow-light">
+          <h2 className="col-span-full text-xl font-semibold">
+            Post Test Assessment
+          </h2>
+          <div className="col-span-full">
+            <MultiSelect
+              options={hivRiskFactors?.slice() || []}
+              selectedOptions={selectedOptions}
+              setSelectedOptions={setSelectedOptions}
+              isSearchable={true}
+            />
+          </div>
+          <div className="col-span-full">
+            <DateInput
+              label="Retest Date"
+              name="retestDate"
+              errMsg={errorMessages.retestDate}
+              selected={
+                htsData?.retestDate ? new Date(htsData?.retestDate) : null
+              }
+              onChange={(date) => handleDateChange(date, "retestDate")}
+            />
+          </div>
         </div>
-        <div className="col-span-full">
-          <DateInput
-            label="Retest Date"
-            name="retestDate"
-            errMsg={errorMessages.retestDate}
-            selected={
-              htsData?.retestDate ? new Date(htsData?.retestDate) : null
-            }
-            onChange={(date) => handleDateChange(date, "retestDate")}
-          />
-        </div>
-      </div>
+      )}
     </>
   );
 };

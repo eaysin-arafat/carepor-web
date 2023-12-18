@@ -89,6 +89,8 @@ const initialState = {
   retestDate: null,
 };
 
+const numberFields = ["testNo"];
+
 const useHtsCreate = () => {
   const [htsData, setHtsData] = React.useState(initialState);
   const [selectedOptions, setSelectedOptions] = React.useState<Option[]>([]);
@@ -111,6 +113,15 @@ const useHtsCreate = () => {
 
   const handleHtsDataChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
+    if (numberFields.includes(name)) {
+      if (isNaN(Number(value))) {
+        return setErrorMessages((prev) => ({
+          ...prev,
+          [name]: "Enter a valid number",
+        }));
+      }
+    }
     setHtsData((prev) => ({ ...prev, [name]: value }));
     setErrorMessages((prev) => ({ ...prev, [name]: "" }));
   };
@@ -151,6 +162,12 @@ const useHtsCreate = () => {
 
     createHts(payload);
   };
+
+  React.useEffect(() => {
+    if (htsData?.determineTestResult != "1") {
+      setHtsData((prev) => ({ ...prev, biolineTestResult: "" }));
+    }
+  }, [htsData?.determineTestResult]);
 
   // handle side effects
   React.useEffect(() => {

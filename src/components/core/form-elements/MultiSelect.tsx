@@ -21,7 +21,6 @@ const MultiSelect = ({
   selectedOptions,
   setSelectedOptions,
 }: MultipleSelectProps) => {
-  // const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const dropdownRef = useRef(null);
 
@@ -60,6 +59,7 @@ const MultiSelect = ({
               <option value="">Please Select</option>
             </select>
           )}
+
           {isSearchable && (
             <input
               type="text"
@@ -113,12 +113,6 @@ const MultiSelect = ({
           ))}
         </div>
       )}
-      {/* <div className="bg-lightBlueColor border border-primaryColor rounded-lg py-1 px-2 mt-5 flex gap-1  w-fit">
-        <h2>Hello</h2>
-        <button onClick={() => handleOptionToggle(option)}>
-          <RxCross2 />
-        </button>
-      </div> */}
     </div>
   );
 };
