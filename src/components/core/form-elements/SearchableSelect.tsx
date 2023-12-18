@@ -1,5 +1,5 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react";
-import { FiSearch } from "react-icons/fi";
+import { ChevronDown } from "react-feather";
 
 interface Option {
   value: number;
@@ -98,7 +98,7 @@ function SearchableSelect({
 
   return (
     <>
-      <div>
+      <div className="w-full">
         <div ref={searchRef} className="w-full">
           <div className="flex">
             <div className="input_label mb-2"> {label}</div>
@@ -126,7 +126,7 @@ function SearchableSelect({
                   </span>
                   <span className="px-[15px] py-[10px]">
                     {" "}
-                    <FiSearch width={30} />{" "}
+                    <ChevronDown width={30} />{" "}
                   </span>
                 </div>
               </div>

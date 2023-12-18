@@ -1,4 +1,5 @@
 import {
+  URLDeathRecord,
   URLHts,
   URLInvestigation,
   URLSurgery,
@@ -86,7 +87,7 @@ export const useServicePointArray = ({
     {
       imgSrc: "assets/svg/service-point/Death Record.svg",
       title: "Death Record",
-      link: "#",
+      link: URLDeathRecord(),
     },
     {
       imgSrc: "assets/svg/service-point/Pharmasy.svg",

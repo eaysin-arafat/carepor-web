@@ -121,3 +121,7 @@ export const referralModalTypes = Object.freeze({
 export const birthRecordModalTypes = Object.freeze({
   birthRecordCreate: "birthRecordCreate",
 });
+
+export const deathRecordModalTypes = Object.freeze({
+  deathRecordCreate: "deathRecordCreate",
+});
