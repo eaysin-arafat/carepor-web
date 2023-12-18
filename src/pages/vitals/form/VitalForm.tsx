@@ -141,33 +141,33 @@ const VitalForm = ({
           </p>
         )}
       </div>
-      <div className="col-span-6 grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-        {/* SYSTOLIC BP */}
-        <div className="">
-          <Input
-            required={isRequiredSystolicDiastolic}
-            label="Systolic (mmHg)"
-            name="systolic"
-            disabled={!isRequiredSystolicDiastolic}
-            errMsg={errorMessages?.systolic}
-            value={vitalData?.systolic}
-            onChange={handleInputChange}
-          />
+      {/* <div className="col-span-6 grid md:grid-cols-2 lg:grid-cols-4 gap-5"> */}
+      {/* SYSTOLIC BP */}
+      <div className="col-span-6  md:col-span-2">
+        <Input
+          required={isRequiredSystolicDiastolic}
+          label="Systolic (mmHg)"
+          name="systolic"
+          disabled={!isRequiredSystolicDiastolic}
+          errMsg={errorMessages?.systolic}
+          value={vitalData?.systolic}
+          onChange={handleInputChange}
+        />
 
-          {/* SYSTOLIC BP MESSAGE */}
-          {isShowSystolicBpMsg && (
-            <p
-              className={cn("text-xs text-red-600", {
-                "text-green-600": systolicBpMsg?.includes("Normal"),
-              })}
-            >
-              {systolicBpMsg}
-            </p>
-          )}
-        </div>
+        {/* SYSTOLIC BP MESSAGE */}
+        {isShowSystolicBpMsg && (
+          <p
+            className={cn("text-xs text-red-600", {
+              "text-green-600": systolicBpMsg?.includes("Normal"),
+            })}
+          >
+            {systolicBpMsg}
+          </p>
+        )}
+      </div>
 
-        {/* SYSTOLIC UNRECORDABLE */}
-        <div className="">
+      {/* SYSTOLIC UNRECORDABLE */}
+      {/* <div className="">
           <Select
             required={isRequiredSystolicDiastolicUnrecordable}
             label="Systolic Unrecordable"
@@ -181,49 +181,49 @@ const VitalForm = ({
             <option value="2">Too Low</option>
             <option value="3">Unknown</option>
           </Select>
-        </div>
+        </div> */}
 
-        {/* DIASTOLIC BP */}
-        <div className="">
-          <Input
-            required={isRequiredSystolicDiastolic}
-            label="Diastolic (mmHg)"
-            name="diastolic"
-            disabled={!isRequiredSystolicDiastolic}
-            errMsg={errorMessages?.diastolic}
-            value={vitalData?.diastolic}
-            onChange={handleInputChange}
-          />
+      {/* DIASTOLIC BP */}
+      <div className="col-span-6  md:col-span-2">
+        <Input
+          required={isRequiredSystolicDiastolic}
+          label="Diastolic (mmHg)"
+          name="diastolic"
+          disabled={!isRequiredSystolicDiastolic}
+          errMsg={errorMessages?.diastolic}
+          value={vitalData?.diastolic}
+          onChange={handleInputChange}
+        />
 
-          {/* DIASTOLIC BP MESSAGE */}
-          {isShowDiastolicBpMsg && (
-            <p
-              className={cn("text-xs text-red-600", {
-                "text-green-600": diastolicBpMsg?.includes("Normal"),
-              })}
-            >
-              {diastolicBpMsg}
-            </p>
-          )}
-        </div>
-
-        {/* DIASTOLIC UNRECORDABLE */}
-        <div className="">
-          <Select
-            required={isRequiredSystolicDiastolicUnrecordable}
-            label="Diastolic Unrecordable"
-            name="diastolicIfUnrecordable"
-            disabled={!isRequiredSystolicDiastolicUnrecordable}
-            errMsg={errorMessages?.diastolicIfUnrecordable}
-            value={vitalData?.diastolicIfUnrecordable}
-            onChange={handleInputChange}
+        {/* DIASTOLIC BP MESSAGE */}
+        {isShowDiastolicBpMsg && (
+          <p
+            className={cn("text-xs text-red-600", {
+              "text-green-600": diastolicBpMsg?.includes("Normal"),
+            })}
           >
-            <option value="1">Too Hight</option>
-            <option value="2">Too Low</option>
-            <option value="3">Unknown</option>
-          </Select>
-        </div>
+            {diastolicBpMsg}
+          </p>
+        )}
       </div>
+
+      {/* DIASTOLIC UNRECORDABLE */}
+      <div className="col-span-6  md:col-span-2">
+        <Select
+          required={isRequiredSystolicDiastolicUnrecordable}
+          label="BP Unrecordable"
+          name="diastolicIfUnrecordable"
+          disabled={!isRequiredSystolicDiastolicUnrecordable}
+          errMsg={errorMessages?.diastolicIfUnrecordable}
+          value={vitalData?.diastolicIfUnrecordable}
+          onChange={handleInputChange}
+        >
+          <option value="1">Too Hight</option>
+          <option value="2">Too Low</option>
+          <option value="3">Unknown</option>
+        </Select>
+      </div>
+      {/* </div> */}
 
       {/* PULSE RATE */}
       <div className="col-span-6  md:col-span-2">
@@ -304,7 +304,7 @@ const VitalForm = ({
       </div>
 
       {/* MUAC SCORE */}
-      <div className="col-span-6  md:col-span-4">
+      <div className="col-span-6  md:col-span-2">
         <Input
           disabled
           label="MUAC Score"
@@ -355,10 +355,11 @@ const VitalForm = ({
       </div>
 
       {/* HC SCORE */}
-      <div className="col-span-6">
+      <div className="col-span-6  md:col-span-2">
         <Textarea
           label="Note"
           name="comment"
+          className="h-[52px]"
           errMsg={errorMessages?.comment}
           value={vitalData?.comment}
           onChange={handleInputChange}

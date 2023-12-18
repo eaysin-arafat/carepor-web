@@ -110,6 +110,11 @@ export const covidModalTypes = Object.freeze({
   covidCreateModal: "covidCreateModal",
   covidViewModal: "covidViewModal",
 });
+
+export const covaxModalTypes = Object.freeze({
+  covaxCreateModal: "covaxCreateModal",
+  vaccinateCreateModal: "vaccinateCreateModal",
+});
 export const painRecordsModalTypes = Object.freeze({
   painRecordCreate: "painRecordCreate",
 });
@@ -120,4 +125,8 @@ export const referralModalTypes = Object.freeze({
 
 export const birthRecordModalTypes = Object.freeze({
   birthRecordCreate: "birthRecordCreate",
+});
+
+export const clientModalTypes = Object.freeze({
+  linkWithMother: "linkWithMother",
 });

@@ -17,11 +17,11 @@ const CovidDetails = () => {
             <p className="text-sm">
               <span className="font-semibold">Date : &nbsp; </span>30-Nov-2023
             </p>
-            <p className="text-xs">
+            <p className="text-sm">
               <span className="font-semibold">Facility : &nbsp; </span>Bauleni
               Mini Hospital
             </p>
-            <p className="text-xs me-20">
+            <p className="text-sm me-20">
               <span className="font-semibold">Clinician : &nbsp; </span>System
               Admin
             </p>
