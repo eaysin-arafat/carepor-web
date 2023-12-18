@@ -12,13 +12,16 @@ import InvestigationCreate from "../create/InvestigationCreate";
 import InvestigationViewOrderModal from "../create/InvestigationViewOrderModal";
 import InvestigationViewResultModal from "../create/InvestigationViewResultModal";
 // import InvestigationFilter from "./InvestigationFilter";
+import { investigationModalTypes } from "@/constants/modal-types";
+import { openAddModal } from "@/features/modal/modal-slice";
+import { useDispatch } from "react-redux";
 import InvestigationEdit from "../create/InvestigationEdit";
 import InvestigationHeader from "./InvestigationHeader";
 import InvestigationTable from "./InvestigationTable";
 
 const Investigation = () => {
   // const [state, setState] = React.useState(1);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const w1100 = useWindowWidth(1100);
   const [baseData] = useBaseDataCreate();
   const { clientId } = baseData;
@@ -33,14 +36,14 @@ const Investigation = () => {
     skip: !clientId,
   });
 
-  // const handleInvestigationForm = () => {
-  //   dispatch(
-  //     openAddModal({
-  //       modalId: investigationModalTypes.addInvestigation,
-  //       data: null,
-  //     })
-  //   );
-  // };
+  const handleInvestigationForm = () => {
+    dispatch(
+      openAddModal({
+        modalId: investigationModalTypes.addInvestigation,
+        data: null,
+      })
+    );
+  };
 
   return (
     <>
@@ -52,7 +55,7 @@ const Investigation = () => {
       <InvestigationEdit />
 
       <div className={cn("", { "mt-12": w1100 })}>
-        {/* <InvestigationCreateForm/> */}
+        {/* <InvestigationCreateForm /> */}
         <div>
           <div>
             <div className="flex justify-between items-center md:mb-2">
