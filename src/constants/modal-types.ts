@@ -127,6 +127,9 @@ export const birthRecordModalTypes = Object.freeze({
   birthRecordCreate: "birthRecordCreate",
 });
 
+export const deathRecordModalTypes = Object.freeze({
+  deathRecordCreate: "deathRecordCreate",
+});
 export const clientModalTypes = Object.freeze({
   linkWithMother: "linkWithMother",
 });
