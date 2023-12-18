@@ -1,5 +1,5 @@
 import TableBody from "@/components/shared/table/TableBody";
-import useFacilityData from "@/hooks/useFacilityData";
+import useFindFacility from "@/hooks/useFindFacility";
 import { TypeFacilityAccess } from "@/types/facility";
 import useRequestItem from "./useRequestItem";
 
@@ -10,6 +10,8 @@ type Props = {
 };
 
 function RequestsItems({ request, requestType, index }: Props) {
+  const { getFacilityName } = useFindFacility();
+
   const {
     handleLoginAccept,
     handleLoginRecovery,
@@ -66,7 +68,7 @@ function RequestsItems({ request, requestType, index }: Props) {
           },
           { title: request?.userAccount?.designation, w: "15%" },
           {
-            title: useFacilityData(request?.facilityId)?.facilityName,
+            title: getFacilityName(request?.facilityId),
             w: "25%",
           },
           {

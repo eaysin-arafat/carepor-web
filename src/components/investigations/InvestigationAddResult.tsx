@@ -12,6 +12,7 @@ import {
 } from "@/features/investigation/investigation-enum-api";
 import { closeAddModal } from "@/features/modal/modal-slice";
 import useBaseDataCreate from "@/hooks/useBaseDataCreate";
+import useFindFacility from "@/hooks/useFindFacility";
 import { PriorityColor } from "@/pages/queue/investigations-dashboard/InvestigationsDashboard";
 import { cn } from "@/utilities/cn";
 import { DateFunc, datePickerToString } from "@/utilities/date";
@@ -32,6 +33,7 @@ type Props = {
 const InvestigationAddResult = ({}: Props) => {
   // console.log({ addType });
   const dispatch = useDispatch();
+  const { getFacilityName } = useFindFacility();
 
   // const { getClinicianFullName } = useClinician();
 
@@ -318,7 +320,8 @@ const InvestigationAddResult = ({}: Props) => {
   //   return findObj ? findObj.description : "";
   // };
 
-  const testTypeId = currentInvestigation?.test?.testSubtype?.testTypeId;
+  // const testTypeId = currentInvestigation?.test?.testSubtype?.testTypeId;
+  const testTypeId = currentInvestigation?.testTypeId;
   // render ResultOptions
   const readerResultOptions = filterResultOptions?.map((option) => {
     return (
@@ -482,7 +485,7 @@ const InvestigationAddResult = ({}: Props) => {
                   <div className="grid grid-cols-2 md:grid-cols-2 w-full text-xs">
                     <p className="col-span-2 mt-1">
                       <span className="font-semibold"> Facility : </span>
-                      {currentInvestigation?.createdIn}
+                      &nbsp;{getFacilityName(currentInvestigation?.createdIn)}
                     </p>
                     <p className="col-span-2 mt-1">
                       <span className="font-semibold"> Client : </span>
