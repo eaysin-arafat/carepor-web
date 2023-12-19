@@ -59,7 +59,7 @@ const EditSystemExamination = ({ toggler }) => {
           )}
 
           {data?.map((item, index) => (
-            <PastEncounters key={index} data={item} />
+            <PastEncounters key={index} data={item} handleEdit={() => {}} />
           ))}
         </PastRecordContainers>
         {/* BUTTONS */}

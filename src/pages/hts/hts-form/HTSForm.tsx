@@ -1,18 +1,11 @@
-import { useAppSelector } from "@/app/store";
 import DateInput from "@/components/core/form-elements/DatePicker";
 import Input from "@/components/core/form-elements/Input";
-import MultipleSelect, {
-  Option,
-} from "@/components/core/form-elements/MultipleSelect";
+import MultiSelect from "@/components/core/form-elements/MultiSelect";
+import { Option } from "@/components/core/form-elements/MultipleSelect";
 import Select from "@/components/core/form-elements/Select";
 import Textarea from "@/components/core/form-elements/textarea";
-import { clientTypeApiEndpoints } from "@/features/client-type/client-type-api";
-import { hivRiskFactorApiEndpoints } from "@/features/hiv-risk-factor/hiv-risk-factor-api";
-import { hivTestingReasonApiEndpoints } from "@/features/hiv-testing-reason/hiv-testing-reason-api";
-import { servicePointsApiEndpoints } from "@/features/service-points/service-points-api";
-import { visitTypeApiEndpoints } from "@/features/visit-type/visit-type-api";
-import { useMemo } from "react";
 import { HtsData, HtsErrorMessages } from "../create/useHtsCreate";
+import useHTSForm from "./useHTSForm";
 
 interface HTSFormProps {
   htsData: HtsData;
@@ -31,90 +24,24 @@ const HTSForm = ({
   selectedOptions,
   setSelectedOptions,
 }: HTSFormProps) => {
-  // todo: need optimization here for api calling
-
-  const selectClientTypes = useMemo(
-    () => clientTypeApiEndpoints.readClientTypes.select(null),
-    []
-  );
-
   const {
-    data: clientTypes,
-    isLoading: typesLoading,
-    status: typesStatus,
-  } = useAppSelector(selectClientTypes);
-
-  // const {
-  //   data: clientTypes,
-  //   isLoading: typesLoading,
-  //   status: typesStatus,
-  // } = useReadClientTypesQuery(null);
-
-  const selectVisitTypes = useMemo(
-    () => visitTypeApiEndpoints.readVisitTypes.select(null),
-    []
-  );
-  const {
-    data: visitTypes,
-    isSuccess: visitSuccess,
-    status: visitStatus,
-  } = useAppSelector(selectVisitTypes);
-
-  const selectServicePoints = useMemo(
-    () => servicePointsApiEndpoints.readServicePoints.select(null),
-    []
-  );
-
-  const {
-    data: servicePoints,
-    isSuccess: servicePointsSuccess,
-    status: servicePointsStatus,
-  } = useAppSelector(selectServicePoints);
-
-  const selectHivTestingReasons = useMemo(
-    () => hivTestingReasonApiEndpoints.readHIVTestingReasons.select(null),
-    []
-  );
-
-  const {
-    data: hivTestingReasons,
-    isSuccess: testingReasonSuccess,
-    status: testingReasonStatus,
-  } = useAppSelector(selectHivTestingReasons);
-
-  // const {
-  //   data: hivTestingReasons,
-  //   isSuccess: testingReasonSuccess,
-  //   status: testingReasonStatus,
-  // } = useReadHIVTestingReasonsQuery(null);
-
-  const selectHivNotTestingReasons = useMemo(
-    () => hivTestingReasonApiEndpoints.readHIVTestingReasons.select(null),
-    []
-  );
-
-  const {
-    data: hivNotTestingReasons,
-    isSuccess: hivNotTestingSuccess,
-    status: hivNotTestingStatus,
-  } = useAppSelector(selectHivNotTestingReasons);
-
-  // const {
-  //   data: hivNotTestingReasons,
-  //   isSuccess: hivNotTestingSuccess,
-  //   status: hivNotTestingStatus,
-  // } = useReadHIVNotTestingReasonsQuery(null);
-
-  const selectHivRiskFactors = useMemo(
-    () => hivRiskFactorApiEndpoints.readHIVRiskFactors.select(null),
-    []
-  );
-
-  const { data: hivRiskFactors } = useAppSelector(selectHivRiskFactors);
-
-  // const { data: hivRiskFactors } = useReadHIVRiskFactorsQuery(null);
-
-  console.log("has concented", htsData?.hasConsented);
+    clientTypes,
+    hivNotTestingReasons,
+    hivNotTestingStatus,
+    hivNotTestingSuccess,
+    hivRiskFactors,
+    hivTestingReasons,
+    servicePoints,
+    servicePointsStatus,
+    servicePointsSuccess,
+    testingReasonStatus,
+    testingReasonSuccess,
+    typesLoading,
+    typesStatus,
+    visitStatus,
+    visitSuccess,
+    visitTypes,
+  } = useHTSForm();
 
   // render client types options
   const clientTypesOptions = clientTypes?.map((clientType) => (
@@ -316,6 +243,7 @@ const HTSForm = ({
             errMsg={errorMessages.hivNotTestingReasonId}
             value={htsData?.hivNotTestingReasonId}
             onChange={handleHtsDataChange}
+            disabled={htsData?.hasConsented?.toString() === "true"}
           >
             {hivNotTestingSuccess &&
               hivNotTestingStatus === "fulfilled" &&
@@ -329,11 +257,12 @@ const HTSForm = ({
             errMsg={errorMessages.notTestingReason}
             value={htsData?.notTestingReason}
             onChange={handleHtsDataChange}
+            disabled={htsData?.hasConsented?.toString() === "true"}
           />
         </div>
       </div>
 
-      {(htsData?.hasConsented === "true" || htsData?.hasConsented) && (
+      {htsData?.hasConsented?.toString() === "true" && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-5 border border-borderColor rounded-lg mt-8 shadow-light">
           <h2 className="col-span-full text-xl font-semibold">
             Test & Results
@@ -362,12 +291,13 @@ const HTSForm = ({
           </div>
           <div className="">
             <Select
-              required
+              required={htsData?.determineTestResult === "1"}
               label="Bioline"
               name="biolineTestResult"
               errMsg={errorMessages.biolineTestResult}
               value={htsData?.biolineTestResult}
               onChange={handleHtsDataChange}
+              disabled={htsData?.determineTestResult !== "1"}
             >
               <option value="1">Reactive</option>
               <option value="2">Non Reactive</option>
@@ -375,12 +305,19 @@ const HTSForm = ({
           </div>
           <div className="">
             <Select
-              required
+              required={
+                htsData?.determineTestResult === "1" &&
+                htsData?.biolineTestResult === "1"
+              }
               label="HIV Type"
               name="hivType"
               errMsg={errorMessages.hivType}
               value={htsData?.hivType}
               onChange={handleHtsDataChange}
+              disabled={
+                htsData?.determineTestResult !== "1" ||
+                htsData?.biolineTestResult !== "1"
+              }
             >
               <option value="1">HIV-1</option>
               <option value="2">HIV-2</option>
@@ -443,29 +380,34 @@ const HTSForm = ({
           </div>
         </div>
       )}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-5 border border-borderColor rounded-lg mt-8 shadow-light">
-        <h2 className="col-span-full text-xl font-semibold">
-          Post Test Assessment
-        </h2>
-        <div className="col-span-full">
-          <MultipleSelect
-            options={hivRiskFactors?.slice() || []}
-            selectedOptions={selectedOptions}
-            setSelectedOptions={setSelectedOptions}
-          />
+
+      {(htsData?.biolineTestResult == "2" ||
+        htsData?.determineTestResult == "2") && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-5 border border-borderColor rounded-lg mt-8 shadow-light">
+          <h2 className="col-span-full text-xl font-semibold">
+            Post Test Assessment
+          </h2>
+          <div className="col-span-full">
+            <MultiSelect
+              options={hivRiskFactors?.slice() || []}
+              selectedOptions={selectedOptions}
+              setSelectedOptions={setSelectedOptions}
+              isSearchable={true}
+            />
+          </div>
+          <div className="col-span-full">
+            <DateInput
+              label="Retest Date"
+              name="retestDate"
+              errMsg={errorMessages.retestDate}
+              selected={
+                htsData?.retestDate ? new Date(htsData?.retestDate) : null
+              }
+              onChange={(date) => handleDateChange(date, "retestDate")}
+            />
+          </div>
         </div>
-        <div className="col-span-full">
-          <DateInput
-            label="Retest Date"
-            name="retestDate"
-            errMsg={errorMessages.retestDate}
-            selected={
-              htsData?.retestDate ? new Date(htsData?.retestDate) : null
-            }
-            onChange={(date) => handleDateChange(date, "retestDate")}
-          />
-        </div>
-      </div>
+      )}
     </>
   );
 };

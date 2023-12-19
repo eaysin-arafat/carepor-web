@@ -8,7 +8,6 @@ import {
 } from "@/constants/modal-types";
 import { EnumEncounterType } from "@/enum/encounter-type";
 import { useReadChiefComplaintByClientQuery } from "@/features/chief-complaint/chief-complaint-api";
-import { useReadDiagnosesByClientQuery } from "@/features/diagnosis/diagnosis-api";
 import {
   closeAddModal,
   closeEditModal,
@@ -43,10 +42,10 @@ const IPDCreate = () => {
     }
   );
 
-  const { data: diagnoses } = useReadDiagnosesByClientQuery(client?.oid, {
-    skip: !client?.oid,
-    refetchOnMountOrArgChange: true,
-  });
+  // const { data: diagnoses } = useReadDiagnosesByClientQuery(client?.oid, {
+  //   skip: !client?.oid,
+  //   refetchOnMountOrArgChange: true,
+  // });
 
   const { data: treatmentPlans } = useReadTreatmentPlanByClientQuery(
     client?.oid,
@@ -55,8 +54,6 @@ const IPDCreate = () => {
       refetchOnMountOrArgChange: true,
     }
   );
-
-  console.log("treatmentPlans", treatmentPlans);
 
   const handleChiefComplaints = () => {
     dispatch(

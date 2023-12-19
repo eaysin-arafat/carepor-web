@@ -81,7 +81,7 @@ function CustomSearchable({
   }, [showDropdown]);
 
   useEffect(() => {
-    let outClickHandler = (e) => {
+    const outClickHandler = (e) => {
       if (!searchRef?.current?.contains(e.target)) {
         setShowDropdown(false);
       }

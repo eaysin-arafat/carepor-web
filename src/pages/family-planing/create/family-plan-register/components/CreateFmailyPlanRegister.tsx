@@ -1,15 +1,15 @@
-import CancelAndAddButton from '@/components/core/buttons/CancelAndAddButton';
-import Input from '@/components/core/form-elements/Input';
-import Select from '@/components/core/form-elements/Select';
-import DefaultOpenModal from '@/components/core/modal/DefaultOpenModal';
-import PastRecordContainers from '@/components/past-record-containers/PastRecordContainers';
-import { useReadChiefComplaintByClientQuery } from '@/features/chief-complaint/chief-complaint-api';
-import PastEncounters from '@/pages/chief-complaints/create/PastEncounters';
-import { Loader } from 'react-feather';
+import CancelAndAddButton from "@/components/core/buttons/CancelAndAddButton";
+import Input from "@/components/core/form-elements/Input";
+import Select from "@/components/core/form-elements/Select";
+import DefaultOpenModal from "@/components/core/modal/DefaultOpenModal";
+import PastRecordContainers from "@/components/past-record-containers/PastRecordContainers";
+import { useReadChiefComplaintByClientQuery } from "@/features/chief-complaint/chief-complaint-api";
+import PastEncounters from "@/pages/chief-complaints/create/PastEncounters";
+import { Loader } from "react-feather";
 
 const CreateFmailyPlanRegister = ({ toggler }) => {
   const { data, isLoading, status } = useReadChiefComplaintByClientQuery(
-    'a1497272-3783-46f6-922a-08dbd06dc4d8'
+    "a1497272-3783-46f6-922a-08dbd06dc4d8"
   );
 
   return (
@@ -27,12 +27,12 @@ const CreateFmailyPlanRegister = ({ toggler }) => {
             <Input
               label="Other Referrals"
               placeholder="Enter Other Referrals"
-            />{' '}
+            />{" "}
             <Input
               label="Family Planning Year"
               placeholder="Enter Family Plannin Year"
-            />{' '}
-          </div>{' '}
+            />{" "}
+          </div>{" "}
           <div className="flex flex-col md:flex-row md:justify-between gap-3">
             <Select label="Who client stays with?">
               <option value="1">Parents</option>
@@ -40,7 +40,7 @@ const CreateFmailyPlanRegister = ({ toggler }) => {
               <option value="3">Extended Family</option>
               <option value="4">Partner</option>
               <option value="5">Friend(s)</option>
-            </Select>{' '}
+            </Select>{" "}
             <Select label="Communication Consent">
               <option value="1">Yes</option>
               <option value="2">No</option>
@@ -50,14 +50,14 @@ const CreateFmailyPlanRegister = ({ toggler }) => {
               <option value="2">Voice Call</option>
               <option value="3">Client's email</option>
             </Select>
-          </div>{' '}
+          </div>{" "}
           <div className="flex flex-col md:flex-row md:justify-between gap-3">
             <Select label="Patient Type">
               <option value="1">Referral</option>
               <option value="2">Self Referred</option>
               <option value="3">Scheme</option>
               <option value="4">Exempt</option>
-            </Select>{' '}
+            </Select>{" "}
             <Select label="Type Of Alternative Contacts">
               <option value="1">Next of kin</option>
               <option value="2">Parent</option>
@@ -65,35 +65,35 @@ const CreateFmailyPlanRegister = ({ toggler }) => {
               <option value="4">Neighbor</option>
               <option value="5">Sibling</option>
             </Select>
-            <Input label="Contact Name" placeholder="Enter Contact Name" />{' '}
-          </div>{' '}
+            <Input label="Contact Name" placeholder="Enter Contact Name" />{" "}
+          </div>{" "}
           <div className="flex flex-col md:flex-row md:justify-between gap-3">
             <Input
               label="Contact Phone Number"
               placeholder="Enter Contact Phone Number"
-            />{' '}
+            />{" "}
             <Input
               label="Other Alternative Contacts"
               placeholder="Enter Other Alternative Contacts"
-            />{' '}
+            />{" "}
             <Input
               label="Contact Address"
               placeholder="Enter Contact Address"
-            />{' '}
+            />{" "}
           </div>
         </div>
 
         <hr className="my-6" />
         {/* PAST RECORD CONTAINERS */}
         <PastRecordContainers>
-          {(isLoading || status === 'pending') && (
+          {(isLoading || status === "pending") && (
             <div className="flex w-full justify-center items-center">
               <Loader size={40} className="animate-spin" />
             </div>
           )}
 
           {data?.map((item, index) => (
-            <PastEncounters key={index} data={item} />
+            <PastEncounters key={index} data={item} handleEdit={() => {}} />
           ))}
         </PastRecordContainers>
         {/* BUTTONS */}

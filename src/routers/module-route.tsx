@@ -10,7 +10,7 @@ import Investigation from "@/pages/investigations/index/Investigation";
 import IPDHistry from "@/pages/medical-encounter-ipd/histry/IPDHistry";
 import OPDHistory from "@/pages/medical-encounter-opd/history/OpdHistory";
 import PainRecordsHistory from "@/pages/pain-records/history/History";
-import ReferralsHistory from "@/pages/referrals/history/History";
+import ReferralsHistory from "@/pages/referrals/index/History";
 import SurgeryIndex from "@/pages/surgery/index/Surgery";
 import VitalsDetails from "@/pages/vitals/details/VitalsDetails";
 import Vitals from "@/pages/vitals/index/Vitals";

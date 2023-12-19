@@ -71,7 +71,7 @@ function DeathRecordCreate({ toggler }) {
             <DateInput
               label="Date of Death"
               onChange={function (date: Date): void {
-                throw new Error("Function not implemented.");
+                console.log(date);
               }}
             ></DateInput>
             <Input label="Age (Years at Death)" />

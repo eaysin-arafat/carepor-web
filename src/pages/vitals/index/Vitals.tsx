@@ -53,18 +53,40 @@ function Vitals() {
             </div>
             <div className="bg-whiteBgColor flex p-5 mt-5 rounded-lg text-xs md:text-sm justify-between">
               <ul className=" w-[250px] flex flex-col gap-1.5 py-2">
-                <li className="mb-3 font-medium">Vitals</li>
-                <li className="mb-3">Vital Time</li>
-                <li className="mb-3">Height</li>
-                <li className="mb-3">Weight</li>
-                <li className="mb-3">BMI</li>
-                <li className="mb-3">Temperature (c)</li>
-                <li className="mb-3">Blood Pressure (mmHg)</li>
-                <li className="mb-3">Pulse Rate (Bpm)</li>
-                <li className="mb-3">Respiratory Rate (Bpm)</li>
+                <li className="mb-2 font-medium border-b border-b-borderColor pb-2">
+                  Vitals
+                </li>
+                <li className="mb-2 border-b border-b-borderColor pb-2">
+                  Vital Time
+                </li>
+                <li className="mb-2 border-b border-b-borderColor pb-2">
+                  Heigh
+                </li>
+                <li className="mb-2 border-b border-b-borderColor pb-2">
+                  Weight
+                </li>
+                <li className="mb-2 border-b border-b-borderColor pb-2">BMI</li>
+                <li className="mb-2 border-b border-b-borderColor pb-2">
+                  Temperature (c)
+                </li>
+                <li className="mb-2 border-b border-b-borderColor pb-2">
+                  Blood Pressure (mmHg)
+                </li>
+                <li className="mb-2 border-b border-b-borderColor pb-2">
+                  Pulse Rate (Bpm)
+                </li>
+                <li className="mb-2 border-b border-b-borderColor pb-2">
+                  Respiratory Rate (Bpm)
+                </li>
+                <li className="mb-2 border-b border-b-borderColor pb-2">
+                  Facility
+                </li>
+                <li className="mb-2 border-b border-b-borderColor pb-2">
+                  Clinician
+                </li>
               </ul>
               <div className=" overflow-x-auto w-full">
-                <div className="flex gap-3">
+                <div className="flex">
                   {/* HANDLE LOADING STATE */}
                   {isLoading && status === "pending" && (
                     <div className="flex justify-center items-center w-full h-[400px]">
@@ -97,46 +119,55 @@ function Vitals() {
                       return (
                         <ul
                           key={vital?.oid}
-                          className={`min-w-[140px] flex flex-col gap-1.5 rounded p-2 text-grayColor text-black text-center group ${
-                            index % 2 === 0 ? "bg-slate-100" : ""
+                          className={`min-w-[140px] flex flex-col gap-1.5 rounded bg-whiteBgColor text-grayColor text-black text-center group ${
+                            index % 2 === 0 ? "!bg-tableRow" : ""
                           }`}
                         >
-                          <li className="mb-3 font-medium text-textColor">
+                          <li className="mb-2 border-b border-b-borderColor p-2 font-medium text-textColor">
                             {format(
                               new Date(vital?.vitalsDate),
                               "dd-MMM-yyyy"
                             ) || "--"}
                           </li>
-                          <li className="mb-3 text-textColor">
+                          <li className="mb-2 border-b border-b-borderColor pb-2 text-textColor">
                             {format(new Date(vital?.vitalsDate), "hh:mm a") ||
                               "--"}
                           </li>
-                          <li className="mb-3 text-black">
+                          <li className="mb-2 border-b border-b-borderColor pb-2 text-black">
                             {vital?.height || "--"}
                           </li>
-                          <li className="mb-3 text-black">
+                          <li className="mb-2 border-b border-b-borderColor pb-2 text-black">
                             {vital?.weight || "--"}
                           </li>
                           <li
-                            className={cn("mb-3 text-green-600", {
-                              "text-red-600": !bmiMsg?.includes("Normal"),
-                            })}
+                            className={cn(
+                              "mb-2 border-b border-b-borderColor pb-2 text-green-600",
+                              {
+                                "text-red-600": !bmiMsg?.includes("Normal"),
+                              }
+                            )}
                           >
-                            {vital?.bmi || "__"}
+                            {vital?.bmi || "--"}
                           </li>
                           <li
-                            className={cn("mb-3 text-green-600", {
-                              "text-red-600":
-                                !temperatureMsg?.includes("Normal"),
-                            })}
+                            className={cn(
+                              "mb-2 border-b border-b-borderColor pb-2 text-green-600",
+                              {
+                                "text-red-600":
+                                  !temperatureMsg?.includes("Normal"),
+                              }
+                            )}
                           >
-                            {vital?.temperature || "__"}
+                            {vital?.temperature || "--"}
                           </li>
                           <li
-                            className={cn("mb-3 text-green-600", {
-                              "text-red-600":
-                                !bloodPressure?.includes("Normal"),
-                            })}
+                            className={cn(
+                              "mb-2 border-b border-b-borderColor pb-2 text-green-600",
+                              {
+                                "text-red-600":
+                                  !bloodPressure?.includes("Normal"),
+                              }
+                            )}
                           >
                             {vital?.systolic != -1 && vital?.diastolic != -1 ? (
                               `${vital?.systolic}/${vital?.diastolic} `
@@ -145,19 +176,40 @@ function Vitals() {
                             )}
                           </li>
                           <li
-                            className={cn("mb-3 text-green-600", {
-                              "text-red-600": !pulseRateMsg?.includes("Normal"),
-                            })}
+                            className={cn(
+                              "mb-2 border-b border-b-borderColor pb-2 text-green-600",
+                              {
+                                "text-red-600":
+                                  !pulseRateMsg?.includes("Normal"),
+                              }
+                            )}
                           >
-                            {vital?.pulseRate || "__"}
+                            {vital?.pulseRate || "--"}
                           </li>
                           <li
-                            className={cn("mb-3 text-green-600", {
-                              "text-red-600":
-                                !respiratoryRateMsg?.includes("Normal"),
-                            })}
+                            className={cn(
+                              "mb-2 border-b border-b-borderColor pb-2 text-green-600",
+                              {
+                                "text-red-600":
+                                  !respiratoryRateMsg?.includes("Normal"),
+                              }
+                            )}
                           >
-                            {vital?.respiratoryRate || "__"}
+                            {vital?.respiratoryRate || "--"}
+                          </li>
+                          <li
+                            className={cn(
+                              "mb-2 border-b border-b-borderColor pb-2"
+                            )}
+                          >
+                            --
+                          </li>
+                          <li
+                            className={cn(
+                              "mb-2 border-b border-b-borderColor pb-2"
+                            )}
+                          >
+                            --
                           </li>
 
                           <li className="mb-3 text-black flex justify-center  opacity-0 group-hover:opacity-100 transition-opacity">

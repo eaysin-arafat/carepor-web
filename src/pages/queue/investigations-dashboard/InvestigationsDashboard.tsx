@@ -87,7 +87,6 @@ function InvestigationsDashboard() {
             )}
 
             {filterInvestigation?.map((item, index) => {
-              const {} = item;
               return (
                 <TableBody
                   index={index}

@@ -1479,3 +1479,16 @@ export const EnumTestResult = {
   1: "Reactive",
   2: "NonReactive",
 };
+
+export const EnumPainRecords = Object.freeze({
+  1: "No pain",
+  2: "Pain is mild-barely noticeable. Most of the time you don't think about it",
+  3: "Minor pain, Its annoying. You may have sharp pain now and then.",
+  4: "Noticeable pain. It may distract you,but you can get used to it",
+  5: "Moderate pain. If you are involved in an activity, you are able to ignore it for a while.But it is still distracting.",
+  6: "Moderately strong pain. You avoid some of your normal daily activities. You have trouble concentrating.",
+  7: "Strong pain. It keeps you from doing normal activities.",
+  8: "Very strong pain. It's hard to do anything at all.",
+  9: "Pain that is very hard to tolerate. You cant carry on a conversation.",
+  10: "Worst possible pain",
+});

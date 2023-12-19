@@ -1,7 +1,9 @@
-import Diagnosis from "@/assets/icons/Diagnosis";
 import RootLayout from "@/layout/RootLayout";
 import { cn } from "@/utilities/cn";
 import { Accordion } from "flowbite-react";
+import { StopCircle } from "react-feather";
+import { FaUserCog } from "react-icons/fa";
+import { FcDepartment } from "react-icons/fc";
 import { useLocation, useNavigate } from "react-router-dom";
 import FacilitySettingsRoutes from "./routeArray/FacilitySettingsSidebarRoutes";
 
@@ -30,14 +32,14 @@ function FacilitySettingsSidebar() {
                 <div className="flex justify-between items-center w-full">
                   <div className="flex items-center gap-3">
                     {item.icon ? (
-                      <img
-                        src={item.icon}
-                        alt=""
-                        className=" w-[23px] h-[23px]"
-                      />
+                      <>
+                        {item.icon === "department" && (
+                          <FcDepartment size={23} />
+                        )}
+                        {item.icon === "facility" && <FaUserCog size={23} />}
+                      </>
                     ) : (
-                      // <FaChartPie size={23} />
-                      <Diagnosis color="var(--secondary)" size={23} />
+                      <StopCircle color="var(--secondary)" size={23} />
                     )}
                     {item.title}
                   </div>

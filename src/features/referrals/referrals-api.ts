@@ -1,4 +1,28 @@
 import { API } from "../API/API";
+import { ServicePoint } from "../service-points/service-points-api";
+
+export interface Referral {
+  interactionId: string;
+  reasonForReferral: string;
+  referralType: number;
+  otherFacility: string;
+  servicePointId: number;
+  servicePoint: ServicePoint;
+  referredFacilityId: number;
+  receivingFacilityId: number;
+  // receivingFacility: FacilityType;
+  clientId: string;
+  // identifiedReferralReasons: [];
+  referredFacility: string;
+  encounterId: string;
+  encounterType: number;
+  createdIn: number;
+  dateCreated: string;
+  createdBy: string;
+  isDeleted: boolean;
+  isSynced: boolean;
+  encounterDate: string;
+}
 
 const referralsApi = API.injectEndpoints({
   endpoints: (builder) => ({
@@ -13,6 +37,7 @@ const referralsApi = API.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags: ["Referrals"],
     }),
 
     /**
@@ -45,11 +70,12 @@ const referralsApi = API.injectEndpoints({
      * @returns Referral
      */
 
-    readReferralByClient: builder.query({
+    readReferralByClient: builder.query<Referral[], string>({
       query: (clientId) => ({
         url: `/referral-module/by-client/${clientId}`,
         method: "GET",
       }),
+      providesTags: ["Referrals"],
     }),
 
     /**
@@ -90,6 +116,7 @@ const referralsApi = API.injectEndpoints({
         url: `/referral-module/${key}`,
         method: "DELETE",
       }),
+      invalidatesTags: ["Referrals"],
     }),
   }),
 });

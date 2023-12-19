@@ -25,14 +25,10 @@ function MobileHeader({ offSidebar }: Props) {
         <div>
           {w1100 && (
             <button
-              className="flex items-center"
+              className="flex items-center text-textColor"
               onClick={() => dispatch(sidebarState({ sidebar: !sidebar }))}
             >
-              {sidebar ? (
-                <FaBars color="#000" size={25} />
-              ) : (
-                <FaTimes color="#000" size={25} />
-              )}
+              {sidebar ? <FaBars size={25} /> : <FaTimes size={25} />}
             </button>
           )}
         </div>
