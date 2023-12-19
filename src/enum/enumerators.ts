@@ -262,12 +262,12 @@ export const EnumInformantRelationship = {
   3: "Step Child",
   4: "Adopted Child",
   5: "Grand Child",
-  6: "Brother Sister",
+  6: "Brother/Sister",
   7: "Cousin",
-  8: "Niece Nephew",
-  9: "Brother Sister In Law",
-  10: "Parent In Law",
-  11: "Maidnanny House Servant",
+  8: "Niece/Nephew",
+  9: "Brother-in-law/Sister-in-law",
+  10: "Parent-in-law",
+  11: "Maid/Nanny/House Servant",
   12: "Guardian",
   13: "Other Relationship",
 };
@@ -288,7 +288,7 @@ export const EnumGuardianRelationship = {
   13: "OtherRelationship",
 };
 
-export const EnumWhereDeathOccured = {
+export const EnumWhereDeathOccurred = {
   1: "Other",
   2: "OtherFacility",
   3: "Clinic",
