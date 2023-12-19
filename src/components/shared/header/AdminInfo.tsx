@@ -79,11 +79,18 @@ function AdminInfo() {
         >
           <BsLock size={22} className="w-[30px]" /> Change Password
         </Dropdown.Item>
-        <Dropdown.Item className="py-3 text-textColor" onClick={handleLogout}>
+
+        <Dropdown.Item
+          className="py-3 text-textColor border-b"
+          onClick={handleLogout}
+        >
           <IoExitOutline size={25} className="w-[30px]" /> Sign Out
         </Dropdown.Item>
+
+        <Dropdown.Header className="p-0">
+          <ThemeSwitcher isHeader />
+        </Dropdown.Header>
       </Dropdown>
-      <ThemeSwitcher />
     </div>
   );
 }
