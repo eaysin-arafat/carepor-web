@@ -105,25 +105,31 @@ const useRequestItem = ({ data }) => {
   // side effects
   useEffect(() => {
     if (approveStatus === RtkStatusEnum.fulfilled) {
+      toast.dismiss();
       toast.success("Login Request Accepted Successfully");
     }
     if (approveStatus === RtkStatusEnum.rejected) {
+      toast.dismiss();
       toast.error("Failed to accepted login request");
     }
   }, [approveStatus]);
   useEffect(() => {
     if (revokeStatus === RtkStatusEnum.fulfilled) {
+      toast.dismiss();
       toast.success("Request Revoke Successful");
     }
     if (revokeStatus === RtkStatusEnum.rejected) {
+      toast.dismiss()
       toast.error("Request Revoke Failed");
     }
   }, [revokeStatus]);
   useEffect(() => {
     if (rejectStatus === RtkStatusEnum.fulfilled) {
+      toast.dismiss();
       toast.success("Request Reject Successful");
     }
     if (rejectStatus === RtkStatusEnum.rejected) {
+      toast.dismiss()
       toast.error("Request Reject Failed");
     }
   }, [rejectStatus]);

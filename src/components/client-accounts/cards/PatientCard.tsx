@@ -70,6 +70,7 @@ const PatientCard = ({ client, className }: PatientCardProps) => {
       }
     }
     if (status === RtkStatusEnum.rejected) {
+      toast.dismiss()
       toast.error("Rejected");
       console.log(error);
     }

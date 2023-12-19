@@ -1,11 +1,13 @@
 interface CancelAndAddButtonProps {
   toggler?: () => void;
   disableBoth?: boolean;
+  isUpdate?: boolean;
 }
 
 const CancelAndAddButton = ({
   toggler = () => {},
   disableBoth,
+  isUpdate,
 }: CancelAndAddButtonProps) => {
   return (
     <div className="flex justify-center gap-4">
@@ -22,7 +24,9 @@ const CancelAndAddButton = ({
         type="submit"
         disabled={disableBoth}
       >
-        <span className="inline-block text-lg text-whiteColor">Save</span>
+        <span className="inline-block text-lg text-whiteColor">
+          {isUpdate ? "Update" : "Save"}{" "}
+        </span>
       </button>
     </div>
   );

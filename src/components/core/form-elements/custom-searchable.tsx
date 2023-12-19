@@ -134,9 +134,11 @@ function CustomSearchable({
                     </span>
                   )}
                   {selectedValue?.label && (
-                    <span onClick={handleClear} className="px-[15px] py-[10px]">
-                      {" "}
-                      <FaCircleXmark width={30} />{" "}
+                    <span
+                      onClick={handleClear}
+                      className="px-[15px] py-[10px] text-[#216ba5]"
+                    >
+                      <FaCircleXmark width={30} />
                     </span>
                   )}
                 </div>
