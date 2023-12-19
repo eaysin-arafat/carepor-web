@@ -193,8 +193,8 @@ function CustomSearchable({
             </div>
           </div>
           {errMsg && (
-            <p className="text-sm mt-1" style={{ color: "red" }}>
-              {errMsg}
+            <p className="text-xs mt-1" style={{ color: "red" }}>
+              {errMsg}!
             </p>
           )}
         </div>

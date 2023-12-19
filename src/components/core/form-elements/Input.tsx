@@ -46,8 +46,8 @@ function Input({
         placeholder={`${placeholder ? placeholder : "Enter" + " " + label}`}
       />
       {errMsg && (
-        <span className="text-dangerColor leading-[125%] font-normal ">
-          {errMsg}
+        <span className="text-dangerColor leading-[125%] font-normal text-xs">
+          {errMsg}!
         </span>
       )}
     </div>
