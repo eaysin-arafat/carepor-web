@@ -1,18 +1,11 @@
-import { useAppSelector } from "@/app/store";
 import DateInput from "@/components/core/form-elements/DatePicker";
 import Input from "@/components/core/form-elements/Input";
 import MultiSelect from "@/components/core/form-elements/MultiSelect";
 import { Option } from "@/components/core/form-elements/MultipleSelect";
 import Select from "@/components/core/form-elements/Select";
 import Textarea from "@/components/core/form-elements/textarea";
-import { clientTypeApiEndpoints } from "@/features/client-type/client-type-api";
-import { hivNotTestingReasonApiEndpoints } from "@/features/hiv-not-testing-reasons/hiv-not-testing-reason-api";
-import { hivRiskFactorApiEndpoints } from "@/features/hiv-risk-factor/hiv-risk-factor-api";
-import { hivTestingReasonApiEndpoints } from "@/features/hiv-testing-reason/hiv-testing-reason-api";
-import { servicePointsApiEndpoints } from "@/features/service-points/service-points-api";
-import { visitTypeApiEndpoints } from "@/features/visit-type/visit-type-api";
-import { useMemo } from "react";
 import { HtsData, HtsErrorMessages } from "../create/useHtsCreate";
+import useHTSForm from "./useHTSForm";
 
 interface HTSFormProps {
   htsData: HtsData;
@@ -31,90 +24,24 @@ const HTSForm = ({
   selectedOptions,
   setSelectedOptions,
 }: HTSFormProps) => {
-  // todo: need optimization here for api calling
-
-  const selectClientTypes = useMemo(
-    () => clientTypeApiEndpoints.readClientTypes.select(null),
-    []
-  );
-
   const {
-    data: clientTypes,
-    isLoading: typesLoading,
-    status: typesStatus,
-  } = useAppSelector(selectClientTypes);
-
-  // const {
-  //   data: clientTypes,
-  //   isLoading: typesLoading,
-  //   status: typesStatus,
-  // } = useReadClientTypesQuery(null);
-
-  const selectVisitTypes = useMemo(
-    () => visitTypeApiEndpoints.readVisitTypes.select(null),
-    []
-  );
-  const {
-    data: visitTypes,
-    isSuccess: visitSuccess,
-    status: visitStatus,
-  } = useAppSelector(selectVisitTypes);
-
-  const selectServicePoints = useMemo(
-    () => servicePointsApiEndpoints.readServicePoints.select(null),
-    []
-  );
-
-  const {
-    data: servicePoints,
-    isSuccess: servicePointsSuccess,
-    status: servicePointsStatus,
-  } = useAppSelector(selectServicePoints);
-
-  const selectHivTestingReasons = useMemo(
-    () => hivTestingReasonApiEndpoints.readHIVTestingReasons.select(null),
-    []
-  );
-
-  const {
-    data: hivTestingReasons,
-    isSuccess: testingReasonSuccess,
-    status: testingReasonStatus,
-  } = useAppSelector(selectHivTestingReasons);
-
-  // const {
-  //   data: hivTestingReasons,
-  //   isSuccess: testingReasonSuccess,
-  //   status: testingReasonStatus,
-  // } = useReadHIVTestingReasonsQuery(null);
-
-  const selectHivNotTestingReasons = useMemo(
-    () => hivNotTestingReasonApiEndpoints.readHIVNotTestingReasons.select(null),
-    []
-  );
-
-  const {
-    data: hivNotTestingReasons,
-    isSuccess: hivNotTestingSuccess,
-    status: hivNotTestingStatus,
-  } = useAppSelector(selectHivNotTestingReasons);
-
-  // const {
-  //   data: hivNotTestingReasons,
-  //   isSuccess: hivNotTestingSuccess,
-  //   status: hivNotTestingStatus,
-  // } = useReadHIVNotTestingReasonsQuery(null);
-
-  const selectHivRiskFactors = useMemo(
-    () => hivRiskFactorApiEndpoints.readHIVRiskFactors.select(null),
-    []
-  );
-
-  const { data: hivRiskFactors } = useAppSelector(selectHivRiskFactors);
-
-  // const { data: hivRiskFactors } = useReadHIVRiskFactorsQuery(null);
-
-  console.log("has concented", htsData?.hasConsented === "true");
+    clientTypes,
+    hivNotTestingReasons,
+    hivNotTestingStatus,
+    hivNotTestingSuccess,
+    hivRiskFactors,
+    hivTestingReasons,
+    servicePoints,
+    servicePointsStatus,
+    servicePointsSuccess,
+    testingReasonStatus,
+    testingReasonSuccess,
+    typesLoading,
+    typesStatus,
+    visitStatus,
+    visitSuccess,
+    visitTypes,
+  } = useHTSForm();
 
   // render client types options
   const clientTypesOptions = clientTypes?.map((clientType) => (

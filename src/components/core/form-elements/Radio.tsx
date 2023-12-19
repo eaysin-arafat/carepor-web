@@ -11,7 +11,7 @@ type Props = {
   className?: string;
   placeholder?: string;
   max?: number;
-  checked?: true;
+  checked?: boolean;
 };
 
 function Radio({

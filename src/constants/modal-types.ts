@@ -123,6 +123,7 @@ export const covaxModalTypes = Object.freeze({
 });
 export const painRecordsModalTypes = Object.freeze({
   painRecordCreate: "painRecordCreate",
+  editPainRecord: "editPainRecord",
 });
 
 export const referralModalTypes = Object.freeze({
