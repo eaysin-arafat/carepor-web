@@ -3,13 +3,16 @@ import Checkbox from "@/components/core/form-elements/Checkbox";
 import Input from "@/components/core/form-elements/Input";
 import Password from "@/components/core/form-elements/Password";
 import FormWrapper from "@/components/core/form-layouts/FormWrapper";
+import useWindowWidth from "@/hooks/useWindow";
 import { URLUserRecoveryRequest } from "@/routers/public";
+import { cn } from "@/utilities/cn";
 import { Alert } from "flowbite-react";
 import { HiInformationCircle } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import useUserLogin from "./useUserLogin";
 
 function UserLogin() {
+  const w768 = useWindowWidth(768);
   const userLogin = useUserLogin();
   const {
     errors,
@@ -46,7 +49,7 @@ function UserLogin() {
           </>
         )}
 
-        <div className="flex flex-col gap-5 mt-10">
+        <div className="flex flex-col gap-4 mt-10">
           <Input
             value={loginForm?.username}
             errMsg={errors?.username}
@@ -83,7 +86,7 @@ function UserLogin() {
             </div>
           </div>
 
-          <div className="mb-5 mt-5">
+          <div className={cn("mx-5", { "mx-3": w768 })}>
             <SubmitButton
               loading={isLoading}
               buttonType="submit"

@@ -50,7 +50,7 @@ function FormWrapper({
     <BodyBackground noBackground={noBackground}>
       <div
         className={cn("mx-auto mt-10 xs:mt-auto ", maxWidth, {
-          "flex items-center justify-center xs:h-screen": contentCenter,
+          "flex items-center justify-center": contentCenter,
         })}
       >
         {/* <div className="flex items-center justify-center h-screen"> */}
