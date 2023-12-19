@@ -5,6 +5,7 @@ import React from "react";
 import Card from "../core/card/Card";
 import DateInput from "../core/form-elements/DatePicker";
 import Input from "../core/form-elements/Input";
+import MultiSelect from "../core/form-elements/MultiSelect";
 import MultipleSelect, { Option } from "../core/form-elements/MultipleSelect";
 import Select from "../core/form-elements/Select";
 import Textarea from "../core/form-elements/textarea";
@@ -75,7 +76,7 @@ const CovidForm = ({
         titleClass="text-xl text-secondary"
       >
         <div className="grid  gap-5">
-          <MultipleSelect
+          <MultiSelect
             options={demoOptions?.slice() || []}
             selectedOptions={selectedOptions}
             setSelectedOptions={setSelectedOptions}

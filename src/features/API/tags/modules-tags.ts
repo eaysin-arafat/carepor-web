@@ -10,6 +10,7 @@ const hts = ["HTSes"];
 const birthRecord = ["ClientBirthRecord"];
 const chiefComplaints = ["ChiefComplaints"];
 const treatmentPlan = ["TreatmentPlans"];
+const referral = ["Referrals"];
 
 // Export tags
 export const mainModuleTags = [
@@ -24,4 +25,5 @@ export const mainModuleTags = [
   ...birthRecord,
   ...chiefComplaints,
   ...treatmentPlan,
+  ...referral,
 ];

@@ -58,11 +58,11 @@ function SearchableSelect({
     setShowDropdown(false);
   };
 
-  const handleResetValue = () => {
-    setSelectedValue(null);
-    setSearchValue("");
-    setShowDropdown(false);
-  };
+  // const handleResetValue = () => {
+  //   setSelectedValue(null);
+  //   setSearchValue("");
+  //   setShowDropdown(false);
+  // };
 
   const handleDropdownOpen = () => {
     setShowDropdown(true);

@@ -26,6 +26,8 @@ type Props = {
   btnHandler?: () => void;
   btnOutlineHandler?: () => void;
   viewResultHandler?: () => void;
+  handleDeleteItem?: () => void;
+  handleEditItem?: () => void;
   colorKey?: number;
 };
 
@@ -53,6 +55,8 @@ function TableBody({
   btnHandler,
   btnOutlineHandler,
   viewResultHandler,
+  handleDeleteItem,
+  handleEditItem,
   colorKey,
 }: Props) {
   return (
@@ -103,13 +107,19 @@ function TableBody({
           )}
 
           {btn?.edit && (
-            <button className="border border-green-600 text-green-600 hover:bg-green-600 hover:text-white focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-sm text-sm p-1 text-center inline-flex items-center  dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-500">
+            <button
+              className="border border-green-600 text-green-600 hover:bg-green-600 hover:text-white focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-sm text-sm p-1 text-center inline-flex items-center  dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-500"
+              onClick={handleEditItem}
+            >
               <Edit size={15} />
             </button>
           )}
 
           {btn?.delete && (
-            <button className="border border-red-500 text-red-600 hover:bg-red-600 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-sm text-sm p-1 text-center inline-flex items-center  dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-primaryColor">
+            <button
+              className="border border-red-500 text-red-600 hover:bg-red-600 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-sm text-sm p-1 text-center inline-flex items-center  dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-primaryColor"
+              onClick={handleDeleteItem}
+            >
               <Trash size={15} />
             </button>
           )}

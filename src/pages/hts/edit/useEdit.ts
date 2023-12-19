@@ -42,7 +42,17 @@ const useEdit = () => {
   const { editModal } = useSelector((state: RootState) => state.modal);
 
   const [htsData, setHtsData] = React.useState<HtsData>(
-    editModal?.data || initialState
+    editModal?.data
+      ? {
+          ...editModal?.data,
+          hasCounselled:
+            editModal?.data?.hasCounselled == 1
+              ? "true"
+              : editModal?.data?.hasCounselled == 2
+              ? "false"
+              : "",
+        }
+      : initialState
   );
   const [selectedOptions, setSelectedOptions] = React.useState<Option[]>([]);
   const [errorMessages, setErrorMessages] = React.useState<HtsErrorMessages>(
@@ -102,7 +112,7 @@ const useEdit = () => {
       clientId: client?.oid,
     };
 
-    updateHTS(payload);
+    updateHTS({ key: editModal?.data?.interactionId, body: payload });
   };
 
   // handle side effects
@@ -110,13 +120,13 @@ const useEdit = () => {
     if (isSuccess && status === "fulfilled") {
       dispatch(closeEditModal());
       toast.dismiss();
-      toast.success("HTS created successfully");
+      toast.success("HTS updated successfully");
       setHtsData(initialState);
       setSelectedOptions([]);
     } else if (isError && "data" in error) {
       toast.dismiss();
       toast.error(
-        typeof error.data === "string" ? error.data : "Error creating HTS"
+        typeof error.data === "string" ? error.data : "Error updating HTS"
       );
     }
   }, [isSuccess, isError, status, error, dispatch]);

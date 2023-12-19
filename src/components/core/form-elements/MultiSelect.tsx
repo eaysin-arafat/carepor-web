@@ -21,7 +21,6 @@ const MultiSelect = ({
   selectedOptions,
   setSelectedOptions,
 }: MultipleSelectProps) => {
-  // const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const dropdownRef = useRef(null);
 
@@ -60,6 +59,7 @@ const MultiSelect = ({
               <option value="">Please Select</option>
             </select>
           )}
+
           {isSearchable && (
             <input
               type="text"
@@ -94,16 +94,17 @@ const MultiSelect = ({
       </div>
 
       {selectedOptions.length > 0 && (
-        <div className="bg-lightBlueColor border border-borderColor p-4 mt-5 rounded-lg grid xs:grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="bg-lightBlueColor border border-borderColor p-4 mt-5 rounded-lg grid xs:grid-cols-2 sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-6 gap-4">
           {selectedOptions.map((option) => (
             <div
               key={option.oid}
               className="bg-lightBlueColor border border-primaryColor rounded-lg py-1 px-2 flex justify-between gap-2 "
             >
-              <h2 title={option.description} className="whitespace-nowrap">
-                {option.description.length > 17
-                  ? option.description.substring(0, 17) + "..."
-                  : option.description}
+              <h2
+                title={option.description}
+                className="whitespace-nowrap truncate  text-sm"
+              >
+                {option.description}
               </h2>
               <button onClick={() => handleOptionToggle(option)}>
                 <RxCross2 className="text-dangerColor rounded hover:bg-red-200 text-[20px] p-0.5" />
@@ -112,12 +113,6 @@ const MultiSelect = ({
           ))}
         </div>
       )}
-      {/* <div className="bg-lightBlueColor border border-primaryColor rounded-lg py-1 px-2 mt-5 flex gap-1  w-fit">
-        <h2>Hello</h2>
-        <button onClick={() => handleOptionToggle(option)}>
-          <RxCross2 />
-        </button>
-      </div> */}
     </div>
   );
 };

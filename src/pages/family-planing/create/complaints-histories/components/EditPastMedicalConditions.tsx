@@ -1,15 +1,15 @@
-import CancelAndAddButton from '@/components/core/buttons/CancelAndAddButton';
-import Input from '@/components/core/form-elements/Input';
-import Select from '@/components/core/form-elements/Select';
-import DefaultOpenModal from '@/components/core/modal/DefaultOpenModal';
-import PastRecordContainers from '@/components/past-record-containers/PastRecordContainers';
-import { useReadChiefComplaintByClientQuery } from '@/features/chief-complaint/chief-complaint-api';
-import PastEncounters from '@/pages/chief-complaints/create/PastEncounters';
-import { Loader } from 'react-feather';
+import CancelAndAddButton from "@/components/core/buttons/CancelAndAddButton";
+import Input from "@/components/core/form-elements/Input";
+import Select from "@/components/core/form-elements/Select";
+import DefaultOpenModal from "@/components/core/modal/DefaultOpenModal";
+import PastRecordContainers from "@/components/past-record-containers/PastRecordContainers";
+import { useReadChiefComplaintByClientQuery } from "@/features/chief-complaint/chief-complaint-api";
+import PastEncounters from "@/pages/chief-complaints/create/PastEncounters";
+import { Loader } from "react-feather";
 
 const EditPastMedicalConditions = ({ toggler }) => {
   const { data, isLoading, status } = useReadChiefComplaintByClientQuery(
-    'a1497272-3783-46f6-922a-08dbd06dc4d8'
+    "a1497272-3783-46f6-922a-08dbd06dc4d8"
   );
 
   return (
@@ -23,11 +23,11 @@ const EditPastMedicalConditions = ({ toggler }) => {
           <Select label="Does client have any of the health Conditon to be Screened ?">
             <option value="Yes">Yes</option>
             <option value="No">No</option>
-          </Select>{' '}
+          </Select>{" "}
           <h3 className="font-bold">
             Medical conditions during past pregnancy or after childbirth(IUCD
             insertion)
-          </h3>{' '}
+          </h3>{" "}
           <Select label="Medical Condition">
             <option value="1">Past ectopic pregnancy</option>
             <option value="2">History of pelvic surgery</option>
@@ -62,26 +62,26 @@ const EditPastMedicalConditions = ({ toggler }) => {
               <option value="9">Sex with partner who has STI symptoms</option>
               <option value="10">History of STI in the last year</option>
               <option value="11">No risk factors (STI)</option>
-            </Select>{' '}
+            </Select>{" "}
             <Select label="Increased Risk of STIs">
               <option value="1">YES</option>
               <option value="2">NO</option>
             </Select>
-            <Input label="Days Since Last Unprotected Sex Days" />{' '}
-          </div>{' '}
+            <Input label="Days Since Last Unprotected Sex Days" />{" "}
+          </div>{" "}
         </div>
 
         <hr className="my-6" />
         {/* PAST RECORD CONTAINERS */}
         <PastRecordContainers>
-          {(isLoading || status === 'pending') && (
+          {(isLoading || status === "pending") && (
             <div className="flex w-full justify-center items-center">
               <Loader size={40} className="animate-spin" />
             </div>
           )}
 
           {data?.map((item, index) => (
-            <PastEncounters key={index} data={item} />
+            <PastEncounters key={index} data={item} handleEdit={() => {}} />
           ))}
         </PastRecordContainers>
         {/* BUTTONS */}

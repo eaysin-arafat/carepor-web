@@ -101,11 +101,12 @@ const htsApi = API.injectEndpoints({
      * @returns HTS
      */
     updateHTS: builder.mutation({
-      query: ({ key, ...body }) => ({
-        url: `/hts/hts/${key}`,
+      query: ({ key, body }) => ({
+        url: `/hts/${key}`,
         method: "PUT",
         body,
       }),
+      invalidatesTags: ["HTSes"],
     }),
 
     /**

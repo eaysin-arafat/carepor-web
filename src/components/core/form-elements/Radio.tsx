@@ -4,14 +4,14 @@ type Props = {
   value?: string | number;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   name?: string;
-  label: string;
+  label?: string;
   required?: boolean;
   errMsg?: string;
   disabled?: boolean;
   className?: string;
   placeholder?: string;
   max?: number;
-  checked?: true;
+  checked?: boolean;
 };
 
 function Radio({

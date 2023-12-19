@@ -1,32 +1,37 @@
+import { RootState } from "@/app/store";
 import CancelAndAddButton from "@/components/core/buttons/CancelAndAddButton";
 import Radio from "@/components/core/form-elements/Radio";
 import DefaultOpenModal from "@/components/core/modal/DefaultOpenModal";
 import { EnumEncounterType } from "@/enum/encounter-type";
 import { EnumPainRecords } from "@/enum/enumerators";
-import { closeAddModal } from "@/features/modal/modal-slice";
-import { useCreatePainRecordMutation } from "@/features/pain-record/pain-record-api";
+import { closeEditModal } from "@/features/modal/modal-slice";
+import { useUpdatePainRecordMutation } from "@/features/pain-record/pain-record-api";
 import useBaseModel from "@/hooks/useBaseModel";
 import useClient from "@/hooks/useClient";
 import useEncounter from "@/hooks/useEncounter";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-function PainRecordsCreate({ toggler }) {
-  const [selectRecord, setSelectRecord] = useState<string>("");
+const EditPainRecord = ({ toggler }) => {
+  const { editModal } = useSelector((state: RootState) => state.modal);
+  const [selectRecord, setSelectRecord] = useState<string>(
+    editModal?.data?.painScaleId
+  );
 
   const baseData = useBaseModel({});
   const client = useClient();
   const encounter = useEncounter(EnumEncounterType.MedicalEncounterIPD);
   const dispatch = useDispatch();
 
-  const [createPainRecord, { isLoading, isSuccess, status, isError, error }] =
-    useCreatePainRecordMutation();
+  const [updatePainRecord, { isLoading, isSuccess, status, isError, error }] =
+    useUpdatePainRecordMutation();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const payload = {
+      ...editModal?.data,
       ...baseData,
       ...encounter,
       painScales: true,
@@ -34,21 +39,21 @@ function PainRecordsCreate({ toggler }) {
       clientId: client?.oid,
     };
 
-    createPainRecord(payload);
+    updatePainRecord({ key: editModal?.data?.interactionId, body: payload });
   };
 
   // handle side effect
   React.useEffect(() => {
     if (isSuccess && status === "fulfilled") {
-      dispatch(closeAddModal());
+      dispatch(closeEditModal());
       toast.dismiss();
-      toast.success("Pain Record Created Successfully");
+      toast.success("Pain Record updated Successfully");
     } else if (isError && "data" in error) {
       toast.dismiss();
       toast.error(
         typeof error.data === "string"
           ? error.data
-          : "Error creating pain record"
+          : "Error updating pain record"
       );
     }
   }, [isSuccess, isError, status, error, dispatch]);
@@ -85,6 +90,6 @@ function PainRecordsCreate({ toggler }) {
       </form>
     </DefaultOpenModal>
   );
-}
+};
 
-export default PainRecordsCreate;
+export default EditPainRecord;

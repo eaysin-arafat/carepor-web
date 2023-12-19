@@ -1,10 +1,11 @@
+import { useAppSelector } from "@/app/store";
 import { EnumEncounterType } from "@/enum/encounter-type";
 import { useReadDistrictsQuery } from "@/features/district/district-api";
-import { useReadFacilitiesQuery } from "@/features/facility/facility-api";
+import { facilityApiEndpoints } from "@/features/facility/facility-api";
 import { closeAddModal } from "@/features/modal/modal-slice";
 import { useReadProvincesQuery } from "@/features/province/province-api";
 import { useCreateReferralMutation } from "@/features/referrals/referrals-api";
-import { useReadServicePointsQuery } from "@/features/service-points/service-points-api";
+import { servicePointsApiEndpoints } from "@/features/service-points/service-points-api";
 import useBaseModel from "@/hooks/useBaseModel";
 import useClient from "@/hooks/useClient";
 import useEncounter from "@/hooks/useEncounter";
@@ -30,42 +31,50 @@ const initialState = {
 };
 
 const useCreate = () => {
+  // local state
   const [referralData, setReferralData] = useState(initialState);
   const [errorMsg, setErrorMsg] = useState<ReferralsErrorType>({});
 
+  // hooks and variables
   const client = useClient();
   const encounter = useEncounter(EnumEncounterType.Referral);
   const baseData = useBaseModel({});
   const dispatch = useDispatch();
 
+  // api hooks
   const { data: provinces, isSuccess: isLoadedProvinces } =
-    useReadProvincesQuery({});
+    useReadProvincesQuery(null);
   const { data: districts, isSuccess: isLoadedDistricts } =
     useReadDistrictsQuery({});
-  const { data: facilities, isSuccess: isLoadedFacilities } =
-    useReadFacilitiesQuery(undefined);
+  // const { data: facilities, isSuccess: isLoadedFacilities } =
+  //   useReadFacilitiesQuery(undefined);
+
+  // selectors and memoized values
+  const selectServicePoint = useMemo(
+    () => servicePointsApiEndpoints.readServicePoints.select(null),
+    []
+  );
+  const selectFacilities = useMemo(
+    () => facilityApiEndpoints.readFacilities.select(undefined),
+    []
+  );
+
   const { data: servicePoints, isSuccess: isLoadedServicePoints } =
-    useReadServicePointsQuery(null);
+    useAppSelector(selectServicePoint);
+  const { data: facilities, isSuccess: isLoadedFacilities } =
+    useAppSelector(selectFacilities);
+
+  console.log("facilities", facilities);
+
   const [createReferral, { isSuccess, isLoading, isError, error, status }] =
     useCreateReferralMutation();
 
+  // handlers
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setReferralData((prev) => ({ ...prev, [name]: value }));
     setErrorMsg((prev) => ({ ...prev, [name]: "" }));
   };
-
-  const filteredDistricts = useMemo(() => {
-    return districts?.filter(
-      (district) => district?.provinceId == referralData?.provinceId
-    );
-  }, [districts, referralData?.provinceId]);
-
-  const filteredFacilities = useMemo(() => {
-    return facilities?.filter(
-      (facility) => facility.districtId === +referralData?.districtId
-    );
-  }, [facilities, referralData?.districtId]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -82,10 +91,26 @@ const useCreate = () => {
         referralData.referralType !== "2"
           ? baseData?.createdIn
           : referralData.receivingFacilityId,
+      facilityId: baseData?.createdIn,
+      referredFacilityId:
+        referralData?.referredFacilityId || baseData?.createdIn,
     };
 
     createReferral(payload);
   };
+
+  // transforms
+  const filteredDistricts = useMemo(() => {
+    return districts?.filter(
+      (district) => district?.provinceId == referralData?.provinceId
+    );
+  }, [districts, referralData?.provinceId]);
+
+  const filteredFacilities = useMemo(() => {
+    return facilities?.filter(
+      (facility) => facility.districtId === +referralData?.districtId
+    );
+  }, [facilities, referralData?.districtId]);
 
   // handle side effects
   React.useEffect(() => {
