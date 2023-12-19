@@ -31,17 +31,19 @@ function QueueSidebar() {
                 )}
               >
                 <div className="flex justify-between items-center w-full">
-                  <div className="flex items-center gap-3">
-                    {item.icon ? (
-                      <img
-                        src={item.icon}
-                        alt=""
-                        className=" w-[23px] h-[23px]"
-                      />
-                    ) : (
-                      <FaChartPie size={23} />
-                    )}
-                    {item.title}
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex gap-1">
+                      {item.icon ? (
+                        <img
+                          src={item.icon}
+                          alt=""
+                          className=" w-[23px] h-[23px]"
+                        />
+                      ) : (
+                        <FaChartPie size={23} />
+                      )}
+                      {item.title}
+                    </div>
                     <div className="inline-flex items-center justify-center w-8 h-8 text-xs font-bold text-white bg-primaryColor border-2 border-white rounded-full dark:border-gray-900">
                       9
                     </div>

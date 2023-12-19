@@ -38,7 +38,7 @@ function FormWrapper({
   children,
   emergencyAccess,
   className = " ",
-  maxWidth = "max-w-[810px]",
+  maxWidth = "max-w-[650px]",
   contentCenter,
   noBackground,
   signUpForm,
@@ -50,7 +50,7 @@ function FormWrapper({
     <BodyBackground noBackground={noBackground}>
       <div
         className={cn("mx-auto mt-10 xs:mt-auto ", maxWidth, {
-          "flex items-center justify-center xs:h-screen": contentCenter,
+          "flex items-center justify-center": contentCenter,
         })}
       >
         {/* <div className="flex items-center justify-center h-screen"> */}
@@ -88,7 +88,7 @@ function FormWrapper({
                 {title && (
                   <div
                     className={cn(
-                      "heading_2 text-2xl md:text-3xl text-center mt-5 font-normal text-secondaryColor",
+                      "heading_2 text-md md:text-1xl text-center mt-5 font-normal text-secondaryColor",
                       titleClass
                     )}
                   >

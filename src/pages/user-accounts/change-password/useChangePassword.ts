@@ -73,7 +73,7 @@ function useChangePassword() {
       Alert.error("Password change failed");
     }
     if (isSuccess && status === RtkStatusEnum.fulfilled) {
-      // Alert.success("Password change successful");
+      toast.dismiss();
       toast.success("Password change successful");
       // handleLogout(); ***
       navigate(URLClientSearch());

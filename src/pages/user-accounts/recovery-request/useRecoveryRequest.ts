@@ -81,8 +81,10 @@ function usePasswordRecovery() {
       //@ts-ignore
       const errorMessage = recoveryError?.data?.message;
       if (typeof errorMessage === "string" && errorMessage) {
+        toast.dismiss();
         toast.error(errorMessage);
       } else {
+        toast.dismiss();
         toast.error("Something went wrong.");
       }
     }

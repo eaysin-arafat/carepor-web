@@ -7,10 +7,12 @@ import { URLUserLogin } from "@/routers/public";
 import { FormSubmitEventType } from "@/types/htmlEvents";
 import Alert from "@/utilities/alert";
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import useLogoutSession from "./useLogoutSession";
 
 type FacilityRequestType = {
   isDeleted: boolean;
@@ -24,6 +26,7 @@ type FacilityRequestType = {
 };
 
 const useRequestFacility = () => {
+  const { removeLogins } = useLogoutSession();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user, isLoggedIn, token } = useSelector(
@@ -34,10 +37,8 @@ const useRequestFacility = () => {
   const [getFacilityAccesses, { data: accesses }] =
     useGetUserAccessByUserNameMutation();
 
-  const [
-    sendFacilityRequest,
-    { data: facilityAccess, isError, isSuccess, status, error },
-  ] = useCreateFacilityAccessMutation();
+  const [sendFacilityRequest, { data: facilityAccess, status, error }] =
+    useCreateFacilityAccessMutation();
 
   const {
     districtOptions,
@@ -92,20 +93,30 @@ const useRequestFacility = () => {
   console.log(error?.data);
 
   useEffect(() => {
-    if (isSuccess && status === "fulfilled") {
+    if (status === "fulfilled") {
       Alert.success(facilityAccess && "Facility Request send successful");
       dispatch(setIsRegisteredFalse());
+      removeLogins();
     }
-    if (isError && status === "rejected") {
-      Alert.error(
+    if (status === "rejected") {
+      toast.dismiss();
+      toast.error(
         //@ts-ignore
         error?.data && typeof error?.data === "string"
           ? //@ts-ignore
             error.data
           : "Facility Request send failed"
       );
+
+      // Alert.error(
+      //   //@ts-ignore
+      //   error?.data && typeof error?.data === "string"
+      //     ? //@ts-ignore
+      //       error.data
+      //     : "Facility Request send failed"
+      // );
     }
-  }, [isError, isSuccess]);
+  }, [status]);
 
   const handleCancelRequest = (): void => {
     navigate(URLUserLogin());

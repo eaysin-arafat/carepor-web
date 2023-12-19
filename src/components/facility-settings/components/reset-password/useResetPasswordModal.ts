@@ -55,10 +55,12 @@ const useResetPasswordModal = () => {
 
   useEffect(() => {
     if (status === RtkStatusEnum.fulfilled) {
+      toast.dismiss();
       toast.success("Password updated successfully");
       dispatch(closeEditModal());
     }
     if (status === RtkStatusEnum.rejected) {
+      toast.dismiss();
       toast.error("Password updated failed");
     }
   }, [status]);

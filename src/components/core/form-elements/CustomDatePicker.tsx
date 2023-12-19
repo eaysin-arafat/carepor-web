@@ -169,10 +169,7 @@ function DatePicker({
         className="relative flex w-[100%] flex-col items-start justify-start gap-[6px]"
       >
         <div className="flex">
-          <div className="input_label ">
-            {" "}
-            {label}
-          </div>
+          <div className="input_label "> {label}</div>
           {required && (
             <span className="-mt-[6px] mx-1 text-dangerColor">*</span>
           )}
@@ -185,7 +182,9 @@ function DatePicker({
           disabled={disabled}
           onClick={() => setShowDatepicker(!showDatepicker)}
           value={selectedDate ? formatDate(new Date(selectedDate)) : ""}
-          className={`custom-input w-[100%] ${disabled && "disabled_bg"} ${className}`}
+          className={`custom-input w-[100%] ${
+            disabled && "disabled_bg"
+          } ${className}`}
         />
         {showDatepicker && (
           <div
@@ -265,8 +264,8 @@ function DatePicker({
             <MdDateRange className="text-2xl text-grayColor" />
           </div> */}
         {errMsg && (
-          <p className="text-sm mt-1 " style={{ color: "red" }}>
-            {errMsg}
+          <p className=" mt-1 text-xs" style={{ color: "red" }}>
+            {errMsg}!
           </p>
         )}
       </div>
