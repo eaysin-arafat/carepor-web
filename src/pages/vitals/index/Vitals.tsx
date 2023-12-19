@@ -122,7 +122,7 @@ function Vitals() {
                               "text-red-600": !bmiMsg?.includes("Normal"),
                             })}
                           >
-                            {vital?.bmi || "__"}
+                            {vital?.bmi || "--"}
                           </li>
                           <li
                             className={cn("mb-3 text-green-600", {
@@ -130,7 +130,7 @@ function Vitals() {
                                 !temperatureMsg?.includes("Normal"),
                             })}
                           >
-                            {vital?.temperature || "__"}
+                            {vital?.temperature || "--"}
                           </li>
                           <li
                             className={cn("mb-3 text-green-600", {
@@ -149,7 +149,7 @@ function Vitals() {
                               "text-red-600": !pulseRateMsg?.includes("Normal"),
                             })}
                           >
-                            {vital?.pulseRate || "__"}
+                            {vital?.pulseRate || "--"}
                           </li>
                           <li
                             className={cn("mb-3 text-green-600", {
@@ -157,7 +157,7 @@ function Vitals() {
                                 !respiratoryRateMsg?.includes("Normal"),
                             })}
                           >
-                            {vital?.respiratoryRate || "__"}
+                            {vital?.respiratoryRate || "--"}
                           </li>
 
                           <li className="mb-3 text-black flex justify-center  opacity-0 group-hover:opacity-100 transition-opacity">
