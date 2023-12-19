@@ -196,12 +196,12 @@ body.modal-open {
   }
 
   .custom-input {
-    @apply w-full rounded-[6px] text-blackColor dark:text-gray-400 bg-whiteColor dark:bg-[#000] box-border flex flex-row items-center justify-start py-[8px] xs:py-[12px] px-4 border-[2px] border-solid border-borderColor dark:border-[#6B7280] focus:border-borderColor focus:shadow-none outline-none focus:outline-none focus:ring-0;
+    @apply w-full rounded-[6px] text-blackColor dark:text-gray-400 bg-whiteColor dark:bg-[#000] box-border flex flex-row items-center justify-start py-[8px] xs:py-[8px] px-4 border-[2px] border-solid border-borderColor dark:border-[#6B7280] focus:border-borderColor focus:shadow-none outline-none focus:outline-none focus:ring-0;
   }
 
   .input_label {
     /* @apply text-blackColor dark:text-[#F2F3F5] leading-[125%] capitalize text-xs md:text-[14px] lg:text-base; */
-    @apply text-textColor leading-[125%] text-xs md:text-[14px];
+    @apply text-textColor leading-[125%] text-xs;
   }
 
   .input_cellphone {

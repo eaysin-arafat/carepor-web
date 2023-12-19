@@ -38,7 +38,7 @@ function FormWrapper({
   children,
   emergencyAccess,
   className = " ",
-  maxWidth = "max-w-[810px]",
+  maxWidth = "max-w-[650px]",
   contentCenter,
   noBackground,
   signUpForm,
@@ -88,7 +88,7 @@ function FormWrapper({
                 {title && (
                   <div
                     className={cn(
-                      "heading_2 text-2xl md:text-3xl text-center mt-5 font-normal text-secondaryColor",
+                      "heading_2 text-md md:text-1xl text-center mt-5 font-normal text-secondaryColor",
                       titleClass
                     )}
                   >

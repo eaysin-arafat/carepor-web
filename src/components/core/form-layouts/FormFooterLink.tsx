@@ -17,7 +17,7 @@ export const FormFooterLink = ({
         <div className="pt-3 -mb-2 flex justify-center gap-2">
           <div className="text-textColor">{question}</div>
           <div className="leading-[26px] text-dodgerblue">
-            <Link to={link} className="text-logoColor">
+            <Link to={link} className="text-primaryColor">
               {btnText}
             </Link>
           </div>

@@ -4,8 +4,8 @@ import Input from "@/components/core/form-elements/Input";
 import Password from "@/components/core/form-elements/Password";
 import FormWrapper from "@/components/core/form-layouts/FormWrapper";
 import { URLUserRecoveryRequest } from "@/routers/public";
-import { HiInformationCircle } from "react-icons/hi";
 import { Alert } from "flowbite-react";
+import { HiInformationCircle } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import useUserLogin from "./useUserLogin";
 
@@ -46,20 +46,20 @@ function UserLogin() {
           </>
         )}
 
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-5 mt-10">
           <Input
             value={loginForm?.username}
             errMsg={errors?.username}
             name="username"
             onChange={handleInputChange}
-            label="username"
+            label="Username"
           />
           <Password
             value={loginForm?.password}
             errMsg={errors?.password}
             name="password"
             onChange={handleInputChange}
-            label="password"
+            label="Password"
             placeholder="Enter Your Password"
           />
           <div className="grid grid-cols-2 items-center ">
@@ -76,18 +76,20 @@ function UserLogin() {
             <div className="flex justify-end items-center">
               <Link
                 to={URLUserRecoveryRequest()}
-                className="heading_5 hover:text-primaryColor dark:text-gray-500"
+                className="heading_5 hover:text-primaryColor text-textColor"
               >
-                Forgot Password
+                Forgot Password?
               </Link>
             </div>
           </div>
 
-          <SubmitButton
-            loading={isLoading}
-            buttonType="submit"
-            title="Sign In"
-          />
+          <div className="mb-5 mt-5">
+            <SubmitButton
+              loading={isLoading}
+              buttonType="submit"
+              title="Sign In"
+            />
+          </div>
         </div>
       </form>
     </FormWrapper>

@@ -63,7 +63,7 @@ function DeathRecordCreate({ toggler }) {
       </div>
 
       <form>
-        <div className="bg-lightBlueColor p-5 rounded">
+        <div className=" shadow border p-5 rounded">
           <h1 className="text-md font-medium border-b-borderColor  border-b mb-5 pb-1">
             Deceased :
           </h1>
@@ -82,7 +82,7 @@ function DeathRecordCreate({ toggler }) {
             <Select label="Where Death Occurred"></Select>
           </div>
         </div>
-        <div className="bg-lightBlueColor p-5 rounded mt-5 shadow">
+        <div className=" p-5 rounded border mt-5 shadow">
           <h1 className="text-md font-medium border-b-borderColor border-b mb-2 pb-1">
             Main Cause of Death :
           </h1>
@@ -96,7 +96,7 @@ function DeathRecordCreate({ toggler }) {
           </div>
         </div>
 
-        <div className="bg-lightBlueColor p-5 rounded mt-5 shadow">
+        <div className="border p-5 rounded mt-5 shadow">
           <h1 className="text-md font-medium border-b-borderColor mb-2 border-b pb-1">
             Contributing Cause of Death :
           </h1>
@@ -131,7 +131,7 @@ function DeathRecordCreate({ toggler }) {
             </div>
           </div>
         </div>
-        <div className="bg-lightBlueColor p-5 rounded mt-5 shadow mb-4">
+        <div className="border p-5 rounded mt-5 shadow mb-4">
           <h1 className="text-md font-medium border-b-borderColor  border-b mb-5 pb-1">
             Informant Details :
           </h1>

@@ -1,5 +1,7 @@
 // import React, { useState } from "react";
 
+import { User } from "react-feather";
+
 type Props = {
   value?: string | number;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -16,7 +18,7 @@ type Props = {
   numberOnly?: boolean;
 };
 
-function Input({
+function UserName({
   value,
   onChange,
   name,
@@ -30,21 +32,26 @@ function Input({
   max,
 }: Props) {
   return (
-    <div className="flex flex-col w-full items-start justify-start gap-[3px]">
+    <div className="flex flex-col w-full items-start justify-start gap-[6px]">
       <div className="flex">
-        <div className="input_label text-xs !mb-0">{label}</div>
+        <div className="input_label">{label}</div>
         {required && <span className="-mt-[6px] mx-1 text-dangerColor">*</span>}
       </div>
-      <input
-        type={type}
-        className={`custom-input ${disabled && "disabled_bg"} ${className}`}
-        value={value}
-        name={name}
-        onChange={onChange}
-        disabled={disabled}
-        max={max || "250"}
-        placeholder={`${placeholder ? placeholder : "Enter" + " " + label}`}
-      />
+      <div className="flex items-center border rounded w-full">
+        <div className="h-full">
+          <User size={25} />
+        </div>
+        <input
+          type={type}
+          className={`border-0 w-full outline-none focus:shadow-none focus:outline-none ${className}`}
+          value={value}
+          name={name}
+          onChange={onChange}
+          disabled={disabled}
+          max={max || "250"}
+          placeholder={`${placeholder ? placeholder : "Enter" + " " + label}`}
+        />
+      </div>
       {errMsg && (
         <span className="text-dangerColor leading-[125%] font-normal ">
           {errMsg}
@@ -54,4 +61,4 @@ function Input({
   );
 }
 
-export default Input;
+export default UserName;
