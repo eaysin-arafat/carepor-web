@@ -44,9 +44,7 @@ const CustomNrc: FC<CustomNrcProps> = React.forwardRef<
     return (
       <div className="flex flex-col w-full items-start justify-start gap-[6px]">
         <div className="flex">
-          <div className="input_label ">
-            {label}
-          </div>
+          <div className="input_label ">{label}</div>
           {required && (
             <span className="-mt-[6px] mx-1 text-dangerColor">*</span>
           )}
@@ -64,8 +62,8 @@ const CustomNrc: FC<CustomNrcProps> = React.forwardRef<
           className={`custom-input ${disabled && "disabled_bg"} ${className}`}
         />
         {errMsg && (
-          <span className="text-dangerColor leading-[125%] font-normal ">
-            {errMsg}
+          <span className="text-dangerColor leading-[125%] font-normal text-xs">
+            {errMsg}!
           </span>
         )}
       </div>

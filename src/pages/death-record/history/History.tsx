@@ -27,6 +27,7 @@ function DeathRecordHistory() {
           <h1 className="mb-5 text-2xl">Death Record Not Created</h1>
           <button
             className="flex items-center justify-center gap-1 px-5 py-3 bg-buttonBg rounded-full text-center text-white "
+            type="button"
             onClick={() => {
               dispatch(
                 openAddModal({

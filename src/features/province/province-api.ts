@@ -20,7 +20,7 @@ const provinceApi = API.injectEndpoints({
      * @description This endpoint is used to read provinces
      * @returns Province[]
      */
-    readProvinces: builder.query<ProvinceType, undefined>({
+    readProvinces: builder.query<ProvinceType[], undefined>({
       query: () => ({
         url: "/provinces",
         method: "GET",

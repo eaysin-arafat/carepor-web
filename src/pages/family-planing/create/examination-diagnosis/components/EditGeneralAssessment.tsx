@@ -1,14 +1,14 @@
-import CancelAndAddButton from '@/components/core/buttons/CancelAndAddButton';
-import Select from '@/components/core/form-elements/Select';
-import DefaultOpenModal from '@/components/core/modal/DefaultOpenModal';
-import PastRecordContainers from '@/components/past-record-containers/PastRecordContainers';
-import { useReadChiefComplaintByClientQuery } from '@/features/chief-complaint/chief-complaint-api';
-import PastEncounters from '@/pages/chief-complaints/create/PastEncounters';
-import { Loader } from 'react-feather';
+import CancelAndAddButton from "@/components/core/buttons/CancelAndAddButton";
+import Select from "@/components/core/form-elements/Select";
+import DefaultOpenModal from "@/components/core/modal/DefaultOpenModal";
+import PastRecordContainers from "@/components/past-record-containers/PastRecordContainers";
+import { useReadChiefComplaintByClientQuery } from "@/features/chief-complaint/chief-complaint-api";
+import PastEncounters from "@/pages/chief-complaints/create/PastEncounters";
+import { Loader } from "react-feather";
 
 const EditGeneralAssessment = ({ toggler }) => {
   const { data, isLoading, status } = useReadChiefComplaintByClientQuery(
-    'a1497272-3783-46f6-922a-08dbd06dc4d8'
+    "a1497272-3783-46f6-922a-08dbd06dc4d8"
   );
 
   return (
@@ -23,36 +23,36 @@ const EditGeneralAssessment = ({ toggler }) => {
             <option value="1">Good</option>
             <option value="2">Stable</option>
             <option value="3">Critical</option>
-          </Select>{' '}
+          </Select>{" "}
           <div className="mb-2 font-medium">General Assessment :</div>
           <Select label="Pallor">
             <option value="1">Nil</option>
             <option value="2">Mild</option>
             <option value="3">Moderate</option>
             <option value="4">Severe</option>
-          </Select>{' '}
+          </Select>{" "}
           <Select label="Edema">
             <option value="1">Nil</option>
             <option value="2">1+</option>
             <option value="3">2+</option>
             <option value="4">3+</option>
             <option value="5">4+</option>
-          </Select>{' '}
+          </Select>{" "}
           <Select label="Clubbing">
             <option value="1">Nil</option>
             <option value="2">1+</option>
             <option value="3">2+</option>
             <option value="4">3+</option>
             <option value="5">4+</option>
-          </Select>{' '}
+          </Select>{" "}
           <Select label="Jaundice">
             <option value="1">Present</option>
             <option value="2">Not present</option>
-          </Select>{' '}
+          </Select>{" "}
           <Select label="Cyanosis">
             <option value="1">Present</option>
             <option value="2">Not present</option>
-          </Select>{' '}
+          </Select>{" "}
           <Select label="Glucose">
             <option value="1">Yes</option>
             <option value="2">No</option>
@@ -83,14 +83,14 @@ const EditGeneralAssessment = ({ toggler }) => {
         <hr className="my-6" />
         {/* PAST RECORD CONTAINERS */}
         <PastRecordContainers>
-          {(isLoading || status === 'pending') && (
+          {(isLoading || status === "pending") && (
             <div className="flex w-full justify-center items-center">
               <Loader size={40} className="animate-spin" />
             </div>
           )}
 
           {data?.map((item, index) => (
-            <PastEncounters key={index} data={item} />
+            <PastEncounters key={index} data={item} handleEdit={() => {}} />
           ))}
         </PastRecordContainers>
         {/* BUTTONS */}

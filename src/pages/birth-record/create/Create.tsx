@@ -1,30 +1,53 @@
+import { RootState } from "@/app/store";
 import CancelAndAddButton from "@/components/core/buttons/CancelAndAddButton";
+import CountryCode from "@/components/core/form-elements/CountryCode";
 import Input from "@/components/core/form-elements/Input";
-import {
-  RenderCountryCode,
-  renderObjEnumOptions,
-} from "@/components/core/form-elements/RenderSelectOptions";
+import PhoneNumber from "@/components/core/form-elements/PhoneNumber";
+import { renderObjEnumOptions } from "@/components/core/form-elements/RenderSelectOptions";
 import Select from "@/components/core/form-elements/Select";
-import DefaultOpenModal from "@/components/core/modal/DefaultOpenModal";
+import DefaultModal from "@/components/core/modal/DefaultModal";
+import { EnumEncounterType } from "@/enum/encounter-type";
 import {
   EnumBoolYesNo,
   EnumInformantRelationship,
   EnumOrigin,
 } from "@/enum/enumerators";
-import { useReadCountriesQuery } from "@/features/country/country-api";
-import { OnchangeEventType } from "@/types/htmlEvents";
-import { useState } from "react";
+import { RtkStatusEnum } from "@/enum/rtk";
+import {
+  useCreateBirthRecordMutation,
+  useUpdateBirthRecordMutation,
+} from "@/features/birth-record/birth-record-api";
+import { closeAddModal } from "@/features/modal/modal-slice";
+import useBaseDataCreate from "@/hooks/useBaseDataCreate";
+import useEditBaseData from "@/hooks/useBaseDataEdit";
+import { FormSubmitEventType, OnchangeEventType } from "@/types/htmlEvents";
+import {
+  TypeBirthRecord,
+  TypeBirthRecordFormError,
+} from "@/types/module-types/birth-records";
+import { birthRecordValidator } from "@/validation-models/birth-record-validator";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
 import ReferenceNotes from "./ReferenceNotes";
 
 function BirthRecordCreate({ toggler }) {
   const [accordion, setAccordion] = useState(false);
-  // const dispatcher = useDispatch();
-  // const { BirthRecords } = EnumEncounterType;
-  // const [baseDataCreate] = useBaseDataCreate(BirthRecords);
-  // const [baseDataEdit] = useEditBaseData(BirthRecords);
+  const dispatch = useDispatch();
+  const { data: prevRecord }: { data: TypeBirthRecord } = useSelector(
+    (state: RootState) => state.modal.addModal
+  );
 
-  // Country Enums
-  const { data: countries } = useReadCountriesQuery(undefined);
+  const { BirthRecords } = EnumEncounterType;
+  const [baseDataCreate] = useBaseDataCreate(BirthRecords);
+  const [baseDataEdit] = useEditBaseData(BirthRecords);
+
+  // Rtk mutations
+  const [createBirthRecord, { status: createStatus, error: createError }] =
+    useCreateBirthRecordMutation();
+
+  const [updateBirthRecord, { status: updateStatus }] =
+    useUpdateBirthRecordMutation();
 
   // Initial State
   const initialState = {
@@ -41,74 +64,126 @@ function BirthRecordCreate({ toggler }) {
     informantStreetNo: "",
     informantPOBox: "",
     informantLandmark: "",
-    informantLandlineCountryCode: "",
+    informantLandlineCountryCode: "+260",
     informantLandline: "",
-    informantCellphoneCountryCode: "",
+    informantCellphoneCountryCode: "+260",
     informantCellphone: "",
   };
 
   // const { input, setInput, handleInputChange } = {}; // useInput(initialState);
 
-  const [formState, setFormState] = useState(initialState);
-  const [inputError, setInputError] = useState(initialState);
+  const [formState, setFormState] = useState<TypeBirthRecord>(initialState);
+  const [inputError, setInputError] = useState<TypeBirthRecordFormError | null>(
+    null
+  );
   const handleInputChange = (e: OnchangeEventType) => {
     const { name, value } = e.target;
+
+    if (name == "isUnderFiveCardGiven") {
+      setFormState((prev) => ({ ...prev, [name]: value }));
+      setInputError && setInputError((prev) => ({ ...prev, [name]: "" }));
+      if (value == "false") {
+        setFormState((prev) => ({ ...prev, underFiveCardNumber: "" }));
+      }
+      return;
+    }
+    if (name == "informantRelationship") {
+      setFormState((prev) => ({ ...prev, [name]: value }));
+      setInputError && setInputError((prev) => ({ ...prev, [name]: "" }));
+      if (value != "13") {
+        setFormState((prev) => ({ ...prev, informantOtherRelationship: "" }));
+      }
+      return;
+    }
 
     setFormState((prev) => ({ ...prev, [name]: value }));
     setInputError && setInputError((prev) => ({ ...prev, [name]: "" }));
   };
 
-  // const { getBirthRecordLoading } = useSelector((state) => state.birthRecord);
+  const handleSubmit = (e: FormSubmitEventType) => {
+    e.preventDefault();
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
+    const { isValid, errors: validationError } = birthRecordValidator({
+      ...formState,
+    });
 
-  //   const { isValid, errors: validationError } = birthRecordValidator({
-  //     ...input,
-  //   });
+    // If from data is on valid set form error
+    if (!isValid) {
+      setInputError(validationError);
+      return false;
+    }
 
-  //   // If from data is on valid set form error
-  //   if (!isValid) {
-  //     setInputError(validationError);
-  //     return false;
-  //   }
-  //   // dispatcher(addBirthRecord({ ...input, ...baseData })).then((res) => {
-  //   //   if (res.meta.requestStatus === "fulfilled") {
-  //   //     toast.dismiss();
-  //   //     toast.success("Add Successful");
-  //   //     setInput(initialState);
-  //   //     modalCloser("birth_record_add_modal");
-  //   //     setDataReloader((prev) => prev + 1);
-  //   //   } else {
-  //   //     if (res.meta.requestStatus === "rejected") {
-  //   //       toast.dismiss();
-  //   //       toast.error("Add Failed");
-  //   //     }
-  //   //   }
-  //   // });
-  // };
+    const submitData = {
+      ...baseDataCreate,
+      ...formState,
+    };
 
-  // useEffect(() => {
-  //   setInputError({});
-  // }, [input]);
+    const updateData = {
+      ...prevRecord,
+      ...baseDataEdit,
+      ...formState,
+    };
 
-  // useEffect(() => {
-  //   if (input.isUnderFiveCardGiven === "true") {
-  //     setInput({ ...input });
-  //   } else {
-  //     setInput({ ...input, underFiveCardNumber: "" });
-  //   }
+    if (prevRecord) {
+      updateBirthRecord({ body: updateData, key: updateData?.interactionId });
+    } else {
+      createBirthRecord(submitData);
+    }
+  };
 
-  //   if (input.informantRelationship === "13") {
-  //     setInput({ ...input });
-  //   } else {
-  //     setInput({ ...input, informantOtherRelationship: "" });
-  //   }
-  // }, [input.informantRelationship, input.isUnderFiveCardGiven]);
+  useEffect(() => {
+    if (createStatus === RtkStatusEnum.fulfilled) {
+      toast.dismiss();
+      toast.success("Birth Record created successfully");
+    }
+    if (createStatus === RtkStatusEnum.rejected) {
+      toast.dismiss();
+      toast.success("Birth Record created failed");
+      console.log(createError);
+    }
+  }, [createStatus]);
+  useEffect(() => {
+    if (updateStatus === RtkStatusEnum.fulfilled) {
+      dispatch(closeAddModal());
+      toast.dismiss();
+      toast.success("Birth Record update successfully");
+    }
+    if (updateStatus === RtkStatusEnum.rejected) {
+      toast.dismiss();
+      toast.error("Birth Record update failed");
+      console.log(createError);
+    }
+  }, [updateStatus]);
+
+  useEffect(() => {
+    if (prevRecord) {
+      const dataSet = {
+        isBirthRecordGiven: prevRecord?.isBirthRecordGiven,
+        isUnderFiveCardGiven: prevRecord?.isUnderFiveCardGiven,
+        underFiveCardNumber: prevRecord?.underFiveCardNumber,
+        origin: prevRecord?.origin,
+        informantFirstName: prevRecord?.informantFirstName,
+        informantSurname: prevRecord?.informantSurname,
+        informantNickname: prevRecord?.informantNickname,
+        informantRelationship: prevRecord?.informantRelationship,
+        informantOtherRelationship: prevRecord?.informantOtherRelationship,
+        informantCity: prevRecord?.informantCity,
+        informantStreetNo: prevRecord?.informantStreetNo,
+        informantPOBox: prevRecord?.informantPOBox,
+        informantLandmark: prevRecord?.informantLandmark,
+        informantLandlineCountryCode: prevRecord?.informantLandlineCountryCode,
+        informantLandline: prevRecord?.informantLandline,
+        informantCellphoneCountryCode:
+          prevRecord?.informantCellphoneCountryCode,
+        informantCellphone: prevRecord?.informantCellphone,
+      };
+      setFormState((prev) => ({ ...prev, ...dataSet }));
+    }
+  }, [prevRecord]);
 
   return (
-    <DefaultOpenModal title="Birth Record" isShow={true} toggler={toggler}>
-      <form>
+    <DefaultModal size="7xl" title="Birth Record" toggler={toggler}>
+      <form onSubmit={handleSubmit}>
         <h1 className="text-md font-medium mb-2">Particulars :</h1>
         <div className="flex gap-5">
           <Select
@@ -116,7 +191,7 @@ function BirthRecordCreate({ toggler }) {
             required
             onChange={handleInputChange}
             name="isBirthRecordGiven"
-            value={formState.isBirthRecordGiven}
+            value={`${formState.isBirthRecordGiven}`}
             errMsg={inputError?.isBirthRecordGiven}
           >
             {renderObjEnumOptions(EnumBoolYesNo)}
@@ -139,7 +214,7 @@ function BirthRecordCreate({ toggler }) {
             required
             onChange={handleInputChange}
             name="isUnderFiveCardGiven"
-            value={formState.isUnderFiveCardGiven}
+            value={`${formState.isUnderFiveCardGiven}`}
             errMsg={inputError?.isUnderFiveCardGiven}
           >
             {renderObjEnumOptions(EnumBoolYesNo)}
@@ -149,7 +224,7 @@ function BirthRecordCreate({ toggler }) {
             disabled={formState.isUnderFiveCardGiven == "true" ? false : true}
             onChange={handleInputChange}
             name="underFiveCardNumber"
-            value={inputError?.underFiveCardNumber}
+            value={formState?.underFiveCardNumber}
           />
         </div>
         {/* Reference Notes accordion */}
@@ -185,37 +260,43 @@ function BirthRecordCreate({ toggler }) {
 
         <div className="flex gap-5 mt-5">
           {/* Cellphone Number */}
-          <Select
+          <CountryCode
             label="Code"
-            onChange={handleInputChange}
             name="informantCellphoneCountryCode"
             value={formState.informantCellphoneCountryCode}
-          >
-            <RenderCountryCode countries={countries} />
-          </Select>
-          <Input
-            label="Cellphone Number"
             onChange={handleInputChange}
+            errMsg={inputError?.informantCellphoneCountryCode}
+            required
+            resetCellPhone={() => {}}
+          />
+
+          <PhoneNumber
             name="informantCellphone"
+            label="Cellphone Number"
             value={formState.informantCellphone}
+            onChange={handleInputChange}
+            countryCode={formState.informantCellphoneCountryCode}
+            errMsg={inputError?.informantCellphone}
           />
         </div>
 
         <div className="flex gap-5 mt-5">
           {/* Landline Number */}
-          <Select
+          <CountryCode
             label="Code"
-            onChange={handleInputChange}
             name="informantLandlineCountryCode"
             value={formState.informantLandlineCountryCode}
-          >
-            <RenderCountryCode countries={countries} />
-          </Select>
-          <Input
-            label="Landline Number"
             onChange={handleInputChange}
+            errMsg={inputError?.informantLandlineCountryCode}
+            resetCellPhone={() => {}}
+          />
+          <PhoneNumber
             name="informantLandline"
+            label="Landline Number"
             value={formState.informantLandline}
+            onChange={handleInputChange}
+            countryCode={formState.informantLandlineCountryCode}
+            errMsg={inputError?.informantLandline}
           />
         </div>
 
@@ -223,7 +304,6 @@ function BirthRecordCreate({ toggler }) {
           {/* Relationship to Child */}
           <Select
             label="Relationship to Child"
-            required
             onChange={handleInputChange}
             name="informantRelationship"
             value={formState.informantRelationship}
@@ -272,9 +352,14 @@ function BirthRecordCreate({ toggler }) {
         </div>
 
         {/* BUTTONS */}
-        <CancelAndAddButton toggler={toggler} />
+        <div className="mt-5">
+          <CancelAndAddButton
+            isUpdate={prevRecord ? true : false}
+            toggler={toggler}
+          />
+        </div>
       </form>
-    </DefaultOpenModal>
+    </DefaultModal>
   );
 }
 

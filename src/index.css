@@ -12,10 +12,10 @@
   /* --body: #f6f9ff; */
   /* --body: #FAFCFE; */
   --body: #f4f4f4;
-  --primary: #1890ff;
-  --btnBg: #1890ff;
-  --primaryHover: #007aec;
-  --activeColor: #007aec;
+  --primary: #46a6ff;
+  --btnBg: #46a6ff;
+  --primaryHover: #46a6ff;
+  --activeColor: #46a6ff;
   --lightBlue: #e3effb;
   --secondary: #1e0e62;
   --grayColor: #a1a1b0;
@@ -31,17 +31,17 @@
   --tableHead: #e8f4ff;
   --tableRow: #f3f8ff;
   --overlay: #007aecbb;
-  --logoColor: #1890ff;
+  --logoColor: #46a6ff;
   --logoColor2: #15ac12;
-  --logoColor2Hover: #109c0d;
+  --logoColor2Hover: #15ac12;
   --placeholder: #7c7c83;
 }
 
 .dark {
   --body: #0b0e11;
-  --primary: #1890ff;
-  --btnBg: #1890ff;
-  --primaryHover: #007aec;
+  --primary: #46a6ff;
+  --btnBg: #46a6ff;
+  --primaryHover: #46a6ff;
   --activeColor: #1f2937;
   --lightBlue: #181a20;
   --secondary: #ffffff;
@@ -58,9 +58,9 @@
   --tableHead: #2b2c30;
   --tableRow: #000;
   --overlay: #20232b;
-  --logoColor: #1890ff;
+  --logoColor: #46a6ff;
   --logoColor2: #15ac12;
-  --logoColor2Hover: #109c0d;
+  --logoColor2Hover: #15ac12;
   --placeholder: #7c7c83;
 }
 
@@ -196,12 +196,12 @@ body.modal-open {
   }
 
   .custom-input {
-    @apply w-full rounded-[6px] text-blackColor dark:text-gray-400 bg-whiteColor dark:bg-[#000] box-border flex flex-row items-center justify-start py-[8px] xs:py-[12px] px-4 border-[2px] border-solid border-borderColor dark:border-[#6B7280] focus:border-borderColor focus:shadow-none outline-none focus:outline-none focus:ring-0;
+    @apply w-full rounded-[6px] text-blackColor dark:text-gray-400 bg-whiteColor dark:bg-[#000] box-border flex flex-row items-center justify-start py-[8px] xs:py-[8px] px-4 border-[2px] border-solid border-borderColor dark:border-[#6B7280] focus:border-borderColor focus:shadow-none outline-none focus:outline-none focus:ring-0;
   }
 
   .input_label {
     /* @apply text-blackColor dark:text-[#F2F3F5] leading-[125%] capitalize text-xs md:text-[14px] lg:text-base; */
-    @apply text-textColor leading-[125%] text-xs md:text-[14px];
+    @apply text-textColor leading-[125%] text-xs;
   }
 
   .input_cellphone {

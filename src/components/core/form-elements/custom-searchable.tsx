@@ -81,7 +81,7 @@ function CustomSearchable({
   }, [showDropdown]);
 
   useEffect(() => {
-    let outClickHandler = (e) => {
+    const outClickHandler = (e) => {
       if (!searchRef?.current?.contains(e.target)) {
         setShowDropdown(false);
       }
@@ -134,9 +134,11 @@ function CustomSearchable({
                     </span>
                   )}
                   {selectedValue?.label && (
-                    <span onClick={handleClear} className="px-[15px] py-[10px]">
-                      {" "}
-                      <FaCircleXmark width={30} />{" "}
+                    <span
+                      onClick={handleClear}
+                      className="px-[15px] py-[10px] text-[#216ba5]"
+                    >
+                      <FaCircleXmark width={30} />
                     </span>
                   )}
                 </div>
@@ -191,8 +193,8 @@ function CustomSearchable({
             </div>
           </div>
           {errMsg && (
-            <p className="text-sm mt-1" style={{ color: "red" }}>
-              {errMsg}
+            <p className="text-xs mt-1" style={{ color: "red" }}>
+              {errMsg}!
             </p>
           )}
         </div>

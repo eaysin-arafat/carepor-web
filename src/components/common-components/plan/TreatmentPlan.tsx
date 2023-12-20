@@ -35,7 +35,11 @@ const TreatmentPlan = ({ toggler }) => {
             </div>
           )}
           {data?.map((item, index) => (
-            <TreatmentPastRecord key={index} data={item} />
+            <TreatmentPastRecord
+              key={index}
+              data={item}
+              handleEdit={() => {}}
+            />
           ))}
         </PastRecordContainers>
 

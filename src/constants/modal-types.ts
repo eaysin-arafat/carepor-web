@@ -123,6 +123,7 @@ export const covaxModalTypes = Object.freeze({
 });
 export const painRecordsModalTypes = Object.freeze({
   painRecordCreate: "painRecordCreate",
+  editPainRecord: "editPainRecord",
 });
 
 export const referralModalTypes = Object.freeze({
@@ -138,4 +139,31 @@ export const deathRecordModalTypes = Object.freeze({
 });
 export const clientModalTypes = Object.freeze({
   linkWithMother: "linkWithMother",
+});
+
+export const familyPlanningModalTypes = Object.freeze({
+  addPurposeofVisit: "familyPlanningCreate",
+  addPresentingComplaints: "familyPlanningEdit",
+  editPurposeofVisit: "familyPlanningView",
+  editFamilySocialComplaintsAndHistories: "familyPlanningEdit",
+  addFamilySocialComplaintsAndHistories: "familyPlanningCreate",
+  editPresentingComplaints: "familyPlanningEdit",
+  addPastMedicalHistories: "familyPlanningCreate",
+  editPastMedicalHistories: "familyPlanningEdit",
+  addPastMedicalConditions: "familyPlanningCreate",
+  editPastMedicalConditions: "familyPlanningEdit",
+  addGeneralAssessment: "familyPlanningCreate",
+  editGeneralAssessment: "familyPlanningEdit",
+  addSystemExamination: "familyPlanningCreate",
+  editSystemExamination: "familyPlanningEdit",
+  addQuickExamination: "familyPlanningCreate",
+  editQuickExamination: "familyPlanningEdit",
+  addGuidedExamination: "familyPlanningCreate",
+  editGuidedExamination: "familyPlanningEdit",
+  addFamilyPlanRegister: "familyPlanningCreate",
+  editFamilyPlanRegister: "familyPlanningEdit",
+  addGynAndObsHistories: "familyPlanningCreate",
+  editGynAndObsHistories: "familyPlanningEdit",
+  addFPlan: "familyPlanningCreate",
+  editFPlan: "familyPlanningEdit",
 });

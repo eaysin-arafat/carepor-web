@@ -1,24 +1,23 @@
-import FormHeading from '@/components/core/form-heading/FormHeading';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/app/store';
-import { useDispatch } from 'react-redux';
+import { RootState } from "@/app/store";
+import FormHeading from "@/components/core/form-heading/FormHeading";
 import {
   closeAddModal,
+  closeEditModal,
   openAddModal,
   openEditModal,
-  closeEditModal,
-} from '@/features/modal/modal-slice';
-import { familyPlanningModalTypes } from '@/constants/modal-types';
-import CreatePurposeVisit from './components/CreatePurposeVisit';
-import EditPurposeVisit from './components/EditPurposeVisit';
-import CreatePresentingComplaints from './components/CreatePresentingComplaints';
-import EditPresentingComplaints from './components/EditPresentingComplaints';
-import CreatePastMedicalHistories from './components/CreatePastMedicalHistories';
-import EditPastMedicalHistories from './components/EditPastMedicalHistories';
-import CreatePastMedicalConditions from './components/CreatePastMedicalConditions';
-import EditPastMedicalConditions from './components/EditPastMedicalConditions';
-import CreateFamilySocial from './components/CreateFamilySocial';
-import EditFamilySocial from './components/EditFamilySocial';
+} from "@/features/modal/modal-slice";
+import { useDispatch, useSelector } from "react-redux";
+import CreateFamilySocial from "./components/CreateFamilySocial";
+import CreatePastMedicalConditions from "./components/CreatePastMedicalConditions";
+import CreatePastMedicalHistories from "./components/CreatePastMedicalHistories";
+import CreatePresentingComplaints from "./components/CreatePresentingComplaints";
+import CreatePurposeVisit from "./components/CreatePurposeVisit";
+import EditFamilySocial from "./components/EditFamilySocial";
+import EditPastMedicalConditions from "./components/EditPastMedicalConditions";
+import EditPastMedicalHistories from "./components/EditPastMedicalHistories";
+import EditPresentingComplaints from "./components/EditPresentingComplaints";
+import EditPurposeVisit from "./components/EditPurposeVisit";
+import { familyPlanningModalTypes } from "@/constants/modal-types";
 
 const ComplaintsAndHistories = () => {
   // * Responsive Hokes
@@ -177,7 +176,7 @@ const ComplaintsAndHistories = () => {
       {addModal?.modalId ===
         familyPlanningModalTypes.addPastMedicalHistories && (
         <CreatePastMedicalHistories toggler={closeModal} />
-      )}{' '}
+      )}{" "}
       {editModal?.modalId ===
         familyPlanningModalTypes.editPastMedicalHistories && (
         <EditPastMedicalHistories toggler={closeModal} />
@@ -192,7 +191,7 @@ const ComplaintsAndHistories = () => {
       {addModal?.modalId ===
         familyPlanningModalTypes.addPastMedicalConditions && (
         <CreatePastMedicalConditions toggler={closeModal} />
-      )}{' '}
+      )}{" "}
       {editModal?.modalId ===
         familyPlanningModalTypes.editPastMedicalConditions && (
         <EditPastMedicalConditions toggler={closeModal} />
@@ -207,7 +206,7 @@ const ComplaintsAndHistories = () => {
       {addModal?.modalId ===
         familyPlanningModalTypes.addFamilySocialComplaintsAndHistories && (
         <CreateFamilySocial toggler={closeModal} />
-      )}{' '}
+      )}{" "}
       {editModal?.modalId ===
         familyPlanningModalTypes.editFamilySocialComplaintsAndHistories && (
         <EditFamilySocial toggler={closeModal} />

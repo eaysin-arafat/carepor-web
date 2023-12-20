@@ -34,8 +34,8 @@ const birthRecordApi = API.injectEndpoints({
      * @returns
      */
     updateBirthRecord: builder.mutation({
-      query: (body) => ({
-        url: "/birth-record",
+      query: ({ key, body }) => ({
+        url: "/birth-record/" + key,
         method: "PUT",
         body,
       }),

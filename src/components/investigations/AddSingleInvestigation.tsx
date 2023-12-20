@@ -102,6 +102,7 @@ const AddSingleInvestigation = ({}) => {
     const findDuplicate =
       investigations?.find((item) => item.testId == testId) || {};
     if (Object.keys(findDuplicate)?.length) {
+      toast.dismiss()
       return toast.error("This test is already added!");
     }
 

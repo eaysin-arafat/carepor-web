@@ -9,14 +9,33 @@ export type TypeEnum = TypeAPIEnum;
 
 // DATA TYPE
 export type TypeBirthRecord = TypeAPIObject & {
-  isBirthRecordGiven: string | boolean;
-  origin: string | number;
-  informantFirstName: string;
-  informantSurname: string;
+  isBirthRecordGiven?: string | boolean;
+  origin?: string | number;
+  informantFirstName?: string;
+  informantSurname?: string;
   underFiveCardNumber?: string;
   isUnderFiveCardGiven?: string | boolean;
   informantNickname?: string;
   informantRelationship?: string | number;
+  informantOtherRelationship?: string;
+  informantCity?: string;
+  informantStreetNo?: string;
+  informantPOBox?: string;
+  informantLandmark?: string;
+  informantLandlineCountryCode?: string;
+  informantLandline?: string;
+  informantCellphoneCountryCode?: string;
+  informantCellphone?: string;
+};
+export type TypeBirthRecordFormError = TypeAPIObject & {
+  isBirthRecordGiven?: string;
+  origin?: string;
+  informantFirstName?: string;
+  informantSurname?: string;
+  underFiveCardNumber?: string;
+  isUnderFiveCardGiven?: string;
+  informantNickname?: string;
+  informantRelationship?: string;
   informantOtherRelationship?: string;
   informantCity?: string;
   informantStreetNo?: string;

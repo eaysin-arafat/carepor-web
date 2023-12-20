@@ -37,7 +37,7 @@ function Password({
   };
 
   return (
-    <div className="flex flex-col w-full items-start justify-start gap-[6px]">
+    <div className="flex flex-col w-full items-start justify-start gap-[3px]">
       <div className="flex">
         <div className="input_label">{label}</div>
         {required && <span className="-mt-[6px] mx-1 text-dangerColor">*</span>}
@@ -45,7 +45,7 @@ function Password({
       <div className="relative w-full">
         <input
           type={showPassword ? type : "password"}
-          className={`custom-input text-base min-h-[52px] ${
+          className={`custom-input text-base min-h-[40px] ${
             disabled && "disabled_bg"
           } ${className}`}
           value={value}
@@ -54,7 +54,7 @@ function Password({
           disabled={disabled}
           pattern={pattern}
           max={max || "250"}
-          placeholder={`${placeholder ? placeholder : "Minimum 8 characters"}`}
+          placeholder={`${placeholder ? placeholder : ""}`}
         />
         <button
           type="button"
@@ -70,8 +70,8 @@ function Password({
       </div>
 
       {errMsg && (
-        <span className="text-dangerColor leading-[125%] font-normal ">
-          {errMsg}
+        <span className="text-dangerColor leading-[125%] font-normal text-xs">
+          {errMsg}!
         </span>
       )}
     </div>

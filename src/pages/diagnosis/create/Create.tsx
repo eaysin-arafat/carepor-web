@@ -44,7 +44,7 @@ const CreateDiagnosis = ({ toggler, encounterType }: Props) => {
     icdStatus,
     handleSearchChange,
     searchValue,
-    icdDiagnoses,
+    // icdDiagnoses,
     filteredIcdDiagnoses,
   } = useCreate({ encounterType });
 

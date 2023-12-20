@@ -137,10 +137,12 @@ function ResultUpdate({ investigation, handleCancelEdit }: Props) {
 
   useEffect(() => {
     if (status === RtkStatusEnum.fulfilled) {
+      toast.dismiss();
       toast.success("Result Update successfully");
       handleCancelEdit();
     }
     if (status === RtkStatusEnum.rejected) {
+      toast.dismiss();
       toast.error("Result Update failed");
     }
   }, [status]);

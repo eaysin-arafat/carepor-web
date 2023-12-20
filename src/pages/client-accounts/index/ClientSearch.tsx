@@ -38,7 +38,7 @@ const ClientSearch = () => {
         <Container>
           <>
             <div className="md:flex justify-between mt-10 mb-3">
-              <h2 className="text-2xl font-semibold text-secondaryColor ">
+              <h2 className="text-md font-[400] text-secondaryColor ">
                 Welcome {user?.firstName} {user?.surname}
               </h2>
               <h2 className="text-textColor ">
@@ -46,7 +46,7 @@ const ClientSearch = () => {
               </h2>
             </div>
             <div className="relative bg-lightBlueColor w-full p-5 rounded-lg shadow  transition-all ease-out">
-              <h2 className="heading_2 text-center font-semibold text-secondaryColor text-2xl md:text-4xl pb-2">
+              <h2 className="heading_2 text-center font-[400] text-secondaryColor text-2xl pb-2">
                 Search or Add New Patient
               </h2>
               <TabButton
@@ -85,7 +85,7 @@ const ClientSearch = () => {
                 <div className="absolute -bottom-6">
                   <button
                     type="submit"
-                    className="main_btn !bg-logoColor2 hover:!bg-logoColor2Hover text-lg w-40 flex justify-center items-center font gap-2 py-3"
+                    className="rounded-full text-white  !bg-logoColor2 hover:!bg-logoColor2Hover text-md w-32 flex justify-center items-center font gap-2 py-2"
                   >
                     <img src="/assets/icons/search.svg" alt="search" />
                     Search

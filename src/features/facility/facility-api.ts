@@ -154,7 +154,7 @@ export const {
 } = facilityApi;
 
 // export endpoints
-export const { endpoints: facilityEndpoints } = facilityApi;
+export const { endpoints: facilityApiEndpoints } = facilityApi;
 
 // export api
 export default facilityApi;

@@ -262,12 +262,12 @@ export const EnumInformantRelationship = {
   3: "Step Child",
   4: "Adopted Child",
   5: "Grand Child",
-  6: "Brother Sister",
+  6: "Brother/Sister",
   7: "Cousin",
-  8: "Niece Nephew",
-  9: "Brother Sister In Law",
-  10: "Parent In Law",
-  11: "Maidnanny House Servant",
+  8: "Niece/Nephew",
+  9: "Brother-in-law/Sister-in-law",
+  10: "Parent-in-law",
+  11: "Maid/Nanny/House Servant",
   12: "Guardian",
   13: "Other Relationship",
 };
@@ -288,7 +288,7 @@ export const EnumGuardianRelationship = {
   13: "OtherRelationship",
 };
 
-export const EnumWhereDeathOccured = {
+export const EnumWhereDeathOccurred = {
   1: "Other",
   2: "OtherFacility",
   3: "Clinic",
@@ -1479,3 +1479,16 @@ export const EnumTestResult = {
   1: "Reactive",
   2: "NonReactive",
 };
+
+export const EnumPainRecords = Object.freeze({
+  1: "No pain",
+  2: "Pain is mild-barely noticeable. Most of the time you don't think about it",
+  3: "Minor pain, Its annoying. You may have sharp pain now and then.",
+  4: "Noticeable pain. It may distract you,but you can get used to it",
+  5: "Moderate pain. If you are involved in an activity, you are able to ignore it for a while.But it is still distracting.",
+  6: "Moderately strong pain. You avoid some of your normal daily activities. You have trouble concentrating.",
+  7: "Strong pain. It keeps you from doing normal activities.",
+  8: "Very strong pain. It's hard to do anything at all.",
+  9: "Pain that is very hard to tolerate. You cant carry on a conversation.",
+  10: "Worst possible pain",
+});

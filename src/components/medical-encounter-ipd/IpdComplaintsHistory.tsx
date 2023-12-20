@@ -21,14 +21,8 @@ const IpdComplaintsHistory = ({ toggler }) => {
           <div className="flex flex-col gap-6">
             <div>
               <div className="space-y-4">
-                <Textarea
-                  label="History"
-                  required
-                />
-                <Textarea
-                  label="Examination"
-                  required
-                />
+                <Textarea label="History" required />
+                <Textarea label="Examination" required />
               </div>
             </div>
           </div>
@@ -43,7 +37,7 @@ const IpdComplaintsHistory = ({ toggler }) => {
             )}
 
             {data?.map((item, index) => (
-              <PastEncounters key={index} data={item} />
+              <PastEncounters key={index} data={item} handleEdit={() => {}} />
             ))}
           </PastRecordContainers>
 

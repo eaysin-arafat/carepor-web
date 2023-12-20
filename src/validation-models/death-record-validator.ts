@@ -1,13 +1,7 @@
-export const deathRecordValidator = (
-  formData,
-  {
-    causeAnatomicAxis,
-    causePathologyAxe,
-    causeIcpc2Description,
-    causeIcdDiagnoses,
-  }
-) => {
-  const errors = {};
+import { DeathRecordErrorType } from "@/pages/death-record/create/Create";
+
+export const deathRecordValidator = (formData) => {
+  const errors: DeathRecordErrorType = {};
 
   //!formData?.ageInYears
   if (!formData.ageOfDeceased) errors.ageOfDeceased = "Required";
@@ -16,10 +10,10 @@ export const deathRecordValidator = (
   if (!formData.districtOfDeath) errors.districtOfDeath = "Required";
   if (!formData.whereDeathOccured) errors.whereDeathOccured = "Required";
   //
-  if (!formData.anatomic1) errors.anatomic1 = "Required";
-  if (!formData.pathology1) errors.pathology1 = "Required";
-  if (!formData.icpC2ID1) errors.icpC2ID1 = "Required";
-  if (!formData.icD11ID1) errors.icD11ID1 = "Required";
+  if (!formData.anatomicAxis) errors.anatomicAxis = "Required";
+  if (!formData.pathologyAxis) errors.pathologyAxis = "Required";
+  if (!formData.icpc2Description) errors.icpc2Description = "Required";
+  if (!formData.icdDiagnosis) errors.icdDiagnosis = "Required";
   //
   if (!formData.informantFirstName) errors.informantFirstName = "Required";
   if (!formData.informantSurname) errors.informantSurname = "Required";
@@ -28,15 +22,31 @@ export const deathRecordValidator = (
 
   if (formData?.causeDeath?.length < 1) {
     errors.causeDeath = "Please Add At least one contributing death Cause.";
-    if (!causeAnatomicAxis?.value) errors.anatomic2 = "Required";
-    if (!causePathologyAxe?.value) errors.pathology2 = "Required";
-    if (!causeIcpc2Description?.value) errors.icpC2ID2 = "Required";
-    if (!causeIcdDiagnoses?.value) errors.icD11ID2 = "Required";
   }
 
   return {
     errors,
     isValid: Object.keys(errors).length === 0,
+  };
+};
+
+export interface ContributingCauseErrorType {
+  anatomicAxis?: string;
+  pathologyAxis?: string;
+  icpc2Description?: string;
+  icdDiagnosis?: string;
+}
+
+export const contributingCauseValidator = (formData) => {
+  const errors: ContributingCauseErrorType = {};
+  if (!formData.anatomicAxis) errors.anatomicAxis = "Required";
+  if (!formData.pathologyAxis) errors.pathologyAxis = "Required";
+  if (!formData.icpc2Description) errors.icpc2Description = "Required";
+  if (!formData.icdDiagnosis) errors.icdDiagnosis = "Required";
+
+  return {
+    isValid: Object.keys(errors).length == 0,
+    errors,
   };
 };
 

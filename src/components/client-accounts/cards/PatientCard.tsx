@@ -70,6 +70,7 @@ const PatientCard = ({ client, className }: PatientCardProps) => {
       }
     }
     if (status === RtkStatusEnum.rejected) {
+      toast.dismiss()
       toast.error("Rejected");
       console.log(error);
     }
@@ -101,7 +102,10 @@ const PatientCard = ({ client, className }: PatientCardProps) => {
                   title="Date of Birth"
                   value={
                     client.dob
-                      ? format(new Date(client.dob), "dd-MMM-yyyy") + " (" + getSingleYear(client.dob) + ")"
+                      ? format(new Date(client.dob), "dd-MMM-yyyy") +
+                        " (" +
+                        getSingleYear(client.dob) +
+                        ")"
                       : ""
                   }
                   icon={<MdOutlineCalendarMonth className="" />}
@@ -126,11 +130,6 @@ const PatientCard = ({ client, className }: PatientCardProps) => {
                   value={client.nrc}
                   icon={<FaRegAddressCard className="" />}
                 />
-                {/* <Card
-                  title="Address"
-                  value="H# Flat 23A, R#456 8th Street, Khaka,Greenbush"
-                  icon={<LuMapPin className="text-grayColor" />}
-                /> */}
                 <div className=" me-5 mb-5">
                   <span className="text-xs font-semibold text-secondaryColor">
                     Address
@@ -145,34 +144,53 @@ const PatientCard = ({ client, className }: PatientCardProps) => {
                   </div>
                 </div>
               </div>
+              {client?.isDeceased && (
+                <p className="text-red-600 font-medium">
+                  Client has been deceased
+                </p>
+              )}
               <div className="flex flex-row sm:justify-start justify-center flex-wrap gap-1 mt-2">
-                <Link
-                  to={URLClientDetails({ id: client?.oid })}
-                  className={cn(
-                    "main_btn bg-primaryColor hover:text-white text-white dark:bg-gray-900 hover:dark:bg-gray-800 border !border-primaryColor btn_sm text-center text-sm"
-                  )}
-                >
-                  Edit Profile
-                </Link>
+                {!client?.isDeceased && (
+                  <>
+                    <Link
+                      to={URLClientDetails({ id: client?.oid })}
+                      className={cn(
+                        "main_btn bg-primaryColor hover:text-white text-white dark:bg-gray-900 hover:dark:bg-gray-800 border !border-primaryColor btn_sm text-center text-sm"
+                      )}
+                    >
+                      Edit Profile
+                    </Link>
 
-                <Link
-                  to={URLAdmissions({ clientId: client?.oid })}
-                  className={cn("main_btn btn_sm text-center text-sm")}
-                >
-                  Admission
-                </Link>
-                <button className={cn("main_btn btn_sm text-sm")}>
-                  Service Queue
-                </button>
-                <button className={cn("main_btn btn_sm text-sm")}>
-                  Historical visit
-                </button>
-                <button
-                  className={cn("main_btn btn_sm text-sm")}
-                  onClick={handleAttendToPatient}
-                >
-                  Attend to Patient
-                </button>
+                    <Link
+                      to={URLAdmissions({ clientId: client?.oid })}
+                      className={cn("main_btn btn_sm text-center text-sm")}
+                    >
+                      Admission
+                    </Link>
+                    <button className={cn("main_btn btn_sm text-sm")}>
+                      Service Queue
+                    </button>
+                    <button className={cn("main_btn btn_sm text-sm")}>
+                      Historical visit
+                    </button>
+                    <button
+                      className={cn("main_btn btn_sm text-sm")}
+                      onClick={handleAttendToPatient}
+                    >
+                      Attend to Patient
+                    </button>
+                  </>
+                )}
+                {client?.isDeceased && (
+                  <>
+                    <button className={cn("main_btn btn_sm text-sm")}>
+                      Details
+                    </button>
+                    <button className={cn("main_btn btn_sm text-sm")}>
+                      Death Record
+                    </button>
+                  </>
+                )}
               </div>
             </div>
           </div>
