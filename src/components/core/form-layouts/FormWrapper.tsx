@@ -48,6 +48,7 @@ function FormWrapper({
   isAppNameHide,
 }: Props) {
   const w1400 = useWindowWidth(1400);
+  const w700 = useWindowWidth(700);
   return (
     <BodyBackground noBackground={noBackground}>
       <div
@@ -56,7 +57,12 @@ function FormWrapper({
         })}
       >
         {/* <div className="flex items-center justify-center h-screen"> */}
-        <div className={cn(" w-full xs:px-5 ")}>
+        <div
+          className={cn(" w-full xs:px-5 mt-24", {
+            "mt-5": w1400,
+            "mt-9": w700,
+          })}
+        >
           <div className="bg-transparent pt-[88px]">
             <div
               className={cn(
