@@ -1,8 +1,7 @@
 import {
-  URLCovax,
-  URLCovid,
   URLBirthRecord,
   URLCovax,
+  URLCovid,
   URLDeathRecord,
   URLHts,
   URLInvestigation,
