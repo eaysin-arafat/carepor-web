@@ -12,6 +12,8 @@ export interface MultipleSelectProps {
   setSelectedOptions: (options: Option[]) => void;
   isSearchable?: boolean;
   isSelectable?: boolean;
+  selectableOptions?: Option[];
+  handleSelectChange?: (id: string) => void;
 }
 
 const MultiSelect = ({
@@ -20,8 +22,11 @@ const MultiSelect = ({
   isSelectable,
   selectedOptions,
   setSelectedOptions,
+  selectableOptions,
+  handleSelectChange,
 }: MultipleSelectProps) => {
   const [searchQuery, setSearchQuery] = useState("");
+
   const dropdownRef = useRef(null);
 
   const filteredOptions = options.filter((option: Option) =>
@@ -43,6 +48,16 @@ const MultiSelect = ({
     }
   };
 
+  const renderSelectableOptions = () => {
+    if (selectableOptions) {
+      return selectableOptions.map((option) => (
+        <option key={option.oid} value={option.oid}>
+          {option.description}
+        </option>
+      ));
+    }
+  };
+
   return (
     <div
       className="relative inline-block text-left w-full z-10"
@@ -50,13 +65,13 @@ const MultiSelect = ({
     >
       <div className="bg-whiteBgColor rounded-lg p-2">
         <div className="grid gap-2 mb-2">
-          {isSelectable && (
+          {isSelectable && selectableOptions.length > 0 && (
             <select
-              name=""
-              id=""
-              className="custom-input border border-borderColor "
+              name="selectableOptions"
+              className="custom-input border border-borderColor"
+              onChange={(e) => handleSelectChange(e.target.value)}
             >
-              <option value="">Please Select</option>
+              {renderSelectableOptions()}
             </select>
           )}
 

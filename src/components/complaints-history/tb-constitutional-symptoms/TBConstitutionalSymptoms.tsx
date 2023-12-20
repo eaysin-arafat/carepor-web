@@ -7,25 +7,71 @@ import DefaultModal from "@/components/core/modal/DefaultModal";
 import PastRecordContainers from "@/components/past-record-containers/PastRecordContainers";
 import PastRecordData from "@/components/shared/past-record/PastRecordData";
 import PastRecordWrapper from "@/components/shared/past-record/PastRecordWrpper";
-import React from "react";
+import { EnumEncounterType } from "@/enum/encounter-type";
+import {
+  useReadConstitutionalOptionsQuery,
+  useReadConstitutionalSymptomsByOptionQuery,
+} from "@/features/constitutional-sysmptom/constitutional-symptom-api";
+import { useReadIdentifiedConstitutionalSymptomsByClientQuery } from "@/features/identified-constitutional-symptom/identified-constitutional-symptom-api";
+import { useReadIdentifiedTbSymptomByClientIdQuery } from "@/features/identified-tb-symptom/identified-tb-symptom-api";
+import { useReadTbSymptomsQuery } from "@/features/tb-symptoms/tb-sysmptoms-api";
+import useClient from "@/hooks/useClient";
+import { DateFunc } from "@/utilities/date";
+import { filterByEncounterTypeAndCombine } from "@/utilities/transformation";
+import React, { useMemo } from "react";
 import { Loader } from "react-feather";
 
 const TBConstitutionalSymptoms = ({ toggler }) => {
-  const isLoading = false;
+  const [selectedTbSymptoms, setSelectedTbSymptoms] = React.useState<Option[]>(
+    []
+  );
+  const [selectedConstitutionalSymptoms, setSelectedConstitutionalSymptoms] =
+    React.useState<Option[]>([]);
+  const [constitutionalOptionId, setConstitutionalOptionId] =
+    React.useState<string>("");
 
-  const demoData = [
-    {
-      chiefComplaints: "Demo chiefComplaints",
-      clientId: "a1497272-3783-46f6-922a-08dbd06dc4d8",
-      historyOfChiefComplaint: "Demo -",
-    },
-    {
-      chiefComplaints: "Demo chiefComplaints",
-      clientId: "a1497272-3783-46f6-922a-08dbd06dc4d8",
-      historyOfChiefComplaint: "Demo -",
-    },
-  ];
-  const [selectedOptions, setSelectedOptions] = React.useState<Option[]>([]);
+  const client = useClient();
+
+  const { data: tbSymptoms, isLoading: isTbLoading } =
+    useReadTbSymptomsQuery(null);
+
+  const { data: constitutionalOptions, isLoading: isConstitutionalLoading } =
+    useReadConstitutionalOptionsQuery(null);
+  console.log("constitutionalOptions", constitutionalOptions);
+
+  const { data: constitutionalSymptoms } =
+    useReadConstitutionalSymptomsByOptionQuery(constitutionalOptionId, {
+      skip: !constitutionalOptionId,
+      refetchOnMountOrArgChange: true,
+    });
+
+  // identified tb symptoms and constitutional symptoms by client id
+  const { data: identifiedTbSymptoms } =
+    useReadIdentifiedTbSymptomByClientIdQuery(client?.oid, {
+      skip: !client?.oid,
+      refetchOnMountOrArgChange: true,
+    });
+  const { data: identifiedConstitutionalSymptom } =
+    useReadIdentifiedConstitutionalSymptomsByClientQuery(client?.oid, {
+      skip: !client?.oid,
+      refetchOnMountOrArgChange: true,
+    });
+
+  // combined identified tb symptoms and constitutional symptoms based on dateCreated,encounterType,createdIn,createdBy
+  const combinedIdentifiedTbAndConstitutionalSymptoms = useMemo(
+    () =>
+      filterByEncounterTypeAndCombine(
+        identifiedTbSymptoms?.slice(),
+        identifiedConstitutionalSymptom?.slice(),
+        EnumEncounterType.MedicalEncounter
+      ),
+    [identifiedTbSymptoms, identifiedConstitutionalSymptom]
+  );
+
+  console.log({ combinedIdentifiedTbAndConstitutionalSymptoms });
+
+  // variables
+  const isPastRecordLoading = isTbLoading || isConstitutionalLoading;
 
   return (
     <div>
@@ -39,17 +85,21 @@ const TBConstitutionalSymptoms = ({ toggler }) => {
             <div>
               <Section title="TB Symptoms">
                 <MultiSelect
-                  options={demoOptions?.slice() || []}
-                  selectedOptions={selectedOptions}
-                  setSelectedOptions={setSelectedOptions}
+                  options={tbSymptoms?.slice() || []}
+                  selectedOptions={selectedTbSymptoms}
+                  setSelectedOptions={setSelectedTbSymptoms}
                 />
               </Section>
               <Section title="Constitutional Symptoms">
                 <MultiSelect
-                  isSelectable
-                  options={demoOptions?.slice() || []}
-                  selectedOptions={selectedOptions}
-                  setSelectedOptions={setSelectedOptions}
+                  isSelectable={true}
+                  selectableOptions={constitutionalOptions?.slice() || []}
+                  handleSelectChange={(id: string) =>
+                    setConstitutionalOptionId(id)
+                  }
+                  options={constitutionalSymptoms?.slice() || []}
+                  selectedOptions={selectedConstitutionalSymptoms}
+                  setSelectedOptions={setSelectedConstitutionalSymptoms}
                 />
               </Section>
             </div>
@@ -58,20 +108,30 @@ const TBConstitutionalSymptoms = ({ toggler }) => {
 
           {/* PAST RECORD CONTAINERS */}
           <PastRecordContainers>
-            {isLoading && (
+            {isPastRecordLoading && (
               <div className="flex w-full justify-center items-center">
                 <Loader size={40} className="animate-spin" />
               </div>
             )}
 
-            {demoData?.map((item) => (
-              <PastRecordWrapper isDeleteAble={false} isEditAble={true}>
-                <PastRecordData
-                  title="Treatment Plan"
-                  data={item?.chiefComplaints}
-                />
-              </PastRecordWrapper>
-            ))}
+            {combinedIdentifiedTbAndConstitutionalSymptoms
+              ?.reverse()
+              ?.slice(0, 10)
+              ?.map((item) => (
+                <PastRecordWrapper
+                  isDeleteAble={DateFunc?.isBetween24Hours(item?.dateCreated)}
+                  isEditAble={false}
+                >
+                  <PastRecordData
+                    title="TB Symptoms"
+                    data={item?.tbSymptom?.description}
+                  />
+                  <PastRecordData
+                    title="Constitutional Symptoms"
+                    data={item?.constitutionalSymptomType?.description}
+                  />
+                </PastRecordWrapper>
+              ))}
           </PastRecordContainers>
 
           {/* BUTTONS */}
@@ -85,78 +145,3 @@ const TBConstitutionalSymptoms = ({ toggler }) => {
 };
 
 export default TBConstitutionalSymptoms;
-
-const demoOptions = [
-  {
-    oid: 1,
-    description: "Indeterminate HIV test",
-    createdIn: -1,
-    dateCreated: "2023-10-01T00:00:00",
-    createdBy: "00000000-0000-0000-0000-000000000000",
-    modifiedIn: -1,
-    dateModified: "2023-10-01T00:00:00",
-    modifiedBy: "00000000-0000-0000-0000-000000000000",
-    isDeleted: false,
-    isSynced: false,
-  },
-  {
-    oid: 2,
-    description: "HIV negative pregnant mother",
-    createdIn: -1,
-    dateCreated: "2023-10-01T00:00:00",
-    createdBy: "00000000-0000-0000-0000-000000000000",
-    modifiedIn: -1,
-    dateModified: "2023-10-01T00:00:00",
-    modifiedBy: "00000000-0000-0000-0000-000000000000",
-    isDeleted: false,
-    isSynced: false,
-  },
-  {
-    oid: 3,
-    description: "Breastfeeding mother",
-    createdIn: -1,
-    dateCreated: "2023-10-01T00:00:00",
-    createdBy: "00000000-0000-0000-0000-000000000000",
-    modifiedIn: -1,
-    dateModified: "2023-10-01T00:00:00",
-    modifiedBy: "00000000-0000-0000-0000-000000000000",
-    isDeleted: false,
-    isSynced: false,
-  },
-  {
-    oid: 4,
-    description: "HIV negative with STIs",
-    createdIn: -1,
-    dateCreated: "2023-10-01T00:00:00",
-    createdBy: "00000000-0000-0000-0000-000000000000",
-    modifiedIn: -1,
-    dateModified: "2023-10-01T00:00:00",
-    modifiedBy: "00000000-0000-0000-0000-000000000000",
-    isDeleted: false,
-    isSynced: false,
-  },
-  {
-    oid: 5,
-    description: "HIV negative with TB",
-    createdIn: -1,
-    dateCreated: "2023-10-01T00:00:00",
-    createdBy: "00000000-0000-0000-0000-000000000000",
-    modifiedIn: -1,
-    dateModified: "2023-10-01T00:00:00",
-    modifiedBy: "00000000-0000-0000-0000-000000000000",
-    isDeleted: false,
-    isSynced: false,
-  },
-  {
-    oid: 6,
-    description: "Discordant sexual partner",
-    createdIn: -1,
-    dateCreated: "2023-10-01T00:00:00",
-    createdBy: "00000000-0000-0000-0000-000000000000",
-    modifiedIn: -1,
-    dateModified: "2023-10-01T00:00:00",
-    modifiedBy: "00000000-0000-0000-0000-000000000000",
-    isDeleted: false,
-    isSynced: false,
-  },
-];

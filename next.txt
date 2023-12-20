@@ -1,1 +1,30 @@
 api start after chief complaint 
+
+
+// ceate a new folder
+mkdir <folder name>
+
+// change directory to the new folder
+cd <folder name>
+
+// clone the repo first
+git clone <url>
+
+// pull the latest changes with all branches
+git pull --all
+
+// switch to the which is created with your name
+// this is your workspace. Perform all your tasks here
+git switch <branch>
+
+// after you are done with your tasks, push the changes to your branch
+/// first add your changes
+git add <file>
+
+// commit your changes with a proper message
+git commit -m "message"
+
+// push your changes to your branch not main branch
+git push origin <branch>
+
+Note: not to push to main branch, it will be rejected
