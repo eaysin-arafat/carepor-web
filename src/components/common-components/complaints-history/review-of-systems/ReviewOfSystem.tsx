@@ -8,12 +8,7 @@ import PastRecordData from "@/components/shared/past-record/PastRecordData";
 import PastRecordWrapper from "@/components/shared/past-record/PastRecordWrpper";
 import { Loader } from "react-feather";
 
-type ItemsProps = {
-  chiefComplaints: string;
-  clientId: string;
-  historyOfChiefComplaint: string;
-};
-const PresentingComplaints = ({ toggler }) => {
+const ReviewOfSystem = ({ toggler }) => {
   const isLoading = false;
 
   const demoData = [
@@ -31,20 +26,31 @@ const PresentingComplaints = ({ toggler }) => {
 
   return (
     <div>
-      <DefaultModal
-        title="Medical Encounter IPD (Complaints & Histories)"
-        toggler={toggler}
-        size="6xl"
-      >
+      <DefaultModal title="Review of Systems" toggler={toggler} size="6xl">
         <form>
           <div className="flex flex-col gap-6">
             <div>
-              <div className="space-y-4">
-                <Textarea label="History" required />
-                <Textarea label="Examination" required />
-              </div>
-              <Section title="Serostatus and Disclosure">
-                <Select label="HIV Status" required></Select>
+              <Section>
+                <div className="grid grid-cols-6 gap-5 items-center">
+                  <div className="col-span-6 md:col-span-2">
+                    <Select label="System"></Select>
+                  </div>
+                  <div className="col-span-6 md:col-span-4">
+                    <Textarea label="Notes" className="h-[52px]" />
+                  </div>
+                  <div className="col-span-6">
+                    <button className="main_btn w-fit">Add System</button>
+                  </div>
+                  <div className="col-span-6 grid grid-cols-2 gap-3">
+                    <PastRecordWrapper isDeleteAble={true} isEditAble={true}>
+                      <PastRecordData title="Treatment Plan" data={"Data"} />
+                    </PastRecordWrapper>
+
+                    <PastRecordWrapper isDeleteAble={true} isEditAble={true}>
+                      <PastRecordData title="Treatment Plan" data={"Data"} />
+                    </PastRecordWrapper>
+                  </div>
+                </div>
               </Section>
             </div>
           </div>
@@ -58,7 +64,7 @@ const PresentingComplaints = ({ toggler }) => {
               </div>
             )}
 
-            {demoData?.map((item: ItemsProps) => (
+            {demoData?.map((item) => (
               <PastRecordWrapper isDeleteAble={false} isEditAble={true}>
                 <PastRecordData
                   title="Treatment Plan"
@@ -78,4 +84,4 @@ const PresentingComplaints = ({ toggler }) => {
   );
 };
 
-export default PresentingComplaints;
+export default ReviewOfSystem;

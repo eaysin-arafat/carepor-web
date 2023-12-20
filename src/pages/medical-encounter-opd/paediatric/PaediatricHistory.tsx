@@ -1,6 +1,8 @@
 import { RootState } from "@/app/store";
-import PresentingComplaints from "@/components/common-components/complaints-history/presenting-complaints/PresentingComplaints";
-import Diagnosis from "@/components/common-components/examination-diagnosis/DiagnosisCreate";
+import BirthHistory from "@/components/common-components/paediatric-history/birth-history/BirthHistory";
+import DevelopmentHistory from "@/components/common-components/paediatric-history/development-history/DevelopmentHistory";
+import FeedingHistory from "@/components/common-components/paediatric-history/feeding-history/FeedingHistory";
+import ImmunizationHistory from "@/components/common-components/paediatric-history/immunization/Immunization";
 import FormHeading from "@/components/core/form-heading/FormHeading";
 import DefaultModal from "@/components/core/modal/DefaultModal";
 import { paediatricModalTypes } from "@/constants/modal-types";
@@ -60,7 +62,7 @@ const OpdPaediatricHistory = () => {
         isEdit
       />
       {addModal?.modalId === paediatricModalTypes.birthHistoryModal && (
-        <PresentingComplaints toggler={closeModal} />
+        <BirthHistory toggler={closeModal} />
       )}
 
       {/* Immunization History  */}
@@ -69,8 +71,8 @@ const OpdPaediatricHistory = () => {
         modalHandler={handleImmunization}
         isEdit
       />
-      {addModal?.modalId === paediatricModalTypes.birthHistoryModal && (
-        <PresentingComplaints toggler={closeModal} />
+      {addModal?.modalId === paediatricModalTypes.immunizationModal && (
+        <ImmunizationHistory toggler={closeModal} />
       )}
       {/* Feeding History  */}
       <FormHeading
@@ -78,8 +80,8 @@ const OpdPaediatricHistory = () => {
         modalHandler={handleFeedingHistory}
         isEdit
       />
-      {addModal?.modalId === paediatricModalTypes.birthHistoryModal && (
-        <PresentingComplaints toggler={closeModal} />
+      {addModal?.modalId === paediatricModalTypes.feedingHistoryModal && (
+        <FeedingHistory toggler={closeModal} />
       )}
 
       {/* Development History  */}
@@ -88,13 +90,13 @@ const OpdPaediatricHistory = () => {
         modalHandler={handleDevelopmentHistory}
         isEdit
       />
-      {addModal?.modalId === paediatricModalTypes.birthHistoryModal && (
+      {addModal?.modalId === paediatricModalTypes.developmentHistoryModal && (
         <DefaultModal
           title="Examination & Diagnosis"
           toggler={closeModal}
           size="7xl"
         >
-          <Diagnosis toggler={closeModal} />
+          <DevelopmentHistory toggler={closeModal} />
         </DefaultModal>
       )}
     </div>

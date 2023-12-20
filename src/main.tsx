@@ -4,6 +4,7 @@ import { Toaster } from "react-hot-toast";
 import { SkeletonTheme } from "react-loading-skeleton";
 import App from "./App.tsx";
 import "./index.css";
+import "./responsive.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

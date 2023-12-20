@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import useUserLogin from "./useUserLogin";
 
 function UserLogin() {
+  const w1400 = useWindowWidth(1400);
   const w768 = useWindowWidth(768);
   const userLogin = useUserLogin();
   const {
@@ -49,7 +50,7 @@ function UserLogin() {
           </>
         )}
 
-        <div className="flex flex-col gap-4 mt-10">
+        <div className={cn("flex flex-col gap-4 mt-10", { "mt-2": w1400 })}>
           <Input
             value={loginForm?.username}
             errMsg={errors?.username}
