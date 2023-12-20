@@ -235,3 +235,13 @@ export const getDateTimeDetails = (dateString: string | Date) => {
     return null; //<SkeletonList width={500} />;
   }
 };
+
+export const sortByDate = <T extends { dateCreated: string }>(data: T[]) => {
+  if (data?.length > 0) {
+    return data?.slice()?.sort((a, b) => {
+      const aDate = new Date(a.dateCreated).getTime();
+      const bDate = new Date(b.dateCreated).getTime();
+      return bDate - aDate;
+    });
+  }
+};

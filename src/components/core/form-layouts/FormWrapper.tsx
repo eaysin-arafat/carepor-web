@@ -38,8 +38,8 @@ function FormWrapper({
   childrenMaxWidth = "max-w-[380px]",
   children,
   emergencyAccess,
-  className = " ",
-  maxWidth = "max-w-[650px]",
+  className = "",
+  maxWidth = "max-w-[700px]",
   contentCenter,
   noBackground,
   signUpForm,
@@ -48,15 +48,21 @@ function FormWrapper({
   isAppNameHide,
 }: Props) {
   const w1400 = useWindowWidth(1400);
+  const w700 = useWindowWidth(700);
   return (
     <BodyBackground noBackground={noBackground}>
       <div
-        className={cn("mx-auto mt-10 xs:mt-auto  ", {
-          "flex items-center justify-center": contentCenter,
+        className={cn("mx-auto xs:mt-auto  ", maxWidth, {
+          "flex items-center justify-center ": contentCenter,
         })}
       >
         {/* <div className="flex items-center justify-center h-screen"> */}
-        <div className={cn(" w-full xs:px-5 ")}>
+        <div
+          className={cn(" w-full xs:px-5 mt-24", {
+            "mt-5": w1400,
+            "mt-9": w700,
+          })}
+        >
           <div className="bg-transparent pt-[88px]">
             <div
               className={cn(

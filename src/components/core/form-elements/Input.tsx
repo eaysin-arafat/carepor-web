@@ -32,7 +32,7 @@ function Input({
   return (
     <div className="flex flex-col w-full items-start justify-start gap-[3px]">
       <div className="flex">
-        <div className="input_label text-xs !mb-0">{label}</div>
+        <div className="input_label text-xs !mb-0 ml-[1px]">{label}</div>
         {required && <span className="-mt-[6px] mx-1 text-dangerColor">*</span>}
       </div>
       <input

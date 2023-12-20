@@ -19,7 +19,7 @@ import {
 } from "@/features/birth-record/birth-record-api";
 import { closeAddModal } from "@/features/modal/modal-slice";
 import useBaseDataCreate from "@/hooks/useBaseDataCreate";
-import useEditBaseData from "@/hooks/useBaseDataEdit";
+import useBaseDataEdit from "@/hooks/useBaseDataEdit";
 import { FormSubmitEventType, OnchangeEventType } from "@/types/htmlEvents";
 import {
   TypeBirthRecord,
@@ -31,21 +31,25 @@ import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import ReferenceNotes from "./ReferenceNotes";
 
-function BirthRecordCreate({ toggler }) {
+// form for create an update/edit
+function BirthRecordForm({ toggler }) {
   const [accordion, setAccordion] = useState(false);
+
   const dispatch = useDispatch();
+  // if prevData is null from performing as create form otherwise preform update
   const { data: prevRecord }: { data: TypeBirthRecord } = useSelector(
     (state: RootState) => state.modal.addModal
   );
 
+  // hooks for baseData
   const { BirthRecords } = EnumEncounterType;
   const [baseDataCreate] = useBaseDataCreate(BirthRecords);
-  const [baseDataEdit] = useEditBaseData(BirthRecords);
+  const [baseDataEdit] = useBaseDataEdit(BirthRecords);
 
-  // Rtk mutations
+  // Rtk mutations / create
   const [createBirthRecord, { status: createStatus, error: createError }] =
     useCreateBirthRecordMutation();
-
+  // Rtk mutations / update
   const [updateBirthRecord, { status: updateStatus }] =
     useUpdateBirthRecordMutation();
 
@@ -70,15 +74,14 @@ function BirthRecordCreate({ toggler }) {
     informantCellphone: "",
   };
 
-  // const { input, setInput, handleInputChange } = {}; // useInput(initialState);
-
+  // form state
   const [formState, setFormState] = useState<TypeBirthRecord>(initialState);
   const [inputError, setInputError] = useState<TypeBirthRecordFormError | null>(
     null
   );
+  // Input change handler
   const handleInputChange = (e: OnchangeEventType) => {
     const { name, value } = e.target;
-
     if (name == "isUnderFiveCardGiven") {
       setFormState((prev) => ({ ...prev, [name]: value }));
       setInputError && setInputError((prev) => ({ ...prev, [name]: "" }));
@@ -100,6 +103,7 @@ function BirthRecordCreate({ toggler }) {
     setInputError && setInputError((prev) => ({ ...prev, [name]: "" }));
   };
 
+  // Form submit handler
   const handleSubmit = (e: FormSubmitEventType) => {
     e.preventDefault();
 
@@ -113,24 +117,25 @@ function BirthRecordCreate({ toggler }) {
       return false;
     }
 
-    const submitData = {
-      ...baseDataCreate,
-      ...formState,
-    };
-
-    const updateData = {
-      ...prevRecord,
-      ...baseDataEdit,
-      ...formState,
-    };
-
     if (prevRecord) {
+      // if previous record is alliable submit as PUT request
+      const updateData = {
+        ...prevRecord,
+        ...baseDataEdit,
+        ...formState,
+      };
       updateBirthRecord({ body: updateData, key: updateData?.interactionId });
     } else {
+      // if previous record is not alliable submit as POST request
+      const submitData = {
+        ...baseDataCreate,
+        ...formState,
+      };
       createBirthRecord(submitData);
     }
   };
 
+  // Create Request status message
   useEffect(() => {
     if (createStatus === RtkStatusEnum.fulfilled) {
       toast.dismiss();
@@ -142,6 +147,8 @@ function BirthRecordCreate({ toggler }) {
       console.log(createError);
     }
   }, [createStatus]);
+
+  // Update Request status message
   useEffect(() => {
     if (updateStatus === RtkStatusEnum.fulfilled) {
       dispatch(closeAddModal());
@@ -155,6 +162,8 @@ function BirthRecordCreate({ toggler }) {
     }
   }, [updateStatus]);
 
+  // If PrevRecord is already available
+  // set prevRecord to form data
   useEffect(() => {
     if (prevRecord) {
       const dataSet = {
@@ -354,7 +363,7 @@ function BirthRecordCreate({ toggler }) {
         {/* BUTTONS */}
         <div className="mt-5">
           <CancelAndAddButton
-            isUpdate={prevRecord ? true : false}
+            submitBtnText={!prevRecord ? "Save" : "Update"}
             toggler={toggler}
           />
         </div>
@@ -363,4 +372,4 @@ function BirthRecordCreate({ toggler }) {
   );
 }
 
-export default BirthRecordCreate;
+export default BirthRecordForm;

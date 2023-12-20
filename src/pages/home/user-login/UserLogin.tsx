@@ -33,6 +33,7 @@ function UserLogin() {
       appTitle
       loginForm
       contentCenter
+      maxWidth={w1400 ? "max-w-[600px]" : "max-w-[700px]"}
     >
       <form onSubmit={handleFormSubmit} className="my-5">
         {credentialError && (
@@ -50,7 +51,11 @@ function UserLogin() {
           </>
         )}
 
-        <div className={cn("flex flex-col gap-4 mt-10", { "mt-2": w1400 })}>
+        <div
+          className={cn("flex flex-col gap-4 mt-10", {
+            "mt-2 max-w-[350px] m-auto": w1400,
+          })}
+        >
           <Input
             value={loginForm?.username}
             errMsg={errors?.username}
@@ -87,7 +92,7 @@ function UserLogin() {
             </div>
           </div>
 
-          <div className={cn("mx-5", { "mx-3": w768 })}>
+          <div className={cn("my-5", { "my-3": w768 })}>
             <SubmitButton
               loading={isLoading}
               buttonType="submit"
