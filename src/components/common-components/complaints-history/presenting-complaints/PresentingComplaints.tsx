@@ -1,15 +1,34 @@
 import CancelAndAddButton from "@/components/core/buttons/CancelAndAddButton";
+import Section from "@/components/core/card/Section";
+import Select from "@/components/core/form-elements/Select";
 import Textarea from "@/components/core/form-elements/textarea";
 import DefaultModal from "@/components/core/modal/DefaultModal";
 import PastRecordContainers from "@/components/past-record-containers/PastRecordContainers";
-import { useReadChiefComplaintByClientQuery } from "@/features/chief-complaint/chief-complaint-api";
-import PastEncounters from "@/pages/chief-complaints/create/PastEncounters";
+import PastRecordData from "@/components/shared/past-record/PastRecordData";
+import PastRecordWrapper from "@/components/shared/past-record/PastRecordWrpper";
 import { Loader } from "react-feather";
 
+type ItemsProps = {
+  chiefComplaints: string;
+  clientId: string;
+  historyOfChiefComplaint: string;
+};
 const PresentingComplaints = ({ toggler }) => {
-  const { data, isLoading, status } = useReadChiefComplaintByClientQuery(
-    "a1497272-3783-46f6-922a-08dbd06dc4d8"
-  );
+  const isLoading = false;
+
+  const demoData = [
+    {
+      chiefComplaints: "Demo chiefComplaints",
+      clientId: "a1497272-3783-46f6-922a-08dbd06dc4d8",
+      historyOfChiefComplaint: "Demo -",
+    },
+    {
+      chiefComplaints: "Demo chiefComplaints",
+      clientId: "a1497272-3783-46f6-922a-08dbd06dc4d8",
+      historyOfChiefComplaint: "Demo -",
+    },
+  ];
+
   return (
     <div>
       <DefaultModal
@@ -24,20 +43,28 @@ const PresentingComplaints = ({ toggler }) => {
                 <Textarea label="History" required />
                 <Textarea label="Examination" required />
               </div>
+              <Section title="Serostatus and Disclosure">
+                <Select label="HIV Status" required></Select>
+              </Section>
             </div>
           </div>
           <hr className="my-6" />
 
           {/* PAST RECORD CONTAINERS */}
           <PastRecordContainers>
-            {(isLoading || status === "pending") && (
+            {isLoading && (
               <div className="flex w-full justify-center items-center">
                 <Loader size={40} className="animate-spin" />
               </div>
             )}
 
-            {data?.map((item, index) => (
-              <PastEncounters key={index} data={item} handleEdit={() => {}} />
+            {demoData?.map((item: ItemsProps) => (
+              <PastRecordWrapper isDeleteAble={false} isEditAble={true}>
+                <PastRecordData
+                  title="Treatment Plan"
+                  data={item?.chiefComplaints}
+                />
+              </PastRecordWrapper>
             ))}
           </PastRecordContainers>
 

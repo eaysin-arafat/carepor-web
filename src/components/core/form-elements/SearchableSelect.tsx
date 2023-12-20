@@ -35,11 +35,11 @@ function SearchableSelect({
   const [showDropdown, setShowDropdown] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
-  useEffect(() => {
-    // if (setError && name) {
-    //   setError((prev) => ({ ...prev, [name]: "" }));
-    // }
-  }, [selectedValue, setError, name]);
+  // useEffect(() => {
+  //   // if (setError && name) {
+  //   //   setError((prev) => ({ ...prev, [name]: "" }));
+  //   // }
+  // }, [selectedValue, setError, name]);
 
   const filterData =
     Array.isArray(options) && options
@@ -54,6 +54,8 @@ function SearchableSelect({
     if (setSelectedValue) {
       setSelectedValue(data);
     }
+    setError && setError();
+
     setSearchValue("");
     setShowDropdown(false);
   };
@@ -163,7 +165,7 @@ function SearchableSelect({
                           </li>
                         } */}
 
-                        {filterData.map((data) => {
+                        {filterData?.map((data) => {
                           return (
                             <li
                               key={data.value}

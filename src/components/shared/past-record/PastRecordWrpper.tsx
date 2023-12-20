@@ -45,7 +45,7 @@ const PastRecordWrapper = ({
         )}
         <div className="flex gap-5 flex-wrap">{children}</div>
       </div>
-      <div className="flex gap-2 justify-end mt-2 sm:mt-0">
+      <div className="flex md:flex-col gap-2 justify-end mt-2 sm:mt-0">
         {/* DELETE BUTTON */}
         {isDeleteAble && (
           <button
@@ -53,8 +53,8 @@ const PastRecordWrapper = ({
             className="flex items-center gap-1 p-1 text-dangerColor"
             onClick={handleDelete}
           >
-            <span>
-              <FaRegTrashAlt size={14} className="text-dangerColor" /> Delete
+            <span className="flex gap-1 text-dangerColor items-center">
+              <FaRegTrashAlt size={13} className="text-dangerColor" /> Delete
             </span>
           </button>
         )}
@@ -69,7 +69,7 @@ const PastRecordWrapper = ({
             <span>
               <Edit2 size={14} className=" text-primaryColor" />
             </span>
-            <span>Edit</span>
+            <span className="text-primaryColor">Edit</span>
           </button>
         )}
       </div>

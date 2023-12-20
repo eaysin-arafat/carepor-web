@@ -49,7 +49,6 @@ const AdmissionsIndex = () => {
     <div className="mx-2">
       <Container className="max-w-[1400px]">
         <div>
-        <img src="/public/assets/icons/home.svg" alt="" />
           <SimplePatientDetails className=" shadow-none mt-5" client={client} />
           <div className="grid grid-cols-7 gap-5 mt-5 bg-whiteBgColor p-5 rounded-lg ">
             <div className="col-span-7">

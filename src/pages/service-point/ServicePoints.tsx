@@ -29,10 +29,7 @@ const ServicePoints = () => {
             <div className="grid grid-cols-2 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 justify-items-center sm:justify-between gap-9 ">
               {servicePointsArray.map(
                 (servicePoint: ServicePoint, index: number) => (
-                  <div
-                    key={index}
-                    className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-5 justify-between "
-                  >
+                  <div key={index} className="">
                     <Link to={servicePoint?.link}>
                       <div className={parantDiv_Style}>
                         <img
@@ -57,105 +54,7 @@ const ServicePoints = () => {
 export default ServicePoints;
 
 const parantDiv_Style =
-  "flex flex-col rounded-lg justify-center items-center gap-5 border border-primaryColor p-5 h-[150px] w-[141px] hover:bg-primaryColor group transition-all duration-300 ";
+  "flex flex-col rounded-lg justify-center items-center gap-5 border border-primaryColor p-5 h-[150px] w-[152px] hover:bg-primaryColor group transition-all duration-300 ";
 const image_Style = "group-hover:svg_white transition-all duration-300";
 const text_Style =
   "group-hover:text-whiteColor text-black dark:text-primaryColor transition-all duration-300 font-medium text-center";
-
-// const servicePointsArray: ServicePoint[] = [
-//   {
-//     imgSrc: "assets/svg/service-point/OPD.svg",
-//     title: "Me (OPD)",
-//     link: "#",
-//   },
-//   {
-//     imgSrc: "assets/svg/service-point/Vital.svg",
-//     title: "Vital",
-//     link: "/vitals",
-//   },
-//   {
-//     imgSrc: "assets/svg/service-point/PEP.svg",
-//     title: "PEP",
-//     link: "#",
-//   },
-//   {
-//     imgSrc: "assets/svg/service-point/PREP.svg",
-//     title: "PrEP",
-//     link: "#",
-//   },
-//   {
-//     imgSrc: "assets/svg/service-point/TB Service.svg",
-//     title: "TB Service",
-//     link: "#",
-//   },
-//   {
-//     imgSrc: "assets/svg/service-point/Pain Scaling.svg",
-//     title: "Pain Scaling",
-//     link: "#",
-//   },
-//   {
-//     imgSrc: "assets/svg/service-point/Investigation.svg",
-//     title: "Investigation",
-//     link: URLInvestigation(),
-//   },
-//   {
-//     imgSrc: "assets/svg/service-point/Surgery.svg",
-//     title: "Surgery",
-//     link: "#",
-//   },
-//   {
-//     imgSrc: "assets/svg/service-point/Referrals.svg",
-//     title: "Referrals",
-//     link: "#",
-//   },
-//   {
-//     imgSrc: "assets/svg/service-point/Covax.svg",
-//     title: "Covax",
-//     link: "#",
-//   },
-//   {
-//     imgSrc: "assets/svg/service-point/Covid.svg",
-//     title: "Covid",
-//     link: "#",
-//   },
-//   {
-//     imgSrc: "assets/svg/service-point/Birth Records.svg",
-//     title: "Birth Records",
-//     link: "#",
-//   },
-//   {
-//     imgSrc: "assets/svg/service-point/Death Record.svg",
-//     title: "Death Record",
-//     link: "#",
-//   },
-//   {
-//     imgSrc: "assets/svg/service-point/Pharmasy.svg",
-//     title: "Pharmacy",
-//     link: "#",
-//   },
-//   {
-//     imgSrc: "assets/svg/service-point/ART.svg",
-//     title: "ART",
-//     link: "#",
-//   },
-//   {
-//     imgSrc: "assets/svg/service-point/Antenatal.svg",
-//     title: "Antenatal",
-//     link: "#",
-//   },
-//   {
-//     imgSrc: "assets/svg/service-point/Labour.svg",
-//     title: "Labour",
-//     link: "#",
-//   },
-//   {
-//     imgSrc: "assets/svg/service-point/Postnatal.svg",
-//     title: "Postnatal",
-//     link: "#",
-//   },
-//   {
-//     imgSrc: "assets/svg/service-point/Family Plan.svg",
-//     title: "Family Plan",
-//     link: "#",
-//   },
-// ];

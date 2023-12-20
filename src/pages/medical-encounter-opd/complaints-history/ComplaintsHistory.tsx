@@ -1,7 +1,12 @@
 import { RootState } from "@/app/store";
+import Allergies from "@/components/common-components/complaints-history/allergies/Allergies";
+import ChronicNonChronic from "@/components/common-components/complaints-history/chronic-non-chronic/ChronicNonChronic";
+import FamilyAndSocial from "@/components/common-components/complaints-history/family-and-social/FamilyAndSocial";
+import PastMedicalHistory from "@/components/common-components/complaints-history/past-medical-history/PastMedicalHistory";
 import PresentingComplaints from "@/components/common-components/complaints-history/presenting-complaints/PresentingComplaints";
+import ReviewOfSystem from "@/components/common-components/complaints-history/review-of-systems/ReviewOfSystem";
+import TBConstitutionalSymptoms from "@/components/common-components/complaints-history/tb-constitutional-symptoms/TBConstitutionalSymptoms";
 import FormHeading from "@/components/core/form-heading/FormHeading";
-import IpdComplaintsHistory from "@/components/medical-encounter-ipd/IpdComplaintsHistory";
 import { complaintsModalTypes } from "@/constants/modal-types";
 import { closeAddModal, openAddModal } from "@/features/modal/modal-slice";
 import { useDispatch, useSelector } from "react-redux";
@@ -96,7 +101,7 @@ const OpdComplaintsHistory = () => {
         isEdit
       />
       {addModal?.modalId === complaintsModalTypes.tBConstitutionalSymptoms && (
-        <IpdComplaintsHistory toggler={closeModal} />
+        <TBConstitutionalSymptoms toggler={closeModal} />
       )}
 
       {/* Review of Systems  */}
@@ -106,7 +111,7 @@ const OpdComplaintsHistory = () => {
         isEdit
       />
       {addModal?.modalId === complaintsModalTypes.reviewOfSystems && (
-        <IpdComplaintsHistory toggler={closeModal} />
+        <ReviewOfSystem toggler={closeModal} />
       )}
 
       {/* Past Medical History  */}
@@ -116,7 +121,7 @@ const OpdComplaintsHistory = () => {
         isEdit
       />
       {addModal?.modalId === complaintsModalTypes.pastMedicalHistory && (
-        <IpdComplaintsHistory toggler={closeModal} />
+        <PastMedicalHistory toggler={closeModal} />
       )}
 
       {/* Chronic / Non Chronic Conditions  */}
@@ -126,13 +131,13 @@ const OpdComplaintsHistory = () => {
         isEdit
       />
       {addModal?.modalId === complaintsModalTypes.chronicNonChronic && (
-        <IpdComplaintsHistory toggler={closeModal} />
+        <ChronicNonChronic toggler={closeModal} />
       )}
 
       {/* Allergies  */}
       <FormHeading title="Allergies" modalHandler={handleAllergies} isEdit />
       {addModal?.modalId === complaintsModalTypes.allergies && (
-        <IpdComplaintsHistory toggler={closeModal} />
+        <Allergies toggler={closeModal} />
       )}
 
       {/* Family & Social History  */}
@@ -142,7 +147,7 @@ const OpdComplaintsHistory = () => {
         isEdit
       />
       {addModal?.modalId === complaintsModalTypes.familySocialHistory && (
-        <IpdComplaintsHistory toggler={closeModal} />
+        <FamilyAndSocial toggler={closeModal} />
       )}
     </div>
   );

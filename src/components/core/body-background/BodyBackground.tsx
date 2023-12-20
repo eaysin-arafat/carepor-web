@@ -22,7 +22,11 @@ function BodyBackground({ children, noBackground }: Props) {
       <div className="z-20 absolute top-2 right-2 xs:top-5 xs:right-5">
         <ThemeSwitcher />
       </div>
-      <div className={cn("relative z-10 align-middle mt-16", { "mt-3": w768 })}>
+      <div
+        className={cn("relative z-10 align-middle mt-16 max-w-[700px] m-auto", {
+          "mt-3": w768,
+        })}
+      >
         {children}
       </div>
       {!noBackground && (

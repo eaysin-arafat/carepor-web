@@ -1,6 +1,8 @@
 import { RootState } from "@/app/store";
-import PresentingComplaints from "@/components/common-components/complaints-history/presenting-complaints/PresentingComplaints";
 import Diagnosis from "@/components/common-components/examination-diagnosis/DiagnosisCreate";
+import GeneralAssessment from "@/components/common-components/examination-diagnosis/general-assessment/GeneralAssessment";
+import GlasgowComaScale from "@/components/common-components/examination-diagnosis/glasgow-coma-scale/GlasgowComaScale";
+import SystemExamination from "@/components/common-components/examination-diagnosis/system-examination/SystemExamination";
 import FormHeading from "@/components/core/form-heading/FormHeading";
 import DefaultModal from "@/components/core/modal/DefaultModal";
 import { examinationNDiagnosisModalTypes } from "@/constants/modal-types";
@@ -61,7 +63,7 @@ const OpdExaminationAndDiagnosis = () => {
       />
       {addModal?.modalId ===
         examinationNDiagnosisModalTypes.generalAssessment && (
-        <PresentingComplaints toggler={closeModal} />
+        <GeneralAssessment toggler={closeModal} />
       )}
 
       {/* System Examination  */}
@@ -72,7 +74,7 @@ const OpdExaminationAndDiagnosis = () => {
       />
       {addModal?.modalId ===
         examinationNDiagnosisModalTypes.systemExamination && (
-        <PresentingComplaints toggler={closeModal} />
+        <SystemExamination toggler={closeModal} />
       )}
       {/* Glasgow Coma Scale  */}
       <FormHeading
@@ -82,7 +84,7 @@ const OpdExaminationAndDiagnosis = () => {
       />
       {addModal?.modalId ===
         examinationNDiagnosisModalTypes.glasgowComaScale && (
-        <PresentingComplaints toggler={closeModal} />
+        <GlasgowComaScale toggler={closeModal} />
       )}
 
       {/* Presenting Complaints  */}
