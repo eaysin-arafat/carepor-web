@@ -10,7 +10,7 @@ const SelectableButton = ({ isActive = false, text = "Text", handler }) => {
           "bg-[#1890FF] text-white": isActive,
         }
       )}
-      onClick={() => handler(text)}
+      onClick={handler}
       type="button"
     >
       {text}

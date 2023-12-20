@@ -3,17 +3,43 @@ import Allergies from "@/components/complaints-history/allergies/Allergies";
 import ChronicNonChronic from "@/components/complaints-history/chronic-non-chronic/ChronicNonChronic";
 import FamilyAndSocial from "@/components/complaints-history/family-and-social/FamilyAndSocial";
 import PastMedicalHistory from "@/components/complaints-history/past-medical-history/PastMedicalHistory";
-import PresentingComplaints from "@/components/complaints-history/presenting-complaints/PresentingComplaints";
 import ReviewOfSystem from "@/components/complaints-history/review-of-systems/ReviewOfSystem";
 import TBConstitutionalSymptoms from "@/components/complaints-history/tb-constitutional-symptoms/TBConstitutionalSymptoms";
 import FormHeading from "@/components/core/form-heading/FormHeading";
 import { complaintsModalTypes } from "@/constants/modal-types";
-import { closeAddModal, openAddModal } from "@/features/modal/modal-slice";
+import { EnumEncounterType } from "@/enum/encounter-type";
+import { useReadChiefComplaintByClientQuery } from "@/features/chief-complaint/chief-complaint-api";
+import {
+  closeAddModal,
+  closeEditModal,
+  openAddModal,
+  openEditModal,
+} from "@/features/modal/modal-slice";
+import useClient from "@/hooks/useClient";
+import CreateComplaintsAndHistories from "@/pages/chief-complaints-opd/create/Create";
+import EditComplaintsAndHistory from "@/pages/chief-complaints-opd/edit/Edit";
+import { filterBy24Hours, filterByEncounter } from "@/utilities/transformation";
+import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const OpdComplaintsHistory = () => {
-  const { addModal } = useSelector((state: RootState) => state.modal);
+  // get modal data from redux store
+  const { addModal, editModal } = useSelector(
+    (state: RootState) => state.modal
+  );
+
+  // builtin hooks and custom hooks
   const dispatch = useDispatch();
+  const client = useClient();
+
+  // get chief complaints by client api hooks
+  const { data: chiefComplaints } = useReadChiefComplaintByClientQuery(
+    client?.oid,
+    {
+      skip: !client?.oid,
+      refetchOnMountOrArgChange: true,
+    }
+  );
 
   const handleChiefComplaints = () => {
     dispatch(
@@ -22,6 +48,19 @@ const OpdComplaintsHistory = () => {
         data: null,
       })
     );
+  };
+
+  const handleChiefComplaintsEdit = () => {
+    dispatch(
+      openEditModal({
+        modalId: complaintsModalTypes.editPresentingComplaints,
+        data: null,
+      })
+    );
+  };
+
+  const closeEdit = () => {
+    dispatch(closeEditModal());
   };
 
   const handleTBConstitutional = () => {
@@ -82,16 +121,37 @@ const OpdComplaintsHistory = () => {
     dispatch(closeAddModal());
   };
 
+  // find has chief complaints edit or not
+  const filteredChiefComplaints = useMemo(() => {
+    return filterByEncounter(
+      chiefComplaints?.slice(),
+      EnumEncounterType.MedicalEncounter
+    );
+  }, [chiefComplaints]);
+  const hasEditChiefComplaints = useMemo(() => {
+    return filterBy24Hours(filteredChiefComplaints?.slice());
+  }, [filteredChiefComplaints]);
+
   return (
     <div>
       {/* Presenting Complaints  */}
       <FormHeading
         title="Presenting Complaints"
         modalHandler={handleChiefComplaints}
-        isEdit
+        isEdit={hasEditChiefComplaints?.length > 0}
+        editHandler={handleChiefComplaintsEdit}
       />
       {addModal?.modalId === complaintsModalTypes.presentingComplaints && (
-        <PresentingComplaints toggler={closeModal} />
+        <CreateComplaintsAndHistories
+          toggler={closeModal}
+          encounterType={EnumEncounterType.MedicalEncounter}
+        />
+      )}
+      {editModal?.modalId === complaintsModalTypes.editPresentingComplaints && (
+        <EditComplaintsAndHistory
+          toggler={closeEdit}
+          encounterType={EnumEncounterType.MedicalEncounter}
+        />
       )}
 
       {/* TB Constitutional Symptoms  */}

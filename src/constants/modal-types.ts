@@ -85,6 +85,7 @@ export const gynObsModalTypes = Object.freeze({
 
 export const complaintsModalTypes = Object.freeze({
   presentingComplaints: "presentingComplaints",
+  editPresentingComplaints: "editPresentingComplaints",
   tBConstitutionalSymptoms: "tBConstitutionalSymptoms",
   reviewOfSystems: "reviewOfSystems",
   pastMedicalHistory: "pastMedicalHistory",
