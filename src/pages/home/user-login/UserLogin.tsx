@@ -87,7 +87,7 @@ function UserLogin() {
             </div>
           </div>
 
-          <div className={cn("mx-5", { "mx-3": w768 })}>
+          <div className={cn("my-5", { "my-3": w768 })}>
             <SubmitButton
               loading={isLoading}
               buttonType="submit"
