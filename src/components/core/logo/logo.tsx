@@ -1,3 +1,4 @@
+import useWindowWidth from "@/hooks/useWindow";
 import { cn } from "@/utilities/cn";
 
 type Props = {
@@ -15,6 +16,7 @@ type Props = {
  */
 
 function AppLogo({ marginTop, type, className }: Props) {
+  const w1400 = useWindowWidth(1400);
   switch (type) {
     case "rounded":
       return (
@@ -24,11 +26,16 @@ function AppLogo({ marginTop, type, className }: Props) {
               <div
                 className={cn(
                   "w-[126px] h-[126px] border-4 border-borderColor bg-whiteBgColor dark:bg-black md:bg-whiteBgColor dark:md:bg-whiteBgColor rounded-full flex justify-center items-center",
-                  marginTop
+                  marginTop,
+                  {
+                    "w-[90px] h-[90px]": w1400,
+                  }
                 )}
               >
                 <img
-                  className={cn("w-[65px] h-[75px]", className)}
+                  className={cn("w-[65px] h-[75px]", className, {
+                    "w-[50px] h-[50px]": w1400,
+                  })}
                   alt=""
                   src="/assets/img/logo.png"
                 />
@@ -58,7 +65,6 @@ function AppLogo({ marginTop, type, className }: Props) {
           </div>
         </div>
       );
-      break;
 
     default:
       break;

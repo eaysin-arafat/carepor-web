@@ -1,5 +1,5 @@
 import { RootState } from "@/app/store";
-import PresentingComplaints from "@/components/common-components/complaints-history/presenting-complaints/PresentingComplaints";
+import GynAndObs from "@/components/gyn-and-obs/gyn-and-obs/GynAndObs";
 import FormHeading from "@/components/core/form-heading/FormHeading";
 import { gynObsModalTypes } from "@/constants/modal-types";
 import { closeAddModal, openAddModal } from "@/features/modal/modal-slice";
@@ -26,7 +26,7 @@ const OpdGynAndObs = () => {
       {/* Gyn & Obs  */}
       <FormHeading title="Gyn & Obs" modalHandler={handleGynObsCreate} isEdit />
       {addModal?.modalId === gynObsModalTypes.gynObsCreateModal && (
-        <PresentingComplaints toggler={closeModal} />
+        <GynAndObs toggler={closeModal} />
       )}
     </div>
   );

@@ -31,7 +31,7 @@ const RequestFacility = () => {
         title="Request Facility Login"
         appTitle
         // titleNote="Please select a Facility to send login request."
-        // className="max-w-[570px]"
+        maxWidth="max-w-[720px]"
         titleClass="text-center"
         contentCenter
       >

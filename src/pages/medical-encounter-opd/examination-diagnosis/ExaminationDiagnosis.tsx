@@ -1,8 +1,10 @@
 import { RootState } from "@/app/store";
-import PresentingComplaints from "@/components/common-components/complaints-history/presenting-complaints/PresentingComplaints";
-import Diagnosis from "@/components/common-components/examination-diagnosis/DiagnosisCreate";
 import FormHeading from "@/components/core/form-heading/FormHeading";
 import DefaultModal from "@/components/core/modal/DefaultModal";
+import Diagnosis from "@/components/examination-diagnosis/DiagnosisCreate";
+import GeneralAssessment from "@/components/examination-diagnosis/general-assessment/GeneralAssessment";
+import GlasgowComaScale from "@/components/examination-diagnosis/glasgow-coma-scale/GlasgowComaScale";
+import SystemExamination from "@/components/examination-diagnosis/system-examination/SystemExamination";
 import { examinationNDiagnosisModalTypes } from "@/constants/modal-types";
 import { closeAddModal, openAddModal } from "@/features/modal/modal-slice";
 import { useDispatch, useSelector } from "react-redux";
@@ -61,7 +63,7 @@ const OpdExaminationAndDiagnosis = () => {
       />
       {addModal?.modalId ===
         examinationNDiagnosisModalTypes.generalAssessment && (
-        <PresentingComplaints toggler={closeModal} />
+        <GeneralAssessment toggler={closeModal} />
       )}
 
       {/* System Examination  */}
@@ -72,7 +74,7 @@ const OpdExaminationAndDiagnosis = () => {
       />
       {addModal?.modalId ===
         examinationNDiagnosisModalTypes.systemExamination && (
-        <PresentingComplaints toggler={closeModal} />
+        <SystemExamination toggler={closeModal} />
       )}
       {/* Glasgow Coma Scale  */}
       <FormHeading
@@ -82,7 +84,7 @@ const OpdExaminationAndDiagnosis = () => {
       />
       {addModal?.modalId ===
         examinationNDiagnosisModalTypes.glasgowComaScale && (
-        <PresentingComplaints toggler={closeModal} />
+        <GlasgowComaScale toggler={closeModal} />
       )}
 
       {/* Presenting Complaints  */}

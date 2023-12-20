@@ -1,0 +1,24 @@
+@media only screen and (max-width: 1400px) {
+  .logoText span {
+    font-size: 25px;
+  }
+  .appTitle {
+    font-size: 10px;
+    margin-top: 5px;
+  }
+
+  .warapperBox {
+    /* max-width: 450px; */
+  }
+
+  p,
+  a {
+    font-size: 12px !important;
+  }
+
+  .btn {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 14px;
+  }
+}

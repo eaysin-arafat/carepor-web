@@ -7,8 +7,7 @@ type Props = {
   stepTitle: string[];
 };
 
-const MultiStepping = ({ stepCount, stepTitle }:Props) => {
-
+const MultiStepping = ({ stepCount, stepTitle }: Props) => {
   return (
     <div className="text-center  shadow-light dark:shadow_dark text-[#03045E] font-semibold font-poppins">
       <div className="flex justify-evenly items-center">
@@ -39,19 +38,25 @@ const StepButton = ({
 }) => {
   return (
     <button
-      className={cn("flex items-start justify-center gap-1 text-sm py-5", {
-        "border-b-[3px] border-b-[#1890FF]": isActive,
-      })}
+      className={cn(
+        "flex items-start border-b-[3px] border-transparent justify-center gap-1 py-5",
+        {
+          " border-b-[#1890FF]": isActive,
+        }
+      )}
     >
       {isComplete && (
-        <span className="inline-block bg-[#1890FF] rounded-full p-[2px] sm:mt-1">
-          <Check size={12} color="white" />
-        </span>
+        <Check
+          size={15}
+          className="inline-block bg-[#1890FF]  rounded-full p-[2px] sm:mt-1"
+          color="white"
+        />
       )}
       <p
-        className={cn("inline-block capitalize text-xs xs:text-sm sm:text-base", {
-          "text-[#1890FF]": isActive,
-          "text-textColor": !isActive,
+        className={cn("inline-block capitalize text-[16px]", {
+          "text-[#1890FF] font-[500]": isActive,
+          "text-grayColor font-[500]": !isActive,
+          "text-textColor font-[500]": isComplete,
         })}
         dangerouslySetInnerHTML={{ __html: text }}
       />

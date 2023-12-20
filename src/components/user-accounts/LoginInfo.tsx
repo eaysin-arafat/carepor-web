@@ -42,7 +42,7 @@ function LoginInfo({
             <Password
               required
               label="Password"
-              placeholder="Minimum 8 characters"
+              placeholder="Type Password"
               value={loginInfo.password}
               onChange={handleChange}
               name="password"
@@ -51,7 +51,7 @@ function LoginInfo({
             <Password
               required
               label="Confirm Password"
-              placeholder="Minimum 8 characters"
+              placeholder="Type Confirm Password"
               value={loginInfo.confirmPassword}
               onChange={handleChange}
               name="confirmPassword"

@@ -1,9 +1,12 @@
 import {
+  URLCovax,
+  URLCovid,
   URLBirthRecord,
   URLCovax,
   URLDeathRecord,
   URLHts,
   URLInvestigation,
+  URLOPD,
   URLSurgery,
   URLVitals,
 } from "@/routers/module-link";
@@ -24,7 +27,7 @@ export const useServicePointArray = ({
     {
       imgSrc: "assets/svg/service-point/OPD.svg",
       title: "Me (OPD)",
-      link: "#",
+      link: URLOPD(),
     },
     {
       imgSrc: "assets/svg/service-point/Vital.svg",
@@ -79,7 +82,7 @@ export const useServicePointArray = ({
     {
       imgSrc: "assets/svg/service-point/Covid.svg",
       title: "Covid",
-      link: "#",
+      link: URLCovid(),
     },
     {
       imgSrc: "assets/svg/service-point/Birth Records.svg",

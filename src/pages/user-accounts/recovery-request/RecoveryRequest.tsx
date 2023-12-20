@@ -28,7 +28,7 @@ function RecoveryRequest() {
         title="Login Recovery Request"
       >
         <>
-          <p className="text-secondaryColor text-center mt-5">
+          <p className="text-secondaryColor text-xs px-10 text-center mt-2">
             Please provide either Username or Cellphone to recover your Login.
           </p>
           <form onSubmit={handleSubmit} className="mt-8">

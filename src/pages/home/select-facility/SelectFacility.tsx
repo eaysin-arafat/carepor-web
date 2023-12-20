@@ -2,11 +2,15 @@ import SubmitButton from "@/components/core/buttons/SubmitButton";
 import RenderSelectOptions from "@/components/core/form-elements/RenderSelectOptions";
 import Select from "@/components/core/form-elements/Select";
 import FormWrapper from "@/components/core/form-layouts/FormWrapper";
+import useWindowWidth from "@/hooks/useWindow";
 import { URLRequestFacility } from "@/routers/application-router";
+import { cn } from "@/utilities/cn";
 import { Link } from "react-router-dom";
 import useSelectFacility from "./useSelectFacility";
 
 const SelectFacility = () => {
+  const w768 = useWindowWidth(768);
+
   const {
     districtOptions,
     facilitiesOptions,
@@ -26,11 +30,14 @@ const SelectFacility = () => {
         emergencyAccess
         title="Select Facility"
         // titleNote="Please select a facility to enter."
-        // maxWidth="max-w-[570px] "
+        maxWidth={"max-w-[720px]"}
         titleClass="text-center"
       >
-        <form onSubmit={handleRequestSubmit} className="mt-8">
-          <div className="flex flex-col gap-5">
+        <form
+          onSubmit={handleRequestSubmit}
+          className={cn("mt-8", { "mt-4": w768 })}
+        >
+          <div className="flex flex-col gap-3">
             <Select
               onChange={facilityChangeHandler}
               value={facilityState.province}
