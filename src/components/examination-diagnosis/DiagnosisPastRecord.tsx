@@ -1,5 +1,5 @@
-import PastRecordData from "../../shared/past-record/PastRecordData";
-import PastRecordWrapper from "../../shared/past-record/PastRecordWrpper";
+import PastRecordData from "../shared/past-record/PastRecordData";
+import PastRecordWrapper from "../shared/past-record/PastRecordWrpper";
 
 const DiagnosisPastRecord = ({ data }) => {
   return (

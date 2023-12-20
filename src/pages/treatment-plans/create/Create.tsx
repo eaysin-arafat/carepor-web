@@ -1,10 +1,10 @@
 import { useAppSelector } from "@/app/store";
-import TreatmentPastRecord from "@/components/common-components/plan/DiagnosisPastRecord";
 import CancelAndAddButton from "@/components/core/buttons/CancelAndAddButton";
 import Checkbox from "@/components/core/form-elements/Checkbox";
 import Textarea from "@/components/core/form-elements/textarea";
 import DefaultModal from "@/components/core/modal/DefaultModal";
 import PastRecordContainers from "@/components/past-record-containers/PastRecordContainers";
+import TreatmentPastRecord from "@/components/plan/DiagnosisPastRecord";
 import { ipdModalTypes } from "@/constants/modal-types";
 import { closeAddModal, openEditModal } from "@/features/modal/modal-slice";
 import {

@@ -1,9 +1,9 @@
-import TreatmentPastRecord from "@/components/common-components/plan/DiagnosisPastRecord";
 import CancelAndAddButton from "@/components/core/buttons/CancelAndAddButton";
 import Checkbox from "@/components/core/form-elements/Checkbox";
 import Textarea from "@/components/core/form-elements/textarea";
 import DefaultModal from "@/components/core/modal/DefaultModal";
 import PastRecordContainers from "@/components/past-record-containers/PastRecordContainers";
+import TreatmentPastRecord from "@/components/plan/DiagnosisPastRecord";
 import { Loader } from "react-feather";
 import useEdit from "./useEdit";
 

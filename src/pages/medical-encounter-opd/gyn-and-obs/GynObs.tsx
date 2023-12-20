@@ -1,5 +1,5 @@
 import { RootState } from "@/app/store";
-import GynAndObs from "@/components/common-components/gyn-and-obs/gyn-and-obs/GynAndObs";
+import GynAndObs from "@/components/gyn-and-obs/gyn-and-obs/GynAndObs";
 import FormHeading from "@/components/core/form-heading/FormHeading";
 import { gynObsModalTypes } from "@/constants/modal-types";
 import { closeAddModal, openAddModal } from "@/features/modal/modal-slice";

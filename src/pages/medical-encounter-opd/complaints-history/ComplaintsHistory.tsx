@@ -1,11 +1,11 @@
 import { RootState } from "@/app/store";
-import Allergies from "@/components/common-components/complaints-history/allergies/Allergies";
-import ChronicNonChronic from "@/components/common-components/complaints-history/chronic-non-chronic/ChronicNonChronic";
-import FamilyAndSocial from "@/components/common-components/complaints-history/family-and-social/FamilyAndSocial";
-import PastMedicalHistory from "@/components/common-components/complaints-history/past-medical-history/PastMedicalHistory";
-import PresentingComplaints from "@/components/common-components/complaints-history/presenting-complaints/PresentingComplaints";
-import ReviewOfSystem from "@/components/common-components/complaints-history/review-of-systems/ReviewOfSystem";
-import TBConstitutionalSymptoms from "@/components/common-components/complaints-history/tb-constitutional-symptoms/TBConstitutionalSymptoms";
+import Allergies from "@/components/complaints-history/allergies/Allergies";
+import ChronicNonChronic from "@/components/complaints-history/chronic-non-chronic/ChronicNonChronic";
+import FamilyAndSocial from "@/components/complaints-history/family-and-social/FamilyAndSocial";
+import PastMedicalHistory from "@/components/complaints-history/past-medical-history/PastMedicalHistory";
+import PresentingComplaints from "@/components/complaints-history/presenting-complaints/PresentingComplaints";
+import ReviewOfSystem from "@/components/complaints-history/review-of-systems/ReviewOfSystem";
+import TBConstitutionalSymptoms from "@/components/complaints-history/tb-constitutional-symptoms/TBConstitutionalSymptoms";
 import FormHeading from "@/components/core/form-heading/FormHeading";
 import { complaintsModalTypes } from "@/constants/modal-types";
 import { closeAddModal, openAddModal } from "@/features/modal/modal-slice";

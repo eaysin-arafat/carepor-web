@@ -1,8 +1,8 @@
 import { RootState } from "@/app/store";
-import BirthHistory from "@/components/common-components/paediatric-history/birth-history/BirthHistory";
-import DevelopmentHistory from "@/components/common-components/paediatric-history/development-history/DevelopmentHistory";
-import FeedingHistory from "@/components/common-components/paediatric-history/feeding-history/FeedingHistory";
-import ImmunizationHistory from "@/components/common-components/paediatric-history/immunization/Immunization";
+import BirthHistory from "@/components/paediatric-history/birth-history/BirthHistory";
+import DevelopmentHistory from "@/components/paediatric-history/development-history/DevelopmentHistory";
+import FeedingHistory from "@/components/paediatric-history/feeding-history/FeedingHistory";
+import ImmunizationHistory from "@/components/paediatric-history/immunization/Immunization";
 import FormHeading from "@/components/core/form-heading/FormHeading";
 import DefaultModal from "@/components/core/modal/DefaultModal";
 import { paediatricModalTypes } from "@/constants/modal-types";
