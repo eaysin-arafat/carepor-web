@@ -24,7 +24,7 @@ function BodyBackground({ children, noBackground }: Props) {
       </div>
       <div
         className={cn("relative z-10 align-middle mt-16 max-w-[700px] m-auto", {
-          "mt-3": w768,
+          "mt-5": w768,
         })}
       >
         {children}

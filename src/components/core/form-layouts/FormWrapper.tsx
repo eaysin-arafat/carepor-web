@@ -38,7 +38,7 @@ function FormWrapper({
   childrenMaxWidth = "max-w-[380px]",
   children,
   emergencyAccess,
-  className = " ",
+  className = "",
   maxWidth = "max-w-[650px]",
   contentCenter,
   noBackground,
@@ -52,7 +52,7 @@ function FormWrapper({
     <BodyBackground noBackground={noBackground}>
       <div
         className={cn("mx-auto mt-10 xs:mt-auto  ", {
-          "flex items-center justify-center": contentCenter,
+          "flex items-center justify-center ": contentCenter,
         })}
       >
         {/* <div className="flex items-center justify-center h-screen"> */}
