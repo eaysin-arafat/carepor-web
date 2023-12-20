@@ -33,6 +33,7 @@ function UserLogin() {
       appTitle
       loginForm
       contentCenter
+      maxWidth="max-w-[600px]"
     >
       <form onSubmit={handleFormSubmit} className="my-5">
         {credentialError && (

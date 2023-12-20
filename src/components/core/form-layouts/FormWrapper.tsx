@@ -39,7 +39,7 @@ function FormWrapper({
   children,
   emergencyAccess,
   className = "",
-  maxWidth = "max-w-[650px]",
+  maxWidth = "max-w-[700px]",
   contentCenter,
   noBackground,
   signUpForm,
@@ -52,7 +52,7 @@ function FormWrapper({
   return (
     <BodyBackground noBackground={noBackground}>
       <div
-        className={cn("mx-auto mt-10 xs:mt-auto  ", {
+        className={cn("mx-auto xs:mt-auto  ", maxWidth, {
           "flex items-center justify-center ": contentCenter,
         })}
       >

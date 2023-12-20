@@ -19,11 +19,11 @@ function BodyBackground({ children, noBackground }: Props) {
           : "background_image dark:bg-black md:bg-[url('/assets/img/Carepro_Background.jpg')] bg-cover bg-center "
       } w-full overflow-auto h-screen text-left text-sm text-black font-poppins`}
     >
-      <div className="z-20 absolute top-2 lg:right-10 xs:top-5 xs:right-5">
+      <div className="z-20 absolute top-2 right-2 lg:right-10 xs:top-5 xs:right-5">
         <ThemeSwitcher />
       </div>
       <div
-        className={cn("relative z-10 align-middle mt-16 max-w-[700px] m-auto", {
+        className={cn("relative z-10 align-middle mt-16 m-auto", {
           "mt-5": w768,
         })}
       >
