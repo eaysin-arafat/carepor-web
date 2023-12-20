@@ -1,10 +1,10 @@
 import { RootState } from "@/app/store";
-import Diagnosis from "@/components/common-components/examination-diagnosis/DiagnosisCreate";
-import GeneralAssessment from "@/components/common-components/examination-diagnosis/general-assessment/GeneralAssessment";
-import GlasgowComaScale from "@/components/common-components/examination-diagnosis/glasgow-coma-scale/GlasgowComaScale";
-import SystemExamination from "@/components/common-components/examination-diagnosis/system-examination/SystemExamination";
 import FormHeading from "@/components/core/form-heading/FormHeading";
 import DefaultModal from "@/components/core/modal/DefaultModal";
+import Diagnosis from "@/components/examination-diagnosis/DiagnosisCreate";
+import GeneralAssessment from "@/components/examination-diagnosis/general-assessment/GeneralAssessment";
+import GlasgowComaScale from "@/components/examination-diagnosis/glasgow-coma-scale/GlasgowComaScale";
+import SystemExamination from "@/components/examination-diagnosis/system-examination/SystemExamination";
 import { examinationNDiagnosisModalTypes } from "@/constants/modal-types";
 import { closeAddModal, openAddModal } from "@/features/modal/modal-slice";
 import { useDispatch, useSelector } from "react-redux";

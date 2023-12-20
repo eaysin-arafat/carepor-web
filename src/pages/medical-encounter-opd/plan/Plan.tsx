@@ -1,7 +1,7 @@
 import { RootState } from "@/app/store";
-import TreatmentPlan from "@/components/common-components/plan/TreatmentPlan";
 import FormHeading from "@/components/core/form-heading/FormHeading";
 import DefaultModal from "@/components/core/modal/DefaultModal";
+import TreatmentPlan from "@/components/plan/TreatmentPlan";
 import { planModalTypes } from "@/constants/modal-types";
 import { closeAddModal, openAddModal } from "@/features/modal/modal-slice";
 import { useDispatch, useSelector } from "react-redux";

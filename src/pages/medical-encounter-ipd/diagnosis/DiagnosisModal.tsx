@@ -1,5 +1,5 @@
-import Diagnosis from "@/components/common-components/examination-diagnosis/DiagnosisCreate";
 import DefaultModal from "@/components/core/modal/DefaultModal";
+import Diagnosis from "@/components/examination-diagnosis/DiagnosisCreate";
 
 const DiagnosisModal = ({ toggler }) => {
   return (
