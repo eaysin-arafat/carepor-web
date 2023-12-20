@@ -1,14 +1,16 @@
 interface CancelAndAddButtonProps {
   toggler?: () => void;
   disableBoth?: boolean;
-  isUpdate?: boolean;
+  cancelBtnText?: string;
+  submitBtnText?: string;
   disableSubmit?: boolean;
 }
 
 const CancelAndAddButton = ({
   toggler = () => {},
   disableBoth,
-  isUpdate,
+  cancelBtnText,
+  submitBtnText,
   disableSubmit,
 }: CancelAndAddButtonProps) => {
   return (
@@ -19,7 +21,7 @@ const CancelAndAddButton = ({
         onClick={toggler}
         disabled={disableBoth}
       >
-        Cancel
+        {cancelBtnText ? cancelBtnText : "Cancel"}
       </button>
       <button
         className="flex gap-2 items-center border border-primaryColor bg-primaryColor hover:bg-primaryHoverColor py-2 sm:py-2.5  px-10 rounded-full"
@@ -27,7 +29,7 @@ const CancelAndAddButton = ({
         disabled={disableBoth || disableSubmit}
       >
         <span className="inline-block text-lg text-whiteColor">
-          {isUpdate ? "Update" : "Save"}
+          {submitBtnText ? submitBtnText : "Save"}
         </span>
       </button>
     </div>

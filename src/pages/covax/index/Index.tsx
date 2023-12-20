@@ -1,41 +1,84 @@
-import DataRow from "@/components/core/table/DataRow";
+import RequestError from "@/components/core/error/RequestError";
+import TableLoader from "@/components/core/loader/TableLoader";
+import NotFound from "@/components/core/not-found/NotFound";
 import { covaxModalTypes } from "@/constants/modal-types";
+import {
+  useReadCovaxByClientIdQuery,
+  useReadVaccineByClientQuery,
+} from "@/features/covax/covax-api";
 import { openAddModal } from "@/features/modal/modal-slice";
+import useBaseDataCreate from "@/hooks/useBaseDataCreate";
+import { TypeCovax, TypeImmunizationVaccine } from "@/types/module-types/covax";
+import { sortByDate } from "@/utilities/date";
 import { PlusCircle } from "react-feather";
-import { MdOutlineModeEditOutline } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import AdverseEffectCreate from "../create/AdverseEffect";
-import CovaxCreate from "../create/CovaxCreate";
-import VaccinateCreate from "../create/VaccinateCreate";
+import AdverseEvent from "../cards/AdverseEvent";
+import CovaxCard from "../cards/PreAssessmentCard";
+import VaccinateCard from "../cards/VaccinateCard";
+import AdverseEffectCreate from "../forms/AdverseEffect";
+import CovaxCreate from "../forms/PreAssessment";
+import VaccinateCreate from "../forms/Vaccinate";
 
 const CovaxIndex = () => {
   const dispatch = useDispatch();
-  const handleAddCovid = () => {
+  const [baseData] = useBaseDataCreate();
+
+  // handle create and update form
+  const handleCovaxForm = (data?: TypeCovax) => {
     dispatch(
       openAddModal({
         modalId: covaxModalTypes.covaxCreateModal,
-        data: null,
+        data: data,
       })
     );
   };
 
-  const handleAddVaccinate = () => {
+  /**
+   * @param data // data for edit form params as previous data
+   *             // data create form params as null
+   */
+  const handleVaccinateForm = (data?: TypeImmunizationVaccine) => {
     dispatch(
       openAddModal({
         modalId: covaxModalTypes.vaccinateCreateModal,
-        data: null,
+        data: data,
       })
     );
   };
 
-  const handleAdverseEffect = () => {
+  /**
+   * @param data // data for edit form params as previous data
+   *             // data create form params as null
+   */
+  const handleAdverseEffectForm = (data?: TypeImmunizationVaccine) => {
     dispatch(
       openAddModal({
         modalId: covaxModalTypes.adverseEffectCreate,
-        data: null,
+        data: data,
       })
     );
   };
+
+  // Rtk
+  //Read client covax/Pre-assessment previous record
+  const { data, isLoading, isSuccess, isError } = useReadCovaxByClientIdQuery(
+    baseData?.clientId,
+    {
+      skip: !baseData?.clientId,
+    }
+  );
+  // Convert response array to object
+  const clientCovax = isSuccess && Array.isArray(data) ? data[0] : null;
+
+  //Read client vaccines data
+  const {
+    data: vaccines,
+    isLoading: isVaccinesLoading,
+    isSuccess: isVaccinesSuccess,
+    isError: isVaccinesError,
+  } = useReadVaccineByClientQuery(baseData?.clientId, {
+    skip: !baseData?.clientId,
+  });
 
   return (
     <div>
@@ -46,142 +89,75 @@ const CovaxIndex = () => {
 
       <div className="flex justify-between items-center">
         <h2 className="heading_2">Covax</h2>
-        <button onClick={handleAddCovid} className="main_btn px-5 gap-2">
-          <PlusCircle className="" /> New Record
-        </button>
-      </div>
-      <div className="mt-2 bg-whiteBgColor border border-borderColor p-4 rounded-lg">
-        <div className="md:flex justify-between relative">
-          <p className="text-sm">
-            <span className="font-semibold">Date : &nbsp; </span>30-Nov-2023
-          </p>
-          <p className="text-sm">
-            <span className="font-semibold">Facility : &nbsp; </span>Bauleni
-            Mini Hospital
-          </p>
-          <p className="text-sm me-20">
-            <span className="font-semibold">Clinician : &nbsp; </span>System
-            Admin
-          </p>
-          <div className="md:flex justify-end  absolute right-0 top-2 md:top-0 ">
-            <button className="flex items-center gap-1 text-sm text-primaryColor">
-              {" "}
-              <MdOutlineModeEditOutline /> Edit
-            </button>
-          </div>
-        </div>
-        <div className="mt-5">
-          <DataRow
-            title="Covax Number"
-            data="Data"
-            titleClass="xs:min-w-[180px] sm:min-w-[270px]"
-          />
-          <DataRow
-            title="Was Client Offered COVAX?"
-            data="Data"
-            titleClass="xs:min-w-[180px] sm:min-w-[270px]"
-          />
-          <DataRow
-            title="Does Client Get Vaccinated Today"
-            data="Data"
-            titleClass="xs:min-w-[180px] sm:min-w-[270px]"
-          />
-          <DataRow
-            title="Reason Client Doesn't Want To Get Vaccination"
-            data="Data"
-            titleClass="xs:min-w-[180px] sm:min-w-[270px]"
-          />
-          <DataRow
-            title="Other Reason"
-            data="Data"
-            titleClass="xs:min-w-[180px] sm:min-w-[270px]"
-          />
-          <DataRow
-            title="Comorbidities"
-            data="Data"
-            titleClass="xs:min-w-[180px] sm:min-w-[270px]"
-          />
-          <DataRow
-            title="Other Comorbidities"
-            data="Data"
-            titleClass="xs:min-w-[180px] sm:min-w-[270px]"
-          />
+        {isSuccess && !isError && !clientCovax && (
           <button
-            onClick={handleAddVaccinate}
-            className="bg-primaryColor py-3 px-5 rounded-lg text-whiteColor hover:bg-primaryHoverColor mt-4"
+            onClick={() => handleCovaxForm(null)}
+            className="main_btn px-5 gap-2"
           >
-            Vaccinate
+            <PlusCircle className="" /> New Record
           </button>
-        </div>
+        )}
       </div>
-      <div className="grid md:grid-cols-2 gap-3 mt-5">
-        {/* Vaccine  */}
+      {/* Covax Card  */}
+      {isLoading && !isError && (
         <div className="mt-2 bg-whiteBgColor border border-borderColor p-4 rounded-lg">
-          <div className="flex justify-between">
-            <h2 className="text-xl font-medium text-secondaryColor">
-              COVAX Dose 2
-            </h2>
-            <div className="flex gap-3">
-              <button className="flex items-center gap-1 text-sm text-primaryColor">
-                {" "}
-                <MdOutlineModeEditOutline /> Edit
-              </button>
-            </div>
+          <div className="md:flex justify-between relative">
+            <TableLoader />
           </div>
-          <DataRow
-            title="Dose"
-            data="Data"
-            titleClass="xs:min-w-[130px] sm:min-w-[150px]"
-          />
-          <DataRow
-            title="Date of vaccination"
-            data="Data"
-            titleClass="xs:min-w-[130px] sm:min-w-[150px]"
-          />
-          <DataRow
-            title="Batch Number"
-            data="Data"
-            titleClass="xs:min-w-[130px] sm:min-w-[150px]"
-          />
         </div>
+      )}
+      {isSuccess && !isError && clientCovax && (
+        <CovaxCard
+          clientCovax={clientCovax}
+          handleVaccinateForm={handleVaccinateForm}
+          handleCovaxForm={handleCovaxForm}
+        />
+      )}
 
-        {/* Adverse Event  */}
-        <div className="mt-2 bg-whiteBgColor border border-borderColor p-4 rounded-lg">
-          <div className="flex justify-between">
-            <h2 className="text-xl font-medium text-secondaryColor">
-              Adverse Event
-            </h2>
-            <div className="flex gap-3">
-              <button
-                onClick={handleAdverseEffect}
-                className="flex items-center gap-1 text-sm text-primaryColor"
-              >
-                {" "}
-                <PlusCircle className="h-4 w-4" /> Add
-              </button>
-              <button className="flex items-center gap-1 text-sm text-primaryColor">
-                {" "}
-                <MdOutlineModeEditOutline /> Edit
-              </button>
-            </div>
+      {isVaccinesLoading && !isVaccinesError && (
+        <div className="grid md:grid-cols-2 gap-3 mt-5">
+          <div className="mt-2 bg-whiteBgColor border border-borderColor p-4 rounded-lg">
+            <TableLoader />
           </div>
-          <DataRow
-            title="Dose"
-            data="Data"
-            titleClass="xs:min-w-[130px] sm:min-w-[150px]"
-          />
-          <DataRow
-            title="Date of vaccination"
-            data="Data"
-            titleClass="xs:min-w-[130px] sm:min-w-[150px]"
-          />
-          <DataRow
-            title="Batch Number"
-            data="Data"
-            titleClass="xs:min-w-[130px] sm:min-w-[150px]"
-          />
+          <div className="mt-2 bg-whiteBgColor border border-borderColor p-4 rounded-lg">
+            <TableLoader />
+          </div>
         </div>
-      </div>
+      )}
+      {!isVaccinesLoading && isVaccinesError && (
+        <div className="grid md:grid-cols-2 gap-3 mt-5">
+          <RequestError />
+        </div>
+      )}
+      {!isVaccinesLoading &&
+        !isVaccinesError &&
+        Array.isArray(vaccines) &&
+        vaccines?.length == 0 && (
+          <div className="grid md:grid-cols-2 gap-3 mt-5">
+            <NotFound messages="No vaccine record found" />
+          </div>
+        )}
+      {!isVaccinesLoading &&
+        !isVaccinesError &&
+        Array.isArray(vaccines) &&
+        isVaccinesSuccess &&
+        vaccines?.length > 0 &&
+        sortByDate<TypeImmunizationVaccine>(vaccines).map((vaccine, index) => {
+          return (
+            <div key={index} className="grid md:grid-cols-2 gap-3 mt-5">
+              {/* Vaccine  Card */}
+              <VaccinateCard
+                vaccine={vaccine}
+                handleVaccinateForm={handleVaccinateForm}
+              />
+              {/* Adverse Event  */}
+              <AdverseEvent
+                vaccine={vaccine}
+                handleAdverseEffectForm={handleAdverseEffectForm}
+              />
+            </div>
+          );
+        })}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import {
   URLBirthRecord,
+  URLCovax,
   URLDeathRecord,
   URLHts,
   URLInvestigation,
@@ -73,7 +74,7 @@ export const useServicePointArray = ({
     {
       imgSrc: "assets/svg/service-point/Covax.svg",
       title: "Covax",
-      link: "#",
+      link: URLCovax(),
     },
     {
       imgSrc: "assets/svg/service-point/Covid.svg",
