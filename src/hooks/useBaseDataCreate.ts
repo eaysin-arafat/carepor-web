@@ -35,9 +35,7 @@ function useBaseDataCreate(encounterType?: number) {
     createdIn: selectFacility?.facilityId,
     dateCreated: to_day,
     createdBy: user?.oid,
-    modifiedIn: selectFacility?.facilityId,
-    dateModified: to_day,
-    modifiedBy: user?.oid,
+
     isDeleted: false,
     isSynced: false,
     clientId: clientId,

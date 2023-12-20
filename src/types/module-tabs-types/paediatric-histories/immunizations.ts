@@ -1,38 +1,14 @@
-import { TypeAPIEnum, TypeAPIObject } from "@/types";
-
 // *** Static enums reference from enumerators
 
+// reference to covax
 // ENUM TYPE
-export type TypeVaccineTypesEnum = TypeAPIEnum;
-export type TypeVaccinesEnum = TypeAPIEnum & {
-  vaccineTypeId: string;
-};
-export type TypeVaccineDosesEnum = TypeAPIEnum & {
-  vaccineId: string;
-};
+// TypeVaccineTypesEnum
+// TypeVaccinesEnum
+// TypeVaccineDosesEnum
 
-// DATA TYPE
-export type TypeImmunizationRecords = TypeAPIObject & {
-  dateGiven: string;
-  batchNumber: string;
-  doseId: string;
-};
-
-/**
-InteractionId
-
-DateGiven
-BatchNumber
-DoseId
-ClientId
-
-EncounterId
-CreatedIn
-DateCreated
-CreatedBy
-ModifiedIn
-DateModified
-ModifiedBy
-IsDeleted
-IsSynced
- */
+/// DATA TYPE
+// Covax by client
+// __baseApi__/covax/by-client/:clientId
+// TypeCovax
+// __baseApi__/immunization-record/by-client/:clientId
+// TypeImmunizationVaccine
