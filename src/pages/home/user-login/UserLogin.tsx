@@ -51,7 +51,11 @@ function UserLogin() {
           </>
         )}
 
-        <div className={cn("flex flex-col gap-4 mt-10", { "mt-2": w1400 })}>
+        <div
+          className={cn("flex flex-col gap-4 mt-10", {
+            "mt-2 max-w-[350px] m-auto": w1400,
+          })}
+        >
           <Input
             value={loginForm?.username}
             errMsg={errors?.username}

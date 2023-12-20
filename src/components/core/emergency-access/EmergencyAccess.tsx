@@ -26,7 +26,7 @@ function EmergencyAccess() {
       </div>
       <p
         className={cn(
-          "max-w-[380px] md:max-w-full mx-auto text-center mt-16 xxs:mt-12 leading-7 text-white text-[16px] font-[300]",
+          "max-w-[380px] md:max-w-full mx-auto text-center mt-16 xxs:mt-5 leading-7 text-white text-[16px] font-[300]",
           { "!mt-5": w1400, "hidden text-black": w768 }
         )}
       >
