@@ -124,13 +124,13 @@ function BirthRecordHistory() {
                 isHideOnEmptyData
                 title="Is Birth Record Given?"
                 data={record?.isBirthRecordGiven == true ? "Yes" : "No"}
-                titleClass="xs:min-w-[245px]"
+                titleClass="xs:min-w-[165px] md:min-w-[200px] 2xl:min-w-[245px]"
               />
               <DataRow
                 isHideOnEmptyData
                 title="Origin"
                 data={EnumOrigin[record?.origin]}
-                titleClass="xs:min-w-[245px]"
+                titleClass="xs:min-w-[165px] md:min-w-[200px] 2xl:min-w-[245px]"
               />
               <DataRow
                 isHideOnEmptyData
@@ -139,13 +139,13 @@ function BirthRecordHistory() {
                   record?.isBirthRecordGiven &&
                   EnumBoolYesNo[record?.isUnderFiveCardGiven.toString()]
                 }
-                titleClass="xs:min-w-[245px]"
+                titleClass="xs:min-w-[165px] md:min-w-[200px] 2xl:min-w-[245px]"
               />
               <DataRow
                 isHideOnEmptyData
                 title="Under Five Card Number"
                 data={record?.underFiveCardNumber}
-                titleClass="xs:min-w-[245px]"
+                titleClass="xs:min-w-[165px] md:min-w-[200px] 2xl:min-w-[245px]"
               />
 
               <h1 className="text-lg mb-3 mt-5 border-b border-b-borderColor">
@@ -155,19 +155,19 @@ function BirthRecordHistory() {
                 isHideOnEmptyData
                 title="First Name"
                 data={record?.informantFirstName}
-                titleClass="xs:min-w-[245px]"
+                titleClass="xs:min-w-[165px] md:min-w-[200px] 2xl:min-w-[245px]"
               />
               <DataRow
                 isHideOnEmptyData
                 title="Surname"
                 data={record?.informantSurname}
-                titleClass="xs:min-w-[245px]"
+                titleClass="xs:min-w-[165px] md:min-w-[200px] 2xl:min-w-[245px]"
               />
               <DataRow
                 isHideOnEmptyData
                 title="Nickname"
                 data={record?.informantNickname}
-                titleClass="xs:min-w-[245px]"
+                titleClass="xs:min-w-[165px] md:min-w-[200px] 2xl:min-w-[245px]"
               />
               <DataRow
                 isHideOnEmptyData
@@ -180,7 +180,7 @@ function BirthRecordHistory() {
                       record?.informantCellphone
                     : ""
                 }
-                titleClass="xs:min-w-[245px]"
+                titleClass="xs:min-w-[165px] md:min-w-[200px] 2xl:min-w-[245px]"
               />
               <DataRow
                 isHideOnEmptyData
@@ -193,13 +193,13 @@ function BirthRecordHistory() {
                       record?.informantLandlineCountryCode
                     : ""
                 }
-                titleClass="xs:min-w-[245px]"
+                titleClass="xs:min-w-[165px] md:min-w-[200px] 2xl:min-w-[245px]"
               />
               <DataRow
                 isHideOnEmptyData
                 title="Relationship to Child"
                 data={EnumInformantRelationship[record?.informantRelationship]}
-                titleClass="xs:min-w-[245px]"
+                titleClass="xs:min-w-[165px] md:min-w-[200px] 2xl:min-w-[245px]"
               />
               <DataRow
                 isHideOnEmptyData
@@ -208,31 +208,31 @@ function BirthRecordHistory() {
                   record?.informantRelationship == 13 &&
                   record?.informantOtherRelationship
                 }
-                titleClass="xs:min-w-[245px]"
+                titleClass="xs:min-w-[165px] md:min-w-[200px] 2xl:min-w-[245px]"
               />
               <DataRow
                 isHideOnEmptyData
                 title="City/Town/Village"
                 data={record?.informantCity}
-                titleClass="xs:min-w-[245px]"
+                titleClass="xs:min-w-[165px] md:min-w-[200px] 2xl:min-w-[245px]"
               />
               <DataRow
                 isHideOnEmptyData
                 title="Cmpd Street No."
                 data={record?.informantStreetNo}
-                titleClass="xs:min-w-[245px]"
+                titleClass="xs:min-w-[165px] md:min-w-[200px] 2xl:min-w-[245px]"
               />
               <DataRow
                 isHideOnEmptyData
                 title="PO Box, Pvt Bag"
                 data={record?.informantPOBox}
-                titleClass="xs:min-w-[245px]"
+                titleClass="xs:min-w-[165px] md:min-w-[200px] 2xl:min-w-[245px]"
               />
               <DataRow
                 isHideOnEmptyData
                 title="Landmark"
                 data={record?.informantLandmark}
-                titleClass="xs:min-w-[245px]"
+                titleClass="xs:min-w-[165px] md:min-w-[200px] 2xl:min-w-[245px]"
               />
             </div>
           </div>

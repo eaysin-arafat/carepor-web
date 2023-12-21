@@ -110,9 +110,7 @@ const IcdSelectableSearch = ({
         <div ref={searchRef} className="w-full">
           <div className="flex">
             <div className="input_label mb-2"> {label}</div>
-            {required && (
-              <span className="-mt-[6px] mx-1 text-dangerColor">*</span>
-            )}
+            {required && <span className="input_required">*</span>}
           </div>
           <div className={`custom-input px-0 py-1 relative flex`}>
             <div className="w-full">
