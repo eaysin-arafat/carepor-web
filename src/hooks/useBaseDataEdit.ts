@@ -7,7 +7,7 @@ import { DateFunc } from "@/utilities/date";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-function useEditBaseData(encounterType: number) {
+function useBaseDataEdit(encounterType: number) {
   const { user } = useSelector((state: RootState) => state.authentication);
 
   const [opdSession, setOpdSession] = useState<TypeOpdVisit | null>(null);
@@ -33,16 +33,16 @@ function useEditBaseData(encounterType: number) {
   let editBase = {
     encounterId: opdSession?.oid,
     encounterType: encounterType,
-    createdIn: selectFacility?.facilityId,
-    dateCreated: to_day,
+    modifiedIn: selectFacility?.facilityId,
     createdBy: user?.oid,
     isDeleted: false,
     isSynced: false,
     modifiedBy: user?.oid,
     clientId: clientId,
+    dateModified: to_day,
   };
 
   return [editBase];
 }
 
-export default useEditBaseData;
+export default useBaseDataEdit;

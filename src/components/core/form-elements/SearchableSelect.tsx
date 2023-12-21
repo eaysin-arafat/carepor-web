@@ -23,7 +23,7 @@ function SearchableSelect({
   errMsg,
   setError,
   required,
-  name,
+  // name,
   label,
   selectedValue,
   setSelectedValue,

@@ -1,6 +1,6 @@
 @media only screen and (max-width: 1400px) {
   .logoText span {
-    font-size: 25px;
+    font-size: 30px;
   }
   .appTitle {
     font-size: 10px;
@@ -8,7 +8,7 @@
   }
 
   .warapperBox {
-    max-width: 450px;
+    /* max-width: 450px; */
   }
 
   p,

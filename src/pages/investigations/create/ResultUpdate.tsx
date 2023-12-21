@@ -13,7 +13,7 @@ import {
   useReadMeasuringUnitsQuery,
   useReadResultOptionsQuery,
 } from "@/features/investigation/investigation-enum-api";
-import useEditBaseData from "@/hooks/useBaseDataEdit";
+import useBaseDataEdit from "@/hooks/useBaseDataEdit";
 import { OnchangeEventType } from "@/types/htmlEvents";
 import { datePickerToString } from "@/utilities/date";
 import { Card } from "flowbite-react";
@@ -27,7 +27,7 @@ type Props = {
 
 function ResultUpdate({ investigation, handleCancelEdit }: Props) {
   const { Investigation } = EnumEncounterType;
-  const [baseData] = useEditBaseData(Investigation);
+  const [baseData] = useBaseDataEdit(Investigation);
 
   // Rtk
   const { data, isSuccess } = useReadInvestigationQuery(

@@ -11,6 +11,9 @@ const birthRecord = ["ClientBirthRecord"];
 const chiefComplaints = ["ChiefComplaints"];
 const treatmentPlan = ["TreatmentPlans"];
 const referral = ["Referrals"];
+const covax = ["CovaxPreAssessment", "VaccineRecord", "AdverseByImmunization"];
+const identifiedTbSymptom = ["IdentifiedTbSymptoms"];
+const identifiedConstitutionalSymptom = ["IdentifiedConstitutionalSymptoms"];
 
 // Export tags
 export const mainModuleTags = [
@@ -26,4 +29,7 @@ export const mainModuleTags = [
   ...chiefComplaints,
   ...treatmentPlan,
   ...referral,
+  ...covax,
+  ...identifiedTbSymptom,
+  ...identifiedConstitutionalSymptom,
 ];

@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import dayjs from "dayjs";
 
 export class DateFunc {
   static formatDate(dateString: string) {
@@ -59,13 +60,7 @@ export class DateFunc {
     return differenceMillisecond <= twentyFourHoursMillisecond;
   }
   static isBetween24Hours(inputDate: string) {
-    const currentDate = new Date().getTime();
-    const inputDateObj = new Date(inputDate).getTime();
-
-    const differenceMillisecond = currentDate - inputDateObj;
-    const twentyFourHoursMillisecond = 24 * 60 * 60 * 1000;
-
-    return differenceMillisecond <= twentyFourHoursMillisecond;
+    return dayjs().diff(new Date(inputDate), "hour") <= 24;
   }
 
   // format human readable date
@@ -238,5 +233,15 @@ export const getDateTimeDetails = (dateString: string | Date) => {
     };
   } else {
     return null; //<SkeletonList width={500} />;
+  }
+};
+
+export const sortByDate = <T extends { dateCreated: string }>(data: T[]) => {
+  if (data?.length > 0) {
+    return data?.slice()?.sort((a, b) => {
+      const aDate = new Date(a.dateCreated).getTime();
+      const bDate = new Date(b.dateCreated).getTime();
+      return bDate - aDate;
+    });
   }
 };

@@ -1,4 +1,6 @@
 import { RootState } from "@/app/store";
+import RequestError from "@/components/core/error/RequestError";
+import CardLoader from "@/components/core/loader/CardLoader";
 import DataRow from "@/components/core/table/DataRow";
 import { birthRecordModalTypes } from "@/constants/modal-types";
 import { EnumEncounterType } from "@/enum/encounter-type";
@@ -16,9 +18,12 @@ import { DateFunc } from "@/utilities/date";
 import { Plus } from "react-feather";
 import { MdOutlineModeEdit } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import BirthRecordCreate from "../create/Create";
+import BirthRecordForm from "../create/BirthRecordForm";
 
-function BirthRecordHistory() {
+function BirthRecord() {
+  const dispatch = useDispatch();
+
+  // Hooks
   const { BirthRecords } = EnumEncounterType;
   const [baseDataCreate] = useBaseDataCreate(BirthRecords);
   const { getFacilityName } = useFindFacility();
@@ -34,29 +39,19 @@ function BirthRecordHistory() {
     skip: !baseDataCreate?.clientId,
   });
 
+  // Object transform from response data
   const record =
     isSuccess && Array.isArray(birthRecord) ? birthRecord[0] : null;
 
-  // * Redux
+  // Redux Modal state and data
   const { addModal } = useSelector((state: RootState) => state.modal);
 
-  // * Hokes
-  const dispatch = useDispatch();
-
+  // modal closer
   const closeModal = () => {
     dispatch(closeAddModal());
   };
 
-  console.log(DateFunc.isBetween24Hours(record?.dateCreated));
-
-  let showCreateEditUpdateButton = true;
-  if (record && DateFunc.isBetween24Hours(record?.dateCreated)) {
-    showCreateEditUpdateButton = true;
-  }
-  if (record && !DateFunc.isBetween24Hours(record?.dateCreated)) {
-    showCreateEditUpdateButton = false;
-  }
-
+  // If record is null is perform as create otherwise perform as update form
   const handleOpenCreateEditModal = () => {
     dispatch(
       openAddModal({
@@ -69,10 +64,24 @@ function BirthRecordHistory() {
   return (
     <div>
       {addModal?.modalId === birthRecordModalTypes.birthRecordCreate && (
-        <BirthRecordCreate toggler={closeModal} />
+        <BirthRecordForm toggler={closeModal} />
       )}
       <h1 className="mb-5 text-xl">Birth Record</h1>
-      {!record && (
+      {/* Error manage */}
+      {!isLoading && isError && !isSuccess && (
+        <div className="flex mb-5 justify-center items-center h-[50vh] border bg-whiteBgColor rounded border-dashed border-primaryColor shadow">
+          <RequestError />
+          {/* <TableLoader /> */}
+        </div>
+      )}
+
+      {isLoading && !isError && !isSuccess && (
+        <div className="flex mb-5 justify-center items-center h-[50vh] border bg-whiteBgColor rounded border-dashed border-primaryColor shadow">
+          <CardLoader />
+          {/* <TableLoader /> */}
+        </div>
+      )}
+      {!record && !isLoading && !isError && (
         <div className="flex mb-5 justify-center items-center h-[50vh] border bg-whiteBgColor rounded border-dashed border-primaryColor shadow">
           <div className="flex justify-center flex-col">
             <h1 className="mb-5 text-2xl">Birth Record Not Created</h1>
@@ -242,4 +251,4 @@ function BirthRecordHistory() {
   );
 }
 
-export default BirthRecordHistory;
+export default BirthRecord;
