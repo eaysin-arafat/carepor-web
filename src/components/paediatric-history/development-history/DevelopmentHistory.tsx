@@ -28,7 +28,7 @@ const DevelopmentHistory = ({ toggler }) => {
       <form>
         <Section title="Feeding History">
           <Textarea label={"Feeding History"} required name="feedingHistory" />
-          <p className="text-gray-600 text-xs px-6">
+          <p className="text-gray-600 text-xs mt-4">
             <span className="font-bold text-gray-600"> Note :</span> Please
             document feeding history by age.
           </p>

@@ -92,6 +92,8 @@ export const complaintsModalTypes = Object.freeze({
   chronicNonChronic: "chronicNonChronic",
   allergies: "allergies",
   familySocialHistory: "familySocialHistory",
+  preventionHistory: "preventionHistory",
+  drugAdherence: "drugAdherence",
 });
 
 export const examinationNDiagnosisModalTypes = Object.freeze({
