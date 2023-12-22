@@ -1,0 +1,78 @@
+{
+  "interactionId": "8fa6df2c-5157-4a1a-a527-821a66f3c3e5",
+  "sourceOfAlert": 1,
+  "notificationDate": "2023-12-21T00:00:00Z",
+  "otherCovidSymptom": "gfsdgv gsfd",
+  "otherExposureRisk": "fxdb xdfsb",
+  "isICUAdmitted": true,
+  "icuAdmissionDate": "2023-12-21T10:18:39.85Z",
+  "isOnOxygen": true,
+  "oxygenSaturation": 50,
+  "receivedBPSupport": true,
+  "receivedVentilatorySupport": true,
+  "dateFirstPositive": "2023-12-21T00:00:00Z",
+  "anyInternationalTravel": true,
+  "travelDestination": "tyuytruyu",
+  "isClientHealthCareWorker": true,
+  "hadCovidExposure": true,
+  "mentalStatusOnAdmission": "ssegfsdfgds",
+  "hasPneumonia": true,
+  "isPatientHospitalized": true,
+  "dateHospitalized": "2023-12-21T10:19:05.418Z",
+  "isARDS": true,
+  "otherComorbiditiesConditions": "gsfdgsd",
+  "otherRespiratoryIllness": "sfds",
+  "clientId": "d773c36d-5d13-4e2d-6dee-08dbf5b9bedc",
+  "covidSymptomScreenings": [
+    {
+      "interactionId": "2cd1f467-8981-4807-b868-86b57bcd037c",
+      "covidSymptomId": 3,
+      "covidId": "8fa6df2c-5157-4a1a-a527-821a66f3c3e5",
+      "encounterId": "00000000-0000-0000-0000-000000000000",
+      "encounterType": 0,
+      "createdIn": 2912,
+      "dateCreated": "2023-12-21T16:19:57.587913+06:00",
+      "createdBy": "5896114b-261e-4b5f-8828-08dc0047c3eb",
+      "isDeleted": false,
+      "isSynced": false
+    }
+  ],
+  "covidComorbidities": [
+    {
+      "interactionId": "18816655-678d-4c5f-9d37-a97ed3902c32",
+      "covidComorbidityConditions": 3,
+      "covidId": "8fa6df2c-5157-4a1a-a527-821a66f3c3e5",
+      "encounterId": "00000000-0000-0000-0000-000000000000",
+      "encounterType": 0,
+      "createdIn": 2912,
+      "dateCreated": "2023-12-21T16:19:57.591066+06:00",
+      "createdBy": "5896114b-261e-4b5f-8828-08dc0047c3eb",
+      "isDeleted": false,
+      "isSynced": false
+    }
+  ],
+  "exposureRisks": [
+    {
+      "interactionId": "a6ffc349-7545-4d43-8a46-67731672d930",
+      "exposureRisks": 1,
+      "covidId": "8fa6df2c-5157-4a1a-a527-821a66f3c3e5",
+      "encounterId": "00000000-0000-0000-0000-000000000000",
+      "encounterType": 0,
+      "createdIn": 2912,
+      "dateCreated": "2023-12-21T16:19:57.5939311+06:00",
+      "createdBy": "5896114b-261e-4b5f-8828-08dc0047c3eb",
+      "isDeleted": false,
+      "isSynced": false
+    }
+  ],
+  "covidSymptomScreeningList": [3],
+  "covidComobidityList": [3],
+  "exposureRisksList": [1],
+  "encounterId": "f2ae7f73-0dce-44df-b1ce-beaba478b99d",
+  "encounterType": 40,
+  "createdIn": 2912,
+  "dateCreated": "2023-12-21T16:19:57.5815113+06:00",
+  "createdBy": "5896114b-261e-4b5f-8828-08dc0047c3eb",
+  "isDeleted": false,
+  "isSynced": false
+}

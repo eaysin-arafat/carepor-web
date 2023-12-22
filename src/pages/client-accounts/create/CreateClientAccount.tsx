@@ -21,7 +21,7 @@ function CreateClientAccount() {
       <Container className="max-w-[1069px] bg-whiteBgColor mt-5 rounded-xl mb-5">
         <>
           <div className="">
-            <MultiStepping stepCount={stateCount} stepTitle={stepTitle} />{" "}
+            <MultiStepping stepCount={stateCount} stepTitle={stepTitle} />
           </div>
           <div className="max-w-[894px] mx-auto py-5">
             <ClientForm

@@ -1,20 +1,37 @@
-import { EnumSourceOfAlert } from "@/enum/enumerators";
+import React from "react";
+
+import Section from "@/components/core/card/Section";
+import DateInput from "@/components/core/form-elements/DatePicker";
+import Input from "@/components/core/form-elements/Input";
+import MultiSelect, {
+  Option,
+} from "@/components/core/form-elements/MultiSelect";
+import PatternInput from "@/components/core/form-elements/PatternInput";
+import { renderObjEnumOptions } from "@/components/core/form-elements/RenderSelectOptions";
+import Select from "@/components/core/form-elements/Select";
+import Textarea from "@/components/core/form-elements/textarea";
+import {
+  EnumCovidComorbidCondition,
+  EnumExposureRisks,
+  EnumSourceOfAlert,
+} from "@/enum/enumerators";
+import { useReadCovidSymptomsQuery } from "@/features/covid/covid-api";
 import { TypeCovid, TypeCovidError } from "@/types/module-types/covid";
 import dayjs from "dayjs";
-import React from "react";
-import Card from "../core/card/Card";
-import DateInput from "../core/form-elements/DatePicker";
-import Input from "../core/form-elements/Input";
-import MultiSelect from "../core/form-elements/MultiSelect";
-import MultipleSelect, { Option } from "../core/form-elements/MultipleSelect";
-import Select from "../core/form-elements/Select";
-import Textarea from "../core/form-elements/textarea";
+// import { TypeCovid, TypeCovidError } from "@/types/covid";
 
 interface CovidFormProps {
   covidData?: TypeCovid;
   handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   errorMsg?: TypeCovidError;
   handleDateChange?: (name: string, value: string) => void;
+
+  setSymptomScreeningList: React.Dispatch<React.SetStateAction<Option[]>>;
+  setExposureRisksList: React.Dispatch<React.SetStateAction<Option[]>>;
+  setCovidComorbidityList: React.Dispatch<React.SetStateAction<Option[]>>;
+  symptomScreeningList: Option[];
+  exposureRisksList: Option[];
+  covidComorbidityList: Option[];
 }
 
 const CovidForm = ({
@@ -22,29 +39,47 @@ const CovidForm = ({
   errorMsg,
   handleChange,
   handleDateChange,
+  symptomScreeningList,
+  covidComorbidityList,
+  exposureRisksList,
+  setSymptomScreeningList,
+  setCovidComorbidityList,
+  setExposureRisksList,
 }: CovidFormProps) => {
-  const [selectedOptions, setSelectedOptions] = React.useState<Option[]>([]);
+  // demo
+  // const [selectedOptions, setSelectedOptions] = React.useState<Option[]>([]);
 
-  const renderSourceOfAlertOptions = () => {
-    return Object.keys(EnumSourceOfAlert).map((key) => (
-      <option key={key} value={key}>
-        {EnumSourceOfAlert[key]}
-      </option>
-    ));
-  };
+  // Symptom Screen options /Options for multi selection
+  const { data: covidSymptoms } = useReadCovidSymptomsQuery(undefined);
+  // Create Options for multi selection /ExposureRisks
+  const exposureRiskOptions = Object.keys(EnumExposureRisks).map((key) => ({
+    oid: +key,
+    description: EnumExposureRisks[key],
+  }));
+  // Create Options for multi selection /CovidComorbidCondition
+  const covidComorbiditiesOptions = Object.keys(EnumCovidComorbidCondition).map(
+    (key) => ({
+      oid: +key,
+      description: EnumCovidComorbidCondition[key],
+    })
+  );
+
+  // const convertToMultiOptions = (enumObject: { [key: number]: string }[]) => {
+  //   return Object.keys(EnumCovidComorbidCondition).map((key) => ({
+  //     oid: +key,
+  //     description: EnumCovidComorbidCondition[key],
+  //   }));
+  // };
 
   return (
-    <div className="grid gap-8">
-      <Card
-        title="Integrated Screening Form"
-        titleBorder="border-b border-borderColor"
-        className="border border-borderColor"
-        titleClass="text-xl text-secondary"
-      >
+    <div className="grid ">
+      {/* Integrated Screening Form */}
+      <Section title="Integrated Screening Form">
         <div className="grid md:grid-cols-2 gap-5">
           <DateInput
             required
             label="Date of Notification"
+            errMsg={errorMsg?.notificationDate}
             selected={
               covidData?.notificationDate
                 ? new Date(covidData?.notificationDate)
@@ -65,21 +100,19 @@ const CovidForm = ({
             value={covidData?.sourceOfAlert}
             onChange={handleChange}
           >
-            {renderSourceOfAlertOptions()}
+            {renderObjEnumOptions(EnumSourceOfAlert)}
           </Select>
         </div>
-      </Card>
-      <Card
-        title="Symptom Screen"
-        titleBorder="border-b border-borderColor"
-        className=" border border-borderColor"
-        titleClass="text-xl text-secondary"
-      >
+      </Section>
+
+      {/* Symptom Screen */}
+      <Section title="Symptom Screen">
         <div className="grid  gap-5">
           <MultiSelect
-            options={demoOptions?.slice() || []}
-            selectedOptions={selectedOptions}
-            setSelectedOptions={setSelectedOptions}
+            isSearchable
+            options={covidSymptoms?.slice() || []}
+            selectedOptions={symptomScreeningList}
+            setSelectedOptions={setSymptomScreeningList}
           />
           <Textarea
             label="Other Symptom Screen"
@@ -89,18 +122,13 @@ const CovidForm = ({
             onChange={handleChange}
           />
         </div>
-      </Card>
-      <Card
-        title="Exposure Risk"
-        titleBorder="border-b border-borderColor"
-        className=" border border-borderColor"
-        titleClass="text-xl text-secondary"
-      >
+      </Section>
+      <Section title="Exposure Risk">
         <div className="grid  gap-5">
-          <MultipleSelect
-            options={demoOptions?.slice() || []}
-            selectedOptions={selectedOptions}
-            setSelectedOptions={setSelectedOptions}
+          <MultiSelect
+            options={exposureRiskOptions?.slice() || []} //
+            selectedOptions={exposureRisksList}
+            setSelectedOptions={setExposureRisksList}
           />
           <Textarea
             label="Other Exposure Risk"
@@ -110,19 +138,27 @@ const CovidForm = ({
             onChange={handleChange}
           />
         </div>
-      </Card>
-
-      <Card
-        title="Case Report"
-        titleBorder="border-b border-borderColor"
-        className=" border border-borderColor"
-        titleClass="text-xl text-secondary"
-      >
+      </Section>
+      {/* Case Report */}
+      <Section title="Case Report">
         <div className="grid md:grid-cols-2 gap-5">
-          <Select label="ICU Admission" required name="isICUAdmitted"></Select>
+          <Select
+            label="ICU Admission"
+            onChange={handleChange}
+            value={covidData.isICUAdmitted}
+            errMsg={errorMsg?.isICUAdmitted}
+            required
+            name="isICUAdmitted"
+          >
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </Select>
           <DateInput
             label="Date of ICU Admission"
             name="icuAdmissionDate"
+            max={new Date()}
+            disabled={covidData.isICUAdmitted != "true"}
+            errMsg={errorMsg?.icuAdmissionDate}
             selected={
               covidData?.icuAdmissionDate
                 ? new Date(covidData?.icuAdmissionDate)
@@ -153,6 +189,7 @@ const CovidForm = ({
             errMsg={errorMsg?.oxygenSaturation}
             value={covidData?.oxygenSaturation}
             onChange={handleChange}
+            // regexPattern={/^\d{0,3}$/}
           />
           <Select
             required
@@ -180,6 +217,7 @@ const CovidForm = ({
             required
             label="Date First Positive"
             name="dateFirstPositive"
+            max={new Date()}
             errMsg={errorMsg?.dateFirstPositive}
             selected={
               covidData?.dateFirstPositive
@@ -197,16 +235,18 @@ const CovidForm = ({
             required
             label="Recent International Travel"
             name="anyInternationalTravel"
-            errMsg={errorMsg?.anyInternationalTravel}
             value={covidData?.anyInternationalTravel}
+            errMsg={errorMsg?.anyInternationalTravel}
             onChange={handleChange}
           >
             <option value="true">Yes</option>
             <option value="false">No</option>
           </Select>
-          <Input
+          <PatternInput
             label="Recent International Travel Destination Name"
             name="travelDestination"
+            placeholder="Enter Destination Name"
+            disabled={covidData?.anyInternationalTravel != "true"}
             errMsg={errorMsg?.travelDestination}
             value={covidData?.travelDestination}
             onChange={handleChange}
@@ -215,7 +255,13 @@ const CovidForm = ({
             label="Health Care Worker"
             required
             name="isClientHealthCareWorker"
-          ></Select>
+            onChange={handleChange}
+            errMsg={errorMsg?.isClientHealthCareWorker}
+            value={covidData?.isClientHealthCareWorker}
+          >
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </Select>
           <Select
             required
             label="Covid Exposure"
@@ -230,18 +276,16 @@ const CovidForm = ({
           <Input
             label="Mental Status on Admission"
             name="mentalStatusOnAdmission"
+            placeholder="Enter Mental Status"
             errMsg={errorMsg?.mentalStatusOnAdmission}
             value={covidData?.mentalStatusOnAdmission}
             onChange={handleChange}
           />
         </div>
-      </Card>
-      <Card
-        title="Clinical Assessment"
-        titleBorder="border-b border-borderColor"
-        className=" border border-borderColor"
-        titleClass="text-xl text-secondary"
-      >
+      </Section>
+
+      {/* Clinical Assessment */}
+      <Section title="Clinical Assessment">
         <div className="grid md:grid-cols-2 gap-5">
           <Select
             required
@@ -279,6 +323,8 @@ const CovidForm = ({
           <DateInput
             label="Date of Hospitalised"
             name="dateHospitalized"
+            max={new Date()}
+            errMsg={errorMsg?.dateHospitalized}
             selected={
               covidData?.dateHospitalized
                 ? new Date(covidData?.dateHospitalized)
@@ -292,18 +338,14 @@ const CovidForm = ({
             }
           />
         </div>
-      </Card>
-      <Card
-        title="Co-morbid Conditions"
-        titleBorder="border-b border-borderColor"
-        className=" border border-borderColor"
-        titleClass="text-xl text-secondary"
-      >
+      </Section>
+
+      <Section title="Co-morbid Conditions">
         <div className="grid  gap-5">
-          <MultipleSelect
-            options={demoOptions?.slice() || []}
-            selectedOptions={selectedOptions}
-            setSelectedOptions={setSelectedOptions}
+          <MultiSelect
+            options={covidComorbiditiesOptions?.slice() || []}
+            selectedOptions={covidComorbidityList}
+            setSelectedOptions={setCovidComorbidityList}
           />
           <Textarea
             label="Other Comorbidities Conditions"
@@ -320,83 +362,9 @@ const CovidForm = ({
             onChange={handleChange}
           />
         </div>
-      </Card>
+      </Section>
     </div>
   );
 };
 
 export default CovidForm;
-const demoOptions = [
-  {
-    oid: 1,
-    description: "Indeterminate HIV test",
-    createdIn: -1,
-    dateCreated: "2023-10-01T00:00:00",
-    createdBy: "00000000-0000-0000-0000-000000000000",
-    modifiedIn: -1,
-    dateModified: "2023-10-01T00:00:00",
-    modifiedBy: "00000000-0000-0000-0000-000000000000",
-    isDeleted: false,
-    isSynced: false,
-  },
-  {
-    oid: 2,
-    description: "HIV negative pregnant mother",
-    createdIn: -1,
-    dateCreated: "2023-10-01T00:00:00",
-    createdBy: "00000000-0000-0000-0000-000000000000",
-    modifiedIn: -1,
-    dateModified: "2023-10-01T00:00:00",
-    modifiedBy: "00000000-0000-0000-0000-000000000000",
-    isDeleted: false,
-    isSynced: false,
-  },
-  {
-    oid: 3,
-    description: "Breastfeeding mother",
-    createdIn: -1,
-    dateCreated: "2023-10-01T00:00:00",
-    createdBy: "00000000-0000-0000-0000-000000000000",
-    modifiedIn: -1,
-    dateModified: "2023-10-01T00:00:00",
-    modifiedBy: "00000000-0000-0000-0000-000000000000",
-    isDeleted: false,
-    isSynced: false,
-  },
-  {
-    oid: 4,
-    description: "HIV negative with STIs",
-    createdIn: -1,
-    dateCreated: "2023-10-01T00:00:00",
-    createdBy: "00000000-0000-0000-0000-000000000000",
-    modifiedIn: -1,
-    dateModified: "2023-10-01T00:00:00",
-    modifiedBy: "00000000-0000-0000-0000-000000000000",
-    isDeleted: false,
-    isSynced: false,
-  },
-  {
-    oid: 5,
-    description: "HIV negative with TB",
-    createdIn: -1,
-    dateCreated: "2023-10-01T00:00:00",
-    createdBy: "00000000-0000-0000-0000-000000000000",
-    modifiedIn: -1,
-    dateModified: "2023-10-01T00:00:00",
-    modifiedBy: "00000000-0000-0000-0000-000000000000",
-    isDeleted: false,
-    isSynced: false,
-  },
-  {
-    oid: 6,
-    description: "Discordant sexual partner",
-    createdIn: -1,
-    dateCreated: "2023-10-01T00:00:00",
-    createdBy: "00000000-0000-0000-0000-000000000000",
-    modifiedIn: -1,
-    dateModified: "2023-10-01T00:00:00",
-    modifiedBy: "00000000-0000-0000-0000-000000000000",
-    isDeleted: false,
-    isSynced: false,
-  },
-];

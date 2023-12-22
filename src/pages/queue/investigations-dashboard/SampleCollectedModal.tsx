@@ -164,7 +164,7 @@ const SampleCollectedModal = () => {
               </Table.Body>
             </Table>
           </Card>
-          {/* <div>{JSON.stringify(investigation)}</div> */}
+
           {/* Sample collection collection form */}
           <div className="grid grid-cols-4 gap-5 my-5">
             <div className="col-span-4">Sample collection date </div>

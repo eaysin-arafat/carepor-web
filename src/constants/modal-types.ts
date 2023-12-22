@@ -114,6 +114,7 @@ export const paediatricModalTypes = Object.freeze({
 export const covidModalTypes = Object.freeze({
   covidCreateModal: "covidCreateModal",
   covidViewModal: "covidViewModal",
+  covidEditModal: "covidEditModal",
 });
 
 export const covaxModalTypes = Object.freeze({

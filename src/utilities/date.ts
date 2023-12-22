@@ -141,8 +141,7 @@ export const datePickerToString = (picker: Date | null | string) => {
   if (!picker) {
     return undefined;
   } else {
-    const currentDate = new Date().toISOString();
-    const currentSub = currentDate.substring(10);
+    const currentSub = "T00:00:00.000Z";
     //
     const pickerDate = new Date(picker);
     const day = pickerDate.getDate().toString().padStart(2, "0");

@@ -15,8 +15,6 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import CovidForm from "../forms/CovidForm";
-import { TypeCovidError } from "@/types/module-types/covid";
-// import { TypeCovidError } from "@/types/covid";
 
 const initialCovidData = {
   sourceOfAlert: "",
@@ -50,6 +48,57 @@ const initialCovidData = {
   // exposureRisksList: [],
 };
 
+export interface CovidType {
+  sourceOfAlert?: string;
+  otherCovidSymptom?: string;
+  otherExposureRisk?: string;
+  isICUAdmitted?: string;
+  isOnOxygen?: string;
+  oxygenSaturation?: string;
+  receivedVentilatorySupport?: string;
+  receivedBPSupport?: string;
+  anyInternationalTravel?: string;
+  travelDestination?: string;
+  isClientHealthCareWorker?: string;
+  hadCovidExposure?: string;
+  mentalStatusOnAdmission?: string;
+  hasPneumonia?: string;
+  isARDS?: string;
+  isPatientHospitalized?: string;
+  otherComorbiditiesConditions?: string;
+  otherRespiratoryIllness?: string;
+
+  notificationDate: string;
+  icuAdmissionDate: string;
+  dateFirstPositive: string;
+  dateHospitalized: string;
+}
+
+export interface CovidErrorType {
+  sourceOfAlert?: string;
+  otherCovidSymptom?: string;
+  otherExposureRisk?: string;
+  isICUAdmitted?: string;
+  isOnOxygen?: string;
+  oxygenSaturation?: string;
+  receivedVentilatorySupport?: string;
+  receivedBPSupport?: string;
+  anyInternationalTravel?: string;
+  travelDestination?: string;
+  isClientHealthCareWorker?: string;
+  hadCovidExposure?: string;
+  mentalStatusOnAdmission?: string;
+  hasPneumonia?: string;
+  isARDS?: string;
+  isPatientHospitalized?: string;
+  otherComorbiditiesConditions?: string;
+  otherRespiratoryIllness?: string;
+  notificationDate?: string;
+  icuAdmissionDate?: string;
+  dateFirstPositive?: string;
+  dateHospitalized?: string;
+}
+
 const CovidCreate = () => {
   const dispatch = useDispatch();
   // modal state
@@ -64,7 +113,7 @@ const CovidCreate = () => {
 
   //Form states
   const [covidData, setCovidData] = useState(initialCovidData);
-  const [errorMsg, setErrorMsg] = useState<TypeCovidError>({});
+  const [errorMsg, setErrorMsg] = useState<CovidErrorType>({});
   // Multi selection states
   const [symptomScreeningList, setSymptomScreeningList] = useState<Option[]>(
     []

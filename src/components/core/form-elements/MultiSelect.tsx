@@ -70,7 +70,7 @@ const MultiSelect = ({
             />
           )}
         </div>
-        <div className=" grid md:grid-cols-2">
+        <div className=" grid md:grid-cols-2 max-h-48 overflow-y-auto">
           {filteredOptions.map((option) => (
             <div
               key={option.oid}

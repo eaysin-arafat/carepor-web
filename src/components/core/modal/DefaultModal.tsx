@@ -5,7 +5,7 @@ const DefaultModal = ({
   toggler = () => {},
   children,
   title = "Modal title",
-  size = "5xl",
+  size = "6xl",
   className = "",
 }) => {
   return (

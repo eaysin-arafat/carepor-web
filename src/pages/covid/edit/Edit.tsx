@@ -6,16 +6,16 @@ import { Option } from "@/components/core/form-elements/MultiSelect";
 import { covidModalTypes } from "@/constants/modal-types";
 import { EnumEncounterType } from "@/enum/encounter-type";
 import { RtkStatusEnum } from "@/enum/rtk";
-import { useCreateCovidMutation } from "@/features/covid/covid-api";
-import { closeAddModal } from "@/features/modal/modal-slice";
-import useBaseDataCreate from "@/hooks/useBaseDataCreate";
+import { useUpdateCovidMutation } from "@/features/covid/covid-api";
+import { closeEditModal } from "@/features/modal/modal-slice";
+import useBaseDataEdit from "@/hooks/useBaseDataEdit";
+import { TypeCovid, TypeCovidError } from "@/types/module-types/covid";
 import { covidValidator } from "@/validation-models/covid-validator";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import CovidForm from "../forms/CovidForm";
-import { TypeCovidError } from "@/types/module-types/covid";
 // import { TypeCovidError } from "@/types/covid";
 
 const initialCovidData = {
@@ -50,28 +50,36 @@ const initialCovidData = {
   // exposureRisksList: [],
 };
 
-const CovidCreate = () => {
+const CovidEdit = () => {
   const dispatch = useDispatch();
   // modal state
-  const { addModal } = useSelector((state: RootState) => state.modal);
+  // { data: TypeCovidRecord; modalId: string }
+  const { data: prevData, modalId } = useSelector(
+    (state: RootState) => state.modal.editModal
+  );
   // Base Data Hook
   const { Covid } = EnumEncounterType;
-  const [baseDataCreate] = useBaseDataCreate(Covid);
+  const [baseDataEdit] = useBaseDataEdit(Covid);
 
   // RTK mutation
-  const [createCovidRecord, { status, isSuccess, isError, isLoading }] =
-    useCreateCovidMutation();
+  const [updateCovidRecord, { status, isSuccess, isError, isLoading }] =
+    useUpdateCovidMutation();
 
   //Form states
-  const [covidData, setCovidData] = useState(initialCovidData);
+  const [covidData, setCovidData] = useState<TypeCovid>(prevData);
   const [errorMsg, setErrorMsg] = useState<TypeCovidError>({});
   // Multi selection states
   const [symptomScreeningList, setSymptomScreeningList] = useState<Option[]>(
-    []
+    prevData?.mergeCovidSymptomScreenings
+    // []
   );
-  const [exposureRisksList, setExposureRisksList] = useState<Option[]>([]);
+  const [exposureRisksList, setExposureRisksList] = useState<Option[]>(
+    prevData?.mergeExposureRisks
+    // []
+  );
   const [covidComorbidityList, setCovidComorbidityList] = useState<Option[]>(
-    []
+    prevData?.mergeCovidComorbidities
+    // []
   );
 
   // onChange handler
@@ -116,7 +124,7 @@ const CovidCreate = () => {
 
   // Modal closer
   const closeModal = () => {
-    dispatch(closeAddModal());
+    dispatch(closeEditModal());
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -127,6 +135,7 @@ const CovidCreate = () => {
       setErrorMsg(errors);
       return;
     }
+
     const bollConverter = {
       isICUAdmitted: covidData?.isICUAdmitted == "true",
       isOnOxygen: covidData?.isOnOxygen == "true",
@@ -142,15 +151,14 @@ const CovidCreate = () => {
     };
 
     const payload = {
-      ...baseDataCreate,
+      ...baseDataEdit,
       ...covidData,
       ...bollConverter,
       covidSymptomScreeningList: symptomScreeningList?.map((item) => item.oid),
       covidComobidityList: covidComorbidityList?.map((item) => item.oid),
       exposureRisksList: exposureRisksList?.map((item) => item.oid),
     };
-    createCovidRecord(payload);
-    console.log("covidData", payload);
+    updateCovidRecord({ key: prevData.interactionId, body: payload });
   };
 
   // Request status message
@@ -162,19 +170,45 @@ const CovidCreate = () => {
       setExposureRisksList([]);
       setSymptomScreeningList([]);
       toast.dismiss();
-      dispatch(closeAddModal());
-      toast.success("Vaccine record create successful");
+      dispatch(closeEditModal());
+      toast.success("Covid record Update successful");
     }
     if (isError && status === RtkStatusEnum.rejected) {
       toast.dismiss();
-      toast.error("Vaccine record created failed");
+      toast.error("Covid record Update failed");
     }
   }, [status]);
 
+  useEffect(() => {
+    if (prevData) {
+      const setEditform = {
+        isICUAdmitted: prevData?.isICUAdmitted ? "true" : "false",
+        isOnOxygen: prevData?.isOnOxygen ? "true" : "false",
+        receivedVentilatorySupport: prevData?.receivedVentilatorySupport
+          ? "true"
+          : "false",
+        receivedBPSupport: prevData?.receivedBPSupport ? "true" : "false",
+        anyInternationalTravel: prevData?.anyInternationalTravel
+          ? "true"
+          : "false",
+        isClientHealthCareWorker: prevData?.isClientHealthCareWorker
+          ? "true"
+          : "false",
+        hadCovidExposure: prevData?.hadCovidExposure ? "true" : "false",
+        hasPneumonia: prevData?.hasPneumonia ? "true" : "false",
+        isARDS: prevData?.isARDS ? "true" : "false",
+        isPatientHospitalized: prevData?.isPatientHospitalized
+          ? "true"
+          : "false",
+      };
+      setCovidData((prev) => ({ ...prev, ...setEditform }));
+    }
+  }, [prevData]);
+
   return (
     <div>
-      {addModal?.modalId === covidModalTypes.covidCreateModal && (
-        <DefaultModal title="Covid" toggler={closeModal} size="7xl">
+      {modalId === covidModalTypes.covidEditModal && (
+        <DefaultModal title="Covid Update" toggler={closeModal} size="7xl">
           <form onSubmit={handleSubmit}>
             <CovidForm
               covidData={covidData}
@@ -190,6 +224,7 @@ const CovidCreate = () => {
             />
             <div className="flex justify-center mt-8">
               <CancelAndAddButton
+                submitBtnText="Update"
                 disableBoth={isLoading}
                 toggler={closeModal}
               />
@@ -201,4 +236,4 @@ const CovidCreate = () => {
   );
 };
 
-export default CovidCreate;
+export default CovidEdit;
