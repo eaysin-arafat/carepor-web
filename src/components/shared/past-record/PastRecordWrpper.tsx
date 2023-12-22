@@ -43,7 +43,7 @@ const PastRecordWrapper = ({
             </p>
           </div>
         )}
-        <div className="flex gap-5 flex-wrap">{children}</div>
+        <div className="flex gap-2 flex-wrap">{children}</div>
       </div>
       <div className="flex md:flex-col gap-2 justify-end mt-2 sm:mt-0">
         {/* DELETE BUTTON */}

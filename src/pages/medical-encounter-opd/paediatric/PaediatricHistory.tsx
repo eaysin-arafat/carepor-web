@@ -1,10 +1,9 @@
 import { RootState } from "@/app/store";
+import FormHeading from "@/components/core/form-heading/FormHeading";
 import BirthHistory from "@/components/paediatric-history/birth-history/BirthHistory";
 import DevelopmentHistory from "@/components/paediatric-history/development-history/DevelopmentHistory";
 import FeedingHistory from "@/components/paediatric-history/feeding-history/FeedingHistory";
 import ImmunizationHistory from "@/components/paediatric-history/immunization/Immunization";
-import FormHeading from "@/components/core/form-heading/FormHeading";
-import DefaultModal from "@/components/core/modal/DefaultModal";
 import { paediatricModalTypes } from "@/constants/modal-types";
 import { closeAddModal, openAddModal } from "@/features/modal/modal-slice";
 import { useDispatch, useSelector } from "react-redux";
@@ -91,13 +90,13 @@ const OpdPaediatricHistory = () => {
         isEdit
       />
       {addModal?.modalId === paediatricModalTypes.developmentHistoryModal && (
-        <DefaultModal
-          title="Examination & Diagnosis"
-          toggler={closeModal}
-          size="7xl"
-        >
-          <DevelopmentHistory toggler={closeModal} />
-        </DefaultModal>
+        // <DefaultModal
+        //   title="Examination & Diagnosis"
+        //   toggler={closeModal}
+        //   size="7xl"
+        // >
+        <DevelopmentHistory toggler={closeModal} />
+        // </DefaultModal>
       )}
     </div>
   );

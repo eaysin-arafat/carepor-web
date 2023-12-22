@@ -33,7 +33,7 @@ const TimeInput: React.FC<DateInputProps> = ({
     <div className="flex  flex-col w-full items-start justify-start gap-[6px] !z-50">
       <div className="flex w-full">
         <div className="input_label "> {label}</div>
-        {required && <span className="-mt-[6px] mx-1 text-dangerColor">*</span>}
+        {required && <span className="input_required">*</span>}
       </div>
       <label className={"w-full "}>
         {/* <label className={inputCss.new_input_wrapper}> */}

@@ -6,6 +6,7 @@ import CreateClientAccount from "@/pages/client-accounts/create/CreateClientAcco
 import ClientDetails from "@/pages/client-accounts/details/ClientsDetils";
 import ClientAccountEdit from "@/pages/client-accounts/edit/ClientAccountEdit";
 import ClientSearch from "@/pages/client-accounts/index/ClientSearch";
+import DeathRecordDetails from "@/pages/death-record/details/DeathRecordDetails";
 import AssignServiceQueue from "@/pages/service-point/AssignServiceQueue";
 import ServicePoints from "@/pages/service-point/ServicePoints";
 import EditAdmission from "../pages/admissions/edit/Edit";
@@ -13,6 +14,8 @@ import AdmissionDetails from "./../pages/admissions/details/AdmissionDetails";
 
 // route paths for client pages
 export const URLClientSearch = (): string => "/client-search";
+export const URLDeathRecordDetails = ({ id }: { id: string }): string =>
+  `/death-record/details/${id}`;
 export const URLServicePoint = (): string => "/service-points";
 export const URLAssignServiceQueue = (): string => "/assign-service-queue";
 export const URLClientDetails = ({ id }: { id: string }): string =>
@@ -111,6 +114,10 @@ const ClientRouter = [
           {
             path: URLAdmissions({ clientId: ":clientId" }),
             element: <AdmissionsIndex />,
+          },
+          {
+            path: URLDeathRecordDetails({ id: ":clientId" }),
+            element: <DeathRecordDetails />,
           },
         ],
       },

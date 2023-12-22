@@ -25,11 +25,15 @@ import {
   URLInvestigation,
   URLOPD,
   URLPainRecords,
+  URLPep,
+  URLPrep,
   URLReferral,
   URLSurgery,
   URLVitals,
   URLVitalsDetails,
 } from "./module-link";
+import PepHistory from "@/pages/pep/history/PepHistory";
+import PrepHistory from "@/pages/prep/history/PrepHistory";
 
 const ModuleRoute = [
   {
@@ -101,6 +105,14 @@ const ModuleRoute = [
           {
             path: URLDeathRecord(),
             element: <DeathRecordHistory />,
+          },
+          {
+            path: URLPep(),
+            element: <PepHistory />,
+          },
+          {
+            path: URLPrep(),
+            element: <PrepHistory />,
           },
         ],
       },

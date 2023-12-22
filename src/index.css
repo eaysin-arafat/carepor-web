@@ -202,6 +202,9 @@ body.modal-open {
     /* @apply text-blackColor dark:text-[#F2F3F5] leading-[125%] capitalize text-xs md:text-[14px] lg:text-base; */
     @apply text-textColor leading-[125%] text-xs;
   }
+  .input_required {
+    @apply transform -translate-y-0.5 mx-1 text-dangerColor text-xs;
+  }
 
   .input_cellphone {
     @apply border-none focus:border-none focus:ring-0 bg-transparent -mt-2;

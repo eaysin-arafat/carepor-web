@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import dayjs from "dayjs";
 
 export class DateFunc {
   static formatDate(dateString: string) {
@@ -59,13 +60,7 @@ export class DateFunc {
     return differenceMillisecond <= twentyFourHoursMillisecond;
   }
   static isBetween24Hours(inputDate: string) {
-    const currentDate = new Date().getTime();
-    const inputDateObj = new Date(inputDate).getTime();
-
-    const differenceMillisecond = currentDate - inputDateObj;
-    const twentyFourHoursMillisecond = 24 * 60 * 60 * 1000;
-
-    return differenceMillisecond <= twentyFourHoursMillisecond;
+    return dayjs().diff(new Date(inputDate), "hour") <= 24;
   }
 
   // format human readable date

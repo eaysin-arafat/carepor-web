@@ -170,9 +170,7 @@ function DatePicker({
       >
         <div className="flex">
           <div className="input_label "> {label}</div>
-          {required && (
-            <span className="-mt-[6px] mx-1 text-dangerColor">*</span>
-          )}
+          {required && <span className="input_required">*</span>}
         </div>
         <input
           type="text"
