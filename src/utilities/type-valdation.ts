@@ -71,4 +71,7 @@ export class TypeValidation {
   static isUserNameInput(value: string): boolean {
     return /^[A-Za-z0-9]{0,30}$/.test(value);
   }
+  static isNUPN(value: string): boolean {
+    return /^[\d]{4}-[\d]{5}[P]{1}-[\d]{5}-\d$/.test(value);
+  }
 }

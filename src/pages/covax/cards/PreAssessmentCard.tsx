@@ -12,13 +12,13 @@ import { MdOutlineModeEditOutline } from "react-icons/md";
 type Props = {
   clientCovax: TypeCovax;
   handleVaccinateForm: (data?: TypeImmunizationVaccine) => void;
-  handleCovaxForm: (data?: TypeCovax) => void;
+  handleCovaxEditForm: (data?: TypeCovax) => void;
 };
 
 function CovaxCard({
   handleVaccinateForm,
   clientCovax,
-  handleCovaxForm,
+  handleCovaxEditForm,
 }: Props) {
   const { getClinicianFullName } = useClinician();
   const { getFacilityName } = useFindFacility();
@@ -55,7 +55,7 @@ function CovaxCard({
         {DateFunc?.isBetween24Hours(clientCovax?.dateCreated) && (
           <div className="md:flex justify-end  absolute right-0 top-2 md:top-0 ">
             <button
-              onClick={() => handleCovaxForm(clientCovax)}
+              onClick={() => handleCovaxEditForm(clientCovax)}
               className="flex items-center gap-1 text-sm text-primaryColor"
             >
               <MdOutlineModeEditOutline /> Edit

@@ -6,7 +6,7 @@ import Select from "../form-elements/Select";
 
 type Props = {
   activePage: number;
-
+  showInPage?: number[];
   setActivePage: React.Dispatch<React.SetStateAction<number>>;
   itemsCountPerPage?: number;
   totalItemsCount: number;
@@ -30,13 +30,11 @@ function CustomPagination({
   itemsCountPerPage = 5,
   totalItemsCount = 10,
   setItemPerPage = () => {},
+  showInPage = [10, 20, 50],
 }: Props) {
   const handlePageChange = (pageNo: number) => {
-    // console.log(getPageNo);
     setActivePage(pageNo);
   };
-
-  const showInPage = [10, 20, 50, 100];
 
   return (
     <div className=" flex flex-col sm:flex-row mt-5 items-end gap-3 ">
@@ -49,11 +47,20 @@ function CustomPagination({
           label=""
           onChange={(e: OnchangeEventType) => setItemPerPage(+e.target.value)}
         >
-          {showInPage.map((key) => (
-            <option key={key} value={key}>
+          {/* {showInPage.map((key) => (
+            <option  key={key} value={key}>
               {key}
             </option>
-          ))}
+          ))} */}
+          {showInPage.map((key) => {
+            if (totalItemsCount > key) {
+              return (
+                <option key={key} value={key}>
+                  {key}
+                </option>
+              );
+            }
+          })}
         </Select>
       </div>
 

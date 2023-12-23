@@ -12,8 +12,8 @@ import { cn } from "@/utilities/cn";
 import { DateFunc } from "@/utilities/date";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import useClientDetails from "./useClientDetails";
 import LinkWithMother from "../create/LinkWithMother";
+import useClientDetails from "./useClientDetails";
 
 type Props = {};
 
@@ -35,7 +35,7 @@ const ClientDetails = ({}: Props) => {
     isLinked,
   } = useClientDetails();
 
-  const handleAddResult = () => {
+  const handleMotherLinkModal = () => {
     dispatch(
       openAddModal({
         modalId: clientModalTypes.linkWithMother,
@@ -46,8 +46,8 @@ const ClientDetails = ({}: Props) => {
 
   return (
     <div className="mt-5">
-      <LinkWithMother/>
-      
+      <LinkWithMother clientObj={clientObj} />
+
       <Container className="max-w-[1024px] mb-10">
         <div className="mx-3">
           <Link to={URLClientSearch()} className="go_back">
@@ -305,17 +305,18 @@ const ClientDetails = ({}: Props) => {
                     className="w-32 md:w-[220px] px-3 md:px-4 py-3 text-md md:text-lg bg-whiteBgColor "
                   />
                   {!isOverFive && !isLinked && (
-                    <button onClick={() => {}} className={buttonStyle}>
+                    <button
+                      onClick={handleMotherLinkModal}
+                      className={buttonStyle}
+                    >
                       Link With Mother
                     </button>
                   )}
-                  <button onClick={handleAddResult} className={buttonStyle}>
-                    Link With Mother
-                  </button>
+
                   {!isOverFive && isLinked && (
                     <button
-                      onClick={() => {}}
-                      className={`${buttonStyle} bg-dangerColor hover:bg-red-600 text-whiteColor`}
+                      onClick={handleMotherLinkModal}
+                      className={`${buttonStyle} !bg-dangerColor hover:bg-red-300  text-whiteColor`}
                     >
                       Unlink With Mother
                     </button>

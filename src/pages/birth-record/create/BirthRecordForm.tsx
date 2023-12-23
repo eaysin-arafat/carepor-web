@@ -84,7 +84,7 @@ function BirthRecordForm({ toggler }) {
     const { name, value } = e.target;
     if (name == "isUnderFiveCardGiven") {
       setFormState((prev) => ({ ...prev, [name]: value }));
-      setInputError && setInputError((prev) => ({ ...prev, [name]: "" }));
+      setInputError((prev) => ({ ...prev, [name]: "" }));
       if (value == "false") {
         setFormState((prev) => ({ ...prev, underFiveCardNumber: "" }));
       }
@@ -92,12 +92,21 @@ function BirthRecordForm({ toggler }) {
     }
     if (name == "informantRelationship") {
       setFormState((prev) => ({ ...prev, [name]: value }));
-      setInputError && setInputError((prev) => ({ ...prev, [name]: "" }));
+      setInputError((prev) => ({ ...prev, [name]: "" }));
       if (value != "13") {
         setFormState((prev) => ({ ...prev, informantOtherRelationship: "" }));
       }
       return;
     }
+    // if (name == "informantStreetNo") {
+    //   if (value.length > 30) {
+    //     setInputError((prev) => ({ ...prev, [name]: "Max 30 characters" }));
+    //   } else {
+    //     setFormState((prev) => ({ ...prev, [name]: value }));
+    //     setInputError((prev) => ({ ...prev, [name]: "" }));
+    //   }
+    //   return;
+    // }
 
     setFormState((prev) => ({ ...prev, [name]: value }));
     setInputError && setInputError((prev) => ({ ...prev, [name]: "" }));
@@ -138,12 +147,13 @@ function BirthRecordForm({ toggler }) {
   // Create Request status message
   useEffect(() => {
     if (createStatus === RtkStatusEnum.fulfilled) {
+      dispatch(closeAddModal());
       toast.dismiss();
       toast.success("Birth Record created successfully");
     }
     if (createStatus === RtkStatusEnum.rejected) {
       toast.dismiss();
-      toast.success("Birth Record created failed");
+      toast.error("Birth Record created failed");
       console.log(createError);
     }
   }, [createStatus]);
@@ -234,6 +244,7 @@ function BirthRecordForm({ toggler }) {
             onChange={handleInputChange}
             name="underFiveCardNumber"
             value={formState?.underFiveCardNumber}
+            errMsg={inputError?.underFiveCardNumber}
           />
         </div>
         {/* Reference Notes accordion */}
@@ -264,6 +275,7 @@ function BirthRecordForm({ toggler }) {
             onChange={handleInputChange}
             name="informantNickname"
             value={formState.informantNickname}
+            errMsg={inputError?.informantNickname}
           />
         </div>
 
@@ -276,7 +288,10 @@ function BirthRecordForm({ toggler }) {
             onChange={handleInputChange}
             errMsg={inputError?.informantCellphoneCountryCode}
             required
-            resetCellPhone={() => {}}
+            resetCellPhone={() => {
+              setFormState((p) => ({ ...p, informantCellphone: "" }));
+              setInputError((p) => ({ ...p, informantCellphone: "" }));
+            }}
           />
 
           <PhoneNumber
@@ -297,7 +312,10 @@ function BirthRecordForm({ toggler }) {
             value={formState.informantLandlineCountryCode}
             onChange={handleInputChange}
             errMsg={inputError?.informantLandlineCountryCode}
-            resetCellPhone={() => {}}
+            resetCellPhone={() => {
+              setFormState((p) => ({ ...p, informantLandline: "" }));
+              setInputError((p) => ({ ...p, informantLandline: "" }));
+            }}
           />
           <PhoneNumber
             name="informantLandline"
@@ -327,6 +345,7 @@ function BirthRecordForm({ toggler }) {
             onChange={handleInputChange}
             name="informantOtherRelationship"
             value={formState.informantOtherRelationship}
+            errMsg={inputError?.informantOtherRelationship}
           />
         </div>
 
@@ -336,12 +355,14 @@ function BirthRecordForm({ toggler }) {
             onChange={handleInputChange}
             name="informantCity"
             value={formState.informantCity}
+            errMsg={inputError?.informantCity}
           />
           <Input
             label="Cmpd Street No."
             onChange={handleInputChange}
             name="informantStreetNo"
-            value={formState.informantStreetNo}
+            value={formState?.informantStreetNo}
+            errMsg={inputError?.informantStreetNo}
           />
         </div>
 
@@ -351,12 +372,14 @@ function BirthRecordForm({ toggler }) {
             onChange={handleInputChange}
             name="informantPOBox"
             value={formState.informantPOBox}
+            errMsg={inputError?.informantPOBox}
           />
           <Input
             label="Landmark"
             onChange={handleInputChange}
             name="informantLandmark"
             value={formState.informantLandmark}
+            errMsg={inputError?.informantLandmark}
           />
         </div>
 

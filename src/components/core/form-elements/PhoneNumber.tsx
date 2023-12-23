@@ -49,7 +49,7 @@ const PhoneNumber: React.FC<PhoneNumberInputProps> = ({
     <div className="flex flex-col w-full items-start justify-start gap-[6px]">
       <div className="flex">
         <div className="input_label "> {label}</div>
-        {required && <span className="-mt-[6px] mx-1 text-dangerColor">*</span>}
+        {required && <span className="input_required">*</span>}
       </div>
       <input
         // style={{ backgroundColor: disabled ? "#eef2f3" : undefined }}

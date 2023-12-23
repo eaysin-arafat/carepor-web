@@ -1,6 +1,7 @@
 import CancelAndAddButton from "@/components/core/buttons/CancelAndAddButton";
 import Section from "@/components/core/card/Section";
 import Select from "@/components/core/form-elements/Select";
+import Textarea from "@/components/core/form-elements/textarea";
 import DefaultModal from "@/components/core/modal/DefaultModal";
 import PastRecordContainers from "@/components/past-record-containers/PastRecordContainers";
 import PastRecordData from "@/components/shared/past-record/PastRecordData";
@@ -23,70 +24,15 @@ const FeedingHistory = ({ toggler }) => {
     },
   ];
   return (
-    <DefaultModal title="General Assessment" toggler={toggler} size="6xl">
+    <DefaultModal title="Feeding" toggler={toggler} size="6xl">
       <form>
         <Section>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 p-2">
-            <Select label="General Condition">
-              <option value="1">Good</option>
-              <option value="2">Stable</option>
-              <option value="3">Critical</option>
-            </Select>
-            <Select label="Pallor">
-              <option value="1">Nil</option>
-              <option value="2">Mild</option>
-              <option value="3">Moderate</option>
-              <option value="4">Severe</option>
-            </Select>{" "}
-            <Select label="Edema">
-              <option value="1">Nil</option>
-              <option value="2">1+</option>
-              <option value="3">2+</option>
-              <option value="4">3+</option>
-              <option value="5">4+</option>
-            </Select>{" "}
-            <Select label="Clubbing">
-              <option value="1">Nil</option>
-              <option value="2">1+</option>
-              <option value="3">2+</option>
-              <option value="4">3+</option>
-              <option value="5">4+</option>
-            </Select>{" "}
-            <Select label="Jaundice">
-              <option value="1">Present</option>
-              <option value="2">Not present</option>
-            </Select>{" "}
-            <Select label="Cyanosis">
-              <option value="1">Present</option>
-              <option value="2">Not present</option>
-            </Select>{" "}
-            {/* <Select label="Glucose">
-              <option value="1">Yes</option>
-              <option value="2">No</option>
-            </Select>
-            <Select label="Scoring">
-              <option value="1">+ve</option>
-              <option value="2">-ve</option>
-              <option value="3">Indeterminant</option>
-            </Select>
-            <Select label="Varicose Vein">
-              <option value="1">Present</option>
-              <option value="2">Not present</option>
-            </Select>
-            <Select label="Albumin">
-              <option value="1">Nil</option>
-              <option value="2">Trace</option>
-              <option value="3">+</option>
-              <option value="4">++</option>
-              <option value="5">+++</option>
-              <option value="6">++++</option>
-            </Select>
+          <div className="grid md:grid-cols-2 gap-5">
+            <Select label="Infant Feeding Code"></Select>
+            <Select label="Other Feeding Code"></Select>
             <div className="col-span-full">
-              <Select label="Urine Output">
-                <option value="1">Normal</option>
-                <option value="2">Abnormal</option>
-              </Select>
-            </div> */}
+              <Textarea label="Additional Comments" />
+            </div>
           </div>
         </Section>
         <hr className="my-6" />

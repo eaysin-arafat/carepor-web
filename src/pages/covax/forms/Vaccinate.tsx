@@ -5,7 +5,6 @@ import Input from "@/components/core/form-elements/Input";
 import { renderOptions } from "@/components/core/form-elements/RenderSelectOptions";
 import Select from "@/components/core/form-elements/Select";
 import DefaultModal from "@/components/core/modal/DefaultModal";
-import { covaxModalTypes } from "@/constants/modal-types";
 import { EnumEncounterType } from "@/enum/encounter-type";
 import { RtkStatusEnum } from "@/enum/rtk";
 import {
@@ -190,71 +189,69 @@ const Vaccinate = () => {
 
   return (
     <div>
-      {addModal?.modalId === covaxModalTypes.vaccinateCreateModal && (
-        <DefaultModal title="Vaccination" toggler={closeModal} size="7xl">
-          <form onSubmit={handleFormSubmit} action="">
-            <div className="grid gap-5">
-              <Select
-                required
-                name="vaccineTypeId"
-                value={formState.vaccineTypeId}
-                errMsg={inputError?.vaccineTypeId}
-                label="Vaccine Types"
-                onChange={handleInputChange}
-              >
-                {renderOptions(vaccineTypes)}
-              </Select>
-              <Select
-                label="Vaccine"
-                required
-                name="vaccineId"
-                value={formState.vaccineId}
-                errMsg={inputError?.vaccineId}
-                onChange={handleInputChange}
-              >
-                {renderOptions(filterVaccines)}
-              </Select>
-              <Select
-                label="Vaccine Dose"
-                name="doseId"
-                value={formState.doseId}
-                errMsg={inputError?.doseId}
-                onChange={handleInputChange}
-              >
-                {renderOptions(filterVaccineDoses)}
-              </Select>
-              <Input
-                label="Covax Number"
-                name="batchNumber"
-                value={formState.batchNumber}
-                errMsg={inputError?.batchNumber}
-                onChange={handleInputChange}
-              />
-              <DateInput
-                max={new Date()}
-                onChange={(date) => {
-                  setFormState((prev) => ({
-                    ...prev,
-                    dateGiven: new Date(date).toISOString(),
-                  }));
-                  setInputError((prev) => ({
-                    ...prev,
-                    dateGiven: "",
-                  }));
-                }}
-                label="Covax Number"
-                selected={new Date(formState.dateGiven)}
-              />
-            </div>
-            <div className="flex justify-center mt-5">
-              <CancelAndAddButton
-                submitBtnText={!prevVaccine ? "Save" : "Update"}
-                toggler={closeModal}
-              />
-            </div>
-          </form>
-        </DefaultModal>
-      )}
+      <DefaultModal title="Vaccination" toggler={closeModal} size="7xl">
+        <form onSubmit={handleFormSubmit} action="">
+          <div className="grid gap-5">
+            <Select
+              required
+              name="vaccineTypeId"
+              value={formState.vaccineTypeId}
+              errMsg={inputError?.vaccineTypeId}
+              label="Vaccine Types"
+              onChange={handleInputChange}
+            >
+              {renderOptions(vaccineTypes)}
+            </Select>
+            <Select
+              label="Vaccine"
+              required
+              name="vaccineId"
+              value={formState.vaccineId}
+              errMsg={inputError?.vaccineId}
+              onChange={handleInputChange}
+            >
+              {renderOptions(filterVaccines)}
+            </Select>
+            <Select
+              label="Vaccine Dose"
+              name="doseId"
+              value={formState.doseId}
+              errMsg={inputError?.doseId}
+              onChange={handleInputChange}
+            >
+              {renderOptions(filterVaccineDoses)}
+            </Select>
+            <Input
+              label="Covax Number"
+              name="batchNumber"
+              value={formState.batchNumber}
+              errMsg={inputError?.batchNumber}
+              onChange={handleInputChange}
+            />
+            <DateInput
+              max={new Date()}
+              onChange={(date) => {
+                setFormState((prev) => ({
+                  ...prev,
+                  dateGiven: new Date(date).toISOString(),
+                }));
+                setInputError((prev) => ({
+                  ...prev,
+                  dateGiven: "",
+                }));
+              }}
+              label="Covax Number"
+              selected={new Date(formState.dateGiven)}
+            />
+          </div>
+          <div className="flex justify-center mt-5">
+            <CancelAndAddButton
+              submitBtnText={!prevVaccine ? "Save" : "Update"}
+              toggler={closeModal}
+            />
+          </div>
+        </form>
+      </DefaultModal>
     </div>
   );
 };

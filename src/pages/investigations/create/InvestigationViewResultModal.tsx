@@ -128,7 +128,7 @@ const DataCard = ({
         <DataRow title={"Test"} data={investigation?.testNameDetails} />
         <DataRow title={"Result"} data={investigation?.testResult} />
         <DataRow title={"Unit"} data={investigation?.unitTest} />
-        {/* <div>{JSON.stringify(data)}</div> */}
+       
         <DataRow
           title={"Reference Range"}
           data={

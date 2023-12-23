@@ -1,6 +1,10 @@
 import CancelAndAddButton from "@/components/core/buttons/CancelAndAddButton";
 import Section from "@/components/core/card/Section";
+import Checkbox from "@/components/core/form-elements/Checkbox";
+import Input from "@/components/core/form-elements/Input";
 import Select from "@/components/core/form-elements/Select";
+import TimeInput from "@/components/core/form-elements/TimeInput";
+import Textarea from "@/components/core/form-elements/textarea";
 import DefaultModal from "@/components/core/modal/DefaultModal";
 import PastRecordContainers from "@/components/past-record-containers/PastRecordContainers";
 import PastRecordData from "@/components/shared/past-record/PastRecordData";
@@ -26,67 +30,48 @@ const BirthHistory = ({ toggler }) => {
     <DefaultModal title="Birth History" toggler={toggler} size="6xl">
       <form>
         <Section>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 p-2">
-            <Select label="General Condition">
-              <option value="1">Good</option>
-              <option value="2">Stable</option>
-              <option value="3">Critical</option>
-            </Select>
-            <Select label="Pallor">
-              <option value="1">Nil</option>
-              <option value="2">Mild</option>
-              <option value="3">Moderate</option>
-              <option value="4">Severe</option>
-            </Select>{" "}
-            <Select label="Edema">
-              <option value="1">Nil</option>
-              <option value="2">1+</option>
-              <option value="3">2+</option>
-              <option value="4">3+</option>
-              <option value="5">4+</option>
-            </Select>{" "}
-            <Select label="Clubbing">
-              <option value="1">Nil</option>
-              <option value="2">1+</option>
-              <option value="3">2+</option>
-              <option value="4">3+</option>
-              <option value="5">4+</option>
-            </Select>{" "}
-            <Select label="Jaundice">
-              <option value="1">Present</option>
-              <option value="2">Not present</option>
-            </Select>{" "}
-            <Select label="Cyanosis">
-              <option value="1">Present</option>
-              <option value="2">Not present</option>
-            </Select>{" "}
-            {/* <Select label="Glucose">
-              <option value="1">Yes</option>
-              <option value="2">No</option>
-            </Select>
-            <Select label="Scoring">
-              <option value="1">+ve</option>
-              <option value="2">-ve</option>
-              <option value="3">Indeterminant</option>
-            </Select>
-            <Select label="Varicose Vein">
-              <option value="1">Present</option>
-              <option value="2">Not present</option>
-            </Select>
-            <Select label="Albumin">
-              <option value="1">Nil</option>
-              <option value="2">Trace</option>
-              <option value="3">+</option>
-              <option value="4">++</option>
-              <option value="5">+++</option>
-              <option value="6">++++</option>
-            </Select>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-3">
+            <Input label={"Birth Weight (kg)"} required name="birthWeight" />
+            <Input label={"Birth Length (cm)"} required name="birthHeight" />
+            <Select label="Birth Outcome" name="birthOutcome" required></Select>
+          </div>
+          <div className="grid md:grid-cols-2 gap-5 ">
+            <Select
+              label={"Head Circumference"}
+              name="headCircumference"
+            ></Select>
+            <Select
+              label={"Chest Circumference"}
+              name="chestCircumference"
+            ></Select>
+            <Select
+              label="General Condition"
+              required
+              name="generalCondition"
+            ></Select>
+            <div className="md:mt-9">
+              <Checkbox label="Is Breast Feeding Well" />
+            </div>
+            <Select
+              label="Other Feeding Option"
+              required
+              name="otherFeedingOption"
+            ></Select>
+            <TimeInput
+              onChange={() => {}}
+              label={"Delivery Time"}
+              required
+              name="deliveryTime"
+            />
+            <Input label={"Vaccination Outside"} name="vaccinationOutside" />
+            <Select
+              label="Tetanus At Birth"
+              required
+              name="tetanusAtBirth"
+            ></Select>
             <div className="col-span-full">
-              <Select label="Urine Output">
-                <option value="1">Normal</option>
-                <option value="2">Abnormal</option>
-              </Select>
-            </div> */}
+              <Textarea label={"Note"} name="note" />
+            </div>
           </div>
         </Section>
         <hr className="my-6" />

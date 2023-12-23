@@ -1,20 +1,56 @@
 import { RootState } from "@/app/store";
 import CustomPagination from "@/components/core/custom-pagination/CustomPagination";
+import RequestError from "@/components/core/error/RequestError";
+import TableLoader from "@/components/core/loader/TableLoader";
+import NotFound from "@/components/core/not-found/NotFound";
 import Table from "@/components/shared/table/Table";
 import TableBody from "@/components/shared/table/TableBody";
 import TableHeader from "@/components/shared/table/TableHeader";
 import { covidModalTypes } from "@/constants/modal-types";
-import { openAddModal } from "@/features/modal/modal-slice";
-import React from "react";
+import { EnumEncounterType } from "@/enum/encounter-type";
+import { EnumSourceOfAlert, EnumYesNo } from "@/enum/enumerators";
+import { useReadCovidByClientIdQuery } from "@/features/covid/covid-api";
+import { openAddModal, openViewModal } from "@/features/modal/modal-slice";
+import useBaseDataCreate from "@/hooks/useBaseDataCreate";
+import { TypeCovidRecord } from "@/types/module-types/covid";
+import { DateFunc, sortByDate } from "@/utilities/date";
+import { useState } from "react";
 import { PlusCircle } from "react-feather";
 import { useDispatch, useSelector } from "react-redux";
 import CovidCreate from "../create/Create";
 import CovidDetails from "../details/Details";
+import CovidEdit from "../edit/Edit";
 
 const CovidIndex = () => {
-  const { addModal } = useSelector((state: RootState) => state.modal);
+  const { Covid } = EnumEncounterType;
+  const [baseData] = useBaseDataCreate(Covid);
+
+  // const { addModal } = useSelector((state: RootState) => state.modal);
+  const { viewModal, editModal } = useSelector(
+    (state: RootState) => state.modal
+  );
   const dispatch = useDispatch();
-  const [state, setState] = React.useState(1);
+
+  // pagination state
+  const [activePage, setActivePage] = useState(1);
+  const [itemPerPage, setItemPerPage] = useState(10);
+
+  // Read Covid By ClientId
+  const {
+    data: covidPageRecord,
+    isLoading,
+    isSuccess,
+    isError,
+  } = useReadCovidByClientIdQuery(
+    { key: baseData?.clientId, page: activePage, pageSize: itemPerPage },
+    {
+      skip: !baseData?.clientId,
+      refetchOnMountOrArgChange: true,
+    }
+  );
+
+  // destructure data
+  const { data: covidRecord, totalItems } = covidPageRecord || {};
 
   const handleAddCovid = () => {
     dispatch(
@@ -24,19 +60,27 @@ const CovidIndex = () => {
       })
     );
   };
-  const handleViewCovid = () => {
+  const handleViewCovid = (data: TypeCovidRecord) => {
     dispatch(
-      openAddModal({
+      openViewModal({
         modalId: covidModalTypes.covidViewModal,
-        data: null,
+        data: data,
       })
     );
   };
+
+  console.log(totalItems);
+  console.log(covidPageRecord?.data);
+
   return (
     <div>
       {/* Modal Components  */}
       <CovidCreate />
-      {addModal?.modalId === covidModalTypes.covidViewModal && <CovidDetails />}
+
+      {viewModal?.modalId === covidModalTypes.covidViewModal && (
+        <CovidDetails />
+      )}
+      {editModal?.modalId === covidModalTypes.covidEditModal && <CovidEdit />}
 
       <div className="flex justify-between">
         <h2 className="heading_2">Covid</h2>
@@ -73,33 +117,56 @@ const CovidIndex = () => {
               },
             ]}
           />
-          {data.map((item, index) => (
-            <TableBody
-              index={index}
-              isAction
-              actionWidth="min-w-[130px]"
-              viewResultHandler={handleViewCovid}
-              // btnOutlineHandler={handleViewHtsModal}
-              btn={{
-                viewResult: "View Details",
-              }}
-              item={[
-                { title: item.name, w: "20%" },
-                { title: item.orderDate, w: "20%" },
-                { title: item.test, w: "20%" },
-                { title: item.orderNumber, w: "20%" },
-                { title: item.orderNumber, w: "20%" },
-              ]}
-            />
-          ))}
+
+          {isLoading && !isError && (
+            <>
+              <TableLoader />
+              <TableLoader />
+            </>
+          )}
+
+          {!isLoading && isError && <RequestError />}
+          {!isLoading &&
+            isSuccess &&
+            Array.isArray(covidRecord) &&
+            covidRecord.length == 0 && <NotFound />}
+          {!isLoading &&
+            isSuccess &&
+            Array.isArray(covidRecord) &&
+            covidRecord.length > 0 &&
+            sortByDate(covidRecord).map((item, index) => (
+              <TableBody
+                index={index}
+                key={index}
+                isAction
+                actionWidth="min-w-[130px]"
+                viewResultHandler={() => handleViewCovid(item)}
+                btn={{
+                  viewResult: "View Details",
+                }}
+                item={[
+                  { title: EnumSourceOfAlert[item?.sourceOfAlert], w: "20%" },
+                  {
+                    title: DateFunc.formatDate(item?.notificationDate),
+                    w: "20%",
+                  },
+                  { title: item?.oxygenSaturation, w: "20%" },
+                  { title: EnumYesNo[+item?.isICUAdmitted], w: "20%" },
+                  {
+                    title: DateFunc.formatDate(item?.dateFirstPositive),
+                    w: "20%",
+                  },
+                ]}
+              />
+            ))}
         </Table>
         <div className="flex justify-end mx-8">
           <CustomPagination
-            activePage={1}
-            itemsCountPerPage={state}
-            setActivePage={setState}
-            totalItemsCount={100}
-            setItemPerPage={() => {}}
+            activePage={activePage}
+            itemsCountPerPage={itemPerPage}
+            setActivePage={setActivePage}
+            totalItemsCount={totalItems}
+            setItemPerPage={setItemPerPage}
           />
         </div>
       </div>
@@ -108,45 +175,3 @@ const CovidIndex = () => {
 };
 
 export default CovidIndex;
-const data = [
-  {
-    id: 1,
-    name: "Amir Hamza",
-    age: "23",
-    orderDate: "25 Nov, 2023",
-    priority: "Regular",
-    test: "test",
-    orderNumber: "10:00 am",
-    sample: "25 Nov, 2023",
-  },
-  {
-    id: 2,
-    name: "Amir Hamza",
-    age: "23",
-    orderDate: "25 Nov, 2023",
-    priority: "Regular",
-    test: "test",
-    orderNumber: "10:00 am",
-    sample: "25 Nov, 2023",
-  },
-  {
-    id: 3,
-    name: "Amir Hamza",
-    age: "23",
-    orderDate: "25 Nov, 2023",
-    priority: "Regular",
-    test: "test",
-    orderNumber: "10:00 am",
-    sample: "25 Nov, 2023",
-  },
-  {
-    id: 4,
-    name: "Amir Hamza",
-    age: "23",
-    orderDate: "25 Nov, 2023",
-    priority: "Regular",
-    test: "test",
-    orderNumber: "10:00 am",
-    sample: "25 Nov, 2023",
-  },
-];

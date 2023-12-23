@@ -11,17 +11,19 @@ export type TypeEnum = TypeAPIEnum;
 export type TypeBirthRecord = TypeAPIObject & {
   isBirthRecordGiven?: string | boolean;
   origin?: string | number;
-  informantFirstName?: string;
-  informantSurname?: string;
-  underFiveCardNumber?: string;
+
+  informantFirstName?: string; //60
+  informantSurname?: string; //60
+  underFiveCardNumber?: string; // 20
   isUnderFiveCardGiven?: string | boolean;
-  informantNickname?: string;
+  informantNickname?: string; // 60
   informantRelationship?: string | number;
-  informantOtherRelationship?: string;
-  informantCity?: string;
-  informantStreetNo?: string;
-  informantPOBox?: string;
-  informantLandmark?: string;
+  informantOtherRelationship?: string; // 60
+  informantCity?: string; //90
+  informantStreetNo?: string; //30
+  informantPOBox?: string; //30
+  informantLandmark?: string; //500
+
   informantLandlineCountryCode?: string;
   informantLandline?: string;
   informantCellphoneCountryCode?: string;

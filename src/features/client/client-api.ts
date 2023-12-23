@@ -14,6 +14,7 @@ const clientApi = API.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags: ["ClientByKey"],
     }),
 
     /**
@@ -37,6 +38,7 @@ const clientApi = API.injectEndpoints({
         url: `/client/key/${key}`,
         method: "GET",
       }),
+      providesTags: ["ClientByKey"],
     }),
 
     /**
@@ -88,15 +90,26 @@ const clientApi = API.injectEndpoints({
     }),
 
     /**
+     * primary use for search for link with mother
      * @description react client by nupn and gender
      * @param NUPN
      * @returns Client
-     *
      */
-
-    readClientByNupnAndGender: builder.query({
+    readClientByNupnAndGender: builder.query<Client, string>({
       query: (NUPN) => ({
         url: `client/NUPN-Gender/${NUPN}`,
+        method: "GET",
+      }),
+    }),
+
+    /**
+     * @description This endpoint is used to read mother Profile
+     * @param key
+     * @returns Client
+     */
+    readMotherByMotherLinkKey: builder.query<Client, string>({
+      query: (key) => ({
+        url: `/client/key/${key}`,
         method: "GET",
       }),
     }),
@@ -184,12 +197,13 @@ const clientApi = API.injectEndpoints({
      * @returns Client
      * */
 
-    updateClientMother: builder.mutation({
+    UpdateClientMother: builder.mutation({
       query: ({ key, ...body }) => ({
         url: `/client/link-mother/${key}`,
         method: "PUT",
         body,
       }),
+      invalidatesTags: ["ClientByKey"],
     }),
 
     /**
@@ -205,18 +219,18 @@ const clientApi = API.injectEndpoints({
       }),
     }),
 
-    /**
-     * @description This endpoint is used to read client by key
-     * @param key
-     * @returns Client
-     * */
+    // /**
+    //  * @description This endpoint is used to read client by key
+    //  * @param key
+    //  * @returns Client
+    //  * */
 
-    clientReadByKey: builder.query({
-      query: (key) => ({
-        url: `/client/key/${key}`,
-        method: "GET",
-      }),
-    }),
+    // clientReadByKey: builder.query({
+    //   query: (key) => ({
+    //     url: `/client/key/${key}`,
+    //     method: "GET",
+    //   }),
+    // }),
 
     /**
      * @description This endpoint is used to read client details for TOP card by key
@@ -276,11 +290,13 @@ export const {
   useUpdateClientMutation,
   useUpdateClientMotherMutation,
   useDeleteClientMutation,
-  useClientReadByKeyQuery,
+  // useClientReadByKeyQuery,
   useReadClientDetailsForTOPCardQuery,
   useReadClientDetailsForRightCardQuery,
   useClientUpdateMutation,
   useReadNameSearchClientsQuery,
+  useReadMotherByMotherLinkKeyQuery,
+  useReadClientByNupnAndGenderQuery,
 } = clientApi;
 
 // export endpoints
@@ -288,3 +304,10 @@ export const { endpoints: clientApiEndpoints } = clientApi;
 
 // export api
 export default clientApi;
+
+// type NUPNGenderError = {
+//   status: string;
+//   originalStatus: number;
+//   data: string;
+//   error: any;
+// };

@@ -13,7 +13,7 @@ const Section = ({ title, children, className }: Props) => {
       className={cn("border border-borderColor rounded-lg mt-5 p-4", className)}
     >
       <h2
-        className={cn("text-secondaryColor text-[24px] font-medium ", {
+        className={cn("text-secondaryColor text-lg lg:text-xl font-medium ", {
           "mb-4": title,
         })}
       >

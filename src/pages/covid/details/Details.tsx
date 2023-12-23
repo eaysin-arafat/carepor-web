@@ -1,46 +1,92 @@
+import { RootState } from "@/app/store";
 import DefaultModal from "@/components/core/modal/DefaultModal";
 import DataRow from "@/components/core/table/DataRow";
-import { closeAddModal } from "@/features/modal/modal-slice";
+import { covidModalTypes } from "@/constants/modal-types";
+import { EnumBoolYesNo, EnumSourceOfAlert } from "@/enum/enumerators";
+import { closeViewModal, openEditModal } from "@/features/modal/modal-slice";
+import useClinician from "@/hooks/useClinician";
+import useFindFacility from "@/hooks/useFindFacility";
+import { TypeCovidRecord } from "@/types/module-types/covid";
+import { DateFunc } from "@/utilities/date";
 import { MdOutlineModeEditOutline } from "react-icons/md";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const CovidDetails = () => {
+  // Data showing hooks
+  const { getFacilityName } = useFindFacility();
+  const { getClinicianFullName } = useClinician();
+
   const dispatch = useDispatch();
+  const { data }: { data: TypeCovidRecord } = useSelector(
+    (state: RootState) => state.modal.viewModal
+  );
+
   const closeModal = () => {
-    dispatch(closeAddModal());
+    dispatch(closeViewModal());
   };
+
+  const handleCovidEditForm = (data: TypeCovidRecord) => {
+    dispatch(closeViewModal());
+    dispatch(
+      openEditModal({
+        modalId: covidModalTypes.covidEditModal,
+        data: data,
+      })
+    );
+  };
+
+  const renderSymptomScreenings = data?.mergeCovidSymptomScreenings
+    ?.map((d) => d.description)
+    .join(", ");
+
+  const renderCovidComorbidities = data?.mergeCovidComorbidities
+    ?.map((d) => d.description)
+    .join(", ");
+
+  const renderexposureRisks = data?.mergeExposureRisks
+    ?.map((d) => d.description)
+    .join(", ");
+
+  console.log(data);
+
+  //
   return (
     <div>
       <DefaultModal title="Covid" toggler={closeModal} size="5xl">
         <div className="mt-2 border border-borderColor p-4 rounded-lg">
           <div className="md:flex justify-between relative">
             <p className="text-sm">
-              <span className="font-semibold">Date : &nbsp; </span>30-Nov-2023
+              <span className="font-semibold">Date : &nbsp; </span>
+              {DateFunc.formatDate(data?.dateCreated)}
             </p>
             <p className="text-sm">
-              <span className="font-semibold">Facility : &nbsp; </span>Bauleni
-              Mini Hospital
+              <span className="font-semibold">Facility : &nbsp; </span>
+              {getFacilityName(data?.createdIn)}
             </p>
             <p className="text-sm me-20">
-              <span className="font-semibold">Clinician : &nbsp; </span>System
-              Admin
+              <span className="font-semibold">Clinician : &nbsp; </span>
+              {getClinicianFullName(data?.createdBy)}
             </p>
+            {/* {DateFunc.isBetween24Hours(data?.dateCreated) && ( */}
             <div className="md:flex justify-end  absolute right-0 top-2 md:top-0 ">
-              <button className="flex items-center gap-1 text-sm text-primaryColor">
-                {" "}
+              <button
+                onClick={() => handleCovidEditForm(data)}
+                className="flex items-center gap-1 text-sm text-primaryColor"
+              >
                 <MdOutlineModeEditOutline /> Edit
               </button>
             </div>
+            {/* )} */}
           </div>
           <div className="mt-5">
             <DataRow
               title="Source of Alert"
-              data="Data"
+              data={EnumSourceOfAlert[data?.sourceOfAlert]}
               titleClass="xs:min-w-[180px] sm:min-w-[250px]"
             />
             <DataRow
               title="Date of Notification"
-              data="Data"
+              data={DateFunc.formatDate(data?.notificationDate)}
               titleClass="xs:min-w-[180px] sm:min-w-[250px]"
             />
 
@@ -49,12 +95,13 @@ const CovidDetails = () => {
             </div>
             <DataRow
               title="Symptom Screen"
-              data="Data"
+              // data={renderSymptomScreenings(data?.covidSymptomScreenings)}
+              data={renderSymptomScreenings}
               titleClass="xs:min-w-[180px] sm:min-w-[250px]"
             />
             <DataRow
               title="Other Symptom Screen"
-              data="Data"
+              data={data?.otherCovidSymptom}
               titleClass="xs:min-w-[180px] sm:min-w-[250px]"
             />
 
@@ -63,12 +110,13 @@ const CovidDetails = () => {
             </div>
             <DataRow
               title="Exposure Risk"
-              data="Data"
+              // data={renderCovidComorbidities(data?.covidComorbidities)}
+              data={renderCovidComorbidities}
               titleClass="xs:min-w-[180px] sm:min-w-[250px]"
             />
             <DataRow
               title="Other Exposure Risk"
-              data="Data"
+              data={data?.otherExposureRisk}
               titleClass="xs:min-w-[180px] sm:min-w-[250px]"
             />
 
@@ -77,62 +125,62 @@ const CovidDetails = () => {
             </div>
             <DataRow
               title="ICU Admission"
-              data="Data"
+              data={EnumBoolYesNo[`${data?.isICUAdmitted}`]}
               titleClass="xs:min-w-[180px] sm:min-w-[250px]"
             />
             <DataRow
               title="Date of ICU Admission"
-              data="Data"
+              data={DateFunc.formatDate(data?.icuAdmissionDate)}
               titleClass="xs:min-w-[180px] sm:min-w-[250px]"
             />
             <DataRow
               title="On Oxygen?"
-              data="Data"
+              data={EnumBoolYesNo[`${data?.isOnOxygen}`]}
               titleClass="xs:min-w-[180px] sm:min-w-[250px]"
             />
             <DataRow
               title="Oxygen Saturation"
-              data="Data"
+              data={data?.oxygenSaturation}
               titleClass="xs:min-w-[180px] sm:min-w-[250px]"
             />
             <DataRow
               title="Received Ventilatory Support"
-              data="Data"
+              data={EnumBoolYesNo[`${data?.receivedVentilatorySupport}`]}
               titleClass="xs:min-w-[180px] sm:min-w-[250px]"
             />
             <DataRow
               title="Received BP Support"
-              data="Data"
+              data={EnumBoolYesNo[`${data?.receivedBPSupport}`]}
               titleClass="xs:min-w-[180px] sm:min-w-[250px]"
             />
             <DataRow
               title="Date First Positive"
-              data="Data"
+              data={DateFunc.formatDate(data?.dateFirstPositive)}
               titleClass="xs:min-w-[180px] sm:min-w-[250px]"
             />
             <DataRow
               title="Recent International Travel"
-              data="Data"
+              data={EnumBoolYesNo[`${data?.anyInternationalTravel}`]}
               titleClass="xs:min-w-[180px] sm:min-w-[250px]"
             />
             <DataRow
               title="Recent International Travel Destination Name"
-              data="Data"
+              data={data?.travelDestination}
               titleClass="xs:min-w-[180px] sm:min-w-[250px]"
             />
             <DataRow
               title="Health Care Worker"
-              data="Data"
+              data={EnumBoolYesNo[`${data?.isClientHealthCareWorker}`]}
               titleClass="xs:min-w-[180px] sm:min-w-[250px]"
             />
             <DataRow
               title="Covid Exposure"
-              data="Data"
+              data={EnumBoolYesNo[`${data?.hadCovidExposure}`]}
               titleClass="xs:min-w-[180px] sm:min-w-[250px]"
             />
             <DataRow
               title="Mental Status on Admission"
-              data="Data"
+              data={data?.mentalStatusOnAdmission}
               titleClass="xs:min-w-[180px] sm:min-w-[250px]"
             />
 
@@ -141,37 +189,38 @@ const CovidDetails = () => {
             </div>
             <DataRow
               title="Pneumonia"
-              data="Data"
+              data={EnumBoolYesNo[`${data?.hasPneumonia}`]}
               titleClass="xs:min-w-[180px] sm:min-w-[250px]"
             />
             <DataRow
               title="ARDS"
-              data="Data"
+              data={EnumBoolYesNo[`${data?.isARDS}`]}
               titleClass="xs:min-w-[180px] sm:min-w-[250px]"
             />
             <DataRow
               title="Patient Hospitalized?"
-              data="Data"
+              data={EnumBoolYesNo[`${data?.isPatientHospitalized}`]}
               titleClass="xs:min-w-[180px] sm:min-w-[250px]"
             />
             <DataRow
               title="Date of Hospitalised"
-              data="Data"
+              data={DateFunc.formatDate(data?.dateHospitalized)}
               titleClass="xs:min-w-[180px] sm:min-w-[250px]"
             />
             <DataRow
               title="Co-morbid Conditions"
-              data="Data"
+              // data={renderexposureRisks(data?.exposureRisks)}
+              data={renderexposureRisks}
               titleClass="xs:min-w-[180px] sm:min-w-[250px]"
             />
             <DataRow
               title="Other Co-morbid Conditions"
-              data="Data"
+              data={data?.otherComorbiditiesConditions}
               titleClass="xs:min-w-[180px] sm:min-w-[250px]"
             />
             <DataRow
               title="Other Respiratory Illness"
-              data="Data"
+              data={data?.otherRespiratoryIllness}
               titleClass="xs:min-w-[180px] sm:min-w-[250px]"
             />
           </div>
@@ -182,3 +231,10 @@ const CovidDetails = () => {
 };
 
 export default CovidDetails;
+
+// const renderCovidComorbidities = (covidComorbidity: CovidComorbidity[]) => {
+//   const nameArray = covidComorbidity?.map(
+//     (data) => EnumCovidComorbidCondition[data?.covidComorbidityConditions]
+//   );
+//   return nameArray?.join(", ");
+// };

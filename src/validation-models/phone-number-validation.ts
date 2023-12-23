@@ -30,16 +30,12 @@ export const phoneNumberValidation = ({
     if (!code) errors[codeKey] = "Required";
     if (!code || !phone) return;
   }
-  // if (required && (!code || !phone)) return;
-  //   console.log({ phone, phoneKey, code, codeKey, errors, required });
 
-  if (phone || code) {
-    if (!phone && code && code != "0000")
-      errors[phoneKey] = "Please enter phone number";
-    if (phone && !code && code != "0000")
-      errors[codeKey] = "Please  select country code";
+  if (phone && !code && code != "0000") {
+    errors[codeKey] = "Please  select country code";
     // return;
   }
+
   console.log({ phoneKey, phone, code });
 
   if (phone && code == "+260") {

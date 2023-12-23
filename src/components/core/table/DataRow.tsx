@@ -36,7 +36,7 @@ const DataRow: React.FC<Props> = ({
           dataClass
         )}
       >
-        <div className="text-base ">{data}</div>
+        <div className="text-base whitespace-pre-wrap">{data}</div>
       </div>
     </div>
   );

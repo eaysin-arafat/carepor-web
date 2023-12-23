@@ -92,6 +92,8 @@ export const complaintsModalTypes = Object.freeze({
   chronicNonChronic: "chronicNonChronic",
   allergies: "allergies",
   familySocialHistory: "familySocialHistory",
+  preventionHistory: "preventionHistory",
+  drugAdherence: "drugAdherence",
 });
 
 export const examinationNDiagnosisModalTypes = Object.freeze({
@@ -115,6 +117,7 @@ export const paediatricModalTypes = Object.freeze({
 export const covidModalTypes = Object.freeze({
   covidCreateModal: "covidCreateModal",
   covidViewModal: "covidViewModal",
+  covidEditModal: "covidEditModal",
 });
 
 export const covaxModalTypes = Object.freeze({

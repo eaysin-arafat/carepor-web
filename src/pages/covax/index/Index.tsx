@@ -1,3 +1,4 @@
+import { RootState } from "@/app/store";
 import RequestError from "@/components/core/error/RequestError";
 import TableLoader from "@/components/core/loader/TableLoader";
 import NotFound from "@/components/core/not-found/NotFound";
@@ -6,12 +7,12 @@ import {
   useReadCovaxByClientIdQuery,
   useReadVaccineByClientQuery,
 } from "@/features/covax/covax-api";
-import { openAddModal } from "@/features/modal/modal-slice";
+import { closeAddModal, openAddModal } from "@/features/modal/modal-slice";
 import useBaseDataCreate from "@/hooks/useBaseDataCreate";
 import { TypeCovax, TypeImmunizationVaccine } from "@/types/module-types/covax";
 import { sortByDate } from "@/utilities/date";
 import { PlusCircle } from "react-feather";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import AdverseEvent from "../cards/AdverseEvent";
 import CovaxCard from "../cards/PreAssessmentCard";
 import VaccinateCard from "../cards/VaccinateCard";
@@ -23,8 +24,20 @@ const CovaxIndex = () => {
   const dispatch = useDispatch();
   const [baseData] = useBaseDataCreate();
 
+  const { addModal } = useSelector((state: RootState) => state.modal);
+
   // handle create and update form
-  const handleCovaxForm = (data?: TypeCovax) => {
+  const handleCovaxAddForm = () => {
+    dispatch(
+      openAddModal({
+        modalId: covaxModalTypes.covaxCreateModal,
+        data: null,
+      })
+    );
+  };
+
+  const handleCovaxEditForm = (data?: TypeCovax) => {
+    dispatch(closeAddModal());
     dispatch(
       openAddModal({
         modalId: covaxModalTypes.covaxCreateModal,
@@ -84,16 +97,15 @@ const CovaxIndex = () => {
     <div>
       {/* Covax Modal*/}
       <CovaxCreate />
-      <VaccinateCreate />
+      {addModal.modalId === covaxModalTypes.vaccinateCreateModal && (
+        <VaccinateCreate />
+      )}
       <AdverseEffectCreate />
 
       <div className="flex justify-between items-center">
         <h2 className="heading_2">Covax</h2>
         {isSuccess && !isError && !clientCovax && (
-          <button
-            onClick={() => handleCovaxForm(null)}
-            className="main_btn px-5 gap-2"
-          >
+          <button onClick={handleCovaxAddForm} className="main_btn px-5 gap-2">
             <PlusCircle className="" /> New Record
           </button>
         )}
@@ -110,7 +122,7 @@ const CovaxIndex = () => {
         <CovaxCard
           clientCovax={clientCovax}
           handleVaccinateForm={handleVaccinateForm}
-          handleCovaxForm={handleCovaxForm}
+          handleCovaxEditForm={handleCovaxEditForm}
         />
       )}
 

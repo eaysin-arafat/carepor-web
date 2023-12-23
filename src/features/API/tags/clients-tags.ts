@@ -1,2 +1,2 @@
 // Clients Tags
-export const clientsTags = ["Encounters", "Admissions"];
+export const clientsTags = ["Encounters", "Admissions", "ClientByKey"];

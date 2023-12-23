@@ -5,6 +5,7 @@ import { Client } from "@/interface/clients";
 import {
   URLAdmissions,
   URLClientDetails,
+  URLDeathRecordDetails,
   URLServicePoint,
 } from "@/routers/client";
 import { clientAddress } from "@/utilities";
@@ -70,7 +71,7 @@ const PatientCard = ({ client, className }: PatientCardProps) => {
       }
     }
     if (status === RtkStatusEnum.rejected) {
-      toast.dismiss()
+      toast.dismiss();
       toast.error("Rejected");
       console.log(error);
     }
@@ -149,7 +150,7 @@ const PatientCard = ({ client, className }: PatientCardProps) => {
                   Client has been deceased
                 </p>
               )}
-              <div className="flex flex-row sm:justify-start justify-center flex-wrap gap-1 mt-2">
+              <div className="flex flex-row sm:justify-start justify-center flex-wrap gap-3 mt-2">
                 {!client?.isDeceased && (
                   <>
                     <Link
@@ -183,12 +184,18 @@ const PatientCard = ({ client, className }: PatientCardProps) => {
                 )}
                 {client?.isDeceased && (
                   <>
-                    <button className={cn("main_btn btn_sm text-sm")}>
+                    <Link
+                      to={URLClientDetails({ id: client?.oid })}
+                      className={cn("main_btn btn_sm text-center text-sm")}
+                    >
                       Details
-                    </button>
-                    <button className={cn("main_btn btn_sm text-sm")}>
+                    </Link>
+                    <Link
+                      to={URLDeathRecordDetails({ id: client?.oid })}
+                      className={cn("main_btn btn_sm text-center text-sm")}
+                    >
                       Death Record
-                    </button>
+                    </Link>
                   </>
                 )}
               </div>

@@ -1,5 +1,5 @@
 import { EnumSourceOfAlert } from "@/enum/enumerators";
-import { CovidErrorType, CovidType } from "@/pages/covid/create/Create";
+import { TypeCovid, TypeCovidError } from "@/types/module-types/covid";
 import dayjs from "dayjs";
 import React from "react";
 import Card from "../core/card/Card";
@@ -11,9 +11,9 @@ import Select from "../core/form-elements/Select";
 import Textarea from "../core/form-elements/textarea";
 
 interface CovidFormProps {
-  covidData?: CovidType;
+  covidData?: TypeCovid;
   handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  errorMsg?: CovidErrorType;
+  errorMsg?: TypeCovidError;
   handleDateChange?: (name: string, value: string) => void;
 }
 

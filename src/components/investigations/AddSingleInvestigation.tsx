@@ -102,7 +102,7 @@ const AddSingleInvestigation = ({}) => {
     const findDuplicate =
       investigations?.find((item) => item.testId == testId) || {};
     if (Object.keys(findDuplicate)?.length) {
-      toast.dismiss()
+      toast.dismiss();
       return toast.error("This test is already added!");
     }
 
@@ -126,8 +126,10 @@ const AddSingleInvestigation = ({}) => {
       ...baseData,
       subTestType,
       testType,
-      testId,
+      testId: +testId,
       clinicianId,
+      quantity: +formData.quantity,
+      sampleQuantity: +formData.sampleQuantity,
       orderDate: datePickerToString(orderDate),
     };
 

@@ -184,7 +184,6 @@ function ResultUpdate({ investigation, handleCancelEdit }: Props) {
         className="p-6 pb-0 grid grid-cols-1 md:grid-cols-6 gap-6 bg-whiteBgColor"
       >
         <div className="col-span-3 ">
-          {/* <div>{JSON.stringify(testTypeId)}</div> */}
           {/* DATE */}
           <DateInput
             name="resultDate"
