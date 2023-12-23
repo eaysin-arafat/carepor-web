@@ -9,8 +9,6 @@ import FormHeading from "@/components/core/form-heading/FormHeading";
 import { complaintsModalTypes } from "@/constants/modal-types";
 import { EnumEncounterType } from "@/enum/encounter-type";
 import { useReadChiefComplaintByClientQuery } from "@/features/chief-complaint/chief-complaint-api";
-import { useReadIdentifiedConstitutionalSymptomsByClientQuery } from "@/features/identified-constitutional-symptom/identified-constitutional-symptom-api";
-import { useReadIdentifiedTbSymptomByClientIdQuery } from "@/features/identified-tb-symptom/identified-tb-symptom-api";
 import {
   closeAddModal,
   closeEditModal,
@@ -20,11 +18,7 @@ import {
 import useClient from "@/hooks/useClient";
 import CreateComplaintsAndHistories from "@/pages/chief-complaints-opd/create/Create";
 import EditComplaintsAndHistory from "@/pages/chief-complaints-opd/edit/Edit";
-import {
-  filterBy24Hours,
-  filterByEncounter,
-  filterByEncounterTypeAndCombine,
-} from "@/utilities/transformation";
+import { filterBy24Hours, filterByEncounter } from "@/utilities/transformation";
 import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -167,7 +161,10 @@ const OpdComplaintsHistory = () => {
         isEdit={false}
       />
       {addModal?.modalId === complaintsModalTypes.tBConstitutionalSymptoms && (
-        <TBConstitutionalSymptoms toggler={closeModal} />
+        <TBConstitutionalSymptoms
+          toggler={closeModal}
+          encounterType={EnumEncounterType?.MedicalEncounter}
+        />
       )}
 
       {/* Review of Systems  */}

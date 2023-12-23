@@ -8,6 +8,7 @@ const identifiedConstitutionalSymptomApi = API.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags: ["tbConstitutionalSymptoms"],
     }),
     readIdentifiedConstitutionalSymptoms: builder.query({
       query: () => `/identified-constitutional-symptoms`,
@@ -19,6 +20,11 @@ const identifiedConstitutionalSymptomApi = API.injectEndpoints({
       query: (clientId) =>
         `/identified-constitutional-symptoms-by-client/${clientId}`,
       providesTags: ["IdentifiedConstitutionalSymptoms"],
+    }),
+    readIIdentifiedTbConstitutionalSymptomsByClient: builder.query({
+      query: (clientId) =>
+        `/identified-tb-constitutional-symptoms-by-client/${clientId}`,
+      providesTags: ["tbConstitutionalSymptoms"],
     }),
     readIdentifiedConstitutionalSymptomsByEncounterId: builder.query({
       query: (encounterId) =>
@@ -89,6 +95,7 @@ const identifiedConstitutionalSymptomApi = API.injectEndpoints({
 });
 
 export const {
+  useReadIIdentifiedTbConstitutionalSymptomsByClientQuery,
   useCreateIdentifiedConstitutionalSymptomMutation,
   useReadIdentifiedConstitutionalSymptomsQuery,
   useReadIdentifiedConstitutionalSymptomByKeyQuery,

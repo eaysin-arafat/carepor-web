@@ -13,7 +13,10 @@ const treatmentPlan = ["TreatmentPlans"];
 const referral = ["Referrals"];
 const covax = ["CovaxPreAssessment", "VaccineRecord", "AdverseByImmunization"];
 const identifiedTbSymptom = ["IdentifiedTbSymptoms"];
-const identifiedConstitutionalSymptom = ["IdentifiedConstitutionalSymptoms"];
+const identifiedConstitutionalSymptom = [
+  "IdentifiedConstitutionalSymptoms",
+  "tbConstitutionalSymptoms",
+];
 
 // Export tags
 export const mainModuleTags = [
